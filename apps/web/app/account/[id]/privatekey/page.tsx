@@ -1,4 +1,3 @@
-import { AlertMsg } from "./components/alert-msg";
 import {
     Alert,
     AlertDescription,
@@ -11,9 +10,9 @@ import {
 } from "@/components/ui/card"
 import { EyeOff } from 'lucide-react';
 import { RocketIcon } from "lucide-react"
-import PrivateKeyFrom from "./components/private-key-form";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/util";
+import { PrivateKeyFrom } from "@/app/account/[id]/privatekey/components/private-key-form";
 
 const getEncryptedPrivateKeys = async () => {
 

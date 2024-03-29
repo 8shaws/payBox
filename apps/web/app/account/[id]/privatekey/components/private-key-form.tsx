@@ -28,7 +28,7 @@ import { accountPrivateKeysAtom } from "@paybox/recoil"
 import { decryptWithPassword } from "@/lib/helper"
 
 
-const PrivateKeyFrom = ({
+export const PrivateKeyFrom = ({
     accountId,
     jwt
 }: {
@@ -134,7 +134,4 @@ const PrivateKeyFrom = ({
     )
 }
 
-
-
-export default PrivateKeyFrom
 
