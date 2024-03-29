@@ -41,3 +41,11 @@ export const getAccountNumber = selector<number>({
         }
     },
 });
+
+export const accountPrivateKeysAtom = atom<{
+    network: "Solana" | "Ethereum",
+    privateKey: string,
+}[]>({
+    default: [],
+    key: "accountPrivateKeysAtom",
+});
