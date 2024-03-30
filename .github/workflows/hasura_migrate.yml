@@ -39,5 +39,5 @@ jobs:
         
       - name: applying migrations
         run: |
-          hasura migrate apply --all-databasesg
+          hasura migrate apply --all-databases
         working-directory: backend/hasura/hasura
