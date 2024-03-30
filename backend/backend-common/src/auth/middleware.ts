@@ -108,6 +108,8 @@ export const checkPassword = async (
           .status(401)
           .json({ msg: "Wrong Password", status: responseStatus.Error });
       }
+      //@ts-ignore
+      req.hashPassword = hashPassword;
     } else {
       return res
         .status(500)

@@ -113,6 +113,9 @@ export function AccountCreateForm({
                         "Authorization": `Bearer ${jwt}`
                     },
                 }).then(res => res.json());
+                if (status == responseStatus.Error) {
+                    return Promise.reject(response.msg);
+                }
                 return { account: response.account, status: response.status, msg: response.msg }
             } catch (error) {
                 throw new Error("Error creating Account");
@@ -120,21 +123,19 @@ export function AccountCreateForm({
         }
         toast.promise(call(), {
             loading: "Creating Account...",
-            success({ account, status, msg }: { account: AccountType, status: responseStatus, msg: string }) {
-                if (status == responseStatus.Error) {
-                    return toast.error(msg)
-                }
+            success({ account }: { account: AccountType, status: responseStatus, msg: string }) {
+               
                 setAccounts((oldAccounts) => {
                     return [...oldAccounts, account]
                 });
                 setDefaultAccountNumber((oldNumber) => oldNumber + 1);
+                router.push('/account/');
                 return `Account '${account.name}' Created Successfully`
             },
-            error({ status, msg }: { status: responseStatus, msg: string }) {
+            error({ status, msg, }) {
                 return msg
             },
         });
-        router.push('/account/');
     }
 
    

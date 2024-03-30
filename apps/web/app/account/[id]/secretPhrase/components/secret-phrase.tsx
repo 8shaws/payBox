@@ -16,19 +16,19 @@ import {
 } from "@/components/ui/form"
 
 import { toast } from "sonner";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { AccountGetPrivateKey, BACKEND_URL, responseStatus } from "@paybox/common"
+import { AccountGetPrivateKey, BACKEND_URL, SecretValid, responseStatus } from "@paybox/common"
 import { CardContent, CardFooter } from "@/components/ui/card"
-import { PrivateKeyDialogBox } from "./key-dialog-box"
-import { useRecoilState, useSetRecoilState } from "recoil"
-import { accountPrivateKeysAtom } from "@paybox/recoil"
 import { decryptWithPassword } from "@/lib/helper"
+import { useRecoilValue } from "recoil"
+import { accountAtom } from "@paybox/recoil"
+import { SecretPhraseDialogBox } from "./secret-dialog-box"
 
 
-export const PrivateKeyFrom = ({
+export const SecretPhraseForm = ({
     accountId,
     jwt
 }: {
@@ -38,45 +38,50 @@ export const PrivateKeyFrom = ({
 
     const [checked, setChecked] = React.useState<boolean>(false);
     const [open, setOpen] = React.useState<boolean>(false);
-    const setPrivateKey = useSetRecoilState(accountPrivateKeysAtom);
+    const account = useRecoilValue(accountAtom);
+    const [seed, setSeed] = React.useState<string | null>(null);
 
-    const form = useForm<z.infer<typeof AccountGetPrivateKey>>({
-        resolver: zodResolver(AccountGetPrivateKey),
+    const form = useForm<z.infer<typeof SecretValid>>({
+        resolver: zodResolver(SecretValid),
         defaultValues: {
             password: "",
-            accountId
         },
     });
 
-    function onSubmit(data: z.infer<typeof AccountGetPrivateKey>) {
+    useEffect(() => {
+        if(account?.walletId) {
+            form.setValue("walletId", account?.walletId);
+        }
+    }, [account]);
+
+    function onSubmit(data: z.infer<typeof SecretValid>) {
         const call = async () => {
-            const {status, sol, eth, hashPassword, msg}: {
-                status: responseStatus, sol: {privateKey: string}, eth: {privateKey: string}, hashPassword: string, msg: string
-            } = await fetch(`${BACKEND_URL}/account/privateKey`, {
+            const {status, secret, msg, hashPassword}: {
+                status: responseStatus, secret: string, msg: string, hashPassword: string
+            } = await fetch(`${BACKEND_URL}/wallet/secret`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${jwt}`
                 },
                 body: JSON.stringify(data),
-                cache: "force-cache"
+                cache: "no-store"
             }).then(res => res.json());
-
             if (status == responseStatus.Error) {
                return Promise.reject(msg);
             }
-            return {status, sol, eth, hashPassword, msg};
+            return {status, secret, msg, hashPassword};
         }
 
         toast.promise(call(), {
             loading: "Fetching Private Key...",
-            success: ({status, sol, eth, hashPassword}) => {
-                setPrivateKey([ 
-                    {network: "Solana", privateKey: decryptWithPassword(sol.privateKey, hashPassword)},
-                    {network: "Ethereum", privateKey: decryptWithPassword(eth.privateKey, hashPassword)}
-                ]);
+            success: ({status, secret, hashPassword}) => {
+                // todo: decrypt it
                 setOpen(true);
-                return "Private Key Fetched Successfully";
+                setTimeout(() => {
+                }, 1000);
+                setSeed(secret);
+                return "Seed fetched Successfully!";
             },
             error: (error) => {
                 return error;
@@ -126,10 +131,12 @@ export const PrivateKeyFrom = ({
                 </form>
             </Form>
             {open &&
-                <PrivateKeyDialogBox
+                <SecretPhraseDialogBox
                     open={open}
                     setOpen={setOpen}
-                />}
+                    seed={seed}
+                />
+                }
         </>
     )
 }

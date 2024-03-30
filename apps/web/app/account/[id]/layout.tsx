@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 import { cookies } from "next/headers";
-import { AccountsLayout } from "@/app/account/components/accountLayout";
 import { AccountType, BACKEND_URL, responseStatus } from "@paybox/common";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/util";
 import { redirect } from "next/navigation";
+import { AccountLayout } from "./account-layout";
 
 export const metadata: Metadata = {
   title: "Account | PayBox",
@@ -15,11 +15,13 @@ export const metadata: Metadata = {
 
 interface AccountLayoutProps {
   children: React.ReactNode;
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-const getAccounts = async (jwt: string): Promise<AccountType[] | null> => {
+const getAccount = async (jwt: string, id: string): Promise<AccountType | null> => {
   try {
-    const { status, accounts }: { status: responseStatus, accounts: AccountType[] } = await fetch(`${BACKEND_URL}/account/all`, {
+    const { status, account }: { status: responseStatus, account: AccountType } = await fetch(`${BACKEND_URL}/account?accountId=${id}`, {
       method: "get",
       headers: {
         "Content-type": "application/json",
@@ -30,35 +32,34 @@ const getAccounts = async (jwt: string): Promise<AccountType[] | null> => {
     if (status == responseStatus.Error) {
       return null
     }
-    return accounts
+    return account
   } catch (error) {
     console.log(error);
     return null
   }
 }
 
-export default async function AccountsMainLayout({
+export default async function AccountMainLayout({
   children,
+  params,
 }: AccountLayoutProps) {
-  const layout = cookies().get("react-resizable-panels:layout");
-  const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
-
+  const {id} = params;
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.user?.email) {
     redirect("/signup");
   }
 
   //@ts-ignore
-  const accounts = await getAccounts(session.user.jwt);
-
+  const account = await getAccount(session.user.jwt, id);
   return (
     <>
-      {accounts && <AccountsLayout
-        defaultLayout={defaultLayout}
-        navCollapsedSize={4}
-        children={children}
-        accounts={accounts}
-      />}
+        {account && 
+            <AccountLayout
+                account={account}
+                children={children}
+                id={id}
+            />
+        }
     </>
   );
 }

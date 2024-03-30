@@ -17,6 +17,7 @@ import {
   ACCOUNT_CACHE_EXPIRE,
   WALLET_CACHE_EXPIRE,
   PHRASE_ACCOUNT_CACHE_EXPIRE,
+  SecretValid,
 } from "@paybox/common";
 import { Router } from "express";
 import {
@@ -30,7 +31,8 @@ import {
   genRand,
   genUUID,
   validatePassword,
-  checkPassword
+  checkPassword,
+  getAccountSecret
 } from "@paybox/backend-common";
 import { importFromPrivate, addAccountPhrase, getWalletForAccountCreate } from "@paybox/backend-common";
 import { Redis } from "..";
@@ -553,6 +555,39 @@ accountRouter.get('/getPutImgUrl', async (req, res) => {
             .status(200)
             .json({putUrl, status: responseStatus.Ok});
     
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: responseStatus.Error,
+      msg: "Internal error",
+      error: error,
+    });
+  }
+});
+
+accountRouter.get('/secret', checkPassword, async (req, res) => {
+  try {
+    //@ts-ignore
+    const hashPassword = req.hashPassword;
+    if(hashPassword) {
+      const { accountId } = AccountGetPrivateKey.parse(req.body);
+  
+      const {status, secret} = await getAccountSecret(accountId);
+      if (status == dbResStatus.Error || secret == undefined) {
+        return res
+          .status(503)
+          .json({ msg: "Can't Find such account secret phrase now!", status: responseStatus.Error });
+      }
+  
+      return res.status(200).json({
+        status: responseStatus.Ok,
+        secret,
+        hashPassword
+      });
+    }
+    return res
+      .status(500)
+      .json({ status: responseStatus.Error, msg: "Check Password Error" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
