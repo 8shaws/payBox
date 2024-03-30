@@ -24,10 +24,10 @@ jobs:
       - name: hasura migrate
         run: |
           cd backend/hasura/hasura
-          sed -i "s/^endpoint:.*/endpoint: ${HASURA_ENDPOINT}/" config.yaml
-          sed -i "s/^admin_secret:.*/admin_secret: ${HASURA_ADMIN_SECRET}/" config.yaml
+          sed -i "s|^endpoint:.*|endpoint: ${HASURA_ENDPOINT}|" config.yaml
+          sed -i "s|^admin_secret:.*|admin_secret: ${HASURA_ADMIN_SECRET}|" config.yaml
           cd ../../..
-          
+
         env:
           HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
