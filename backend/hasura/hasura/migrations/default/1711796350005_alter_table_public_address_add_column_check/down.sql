@@ -1,3 +1,4 @@
 -- Could not auto-generate a down migration.
 -- Please write an appropriate down migration for the SQL below:
--- drop schema "check" cascade;
+-- alter table "public"."address" add column "check" text
+--  not null default version();
