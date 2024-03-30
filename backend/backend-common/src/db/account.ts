@@ -434,3 +434,37 @@ export const putImgUrl = async (
     status: dbResStatus.Error
   }
 }
+
+/**
+ * 
+ * @param accountId 
+ * @returns 
+ */
+export const getAccountSecret = async (
+  accountId: string
+): Promise<{
+  status: dbResStatus,
+  secret?: string
+}> => {
+  const response = await chain("query")({
+    account: [{
+      limit: 1,
+      where: {
+        id: {_eq: accountId}
+      }
+    }, {
+      wallet: {
+        secretPhase: true
+      }
+    }]
+  }, {operationName: "getAccountSecret"});
+  if(response.account[0].wallet.secretPhase) {
+    return {
+      status: dbResStatus.Ok,
+      secret: response.account[0].wallet.secretPhase as string
+    }
+  }
+  return {
+    status: dbResStatus.Error
+  }
+};
