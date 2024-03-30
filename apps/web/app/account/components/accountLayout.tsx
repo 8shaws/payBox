@@ -19,7 +19,7 @@ import { commonNavLinks, getNavLinks } from "./navLinks";
 import {useSetRecoilState} from "recoil";
 import { accountsAtom } from "@paybox/recoil";
 
-interface AccountLayoutProps {
+interface AccountsLayoutProps {
     defaultLayout: number[] | undefined;
     defaultCollapsed?: boolean;
     navCollapsedSize: number;
@@ -29,13 +29,13 @@ interface AccountLayoutProps {
 
 
 
-export function AccountLayout({
+export function AccountsLayout({
     defaultLayout = [100, 480],
     defaultCollapsed = false,
     navCollapsedSize,
     children,
     accounts
-}: AccountLayoutProps) {
+}: AccountsLayoutProps) {
     const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
     const [selectedUser, setSelectedUser] = React.useState(userData[0]);
     const [isMobile, setIsMobile] = useState(false);

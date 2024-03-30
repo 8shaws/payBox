@@ -76,10 +76,10 @@ export const PrivateKeyFrom = ({
                     {network: "Ethereum", privateKey: decryptWithPassword(eth.privateKey, hashPassword)}
                 ]);
                 setOpen(true);
-                return toast.success("Private Key Fetched Successfully");
+                return "Private Key Fetched Successfully";
             },
             error: (error) => {
-                return toast.error(error);
+                return error;
             }
         });
     }
