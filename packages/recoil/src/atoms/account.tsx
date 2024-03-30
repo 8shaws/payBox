@@ -2,7 +2,7 @@ import { AccountType, BACKEND_URL, responseStatus } from "@paybox/common";
 import { atom, selector } from "recoil";
 import { clientAtom } from "./client";
 
-export const accountAtom = atom({
+export const accountAtom = atom<AccountType | null>({
     default: null,
     key: "accountAtom",
 });
