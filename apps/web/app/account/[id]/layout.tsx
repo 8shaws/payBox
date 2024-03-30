@@ -15,8 +15,7 @@ export const metadata: Metadata = {
 
 interface AccountLayoutProps {
   children: React.ReactNode;
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: { id: string };
 }
 
 const getAccount = async (jwt: string, id: string): Promise<AccountType | null> => {
@@ -41,7 +40,7 @@ const getAccount = async (jwt: string, id: string): Promise<AccountType | null> 
 
 export default async function AccountMainLayout({
   children,
-  params,
+  params
 }: AccountLayoutProps) {
   const {id} = params;
   const session = await getServerSession(authOptions);

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 
-interface AccountLayoutProps {
+interface AccountsLayoutProps {
   children: React.ReactNode;
 }
 
@@ -39,7 +39,7 @@ const getAccounts = async (jwt: string): Promise<AccountType[] | null> => {
 
 export default async function AccountsMainLayout({
   children,
-}: AccountLayoutProps) {
+}: AccountsLayoutProps) {
   const layout = cookies().get("react-resizable-panels:layout");
   const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
 
