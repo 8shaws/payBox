@@ -28,11 +28,15 @@ jobs:
           printf 'endpoint: %s\n' "${{secrets.HASURA_ENDPOINT}}" >> config.yaml
           printf 'metadata_directory: metadata\n' >> config.yaml
           printf 'admin_secret: %s\n' "${{secrets.HASURA_ADMIN_SECRET}}" >> config.yaml
+          cd ../../..
 
       - name: applying metadata
         run: |
+          cd backend/hasura/hasura
           hasura metadata apply
+          cd ../../..
         
       - name: applying migrations
         run: |
+          cd backend/hasura/hasura
           hasura migrate apply
