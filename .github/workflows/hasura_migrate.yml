@@ -1,0 +1,38 @@
+name: Hasura Remote Image migrate
+
+on:
+  push:
+    paths:
+      - 'backend/hasura/**'
+    branches:
+      - hasura_workflow
+      - dev
+  pull_request:
+    branches:
+      - dev
+      - hasura_workflow
+    paths:
+      - 'backend/hasura/**'
+
+jobs:
+  hasura_migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: "curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash"
+
+      - name: hasura migrate
+        run: |
+          cd backend/hasura/hasura
+          printf 'version: 3\n' >> config.yaml
+          printf 'endpoint: %s\n' "${{secrets.HASURA_ENDPOINT}}" >> config.yaml
+          printf 'metadata_directory: metadata\n' >> config.yaml
+          printf 'admin_secret: %s\n' "${{secrets.HASURA_ADMIN_SECRET}}" >> config.yaml
+
+      - name: applying metadata
+        run: |
+          hasura metadata apply
+        
+      - name: applying migrations
+        run: |
+          hasura migrate apply
