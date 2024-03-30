@@ -3,6 +3,8 @@ table:
   schema: public
 configuration:
   column_config:
+    check:
+      custom_name: check2
     client_id:
       custom_name: clientId
     created_at:
@@ -10,6 +12,7 @@ configuration:
     updated_at:
       custom_name: updatedAt
   custom_column_names:
+    check: check2
     client_id: clientId
     created_at: createdAt
     updated_at: updatedAt

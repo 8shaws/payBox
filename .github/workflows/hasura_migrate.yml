@@ -2,8 +2,8 @@ name: Hasura Remote Image migrate
 
 on:
   push:
-    # paths:
-    #   - 'backend/hasura/**'
+    paths:
+      - 'backend/hasura/**'
     branches:
       - hasura_workflow
       - dev
@@ -39,5 +39,5 @@ jobs:
         
       - name: applying migrations
         run: |
-          hasura migrate apply
+          hasura migrate apply --all-databasesg
         working-directory: backend/hasura/hasura
