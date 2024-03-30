@@ -17,7 +17,7 @@ import { Redis } from "..";
 
 export const walletRouter = Router();
 
-walletRouter.get("/secret", checkPassword, async (req, res) => {
+walletRouter.post("/secret", checkPassword, async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
