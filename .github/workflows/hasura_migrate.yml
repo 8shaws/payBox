@@ -24,19 +24,20 @@ jobs:
       - name: hasura migrate
         run: |
           cd backend/hasura/hasura
-          printf 'version: 3\n' >> config.yaml
-          printf 'endpoint: %s\n' "${{secrets.HASURA_ENDPOINT}}" >> config.yaml
-          printf 'metadata_directory: metadata\n' >> config.yaml
-          printf 'admin_secret: %s\n' "${{secrets.HASURA_ADMIN_SECRET}}" >> config.yaml
+          sed -i "s/^endpoint:.*/endpoint: ${HASURA_ENDPOINT}/" config.yaml
+          sed -i "s/^admin_secret:.*/admin_secret: ${HASURA_ADMIN_SECRET}/" config.yaml
           cd ../../..
+          
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
 
       - name: applying metadata
         run: |
-          cd backend/hasura/hasura
           hasura metadata apply
-          cd ../../..
+        working-directory: backend/hasura/hasura
         
       - name: applying migrations
         run: |
-          cd backend/hasura/hasura
           hasura migrate apply
+        working-directory: backend/hasura/hasura
