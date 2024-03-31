@@ -13,6 +13,7 @@ import {
 import { Wallet } from 'lucide-react';
 import { accountsAtom } from "@paybox/recoil";
 import { useRecoilValue } from "recoil";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface AccountSwitcherProps {
     isCollapsed: boolean
@@ -27,6 +28,7 @@ export function AccountSwitcher({
 }: AccountSwitcherProps) {
     
     const accounts = useRecoilValue(accountsAtom);
+    const name = accounts.find((account) => account.id === selectedAccount)?.name;
 
     return (
         <Select defaultValue={selectedAccount} onValueChange={setSelectedAccount}>
@@ -42,8 +44,7 @@ export function AccountSwitcher({
                     <Wallet className="h-5 w-5" />
                     <span className={cn("ml-2", isCollapsed && "hidden")}>
                         {
-                            accounts.find((account) => account.id === selectedAccount)
-                                ?.name
+                            name ? name : <Skeleton className="min-w-80 h-5 block" />
                         }
                     </span>
                 </SelectValue>
@@ -53,7 +54,7 @@ export function AccountSwitcher({
                     <SelectItem key={account.id} value={account.id}>
                         <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
                             <Wallet className="h-5 w-5 " />
-                            {account.name}
+                            {account.name ? account.name : <Skeleton className="w-20 h-5" />}
                         </div>
                     </SelectItem>
                 ))}
