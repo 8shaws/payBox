@@ -14,8 +14,12 @@ import {
     PencilLine,
     FilePlus,
     FilePlus2Icon,
-    GanttChart
+    GanttChart,
+    Settings,
+    UserRound,
+    UserRoundCog
 } from "lucide-react";
+import { LinksProps } from "./sidebar";
 
 export const commonNavLinks = [
     {
@@ -36,7 +40,7 @@ export const commonNavLinks = [
     },
     {
         id: "importSecretPhrase",
-        title: "Import Secret Recovery",
+        title: "Import Secret",
         label: "9",
         icon: FilePlus,
         variant: "ghost",
@@ -44,7 +48,7 @@ export const commonNavLinks = [
     },
     {
         id: "importPrivate",
-        title: "Import From Private-Key",
+        title: "Import Private-Key",
         label: "",
         icon: Lock,
         variant: "ghost",
@@ -102,6 +106,27 @@ export const getNavLinks = (id: string) => {
             icon: Trash2,
             variant: "ghost",
             link: `/account/${id}/remove`,
+        },
+    ]
+}
+
+export const clientNavLinks = (name: string | undefined): LinksProps[] => {
+    return [
+        {
+            id: "profile",
+            link: `/profile`,
+            icon: UserRoundCog,
+            title: `${name || "Profile"}`,
+            variant: "ghost",
+            label: "",
+        },
+        {
+            id: "setting",
+            link: `/profile`,
+            icon: Settings,
+            title: "Settings",
+            variant: "ghost",
+            label: "",
         },
     ]
 }

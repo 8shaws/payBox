@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/util";
 import { redirect } from "next/navigation";
 import { AccountLayout } from "./account-layout";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Account | PayBox",
@@ -52,6 +53,7 @@ export default async function AccountMainLayout({
   const account = await getAccount(session.user.jwt, id);
   return (
     <>
+    <div className=" dark:bg-primary-foreground">
         {account && 
             <AccountLayout
                 account={account}
@@ -59,6 +61,8 @@ export default async function AccountMainLayout({
                 id={id}
             />
         }
+
+    </div>
     </>
   );
 }

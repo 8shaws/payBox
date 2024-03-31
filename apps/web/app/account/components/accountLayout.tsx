@@ -15,9 +15,10 @@ import { Separator } from "@/components/ui/separator";
 import { AccountSwitcher } from "@/app/account/components/account-switcher";
 import { AccountType } from "@paybox/common";
 import { usePathname, useRouter } from "next/navigation";
-import { commonNavLinks, getNavLinks } from "./navLinks";
-import {useSetRecoilState} from "recoil";
-import { accountsAtom } from "@paybox/recoil";
+import { clientNavLinks, commonNavLinks, getNavLinks } from "./navLinks";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import { accountsAtom, clientAtom } from "@paybox/recoil";
+import { toast } from "sonner";
 
 interface AccountsLayoutProps {
     defaultLayout: number[] | undefined;
@@ -43,6 +44,7 @@ export function AccountsLayout({
         accounts[0].id
     );
     const setAccounts = useSetRecoilState(accountsAtom);
+    const client = useRecoilValue(clientAtom);
 
     const path = usePathname()
     const router = useRouter();
@@ -54,7 +56,10 @@ export function AccountsLayout({
         };
 
         checkScreenWidth();
-
+        if(accounts.length === 0) {
+            toast.info("No accounts found, please create one");
+            return router.push('/account/create');
+        }
         window.addEventListener("resize", checkScreenWidth);
 
         setAccounts(accounts);
@@ -104,8 +109,8 @@ export function AccountsLayout({
                     defaultSize={defaultLayout[0]}
                     collapsedSize={navCollapsedSize}
                     collapsible={true}
-                    minSize={isMobile ? 0 : 18}
-                    maxSize={isMobile ? 18 : 25}
+                    minSize={isMobile ? 0 : 14}
+                    maxSize={isMobile ? 14 : 25}
                     onCollapse={() => {
                         setIsCollapsed(true);
                         document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
@@ -119,7 +124,8 @@ export function AccountsLayout({
                         )}`;
                     }}
                     className={cn(
-                        isCollapsed && " min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out"
+                        isCollapsed && " min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out",
+                        "flex flex-col h-screen"
                     )}
                 >
                     <div
@@ -145,6 +151,13 @@ export function AccountsLayout({
                     <Sidenav
                         isCollapsed={isCollapsed}
                         links={commonNavLinks as LinksProps[]}
+                        selectedTab={selectedTab}
+                        setSelectedTab={setSelectedTab}
+                    />
+                    <div className="flex-grow" />
+                    <Sidenav
+                        isCollapsed={isCollapsed}
+                        links={clientNavLinks(client?.firstname)}
                         selectedTab={selectedTab}
                         setSelectedTab={setSelectedTab}
                     />
