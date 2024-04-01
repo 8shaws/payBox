@@ -297,7 +297,7 @@ accountRouter.post("/private", async (req, res) => {
     //@ts-ignore
     const id = req.id;
     if (id) {
-      const { secretKey, name, network } = ImportAccountSecret.parse(req.query);
+      const { secretKey, name, network } = ImportAccountSecret.parse(req.body);
 
       let hashPassword = (await Redis.getRedisInst().clientCache.getClientCache(id))?.password
         || (await getPassword(id)).hashPassword;
@@ -311,8 +311,10 @@ accountRouter.post("/private", async (req, res) => {
       switch (network) {
         case Network.Sol:
           keys = await (new SolOps()).fromSecret(secretKey, hashPassword);
+          break;
         case Network.Eth:
           keys = (new EthOps).fromSecret(secretKey, hashPassword);
+          break;
         case Network.Bitcoin:
         case Network.USDC:
           break;

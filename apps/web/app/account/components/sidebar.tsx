@@ -10,8 +10,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import React, { use } from "react"
-import { usePathname, useSearchParams, useParams } from 'next/navigation'
+import React from "react"
 
 
 export interface LinksProps {

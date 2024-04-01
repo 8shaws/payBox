@@ -36,23 +36,23 @@ export const commonNavLinks = [
         label: "128",
         icon: FilePlus2Icon,
         variant: "ghost",
-        link: "/account/create",
+        link: "/account/create/",
     },
     {
-        id: "importSecretPhrase",
+        id: "secret",
         title: "Import Secret",
         label: "9",
         icon: FilePlus,
         variant: "ghost",
-        link: "/account/importSecretPhrase",
+        link: "/account/import/secretPhrase",
     },
     {
-        id: "importPrivate",
+        id: "private",
         title: "Import Private-Key",
         label: "",
         icon: Lock,
         variant: "ghost",
-        link: "importPrivate",
+        link: "/account/import/private",
     },
 
 ]
