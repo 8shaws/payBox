@@ -8,6 +8,11 @@ export const clientAtom = atom<ClientWithJwt | null>({
   default: null,
 });
 
+export const clientJwtAtom = atom<string | null>({
+  key: "clientJwtAtom",
+  default: null,
+});
+
 export const loadingAtom = atom<boolean>({
   key: "loadingAtom",
   default: false,

@@ -1,10 +1,11 @@
-import { BACKEND_URL } from "@paybox/common";
+import { AccountType, BACKEND_URL, responseStatus } from "@paybox/common";
 import { selector } from "recoil";
+import { clientJwtAtom } from "../atoms";
 
 export const getAccount = selector({
     key: "getAccount",
     //@ts-ignore
-    get: ({accountId, jwt}) => async () => {
+    get: ({ accountId, jwt }) => async () => {
         const response = await fetch(`${BACKEND_URL}/account?accountId=${accountId}`, {
             method: "GET",
             headers: {
@@ -15,3 +16,22 @@ export const getAccount = selector({
         return response.account;
     },
 });
+
+export const getAccounts = selector({
+    key: "getAccounts",
+    get: async ({get}) => {
+        const { status, accounts }: { status: responseStatus, accounts: AccountType[] } =
+            await fetch(`${BACKEND_URL}/account/all`, {
+                method: "get",
+                headers: {
+                    "Content-type": "application/json",
+                    authorization: `Bearer ${get(clientJwtAtom)}`,
+                },
+                cache: "no-cache"
+            }).then(res => res.json());
+        if (status == responseStatus.Error) {
+            return []
+        }
+        return accounts
+    }
+})
