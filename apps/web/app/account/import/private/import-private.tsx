@@ -28,7 +28,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { BACKEND_URL, ImportAccountSecret, Network, WalletType, responseStatus } from "@paybox/common"
+import { AccountType, BACKEND_URL, ImportAccountSecret, Network, WalletType, responseStatus } from "@paybox/common"
 import SolanaIcon from "@/components/icon/SolanaIcon"
 import EthIcon from "@/components/icon/Eth"
 import { useForm } from "react-hook-form"
@@ -37,15 +37,15 @@ import { z } from "zod"
 import { toast } from "sonner"
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useRecoilValue } from "recoil";
-import { clientAtom } from "@paybox/recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { accountsAtom, clientAtom } from "@paybox/recoil";
 
 export function PrivateKeyForm({
     jwt
 }: {
     jwt: string
 }) {
-
+    const setAccounts = useSetRecoilState(accountsAtom);
 
     const form = useForm<z.infer<typeof ImportAccountSecret>>({
         resolver: zodResolver(ImportAccountSecret),
@@ -76,13 +76,18 @@ export function PrivateKeyForm({
             if(status === responseStatus.Error) {
                 return Promise.reject(msg)
             }
-            return Promise.resolve({status, wallet})
+            return Promise.resolve({status, account: (wallet.accounts || {}) as AccountType})
         }
         toast.promise(call(), {
             loading: "Importing account...",
-            success: ({status, wallet}) => {
+            success: ({status, account}) => {
 
-            //Todo: set some atoms here
+                setAccounts((accounts) => {
+                    if(accounts) {
+                        return [...accounts, account]
+                    }
+                    return [account]
+                })
                 return "Account imported successfully"
             },
             error: (msg) => {
