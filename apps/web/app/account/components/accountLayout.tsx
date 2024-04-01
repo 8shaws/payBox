@@ -16,8 +16,8 @@ import { AccountSwitcher } from "@/app/account/components/account-switcher";
 import { AccountType } from "@paybox/common";
 import { usePathname, useRouter } from "next/navigation";
 import { clientNavLinks, commonNavLinks, getNavLinks } from "./navLinks";
-import {useRecoilValue, useSetRecoilState} from "recoil";
-import { accountsAtom, clientAtom } from "@paybox/recoil";
+import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
+import { accountsAtom, clientAtom, getAccounts } from "@paybox/recoil";
 import { toast } from "sonner";
 
 interface AccountsLayoutProps {
@@ -44,6 +44,14 @@ export function AccountsLayout({
         accounts[0].id
     );
     const setAccounts = useSetRecoilState(accountsAtom);
+    // const loadAccounts = useRecoilCallback(({ snapshot, set }) => async () => {
+    //     const load = snapshot.getLoadable(getAccounts);
+    //     if (load.state === 'hasValue') {
+    //         const accounts = load.contents;
+    //         console.log(accounts)
+    //         set(accountsAtom, accounts);
+    //     }
+    // });
     const client = useRecoilValue(clientAtom);
 
     const path = usePathname()
@@ -56,12 +64,13 @@ export function AccountsLayout({
         };
 
         checkScreenWidth();
-        if(accounts.length === 0) {
+        if (accounts.length === 0) {
             toast.info("No accounts found, please create one");
             return router.push('/account/create');
         }
         window.addEventListener("resize", checkScreenWidth);
 
+        // loadAccounts()
         setAccounts(accounts);
 
         return () => {
