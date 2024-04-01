@@ -71,7 +71,6 @@ export function AccountsLayout({
 
     useEffect(() => {
         setSelectedTab(path.split("/")[3] || "dashboard")
-        router.push(`/account/${selectedAccount}/${path.split("/")[3] || ""}`)
     }, [selectedAccount])
 
     useEffect(() => {
