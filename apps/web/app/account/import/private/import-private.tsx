@@ -28,7 +28,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { ImportAccountSecret, Network } from "@paybox/common"
+import { BACKEND_URL, ImportAccountSecret, Network, WalletType, responseStatus } from "@paybox/common"
 import SolanaIcon from "@/components/icon/SolanaIcon"
 import EthIcon from "@/components/icon/Eth"
 import { useForm } from "react-hook-form"
@@ -36,8 +36,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { toast } from "sonner"
 import { Textarea } from "@/components/ui/textarea";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useRecoilValue } from "recoil";
+import { clientAtom } from "@paybox/recoil";
 
-export function PrivateKeyForm() {
+export function PrivateKeyForm({
+    jwt
+}: {
+    jwt: string
+}) {
+
 
     const form = useForm<z.infer<typeof ImportAccountSecret>>({
         resolver: zodResolver(ImportAccountSecret),
@@ -48,11 +56,39 @@ export function PrivateKeyForm() {
             keepIsSubmitSuccessful: false,
             keepErrors: true,
         },
-        
-    })
+
+    });
 
     const onSubmit = (data: z.infer<typeof ImportAccountSecret>) => {
-        toast.message("Deploying project")
+        const call = async () => {
+            const { status, msg, wallet }: {
+                status: responseStatus,
+                msg: string,
+                wallet: WalletType
+            } = await fetch(`${BACKEND_URL}/account/private`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${jwt}`
+                },
+                body: JSON.stringify(data),
+            }).then(res => res.json());
+            if(status === responseStatus.Error) {
+                return Promise.reject(msg)
+            }
+            return Promise.resolve({status, wallet})
+        }
+        toast.promise(call(), {
+            loading: "Importing account...",
+            success: ({status, wallet}) => {
+
+            //Todo: set some atoms here
+                return "Account imported successfully"
+            },
+            error: (msg) => {
+                return msg
+            }
+        })
     }
 
     return (
@@ -134,9 +170,9 @@ export function PrivateKeyForm() {
                             )}
                         />
                     </CardContent>
-            <CardFooter className="flex justify-end">
-                <Button type="submit">Import</Button>
-            </CardFooter>
+                    <CardFooter className="flex justify-end">
+                        <Button type="submit">Import</Button>
+                    </CardFooter>
                 </form>
             </Form>
         </Card>
