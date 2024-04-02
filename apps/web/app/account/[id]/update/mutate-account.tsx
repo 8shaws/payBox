@@ -110,7 +110,6 @@ export function MutateAccountForm({
                 //     console.log(error);
                 //     toast.error("Error uploading image");
                 // }
-                console.log(values)
                 const { status, msg } = await fetch(accountQueryUrl, {
                     method: "PATCH",
                     headers: {

@@ -52,7 +52,7 @@ export const AccountLayout = ({
             <div className="h-screen p-4">
                 <div className="">
                     <Breadcrumb>
-                        <BreadcrumbList>
+                        <BreadcrumbList key={"list"}>
                             <BreadcrumbItem key={"home"}>
                                 <BreadcrumbLink href={`/`}>Home</BreadcrumbLink>
                             </BreadcrumbItem>
@@ -60,7 +60,7 @@ export const AccountLayout = ({
                                 let link = path.split("/").slice(0, index + 1).join("/")
                                 return (
                                     <>
-                                        <BreadcrumbItem key={index}>
+                                        <BreadcrumbItem key={link}>
                                             <BreadcrumbLink href={link}>{item}</BreadcrumbLink>
                                         </BreadcrumbItem>
                                         <BreadcrumbSeparator />
