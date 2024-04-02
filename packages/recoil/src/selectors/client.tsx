@@ -24,8 +24,7 @@ export const clientSelector = selector<ClientWithJwt>({
     if(me.status === responseStatus.Error) {
       return Promise.reject(me.msg);
     }
-
-    return {
+    const data: ClientWithJwt = {
       id: me.id,
       jwt: me.jwt,
       firstname: me.firstname,
@@ -35,6 +34,18 @@ export const clientSelector = selector<ClientWithJwt>({
       address: me.address,
       mobile: me.mobile,
       valid: me.valid,
-    };
+    }
+    return data;
   },
 });
+
+export const getAuthSelector = selector({
+  key: "getAuthSelector",
+  get: ({get}) => {
+    const client = get(clientAtom);
+    if(client?.id) {
+      return "Profile";
+    }
+    return "Signin";
+  }
+})

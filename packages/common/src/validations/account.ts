@@ -17,10 +17,7 @@ export const AccountCreateQuery = z.object({
 export const AccountNameQuery = z.object({
     name: z
         .string()
-        .regex(
-            /^[A-Za-z]+([- ]?[A-Za-z]+)*$/,
-            "should be between 3-15 characters and can only contain numbers, letters, and underscores.",
-        ),
+        .min(5),
     accountId: z
         .string()
         .regex(

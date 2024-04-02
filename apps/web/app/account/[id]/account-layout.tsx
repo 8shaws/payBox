@@ -9,7 +9,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { AccountType } from "@paybox/common"
-import { accountAtom, accountsAtom } from "@paybox/recoil"
+import { accountAtom, accountSelector, accountsAtom } from "@paybox/recoil"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect } from "react"
@@ -33,6 +33,7 @@ export const AccountLayout = ({
     useEffect(() => {
         if (account) {
             setAccount(account)
+            
         } else {
             const acc = accounts.find(acc => acc.id === id);
             if (!acc) {
