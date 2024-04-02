@@ -1,6 +1,6 @@
 import { AccountType, BACKEND_URL, responseStatus } from "@paybox/common";
 import { selector } from "recoil";
-import { clientJwtAtom } from "../atoms";
+import { accountsAtom, clientJwtAtom } from "../atoms";
 
 export const getAccount = selector({
     key: "getAccount",
@@ -34,4 +34,12 @@ export const getAccounts = selector({
         }
         return accounts
     }
-})
+});
+
+// export const accountSelector = selector({
+//     key: "accountSelector",
+//     get: id => ({get}) => {
+//         const accounts = get(accountsAtom);
+//         return accounts.find((account: AccountType) => account.id == id);
+//     },
+// });
