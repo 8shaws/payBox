@@ -25,7 +25,7 @@ export function MainNav() {
           href="/account"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname === "/docs" ? "text-foreground" : "text-foreground/60"
+            pathname.includes("account") ? "text-foreground" : "text-foreground/60"
           )}
         >
           Account
@@ -34,7 +34,7 @@ export function MainNav() {
           href="/txn"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/docs/components")
+            pathname?.startsWith("/txn")
               ? "text-foreground"
               : "text-foreground/60"
           )}
@@ -45,7 +45,7 @@ export function MainNav() {
           href="/chat"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/themes")
+            pathname?.startsWith("/chat")
               ? "text-foreground"
               : "text-foreground/60"
           )}
@@ -56,7 +56,7 @@ export function MainNav() {
           href="/profile"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/examples")
+            pathname?.startsWith("/profile")
               ? "text-foreground"
               : "text-foreground/60"
           )}
