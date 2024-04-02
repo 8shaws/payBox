@@ -27,8 +27,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { addressAtom, clientAtom, loadingAtom } from "@paybox/recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { addressAtom, clientAtom, clientJwtAtom, loadingAtom } from "@paybox/recoil";
 import {
   ClientWithJwt,
   MetadataUpdateForm,
@@ -38,12 +38,14 @@ import {
 
 export function ProfileForm({ me }: { me: ClientWithJwt | null }) {
   const [client, setClient] = useRecoilState(clientAtom);
+  const setClientJwt = useSetRecoilState(clientJwtAtom);
   const [isLoading, setIsLoading] = useRecoilState(loadingAtom);
   const [address, setAddress] = useRecoilState(addressAtom);
 
   useEffect(() => {
     if (me) {
       setClient(me);
+      setClientJwt(me.jwt);
       if (me.address) {
         setAddress(me.address);
       }

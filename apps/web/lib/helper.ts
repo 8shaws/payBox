@@ -1,31 +1,32 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
+import { AccountType, BACKEND_URL, responseStatus } from '@paybox/common';
 
 export function toBase64(file: File) {
-	return new Promise((resolve, reject) => {
-		const fileReader = new FileReader();
-		
-		fileReader.readAsDataURL(file);
-		
-		fileReader.onload = () => {
-			resolve(fileReader.result);
-		};
-		
-		fileReader.onerror = (error) => {
-			reject(error);
-		};
-	});
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
 }
 
 
-export function _arrayBufferToBase64( buffer: ArrayBuffer) {
-    var binary = '';
-    var bytes = new Uint8Array( buffer );
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
-        binary += String.fromCharCode( bytes[ i ] );
-    }
-    return window.btoa( binary );
+export function _arrayBufferToBase64(buffer: ArrayBuffer) {
+  var binary = '';
+  var bytes = new Uint8Array(buffer);
+  var len = bytes.byteLength;
+  for (var i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
 }
 
 export function urlBase64ToUint8Array(base64String: string) {
@@ -73,4 +74,26 @@ export const decryptWithPassword = (
   privateKey += decipher.final('utf8');
 
   return privateKey;
+}
+
+export const getAccount = async (jwt: string, id: string): Promise<AccountType | null> => {
+  try {
+    const { status, account }: { status: responseStatus, account: AccountType } = await fetch(`${BACKEND_URL}/account?accountId=${id}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${jwt}`,
+      },
+      next: {
+        revalidate: 1
+      }
+    }).then(res => res.json());
+    if (status == responseStatus.Error) {
+      return null
+    }
+    return account
+  } catch (error) {
+    console.log(error);
+    return null
+  }
 }

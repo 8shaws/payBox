@@ -134,7 +134,7 @@ accountRouter.patch("/updateName", async (req, res) => {
     //@ts-ignore
     const id = req.id;
     if (id) {
-      const { name, accountId } = AccountNameQuery.parse(req.query);      
+      const { name, accountId } = AccountNameQuery.parse(req.query); 
       const mutation = await updateAccountName(name, accountId);
       if (
         mutation.status == dbResStatus.Error ||

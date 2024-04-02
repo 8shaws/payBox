@@ -7,6 +7,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/util";
 import { redirect } from "next/navigation";
 import { AccountLayout } from "./account-layout";
 import React from "react";
+import { getAccount } from "@/lib/helper";
 
 export const metadata: Metadata = {
   title: "Account | PayBox",
@@ -19,25 +20,7 @@ interface AccountLayoutProps {
   params: { id: string };
 }
 
-const getAccount = async (jwt: string, id: string): Promise<AccountType | null> => {
-  try {
-    const { status, account }: { status: responseStatus, account: AccountType } = await fetch(`${BACKEND_URL}/account?accountId=${id}`, {
-      method: "get",
-      headers: {
-        "Content-type": "application/json",
-        authorization: `Bearer ${jwt}`,
-      },
-      cache: "no-cache"
-    }).then(res => res.json());
-    if (status == responseStatus.Error) {
-      return null
-    }
-    return account
-  } catch (error) {
-    console.log(error);
-    return null
-  }
-}
+
 
 export default async function AccountMainLayout({
   children,
