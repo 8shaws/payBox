@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
-import { MutateAccountForm } from "./mutate-account";
 import { authOptions } from "@/app/api/auth/[...nextauth]/util";
 import { getAccount } from "@/lib/helper";
 import { redirect } from "next/navigation";
+import { MutateAccountForm } from "@/app/account/[id]/update/mutate-account";
 
 export default async function Page({ params }: { params: { id: string } }) {
     const session = await getServerSession(authOptions);
@@ -13,7 +13,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     //@ts-ignore
     const account = await getAccount(session?.user.jwt, params.id);
-    console.log(account)
 
     return (
         <>

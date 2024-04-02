@@ -227,7 +227,7 @@ accountRouter.delete("/", async (req, res) => {
       await Redis.getRedisInst().deleteHash(accountId);
 
       return res.status(200).json({
-        msg: "Account deleted",
+        msg: "Account deleted...",
         status: responseStatus.Ok,
       });
     }
