@@ -359,7 +359,7 @@ accountRouter.post("/private", async (req, res) => {
   }
 });
 
-accountRouter.get("/fromPhrase", async (req, res) => {
+accountRouter.post("/fromPhrase", async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;

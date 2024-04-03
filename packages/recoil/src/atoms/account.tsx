@@ -1,4 +1,4 @@
-import { AccountType, BACKEND_URL, responseStatus } from "@paybox/common";
+import { AccountType, BACKEND_URL, ChainAccount, responseStatus } from "@paybox/common";
 import { atom, selector } from "recoil";
 import { clientAtom } from "./client";
 
@@ -48,4 +48,14 @@ export const accountPrivateKeysAtom = atom<{
 }[]>({
     default: [],
     key: "accountPrivateKeysAtom",
+});
+
+export const fromPhraseAccountAtom = atom<ChainAccount[]>({
+    key: "fromPhraseAccountAtom",
+    default: []
+});
+
+export const importSecretAtom = atom<string>({
+    key: "importSecretAtom",
+    default: ""
 });
