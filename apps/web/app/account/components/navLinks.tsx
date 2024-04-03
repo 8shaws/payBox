@@ -44,7 +44,7 @@ export const commonNavLinks = [
         label: "9",
         icon: FilePlus,
         variant: "ghost",
-        link: "/account/import/secretPhrase",
+        link: "/account/import/secret",
     },
     {
         id: "private",
@@ -89,7 +89,7 @@ export const getNavLinks = (id: string) => {
             label: "23",
             icon: VenetianMask,
             variant: "ghost",
-            link: `/account/${id}/secretPhrase`,
+            link: `/account/${id}/secret`,
         },
         {
             id: "update",

@@ -77,6 +77,7 @@ export const SecretPhraseForm = ({
             loading: "Fetching Private Key...",
             success: ({status, secret, hashPassword}) => {
                 // todo: decrypt it
+                console.log(secret)
                 setOpen(true);
                 setTimeout(() => {
                 }, 1000);
