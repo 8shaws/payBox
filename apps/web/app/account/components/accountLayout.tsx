@@ -171,7 +171,7 @@ export function AccountsLayout({
                     />
                 </ResizablePanel>
                 <ResizableHandle withHandle />
-                <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
+                <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-muted">
                     {children}
                 </ResizablePanel>
             </ResizablePanelGroup>

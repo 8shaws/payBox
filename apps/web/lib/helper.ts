@@ -97,3 +97,10 @@ export const getAccount = async (jwt: string, id: string): Promise<AccountType |
     return null
   }
 }
+
+
+export async function isWord(word: string): Promise<boolean> {
+  const response = await fetch(`https://api.datamuse.com/words?sp=${word}`);
+  const data = await response.json();
+  return data.length > 0;
+}
