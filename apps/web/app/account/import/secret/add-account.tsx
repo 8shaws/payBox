@@ -21,11 +21,14 @@ import {
     AccountCreateQuery,
     AccountType,
     BACKEND_URL,
+    ImportAccount,
+    Network,
+    WalletType,
     responseStatus,
 } from "@paybox/common";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { accountNumber, accountsAtom, clientJwtAtom, loadingAtom } from "@paybox/recoil";
+import { accountNumber, accountsAtom, clientJwtAtom, importKeysAtom, importSecretAtom, loadingAtom } from "@paybox/recoil";
 import { RocketIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
 
@@ -46,50 +49,75 @@ import {
 } from "@/components/ui/accordion"
 import { useRouter } from "next/navigation";
 import { AvatarUpload } from "../../[id]/update/avatar-upload";
+import { ITab } from "./wrapper";
 
 export function AddAccount() {
     const defaultNumber = useRecoilValue(accountNumber);
     const jwt = useRecoilValue(clientJwtAtom);
     const setAccounts = useSetRecoilState(accountsAtom);
+    const keys = useRecoilValue(importKeysAtom);
+    const phrase = useRecoilValue(importSecretAtom);
     const router = useRouter();
 
-    const form = useForm<z.infer<typeof AccountCreateQuery>>({
-        resolver: zodResolver(AccountCreateQuery),
+
+    const form = useForm<z.infer<typeof ImportAccount>>({
+        resolver: zodResolver(ImportAccount),
         defaultValues: {
             name: `Account ${defaultNumber}`,
-            imgUrl: undefined
         },
     });
 
-    async function onSubmit(values: z.infer<typeof AccountCreateQuery>) {
+    React.useEffect(() => {
+        if(keys.length != 2) {
+            toast.error("Please select the accounts to import...");
+            return router.push(`/account/import/secret?tab=${ITab.Show}`);
+        }
+        if(!phrase) {
+            toast.error("State management Error, Please Try again");
+            return router.push(`/account/import/secret?tab=${ITab.Import}`);
+        }
+        form.setValue("keys", keys.map((key) => {
+            return {
+                network: key.network as Network,
+                publicKey: key.publicKey,
+            }
+        }));
+        form.setValue("secretPhrase", phrase);
+    }, []);
+
+    async function onSubmit(values: z.infer<typeof ImportAccount>) {
         const call = async () => {
             try {
-                let accountQueryUrl = `${BACKEND_URL}/account?name=${values.name}`;
+                let accountQueryUrl = `${BACKEND_URL}/account/import`;
 
-                const { status, msg, account }: {status: responseStatus, msg: string, account: AccountType}
+                const { status, msg, wallet }: { status: responseStatus, msg: string, wallet: WalletType }
                     = await fetch(accountQueryUrl, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${jwt}`
                         },
+                        body: JSON.stringify(values)
                     }).then(res => res.json());
                 if (status == responseStatus.Error) {
                     return Promise.reject(msg);
                 }
-                return { account, status, msg }
+                if(!wallet.accounts) {
+                    return Promise.reject(msg);
+                }
+                return { account: wallet.accounts[0], status, msg }
             } catch (error) {
                 throw new Error("Error creating Account");
             }
         }
         toast.promise(call(), {
-            loading: "Creating Account...",
+            loading: "Importing Account...",
             success({ account }: { account: AccountType, status: responseStatus, msg: string }) {
 
                 setAccounts((oldAccounts) => {
                     return [...oldAccounts, account]
                 });
-                
+
                 router.push('/account/');
                 return `Account '${account.name}' Created Successfully`
             },
@@ -104,7 +132,7 @@ export function AddAccount() {
             <div className="flex items-center justify-center">
                 <Card className="w-[450px]">
                     <CardHeader>
-                        <CardTitle>Create Account</CardTitle>
+                        <CardTitle>Import Account</CardTitle>
                         <CardDescription>Your New Web3 Account in just a click.</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -118,7 +146,6 @@ export function AddAccount() {
                                                 name="imgUrl"
                                                 render={({ field }) => (
                                                     <FormItem className="w-fit">
-
                                                         <FormControl>
                                                             <AvatarUpload
                                                                 value={field.value}
