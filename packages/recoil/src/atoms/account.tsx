@@ -59,3 +59,11 @@ export const importSecretAtom = atom<string>({
     key: "importSecretAtom",
     default: ""
 });
+
+export const importKeysAtom = atom<{
+    network: "Solana" | "Ethereum" | "Bitcoin",
+    publicKey: string,
+}[]>({
+    key: "importKeysAtom",
+    default: []
+});

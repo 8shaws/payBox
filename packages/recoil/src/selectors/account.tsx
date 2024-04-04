@@ -43,3 +43,11 @@ export const getAccounts = selector({
 //         return accounts.find((account: AccountType) => account.id == id);
 //     },
 // });
+
+export const accountNumber = selector<number>({
+    key: "accountNumber",
+    get: async ({ get }) => {
+        const accounts = get(accountsAtom);
+        return accounts.length + 1;
+    }
+});

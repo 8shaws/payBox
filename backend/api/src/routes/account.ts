@@ -397,7 +397,7 @@ accountRouter.post("/import", async (req, res) => {
     //@ts-ignore
     const id = req.id;
     if (id) {
-      const { name, keys } = ImportAccount.parse(req.body);
+      const { name, keys, secretPhrase } = ImportAccount.parse(req.body);
       /**
        * Cache
        */
@@ -424,8 +424,7 @@ accountRouter.post("/import", async (req, res) => {
       /**
        * Mutation
        */
-      const seed = generateSeed(SECRET_PHASE_STRENGTH);
-      const mutation = await addAccountPhrase(id, name, seed, cacheAccount);
+      const mutation = await addAccountPhrase(id, name, secretPhrase, cacheAccount);
       if (
         mutation.status == dbResStatus.Error ||
         mutation.wallet?.id == undefined
