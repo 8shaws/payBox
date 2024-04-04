@@ -105,7 +105,13 @@ export const networkPublicKey = z.object({
 
 export const ImportAccount = z.object({
     name: z.string(),
-    keys: z.array(networkPublicKey)
+    keys: z.array(networkPublicKey),
+    secretPhrase: z.string().refine(secretPhraseRefine(), {
+        message: 'Seed should be either 12 or 24 words',
+    }),
+    imgUrl: z
+        .string()
+        .optional(),
 });
 
 export const AccountParser = z.object({
