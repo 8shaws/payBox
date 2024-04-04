@@ -9,7 +9,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { AccountType } from "@paybox/common"
-import { accountAtom, accountSelector, accountsAtom } from "@paybox/recoil"
+import { accountAtom, accountsAtom } from "@paybox/recoil"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect } from "react"

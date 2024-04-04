@@ -4,7 +4,7 @@ import * as React from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { useRecoilValue } from "recoil"
-import { fromPhraseAccountAtom } from "@paybox/recoil"
+import { fromPhraseAccountAtom, importKeysAtom } from "@paybox/recoil"
 import { Network } from "@paybox/common"
 import { Tab } from "./tab";
 import {
@@ -27,27 +27,16 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { StepForward } from "lucide-react";
 import { ITab } from "./wrapper"
+import { useRouter } from "next/navigation"
 
-
-const tags = Array.from({ length: 50 }).map(
-    (_, i, a) => `v1.2.0-beta.${a.length - i}`
-)
 
 export function ShowAccounts({
-    setTab
 }: {
-    setTab: React.Dispatch<React.SetStateAction<ITab>>
-}) {
+    }) {
+    const router = useRouter();
     const accounts = useRecoilValue(fromPhraseAccountAtom);
-    const [selectedSolKeys, setSelectedSolKeys] = React.useState<{
-        network: Network.Sol,
-        publicKey: string
-    } | null>(null);
-    const [selectedEthKeys, setSelectedEthKeys] = React.useState<{
-        network: Network.Eth,
-        publicKey: string
-    } | null>(null);
     const [error, setError] = React.useState<string>("");
+    const keys  = useRecoilValue(importKeysAtom);
 
     React.useEffect(() => {
         if (error) {
@@ -85,8 +74,6 @@ export function ShowAccounts({
                         </TabsContent>
                         <TabsContent value="Ethereum">
                             <ScrollArea className="h-72 w-full rounded-md border">
-                                <div className="p-4">
-                                    <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
                                     {accounts.length && accounts.filter(acc => acc.chain.name == "Ethereum").map((ethAcc) => (
                                         <>
                                             <Tab
@@ -97,13 +84,12 @@ export function ShowAccounts({
                                             <Separator className="my-2" />
                                         </>
                                     ))}
-                                </div>
                             </ScrollArea>
                         </TabsContent>
                     </Tabs>
 
                 </CardContent>
-                <CardFooter className="w-full">
+                <CardFooter className="w-full flex flex-col gap-y-4">
                     {error && <div
                         className={cn(
                             "flex flex-row gap-x-4 justify-center items-center text-red-400 ease-in-out"
@@ -112,7 +98,17 @@ export function ShowAccounts({
                         <ExclamationTriangleIcon className="h-4 w-4" />
                         {error}
                     </div>}
-                    <Button variant={"default"} className="w-full" onClick={() => setTab(ITab.Add)}>
+                    <Button
+                        variant={"default"}
+                        className="w-full"
+                        onClick={() => {
+                            if(keys.length === 2) {
+                                router.push(`/account/import/secret?tab=${ITab.Add}`)
+                            } else {
+                                setError("Please select one account from each chain...")
+                            }
+                        }}
+                    >
                         <StepForward className="w-4 h-4" /> Continue
                     </Button>
                 </CardFooter>

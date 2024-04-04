@@ -12,6 +12,8 @@ import { ShowAccounts } from './show-accounts';
 import { ImportSecret } from './import-secret';
 import { useSetRecoilState } from 'recoil';
 import { clientJwtAtom } from '@paybox/recoil';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { AddAccount } from './add-account';
 
 export enum ITab {
     Import = "import",
@@ -22,10 +24,15 @@ export enum ITab {
 export function Wrapper({ jwt }: { jwt: string }) {
     const setClientJwt = useSetRecoilState(clientJwtAtom);
     const [selectedTab, setTab] = React.useState<ITab>(ITab.Import);
+    const params = useSearchParams()
 
     useEffect(() => {
         setClientJwt(jwt);
     }, []);
+
+    useEffect(() => {
+        params.get("tab") && setTab(params.get("tab") as ITab)
+    }, [params])
 
     return (
         <Tabs value={selectedTab} className="w-fit">
@@ -35,13 +42,13 @@ export function Wrapper({ jwt }: { jwt: string }) {
                 <TabsTrigger value={ITab.Add}>Add</TabsTrigger>
             </TabsList>
             <TabsContent value={ITab.Import}>
-                <ImportSecret jwt={jwt} setTab={setTab} />
+                <ImportSecret jwt={jwt} />
             </TabsContent>
             <TabsContent value={ITab.Show}>
-                <ShowAccounts  setTab={setTab} />
+                <ShowAccounts  />
             </TabsContent>
             <TabsContent value={ITab.Add}>
-                <ShowAccounts  setTab={setTab} />
+                <AddAccount  />
             </TabsContent>
         </Tabs>
     )

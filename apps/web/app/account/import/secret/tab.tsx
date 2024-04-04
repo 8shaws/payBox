@@ -69,7 +69,7 @@ export const Tab = ({
                         select && "dark:bg-muted"
                     )}
                 >
-                    <Checkbox id="terms"
+                    <Checkbox id="add-account"
                         checked={select}
                         onCheckedChange={() => {
                             if (!select) {

@@ -33,33 +33,37 @@ import {
 import { Button } from '@/components/ui/button';
 import { BACKEND_URL, ChainAccount, GetAccount, responseStatus } from "@paybox/common"
 import { Label } from "@/components/ui/label"
-import { useRecoilState, useSetRecoilState } from "recoil"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { clientJwtAtom, fromPhraseAccountAtom, importSecretAtom } from "@paybox/recoil"
 import { cn } from "@/lib/utils"
 import { isWord } from "@/lib/helper"
+import { ITab } from "./wrapper"
+import { useRouter } from "next/navigation"
 
 
 export const ImportSecret = ({
-    jwt
+    jwt,
 }: {
-    jwt: string
+    jwt: string,
 }) => {
-
-    const [clientJwt, setClientJwt] = useRecoilState(clientJwtAtom);
+    const router = useRouter();
+    const clientJwt = useRecoilValue(clientJwtAtom);
     const setSecretPhraseAtom = useSetRecoilState(importSecretAtom);
     const setFromPhraseAtom = useSetRecoilState(fromPhraseAccountAtom);
     const [error, setError] = useState<{ msg: string, index: number } | null>(null);
 
-    useEffect(() => {
-        setClientJwt(jwt);
-    }, []);
-
+    
     const [length, setLength] = useState<12 | 24>(12);
     const [secretPhrase, setSecretPhrase] = useState<string[]>([])
     const form = useForm<z.infer<typeof GetAccount>>({
         resolver: zodResolver(GetAccount),
         defaultValues: {
             count: 21,
+        },
+        resetOptions: {
+            keepIsSubmitted: true,
+            keepIsSubmitSuccessful: true,
+            keepValues: true,
         }
     })
 
@@ -95,6 +99,7 @@ export const ImportSecret = ({
                 console.log(accounts)
                 setSecretPhraseAtom(data.secretPhrase);
                 setFromPhraseAtom(accounts)
+                router.push(`/account/import/secret?tab=${ITab.Show}`)
                 return "Gotcha!"
             },
             error: (msg) => {
