@@ -1,40 +1,74 @@
 use anchor_lang::prelude::*;
+use std::mem::size_of;
+use anchor_lang::solana_program::{
+    pubkey::Pubkey,
+};
 
-declare_id!("CiY6jVvB6WEyXEBR8nTJXapQNoNvsqDhKUhv6BFWaA85");
+declare_id!("GGHvN3Yp4RGJd6NePJKipb3VUrwyYuhxHeUqvuyiCqzM");
 
 #[program]
-mod hello_world {
+mod paybox_txn {
     use super::*;
-    pub fn say_hello(ctx: Context<SayHello>) -> Result<()> {
-        let counter = &mut ctx.accounts.counter;
-        counter.count += 1;
-        msg!("Hello World! - Greeting # {}", counter.count);
+
+    pub fn get_length(ctx: Context<GetLength>) -> Result<usize> {
+        let client = &mut ctx.accounts.client;
+        let txn = &client.transactions;
+        msg!("Txn Length: # {}", txn.len());
+        Ok(txn.len())
+    }
+
+    pub fn add_account(ctx: Context<AddAccount>, program_id: Pubkey) -> Result<()> {
+        // require!(ctx.accounts.authority.key() != program_id, Err::InvalidAccountData);
+        let client = &mut ctx.accounts.client;
+        client.transactions = [].to_vec();
+
+        msg!("Initialized new client with default transactions: {}!", client.transactions.len());
         Ok(())
     }
-    pub fn initialize_counter(ctx: Context<Initialize>) -> Result<()> {
-        let counter = &mut ctx.accounts.counter;
-        counter.count = 0;
-        msg!("Initialized new count. Current value: {}!", counter.count);
-        Ok(())
-    }
+}
+
+#[error_code]
+pub enum Err {
+    #[msg("Invalid Authority!")]
+    InvalidAccountData
+}
+
+#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
+pub struct Counter {
+    pub count: u64
+}
+
+
+#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
+pub struct Transaction {
+    pub sender: Pubkey,
+    pub receiver: Pubkey,
+    pub amount: u64,
 }
 
 #[account]
-pub struct Counter {
-    count: u64
+pub struct Transactions {
+    pub transactions: Vec<Transaction>,
 }
 
 #[derive(Accounts)]
-pub struct SayHello<'info> {
+pub struct GetLength<'info> {
     #[account(mut)]
-    pub counter: Account<'info, Counter>,
+    pub client: Account<'info, Transactions>,
 }
 
 #[derive(Accounts)]
-pub struct Initialize<'info> {
-    #[account(init, payer = signer, space = 8 + 8)]
-    pub counter: Account<'info, Counter>,
+pub struct AddAccount<'info> {
+    #[account(init, payer = signer, space = 100 * size_of::<Transaction>())]
+    pub client: Account<'info, Transactions>,
     #[account(mut)]
     pub signer: Signer<'info>,
+    // #[account(mut, signer)]
+    // authority: Signer<'info>,
     pub system_program: Program<'info, System>,
+}
+
+#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
+pub struct ClientAccount {
+    pub amount: u64
 }
