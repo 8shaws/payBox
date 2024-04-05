@@ -19,7 +19,8 @@
         "@types/bn.js": "^5.1.5",
         "@types/chai": "^4.3.14",
         "@types/mocha": "^10.0.6",
-        "bs58": "^5.0.0"
+        "bs58": "^5.0.0",
+        "dotenv": "^16.4.5"
     },
     "devDependencies": {
         "chai": "^5.1.0",
