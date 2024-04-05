@@ -3,7 +3,7 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
-transfers = "D7sGh1vHw26HB3vox3MogCVQE8ZBDXpPsfTXtewxzq6m"
+transfers = "CiY6jVvB6WEyXEBR8nTJXapQNoNvsqDhKUhv6BFWaA85"
 
 [registry]
 url = "https://api.apr.dev"

@@ -1,47 +1,40 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token::{self, Transfer};
-use anchor_lang::solana_program::entrypoint::ProgramResult;
 
-declare_id!("D7sGh1vHw26HB3vox3MogCVQE8ZBDXpPsfTXtewxzq6m");
-
-// pub struct Transfer<'info> {
-//     pub from: AccountInfo<'info>,
-//     pub to: AccountInfo<'info>,
-//     pub authority: AccountInfo<'info>,
-// }
+declare_id!("CiY6jVvB6WEyXEBR8nTJXapQNoNvsqDhKUhv6BFWaA85");
 
 #[program]
-pub mod sol_transfer {
+mod hello_world {
     use super::*;
-
-    pub fn transfer_sol(ctx: Context<TransferSol>, amount: u64) -> ProgramResult {
-        msg!("Transferring SOL");
-        msg!("From: {:?}", ctx.accounts.from.key);
-        let cpi_accounts = Transfer {
-            from: ctx.accounts.from.to_account_info(),
-            to: ctx.accounts.to.to_account_info(),
-            authority: ctx.accounts.authority.to_account_info(),
-        };
-        let cpi_program = ctx.accounts.token_program.to_account_info();
-        let cpi_ctx = CpiContext::new(cpi_program, cpi_accounts);
-        Ok(token::transfer(cpi_ctx, amount)?)
-
+    pub fn say_hello(ctx: Context<SayHello>) -> Result<()> {
+        let counter = &mut ctx.accounts.counter;
+        counter.count += 1;
+        msg!("Hello World! - Greeting # {}", counter.count);
+        Ok(())
+    }
+    pub fn initialize_counter(ctx: Context<Initialize>) -> Result<()> {
+        let counter = &mut ctx.accounts.counter;
+        counter.count = 0;
+        msg!("Initialized new count. Current value: {}!", counter.count);
+        Ok(())
     }
 }
 
-
+#[account]
+pub struct Counter {
+    count: u64
+}
 
 #[derive(Accounts)]
-pub struct TransferSol<'info> {
-    #[account(mut, constraint = from.owner == system_program.key)]
-    /// CHECK: This is not dangerous because we don't read or write from this account
-    pub from: AccountInfo<'info>,
-    /// CHECK: This is not dangerous because we don't read or write from this account
-    pub to: AccountInfo<'info>,
-    #[account(signer)]
-    /// CHECK: This is not dangerous because we don't read or write from this account
-    pub authority: AccountInfo<'info>,
+pub struct SayHello<'info> {
+    #[account(mut)]
+    pub counter: Account<'info, Counter>,
+}
+
+#[derive(Accounts)]
+pub struct Initialize<'info> {
+    #[account(init, payer = signer, space = 8 + 8)]
+    pub counter: Account<'info, Counter>,
+    #[account(mut)]
+    pub signer: Signer<'info>,
     pub system_program: Program<'info, System>,
-    /// CHECK: This is not dangerous because we don't read or write from this account
-    pub token_program: AccountInfo<'info>,
 }
