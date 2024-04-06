@@ -58,6 +58,7 @@ func main() {
 	app := mux.NewRouter()
 
 	// Middlewares
+	app.Use(middle.Decompress)
 	app.Use(middle.LoggerMiddleware)
 	app.Use(middle.CorsMiddleware)
 	app.Use(middle.ResContentType)

@@ -32,7 +32,7 @@ deps:
 
 # Run the binary
 dev:
-	./$(BINARY_NAME)
+	make build && ./$(BINARY_NAME)
 
 # Build and run the binary
 all: deps build run
