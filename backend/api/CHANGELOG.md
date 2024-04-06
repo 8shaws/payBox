@@ -1,5 +1,13 @@
 # @paybox/api
 
+## 0.0.17
+
+### Patch Changes
+
+- 4157a06: feat: using compression in http for lower bandwidth and some ui in landing page
+- Updated dependencies [4157a06]
+  - @paybox/backend-common@0.0.5
+
 ## 0.0.16
 
 ### Patch Changes
