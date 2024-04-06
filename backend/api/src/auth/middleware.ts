@@ -19,6 +19,8 @@ import { SolOps } from "../sockets/sol";
 import rateLimit from "express-rate-limit";
 import { R2_QRCODE_BUCKET_NAME } from "../config";
 import { Redis } from "..";
+import zlib from 'zlib';
+import pako from "pako";
 
 
 
@@ -261,3 +263,4 @@ export const accountCreateRateLimit = rateLimit({
     return req.id; // Use the client id as the key
   }
 });
+

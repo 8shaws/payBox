@@ -39,6 +39,7 @@ import { cn } from "@/lib/utils"
 import { isWord } from "@/lib/helper"
 import { ITab } from "./wrapper"
 import { useRouter } from "next/navigation"
+import pako from "pako";
 
 
 export const ImportSecret = ({
@@ -84,9 +85,10 @@ export const ImportSecret = ({
                     method: "post",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${clientJwt}`
+                        "Authorization": `Bearer ${clientJwt}`,
+                        "Content-Encoding": "gzip",
                     },
-                    body: JSON.stringify(data),
+                    body: pako.gzip(JSON.stringify(data)),
                 }).then(res => res.json());
             if (status === responseStatus.Error) {
                 return Promise.reject(msg);

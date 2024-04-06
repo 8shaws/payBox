@@ -25,7 +25,8 @@ import { CardContent, CardFooter } from "@/components/ui/card"
 import { decryptWithPassword } from "@/lib/helper"
 import { useRecoilValue } from "recoil"
 import { accountAtom } from "@paybox/recoil"
-import { SecretPhraseDialogBox } from "./secret-dialog-box"
+import { SecretPhraseDialogBox } from "./secret-dialog-box";
+import pako from 'pako';
 
 
 export const SecretPhraseForm = ({
@@ -56,15 +57,17 @@ export const SecretPhraseForm = ({
 
     function onSubmit(data: z.infer<typeof SecretValid>) {
         const call = async () => {
+
             const {status, secret, msg, hashPassword}: {
                 status: responseStatus, secret: string, msg: string, hashPassword: string
             } = await fetch(`${BACKEND_URL}/wallet/secret`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${jwt}`
+                    "Authorization": `Bearer ${jwt}`,
+                    "Content-Encoding": "gzip",
                 },
-                body: JSON.stringify(data),
+                body: pako.gzip(JSON.stringify(data)),
                 cache: "no-store"
             }).then(res => res.json());
             if (status == responseStatus.Error) {
@@ -122,9 +125,9 @@ export const SecretPhraseForm = ({
                             />
                             <label
                                 htmlFor="terms_for_privateKey"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                className="text-sm font-medium leading-5 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                                I will not share my private key with anyone, including PayBox.
+                                I will not share my secret with anyone, including PayBox.
                             </label>
                         </div>
                         <Button className="w-full" disabled={!checked} type="submit">Submit</Button>

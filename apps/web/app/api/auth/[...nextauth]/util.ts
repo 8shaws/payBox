@@ -4,6 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { BACKEND_URL, Client, responseStatus } from "@paybox/common";
 import { headers } from "next/headers";
+import pako from "pako";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -43,10 +44,12 @@ export const authOptions: NextAuthOptions = {
             method: "post",
             headers: {
               "Content-type": "application/json",
+              "Content-Encoding": "gzip",
             },
-            body: JSON.stringify(req.body),
+            body: pako.gzip(JSON.stringify(req.body)),
             cache: "no-store",
           }).then((res) => res.json());
+          console.log(response, "from authorize")
           if (response.status == responseStatus.Error) {
             return null;
           }
@@ -71,8 +74,9 @@ export const authOptions: NextAuthOptions = {
           method: "post",
           headers: {
             "Content-type": "application/json",
+            "Content-Encoding": "gzip",
           },
-          body: JSON.stringify(req.body),
+          body: pako.gzip(JSON.stringify(req.body)),
           cache: "no-store",
         }).then((res) => res.json());
         if (response.status == responseStatus.Error) {
@@ -153,8 +157,9 @@ export const authOptions: NextAuthOptions = {
           method: "post",
           headers: {
             "Content-type": "application/json",
+            "Content-Encoding": "gzip",
           },
-          body: JSON.stringify(body),
+          body: pako.gzip(JSON.stringify(body)),
         }).then((res) => res.json());
         // console.log(response, "from jwt");
         token.jwt = response.jwt;
@@ -197,12 +202,22 @@ export const authOptions: NextAuthOptions = {
         headers: {
           //@ts-ignore
           authorization: `Bearer ${token.jwt}`,
+          "Content-type": "application/json",
+          "x-no-compression": "true",
         },
         // cache: "no-store",
         next: {
           revalidate: 60
         }
-      }).then((res) => res.json());
+      }).then(async (res) => {
+        if (res.headers.get("content-type") == "gzip") {
+          const buffer = await res.arrayBuffer();
+          const data = new Uint8Array(buffer);
+          const inflated = pako.inflate(data, {to: 'string'});
+          return JSON.parse(inflated);
+        }
+        return res.json();
+      });
       /**
        * \Add the jwt from token to user
        */

@@ -2,6 +2,7 @@ package middle
 
 import (
 	"context"
+	"compress/gzip"
 	"fmt"
 	"log"
 	"net/http"
@@ -90,4 +91,20 @@ func ExtractClientId(next http.Handler) http.Handler {
 
         next.ServeHTTP(w, r)
     })
+}
+
+func Decompress(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Header.Get("Content-Encoding") == "gzip" {
+			reader, err := gzip.NewReader(r.Body)
+			if err != nil {
+				http.Error(w, "Failed to create gzip reader", http.StatusBadRequest)
+				return
+			}
+			defer reader.Close()
+			r.Body = reader
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }

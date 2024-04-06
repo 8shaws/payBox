@@ -31,6 +31,7 @@ import { addressAtom, clientAtom, loadingAtom } from "@paybox/recoil";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { Icons } from "@/components/ui/icons";
 import { useRouter } from "next/navigation";
+import pako from "pako";
 
 // This can come from your database or API.
 const defaultValues: Partial<AddressFormPartialType> = {
@@ -67,10 +68,11 @@ export function AddressForm() {
     console.log(client?.jwt);
     const response = await fetch(`${BACKEND_URL}/address/`, {
       method: "post",
-      body: JSON.stringify(data),
+      body: pako.gzip(JSON.stringify(data)),
       headers: {
         "Content-type": "application/json",
         authorization: `Bearer ${client?.jwt}`,
+        "Content-Encoding": "gzip",
       },
     }).then((res) => res.json());
     console.log(response);

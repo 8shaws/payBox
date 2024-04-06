@@ -10,7 +10,7 @@ export default async function PrivateImportPage() {
     const jwt = session?.user.jwt;
     return (
         <>
-            <div className="dark:bg-muted h-screen bg-muted/55 flex items-center justify-center">
+            <div className="h-screen flex items-center justify-center">
                 <PrivateKeyForm jwt={jwt}/>
             </div>
         </>
