@@ -12,6 +12,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 import { Tab } from "./tab";
 import { CodeWrapper } from "./Code-wrapper";
+import { Share } from "./share";
+import { CLIENT_URL } from "@paybox/common";
 
 interface PageProps {
     params: { id: string }
@@ -33,7 +35,7 @@ export default async function Page({
                         <CodeWrapper accountId={params.id} />
                     </CardContent>
                     <CardFooter>
-                        <p>Use this to accept transactions...</p>
+                        <Share title="Account Transactions" url={`${CLIENT_URL}/txn/accept?to=${params.id}`} />
                     </CardFooter>
                 </Card>
                 <Card className="w-[500px] ">
