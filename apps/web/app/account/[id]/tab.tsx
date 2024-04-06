@@ -3,7 +3,7 @@ import EthIcon from '@/components/icon/Eth'
 import SolanaIcon from '@/components/icon/SolanaIcon'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { CopyIcon, DollarSign, Text } from 'lucide-react'
+import { CopyIcon, DollarSign, QrCode, Text } from 'lucide-react'
 import React, { useEffect } from 'react'
 
 import {
@@ -21,6 +21,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from '@/components/ui/textarea'
 import { useRecoilValue } from 'recoil'
 import { accountAtom } from '@paybox/recoil'
+import { QRCode } from 'react-qrcode-logo'
 
 export const Tab = ({
     chain,
@@ -68,10 +69,10 @@ export const Tab = ({
                                 }
                             </div>
                             <div className="flex-grow" />
+                            <div className="copy flex flex-row gap-x-2 items-center">
                             <div className="qrcode">
-
+                                <QrCode className='w-6 rounded-full h-6'/>
                             </div>
-                            <div className="copy">
                                 <Button
                                     type="submit"
                                     size="sm"
@@ -101,7 +102,23 @@ export const Tab = ({
                             Share this public key to receive money.
                         </DialogDescription>
                     </DialogHeader>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex flex-col gap-y-4 space-x-2 ">
+                        <div className="justify-center flex">
+                            <QRCode
+                                logoImage={`/network/${chain?.slice(0,3).toLocaleLowerCase()}Dark.png`}
+                                logoPadding={10}
+                                size={128}
+                                logoPaddingStyle="circle"
+                                style={{ margin: "auto", padding: "1rem", borderRadius: "10px" }}
+                                qrStyle="squares"
+                                eyeRadius={10}
+                                enableCORS={true}
+                                // fgColor="#4287f5"
+                                ecLevel="Q"
+                                removeQrCodeBehindLogo={true}
+                                value={tabData?.publicKey as string}
+                            />
+                        </div>
                         <div className="grid flex-1 gap-2">
                             <Label htmlFor="link" className="sr-only">
                                 Public Key
