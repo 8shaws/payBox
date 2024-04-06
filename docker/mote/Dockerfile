@@ -1,18 +1,18 @@
 FROM golang:1.21
 
 # Set destination for COPY
-WORKDIR /app/backend/mote
+WORKDIR /base
 
-COPY go.mod go.sum Makefile ./
+COPY ["backend/mote", "./backend/mote"]
+
+RUN cd /base/backend/mote
 RUN make deps
-
-COPY . ./
-
-# Build
 RUN make build
+
 
 # Expose
 EXPOSE 8085
 
-# Run
+WORKDIR /base/backend/mote
+
 CMD ["make", "dev"]
