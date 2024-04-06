@@ -57,7 +57,16 @@ const latencyTime = new Prometheus.Histogram({
 const defaultMetrics = Prometheus.collectDefaultMetrics;
 defaultMetrics({ register: Prometheus.register, });
 
-app.use(compression());
+app.use(compression({
+    level: 6,
+    threshold: 0,
+    filter: (req, res) => {
+        if (req.headers['x-no-compression']) {
+            return false;
+        }
+        return compression.filter(req, res);
+    }
+}));
 app.use(bodyParser.json());
 app.use(
     morgan("ws :method :url :status :res[content-length] - :response-time ms"),
