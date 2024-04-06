@@ -57,7 +57,8 @@ export const PrivateKeyFrom = ({
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${jwt}`
+                    "Authorization": `Bearer ${jwt}`,
+                    "Content-Encoding": "gzip",
                 },
                 body: pako.gzip(JSON.stringify(data)),
                 cache: "force-cache"

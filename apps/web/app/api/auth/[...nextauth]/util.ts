@@ -44,6 +44,7 @@ export const authOptions: NextAuthOptions = {
             method: "post",
             headers: {
               "Content-type": "application/json",
+              "Content-Encoding": "gzip",
             },
             body: pako.gzip(JSON.stringify(req.body)),
             cache: "no-store",
@@ -72,6 +73,7 @@ export const authOptions: NextAuthOptions = {
           method: "post",
           headers: {
             "Content-type": "application/json",
+            "Content-Encoding": "gzip",
           },
           body: pako.gzip(JSON.stringify(req.body)),
           cache: "no-store",
@@ -154,6 +156,7 @@ export const authOptions: NextAuthOptions = {
           method: "post",
           headers: {
             "Content-type": "application/json",
+            "Content-Encoding": "gzip",
           },
           body: pako.gzip(JSON.stringify(body)),
         }).then((res) => res.json());

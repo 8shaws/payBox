@@ -85,7 +85,8 @@ export const ImportSecret = ({
                     method: "post",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${clientJwt}`
+                        "Authorization": `Bearer ${clientJwt}`,
+                        "Content-Encoding": "gzip",
                     },
                     body: pako.gzip(JSON.stringify(data)),
                 }).then(res => res.json());

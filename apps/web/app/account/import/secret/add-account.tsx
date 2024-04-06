@@ -96,7 +96,8 @@ export function AddAccount() {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
-                            "Authorization": `Bearer ${jwt}`
+                            "Authorization": `Bearer ${jwt}`,
+                            "Content-Encoding": "gzip",
                         },
                         body: pako.gzip(JSON.stringify(values))
                     }).then(res => res.json());

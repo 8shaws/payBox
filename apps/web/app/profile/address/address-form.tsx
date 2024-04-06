@@ -72,6 +72,7 @@ export function AddressForm() {
       headers: {
         "Content-type": "application/json",
         authorization: `Bearer ${client?.jwt}`,
+        "Content-Encoding": "gzip",
       },
     }).then((res) => res.json());
     console.log(response);

@@ -42,7 +42,8 @@ export default function NotifWrapper({
                           headers: {
                             'Content-Type': 'application/json',
                             //@ts-ignore
-                            'Authorization': `Bearer ${session.data.user.jwt}`
+                            'Authorization': `Bearer ${session.data.user.jwt}`,
+                            "Content-Encoding": "gzip",
                           },
                           body: pako.gzip(JSON.stringify({
                             auth: subs.keys.auth,
