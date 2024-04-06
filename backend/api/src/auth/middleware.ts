@@ -19,6 +19,8 @@ import { SolOps } from "../sockets/sol";
 import rateLimit from "express-rate-limit";
 import { R2_QRCODE_BUCKET_NAME } from "../config";
 import { Redis } from "..";
+import zlib from 'zlib';
+import pako from "pako";
 
 
 
@@ -261,3 +263,48 @@ export const accountCreateRateLimit = rateLimit({
     return req.id; // Use the client id as the key
   }
 });
+
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns 
+ */
+export const unzip = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    if (req.headers['content-encoding'] === 'gzip' || req.headers['content-encoding'] === 'deflate') {
+      const chunks: any[] = [];
+
+      req.on('data', (chunk) => {
+          chunks.push(chunk);
+      });
+
+      req.on('end', () => {
+          try {
+              // Concatenate received chunks into a single Buffer
+              const buffer = Buffer.concat(chunks);
+
+              // Decompress the received data using pako
+              const decompressedData = pako.inflate(buffer, { to: 'string' });
+              console.log(decompressedData)
+
+              req.body = decompressedData;
+              next();
+          } catch (error) {
+              console.error('Decompression error:', error);
+              res.status(500).send('Error decompressing request');
+          }
+      });
+  } else {
+      next();
+  }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: responseStatus.Error,
+      msg: "Internal error while decompressing data",
+      error: error,
+    });
+  }
+}
