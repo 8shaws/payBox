@@ -36,7 +36,7 @@ export const commonNavLinks = [
         label: "128",
         icon: FilePlus2Icon,
         variant: "ghost",
-        link: "/account/create/",
+        link: "/account/import/create",
     },
     {
         id: "secret",

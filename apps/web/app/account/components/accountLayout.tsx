@@ -19,6 +19,7 @@ import { clientNavLinks, commonNavLinks, getNavLinks } from "./navLinks";
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
 import { accountsAtom, clientAtom, getAccounts } from "@paybox/recoil";
 import { toast } from "sonner";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface AccountsLayoutProps {
     defaultLayout: number[] | undefined;
@@ -171,8 +172,10 @@ export function AccountsLayout({
                     />
                 </ResizablePanel>
                 <ResizableHandle withHandle />
-                <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-muted">
-                    {children}
+                <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-primary-foreground">
+                    <ScrollArea className="h-full rounded-md border">
+                        {children}
+                    </ScrollArea>
                 </ResizablePanel>
             </ResizablePanelGroup>
         </TooltipProvider>
