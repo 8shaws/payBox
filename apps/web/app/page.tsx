@@ -4,11 +4,12 @@ import Link from "next/link";
 import { authOptions } from "./api/auth/[...nextauth]/util";
 import { SparklesCore } from "@/components/ui/sparklecore";
 import Sparkles from "./components/Client/sparkle";
+import { QRCode } from 'react-qrcode-logo';
 
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  
+
   return (
     <>
       <div className="flex items-center justify-center">
@@ -20,6 +21,7 @@ export default async function Home() {
           particleColor="#FFFFFF"
           body="PayBox"
         />
+        
       </div>
     </>
   );
