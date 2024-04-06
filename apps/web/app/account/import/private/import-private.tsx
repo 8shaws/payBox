@@ -39,6 +39,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { accountsAtom, clientAtom } from "@paybox/recoil";
+import pako from "pako";
 
 export function PrivateKeyForm({
     jwt
@@ -71,7 +72,7 @@ export function PrivateKeyForm({
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${jwt}`
                 },
-                body: JSON.stringify(data),
+                body: pako.gzip(JSON.stringify(data)),
             }).then(res => res.json());
             if(status === responseStatus.Error) {
                 return Promise.reject(msg)

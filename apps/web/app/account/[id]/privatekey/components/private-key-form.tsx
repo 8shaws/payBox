@@ -26,6 +26,7 @@ import { PrivateKeyDialogBox } from "./key-dialog-box"
 import { useRecoilState, useSetRecoilState } from "recoil"
 import { accountPrivateKeysAtom } from "@paybox/recoil"
 import { decryptWithPassword } from "@/lib/helper"
+import pako from "pako"
 
 
 export const PrivateKeyFrom = ({
@@ -58,7 +59,7 @@ export const PrivateKeyFrom = ({
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${jwt}`
                 },
-                body: JSON.stringify(data),
+                body: pako.gzip(JSON.stringify(data)),
                 cache: "force-cache"
             }).then(res => res.json());
 

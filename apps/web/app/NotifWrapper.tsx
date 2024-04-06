@@ -5,6 +5,7 @@ import { BACKEND_URL } from "@paybox/common";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import * as base58 from "bs58";
+import pako from 'pako';
 
 export default function NotifWrapper({
     children,
@@ -43,12 +44,12 @@ export default function NotifWrapper({
                             //@ts-ignore
                             'Authorization': `Bearer ${session.data.user.jwt}`
                           },
-                          body: JSON.stringify({
+                          body: pako.gzip(JSON.stringify({
                             auth: subs.keys.auth,
                             endpoint: subs.endpoint,
                             expirationTime: subs.expirationTime,
                             p256dh: subs.keys.p256dh,
-                          })
+                          }))
                         });
                       });
                   } else {

@@ -31,6 +31,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { accountNumber, accountsAtom, clientJwtAtom, importKeysAtom, importSecretAtom, loadingAtom } from "@paybox/recoil";
 import { RocketIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
+import pako from "pako";
 
 
 import {
@@ -97,7 +98,7 @@ export function AddAccount() {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${jwt}`
                         },
-                        body: JSON.stringify(values)
+                        body: pako.gzip(JSON.stringify(values))
                     }).then(res => res.json());
                 if (status == responseStatus.Error) {
                     return Promise.reject(msg);

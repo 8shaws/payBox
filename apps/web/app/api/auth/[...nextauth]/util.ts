@@ -4,6 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { BACKEND_URL, Client, responseStatus } from "@paybox/common";
 import { headers } from "next/headers";
+import pako from "pako";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -44,7 +45,7 @@ export const authOptions: NextAuthOptions = {
             headers: {
               "Content-type": "application/json",
             },
-            body: JSON.stringify(req.body),
+            body: pako.gzip(JSON.stringify(req.body)),
             cache: "no-store",
           }).then((res) => res.json());
           if (response.status == responseStatus.Error) {
@@ -72,7 +73,7 @@ export const authOptions: NextAuthOptions = {
           headers: {
             "Content-type": "application/json",
           },
-          body: JSON.stringify(req.body),
+          body: pako.gzip(JSON.stringify(req.body)),
           cache: "no-store",
         }).then((res) => res.json());
         if (response.status == responseStatus.Error) {
@@ -154,7 +155,7 @@ export const authOptions: NextAuthOptions = {
           headers: {
             "Content-type": "application/json",
           },
-          body: JSON.stringify(body),
+          body: pako.gzip(JSON.stringify(body)),
         }).then((res) => res.json());
         // console.log(response, "from jwt");
         token.jwt = response.jwt;
