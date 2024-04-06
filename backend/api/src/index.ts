@@ -39,6 +39,7 @@ import { notifyRouter } from "./routes/notification";
 import { Worker } from "./workers/txn";
 import Prometheus from "prom-client";
 import responseTime from "response-time";
+import compression from 'compression';
 
 
 export * from "./Redis";
@@ -81,7 +82,7 @@ const latencyTime = new Prometheus.Histogram({
 const defaultMetrics = Prometheus.collectDefaultMetrics;
 defaultMetrics({ register: Prometheus.register, });
 
-
+app.use(compression())
 app.use(bodyParser.json());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms"),
@@ -102,7 +103,7 @@ export const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // specify the allowed HTTP methods
   credentials: true, // enable credentials (cookies, authorization headers, etc.)
   optionsSuccessStatus: 204, // handle preflight requests (OPTIONS) with a 204 status code
-  allowedHeaders: "Content-Type, Authorization", // specify allowed headers
+  allowedHeaders: "Content-Type, Authorization, Content-Encoding", // specify allowed headers
 };
 
 app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
