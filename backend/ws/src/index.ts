@@ -19,6 +19,7 @@ import { NotifWorker } from "./workers/friendship";
 import { ChatWorker } from "./workers/chat";
 import Prometheus from "prom-client";
 import responseTime from "response-time";
+import compression from "compression";
 
 export * from "./managers";
 
@@ -56,7 +57,7 @@ const latencyTime = new Prometheus.Histogram({
 const defaultMetrics = Prometheus.collectDefaultMetrics;
 defaultMetrics({ register: Prometheus.register, });
 
-
+app.use(compression());
 app.use(bodyParser.json());
 app.use(
     morgan("ws :method :url :status :res[content-length] - :response-time ms"),
