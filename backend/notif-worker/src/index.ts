@@ -8,11 +8,28 @@ import { WorkerAdmin } from "./kafka/admin";
 import { ConsumerWorker } from "./kafka/consumer";
 import { ProducerWorker } from "./kafka/producer";
 import Prometheus from "prom-client";
+import { TopicTypes } from "@paybox/common";
+import twilio from 'twilio';
+import nodemailer from 'nodemailer';
+import { GMAIL, GMAIL_APP_PASS, MAIL_SERVICE, TWILLO_ACCOUNT_SID, TWILLO_TOKEN } from "./config"
+import { RedisBase } from "@paybox/backend-common";
 
 
 export const kafka = new Kafka({
     clientId: KAFKA_ID,
     brokers: [KAFKA_URL],
+});
+
+console.log(TWILLO_TOKEN, TWILLO_ACCOUNT_SID);
+export const twillo = twilio(TWILLO_ACCOUNT_SID, TWILLO_TOKEN);
+export const transporter = nodemailer.createTransport({
+    service: MAIL_SERVICE,
+    port: 465,
+    secure: true,
+    auth: {
+        user: GMAIL,
+        pass: GMAIL_APP_PASS
+    }
 });
 
 const defaultMetrics = Prometheus.collectDefaultMetrics;
@@ -49,11 +66,11 @@ if (cluster.isPrimary) {
             console.error('Error while fetching metrics:', error);
             return res.status(500).end('Error while fetching metrics');
         }
-    }); 
+    });
 
     (async () => {
         await WorkerAdmin.getInstance().init([
-            { topicName: "notif", partitions: 1 },
+            { topicName: TopicTypes.Notif, partitions: 1 },
         ]);
 
         // This can be connected in any service/s
@@ -61,15 +78,25 @@ if (cluster.isPrimary) {
 
     })();
 
-    app.listen(PORT, async () => {
-        console.log(`Server listening on port: ${PORT}\n`);
+    Promise.all([
+        new Promise((resolve) => {
+            RedisBase.getInstance().getclient.on('ready', resolve);
+        }),
+    ]).then(() => {
+        app.listen(PORT, async () => {
+            console.log(`Server listening on port: ${PORT}\n`);
+        });
+    }).catch((error) => {
+        console.error('Error while connecting producers:', error);
     });
+
+
 } else {
     (async () => {
         try {
             await ConsumerWorker.getInstance().connectCounsumer(
                 "notif-group",
-                ["notif"],
+                [TopicTypes.Notif, TopicTypes.Msg],
                 true
             );
             await ConsumerWorker.getInstance().runConsumer();

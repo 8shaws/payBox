@@ -7,7 +7,8 @@ import {
     PutStatusValid,
     GetFriendships,
     FriendshipStatusEnum,
-    NotifTopics
+    NotifTopics,
+    TopicTypes
 } from "@paybox/common";
 import {
     acceptFriendship,
@@ -47,7 +48,7 @@ friendshipRouter.post('/request', async (req, res) => {
         }
 
         await NotifWorker.getInstance().publishOne({
-            topic: "notif",
+            topic: TopicTypes.Notif,
             message: [{
                 key: id,
                 value: JSON.stringify({
@@ -127,7 +128,7 @@ friendshipRouter.put('/accept', async (req, res) => {
         }
 
         await NotifWorker.getInstance().publishOne({
-            topic: "notif",
+            topic: TopicTypes.Notif,
             message: [{
                 key: id,
                 value: JSON.stringify({
@@ -172,7 +173,7 @@ friendshipRouter.put('/', async (req, res) => {
 
         if(query.friendshipStatus === FriendshipStatusEnum.Rejected) {
             await NotifWorker.getInstance().publishOne({
-                topic: "notif",
+                topic: TopicTypes.Notif,
                 message: [{
                     key: id,
                     value: JSON.stringify({
