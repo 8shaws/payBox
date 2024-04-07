@@ -341,6 +341,16 @@ export enum NotifTopics {
     Paid = "paid",
 }
 
+export enum TopicTypes {
+    Msg = "msg-notif",
+    Notif = "notif",
+}
+
+export enum MsgTopics {
+    SendOtp = "otp",
+    ResendOtp = "resendOtp",
+}
+
 export interface NotifSubType {
     clientId: string,
     auth: string,
