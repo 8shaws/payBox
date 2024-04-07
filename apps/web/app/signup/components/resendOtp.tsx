@@ -178,10 +178,10 @@ export function ResendOtp() {
                         <DialogFooter className="w-full">
                             <DialogClose asChild>
                                 <div className="w-full flex justify-between">
-                                    <Button type="submit">Send Otp</Button>
                                     <Button type="button" variant="secondary">
                                         Close
                                     </Button>
+                                    <Button type="submit">Send Otp</Button>
                                 </div>
                             </DialogClose>
                         </DialogFooter>
