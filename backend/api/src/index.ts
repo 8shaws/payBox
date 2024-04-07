@@ -32,14 +32,14 @@ import path from "path";
 import swaggerUi, { JsonObject } from "swagger-ui-express";
 import { accountRouter } from "./routes/account";
 import { walletRouter } from "./routes/wallet";
-import twilio from 'twilio';
-import nodemailer from 'nodemailer';
+
 import { S3Client } from '@aws-sdk/client-s3';
 import { notifyRouter } from "./routes/notification";
 import { Worker } from "./workers/txn";
 import Prometheus from "prom-client";
 import responseTime from "response-time";
 import compression from 'compression';
+import { NotifWorker } from "./workers/notfi";
 
 
 export * from "./Redis";
@@ -51,16 +51,7 @@ export const wss = new WebSocketServer({ server });
 // export const apolloServer = createApollo();
 
 
-export const twillo = twilio(TWILLO_ACCOUNT_SID, TWILLO_TOKEN);
-export const transporter = nodemailer.createTransport({
-  service: MAIL_SERVICE,
-  port: 465,
-  secure: true,
-  auth: {
-    user: GMAIL,
-    pass: GMAIL_APP_PASS
-  }
-});
+
 
 export const cloud = new S3Client({
   region: 'auto',
@@ -187,6 +178,9 @@ process.on('SIGINT', async () => {
 Promise.all([
   new Promise((resolve) => {
     Worker.getInstance().getProducer.on("producer.connect", resolve);
+  }),
+  new Promise((resolve) => {
+    NotifWorker.getInstance().getProducer.on("producer.connect", resolve);
   }),
   new Promise((resolve) => {
     Redis.getInstance().getclient.on('ready', resolve);

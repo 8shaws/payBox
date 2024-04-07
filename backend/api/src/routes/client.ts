@@ -2,34 +2,26 @@ import { Router } from "express";
 import { UpdateClientParser, ValidateUsername } from "../validations/client";
 import { dbResStatus } from "../types/client";
 import {
-  ACCOUNT_CACHE_EXPIRE,
-  AccountType,
   Address,
   CLIENT_CACHE_EXPIRE,
   ChangePasswordValid,
-  OTP_CACHE_EXPIRE,
+  MsgTopics,
   OtpValid,
-  PasswordValid,
   ResendOtpValid,
   SECRET_PHASE_STRENGTH,
-  TOTP_DIGITS,
-  TOTP_TIME,
-  VALID_CACHE_EXPIRE,
+  TopicTypes,
   responseStatus,
 } from "@paybox/common";
 import {
   conflictClient,
   createBaseClient,
-  createClient,
   deleteClient,
   getClientByEmail,
   getClientById,
   getClientMetaData,
-  upadteMobileEmail,
   updateMetadata,
   updatePassword,
   validateClient,
-  genRand,
   checkPassword,
   extractClientId,
   isValidated,
@@ -39,9 +31,7 @@ import {
 } from "@paybox/backend-common";
 import { Redis } from "../index";
 import {
-  genOtp,
   generateSeed,
-  sendOTP,
   setHashPassword,
 } from "../auth/util";
 import { resendOtpLimiter } from "../auth/middleware";
@@ -52,6 +42,7 @@ import {
 } from "@paybox/common";
 import { SolOps } from "../sockets/sol";
 import { EthOps } from "../sockets/eth";
+import { NotifWorker } from "../workers/notfi";
 
 export const clientRouter = Router();
 
@@ -113,15 +104,23 @@ clientRouter.post('/', async (req, res) => {
       });
     }
 
-    // Generate OTP
-    const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
-    try {
-      sendOTP(`${firstname}`, email, otp, Number(mobile));
-      await Redis.getRedisInst().cacheIdUsingKey(otp.toString(), client.id as string, OTP_CACHE_EXPIRE);
-    } catch (error) {
-      console.log(error);
-      return res.status(200).json({ ...client, jwt, msg: "Error in sending otp", status: responseStatus.Ok });
-    }
+
+    // ofload the opt sending to a worker
+    await NotifWorker.getInstance().publishOne({
+      topic: TopicTypes.Msg,
+      message: [{
+        key: client.id,
+        partition: 0,
+        value: JSON.stringify({
+          name: `${firstname}`,
+          email,
+          mobile: Number(mobile),
+          type: MsgTopics.SendOtp,
+          clientId: client.id
+        })
+      }]
+    });
+
 
     return res.status(200).json({ ...client, jwt, status: responseStatus.Ok });
 
@@ -148,9 +147,9 @@ clientRouter.patch("/valid", extractClientId, isValidated, async (req, res) => {
       let hashPassword = (await Redis.getRedisInst().clientCache.getClientCache(tempCache))?.password
         || (await getPassword(tempCache)).hashPassword;
       if (!hashPassword) {
-          return res
-            .status(404)
-            .json({ status: responseStatus.Error, msg: "Account Not Found" });
+        return res
+          .status(404)
+          .json({ status: responseStatus.Error, msg: "Account Not Found" });
       }
 
       const seed = generateSeed(SECRET_PHASE_STRENGTH);
@@ -207,22 +206,21 @@ clientRouter.patch("/resend", extractClientId, isValidated, resendOtpLimiter, as
     if (id) {
       const { mobile, email, name } = ResendOtpValid.parse(req.query);
 
-      const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
-      try {
-        await sendOTP(name, email, otp, Number(mobile));
-        await Redis.getRedisInst().cacheIdUsingKey(otp.toString(), id, OTP_CACHE_EXPIRE);
-
-        const { status } = await upadteMobileEmail(id, Number(mobile), email);
-        if (status == dbResStatus.Error) {
-          return res
-            .status(503)
-            .json({ status: responseStatus.Error, msg: "Database Error" });
-        }
-
-      } catch (error) {
-        console.log(error);
-        return res.status(200).json({ msg: "Error in sending otp", status: responseStatus.Ok });
-      }
+      // ofload the opt sending to a worker
+      await NotifWorker.getInstance().publishOne({
+        topic: TopicTypes.Msg,
+        message: [{
+          key: id,
+          partition: 0,
+          value: JSON.stringify({
+            name: `${name}`,
+            email,
+            mobile: Number(mobile),
+            type: MsgTopics.ResendOtp,
+            clientId: id
+          })
+        }]
+      });
       return res.status(200).json({ msg: "Otp sent", status: responseStatus.Ok });
     }
     return res
@@ -313,26 +311,20 @@ clientRouter.post("/providerAuth", async (req, res) => {
       valid: mutation?.valid || false,
     }, CLIENT_CACHE_EXPIRE);
 
-    // Generate OTP
-    const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
-    try {
-      sendOTP(`${firstname}`, email, otp);
-      await Redis.getRedisInst().cacheIdUsingKey(otp.toString(), mutation.id as string, OTP_CACHE_EXPIRE);
-    } catch (error) {
-      console.log(error);
-      return res.status(200).json({
-        firstname,
-        email,
-        username,
-        lastname,
-        mobile,
-        id: mutation?.id as string,
-        address: mutation?.address as Address,
-        valid: mutation?.valid || false,
-        jwt, msg: "Error in sending otp",
-        status: responseStatus.Ok
-      });
-    }
+    await NotifWorker.getInstance().publishOne({
+      topic: TopicTypes.Msg,
+      message: [{
+        key: mutation.id,
+        partition: 0,
+        value: JSON.stringify({
+          name: `${name}`,
+          email,
+          mobile: Number(mobile),
+          type: MsgTopics.ResendOtp,
+          clientId: mutation.id
+        })
+      }]
+    });
 
     return res
       .status(200)
