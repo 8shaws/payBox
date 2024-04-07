@@ -1,8 +1,9 @@
-import { NotifTopics, dbResStatus } from "@paybox/common";
+import { NotifTopics, OTP_CACHE_EXPIRE, TOTP_DIGITS, TOTP_TIME, dbResStatus } from "@paybox/common";
 import { getClientFriendship } from "./db/friendship";
 import { getUsername } from "./db/client";
 import { notify } from "./notifier";
 import { getTxnDetails } from "./db/txn";
+import { RedisBase, genOtp, sendOTP } from "@paybox/backend-common";
 
 /**
  * 
@@ -180,4 +181,29 @@ export const notifyPaid = async (
             txnId
         }
     });
+}
+
+/**
+ * 
+ * @param name 
+ * @param mobile 
+ * @param email 
+ * @param clientId 
+ * @returns 
+ */
+export const otpSendProcess = async (
+    name: string,
+    mobile: number,
+    email: string,
+    clientId: string
+): Promise<void> => {
+    const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
+    try {
+        await sendOTP(name, email, otp, Number(mobile));
+        await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
+        return;
+    } catch (error) {
+        console.log(error);
+        return;
+    }
 }
