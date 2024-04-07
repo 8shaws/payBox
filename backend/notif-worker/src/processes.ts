@@ -3,7 +3,8 @@ import { getClientFriendship } from "./db/friendship";
 import { getUsername } from "./db/client";
 import { notify } from "./notifier";
 import { getTxnDetails } from "./db/txn";
-import { RedisBase, genOtp, sendOTP } from "@paybox/backend-common";
+import { RedisBase, upadteMobileEmail } from "@paybox/backend-common";
+import { genOtp, sendOTP } from "./auth/utils";
 
 /**
  * 
@@ -198,12 +199,32 @@ export const otpSendProcess = async (
     clientId: string
 ): Promise<void> => {
     const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
-    try {
         await sendOTP(name, email, otp, Number(mobile));
         await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
         return;
-    } catch (error) {
-        console.log(error);
-        return;
+}
+
+/**
+ * 
+ * @param name 
+ * @param mobile 
+ * @param email 
+ * @param clientId 
+ * @returns 
+ */
+export const resendOtpProcess = async (
+    name: string,
+    mobile: number,
+    email: string,
+    clientId: string
+): Promise<void> => {
+    const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
+    await sendOTP(name, email, otp, Number(mobile));
+    console.log(clientId);
+    await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
+    const { status } = await upadteMobileEmail(clientId, Number(mobile), email);
+    if (status == dbResStatus.Error) {
+        throw new Error("Error updating mobile and email");
     }
+    return;
 }
