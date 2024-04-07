@@ -14,6 +14,13 @@ env:
     AUTH_JWT_PUBLIC_KEY: "AUTH_JWT_PUBLIC_KEY"
     AUTH_JWT_PRIVATE_KEY: "AUTH_JWT_PRIVATE_KEY"
     PROCESS: "PROCESS"
+    TWILLO_ACCOUNT_SID: "TWILLO_ACCOUNT_SID"
+    TWILLO_TOKEN: "TWILLO_TOKEN"
+    TWILLO_NUMBER: "TWILLO_NUMBER"
+    REDIS_SECRET: "REDIS_SECRET"
+    GMAIL_APP_PASS: "GMAIL_APP_PASS"
+    GMAIL: "GMAIL"
+    MAIL_SERVICE: "MAIL_SERVICE"
 
 phases:
   install:
@@ -35,6 +42,13 @@ phases:
       - printf "AUTH_JWT_PUBLIC_KEY=%s\n" "$AUTH_JWT_PUBLIC_KEY" >> .env
       - printf "AUTH_JWT_PRIVATE_KEY=%s\n" "$AUTH_JWT_PRIVATE_KEY" >> .env
       - printf "PROCESS=%s\n" "$PROCESS" >> .env
+      - printf "TWILLO_ACCOUNT_SID=%s\n" "$TWILLO_ACCOUNT_SID" >> .env
+      - printf "TWILLO_TOKEN=%s\n" "$TWILLO_TOKEN" >> .env
+      - printf "TWILLO_NUMBER=%s\n" "$TWILLO_NUMBER" >> .env
+      - printf "REDIS_SECRET=%s\n" "$REDIS_SECRET" >> .env
+      - printf "GMAIL_APP_PASS=%s\n" "$GMAIL_APP_PASS" >> .env
+      - printf "GMAIL=%s\n" "$GMAIL" >> .env
+      - printf "MAIL_SERVICE=%s\n" "$MAIL_SERVICE" >> .env
       - cd ../..
 artifacts:
   files:
