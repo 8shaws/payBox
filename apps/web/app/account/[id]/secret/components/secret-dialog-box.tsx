@@ -27,7 +27,7 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { accountAtom, accountPrivateKeysAtom } from "@paybox/recoil";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -42,6 +42,16 @@ export function SecretPhraseDialogBox({
     seed?: string | null
 }) {
     const account = useRecoilValue(accountAtom);
+    const [copyText, setCopyText] = React.useState<string>("Copy");
+
+    useEffect(() => {
+        if (copyText === "Copied") {
+            setTimeout(() => {
+                setCopyText("Copy");
+            }, 2000);
+        }
+    }, [copyText])
+
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent>
@@ -88,13 +98,24 @@ export function SecretPhraseDialogBox({
                         }
                     </CardContent>
                     <DialogFooter className="sm:justify-start">
-                        <DialogClose asChild>
-                            <CardFooter className="w-full">
+                        <CardFooter className="w-full flex flex-row justify-between gap-x-12">
+                            <DialogClose asChild>
                                 <Button type="button" variant="secondary" className="w-full">
                                     Close
                                 </Button>
-                            </CardFooter>
-                        </DialogClose>
+                            </DialogClose>
+                            <Button
+                                type="button"
+                                onClick={() => {
+                                    navigator.clipboard.writeText(seed || "");
+                                    setCopyText("Copied");
+                                }}
+                                variant="default"
+                                className="w-full flex gap-x-3"
+                            >
+                                <CopyIcon className="w-4 h-4" /> {copyText}
+                            </Button>
+                        </CardFooter>
                     </DialogFooter>
                 </Card>
             </DialogContent>
