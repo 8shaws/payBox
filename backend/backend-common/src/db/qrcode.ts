@@ -24,13 +24,13 @@ export const getAddressByClient = async (
     address: [
       {
         where: {
-          client_id: { _eq: clientId },
+          clientId: { _eq: clientId },
         },
       },
       {
         id: true,
         bitcoin: true,
-        client_id: true,
+        clientId: true,
         eth: true,
         sol: true,
         usdc: true,
@@ -41,12 +41,12 @@ export const getAddressByClient = async (
     return {
       status: dbResStatus.Ok,
       address: {
-        bitcoin: response.address[0].bitcoin,
+        bitcoin: response.address[0].bitcoin as string,
         clientId,
         id: response.address[0].id as string,
         sol: response.address[0].sol,
         eth: response.address[0].eth,
-        usdc: response.address[0].usdc,
+        usdc: response.address[0].usdc as string,
       },
     };
   }

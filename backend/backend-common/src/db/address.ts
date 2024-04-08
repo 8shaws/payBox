@@ -80,7 +80,7 @@ export const conflictAddress = async (
         {
           where: {
             _and: [
-              { client_id: { _neq: clientId } },
+              { clientId: { _neq: clientId } },
               {
                 _or: [{ eth: { _eq: eth } }, { sol: { _eq: sol } }],
               },
@@ -127,7 +127,7 @@ export const getAddressByClientId = async (
       address: [
         {
           where: {
-            client_id: { _eq: client_id },
+            clientId: { _eq: client_id },
           },
           limit: 1,
         },
@@ -172,7 +172,7 @@ export const updateAddress = async (
     update_address: [
       {
         where: {
-          client_id: { _eq: clientId },
+          clientId: { _eq: clientId },
         },
         _set: {
           bitcoin,

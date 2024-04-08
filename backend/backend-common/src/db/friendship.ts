@@ -1,5 +1,5 @@
 import { Chain, order_by } from "@paybox/zeus";
-import { AcceptFriendship, dbResStatus, FriendshipStatusEnum, FriendshipType, HASURA_ADMIN_SERCRET, HASURA_URL, JWT } from "@paybox/common";
+import { AcceptFriendship, AccountType, BitcoinKey, dbResStatus, EthKey, FriendPubKeys, FriendshipStatusEnum, FriendshipType, HASURA_ADMIN_SERCRET, HASURA_URL, JWT, SolKey } from "@paybox/common";
 import { FriendshipStatus } from "@paybox/common";
 
 const chain = Chain(HASURA_URL, {
@@ -282,14 +282,41 @@ export const getFriendships = async (
             clientId1: true,
             clientId2: true,
             status: true,
+            client1: {
+                id: true,
+                firstname: true,
+                lastname: true,
+                email: true,
+                mobile: true,
+                username: true
+            },
+            client2: {
+                id: true,
+                firstname: true,
+                lastname: true,
+                email: true,
+                mobile: true,
+                username: true
+            },
             updatedAt: true,
             createdAt: true
         }]
     }, { operationName: "getFriendships" });
     if (Array.isArray(response.friendship)) {
+        let friendships = response.friendship.map((f) => {
+            return {
+                id: f.id,
+                clientId1: f.clientId1,
+                clientId2: f.clientId2,
+                status: f.status,
+                updatedAt: f.updatedAt,
+                createdAt: f.createdAt,
+                friend: f.client1.id === clientId ? f.client2 : f.client1
+            }
+        });
         return {
             status: dbResStatus.Ok,
-            friendships: response.friendship as FriendshipType[]
+            friendships: friendships as FriendshipType[]
         }
     }
     return {
@@ -342,6 +369,56 @@ export const getAcceptFriendships = async (
         return {
             status: dbResStatus.Ok,
             friendships: response.friendship as AcceptFriendship[]
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}
+
+
+
+/**
+ * 
+ * @param friendId 
+ * @returns 
+ */
+export const getFriendPubKey = async (
+    friendId: string,
+): Promise<{
+    status: dbResStatus,
+    keys?: FriendPubKeys
+}> => {
+    const response = await chain("query")({
+        client: [{
+            where: {
+                id: { _eq: friendId }
+            },
+            limit: 1,
+        }, {
+            accounts: [{
+                where: {
+                    isMain: { _eq: true }
+                }
+            }, {
+                bitcoin: {
+                    publicKey: true
+                },
+                eth: {
+                    publicKey: true
+                },
+                sol: {
+                    publicKey: true
+                },
+                id: true,
+                walletId: true,
+            }]
+        }]
+    }, {operationName: "getFriendPubKey"});
+    if(response.client.length > 0) {
+        return {
+            status: dbResStatus.Ok,
+            keys: response.client[0].accounts[0] as FriendPubKeys
         }
     }
     return {

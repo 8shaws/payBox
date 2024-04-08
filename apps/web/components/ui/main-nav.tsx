@@ -25,7 +25,7 @@ export function MainNav() {
           href="/account"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname.includes("account") ? "text-foreground" : "text-foreground/60"
+            (pathname.includes("account")) ? "text-foreground" : "text-foreground/60"
           )}
         >
           Account

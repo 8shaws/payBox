@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans } from 'geist/font/sans';
-import "../globals.css";
+import "../../globals.css";
 
 export const metadata: Metadata = {
     title: "Chat | Paybox",
@@ -20,6 +20,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className={GeistSans.className}>{children}</div>
+        <>
+            {children}
+        </>
     );
 }

@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
-import { AccountType, BACKEND_URL, responseStatus } from '@paybox/common';
+import { AccountType, BACKEND_URL, FriendshipStatusEnum, FriendshipType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
 
 export function toBase64(file: File) {
   return new Promise((resolve, reject) => {
@@ -98,9 +98,63 @@ export const getAccount = async (jwt: string, id: string): Promise<AccountType |
   }
 }
 
+/**
+ * 
+ * @param jwt 
+ * @param friendshipStatus 
+ * @returns 
+ */
+export const getFriendships = async (jwt: string, friendshipStatus: FriendshipStatusEnum): Promise<FriendshipType[]> => {
+  try {
+    const response: { status: responseStatus, msg?: string, friendships: FriendshipType[] } =
+      await fetch(`${WS_BACKEND_URL}/friendship?friendshipStatus=${friendshipStatus}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+          "Content-type": "application/json"
+        },
+        cache: "no-cache"
+      }).then(res => res.json());
+    if (response.friendships.length > 0) {
+      return response.friendships;
+    }
+    return [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
 
 export async function isWord(word: string): Promise<boolean> {
   const response = await fetch(`https://api.datamuse.com/words?sp=${word}`);
   const data = await response.json();
   return data.length > 0;
+}
+
+/**
+ * 
+ * @param jwt 
+ * @param id 
+ */
+export const getFriendPubKey = async (
+  jwt: string, 
+  id: string
+): Promise<void> => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/friendship/pubkey?friendId=${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-type": "application/json"
+      }
+    }).then(res => res.json());
+    if(response.status == responseStatus.Error) {
+      console.log("error getting pub keys for friend");
+      throw new Error(response.msg);
+    }
+    console.log(response)
+    return response.keys;
+  } catch (error) {
+    console.error(error);
+  }
 }

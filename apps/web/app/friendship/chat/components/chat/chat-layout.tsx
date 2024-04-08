@@ -1,6 +1,6 @@
 "use client";
 
-import { userData } from "@/app/chat/data";
+import { userData } from "@/app/friendship/chat/data";
 import React, { useEffect, useState } from "react";
 import {
   ResizableHandle,
@@ -92,7 +92,7 @@ export function ChatLayout({
         />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
+      <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-primary-foreground">
         <Chat
           messages={selectedUser.messages}
           selectedUser={selectedUser}

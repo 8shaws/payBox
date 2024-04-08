@@ -5,7 +5,21 @@ export const AllTypesProps: Record<string, any> = {
   Int_comparison_exp: {},
   String_comparison_exp: {},
   account_aggregate_bool_exp: {
+    bool_and: "account_aggregate_bool_exp_bool_and",
+    bool_or: "account_aggregate_bool_exp_bool_or",
     count: "account_aggregate_bool_exp_count",
+  },
+  account_aggregate_bool_exp_bool_and: {
+    arguments:
+      "account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns",
+    filter: "account_bool_exp",
+    predicate: "Boolean_comparison_exp",
+  },
+  account_aggregate_bool_exp_bool_or: {
+    arguments:
+      "account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns",
+    filter: "account_bool_exp",
+    predicate: "Boolean_comparison_exp",
   },
   account_aggregate_bool_exp_count: {
     arguments: "account_select_column",
@@ -37,6 +51,7 @@ export const AllTypesProps: Record<string, any> = {
     eth: "eth_bool_exp",
     id: "uuid_comparison_exp",
     img: "String_comparison_exp",
+    isMain: "Boolean_comparison_exp",
     name: "String_comparison_exp",
     sol: "sol_bool_exp",
     updatedAt: "timestamptz_comparison_exp",
@@ -91,6 +106,7 @@ export const AllTypesProps: Record<string, any> = {
     eth: "eth_order_by",
     id: "order_by",
     img: "order_by",
+    isMain: "order_by",
     name: "order_by",
     sol: "sol_order_by",
     updatedAt: "order_by",
@@ -101,6 +117,10 @@ export const AllTypesProps: Record<string, any> = {
     id: "uuid",
   },
   account_select_column: "enum" as const,
+  account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns:
+    "enum" as const,
+  account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns:
+    "enum" as const,
   account_set_input: {
     clientId: "uuid",
     createdAt: "timestamptz",
@@ -135,7 +155,7 @@ export const AllTypesProps: Record<string, any> = {
     _or: "address_bool_exp",
     bitcoin: "String_comparison_exp",
     client: "client_bool_exp",
-    client_id: "uuid_comparison_exp",
+    clientId: "uuid_comparison_exp",
     createdAt: "timestamptz_comparison_exp",
     eth: "String_comparison_exp",
     id: "uuid_comparison_exp",
@@ -146,7 +166,7 @@ export const AllTypesProps: Record<string, any> = {
   address_constraint: "enum" as const,
   address_insert_input: {
     client: "client_obj_rel_insert_input",
-    client_id: "uuid",
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
@@ -163,7 +183,7 @@ export const AllTypesProps: Record<string, any> = {
   address_order_by: {
     bitcoin: "order_by",
     client: "client_order_by",
-    client_id: "order_by",
+    clientId: "order_by",
     createdAt: "order_by",
     eth: "order_by",
     id: "order_by",
@@ -176,7 +196,7 @@ export const AllTypesProps: Record<string, any> = {
   },
   address_select_column: "enum" as const,
   address_set_input: {
-    client_id: "uuid",
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
@@ -186,7 +206,7 @@ export const AllTypesProps: Record<string, any> = {
     ordering: "cursor_ordering",
   },
   address_stream_cursor_value_input: {
-    client_id: "uuid",
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
@@ -755,8 +775,8 @@ export const AllTypesProps: Record<string, any> = {
     _or: "friendship_bool_exp",
     chats: "chat_bool_exp",
     chats_aggregate: "chat_aggregate_bool_exp",
-    client: "client_bool_exp",
-    clientByClientid2: "client_bool_exp",
+    client1: "client_bool_exp",
+    client2: "client_bool_exp",
     clientId1: "uuid_comparison_exp",
     clientId2: "uuid_comparison_exp",
     createdAt: "timestamptz_comparison_exp",
@@ -767,8 +787,8 @@ export const AllTypesProps: Record<string, any> = {
   friendship_constraint: "enum" as const,
   friendship_insert_input: {
     chats: "chat_arr_rel_insert_input",
-    client: "client_obj_rel_insert_input",
-    clientByClientid2: "client_obj_rel_insert_input",
+    client1: "client_obj_rel_insert_input",
+    client2: "client_obj_rel_insert_input",
     clientId1: "uuid",
     clientId2: "uuid",
     createdAt: "timestamptz",
@@ -802,8 +822,8 @@ export const AllTypesProps: Record<string, any> = {
   },
   friendship_order_by: {
     chats_aggregate: "chat_aggregate_order_by",
-    client: "client_order_by",
-    clientByClientid2: "client_order_by",
+    client1: "client_order_by",
+    client2: "client_order_by",
     clientId1: "order_by",
     clientId2: "order_by",
     createdAt: "order_by",
@@ -2300,6 +2320,7 @@ export const ReturnTypes: Record<string, any> = {
     eth: "eth",
     id: "uuid",
     img: "String",
+    isMain: "Boolean",
     name: "String",
     sol: "sol",
     updatedAt: "timestamptz",
@@ -2340,7 +2361,7 @@ export const ReturnTypes: Record<string, any> = {
   address: {
     bitcoin: "String",
     client: "client",
-    client_id: "uuid",
+    clientId: "uuid",
     createdAt: "timestamptz",
     eth: "String",
     id: "uuid",
@@ -2359,7 +2380,7 @@ export const ReturnTypes: Record<string, any> = {
   },
   address_max_fields: {
     bitcoin: "String",
-    client_id: "uuid",
+    clientId: "uuid",
     createdAt: "timestamptz",
     eth: "String",
     id: "uuid",
@@ -2369,7 +2390,7 @@ export const ReturnTypes: Record<string, any> = {
   },
   address_min_fields: {
     bitcoin: "String",
-    client_id: "uuid",
+    clientId: "uuid",
     createdAt: "timestamptz",
     eth: "String",
     id: "uuid",
@@ -2744,8 +2765,8 @@ export const ReturnTypes: Record<string, any> = {
   friendship: {
     chats: "chat",
     chats_aggregate: "chat_aggregate",
-    client: "client",
-    clientByClientid2: "client",
+    client1: "client",
+    client2: "client",
     clientId1: "uuid",
     clientId2: "uuid",
     createdAt: "timestamptz",

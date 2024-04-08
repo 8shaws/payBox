@@ -1,4 +1,4 @@
-import { Message, UserData } from "@/app/chat/data";
+import { Message, UserData } from "@/app/friendship/chat/data";
 import { cn } from "@/lib/utils";
 import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -69,7 +69,7 @@ export function ChatList({
                     />
                   </Avatar>
                 )}
-                <span className=" bg-accent p-3 rounded-md max-w-xs">
+                <span className=" bg-accent p-3 rounded-md max-w-xs  dark:bg-card">
                   {message.message}
                 </span>
                 {message.name !== selectedUser.name && (

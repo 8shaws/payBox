@@ -40,6 +40,7 @@ import Prometheus from "prom-client";
 import responseTime from "response-time";
 import compression from 'compression';
 import { NotifWorker } from "./workers/notfi";
+import { friendshipRouter } from "./routes/friendship";
 
 
 export * from "./Redis";
@@ -149,6 +150,7 @@ app.use("/qrcode", extractClientId, checkValidation, qrcodeRouter);
 app.use("/txn", extractClientId, checkValidation, txnRouter);
 app.use("/account", extractClientId, checkValidation, accountRouter);
 app.use("/wallet", extractClientId, checkValidation, walletRouter);
+app.use("/friendship", extractClientId, checkValidation, friendshipRouter);
 app.use('/notif', extractClientId, notifyRouter);
 
 app.get("/metrics", async (_req, res) => {
