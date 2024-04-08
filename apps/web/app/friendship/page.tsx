@@ -15,16 +15,28 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer"
+import { Input } from "@/components/ui/input"
 import { Check, CheckCheck } from "lucide-react";
-import { AcceptButton } from "./accept-request";
+import { AcceptButton } from "./components/accept-request";
 import { redirect } from "next/navigation";
+import { Content } from "./components/drawer-content";
 
 export default async function Page({ params }: { params: { id: string } }) {
     const session = await getServerSession(authOptions);
     //@ts-ignore
     const jwt = session?.user?.jwt;
-    if(!jwt) {
+    if (!jwt) {
         redirect('/signin');
     }
     const friendships = await getFriendships(jwt, FriendshipStatusEnum.Pending);
@@ -37,22 +49,34 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <CardTitle>Friend Requests</CardTitle>
                     </CardHeader>
                     <CardContent className="grid gap-8 w-full">
+
+
                         {
                             friendships.map((friendship) => {
                                 return (
-                                    <div className="flex items-center gap-4 w-full">
-                                        <Avatar className="hidden h-9 w-9 sm:flex">
-                                            <AvatarImage src={`/avatars/0${Math.floor(Math.random() * 5 + 1)}.png`} alt="Avatar" />
-                                            <AvatarFallback>{friendship.friend?.firstname?.charAt(0).toLocaleUpperCase()}{friendship.friend?.lastname?.charAt(0)}</AvatarFallback>
-                                        </Avatar>
-                                        <div className="grid gap-1">
-                                            <p className="text-sm font-medium leading-none">
-                                                {friendship.friend?.firstname} {friendship.friend?.lastname}
-                                            </p>
-                                            <p className="text-sm text-muted-foreground">
-                                                {friendship.friend?.username}
-                                            </p>
-                                        </div>
+                                    <div className="flex items-center gap-4 w-full" key={friendship.id}>
+                                        <Drawer>
+                                            <DrawerTrigger className="flex items-center gap-4 w-full">
+                                                <>
+                                                    <Avatar className="hidden h-9 w-9 sm:flex">
+                                                        <AvatarImage src={`/avatars/0${Math.floor(Math.random() * 5 + 1)}.png`} alt="Avatar" />
+                                                        <AvatarFallback>{friendship.friend?.firstname?.charAt(0).toLocaleUpperCase()}{friendship.friend?.lastname?.charAt(0)}</AvatarFallback>
+                                                    </Avatar>
+                                                    <div className="grid gap-1">
+                                                        <p className="text-sm font-medium leading-none">
+                                                            {friendship.friend?.firstname} {friendship.friend?.lastname}
+                                                        </p>
+                                                        <p className="text-sm text-muted-foreground">
+                                                            {friendship.friend?.username}
+                                                        </p>
+                                                    </div>
+                                                </>
+                                            </DrawerTrigger>
+                                            <DrawerContent className="flex items-center justify-center w-full">
+                                                {friendship.friend && <Content friend={friendship.friend} jwt={jwt} />}
+                                            </DrawerContent>
+                                        </Drawer>
+
                                         <div className="flex-grow" />
                                         <AcceptButton
                                             friendshipId={friendship.id}
