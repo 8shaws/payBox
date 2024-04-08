@@ -1092,6 +1092,7 @@ export type ValueTypes = {
     eth?: ValueTypes["eth"];
     id?: boolean | `@${string}`;
     img?: boolean | `@${string}`;
+    isMain?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     /** An object relationship */
     sol?: ValueTypes["sol"];
@@ -1108,11 +1109,45 @@ export type ValueTypes = {
     __typename?: boolean | `@${string}`;
   }>;
   ["account_aggregate_bool_exp"]: {
+    bool_and?:
+      | ValueTypes["account_aggregate_bool_exp_bool_and"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    bool_or?:
+      | ValueTypes["account_aggregate_bool_exp_bool_or"]
+      | undefined
+      | null
+      | Variable<any, string>;
     count?:
       | ValueTypes["account_aggregate_bool_exp_count"]
       | undefined
       | null
       | Variable<any, string>;
+  };
+  ["account_aggregate_bool_exp_bool_and"]: {
+    arguments:
+      | ValueTypes["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["account_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Boolean_comparison_exp"] | Variable<any, string>;
+  };
+  ["account_aggregate_bool_exp_bool_or"]: {
+    arguments:
+      | ValueTypes["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["account_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Boolean_comparison_exp"] | Variable<any, string>;
   };
   ["account_aggregate_bool_exp_count"]: {
     arguments?:
@@ -1217,6 +1252,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    isMain?:
+      | ValueTypes["Boolean_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     name?:
       | ValueTypes["String_comparison_exp"]
       | undefined
@@ -1266,6 +1306,7 @@ export type ValueTypes = {
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     img?: string | undefined | null | Variable<any, string>;
+    isMain?: boolean | undefined | null | Variable<any, string>;
     name?: string | undefined | null | Variable<any, string>;
     sol?:
       | ValueTypes["sol_obj_rel_insert_input"]
@@ -1413,6 +1454,7 @@ export type ValueTypes = {
     eth?: ValueTypes["eth_order_by"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     img?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    isMain?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     sol?: ValueTypes["sol_order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -1437,6 +1479,10 @@ export type ValueTypes = {
   };
   /** select columns of table "account" */
   ["account_select_column"]: account_select_column;
+  /** select "account_aggregate_bool_exp_bool_and_arguments_columns" columns of table "account" */
+  ["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "account_aggregate_bool_exp_bool_or_arguments_columns" columns of table "account" */
+  ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
@@ -1447,6 +1493,7 @@ export type ValueTypes = {
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     img?: string | undefined | null | Variable<any, string>;
+    isMain?: boolean | undefined | null | Variable<any, string>;
     name?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
@@ -1478,6 +1525,7 @@ export type ValueTypes = {
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     img?: string | undefined | null | Variable<any, string>;
+    isMain?: boolean | undefined | null | Variable<any, string>;
     name?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
@@ -1503,7 +1551,7 @@ export type ValueTypes = {
     bitcoin?: boolean | `@${string}`;
     /** An object relationship */
     client?: ValueTypes["client"];
-    client_id?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     eth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -1562,7 +1610,7 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    client_id?:
+    clientId?:
       | ValueTypes["uuid_comparison_exp"]
       | undefined
       | null
@@ -1608,7 +1656,7 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    client_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -1627,7 +1675,7 @@ export type ValueTypes = {
   /** aggregate max on columns */
   ["address_max_fields"]: AliasType<{
     bitcoin?: boolean | `@${string}`;
-    client_id?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     eth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -1639,7 +1687,7 @@ export type ValueTypes = {
   /** aggregate min on columns */
   ["address_min_fields"]: AliasType<{
     bitcoin?: boolean | `@${string}`;
-    client_id?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     eth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -1686,7 +1734,7 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    client_id?:
+    clientId?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -1715,7 +1763,7 @@ export type ValueTypes = {
   /** input type for updating data in table "address" */
   ["address_set_input"]: {
     bitcoin?: string | undefined | null | Variable<any, string>;
-    client_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -1747,7 +1795,7 @@ export type ValueTypes = {
   /** Initial value of the column from where the streaming should start */
   ["address_stream_cursor_value_input"]: {
     bitcoin?: string | undefined | null | Variable<any, string>;
-    client_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -4279,9 +4327,9 @@ export type ValueTypes = {
       ValueTypes["chat_aggregate"],
     ];
     /** An object relationship */
-    client?: ValueTypes["client"];
+    client1?: ValueTypes["client"];
     /** An object relationship */
-    clientByClientid2?: ValueTypes["client"];
+    client2?: ValueTypes["client"];
     clientId1?: boolean | `@${string}`;
     clientId2?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
@@ -4385,12 +4433,12 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    client?:
+    client1?:
       | ValueTypes["client_bool_exp"]
       | undefined
       | null
       | Variable<any, string>;
-    clientByClientid2?:
+    client2?:
       | ValueTypes["client_bool_exp"]
       | undefined
       | null
@@ -4435,12 +4483,12 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    client?:
+    client1?:
       | ValueTypes["client_obj_rel_insert_input"]
       | undefined
       | null
       | Variable<any, string>;
-    clientByClientid2?:
+    client2?:
       | ValueTypes["client_obj_rel_insert_input"]
       | undefined
       | null
@@ -4567,12 +4615,12 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    client?:
+    client1?:
       | ValueTypes["client_order_by"]
       | undefined
       | null
       | Variable<any, string>;
-    clientByClientid2?:
+    client2?:
       | ValueTypes["client_order_by"]
       | undefined
       | null
@@ -10250,6 +10298,7 @@ export type ResolverInputTypes = {
     eth?: ResolverInputTypes["eth"];
     id?: boolean | `@${string}`;
     img?: boolean | `@${string}`;
+    isMain?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     /** An object relationship */
     sol?: ResolverInputTypes["sol"];
@@ -10266,10 +10315,30 @@ export type ResolverInputTypes = {
     __typename?: boolean | `@${string}`;
   }>;
   ["account_aggregate_bool_exp"]: {
+    bool_and?:
+      | ResolverInputTypes["account_aggregate_bool_exp_bool_and"]
+      | undefined
+      | null;
+    bool_or?:
+      | ResolverInputTypes["account_aggregate_bool_exp_bool_or"]
+      | undefined
+      | null;
     count?:
       | ResolverInputTypes["account_aggregate_bool_exp_count"]
       | undefined
       | null;
+  };
+  ["account_aggregate_bool_exp_bool_and"]: {
+    arguments: ResolverInputTypes["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["account_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Boolean_comparison_exp"];
+  };
+  ["account_aggregate_bool_exp_bool_or"]: {
+    arguments: ResolverInputTypes["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["account_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Boolean_comparison_exp"];
   };
   ["account_aggregate_bool_exp_count"]: {
     arguments?:
@@ -10323,6 +10392,7 @@ export type ResolverInputTypes = {
     eth?: ResolverInputTypes["eth_bool_exp"] | undefined | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     img?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    isMain?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null;
     name?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     sol?: ResolverInputTypes["sol_bool_exp"] | undefined | null;
     updatedAt?:
@@ -10349,6 +10419,7 @@ export type ResolverInputTypes = {
     eth?: ResolverInputTypes["eth_obj_rel_insert_input"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     img?: string | undefined | null;
+    isMain?: boolean | undefined | null;
     name?: string | undefined | null;
     sol?: ResolverInputTypes["sol_obj_rel_insert_input"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
@@ -10429,6 +10500,7 @@ export type ResolverInputTypes = {
     eth?: ResolverInputTypes["eth_order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     img?: ResolverInputTypes["order_by"] | undefined | null;
+    isMain?: ResolverInputTypes["order_by"] | undefined | null;
     name?: ResolverInputTypes["order_by"] | undefined | null;
     sol?: ResolverInputTypes["sol_order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
@@ -10441,12 +10513,17 @@ export type ResolverInputTypes = {
   };
   /** select columns of table "account" */
   ["account_select_column"]: account_select_column;
+  /** select "account_aggregate_bool_exp_bool_and_arguments_columns" columns of table "account" */
+  ["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "account_aggregate_bool_exp_bool_or_arguments_columns" columns of table "account" */
+  ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     img?: string | undefined | null;
+    isMain?: boolean | undefined | null;
     name?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     walletId?: ResolverInputTypes["uuid"] | undefined | null;
@@ -10464,6 +10541,7 @@ export type ResolverInputTypes = {
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     img?: string | undefined | null;
+    isMain?: boolean | undefined | null;
     name?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     walletId?: ResolverInputTypes["uuid"] | undefined | null;
@@ -10481,7 +10559,7 @@ export type ResolverInputTypes = {
     bitcoin?: boolean | `@${string}`;
     /** An object relationship */
     client?: ResolverInputTypes["client"];
-    client_id?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     eth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -10519,7 +10597,7 @@ export type ResolverInputTypes = {
     _or?: Array<ResolverInputTypes["address_bool_exp"]> | undefined | null;
     bitcoin?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
-    client_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     createdAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -10542,7 +10620,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["client_obj_rel_insert_input"]
       | undefined
       | null;
-    client_id?: ResolverInputTypes["uuid"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     eth?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
@@ -10553,7 +10631,7 @@ export type ResolverInputTypes = {
   /** aggregate max on columns */
   ["address_max_fields"]: AliasType<{
     bitcoin?: boolean | `@${string}`;
-    client_id?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     eth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -10565,7 +10643,7 @@ export type ResolverInputTypes = {
   /** aggregate min on columns */
   ["address_min_fields"]: AliasType<{
     bitcoin?: boolean | `@${string}`;
-    client_id?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     eth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -10598,7 +10676,7 @@ export type ResolverInputTypes = {
   ["address_order_by"]: {
     bitcoin?: ResolverInputTypes["order_by"] | undefined | null;
     client?: ResolverInputTypes["client_order_by"] | undefined | null;
-    client_id?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     eth?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
@@ -10615,7 +10693,7 @@ export type ResolverInputTypes = {
   /** input type for updating data in table "address" */
   ["address_set_input"]: {
     bitcoin?: string | undefined | null;
-    client_id?: ResolverInputTypes["uuid"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     eth?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
@@ -10633,7 +10711,7 @@ export type ResolverInputTypes = {
   /** Initial value of the column from where the streaming should start */
   ["address_stream_cursor_value_input"]: {
     bitcoin?: string | undefined | null;
-    client_id?: ResolverInputTypes["uuid"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     eth?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
@@ -12215,9 +12293,9 @@ export type ResolverInputTypes = {
       ResolverInputTypes["chat_aggregate"],
     ];
     /** An object relationship */
-    client?: ResolverInputTypes["client"];
+    client1?: ResolverInputTypes["client"];
     /** An object relationship */
-    clientByClientid2?: ResolverInputTypes["client"];
+    client2?: ResolverInputTypes["client"];
     clientId1?: boolean | `@${string}`;
     clientId2?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
@@ -12288,11 +12366,8 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["chat_aggregate_bool_exp"]
       | undefined
       | null;
-    client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
-    clientByClientid2?:
-      | ResolverInputTypes["client_bool_exp"]
-      | undefined
-      | null;
+    client1?: ResolverInputTypes["client_bool_exp"] | undefined | null;
+    client2?: ResolverInputTypes["client_bool_exp"] | undefined | null;
     clientId1?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     clientId2?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     createdAt?:
@@ -12311,11 +12386,11 @@ export type ResolverInputTypes = {
   /** input type for inserting data into table "friendship" */
   ["friendship_insert_input"]: {
     chats?: ResolverInputTypes["chat_arr_rel_insert_input"] | undefined | null;
-    client?:
+    client1?:
       | ResolverInputTypes["client_obj_rel_insert_input"]
       | undefined
       | null;
-    clientByClientid2?:
+    client2?:
       | ResolverInputTypes["client_obj_rel_insert_input"]
       | undefined
       | null;
@@ -12393,11 +12468,8 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["chat_aggregate_order_by"]
       | undefined
       | null;
-    client?: ResolverInputTypes["client_order_by"] | undefined | null;
-    clientByClientid2?:
-      | ResolverInputTypes["client_order_by"]
-      | undefined
-      | null;
+    client1?: ResolverInputTypes["client_order_by"] | undefined | null;
+    client2?: ResolverInputTypes["client_order_by"] | undefined | null;
     clientId1?: ResolverInputTypes["order_by"] | undefined | null;
     clientId2?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
@@ -16261,6 +16333,7 @@ export type ModelTypes = {
     eth?: ModelTypes["eth"] | undefined;
     id: ModelTypes["uuid"];
     img?: string | undefined;
+    isMain: boolean;
     name: string;
     /** An object relationship */
     sol?: ModelTypes["sol"] | undefined;
@@ -16275,7 +16348,21 @@ export type ModelTypes = {
     nodes: Array<ModelTypes["account"]>;
   };
   ["account_aggregate_bool_exp"]: {
+    bool_and?: ModelTypes["account_aggregate_bool_exp_bool_and"] | undefined;
+    bool_or?: ModelTypes["account_aggregate_bool_exp_bool_or"] | undefined;
     count?: ModelTypes["account_aggregate_bool_exp_count"] | undefined;
+  };
+  ["account_aggregate_bool_exp_bool_and"]: {
+    arguments: ModelTypes["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["account_bool_exp"] | undefined;
+    predicate: ModelTypes["Boolean_comparison_exp"];
+  };
+  ["account_aggregate_bool_exp_bool_or"]: {
+    arguments: ModelTypes["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["account_bool_exp"] | undefined;
+    predicate: ModelTypes["Boolean_comparison_exp"];
   };
   ["account_aggregate_bool_exp_count"]: {
     arguments?: Array<ModelTypes["account_select_column"]> | undefined;
@@ -16313,6 +16400,7 @@ export type ModelTypes = {
     eth?: ModelTypes["eth_bool_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
     img?: ModelTypes["String_comparison_exp"] | undefined;
+    isMain?: ModelTypes["Boolean_comparison_exp"] | undefined;
     name?: ModelTypes["String_comparison_exp"] | undefined;
     sol?: ModelTypes["sol_bool_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
@@ -16329,6 +16417,7 @@ export type ModelTypes = {
     eth?: ModelTypes["eth_obj_rel_insert_input"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
     img?: string | undefined;
+    isMain?: boolean | undefined;
     name?: string | undefined;
     sol?: ModelTypes["sol_obj_rel_insert_input"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -16403,6 +16492,7 @@ export type ModelTypes = {
     eth?: ModelTypes["eth_order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     img?: ModelTypes["order_by"] | undefined;
+    isMain?: ModelTypes["order_by"] | undefined;
     name?: ModelTypes["order_by"] | undefined;
     sol?: ModelTypes["sol_order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
@@ -16414,12 +16504,15 @@ export type ModelTypes = {
     id: ModelTypes["uuid"];
   };
   ["account_select_column"]: account_select_column;
+  ["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns;
+  ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
     img?: string | undefined;
+    isMain?: boolean | undefined;
     name?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     walletId?: ModelTypes["uuid"] | undefined;
@@ -16437,6 +16530,7 @@ export type ModelTypes = {
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
     img?: string | undefined;
+    isMain?: boolean | undefined;
     name?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     walletId?: ModelTypes["uuid"] | undefined;
@@ -16453,7 +16547,7 @@ export type ModelTypes = {
     bitcoin?: string | undefined;
     /** An object relationship */
     client: ModelTypes["client"];
-    client_id: ModelTypes["uuid"];
+    clientId: ModelTypes["uuid"];
     createdAt?: ModelTypes["timestamptz"] | undefined;
     eth: string;
     id: ModelTypes["uuid"];
@@ -16479,7 +16573,7 @@ export type ModelTypes = {
     _or?: Array<ModelTypes["address_bool_exp"]> | undefined;
     bitcoin?: ModelTypes["String_comparison_exp"] | undefined;
     client?: ModelTypes["client_bool_exp"] | undefined;
-    client_id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     eth?: ModelTypes["String_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
@@ -16492,7 +16586,7 @@ export type ModelTypes = {
   ["address_insert_input"]: {
     bitcoin?: string | undefined;
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
-    client_id?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -16503,7 +16597,7 @@ export type ModelTypes = {
   /** aggregate max on columns */
   ["address_max_fields"]: {
     bitcoin?: string | undefined;
-    client_id?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -16514,7 +16608,7 @@ export type ModelTypes = {
   /** aggregate min on columns */
   ["address_min_fields"]: {
     bitcoin?: string | undefined;
-    client_id?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -16545,7 +16639,7 @@ export type ModelTypes = {
   ["address_order_by"]: {
     bitcoin?: ModelTypes["order_by"] | undefined;
     client?: ModelTypes["client_order_by"] | undefined;
-    client_id?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     eth?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
@@ -16561,7 +16655,7 @@ export type ModelTypes = {
   /** input type for updating data in table "address" */
   ["address_set_input"]: {
     bitcoin?: string | undefined;
-    client_id?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -16579,7 +16673,7 @@ export type ModelTypes = {
   /** Initial value of the column from where the streaming should start */
   ["address_stream_cursor_value_input"]: {
     bitcoin?: string | undefined;
-    client_id?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -17579,9 +17673,9 @@ export type ModelTypes = {
     /** An aggregate relationship */
     chats_aggregate: ModelTypes["chat_aggregate"];
     /** An object relationship */
-    client: ModelTypes["client"];
+    client1: ModelTypes["client"];
     /** An object relationship */
-    clientByClientid2: ModelTypes["client"];
+    client2: ModelTypes["client"];
     clientId1: ModelTypes["uuid"];
     clientId2: ModelTypes["uuid"];
     createdAt: ModelTypes["timestamptz"];
@@ -17628,8 +17722,8 @@ export type ModelTypes = {
     _or?: Array<ModelTypes["friendship_bool_exp"]> | undefined;
     chats?: ModelTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: ModelTypes["chat_aggregate_bool_exp"] | undefined;
-    client?: ModelTypes["client_bool_exp"] | undefined;
-    clientByClientid2?: ModelTypes["client_bool_exp"] | undefined;
+    client1?: ModelTypes["client_bool_exp"] | undefined;
+    client2?: ModelTypes["client_bool_exp"] | undefined;
     clientId1?: ModelTypes["uuid_comparison_exp"] | undefined;
     clientId2?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
@@ -17641,8 +17735,8 @@ export type ModelTypes = {
   /** input type for inserting data into table "friendship" */
   ["friendship_insert_input"]: {
     chats?: ModelTypes["chat_arr_rel_insert_input"] | undefined;
-    client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
-    clientByClientid2?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    client1?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    client2?: ModelTypes["client_obj_rel_insert_input"] | undefined;
     clientId1?: ModelTypes["uuid"] | undefined;
     clientId2?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
@@ -17708,8 +17802,8 @@ export type ModelTypes = {
   /** Ordering options when selecting data from "friendship". */
   ["friendship_order_by"]: {
     chats_aggregate?: ModelTypes["chat_aggregate_order_by"] | undefined;
-    client?: ModelTypes["client_order_by"] | undefined;
-    clientByClientid2?: ModelTypes["client_order_by"] | undefined;
+    client1?: ModelTypes["client_order_by"] | undefined;
+    client2?: ModelTypes["client_order_by"] | undefined;
     clientId1?: ModelTypes["order_by"] | undefined;
     clientId2?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
@@ -19545,6 +19639,7 @@ export type GraphQLTypes = {
     eth?: GraphQLTypes["eth"] | undefined;
     id: GraphQLTypes["uuid"];
     img?: string | undefined;
+    isMain: boolean;
     name: string;
     /** An object relationship */
     sol?: GraphQLTypes["sol"] | undefined;
@@ -19560,7 +19655,21 @@ export type GraphQLTypes = {
     nodes: Array<GraphQLTypes["account"]>;
   };
   ["account_aggregate_bool_exp"]: {
+    bool_and?: GraphQLTypes["account_aggregate_bool_exp_bool_and"] | undefined;
+    bool_or?: GraphQLTypes["account_aggregate_bool_exp_bool_or"] | undefined;
     count?: GraphQLTypes["account_aggregate_bool_exp_count"] | undefined;
+  };
+  ["account_aggregate_bool_exp_bool_and"]: {
+    arguments: GraphQLTypes["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["account_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Boolean_comparison_exp"];
+  };
+  ["account_aggregate_bool_exp_bool_or"]: {
+    arguments: GraphQLTypes["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["account_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Boolean_comparison_exp"];
   };
   ["account_aggregate_bool_exp_count"]: {
     arguments?: Array<GraphQLTypes["account_select_column"]> | undefined;
@@ -19599,6 +19708,7 @@ export type GraphQLTypes = {
     eth?: GraphQLTypes["eth_bool_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     img?: GraphQLTypes["String_comparison_exp"] | undefined;
+    isMain?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
     name?: GraphQLTypes["String_comparison_exp"] | undefined;
     sol?: GraphQLTypes["sol_bool_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
@@ -19616,6 +19726,7 @@ export type GraphQLTypes = {
     eth?: GraphQLTypes["eth_obj_rel_insert_input"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     img?: string | undefined;
+    isMain?: boolean | undefined;
     name?: string | undefined;
     sol?: GraphQLTypes["sol_obj_rel_insert_input"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -19693,6 +19804,7 @@ export type GraphQLTypes = {
     eth?: GraphQLTypes["eth_order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     img?: GraphQLTypes["order_by"] | undefined;
+    isMain?: GraphQLTypes["order_by"] | undefined;
     name?: GraphQLTypes["order_by"] | undefined;
     sol?: GraphQLTypes["sol_order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
@@ -19705,12 +19817,17 @@ export type GraphQLTypes = {
   };
   /** select columns of table "account" */
   ["account_select_column"]: account_select_column;
+  /** select "account_aggregate_bool_exp_bool_and_arguments_columns" columns of table "account" */
+  ["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "account_aggregate_bool_exp_bool_or_arguments_columns" columns of table "account" */
+  ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     img?: string | undefined;
+    isMain?: boolean | undefined;
     name?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     walletId?: GraphQLTypes["uuid"] | undefined;
@@ -19728,6 +19845,7 @@ export type GraphQLTypes = {
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     img?: string | undefined;
+    isMain?: boolean | undefined;
     name?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     walletId?: GraphQLTypes["uuid"] | undefined;
@@ -19746,7 +19864,7 @@ export type GraphQLTypes = {
     bitcoin?: string | undefined;
     /** An object relationship */
     client: GraphQLTypes["client"];
-    client_id: GraphQLTypes["uuid"];
+    clientId: GraphQLTypes["uuid"];
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     eth: string;
     id: GraphQLTypes["uuid"];
@@ -19774,7 +19892,7 @@ export type GraphQLTypes = {
     _or?: Array<GraphQLTypes["address_bool_exp"]> | undefined;
     bitcoin?: GraphQLTypes["String_comparison_exp"] | undefined;
     client?: GraphQLTypes["client_bool_exp"] | undefined;
-    client_id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     eth?: GraphQLTypes["String_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
@@ -19788,7 +19906,7 @@ export type GraphQLTypes = {
   ["address_insert_input"]: {
     bitcoin?: string | undefined;
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
-    client_id?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -19800,7 +19918,7 @@ export type GraphQLTypes = {
   ["address_max_fields"]: {
     __typename: "address_max_fields";
     bitcoin?: string | undefined;
-    client_id?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -19812,7 +19930,7 @@ export type GraphQLTypes = {
   ["address_min_fields"]: {
     __typename: "address_min_fields";
     bitcoin?: string | undefined;
-    client_id?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -19844,7 +19962,7 @@ export type GraphQLTypes = {
   ["address_order_by"]: {
     bitcoin?: GraphQLTypes["order_by"] | undefined;
     client?: GraphQLTypes["client_order_by"] | undefined;
-    client_id?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     eth?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
@@ -19861,7 +19979,7 @@ export type GraphQLTypes = {
   /** input type for updating data in table "address" */
   ["address_set_input"]: {
     bitcoin?: string | undefined;
-    client_id?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -19879,7 +19997,7 @@ export type GraphQLTypes = {
   /** Initial value of the column from where the streaming should start */
   ["address_stream_cursor_value_input"]: {
     bitcoin?: string | undefined;
-    client_id?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     eth?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -20948,9 +21066,9 @@ export type GraphQLTypes = {
     /** An aggregate relationship */
     chats_aggregate: GraphQLTypes["chat_aggregate"];
     /** An object relationship */
-    client: GraphQLTypes["client"];
+    client1: GraphQLTypes["client"];
     /** An object relationship */
-    clientByClientid2: GraphQLTypes["client"];
+    client2: GraphQLTypes["client"];
     clientId1: GraphQLTypes["uuid"];
     clientId2: GraphQLTypes["uuid"];
     createdAt: GraphQLTypes["timestamptz"];
@@ -20999,8 +21117,8 @@ export type GraphQLTypes = {
     _or?: Array<GraphQLTypes["friendship_bool_exp"]> | undefined;
     chats?: GraphQLTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: GraphQLTypes["chat_aggregate_bool_exp"] | undefined;
-    client?: GraphQLTypes["client_bool_exp"] | undefined;
-    clientByClientid2?: GraphQLTypes["client_bool_exp"] | undefined;
+    client1?: GraphQLTypes["client_bool_exp"] | undefined;
+    client2?: GraphQLTypes["client_bool_exp"] | undefined;
     clientId1?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     clientId2?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
@@ -21013,8 +21131,8 @@ export type GraphQLTypes = {
   /** input type for inserting data into table "friendship" */
   ["friendship_insert_input"]: {
     chats?: GraphQLTypes["chat_arr_rel_insert_input"] | undefined;
-    client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
-    clientByClientid2?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    client1?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    client2?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
     clientId1?: GraphQLTypes["uuid"] | undefined;
     clientId2?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -21083,8 +21201,8 @@ export type GraphQLTypes = {
   /** Ordering options when selecting data from "friendship". */
   ["friendship_order_by"]: {
     chats_aggregate?: GraphQLTypes["chat_aggregate_order_by"] | undefined;
-    client?: GraphQLTypes["client_order_by"] | undefined;
-    clientByClientid2?: GraphQLTypes["client_order_by"] | undefined;
+    client1?: GraphQLTypes["client_order_by"] | undefined;
+    client2?: GraphQLTypes["client_order_by"] | undefined;
     clientId1?: GraphQLTypes["order_by"] | undefined;
     clientId2?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
@@ -22947,9 +23065,18 @@ export const enum account_select_column {
   createdAt = "createdAt",
   id = "id",
   img = "img",
+  isMain = "isMain",
   name = "name",
   updatedAt = "updatedAt",
   walletId = "walletId",
+}
+/** select "account_aggregate_bool_exp_bool_and_arguments_columns" columns of table "account" */
+export const enum account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns {
+  isMain = "isMain",
+}
+/** select "account_aggregate_bool_exp_bool_or_arguments_columns" columns of table "account" */
+export const enum account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns {
+  isMain = "isMain",
 }
 /** update columns of table "account" */
 export const enum account_update_column {
@@ -22957,6 +23084,7 @@ export const enum account_update_column {
   createdAt = "createdAt",
   id = "id",
   img = "img",
+  isMain = "isMain",
   name = "name",
   updatedAt = "updatedAt",
   walletId = "walletId",
@@ -22970,7 +23098,7 @@ export const enum address_constraint {
 /** select columns of table "address" */
 export const enum address_select_column {
   bitcoin = "bitcoin",
-  client_id = "client_id",
+  clientId = "clientId",
   createdAt = "createdAt",
   eth = "eth",
   id = "id",
@@ -22981,7 +23109,7 @@ export const enum address_select_column {
 /** update columns of table "address" */
 export const enum address_update_column {
   bitcoin = "bitcoin",
-  client_id = "client_id",
+  clientId = "clientId",
   createdAt = "createdAt",
   eth = "eth",
   id = "id",
@@ -23354,6 +23482,8 @@ type ZEUS_VARIABLES = {
   ["Int_comparison_exp"]: ValueTypes["Int_comparison_exp"];
   ["String_comparison_exp"]: ValueTypes["String_comparison_exp"];
   ["account_aggregate_bool_exp"]: ValueTypes["account_aggregate_bool_exp"];
+  ["account_aggregate_bool_exp_bool_and"]: ValueTypes["account_aggregate_bool_exp_bool_and"];
+  ["account_aggregate_bool_exp_bool_or"]: ValueTypes["account_aggregate_bool_exp_bool_or"];
   ["account_aggregate_bool_exp_count"]: ValueTypes["account_aggregate_bool_exp_count"];
   ["account_aggregate_order_by"]: ValueTypes["account_aggregate_order_by"];
   ["account_arr_rel_insert_input"]: ValueTypes["account_arr_rel_insert_input"];
@@ -23367,6 +23497,8 @@ type ZEUS_VARIABLES = {
   ["account_order_by"]: ValueTypes["account_order_by"];
   ["account_pk_columns_input"]: ValueTypes["account_pk_columns_input"];
   ["account_select_column"]: ValueTypes["account_select_column"];
+  ["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"]: ValueTypes["account_select_column_account_aggregate_bool_exp_bool_and_arguments_columns"];
+  ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: ValueTypes["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"];
   ["account_set_input"]: ValueTypes["account_set_input"];
   ["account_stream_cursor_input"]: ValueTypes["account_stream_cursor_input"];
   ["account_stream_cursor_value_input"]: ValueTypes["account_stream_cursor_value_input"];
