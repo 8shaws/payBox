@@ -324,8 +324,9 @@ export type FriendshipType = {
     clientId1: string,
     clientId2: string,
     status: FriendshipStatus,
-    updatedAt: string,
-    createdAt: string
+    updatedAt?: string,
+    createdAt?: string,
+    friend?: Friend,
 }
 
 export type AcceptFriendship = FriendshipType & {
@@ -351,6 +352,7 @@ export enum MsgTopics {
     ResendOtp = "resendOtp",
 }
 
+export type Friend = Pick<Client, "id" | "firstname" | "lastname" | "email" | "mobile" | "username">
 export interface NotifSubType {
     clientId: string,
     auth: string,
@@ -359,4 +361,12 @@ export interface NotifSubType {
     p256dh: string,
     id: string,
     updatedAt?: string,
+}
+
+export interface FriendPubKeys {
+    bitcoin?: Pick<BitcoinKey, "publicKey">,
+    eth?: Pick<EthKey, "publicKey">,
+    sol?: Pick<SolKey, "publicKey">,
+    id: string,
+    walletId: string
 }

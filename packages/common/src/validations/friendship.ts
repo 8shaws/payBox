@@ -43,3 +43,12 @@ export const GetFriendships = z.object({
     offset: z.number().int().optional(),
     friendshipStatus: z.nativeEnum(FriendshipStatusEnum),
 });
+
+export const GetFriendPubKey = z.object({
+    friendId: z
+        .string()
+        .regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "should be a valid UUID.",
+        )
+});
