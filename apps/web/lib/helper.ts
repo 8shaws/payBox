@@ -130,3 +130,31 @@ export async function isWord(word: string): Promise<boolean> {
   const data = await response.json();
   return data.length > 0;
 }
+
+/**
+ * 
+ * @param jwt 
+ * @param id 
+ */
+export const getFriendPubKey = async (
+  jwt: string, 
+  id: string
+): Promise<void> => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/friendship/pubkey?friendId=${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-type": "application/json"
+      }
+    }).then(res => res.json());
+    if(response.status == responseStatus.Error) {
+      console.log("error getting pub keys for friend");
+      throw new Error(response.msg);
+    }
+    console.log(response)
+    return response.keys;
+  } catch (error) {
+    console.error(error);
+  }
+}
