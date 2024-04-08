@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
-import { AccountType, BACKEND_URL, responseStatus } from '@paybox/common';
+import { AccountType, BACKEND_URL, FriendshipStatusEnum, FriendshipType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
 
 export function toBase64(file: File) {
   return new Promise((resolve, reject) => {
@@ -98,6 +98,32 @@ export const getAccount = async (jwt: string, id: string): Promise<AccountType |
   }
 }
 
+/**
+ * 
+ * @param jwt 
+ * @param friendshipStatus 
+ * @returns 
+ */
+export const getFriendships = async (jwt: string, friendshipStatus: FriendshipStatusEnum): Promise<FriendshipType[]> => {
+  try {
+    const response: { status: responseStatus, msg?: string, friendships: FriendshipType[] } =
+      await fetch(`${WS_BACKEND_URL}/friendship?friendshipStatus=${friendshipStatus}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+          "Content-type": "application/json"
+        },
+        cache: "no-cache"
+      }).then(res => res.json());
+    if (response.friendships.length > 0) {
+      return response.friendships;
+    }
+    return [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
 
 export async function isWord(word: string): Promise<boolean> {
   const response = await fetch(`https://api.datamuse.com/words?sp=${word}`);
