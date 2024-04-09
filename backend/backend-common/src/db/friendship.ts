@@ -1,5 +1,5 @@
 import { Chain, order_by } from "@paybox/zeus";
-import { AcceptFriendship, AccountType, BitcoinKey, dbResStatus, EthKey, FriendPubKeys, FriendshipStatusEnum, FriendshipType, HASURA_ADMIN_SERCRET, HASURA_URL, JWT, SolKey } from "@paybox/common";
+import { AcceptFriendship, AccountType, BitcoinKey, dbResStatus, EthKey, Friend, FriendPubKeys, FriendshipStatusEnum, FriendshipType, HASURA_ADMIN_SERCRET, HASURA_URL, JWT, SolKey } from "@paybox/common";
 import { FriendshipStatus } from "@paybox/common";
 
 const chain = Chain(HASURA_URL, {
@@ -148,7 +148,7 @@ export const acceptFriendship = async (
     friendshipId: string,
 ): Promise<{
     status: dbResStatus,
-    friendshipStatus?: FriendshipStatus,
+    friendship?: FriendshipType,
     to?: string
 }> => {
     const response = await chain("mutation")({
@@ -169,19 +169,39 @@ export const acceptFriendship = async (
                 status: true,
                 client1: {
                     username: true,
-                    id: true
+                    id: true,
+                    firstname: true,
+                    lastname: true,
+                    mobile: true,
+                    email: true 
                 },
                 client2: {
                     username: true,
-                    id: true
-                }
+                    id: true,
+                    firstname: true,
+                    lastname: true,
+                    mobile: true,
+                    email: true 
+                },
+                clientId1: true,
+                clientId2: true,
+                createdAt: true,
+                updatedAt: true
             }
         }]
     }, { operationName: "acceptFriendship" });
     if (response.update_friendship?.returning[0].id) {
         return {
             status: dbResStatus.Ok,
-            friendshipStatus: response.update_friendship?.returning[0].status as FriendshipStatus,
+            friendship: {
+                id: response.update_friendship?.returning[0].id as string,
+                clientId1: response.update_friendship?.returning[0].clientId1 as string,
+                clientId2: response.update_friendship?.returning[0].clientId2 as string,
+                status: response.update_friendship?.returning[0].status as FriendshipStatus,
+                createdAt: response.update_friendship?.returning[0].createdAt as string,
+                updatedAt: response.update_friendship?.returning[0].updatedAt as string,
+                friend: response.update_friendship?.returning[0].client1.id === clientId ? response.update_friendship?.returning[0].client2 as Friend : response.update_friendship?.returning[0].client1 as Friend,
+            },
             //@ts-ignore
             to: response.update_friendship?.returning[0].client1.id === clientId ? response.update_friendship?.returning[0].client2.username as string : response.update_friendship?.returning[0].client1.username as string
         }

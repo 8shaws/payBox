@@ -20,7 +20,6 @@ export const kafka = new Kafka({
     brokers: [KAFKA_URL],
 });
 
-console.log(TWILLO_TOKEN, TWILLO_ACCOUNT_SID);
 export const twillo = twilio(TWILLO_ACCOUNT_SID, TWILLO_TOKEN);
 export const transporter = nodemailer.createTransport({
     service: MAIL_SERVICE,
