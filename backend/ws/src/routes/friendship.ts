@@ -120,7 +120,7 @@ friendshipRouter.put('/accept', async (req, res) => {
 
         const { friendshipId } = CheckFriendshipValid.parse(req.query);
 
-        const { status, friendshipStatus, to } = await acceptFriendship(id, friendshipId);
+        const { status, friendship, to } = await acceptFriendship(id, friendshipId);
         if (status === dbResStatus.Error) {
             return res
                 .status(503)
@@ -145,7 +145,7 @@ friendshipRouter.put('/accept', async (req, res) => {
             .status(200)
             .json({
                 status: responseStatus.Ok,
-                friendshipStatus,
+                friendship,
             });
 
     } catch (error) {

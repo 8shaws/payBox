@@ -450,15 +450,15 @@ export const getAccountSecret = async (
     account: [{
       limit: 1,
       where: {
-        id: {_eq: accountId}
+        id: { _eq: accountId }
       }
     }, {
       wallet: {
         secretPhase: true
       }
     }]
-  }, {operationName: "getAccountSecret"});
-  if(response.account[0].wallet.secretPhase) {
+  }, { operationName: "getAccountSecret" });
+  if (response.account[0].wallet.secretPhase) {
     return {
       status: dbResStatus.Ok,
       secret: response.account[0].wallet.secretPhase as string
@@ -468,3 +468,62 @@ export const getAccountSecret = async (
     status: dbResStatus.Error
   }
 };
+
+/**
+ * 
+ * @param clientId 
+ * @returns 
+ */
+export const getMainAccount = async (
+  clientId: string
+): Promise<{
+  status: dbResStatus,
+  account?: AccountType
+}> => {
+  const response = await chain("query")({
+    account: [{
+      where: {
+        clientId: { _eq: clientId },
+        isMain: { _eq: true }
+      },
+      limit: 1
+    }, {
+      id: true,
+      eth: {
+        publicKey: true,
+        goerliEth: true,
+        kovanEth: true,
+        mainnetEth: true,
+        rinkebyEth: true,
+        ropstenEth: true,
+        sepoliaEth: true,
+      },
+      sol: {
+        publicKey: true,
+        devnetSol: true,
+        mainnetSol: true,
+        testnetSol: true,
+      },
+      walletId: true,
+      bitcoin: {
+        publicKey: true,
+        mainnetBtc: true,
+        regtestBtc: true,
+        textnetBtc: true,
+      },
+      name: true,
+      clientId: true,
+      createdAt: true,
+      updatedAt: true,
+    }]
+  }, { operationName: "getMainAccount" });
+  if(response.account[0]?.id) {
+    return {
+      status: dbResStatus.Ok,
+      account: response.account[0] as AccountType
+    }
+  }
+  return {
+    status: dbResStatus.Error
+  }
+}

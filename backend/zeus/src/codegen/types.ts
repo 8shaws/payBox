@@ -91,6 +91,7 @@ export type Account = {
   eth?: Maybe<Eth>;
   id: Scalars['uuid']['output'];
   img?: Maybe<Scalars['String']['output']>;
+  isMain: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
   /** An object relationship */
   sol?: Maybe<Sol>;
@@ -108,7 +109,23 @@ export type Account_Aggregate = {
 };
 
 export type Account_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Account_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Account_Aggregate_Bool_Exp_Bool_Or>;
   count?: InputMaybe<Account_Aggregate_Bool_Exp_Count>;
+};
+
+export type Account_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Account_Select_Column_Account_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Account_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Account_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Account_Select_Column_Account_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Account_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
 };
 
 export type Account_Aggregate_Bool_Exp_Count = {
@@ -159,6 +176,7 @@ export type Account_Bool_Exp = {
   eth?: InputMaybe<Eth_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   img?: InputMaybe<String_Comparison_Exp>;
+  isMain?: InputMaybe<Boolean_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   sol?: InputMaybe<Sol_Bool_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -181,6 +199,7 @@ export type Account_Insert_Input = {
   eth?: InputMaybe<Eth_Obj_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isMain?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   sol?: InputMaybe<Sol_Obj_Rel_Insert_Input>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -266,6 +285,7 @@ export type Account_Order_By = {
   eth?: InputMaybe<Eth_Order_By>;
   id?: InputMaybe<Order_By>;
   img?: InputMaybe<Order_By>;
+  isMain?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
   sol?: InputMaybe<Sol_Order_By>;
   updatedAt?: InputMaybe<Order_By>;
@@ -289,11 +309,25 @@ export enum Account_Select_Column {
   /** column name */
   Img = 'img',
   /** column name */
+  IsMain = 'isMain',
+  /** column name */
   Name = 'name',
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   WalletId = 'walletId'
+}
+
+/** select "account_aggregate_bool_exp_bool_and_arguments_columns" columns of table "account" */
+export enum Account_Select_Column_Account_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsMain = 'isMain'
+}
+
+/** select "account_aggregate_bool_exp_bool_or_arguments_columns" columns of table "account" */
+export enum Account_Select_Column_Account_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsMain = 'isMain'
 }
 
 /** input type for updating data in table "account" */
@@ -302,6 +336,7 @@ export type Account_Set_Input = {
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isMain?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
   walletId?: InputMaybe<Scalars['uuid']['input']>;
@@ -321,6 +356,7 @@ export type Account_Stream_Cursor_Value_Input = {
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isMain?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
   walletId?: InputMaybe<Scalars['uuid']['input']>;
@@ -336,6 +372,8 @@ export enum Account_Update_Column {
   Id = 'id',
   /** column name */
   Img = 'img',
+  /** column name */
+  IsMain = 'isMain',
   /** column name */
   Name = 'name',
   /** column name */
@@ -357,7 +395,7 @@ export type Address = {
   bitcoin?: Maybe<Scalars['String']['output']>;
   /** An object relationship */
   client: Client;
-  client_id: Scalars['uuid']['output'];
+  clientId: Scalars['uuid']['output'];
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   eth: Scalars['String']['output'];
   id: Scalars['uuid']['output'];
@@ -395,7 +433,7 @@ export type Address_Bool_Exp = {
   _or?: InputMaybe<Array<Address_Bool_Exp>>;
   bitcoin?: InputMaybe<String_Comparison_Exp>;
   client?: InputMaybe<Client_Bool_Exp>;
-  client_id?: InputMaybe<Uuid_Comparison_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   eth?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -418,7 +456,7 @@ export enum Address_Constraint {
 export type Address_Insert_Input = {
   bitcoin?: InputMaybe<Scalars['String']['input']>;
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
-  client_id?: InputMaybe<Scalars['uuid']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   eth?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
@@ -431,7 +469,7 @@ export type Address_Insert_Input = {
 export type Address_Max_Fields = {
   __typename?: 'address_max_fields';
   bitcoin?: Maybe<Scalars['String']['output']>;
-  client_id?: Maybe<Scalars['uuid']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   eth?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
@@ -444,7 +482,7 @@ export type Address_Max_Fields = {
 export type Address_Min_Fields = {
   __typename?: 'address_min_fields';
   bitcoin?: Maybe<Scalars['String']['output']>;
-  client_id?: Maybe<Scalars['uuid']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   eth?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
@@ -480,7 +518,7 @@ export type Address_On_Conflict = {
 export type Address_Order_By = {
   bitcoin?: InputMaybe<Order_By>;
   client?: InputMaybe<Client_Order_By>;
-  client_id?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
   eth?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
@@ -499,7 +537,7 @@ export enum Address_Select_Column {
   /** column name */
   Bitcoin = 'bitcoin',
   /** column name */
-  ClientId = 'client_id',
+  ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -517,7 +555,7 @@ export enum Address_Select_Column {
 /** input type for updating data in table "address" */
 export type Address_Set_Input = {
   bitcoin?: InputMaybe<Scalars['String']['input']>;
-  client_id?: InputMaybe<Scalars['uuid']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   eth?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
@@ -537,7 +575,7 @@ export type Address_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Address_Stream_Cursor_Value_Input = {
   bitcoin?: InputMaybe<Scalars['String']['input']>;
-  client_id?: InputMaybe<Scalars['uuid']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   eth?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
@@ -551,7 +589,7 @@ export enum Address_Update_Column {
   /** column name */
   Bitcoin = 'bitcoin',
   /** column name */
-  ClientId = 'client_id',
+  ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -1425,8 +1463,6 @@ export type Client_Bool_Exp = {
 export enum Client_Constraint {
   /** unique or primary key constraint on columns "email" */
   ClientEmailKey = 'client_email_key',
-  /** unique or primary key constraint on columns "mobile" */
-  ClientMobileNumberKey = 'client_mobile_number_key',
   /** unique or primary key constraint on columns "id" */
   ClientPkey = 'client_pkey'
 }
@@ -2082,9 +2118,9 @@ export type Friendship = {
   /** An aggregate relationship */
   chats_aggregate: Chat_Aggregate;
   /** An object relationship */
-  client: Client;
+  client1: Client;
   /** An object relationship */
-  clientByClientid2: Client;
+  client2: Client;
   clientId1: Scalars['uuid']['output'];
   clientId2: Scalars['uuid']['output'];
   createdAt: Scalars['timestamptz']['output'];
@@ -2167,8 +2203,8 @@ export type Friendship_Bool_Exp = {
   _or?: InputMaybe<Array<Friendship_Bool_Exp>>;
   chats?: InputMaybe<Chat_Bool_Exp>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Bool_Exp>;
-  client?: InputMaybe<Client_Bool_Exp>;
-  clientByClientid2?: InputMaybe<Client_Bool_Exp>;
+  client1?: InputMaybe<Client_Bool_Exp>;
+  client2?: InputMaybe<Client_Bool_Exp>;
   clientId1?: InputMaybe<Uuid_Comparison_Exp>;
   clientId2?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -2186,8 +2222,8 @@ export enum Friendship_Constraint {
 /** input type for inserting data into table "friendship" */
 export type Friendship_Insert_Input = {
   chats?: InputMaybe<Chat_Arr_Rel_Insert_Input>;
-  client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
-  clientByClientid2?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  client1?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  client2?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   clientId1?: InputMaybe<Scalars['uuid']['input']>;
   clientId2?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -2264,8 +2300,8 @@ export type Friendship_On_Conflict = {
 /** Ordering options when selecting data from "friendship". */
 export type Friendship_Order_By = {
   chats_aggregate?: InputMaybe<Chat_Aggregate_Order_By>;
-  client?: InputMaybe<Client_Order_By>;
-  clientByClientid2?: InputMaybe<Client_Order_By>;
+  client1?: InputMaybe<Client_Order_By>;
+  client2?: InputMaybe<Client_Order_By>;
   clientId1?: InputMaybe<Order_By>;
   clientId2?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;

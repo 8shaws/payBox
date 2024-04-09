@@ -109,9 +109,9 @@ export class ConsumerWorker {
                     if(error) {
                         console.log(error);
                         const resume = pause();
-                        setTimeout(resume, 1000)
+                        // setTimeout(resume, 1000)
                     }
-                    throw error;
+                    // throw error;
                 }
             },
         });

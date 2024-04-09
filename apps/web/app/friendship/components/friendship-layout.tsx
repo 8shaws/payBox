@@ -33,11 +33,11 @@ import { LinksProps, Sidenav } from "@/app/account/components/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import { AccountSwitcher } from "@/app/account/components/account-switcher";
-import { AccountType, FriendshipType } from "@paybox/common";
+import { AccountType, Friend, FriendshipType } from "@paybox/common";
 import { usePathname, useRouter } from "next/navigation";
 // import { clientNavLinks, commonNavLinks, getNavLinks } from "./navLinks";
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
-import { accountsAtom, clientAtom, getAccounts } from "@paybox/recoil";
+import { acceptedFriendshipAtom, accountsAtom, clientAtom, clientJwtAtom, friendsAtom, getAccounts } from "@paybox/recoil";
 import { toast } from "sonner";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getFriendsTab, sidenavLinks } from "../chat/components/sidenav-links";
@@ -50,7 +50,8 @@ interface FriendshipLayoutProps {
     defaultCollapsed?: boolean;
     navCollapsedSize: number;
     children: React.ReactNode;
-    friendships: FriendshipType[]
+    friendships: FriendshipType[];
+    jwt: string;
 }
 
 
@@ -61,6 +62,7 @@ export function FriendshipLayout({
     navCollapsedSize,
     children,
     friendships,
+    jwt
 }: FriendshipLayoutProps) {
     const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
     const [selectedUser, setSelectedUser] = React.useState(userData[0]);
@@ -68,7 +70,8 @@ export function FriendshipLayout({
     // const [selectedChat, setSelectedChat] = React.useState<string>(
     //     accounts[0].id
     // );
-    const setAccounts = useSetRecoilState(accountsAtom);
+    const setFriendships = useSetRecoilState(acceptedFriendshipAtom);
+    const setFriends = useSetRecoilState(friendsAtom);
     // const loadAccounts = useRecoilCallback(({ snapshot, set }) => async () => {
     //     const load = snapshot.getLoadable(getAccounts);
     //     if (load.state === 'hasValue') {
@@ -78,6 +81,7 @@ export function FriendshipLayout({
     //     }
     // });
     const client = useRecoilValue(clientAtom);
+    const setJwt = useSetRecoilState(clientJwtAtom);
 
     const path = usePathname()
     const router = useRouter();
@@ -96,6 +100,17 @@ export function FriendshipLayout({
             window.removeEventListener("resize", checkScreenWidth);
         };
     }, []);
+
+    useEffect(() => {
+        if(friendships.length > 0) {
+            setFriendships(friendships);
+            setFriends(friendships.map(friendship => friendship.friend as Friend));
+        }
+    }, [friendships])
+
+    useEffect(() => {
+        setJwt(jwt);
+    }, [jwt])
 
     // useEffect(() => {
     //     setSelectedTab(path.split("/")[3] || "dashboard")

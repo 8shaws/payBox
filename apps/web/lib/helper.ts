@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
-import { AccountType, BACKEND_URL, FriendshipStatusEnum, FriendshipType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
+import { AccountType, BACKEND_URL, FriendPubKeys, FriendshipStatusEnum, FriendshipType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
 
 export function toBase64(file: File) {
   return new Promise((resolve, reject) => {
@@ -139,7 +139,7 @@ export async function isWord(word: string): Promise<boolean> {
 export const getFriendPubKey = async (
   jwt: string, 
   id: string
-): Promise<void> => {
+): Promise<FriendPubKeys | undefined> => {
   try {
     const response = await fetch(`${BACKEND_URL}/friendship/pubkey?friendId=${id}`, {
       method: "GET",
@@ -153,7 +153,7 @@ export const getFriendPubKey = async (
       throw new Error(response.msg);
     }
     console.log(response)
-    return response.keys;
+    return response.keys as FriendPubKeys;
   } catch (error) {
     console.error(error);
   }
