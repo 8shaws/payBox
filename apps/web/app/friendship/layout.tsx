@@ -42,7 +42,7 @@ export default async function FriendshipParent({
                     navCollapsedSize={4}
                     friendships={friendships}
                     children={children}
-
+                    jwt={jwt}
                 />
             }
         </>

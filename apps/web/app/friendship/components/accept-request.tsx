@@ -1,7 +1,7 @@
 "use client";
 import { Button } from '@/components/ui/button'
-import { FriendshipStatusEnum, WS_BACKEND_URL, responseStatus } from '@paybox/common';
-import { clientJwtAtom } from '@paybox/recoil';
+import { FriendshipStatusEnum, FriendshipType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
+import { acceptedFriendshipAtom, clientJwtAtom, pendingFriendshipAtom } from '@paybox/recoil';
 import { CheckCheck } from 'lucide-react'
 import React, { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil';
@@ -15,11 +15,14 @@ export function AcceptButton({
     friendshipId: string
 }) {
     const setClientJwt = useSetRecoilState(clientJwtAtom);
+    const setFriendships = useSetRecoilState(acceptedFriendshipAtom);
+    const [unmount, setUnmount] = React.useState(false);
+    const setPendingFriendship = useSetRecoilState(pendingFriendshipAtom);
+    
     useEffect(() => {
         setClientJwt(jwt);
     }, [jwt]);
-    const [unmount, setUnmount] = React.useState(false);
-
+    
     useEffect(() => {
         if(unmount) {
             return () => {
@@ -31,7 +34,7 @@ export function AcceptButton({
     const accept = () => {
         const call = async () => {
             try {
-                const { status, friendshipStatus, msg }: {status: responseStatus, friendshipStatus: FriendshipStatusEnum, msg?: string} =
+                const { status, friendship, msg }: {status: responseStatus, friendship: FriendshipType, msg?: string} =
                     await fetch(`${WS_BACKEND_URL}/friendship/accept?friendshipId=${friendshipId}`, {
                         method: "put",
                         headers: {
@@ -43,7 +46,7 @@ export function AcceptButton({
                    console.error(msg);
                    Promise.reject(msg);
                 }
-                return {friendshipStatus, status, msg};
+                return {friendship, status, msg};
             } catch (error) {
                 console.log(error);
                 return {
@@ -56,8 +59,12 @@ export function AcceptButton({
 
         toast.promise(call(), {
             loading: "Accepting...",
-            success: ({msg, friendshipStatus, status}) => {
-                //todo: set some atoms
+            success: ({msg, friendship, status}) => {
+                if(friendship) {
+                    console.log(friendship)
+                    setFriendships((old) => [friendship, ...old]);
+                    setPendingFriendship((old) => old.filter((f) => f.id !== friendshipId));
+                }
                 return "Friendship Accepted"
             },
             error: ({msg}) => {
