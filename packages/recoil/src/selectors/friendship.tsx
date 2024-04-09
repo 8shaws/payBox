@@ -1,5 +1,5 @@
-import { selector } from "recoil";
-import { friendsPubKeysAtom } from "../atoms";
+import { DefaultValue, selector } from "recoil";
+import { acceptedFriendshipAtom, friendsAtom, friendsPubKeysAtom } from "../atoms";
 
 export const friendPubKeySelector = selector({
     key: "friendPubKeySelector",
@@ -7,6 +7,6 @@ export const friendPubKeySelector = selector({
     get: friendId => ({ get }) => {
         const pubKeys = get(friendsPubKeysAtom);
         //@ts-ignore
-        return pubKeys.find(({ id }) => id === friendId)?.pubKey || "";
+        return pubKeys.find(({ id }) => id === friendId);
     },
 });
