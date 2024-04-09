@@ -23174,7 +23174,6 @@ export const enum chat_update_column {
 /** unique or primary key constraints on table "client" */
 export const enum client_constraint {
   client_email_key = "client_email_key",
-  client_mobile_number_key = "client_mobile_number_key",
   client_pkey = "client_pkey",
 }
 /** select columns of table "client" */
