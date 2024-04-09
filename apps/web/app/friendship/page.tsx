@@ -3,34 +3,12 @@ import { authOptions } from "../api/auth/[...nextauth]/util"
 import { getFriendships } from "@/lib/helper";
 import { FriendshipStatusEnum } from "@paybox/common";
 import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer"
-import { Input } from "@/components/ui/input"
-import { Check, CheckCheck } from "lucide-react";
-import { AcceptButton } from "./components/accept-request";
 import { redirect } from "next/navigation";
-import { Content } from "./components/drawer-content";
 import { cn } from "@/lib/utils";
 import { FriendsCard } from "./components/card-content";
 
