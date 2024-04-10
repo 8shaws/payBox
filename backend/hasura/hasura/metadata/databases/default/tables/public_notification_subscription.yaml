@@ -12,3 +12,11 @@ object_relationships:
   - name: client
     using:
       foreign_key_constraint_on: clientId
+array_relationships:
+  - name: notif_to_subs
+    using:
+      foreign_key_constraint_on:
+        column: notification_subs_id
+        table:
+          name: notif_to_subs
+          schema: public

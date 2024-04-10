@@ -1,0 +1,26 @@
+table:
+  name: notif_to_subs
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    notification_id:
+      custom_name: notificationId
+    notification_subs_id:
+      custom_name: notifSubsId
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    created_at: createdAt
+    notification_id: notificationId
+    notification_subs_id: notifSubsId
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+  - name: notification
+    using:
+      foreign_key_constraint_on: notification_id
+  - name: notification_subscription
+    using:
+      foreign_key_constraint_on: notification_subs_id
