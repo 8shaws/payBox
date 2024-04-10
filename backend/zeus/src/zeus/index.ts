@@ -1086,6 +1086,7 @@ export type ValueTypes = {
     bitcoin?: ValueTypes["bitcoin"];
     /** An object relationship */
     client?: ValueTypes["client"];
+    /** clientId */
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     /** An object relationship */
@@ -1293,6 +1294,7 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    /** clientId */
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
@@ -1327,6 +1329,7 @@ export type ValueTypes = {
   };
   /** aggregate max on columns */
   ["account_max_fields"]: AliasType<{
+    /** clientId */
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -1338,6 +1341,7 @@ export type ValueTypes = {
   }>;
   /** order by max() on columns of table "account" */
   ["account_max_order_by"]: {
+    /** clientId */
     clientId?:
       | ValueTypes["order_by"]
       | undefined
@@ -1364,6 +1368,7 @@ export type ValueTypes = {
   };
   /** aggregate min on columns */
   ["account_min_fields"]: AliasType<{
+    /** clientId */
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -1375,6 +1380,7 @@ export type ValueTypes = {
   }>;
   /** order by min() on columns of table "account" */
   ["account_min_order_by"]: {
+    /** clientId */
     clientId?:
       | ValueTypes["order_by"]
       | undefined
@@ -1485,6 +1491,7 @@ export type ValueTypes = {
   ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
+    /** clientId */
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
@@ -1517,6 +1524,7 @@ export type ValueTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["account_stream_cursor_value_input"]: {
+    /** clientId */
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
@@ -4792,6 +4800,17 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["friendship"],
     ];
+    delete_notif_to_subs?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["notif_to_subs_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_mutation_response"],
+    ];
+    delete_notif_to_subs_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["notif_to_subs"],
+    ];
     delete_notification?: [
       {
         /** filter the rows which have to be deleted */
@@ -5044,6 +5063,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["friendship"],
+    ];
+    insert_notif_to_subs?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["notif_to_subs_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["notif_to_subs_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_mutation_response"],
+    ];
+    insert_notif_to_subs_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["notif_to_subs_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["notif_to_subs_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs"],
     ];
     insert_notification?: [
       {
@@ -5483,6 +5530,44 @@ export type ValueTypes = {
       },
       ValueTypes["friendship_mutation_response"],
     ];
+    update_notif_to_subs?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["notif_to_subs_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["notif_to_subs_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_mutation_response"],
+    ];
+    update_notif_to_subs_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["notif_to_subs_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["notif_to_subs_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs"],
+    ];
+    update_notif_to_subs_many?: [
+      {
+        /** updates to execute, in order */
+        updates:
+          | Array<ValueTypes["notif_to_subs_updates"]>
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_mutation_response"],
+    ];
     update_notification?: [
       {
         /** sets the columns of the filtered rows to the given values */
@@ -5703,6 +5788,365 @@ export type ValueTypes = {
     ];
     __typename?: boolean | `@${string}`;
   }>;
+  /** join between noitfication subs and notifcation  */
+  ["notif_to_subs"]: AliasType<{
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    notifSubsId?: boolean | `@${string}`;
+    /** An object relationship */
+    notification?: ValueTypes["notification"];
+    notificationId?: boolean | `@${string}`;
+    /** An object relationship */
+    notification_subscription?: ValueTypes["notification_subscription"];
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "notif_to_subs" */
+  ["notif_to_subs_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["notif_to_subs_aggregate_fields"];
+    nodes?: ValueTypes["notif_to_subs"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["notif_to_subs_aggregate_bool_exp"]: {
+    count?:
+      | ValueTypes["notif_to_subs_aggregate_bool_exp_count"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  ["notif_to_subs_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ValueTypes["notif_to_subs_select_column"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["notif_to_subs_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Int_comparison_exp"] | Variable<any, string>;
+  };
+  /** aggregate fields of "notif_to_subs" */
+  ["notif_to_subs_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["notif_to_subs_max_fields"];
+    min?: ValueTypes["notif_to_subs_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "notif_to_subs" */
+  ["notif_to_subs_aggregate_order_by"]: {
+    count?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    max?:
+      | ValueTypes["notif_to_subs_max_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["notif_to_subs_min_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** input type for inserting array relation for remote table "notif_to_subs" */
+  ["notif_to_subs_arr_rel_insert_input"]: {
+    data:
+      | Array<ValueTypes["notif_to_subs_insert_input"]>
+      | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["notif_to_subs_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Boolean expression to filter rows from the table "notif_to_subs". All fields are combined with a logical 'AND'. */
+  ["notif_to_subs_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["notif_to_subs_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["notif_to_subs_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["notif_to_subs_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notifSubsId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notification?:
+      | ValueTypes["notification_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notificationId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notification_subscription?:
+      | ValueTypes["notification_subscription_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "notif_to_subs" */
+  ["notif_to_subs_constraint"]: notif_to_subs_constraint;
+  /** input type for inserting data into table "notif_to_subs" */
+  ["notif_to_subs_insert_input"]: {
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    notifSubsId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    notification?:
+      | ValueTypes["notification_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notificationId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notification_subscription?:
+      | ValueTypes["notification_subscription_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["notif_to_subs_max_fields"]: AliasType<{
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    notifSubsId?: boolean | `@${string}`;
+    notificationId?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "notif_to_subs" */
+  ["notif_to_subs_max_order_by"]: {
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    notifSubsId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notificationId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate min on columns */
+  ["notif_to_subs_min_fields"]: AliasType<{
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    notifSubsId?: boolean | `@${string}`;
+    notificationId?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "notif_to_subs" */
+  ["notif_to_subs_min_order_by"]: {
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    notifSubsId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notificationId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** response of any mutation on the table "notif_to_subs" */
+  ["notif_to_subs_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["notif_to_subs"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "notif_to_subs" */
+  ["notif_to_subs_on_conflict"]: {
+    constraint: ValueTypes["notif_to_subs_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["notif_to_subs_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["notif_to_subs_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "notif_to_subs". */
+  ["notif_to_subs_order_by"]: {
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    notifSubsId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notification?:
+      | ValueTypes["notification_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notificationId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notification_subscription?:
+      | ValueTypes["notification_subscription_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: notif_to_subs */
+  ["notif_to_subs_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "notif_to_subs" */
+  ["notif_to_subs_select_column"]: notif_to_subs_select_column;
+  /** input type for updating data in table "notif_to_subs" */
+  ["notif_to_subs_set_input"]: {
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    notifSubsId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    notificationId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "notif_to_subs" */
+  ["notif_to_subs_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["notif_to_subs_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["notif_to_subs_stream_cursor_value_input"]: {
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    notifSubsId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    notificationId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "notif_to_subs" */
+  ["notif_to_subs_update_column"]: notif_to_subs_update_column;
+  ["notif_to_subs_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["notif_to_subs_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["notif_to_subs_bool_exp"] | Variable<any, string>;
+  };
   /** notification table for clients */
   ["notification"]: AliasType<{
     body?: boolean | `@${string}`;
@@ -5711,6 +6155,74 @@ export type ValueTypes = {
     clientId?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     image?: boolean | `@${string}`;
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_aggregate"],
+    ];
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
@@ -5864,6 +6376,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    notif_to_subs?:
+      | ValueTypes["notif_to_subs_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notif_to_subs_aggregate?:
+      | ValueTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     tag?:
       | ValueTypes["String_comparison_exp"]
       | undefined
@@ -5903,6 +6425,11 @@ export type ValueTypes = {
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     image?: string | undefined | null | Variable<any, string>;
+    notif_to_subs?:
+      | ValueTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     tag?: string | undefined | null | Variable<any, string>;
     timestamp?:
       | ValueTypes["timestamp"]
@@ -5995,6 +6522,16 @@ export type ValueTypes = {
     returning?: ValueTypes["notification"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "notification" */
+  ["notification_obj_rel_insert_input"]: {
+    data: ValueTypes["notification_insert_input"] | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["notification_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** on_conflict condition type for table "notification" */
   ["notification_on_conflict"]: {
     constraint: ValueTypes["notification_constraint"] | Variable<any, string>;
@@ -6022,6 +6559,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     image?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    notif_to_subs_aggregate?:
+      | ValueTypes["notif_to_subs_aggregate_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     tag?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     timestamp?:
       | ValueTypes["order_by"]
@@ -6108,6 +6650,74 @@ export type ValueTypes = {
     endpoint?: boolean | `@${string}`;
     expirationTime?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_aggregate"],
+    ];
     p256dh?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
@@ -6229,6 +6839,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    notif_to_subs?:
+      | ValueTypes["notif_to_subs_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    notif_to_subs_aggregate?:
+      | ValueTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     p256dh?:
       | ValueTypes["String_comparison_exp"]
       | undefined
@@ -6258,6 +6878,11 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    notif_to_subs?:
+      | ValueTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     p256dh?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
@@ -6347,6 +6972,18 @@ export type ValueTypes = {
     returning?: ValueTypes["notification_subscription"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "notification_subscription" */
+  ["notification_subscription_obj_rel_insert_input"]: {
+    data:
+      | ValueTypes["notification_subscription_insert_input"]
+      | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["notification_subscription_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** on_conflict condition type for table "notification_subscription" */
   ["notification_subscription_on_conflict"]: {
     constraint:
@@ -6385,6 +7022,11 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    notif_to_subs_aggregate?:
+      | ValueTypes["notif_to_subs_aggregate_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     p256dh?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["order_by"]
@@ -6979,6 +7621,78 @@ export type ValueTypes = {
     friendship_by_pk?: [
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["friendship"],
+    ];
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_aggregate"],
+    ];
+    notif_to_subs_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["notif_to_subs"],
     ];
     notification?: [
       {
@@ -8405,6 +9119,100 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["friendship"],
+    ];
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs_aggregate"],
+    ];
+    notif_to_subs_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["notif_to_subs"],
+    ];
+    notif_to_subs_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              ValueTypes["notif_to_subs_stream_cursor_input"] | undefined | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["notif_to_subs_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["notif_to_subs"],
     ];
     notification?: [
       {
@@ -10292,6 +11100,7 @@ export type ResolverInputTypes = {
     bitcoin?: ResolverInputTypes["bitcoin"];
     /** An object relationship */
     client?: ResolverInputTypes["client"];
+    /** clientId */
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     /** An object relationship */
@@ -10414,6 +11223,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["client_obj_rel_insert_input"]
       | undefined
       | null;
+    /** clientId */
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     eth?: ResolverInputTypes["eth_obj_rel_insert_input"] | undefined | null;
@@ -10431,6 +11241,7 @@ export type ResolverInputTypes = {
   };
   /** aggregate max on columns */
   ["account_max_fields"]: AliasType<{
+    /** clientId */
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -10442,6 +11253,7 @@ export type ResolverInputTypes = {
   }>;
   /** order by max() on columns of table "account" */
   ["account_max_order_by"]: {
+    /** clientId */
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
@@ -10452,6 +11264,7 @@ export type ResolverInputTypes = {
   };
   /** aggregate min on columns */
   ["account_min_fields"]: AliasType<{
+    /** clientId */
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -10463,6 +11276,7 @@ export type ResolverInputTypes = {
   }>;
   /** order by min() on columns of table "account" */
   ["account_min_order_by"]: {
+    /** clientId */
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
@@ -10519,6 +11333,7 @@ export type ResolverInputTypes = {
   ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
+    /** clientId */
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
@@ -10537,6 +11352,7 @@ export type ResolverInputTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["account_stream_cursor_value_input"]: {
+    /** clientId */
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
@@ -12595,6 +13411,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["friendship"],
     ];
+    delete_notif_to_subs?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["notif_to_subs_bool_exp"];
+      },
+      ResolverInputTypes["notif_to_subs_mutation_response"],
+    ];
+    delete_notif_to_subs_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["notif_to_subs"],
+    ];
     delete_notification?: [
       {
         /** filter the rows which have to be deleted */
@@ -12805,6 +13632,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["friendship"],
+    ];
+    insert_notif_to_subs?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["notif_to_subs_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["notif_to_subs_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["notif_to_subs_mutation_response"],
+    ];
+    insert_notif_to_subs_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["notif_to_subs_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["notif_to_subs_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["notif_to_subs"],
     ];
     insert_notification?: [
       {
@@ -13126,6 +13977,32 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["friendship_mutation_response"],
     ];
+    update_notif_to_subs?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["notif_to_subs_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["notif_to_subs_bool_exp"];
+      },
+      ResolverInputTypes["notif_to_subs_mutation_response"],
+    ];
+    update_notif_to_subs_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["notif_to_subs_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["notif_to_subs_pk_columns_input"];
+      },
+      ResolverInputTypes["notif_to_subs"],
+    ];
+    update_notif_to_subs_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["notif_to_subs_updates"]>;
+      },
+      ResolverInputTypes["notif_to_subs_mutation_response"],
+    ];
     update_notification?: [
       {
         /** sets the columns of the filtered rows to the given values */
@@ -13277,6 +14154,224 @@ export type ResolverInputTypes = {
     ];
     __typename?: boolean | `@${string}`;
   }>;
+  /** join between noitfication subs and notifcation  */
+  ["notif_to_subs"]: AliasType<{
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    notifSubsId?: boolean | `@${string}`;
+    /** An object relationship */
+    notification?: ResolverInputTypes["notification"];
+    notificationId?: boolean | `@${string}`;
+    /** An object relationship */
+    notification_subscription?: ResolverInputTypes["notification_subscription"];
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "notif_to_subs" */
+  ["notif_to_subs_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["notif_to_subs_aggregate_fields"];
+    nodes?: ResolverInputTypes["notif_to_subs"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["notif_to_subs_aggregate_bool_exp"]: {
+    count?:
+      | ResolverInputTypes["notif_to_subs_aggregate_bool_exp_count"]
+      | undefined
+      | null;
+  };
+  ["notif_to_subs_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+      | undefined
+      | null;
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "notif_to_subs" */
+  ["notif_to_subs_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["notif_to_subs_max_fields"];
+    min?: ResolverInputTypes["notif_to_subs_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "notif_to_subs" */
+  ["notif_to_subs_aggregate_order_by"]: {
+    count?: ResolverInputTypes["order_by"] | undefined | null;
+    max?: ResolverInputTypes["notif_to_subs_max_order_by"] | undefined | null;
+    min?: ResolverInputTypes["notif_to_subs_min_order_by"] | undefined | null;
+  };
+  /** input type for inserting array relation for remote table "notif_to_subs" */
+  ["notif_to_subs_arr_rel_insert_input"]: {
+    data: Array<ResolverInputTypes["notif_to_subs_insert_input"]>;
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["notif_to_subs_on_conflict"]
+      | undefined
+      | null;
+  };
+  /** Boolean expression to filter rows from the table "notif_to_subs". All fields are combined with a logical 'AND'. */
+  ["notif_to_subs_bool_exp"]: {
+    _and?:
+      | Array<ResolverInputTypes["notif_to_subs_bool_exp"]>
+      | undefined
+      | null;
+    _not?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+    _or?:
+      | Array<ResolverInputTypes["notif_to_subs_bool_exp"]>
+      | undefined
+      | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    notifSubsId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    notification?:
+      | ResolverInputTypes["notification_bool_exp"]
+      | undefined
+      | null;
+    notificationId?:
+      | ResolverInputTypes["uuid_comparison_exp"]
+      | undefined
+      | null;
+    notification_subscription?:
+      | ResolverInputTypes["notification_subscription_bool_exp"]
+      | undefined
+      | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "notif_to_subs" */
+  ["notif_to_subs_constraint"]: notif_to_subs_constraint;
+  /** input type for inserting data into table "notif_to_subs" */
+  ["notif_to_subs_insert_input"]: {
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    notifSubsId?: ResolverInputTypes["uuid"] | undefined | null;
+    notification?:
+      | ResolverInputTypes["notification_obj_rel_insert_input"]
+      | undefined
+      | null;
+    notificationId?: ResolverInputTypes["uuid"] | undefined | null;
+    notification_subscription?:
+      | ResolverInputTypes["notification_subscription_obj_rel_insert_input"]
+      | undefined
+      | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["notif_to_subs_max_fields"]: AliasType<{
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    notifSubsId?: boolean | `@${string}`;
+    notificationId?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "notif_to_subs" */
+  ["notif_to_subs_max_order_by"]: {
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    notifSubsId?: ResolverInputTypes["order_by"] | undefined | null;
+    notificationId?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate min on columns */
+  ["notif_to_subs_min_fields"]: AliasType<{
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    notifSubsId?: boolean | `@${string}`;
+    notificationId?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "notif_to_subs" */
+  ["notif_to_subs_min_order_by"]: {
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    notifSubsId?: ResolverInputTypes["order_by"] | undefined | null;
+    notificationId?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** response of any mutation on the table "notif_to_subs" */
+  ["notif_to_subs_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["notif_to_subs"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "notif_to_subs" */
+  ["notif_to_subs_on_conflict"]: {
+    constraint: ResolverInputTypes["notif_to_subs_constraint"];
+    update_columns: Array<ResolverInputTypes["notif_to_subs_update_column"]>;
+    where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "notif_to_subs". */
+  ["notif_to_subs_order_by"]: {
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    notifSubsId?: ResolverInputTypes["order_by"] | undefined | null;
+    notification?:
+      | ResolverInputTypes["notification_order_by"]
+      | undefined
+      | null;
+    notificationId?: ResolverInputTypes["order_by"] | undefined | null;
+    notification_subscription?:
+      | ResolverInputTypes["notification_subscription_order_by"]
+      | undefined
+      | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: notif_to_subs */
+  ["notif_to_subs_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "notif_to_subs" */
+  ["notif_to_subs_select_column"]: notif_to_subs_select_column;
+  /** input type for updating data in table "notif_to_subs" */
+  ["notif_to_subs_set_input"]: {
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    notifSubsId?: ResolverInputTypes["uuid"] | undefined | null;
+    notificationId?: ResolverInputTypes["uuid"] | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "notif_to_subs" */
+  ["notif_to_subs_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["notif_to_subs_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["notif_to_subs_stream_cursor_value_input"]: {
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    notifSubsId?: ResolverInputTypes["uuid"] | undefined | null;
+    notificationId?: ResolverInputTypes["uuid"] | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "notif_to_subs" */
+  ["notif_to_subs_update_column"]: notif_to_subs_update_column;
+  ["notif_to_subs_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["notif_to_subs_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["notif_to_subs_bool_exp"];
+  };
   /** notification table for clients */
   ["notification"]: AliasType<{
     body?: boolean | `@${string}`;
@@ -13285,6 +14380,52 @@ export type ResolverInputTypes = {
     clientId?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     image?: boolean | `@${string}`;
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs_aggregate"],
+    ];
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
@@ -13377,6 +14518,14 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     image?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    notif_to_subs?:
+      | ResolverInputTypes["notif_to_subs_bool_exp"]
+      | undefined
+      | null;
+    notif_to_subs_aggregate?:
+      | ResolverInputTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined
+      | null;
     tag?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     timestamp?:
       | ResolverInputTypes["timestamp_comparison_exp"]
@@ -13401,6 +14550,10 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     image?: string | undefined | null;
+    notif_to_subs?:
+      | ResolverInputTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined
+      | null;
     tag?: string | undefined | null;
     timestamp?: ResolverInputTypes["timestamp"] | undefined | null;
     title?: string | undefined | null;
@@ -13461,6 +14614,15 @@ export type ResolverInputTypes = {
     returning?: ResolverInputTypes["notification"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "notification" */
+  ["notification_obj_rel_insert_input"]: {
+    data: ResolverInputTypes["notification_insert_input"];
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["notification_on_conflict"]
+      | undefined
+      | null;
+  };
   /** on_conflict condition type for table "notification" */
   ["notification_on_conflict"]: {
     constraint: ResolverInputTypes["notification_constraint"];
@@ -13474,6 +14636,10 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     image?: ResolverInputTypes["order_by"] | undefined | null;
+    notif_to_subs_aggregate?:
+      | ResolverInputTypes["notif_to_subs_aggregate_order_by"]
+      | undefined
+      | null;
     tag?: ResolverInputTypes["order_by"] | undefined | null;
     timestamp?: ResolverInputTypes["order_by"] | undefined | null;
     title?: ResolverInputTypes["order_by"] | undefined | null;
@@ -13530,6 +14696,52 @@ export type ResolverInputTypes = {
     endpoint?: boolean | `@${string}`;
     expirationTime?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs_aggregate"],
+    ];
     p256dh?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
@@ -13618,6 +14830,14 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    notif_to_subs?:
+      | ResolverInputTypes["notif_to_subs_bool_exp"]
+      | undefined
+      | null;
+    notif_to_subs_aggregate?:
+      | ResolverInputTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined
+      | null;
     p256dh?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
@@ -13637,6 +14857,10 @@ export type ResolverInputTypes = {
     endpoint?: string | undefined | null;
     expirationTime?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
+    notif_to_subs?:
+      | ResolverInputTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined
+      | null;
     p256dh?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
@@ -13690,6 +14914,15 @@ export type ResolverInputTypes = {
     returning?: ResolverInputTypes["notification_subscription"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "notification_subscription" */
+  ["notification_subscription_obj_rel_insert_input"]: {
+    data: ResolverInputTypes["notification_subscription_insert_input"];
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["notification_subscription_on_conflict"]
+      | undefined
+      | null;
+  };
   /** on_conflict condition type for table "notification_subscription" */
   ["notification_subscription_on_conflict"]: {
     constraint: ResolverInputTypes["notification_subscription_constraint"];
@@ -13709,6 +14942,10 @@ export type ResolverInputTypes = {
     endpoint?: ResolverInputTypes["order_by"] | undefined | null;
     expirationTime?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
+    notif_to_subs_aggregate?:
+      | ResolverInputTypes["notif_to_subs_aggregate_order_by"]
+      | undefined
+      | null;
     p256dh?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
@@ -14113,6 +15350,56 @@ export type ResolverInputTypes = {
     friendship_by_pk?: [
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["friendship"],
+    ];
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs_aggregate"],
+    ];
+    notif_to_subs_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["notif_to_subs"],
     ];
     notification?: [
       {
@@ -15048,6 +16335,69 @@ export type ResolverInputTypes = {
         where?: ResolverInputTypes["friendship_bool_exp"] | undefined | null;
       },
       ResolverInputTypes["friendship"],
+    ];
+    notif_to_subs?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs"],
+    ];
+    notif_to_subs_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["notif_to_subs_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["notif_to_subs_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs_aggregate"],
+    ];
+    notif_to_subs_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["notif_to_subs"],
+    ];
+    notif_to_subs_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          | ResolverInputTypes["notif_to_subs_stream_cursor_input"]
+          | undefined
+          | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["notif_to_subs_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["notif_to_subs"],
     ];
     notification?: [
       {
@@ -16327,6 +17677,7 @@ export type ModelTypes = {
     bitcoin?: ModelTypes["bitcoin"] | undefined;
     /** An object relationship */
     client: ModelTypes["client"];
+    /** clientId */
     clientId: ModelTypes["uuid"];
     createdAt?: ModelTypes["timestamptz"] | undefined;
     /** An object relationship */
@@ -16412,6 +17763,7 @@ export type ModelTypes = {
   ["account_insert_input"]: {
     bitcoin?: ModelTypes["bitcoin_obj_rel_insert_input"] | undefined;
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    /** clientId */
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     eth?: ModelTypes["eth_obj_rel_insert_input"] | undefined;
@@ -16426,6 +17778,7 @@ export type ModelTypes = {
   };
   /** aggregate max on columns */
   ["account_max_fields"]: {
+    /** clientId */
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -16436,6 +17789,7 @@ export type ModelTypes = {
   };
   /** order by max() on columns of table "account" */
   ["account_max_order_by"]: {
+    /** clientId */
     clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
@@ -16446,6 +17800,7 @@ export type ModelTypes = {
   };
   /** aggregate min on columns */
   ["account_min_fields"]: {
+    /** clientId */
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -16456,6 +17811,7 @@ export type ModelTypes = {
   };
   /** order by min() on columns of table "account" */
   ["account_min_order_by"]: {
+    /** clientId */
     clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
@@ -16508,6 +17864,7 @@ export type ModelTypes = {
   ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
+    /** clientId */
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -16526,6 +17883,7 @@ export type ModelTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["account_stream_cursor_value_input"]: {
+    /** clientId */
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -17878,6 +19236,12 @@ export type ModelTypes = {
     delete_friendship?: ModelTypes["friendship_mutation_response"] | undefined;
     /** delete single row from the table: "friendship" */
     delete_friendship_by_pk?: ModelTypes["friendship"] | undefined;
+    /** delete data from the table: "notif_to_subs" */
+    delete_notif_to_subs?:
+      | ModelTypes["notif_to_subs_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "notif_to_subs" */
+    delete_notif_to_subs_by_pk?: ModelTypes["notif_to_subs"] | undefined;
     /** delete data from the table: "notification" */
     delete_notification?:
       | ModelTypes["notification_mutation_response"]
@@ -17934,6 +19298,12 @@ export type ModelTypes = {
     insert_friendship?: ModelTypes["friendship_mutation_response"] | undefined;
     /** insert a single row into the table: "friendship" */
     insert_friendship_one?: ModelTypes["friendship"] | undefined;
+    /** insert data into the table: "notif_to_subs" */
+    insert_notif_to_subs?:
+      | ModelTypes["notif_to_subs_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "notif_to_subs" */
+    insert_notif_to_subs_one?: ModelTypes["notif_to_subs"] | undefined;
     /** insert data into the table: "notification" */
     insert_notification?:
       | ModelTypes["notification_mutation_response"]
@@ -18018,6 +19388,16 @@ export type ModelTypes = {
     update_friendship_many?:
       | Array<ModelTypes["friendship_mutation_response"] | undefined>
       | undefined;
+    /** update data of the table: "notif_to_subs" */
+    update_notif_to_subs?:
+      | ModelTypes["notif_to_subs_mutation_response"]
+      | undefined;
+    /** update single row of the table: "notif_to_subs" */
+    update_notif_to_subs_by_pk?: ModelTypes["notif_to_subs"] | undefined;
+    /** update multiples rows of table: "notif_to_subs" */
+    update_notif_to_subs_many?:
+      | Array<ModelTypes["notif_to_subs_mutation_response"] | undefined>
+      | undefined;
     /** update data of the table: "notification" */
     update_notification?:
       | ModelTypes["notification_mutation_response"]
@@ -18069,6 +19449,170 @@ export type ModelTypes = {
       | Array<ModelTypes["wallet_mutation_response"] | undefined>
       | undefined;
   };
+  /** join between noitfication subs and notifcation  */
+  ["notif_to_subs"]: {
+    createdAt: ModelTypes["timestamptz"];
+    id: ModelTypes["uuid"];
+    notifSubsId: ModelTypes["uuid"];
+    /** An object relationship */
+    notification: ModelTypes["notification"];
+    notificationId: ModelTypes["uuid"];
+    /** An object relationship */
+    notification_subscription: ModelTypes["notification_subscription"];
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "notif_to_subs" */
+  ["notif_to_subs_aggregate"]: {
+    aggregate?: ModelTypes["notif_to_subs_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["notif_to_subs"]>;
+  };
+  ["notif_to_subs_aggregate_bool_exp"]: {
+    count?: ModelTypes["notif_to_subs_aggregate_bool_exp_count"] | undefined;
+  };
+  ["notif_to_subs_aggregate_bool_exp_count"]: {
+    arguments?: Array<ModelTypes["notif_to_subs_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["notif_to_subs_bool_exp"] | undefined;
+    predicate: ModelTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "notif_to_subs" */
+  ["notif_to_subs_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["notif_to_subs_max_fields"] | undefined;
+    min?: ModelTypes["notif_to_subs_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "notif_to_subs" */
+  ["notif_to_subs_aggregate_order_by"]: {
+    count?: ModelTypes["order_by"] | undefined;
+    max?: ModelTypes["notif_to_subs_max_order_by"] | undefined;
+    min?: ModelTypes["notif_to_subs_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "notif_to_subs" */
+  ["notif_to_subs_arr_rel_insert_input"]: {
+    data: Array<ModelTypes["notif_to_subs_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ModelTypes["notif_to_subs_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "notif_to_subs". All fields are combined with a logical 'AND'. */
+  ["notif_to_subs_bool_exp"]: {
+    _and?: Array<ModelTypes["notif_to_subs_bool_exp"]> | undefined;
+    _not?: ModelTypes["notif_to_subs_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["notif_to_subs_bool_exp"]> | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    notifSubsId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    notification?: ModelTypes["notification_bool_exp"] | undefined;
+    notificationId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    notification_subscription?:
+      | ModelTypes["notification_subscription_bool_exp"]
+      | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["notif_to_subs_constraint"]: notif_to_subs_constraint;
+  /** input type for inserting data into table "notif_to_subs" */
+  ["notif_to_subs_insert_input"]: {
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    notifSubsId?: ModelTypes["uuid"] | undefined;
+    notification?: ModelTypes["notification_obj_rel_insert_input"] | undefined;
+    notificationId?: ModelTypes["uuid"] | undefined;
+    notification_subscription?:
+      | ModelTypes["notification_subscription_obj_rel_insert_input"]
+      | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["notif_to_subs_max_fields"]: {
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    notifSubsId?: ModelTypes["uuid"] | undefined;
+    notificationId?: ModelTypes["uuid"] | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "notif_to_subs" */
+  ["notif_to_subs_max_order_by"]: {
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    notifSubsId?: ModelTypes["order_by"] | undefined;
+    notificationId?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["notif_to_subs_min_fields"]: {
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    notifSubsId?: ModelTypes["uuid"] | undefined;
+    notificationId?: ModelTypes["uuid"] | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "notif_to_subs" */
+  ["notif_to_subs_min_order_by"]: {
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    notifSubsId?: ModelTypes["order_by"] | undefined;
+    notificationId?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "notif_to_subs" */
+  ["notif_to_subs_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["notif_to_subs"]>;
+  };
+  /** on_conflict condition type for table "notif_to_subs" */
+  ["notif_to_subs_on_conflict"]: {
+    constraint: ModelTypes["notif_to_subs_constraint"];
+    update_columns: Array<ModelTypes["notif_to_subs_update_column"]>;
+    where?: ModelTypes["notif_to_subs_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "notif_to_subs". */
+  ["notif_to_subs_order_by"]: {
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    notifSubsId?: ModelTypes["order_by"] | undefined;
+    notification?: ModelTypes["notification_order_by"] | undefined;
+    notificationId?: ModelTypes["order_by"] | undefined;
+    notification_subscription?:
+      | ModelTypes["notification_subscription_order_by"]
+      | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: notif_to_subs */
+  ["notif_to_subs_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["notif_to_subs_select_column"]: notif_to_subs_select_column;
+  /** input type for updating data in table "notif_to_subs" */
+  ["notif_to_subs_set_input"]: {
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    notifSubsId?: ModelTypes["uuid"] | undefined;
+    notificationId?: ModelTypes["uuid"] | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "notif_to_subs" */
+  ["notif_to_subs_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["notif_to_subs_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["notif_to_subs_stream_cursor_value_input"]: {
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    notifSubsId?: ModelTypes["uuid"] | undefined;
+    notificationId?: ModelTypes["uuid"] | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["notif_to_subs_update_column"]: notif_to_subs_update_column;
+  ["notif_to_subs_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["notif_to_subs_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["notif_to_subs_bool_exp"];
+  };
   /** notification table for clients */
   ["notification"]: {
     body: string;
@@ -18077,6 +19621,10 @@ export type ModelTypes = {
     clientId: ModelTypes["uuid"];
     id: ModelTypes["uuid"];
     image?: string | undefined;
+    /** An array relationship */
+    notif_to_subs: Array<ModelTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: ModelTypes["notif_to_subs_aggregate"];
     tag?: string | undefined;
     timestamp: ModelTypes["timestamp"];
     title: string;
@@ -18141,6 +19689,10 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
     image?: ModelTypes["String_comparison_exp"] | undefined;
+    notif_to_subs?: ModelTypes["notif_to_subs_bool_exp"] | undefined;
+    notif_to_subs_aggregate?:
+      | ModelTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined;
     tag?: ModelTypes["String_comparison_exp"] | undefined;
     timestamp?: ModelTypes["timestamp_comparison_exp"] | undefined;
     title?: ModelTypes["String_comparison_exp"] | undefined;
@@ -18155,6 +19707,9 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
     image?: string | undefined;
+    notif_to_subs?:
+      | ModelTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined;
     tag?: string | undefined;
     timestamp?: ModelTypes["timestamp"] | undefined;
     title?: string | undefined;
@@ -18212,6 +19767,12 @@ export type ModelTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<ModelTypes["notification"]>;
   };
+  /** input type for inserting object relation for remote table "notification" */
+  ["notification_obj_rel_insert_input"]: {
+    data: ModelTypes["notification_insert_input"];
+    /** upsert condition */
+    on_conflict?: ModelTypes["notification_on_conflict"] | undefined;
+  };
   /** on_conflict condition type for table "notification" */
   ["notification_on_conflict"]: {
     constraint: ModelTypes["notification_constraint"];
@@ -18225,6 +19786,9 @@ export type ModelTypes = {
     clientId?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     image?: ModelTypes["order_by"] | undefined;
+    notif_to_subs_aggregate?:
+      | ModelTypes["notif_to_subs_aggregate_order_by"]
+      | undefined;
     tag?: ModelTypes["order_by"] | undefined;
     timestamp?: ModelTypes["order_by"] | undefined;
     title?: ModelTypes["order_by"] | undefined;
@@ -18278,6 +19842,10 @@ export type ModelTypes = {
     endpoint: string;
     expirationTime?: ModelTypes["timestamptz"] | undefined;
     id: ModelTypes["uuid"];
+    /** An array relationship */
+    notif_to_subs: Array<ModelTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: ModelTypes["notif_to_subs_aggregate"];
     p256dh: string;
     updatedAt: ModelTypes["timestamptz"];
   };
@@ -18332,6 +19900,10 @@ export type ModelTypes = {
     endpoint?: ModelTypes["String_comparison_exp"] | undefined;
     expirationTime?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    notif_to_subs?: ModelTypes["notif_to_subs_bool_exp"] | undefined;
+    notif_to_subs_aggregate?:
+      | ModelTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined;
     p256dh?: ModelTypes["String_comparison_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
   };
@@ -18344,6 +19916,9 @@ export type ModelTypes = {
     endpoint?: string | undefined;
     expirationTime?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
+    notif_to_subs?:
+      | ModelTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined;
     p256dh?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
@@ -18394,6 +19969,14 @@ export type ModelTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<ModelTypes["notification_subscription"]>;
   };
+  /** input type for inserting object relation for remote table "notification_subscription" */
+  ["notification_subscription_obj_rel_insert_input"]: {
+    data: ModelTypes["notification_subscription_insert_input"];
+    /** upsert condition */
+    on_conflict?:
+      | ModelTypes["notification_subscription_on_conflict"]
+      | undefined;
+  };
   /** on_conflict condition type for table "notification_subscription" */
   ["notification_subscription_on_conflict"]: {
     constraint: ModelTypes["notification_subscription_constraint"];
@@ -18410,6 +19993,9 @@ export type ModelTypes = {
     endpoint?: ModelTypes["order_by"] | undefined;
     expirationTime?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
+    notif_to_subs_aggregate?:
+      | ModelTypes["notif_to_subs_aggregate_order_by"]
+      | undefined;
     p256dh?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
@@ -18503,6 +20089,12 @@ export type ModelTypes = {
     friendship_aggregate: ModelTypes["friendship_aggregate"];
     /** fetch data from the table: "friendship" using primary key columns */
     friendship_by_pk?: ModelTypes["friendship"] | undefined;
+    /** An array relationship */
+    notif_to_subs: Array<ModelTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: ModelTypes["notif_to_subs_aggregate"];
+    /** fetch data from the table: "notif_to_subs" using primary key columns */
+    notif_to_subs_by_pk?: ModelTypes["notif_to_subs"] | undefined;
     /** fetch data from the table: "notification" */
     notification: Array<ModelTypes["notification"]>;
     /** fetch aggregated fields from the table: "notification" */
@@ -18811,6 +20403,14 @@ export type ModelTypes = {
     friendship_by_pk?: ModelTypes["friendship"] | undefined;
     /** fetch data from the table in a streaming manner: "friendship" */
     friendship_stream: Array<ModelTypes["friendship"]>;
+    /** An array relationship */
+    notif_to_subs: Array<ModelTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: ModelTypes["notif_to_subs_aggregate"];
+    /** fetch data from the table: "notif_to_subs" using primary key columns */
+    notif_to_subs_by_pk?: ModelTypes["notif_to_subs"] | undefined;
+    /** fetch data from the table in a streaming manner: "notif_to_subs" */
+    notif_to_subs_stream: Array<ModelTypes["notif_to_subs"]>;
     /** fetch data from the table: "notification" */
     notification: Array<ModelTypes["notification"]>;
     /** fetch aggregated fields from the table: "notification" */
@@ -19633,6 +21233,7 @@ export type GraphQLTypes = {
     bitcoin?: GraphQLTypes["bitcoin"] | undefined;
     /** An object relationship */
     client: GraphQLTypes["client"];
+    /** clientId */
     clientId: GraphQLTypes["uuid"];
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     /** An object relationship */
@@ -19721,6 +21322,7 @@ export type GraphQLTypes = {
   ["account_insert_input"]: {
     bitcoin?: GraphQLTypes["bitcoin_obj_rel_insert_input"] | undefined;
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    /** clientId */
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     eth?: GraphQLTypes["eth_obj_rel_insert_input"] | undefined;
@@ -19736,6 +21338,7 @@ export type GraphQLTypes = {
   /** aggregate max on columns */
   ["account_max_fields"]: {
     __typename: "account_max_fields";
+    /** clientId */
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -19746,6 +21349,7 @@ export type GraphQLTypes = {
   };
   /** order by max() on columns of table "account" */
   ["account_max_order_by"]: {
+    /** clientId */
     clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
@@ -19757,6 +21361,7 @@ export type GraphQLTypes = {
   /** aggregate min on columns */
   ["account_min_fields"]: {
     __typename: "account_min_fields";
+    /** clientId */
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -19767,6 +21372,7 @@ export type GraphQLTypes = {
   };
   /** order by min() on columns of table "account" */
   ["account_min_order_by"]: {
+    /** clientId */
     clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
@@ -19823,6 +21429,7 @@ export type GraphQLTypes = {
   ["account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns"]: account_select_column_account_aggregate_bool_exp_bool_or_arguments_columns;
   /** input type for updating data in table "account" */
   ["account_set_input"]: {
+    /** clientId */
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -19841,6 +21448,7 @@ export type GraphQLTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["account_stream_cursor_value_input"]: {
+    /** clientId */
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -21282,6 +22890,12 @@ export type GraphQLTypes = {
       | undefined;
     /** delete single row from the table: "friendship" */
     delete_friendship_by_pk?: GraphQLTypes["friendship"] | undefined;
+    /** delete data from the table: "notif_to_subs" */
+    delete_notif_to_subs?:
+      | GraphQLTypes["notif_to_subs_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "notif_to_subs" */
+    delete_notif_to_subs_by_pk?: GraphQLTypes["notif_to_subs"] | undefined;
     /** delete data from the table: "notification" */
     delete_notification?:
       | GraphQLTypes["notification_mutation_response"]
@@ -21340,6 +22954,12 @@ export type GraphQLTypes = {
       | undefined;
     /** insert a single row into the table: "friendship" */
     insert_friendship_one?: GraphQLTypes["friendship"] | undefined;
+    /** insert data into the table: "notif_to_subs" */
+    insert_notif_to_subs?:
+      | GraphQLTypes["notif_to_subs_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "notif_to_subs" */
+    insert_notif_to_subs_one?: GraphQLTypes["notif_to_subs"] | undefined;
     /** insert data into the table: "notification" */
     insert_notification?:
       | GraphQLTypes["notification_mutation_response"]
@@ -21426,6 +23046,16 @@ export type GraphQLTypes = {
     update_friendship_many?:
       | Array<GraphQLTypes["friendship_mutation_response"] | undefined>
       | undefined;
+    /** update data of the table: "notif_to_subs" */
+    update_notif_to_subs?:
+      | GraphQLTypes["notif_to_subs_mutation_response"]
+      | undefined;
+    /** update single row of the table: "notif_to_subs" */
+    update_notif_to_subs_by_pk?: GraphQLTypes["notif_to_subs"] | undefined;
+    /** update multiples rows of table: "notif_to_subs" */
+    update_notif_to_subs_many?:
+      | Array<GraphQLTypes["notif_to_subs_mutation_response"] | undefined>
+      | undefined;
     /** update data of the table: "notification" */
     update_notification?:
       | GraphQLTypes["notification_mutation_response"]
@@ -21478,6 +23108,181 @@ export type GraphQLTypes = {
       | Array<GraphQLTypes["wallet_mutation_response"] | undefined>
       | undefined;
   };
+  /** join between noitfication subs and notifcation  */
+  ["notif_to_subs"]: {
+    __typename: "notif_to_subs";
+    createdAt: GraphQLTypes["timestamptz"];
+    id: GraphQLTypes["uuid"];
+    notifSubsId: GraphQLTypes["uuid"];
+    /** An object relationship */
+    notification: GraphQLTypes["notification"];
+    notificationId: GraphQLTypes["uuid"];
+    /** An object relationship */
+    notification_subscription: GraphQLTypes["notification_subscription"];
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "notif_to_subs" */
+  ["notif_to_subs_aggregate"]: {
+    __typename: "notif_to_subs_aggregate";
+    aggregate?: GraphQLTypes["notif_to_subs_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["notif_to_subs"]>;
+  };
+  ["notif_to_subs_aggregate_bool_exp"]: {
+    count?: GraphQLTypes["notif_to_subs_aggregate_bool_exp_count"] | undefined;
+  };
+  ["notif_to_subs_aggregate_bool_exp_count"]: {
+    arguments?: Array<GraphQLTypes["notif_to_subs_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["notif_to_subs_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "notif_to_subs" */
+  ["notif_to_subs_aggregate_fields"]: {
+    __typename: "notif_to_subs_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["notif_to_subs_max_fields"] | undefined;
+    min?: GraphQLTypes["notif_to_subs_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "notif_to_subs" */
+  ["notif_to_subs_aggregate_order_by"]: {
+    count?: GraphQLTypes["order_by"] | undefined;
+    max?: GraphQLTypes["notif_to_subs_max_order_by"] | undefined;
+    min?: GraphQLTypes["notif_to_subs_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "notif_to_subs" */
+  ["notif_to_subs_arr_rel_insert_input"]: {
+    data: Array<GraphQLTypes["notif_to_subs_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["notif_to_subs_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "notif_to_subs". All fields are combined with a logical 'AND'. */
+  ["notif_to_subs_bool_exp"]: {
+    _and?: Array<GraphQLTypes["notif_to_subs_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["notif_to_subs_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["notif_to_subs_bool_exp"]> | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    notifSubsId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    notification?: GraphQLTypes["notification_bool_exp"] | undefined;
+    notificationId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    notification_subscription?:
+      | GraphQLTypes["notification_subscription_bool_exp"]
+      | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "notif_to_subs" */
+  ["notif_to_subs_constraint"]: notif_to_subs_constraint;
+  /** input type for inserting data into table "notif_to_subs" */
+  ["notif_to_subs_insert_input"]: {
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    notifSubsId?: GraphQLTypes["uuid"] | undefined;
+    notification?:
+      | GraphQLTypes["notification_obj_rel_insert_input"]
+      | undefined;
+    notificationId?: GraphQLTypes["uuid"] | undefined;
+    notification_subscription?:
+      | GraphQLTypes["notification_subscription_obj_rel_insert_input"]
+      | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["notif_to_subs_max_fields"]: {
+    __typename: "notif_to_subs_max_fields";
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    notifSubsId?: GraphQLTypes["uuid"] | undefined;
+    notificationId?: GraphQLTypes["uuid"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "notif_to_subs" */
+  ["notif_to_subs_max_order_by"]: {
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    notifSubsId?: GraphQLTypes["order_by"] | undefined;
+    notificationId?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["notif_to_subs_min_fields"]: {
+    __typename: "notif_to_subs_min_fields";
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    notifSubsId?: GraphQLTypes["uuid"] | undefined;
+    notificationId?: GraphQLTypes["uuid"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "notif_to_subs" */
+  ["notif_to_subs_min_order_by"]: {
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    notifSubsId?: GraphQLTypes["order_by"] | undefined;
+    notificationId?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "notif_to_subs" */
+  ["notif_to_subs_mutation_response"]: {
+    __typename: "notif_to_subs_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["notif_to_subs"]>;
+  };
+  /** on_conflict condition type for table "notif_to_subs" */
+  ["notif_to_subs_on_conflict"]: {
+    constraint: GraphQLTypes["notif_to_subs_constraint"];
+    update_columns: Array<GraphQLTypes["notif_to_subs_update_column"]>;
+    where?: GraphQLTypes["notif_to_subs_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "notif_to_subs". */
+  ["notif_to_subs_order_by"]: {
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    notifSubsId?: GraphQLTypes["order_by"] | undefined;
+    notification?: GraphQLTypes["notification_order_by"] | undefined;
+    notificationId?: GraphQLTypes["order_by"] | undefined;
+    notification_subscription?:
+      | GraphQLTypes["notification_subscription_order_by"]
+      | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: notif_to_subs */
+  ["notif_to_subs_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "notif_to_subs" */
+  ["notif_to_subs_select_column"]: notif_to_subs_select_column;
+  /** input type for updating data in table "notif_to_subs" */
+  ["notif_to_subs_set_input"]: {
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    notifSubsId?: GraphQLTypes["uuid"] | undefined;
+    notificationId?: GraphQLTypes["uuid"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "notif_to_subs" */
+  ["notif_to_subs_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["notif_to_subs_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["notif_to_subs_stream_cursor_value_input"]: {
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    notifSubsId?: GraphQLTypes["uuid"] | undefined;
+    notificationId?: GraphQLTypes["uuid"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "notif_to_subs" */
+  ["notif_to_subs_update_column"]: notif_to_subs_update_column;
+  ["notif_to_subs_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["notif_to_subs_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["notif_to_subs_bool_exp"];
+  };
   /** notification table for clients */
   ["notification"]: {
     __typename: "notification";
@@ -21487,6 +23292,10 @@ export type GraphQLTypes = {
     clientId: GraphQLTypes["uuid"];
     id: GraphQLTypes["uuid"];
     image?: string | undefined;
+    /** An array relationship */
+    notif_to_subs: Array<GraphQLTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: GraphQLTypes["notif_to_subs_aggregate"];
     tag?: string | undefined;
     timestamp: GraphQLTypes["timestamp"];
     title: string;
@@ -21555,6 +23364,10 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     image?: GraphQLTypes["String_comparison_exp"] | undefined;
+    notif_to_subs?: GraphQLTypes["notif_to_subs_bool_exp"] | undefined;
+    notif_to_subs_aggregate?:
+      | GraphQLTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined;
     tag?: GraphQLTypes["String_comparison_exp"] | undefined;
     timestamp?: GraphQLTypes["timestamp_comparison_exp"] | undefined;
     title?: GraphQLTypes["String_comparison_exp"] | undefined;
@@ -21570,6 +23383,9 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     image?: string | undefined;
+    notif_to_subs?:
+      | GraphQLTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined;
     tag?: string | undefined;
     timestamp?: GraphQLTypes["timestamp"] | undefined;
     title?: string | undefined;
@@ -21630,6 +23446,12 @@ export type GraphQLTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<GraphQLTypes["notification"]>;
   };
+  /** input type for inserting object relation for remote table "notification" */
+  ["notification_obj_rel_insert_input"]: {
+    data: GraphQLTypes["notification_insert_input"];
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["notification_on_conflict"] | undefined;
+  };
   /** on_conflict condition type for table "notification" */
   ["notification_on_conflict"]: {
     constraint: GraphQLTypes["notification_constraint"];
@@ -21643,6 +23465,9 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     image?: GraphQLTypes["order_by"] | undefined;
+    notif_to_subs_aggregate?:
+      | GraphQLTypes["notif_to_subs_aggregate_order_by"]
+      | undefined;
     tag?: GraphQLTypes["order_by"] | undefined;
     timestamp?: GraphQLTypes["order_by"] | undefined;
     title?: GraphQLTypes["order_by"] | undefined;
@@ -21700,6 +23525,10 @@ export type GraphQLTypes = {
     endpoint: string;
     expirationTime?: GraphQLTypes["timestamptz"] | undefined;
     id: GraphQLTypes["uuid"];
+    /** An array relationship */
+    notif_to_subs: Array<GraphQLTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: GraphQLTypes["notif_to_subs_aggregate"];
     p256dh: string;
     updatedAt: GraphQLTypes["timestamptz"];
   };
@@ -21758,6 +23587,10 @@ export type GraphQLTypes = {
     endpoint?: GraphQLTypes["String_comparison_exp"] | undefined;
     expirationTime?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    notif_to_subs?: GraphQLTypes["notif_to_subs_bool_exp"] | undefined;
+    notif_to_subs_aggregate?:
+      | GraphQLTypes["notif_to_subs_aggregate_bool_exp"]
+      | undefined;
     p256dh?: GraphQLTypes["String_comparison_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
   };
@@ -21771,6 +23604,9 @@ export type GraphQLTypes = {
     endpoint?: string | undefined;
     expirationTime?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
+    notif_to_subs?:
+      | GraphQLTypes["notif_to_subs_arr_rel_insert_input"]
+      | undefined;
     p256dh?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
@@ -21824,6 +23660,14 @@ export type GraphQLTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<GraphQLTypes["notification_subscription"]>;
   };
+  /** input type for inserting object relation for remote table "notification_subscription" */
+  ["notification_subscription_obj_rel_insert_input"]: {
+    data: GraphQLTypes["notification_subscription_insert_input"];
+    /** upsert condition */
+    on_conflict?:
+      | GraphQLTypes["notification_subscription_on_conflict"]
+      | undefined;
+  };
   /** on_conflict condition type for table "notification_subscription" */
   ["notification_subscription_on_conflict"]: {
     constraint: GraphQLTypes["notification_subscription_constraint"];
@@ -21840,6 +23684,9 @@ export type GraphQLTypes = {
     endpoint?: GraphQLTypes["order_by"] | undefined;
     expirationTime?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
+    notif_to_subs_aggregate?:
+      | GraphQLTypes["notif_to_subs_aggregate_order_by"]
+      | undefined;
     p256dh?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
@@ -21938,6 +23785,12 @@ export type GraphQLTypes = {
     friendship_aggregate: GraphQLTypes["friendship_aggregate"];
     /** fetch data from the table: "friendship" using primary key columns */
     friendship_by_pk?: GraphQLTypes["friendship"] | undefined;
+    /** An array relationship */
+    notif_to_subs: Array<GraphQLTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: GraphQLTypes["notif_to_subs_aggregate"];
+    /** fetch data from the table: "notif_to_subs" using primary key columns */
+    notif_to_subs_by_pk?: GraphQLTypes["notif_to_subs"] | undefined;
     /** fetch data from the table: "notification" */
     notification: Array<GraphQLTypes["notification"]>;
     /** fetch aggregated fields from the table: "notification" */
@@ -22264,6 +24117,14 @@ export type GraphQLTypes = {
     friendship_by_pk?: GraphQLTypes["friendship"] | undefined;
     /** fetch data from the table in a streaming manner: "friendship" */
     friendship_stream: Array<GraphQLTypes["friendship"]>;
+    /** An array relationship */
+    notif_to_subs: Array<GraphQLTypes["notif_to_subs"]>;
+    /** An aggregate relationship */
+    notif_to_subs_aggregate: GraphQLTypes["notif_to_subs_aggregate"];
+    /** fetch data from the table: "notif_to_subs" using primary key columns */
+    notif_to_subs_by_pk?: GraphQLTypes["notif_to_subs"] | undefined;
+    /** fetch data from the table in a streaming manner: "notif_to_subs" */
+    notif_to_subs_stream: Array<GraphQLTypes["notif_to_subs"]>;
     /** fetch data from the table: "notification" */
     notification: Array<GraphQLTypes["notification"]>;
     /** fetch aggregated fields from the table: "notification" */
@@ -23266,6 +25127,26 @@ export const enum friendship_update_column {
   status = "status",
   updatedAt = "updatedAt",
 }
+/** unique or primary key constraints on table "notif_to_subs" */
+export const enum notif_to_subs_constraint {
+  notif_to_subs_pkey = "notif_to_subs_pkey",
+}
+/** select columns of table "notif_to_subs" */
+export const enum notif_to_subs_select_column {
+  createdAt = "createdAt",
+  id = "id",
+  notifSubsId = "notifSubsId",
+  notificationId = "notificationId",
+  updatedAt = "updatedAt",
+}
+/** update columns of table "notif_to_subs" */
+export const enum notif_to_subs_update_column {
+  createdAt = "createdAt",
+  id = "id",
+  notifSubsId = "notifSubsId",
+  notificationId = "notificationId",
+  updatedAt = "updatedAt",
+}
 /** unique or primary key constraints on table "notification" */
 export const enum notification_constraint {
   notification_pkey = "notification_pkey",
@@ -23600,6 +25481,24 @@ type ZEUS_VARIABLES = {
   ["friendship_stream_cursor_value_input"]: ValueTypes["friendship_stream_cursor_value_input"];
   ["friendship_update_column"]: ValueTypes["friendship_update_column"];
   ["friendship_updates"]: ValueTypes["friendship_updates"];
+  ["notif_to_subs_aggregate_bool_exp"]: ValueTypes["notif_to_subs_aggregate_bool_exp"];
+  ["notif_to_subs_aggregate_bool_exp_count"]: ValueTypes["notif_to_subs_aggregate_bool_exp_count"];
+  ["notif_to_subs_aggregate_order_by"]: ValueTypes["notif_to_subs_aggregate_order_by"];
+  ["notif_to_subs_arr_rel_insert_input"]: ValueTypes["notif_to_subs_arr_rel_insert_input"];
+  ["notif_to_subs_bool_exp"]: ValueTypes["notif_to_subs_bool_exp"];
+  ["notif_to_subs_constraint"]: ValueTypes["notif_to_subs_constraint"];
+  ["notif_to_subs_insert_input"]: ValueTypes["notif_to_subs_insert_input"];
+  ["notif_to_subs_max_order_by"]: ValueTypes["notif_to_subs_max_order_by"];
+  ["notif_to_subs_min_order_by"]: ValueTypes["notif_to_subs_min_order_by"];
+  ["notif_to_subs_on_conflict"]: ValueTypes["notif_to_subs_on_conflict"];
+  ["notif_to_subs_order_by"]: ValueTypes["notif_to_subs_order_by"];
+  ["notif_to_subs_pk_columns_input"]: ValueTypes["notif_to_subs_pk_columns_input"];
+  ["notif_to_subs_select_column"]: ValueTypes["notif_to_subs_select_column"];
+  ["notif_to_subs_set_input"]: ValueTypes["notif_to_subs_set_input"];
+  ["notif_to_subs_stream_cursor_input"]: ValueTypes["notif_to_subs_stream_cursor_input"];
+  ["notif_to_subs_stream_cursor_value_input"]: ValueTypes["notif_to_subs_stream_cursor_value_input"];
+  ["notif_to_subs_update_column"]: ValueTypes["notif_to_subs_update_column"];
+  ["notif_to_subs_updates"]: ValueTypes["notif_to_subs_updates"];
   ["notification_aggregate_bool_exp"]: ValueTypes["notification_aggregate_bool_exp"];
   ["notification_aggregate_bool_exp_bool_and"]: ValueTypes["notification_aggregate_bool_exp_bool_and"];
   ["notification_aggregate_bool_exp_bool_or"]: ValueTypes["notification_aggregate_bool_exp_bool_or"];
@@ -23611,6 +25510,7 @@ type ZEUS_VARIABLES = {
   ["notification_insert_input"]: ValueTypes["notification_insert_input"];
   ["notification_max_order_by"]: ValueTypes["notification_max_order_by"];
   ["notification_min_order_by"]: ValueTypes["notification_min_order_by"];
+  ["notification_obj_rel_insert_input"]: ValueTypes["notification_obj_rel_insert_input"];
   ["notification_on_conflict"]: ValueTypes["notification_on_conflict"];
   ["notification_order_by"]: ValueTypes["notification_order_by"];
   ["notification_pk_columns_input"]: ValueTypes["notification_pk_columns_input"];
@@ -23629,6 +25529,7 @@ type ZEUS_VARIABLES = {
   ["notification_subscription_insert_input"]: ValueTypes["notification_subscription_insert_input"];
   ["notification_subscription_max_order_by"]: ValueTypes["notification_subscription_max_order_by"];
   ["notification_subscription_min_order_by"]: ValueTypes["notification_subscription_min_order_by"];
+  ["notification_subscription_obj_rel_insert_input"]: ValueTypes["notification_subscription_obj_rel_insert_input"];
   ["notification_subscription_on_conflict"]: ValueTypes["notification_subscription_on_conflict"];
   ["notification_subscription_order_by"]: ValueTypes["notification_subscription_order_by"];
   ["notification_subscription_pk_columns_input"]: ValueTypes["notification_subscription_pk_columns_input"];
