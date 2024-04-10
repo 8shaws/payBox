@@ -12,7 +12,7 @@ import {
   import { buttonVariants } from "@/components/ui/button";
   import { cn } from "@/lib/utils";
   import { AnimatePresence, motion } from "framer-motion";
-  import { Message, loggedInUserData } from "@/app/friendship/chat/data";
+  import { Message, loggedInUserData } from "@/app/friendship/friends/data";
   import { Textarea } from "@/components/ui/textarea";
   import { EmojiPicker } from "../emoji-picker";
   import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";

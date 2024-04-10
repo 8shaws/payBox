@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { ChatLayout } from "@/app/friendship/chat/components/chat/chat-layout";
+import { ChatLayout } from "@/app/friendship/friends/components/chat/chat-layout";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";

@@ -1,6 +1,6 @@
 "use client";
 
-import { userData } from "@/app/friendship/chat/data";
+import { userData } from "@/app/friendship/friends/data";
 import React, { useEffect, useState } from "react";
 import {
     ResizableHandle,
@@ -40,7 +40,7 @@ import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
 import { acceptedFriendshipAtom, accountsAtom, clientAtom, clientJwtAtom, friendsAtom, getAccounts } from "@paybox/recoil";
 import { toast } from "sonner";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getFriendsTab, sidenavLinks } from "../chat/components/sidenav-links";
+import { getFriendsTab, sidenavLinks } from "../friends/components/sidenav-links";
 import { clientNavLinks } from "../../account/components/navLinks";
 import { Bird, Rabbit, Settings, Share, Turtle } from "lucide-react";
 import { Button } from "@/components/ui/button";

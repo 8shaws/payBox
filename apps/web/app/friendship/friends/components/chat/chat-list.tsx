@@ -1,4 +1,4 @@
-import { Message, UserData } from "@/app/friendship/chat/data";
+import { Message, UserData } from "@/app/friendship/friends/data";
 import { cn } from "@/lib/utils";
 import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
