@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import { cookies } from "next/headers";
 import { AccountsLayout } from "@/app/account/components/accountLayout";
-import { AccountType, BACKEND_URL, FriendshipStatusEnum, responseStatus } from "@paybox/common";
+import { AccountType, BACKEND_URL, Client, ClientWithJwt, FriendshipStatusEnum, responseStatus } from "@paybox/common";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/util";
 import { redirect } from "next/navigation";
@@ -42,6 +42,7 @@ export default async function FriendshipParent({
                     friendships={friendships}
                     children={children}
                     jwt={jwt}
+                    client={session?.user as ClientWithJwt}
                 />
             }
         </>

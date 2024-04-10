@@ -1,6 +1,6 @@
 "use client";
 
-import { userData } from "@/app/friendship/chat/data";
+import { userData } from "@/app/friendship/friends/data";
 import React, { useEffect, useState } from "react";
 import {
     ResizableHandle,
@@ -33,17 +33,18 @@ import { LinksProps, Sidenav } from "@/app/account/components/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import { AccountSwitcher } from "@/app/account/components/account-switcher";
-import { AccountType, Friend, FriendshipType } from "@paybox/common";
+import { AccountType, ClientWithJwt, Friend, FriendshipType } from "@paybox/common";
 import { usePathname, useRouter } from "next/navigation";
 // import { clientNavLinks, commonNavLinks, getNavLinks } from "./navLinks";
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
 import { acceptedFriendshipAtom, accountsAtom, clientAtom, clientJwtAtom, friendsAtom, getAccounts } from "@paybox/recoil";
 import { toast } from "sonner";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getFriendsTab, sidenavLinks } from "../chat/components/sidenav-links";
+import { getFriendsTab, sidenavLinks } from "../friends/components/sidenav-links";
 import { clientNavLinks } from "../../account/components/navLinks";
 import { Bird, Rabbit, Settings, Share, Turtle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ClientNameTab } from "@/components/client-name-tab";
 
 interface FriendshipLayoutProps {
     defaultLayout: number[] | undefined;
@@ -52,6 +53,7 @@ interface FriendshipLayoutProps {
     children: React.ReactNode;
     friendships: FriendshipType[];
     jwt: string;
+    client: ClientWithJwt
 }
 
 
@@ -62,7 +64,8 @@ export function FriendshipLayout({
     navCollapsedSize,
     children,
     friendships,
-    jwt
+    jwt,
+    client
 }: FriendshipLayoutProps) {
     const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
     const [selectedUser, setSelectedUser] = React.useState(userData[0]);
@@ -80,7 +83,7 @@ export function FriendshipLayout({
     //         set(accountsAtom, accounts);
     //     }
     // });
-    const client = useRecoilValue(clientAtom);
+    const setClient = useSetRecoilState(clientAtom);
     const setJwt = useSetRecoilState(clientJwtAtom);
 
     const path = usePathname()
@@ -100,6 +103,12 @@ export function FriendshipLayout({
             window.removeEventListener("resize", checkScreenWidth);
         };
     }, []);
+
+    useEffect(() => {
+        if(client) {
+            setClient(client);
+        }
+    }, [client])
 
     useEffect(() => {
         if(friendships.length > 0) {
@@ -172,15 +181,13 @@ export function FriendshipLayout({
                 >
                     <div
                         className={cn(
-                            "flex h-[52px] items-center justify-center",
-                            isCollapsed ? "h-[52px]" : "px-4"
+                            "flex h-[58px] items-center",
+                            isCollapsed ? "h-[58px] justify-center" : ""
                         )}
                     >
-                        {/* <AccountSwitcher
+                        <ClientNameTab
                             isCollapsed={isCollapsed}
-                            selectedAccount={selectedAccount}
-                            setSelectedAccount={setSelectedAccount}
-                        /> */}
+                        />
                     </div>
                     <Separator />
                     {path.includes("/chat") &&
