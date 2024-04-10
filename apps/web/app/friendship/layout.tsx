@@ -33,7 +33,6 @@ export default async function FriendshipParent({
     }
 
     const friendships = await getFriendships(jwt, FriendshipStatusEnum.Accepted);
-    console.log(friendships)
     return (
         <>
             {friendships &&

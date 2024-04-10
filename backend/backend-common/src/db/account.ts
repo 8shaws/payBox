@@ -517,7 +517,7 @@ export const getMainAccount = async (
       updatedAt: true,
     }]
   }, { operationName: "getMainAccount" });
-  if(response.account[0]?.id) {
+  if (response.account[0]?.id) {
     return {
       status: dbResStatus.Ok,
       account: response.account[0] as AccountType
@@ -527,3 +527,47 @@ export const getMainAccount = async (
     status: dbResStatus.Error
   }
 }
+
+/**
+ * 
+ * @param accountId 
+ * @returns 
+ */
+export const changeMainAccount = async (
+  accountId: string,
+): Promise<{
+  status: dbResStatus
+}> => {
+  const response = await chain("mutation")({
+    update_account_many: [{
+      updates: [{
+        where: {
+          isMain: { _eq: true }
+        },
+        _set: {
+          isMain: false
+        }
+      }, {
+        where: {
+          id: { _eq: accountId }
+        },
+        _set: {
+          isMain: true
+        }
+      }]
+    }, {
+      returning: {
+        id: true
+      }
+    }]
+  }, { operationName: "changeMainAccount" });
+  if(Array.isArray(response.update_account_many) && response.update_account_many[1]?.returning[0]?.id) {
+    return {
+      status: dbResStatus.Ok
+    }
+  }
+
+  return {
+    status: dbResStatus.Error
+  }
+};

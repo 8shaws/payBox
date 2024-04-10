@@ -37,7 +37,7 @@ export function Content({
 
     return (
         <>
-            {pubKey &&
+            
                 <div className='flex flex-col py-4 items-start justify-start'>
                     <DrawerHeader className='flex flex-row gap-x-4 w-full'>
                         <Avatar className="hidden h-9 w-9 sm:flex">
@@ -55,14 +55,14 @@ export function Content({
                         <Tab
                             chain='Ethereum'
                             account={{
-                                key: pubKey.eth,
+                                key: pubKey?.eth,
                                 name: friend.firstname
                             }}
                         />
                         <Tab
                             chain='Solana'
                             account={{
-                                key: pubKey.sol,
+                                key: pubKey?.sol,
                                 name: friend.firstname
                             }}
                         />
@@ -73,7 +73,6 @@ export function Content({
                         </DrawerClose>
                     </DrawerFooter>
                 </div>
-            }
         </>
     )
 }

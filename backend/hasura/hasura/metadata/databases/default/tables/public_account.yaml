@@ -3,16 +3,22 @@ table:
   schema: public
 configuration:
   column_config:
+    client_id:
+      custom_name: clientId
     created_at:
       custom_name: createdAt
     is_main:
       custom_name: isMain
     updated_at:
       custom_name: updatedAt
+    wallet_id:
+      custom_name: walletId
   custom_column_names:
+    client_id: clientId
     created_at: createdAt
     is_main: isMain
     updated_at: updatedAt
+    wallet_id: walletId
   custom_root_fields: {}
 object_relationships:
   - name: bitcoin
@@ -24,7 +30,7 @@ object_relationships:
           schema: public
   - name: client
     using:
-      foreign_key_constraint_on: clientId
+      foreign_key_constraint_on: client_id
   - name: eth
     using:
       foreign_key_constraint_on:
@@ -41,4 +47,4 @@ object_relationships:
           schema: public
   - name: wallet
     using:
-      foreign_key_constraint_on: walletId
+      foreign_key_constraint_on: wallet_id

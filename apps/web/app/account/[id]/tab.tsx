@@ -36,6 +36,7 @@ export const Tab = ({
     }
 }) => {
     const accountState = useRecoilValue(accountAtom);
+    console.log(accountState)
     const [tabData, setTabData] = React.useState<{
         publicKey: string | undefined,
         name: string | undefined
@@ -67,7 +68,7 @@ export const Tab = ({
                 });
             }
         }
-    }, [account, chain]);
+    }, [account, chain, accountState]);
 
     const [copyText, setCopyText] = React.useState<string>("Copy")
     return (

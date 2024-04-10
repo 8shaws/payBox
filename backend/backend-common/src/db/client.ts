@@ -705,7 +705,8 @@ export const validateClient = async (
               eth: {
                 data: ethKeys
               },
-              name
+              name,
+              isMain: true
             }
           ]
         }

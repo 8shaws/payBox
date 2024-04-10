@@ -901,6 +901,12 @@ export const AllTypesProps: Record<string, any> = {
     delete_friendship_by_pk: {
       id: "uuid",
     },
+    delete_notif_to_subs: {
+      where: "notif_to_subs_bool_exp",
+    },
+    delete_notif_to_subs_by_pk: {
+      id: "uuid",
+    },
     delete_notification: {
       where: "notification_bool_exp",
     },
@@ -986,6 +992,14 @@ export const AllTypesProps: Record<string, any> = {
     insert_friendship_one: {
       object: "friendship_insert_input",
       on_conflict: "friendship_on_conflict",
+    },
+    insert_notif_to_subs: {
+      objects: "notif_to_subs_insert_input",
+      on_conflict: "notif_to_subs_on_conflict",
+    },
+    insert_notif_to_subs_one: {
+      object: "notif_to_subs_insert_input",
+      on_conflict: "notif_to_subs_on_conflict",
     },
     insert_notification: {
       objects: "notification_insert_input",
@@ -1110,6 +1124,17 @@ export const AllTypesProps: Record<string, any> = {
     update_friendship_many: {
       updates: "friendship_updates",
     },
+    update_notif_to_subs: {
+      _set: "notif_to_subs_set_input",
+      where: "notif_to_subs_bool_exp",
+    },
+    update_notif_to_subs_by_pk: {
+      _set: "notif_to_subs_set_input",
+      pk_columns: "notif_to_subs_pk_columns_input",
+    },
+    update_notif_to_subs_many: {
+      updates: "notif_to_subs_updates",
+    },
     update_notification: {
       _set: "notification_set_input",
       where: "notification_bool_exp",
@@ -1170,6 +1195,117 @@ export const AllTypesProps: Record<string, any> = {
       updates: "wallet_updates",
     },
   },
+  notif_to_subs_aggregate_bool_exp: {
+    count: "notif_to_subs_aggregate_bool_exp_count",
+  },
+  notif_to_subs_aggregate_bool_exp_count: {
+    arguments: "notif_to_subs_select_column",
+    filter: "notif_to_subs_bool_exp",
+    predicate: "Int_comparison_exp",
+  },
+  notif_to_subs_aggregate_fields: {
+    count: {
+      columns: "notif_to_subs_select_column",
+    },
+  },
+  notif_to_subs_aggregate_order_by: {
+    count: "order_by",
+    max: "notif_to_subs_max_order_by",
+    min: "notif_to_subs_min_order_by",
+  },
+  notif_to_subs_arr_rel_insert_input: {
+    data: "notif_to_subs_insert_input",
+    on_conflict: "notif_to_subs_on_conflict",
+  },
+  notif_to_subs_bool_exp: {
+    _and: "notif_to_subs_bool_exp",
+    _not: "notif_to_subs_bool_exp",
+    _or: "notif_to_subs_bool_exp",
+    createdAt: "timestamptz_comparison_exp",
+    id: "uuid_comparison_exp",
+    notifSubsId: "uuid_comparison_exp",
+    notification: "notification_bool_exp",
+    notificationId: "uuid_comparison_exp",
+    notification_subscription: "notification_subscription_bool_exp",
+    updatedAt: "timestamptz_comparison_exp",
+  },
+  notif_to_subs_constraint: "enum" as const,
+  notif_to_subs_insert_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    notifSubsId: "uuid",
+    notification: "notification_obj_rel_insert_input",
+    notificationId: "uuid",
+    notification_subscription: "notification_subscription_obj_rel_insert_input",
+    updatedAt: "timestamptz",
+  },
+  notif_to_subs_max_order_by: {
+    createdAt: "order_by",
+    id: "order_by",
+    notifSubsId: "order_by",
+    notificationId: "order_by",
+    updatedAt: "order_by",
+  },
+  notif_to_subs_min_order_by: {
+    createdAt: "order_by",
+    id: "order_by",
+    notifSubsId: "order_by",
+    notificationId: "order_by",
+    updatedAt: "order_by",
+  },
+  notif_to_subs_on_conflict: {
+    constraint: "notif_to_subs_constraint",
+    update_columns: "notif_to_subs_update_column",
+    where: "notif_to_subs_bool_exp",
+  },
+  notif_to_subs_order_by: {
+    createdAt: "order_by",
+    id: "order_by",
+    notifSubsId: "order_by",
+    notification: "notification_order_by",
+    notificationId: "order_by",
+    notification_subscription: "notification_subscription_order_by",
+    updatedAt: "order_by",
+  },
+  notif_to_subs_pk_columns_input: {
+    id: "uuid",
+  },
+  notif_to_subs_select_column: "enum" as const,
+  notif_to_subs_set_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    notifSubsId: "uuid",
+    notificationId: "uuid",
+    updatedAt: "timestamptz",
+  },
+  notif_to_subs_stream_cursor_input: {
+    initial_value: "notif_to_subs_stream_cursor_value_input",
+    ordering: "cursor_ordering",
+  },
+  notif_to_subs_stream_cursor_value_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    notifSubsId: "uuid",
+    notificationId: "uuid",
+    updatedAt: "timestamptz",
+  },
+  notif_to_subs_update_column: "enum" as const,
+  notif_to_subs_updates: {
+    _set: "notif_to_subs_set_input",
+    where: "notif_to_subs_bool_exp",
+  },
+  notification: {
+    notif_to_subs: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
+    notif_to_subs_aggregate: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
+  },
   notification_aggregate_bool_exp: {
     bool_and: "notification_aggregate_bool_exp_bool_and",
     bool_or: "notification_aggregate_bool_exp_bool_or",
@@ -1215,6 +1351,8 @@ export const AllTypesProps: Record<string, any> = {
     clientId: "uuid_comparison_exp",
     id: "uuid_comparison_exp",
     image: "String_comparison_exp",
+    notif_to_subs: "notif_to_subs_bool_exp",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate_bool_exp",
     tag: "String_comparison_exp",
     timestamp: "timestamp_comparison_exp",
     title: "String_comparison_exp",
@@ -1226,6 +1364,7 @@ export const AllTypesProps: Record<string, any> = {
     client: "client_obj_rel_insert_input",
     clientId: "uuid",
     id: "uuid",
+    notif_to_subs: "notif_to_subs_arr_rel_insert_input",
     timestamp: "timestamp",
     updatedAt: "timestamptz",
   },
@@ -1249,6 +1388,10 @@ export const AllTypesProps: Record<string, any> = {
     title: "order_by",
     updatedAt: "order_by",
   },
+  notification_obj_rel_insert_input: {
+    data: "notification_insert_input",
+    on_conflict: "notification_on_conflict",
+  },
   notification_on_conflict: {
     constraint: "notification_constraint",
     update_columns: "notification_update_column",
@@ -1260,6 +1403,7 @@ export const AllTypesProps: Record<string, any> = {
     clientId: "order_by",
     id: "order_by",
     image: "order_by",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate_order_by",
     tag: "order_by",
     timestamp: "order_by",
     title: "order_by",
@@ -1289,6 +1433,18 @@ export const AllTypesProps: Record<string, any> = {
     id: "uuid",
     timestamp: "timestamp",
     updatedAt: "timestamptz",
+  },
+  notification_subscription: {
+    notif_to_subs: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
+    notif_to_subs_aggregate: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
   },
   notification_subscription_aggregate_bool_exp: {
     count: "notification_subscription_aggregate_bool_exp_count",
@@ -1322,6 +1478,8 @@ export const AllTypesProps: Record<string, any> = {
     endpoint: "String_comparison_exp",
     expirationTime: "timestamptz_comparison_exp",
     id: "uuid_comparison_exp",
+    notif_to_subs: "notif_to_subs_bool_exp",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate_bool_exp",
     p256dh: "String_comparison_exp",
     updatedAt: "timestamptz_comparison_exp",
   },
@@ -1331,6 +1489,7 @@ export const AllTypesProps: Record<string, any> = {
     clientId: "uuid",
     expirationTime: "timestamptz",
     id: "uuid",
+    notif_to_subs: "notif_to_subs_arr_rel_insert_input",
     updatedAt: "timestamptz",
   },
   notification_subscription_max_order_by: {
@@ -1351,6 +1510,10 @@ export const AllTypesProps: Record<string, any> = {
     p256dh: "order_by",
     updatedAt: "order_by",
   },
+  notification_subscription_obj_rel_insert_input: {
+    data: "notification_subscription_insert_input",
+    on_conflict: "notification_subscription_on_conflict",
+  },
   notification_subscription_on_conflict: {
     constraint: "notification_subscription_constraint",
     update_columns: "notification_subscription_update_column",
@@ -1363,6 +1526,7 @@ export const AllTypesProps: Record<string, any> = {
     endpoint: "order_by",
     expirationTime: "order_by",
     id: "order_by",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate_order_by",
     p256dh: "order_by",
     updatedAt: "order_by",
   },
@@ -1487,6 +1651,19 @@ export const AllTypesProps: Record<string, any> = {
       where: "friendship_bool_exp",
     },
     friendship_by_pk: {
+      id: "uuid",
+    },
+    notif_to_subs: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
+    notif_to_subs_aggregate: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
+    notif_to_subs_by_pk: {
       id: "uuid",
     },
     notification: {
@@ -1763,6 +1940,23 @@ export const AllTypesProps: Record<string, any> = {
     friendship_stream: {
       cursor: "friendship_stream_cursor_input",
       where: "friendship_bool_exp",
+    },
+    notif_to_subs: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
+    notif_to_subs_aggregate: {
+      distinct_on: "notif_to_subs_select_column",
+      order_by: "notif_to_subs_order_by",
+      where: "notif_to_subs_bool_exp",
+    },
+    notif_to_subs_by_pk: {
+      id: "uuid",
+    },
+    notif_to_subs_stream: {
+      cursor: "notif_to_subs_stream_cursor_input",
+      where: "notif_to_subs_bool_exp",
     },
     notification: {
       distinct_on: "notification_select_column",
@@ -2818,6 +3012,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_eth_by_pk: "eth",
     delete_friendship: "friendship_mutation_response",
     delete_friendship_by_pk: "friendship",
+    delete_notif_to_subs: "notif_to_subs_mutation_response",
+    delete_notif_to_subs_by_pk: "notif_to_subs",
     delete_notification: "notification_mutation_response",
     delete_notification_by_pk: "notification",
     delete_notification_subscription:
@@ -2843,6 +3039,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_eth_one: "eth",
     insert_friendship: "friendship_mutation_response",
     insert_friendship_one: "friendship",
+    insert_notif_to_subs: "notif_to_subs_mutation_response",
+    insert_notif_to_subs_one: "notif_to_subs",
     insert_notification: "notification_mutation_response",
     insert_notification_one: "notification",
     insert_notification_subscription:
@@ -2875,6 +3073,9 @@ export const ReturnTypes: Record<string, any> = {
     update_friendship: "friendship_mutation_response",
     update_friendship_by_pk: "friendship",
     update_friendship_many: "friendship_mutation_response",
+    update_notif_to_subs: "notif_to_subs_mutation_response",
+    update_notif_to_subs_by_pk: "notif_to_subs",
+    update_notif_to_subs_many: "notif_to_subs_mutation_response",
     update_notification: "notification_mutation_response",
     update_notification_by_pk: "notification",
     update_notification_many: "notification_mutation_response",
@@ -2893,12 +3094,50 @@ export const ReturnTypes: Record<string, any> = {
     update_wallet_by_pk: "wallet",
     update_wallet_many: "wallet_mutation_response",
   },
+  notif_to_subs: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    notifSubsId: "uuid",
+    notification: "notification",
+    notificationId: "uuid",
+    notification_subscription: "notification_subscription",
+    updatedAt: "timestamptz",
+  },
+  notif_to_subs_aggregate: {
+    aggregate: "notif_to_subs_aggregate_fields",
+    nodes: "notif_to_subs",
+  },
+  notif_to_subs_aggregate_fields: {
+    count: "Int",
+    max: "notif_to_subs_max_fields",
+    min: "notif_to_subs_min_fields",
+  },
+  notif_to_subs_max_fields: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    notifSubsId: "uuid",
+    notificationId: "uuid",
+    updatedAt: "timestamptz",
+  },
+  notif_to_subs_min_fields: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    notifSubsId: "uuid",
+    notificationId: "uuid",
+    updatedAt: "timestamptz",
+  },
+  notif_to_subs_mutation_response: {
+    affected_rows: "Int",
+    returning: "notif_to_subs",
+  },
   notification: {
     body: "String",
     client: "client",
     clientId: "uuid",
     id: "uuid",
     image: "String",
+    notif_to_subs: "notif_to_subs",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate",
     tag: "String",
     timestamp: "timestamp",
     title: "String",
@@ -2945,6 +3184,8 @@ export const ReturnTypes: Record<string, any> = {
     endpoint: "String",
     expirationTime: "timestamptz",
     id: "uuid",
+    notif_to_subs: "notif_to_subs",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate",
     p256dh: "String",
     updatedAt: "timestamptz",
   },
@@ -3001,6 +3242,9 @@ export const ReturnTypes: Record<string, any> = {
     friendship: "friendship",
     friendship_aggregate: "friendship_aggregate",
     friendship_by_pk: "friendship",
+    notif_to_subs: "notif_to_subs",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate",
+    notif_to_subs_by_pk: "notif_to_subs",
     notification: "notification",
     notification_aggregate: "notification_aggregate",
     notification_by_pk: "notification",
@@ -3141,6 +3385,10 @@ export const ReturnTypes: Record<string, any> = {
     friendship_aggregate: "friendship_aggregate",
     friendship_by_pk: "friendship",
     friendship_stream: "friendship",
+    notif_to_subs: "notif_to_subs",
+    notif_to_subs_aggregate: "notif_to_subs_aggregate",
+    notif_to_subs_by_pk: "notif_to_subs",
+    notif_to_subs_stream: "notif_to_subs",
     notification: "notification",
     notification_aggregate: "notification_aggregate",
     notification_by_pk: "notification",
