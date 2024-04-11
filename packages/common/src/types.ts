@@ -363,6 +363,17 @@ export interface NotifSubType {
     updatedAt?: string,
 }
 
+export interface NotifType {
+    id: string,
+    clientId?: string,
+    body: string,
+    tag: string,
+    image: string,
+    timestamp: string,
+    updatedAt?: string,
+    viewed?: boolean
+}
+
 export interface FriendPubKeys {
     bitcoin?: Pick<BitcoinKey, "publicKey">,
     eth?: Pick<EthKey, "publicKey">,
