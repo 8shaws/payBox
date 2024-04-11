@@ -40,8 +40,8 @@ export const notify = async ({
   title: string,
   body: string,
   href?: string,
-  image?: string,
-  tag?: NotifTopics,
+  image: string,
+  tag: NotifTopics,
   vibrate?: number[],
   actions?: any[],
   payload?: any,
@@ -92,6 +92,8 @@ export const notify = async ({
       body,
       new Date().toISOString(),
       subs,
+      image,
+      tag,
     );
     if(mutate.status == dbResStatus.Error) {
       console.error('Error adding notification to db.');

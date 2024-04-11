@@ -84,7 +84,8 @@ export const getNotif = async (
             timestamp: true,
             updatedAt: true,
             viewed: true,
-            title: true
+            title: true,
+            clientId: true
         }]
     }, {operationName: "getNotif"});
 

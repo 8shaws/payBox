@@ -26,8 +26,8 @@ export const addNotif = async (
     body: string,
     timestamp: string,
     notifSubs: NotifSubType[],
-    image?: string,
-    tag?: NotifTopics,
+    image: string,
+    tag: NotifTopics,
 ): Promise<{
     status: dbResStatus,
 }> => {
