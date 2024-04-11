@@ -34,13 +34,14 @@ import { accountRouter } from "./routes/account";
 import { walletRouter } from "./routes/wallet";
 
 import { S3Client } from '@aws-sdk/client-s3';
-import { notifyRouter } from "./routes/notification";
+import { notifSubRouter } from "./routes/notif_sub";
 import { Worker } from "./workers/txn";
 import Prometheus from "prom-client";
 import responseTime from "response-time";
 import compression from 'compression';
 import { NotifWorker } from "./workers/notfi";
 import { friendshipRouter } from "./routes/friendship";
+import { notifRouter } from "./routes/notif";
 
 
 export * from "./Redis";
@@ -151,7 +152,8 @@ app.use("/txn", extractClientId, checkValidation, txnRouter);
 app.use("/account", extractClientId, checkValidation, accountRouter);
 app.use("/wallet", extractClientId, checkValidation, walletRouter);
 app.use("/friendship", extractClientId, checkValidation, friendshipRouter);
-app.use('/notif', extractClientId, notifyRouter);
+app.use('/notif', extractClientId, checkValidation, notifRouter);
+app.use('/notif_sub', extractClientId, notifSubRouter);
 
 app.get("/metrics", async (_req, res) => {
   res.set("Content-Type", Prometheus.register.contentType);
