@@ -135,7 +135,23 @@ accountRouter.patch("/updateName", async (req, res) => {
     //@ts-ignore
     const id = req.id;
     if (id) {
-      const { name, accountId } = AccountNameQuery.parse(req.query);
+      const { name, accountId, walletId } = AccountNameQuery.parse(req.query);
+
+      try {
+        /**
+         * Cache Delete
+         */
+        await Redis.getRedisInst().deleteHash(accountId);
+        await Redis.getRedisInst().deleteHash(walletId);
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          status: responseStatus.Error,
+          msg: "Error in deleting the cache key...",
+          error: error,
+        });
+      }
+
       const mutation = await updateAccountName(name, accountId);
       if (
         mutation.status == dbResStatus.Error ||
@@ -146,11 +162,6 @@ accountRouter.patch("/updateName", async (req, res) => {
           .json({ msg: "Database Error", status: responseStatus.Error });
       }
 
-      /**
-       * Cache
-       */
-      await Redis.getRedisInst().deleteHash(accountId);
-      await Redis.getRedisInst().deleteHash(mutation.account.walletId);
 
       return res.status(200).json({
         msg: "Name updated 😊",

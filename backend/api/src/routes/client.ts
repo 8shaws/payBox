@@ -508,13 +508,22 @@ clientRouter.patch("/updateMetadata", extractClientId, async (req, res) => {
     //@ts-ignore
     const id = req.id;
     if (id) {
+      try {
+        await Redis.getInstance().deleteHash(id);
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          status: responseStatus.Error,
+          msg: "Error in deleting the cache key",
+          error: error,
+        });
+      }
       const updateUser = await updateMetadata(id, firstname, lastname);
       if (updateUser.status == dbResStatus.Error) {
         return res
           .status(503)
           .json({ status: responseStatus.Error, msg: "Database Error" });
       }
-      await Redis.getInstance().deleteHash(id);
       return res
         .status(200)
         .json({ status: responseStatus.Ok, msg: "Metadata Updated" });
@@ -556,6 +565,16 @@ clientRouter.patch(
       //@ts-ignore
       const id = req.id;
       if (id) {
+        try {
+          await Redis.getInstance().deleteHash(id);
+        } catch (error) {
+          console.log(error);
+          return res.status(500).json({
+            status: responseStatus.Error,
+            msg: "Error in deleting the cache key...",
+            error: error,
+          });
+        }
         const { newPassword } = ChangePasswordValid.parse(req.body);
         const hashNewPassord = await setHashPassword(newPassword);
         const updatePass = await updatePassword(id, hashNewPassord);
@@ -565,7 +584,6 @@ clientRouter.patch(
             .json({ status: responseStatus.Error, msg: "Database Error" });
         }
 
-        await Redis.getInstance().deleteHash(id);
 
         return res
           .status(200)

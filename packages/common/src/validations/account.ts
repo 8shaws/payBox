@@ -24,6 +24,12 @@ export const AccountNameQuery = z.object({
             /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
             "should be a valid UUID.",
         ),
+    walletId: z
+        .string()
+        .regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "should be a valid UUID.",
+        ),
 });
 
 export const AccountGetPrivateKey = z.object({
