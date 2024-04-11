@@ -50,27 +50,6 @@ export const AccountLayout = ({
     return (
         <>
             <div className="h-screen p-4">
-                <div className="">
-                    <Breadcrumb>
-                        <BreadcrumbList key={"list"}>
-                            <BreadcrumbItem key={"home"}>
-                                <BreadcrumbLink href={`/`}>Home</BreadcrumbLink>
-                            </BreadcrumbItem>
-                            {path.split("/").map((item, index) => {
-                                let link = path.split("/").slice(0, index + 1).join("/")
-                                return (
-                                    <>
-                                        <BreadcrumbItem key={link}>
-                                            <BreadcrumbLink href={link}>{item}</BreadcrumbLink>
-                                        </BreadcrumbItem>
-                                        <BreadcrumbSeparator />
-                                    </>
-                                )
-                            })}
-
-                        </BreadcrumbList>
-                    </Breadcrumb>
-                </div>
                 {children}
             </div>
         </>

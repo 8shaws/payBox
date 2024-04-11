@@ -17,9 +17,9 @@ export default function NotifWrapper({
 
     useEffect(() => {
         if ('serviceWorker' in navigator) {
-            // if (navigator.serviceWorker.controller) {
-            //   console.log('Service worker is already registered.');
-            // } else {
+            if (navigator.serviceWorker.controller) {
+              console.log('Service worker is already registered.');
+            } else {
               navigator.serviceWorker.register('/service-worker.js')
                 .then(function (registration) {
                   console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -37,7 +37,7 @@ export default function NotifWrapper({
                           return;
                         }
                         const subs = JSON.parse(JSON.stringify(subscription));
-                        await fetch(`${BACKEND_URL}/notif/subscribe`, {
+                        await fetch(`${BACKEND_URL}/notif_sub/subscribe`, {
                           method: 'POST',
                           headers: {
                             'Content-Type': 'application/json',
@@ -61,9 +61,9 @@ export default function NotifWrapper({
                   console.log('Service Worker and Push is not supported: ', err);
                 });
             }
-          // } else {
-          //   console.log('Service workers are not supported in this browser.');
-          // }
+          } else {
+            console.log('Service workers are not supported in this browser.');
+          }
     }, [session.data?.user?.email])
     return (
         <>

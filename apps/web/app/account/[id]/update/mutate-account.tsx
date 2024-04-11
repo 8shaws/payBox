@@ -54,12 +54,14 @@ interface AccountMutateProps extends React.HTMLAttributes<HTMLDivElement> {
     accountId: string,
     jwt: string,
     accountName: string,
+    walletId: string
 }
 
 export function MutateAccountForm({
     accountId,
     jwt,
-    accountName
+    accountName,
+    walletId
 }: AccountMutateProps) {
     const router = useRouter();
     const setClientJwt = useSetRecoilState(clientJwtAtom);
@@ -91,7 +93,7 @@ export function MutateAccountForm({
     async function onSubmit(values: z.infer<typeof AccountCreateQuery>) {
         const call = async () => {
             try {
-                let accountQueryUrl = `${BACKEND_URL}/account/updateName?name=${values.name}&accountId=${accountId}`;
+                let accountQueryUrl = `${BACKEND_URL}/account/updateName?name=${values.name}&accountId=${accountId}&walletId=${walletId}`;
                 // try {
                 //     if (values.imgUrl && putUrl) {
                 //         const putResponse = await fetch(putUrl, {

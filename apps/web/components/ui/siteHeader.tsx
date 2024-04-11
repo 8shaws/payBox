@@ -19,8 +19,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 -mt-14",
-        (pathname.includes("/account") || pathname.includes("/friendship")) && "mt-0",
+        "sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mt-0",
+        (pathname == "/") && "-mt-14",
       )}
     >
       <div className="container flex h-14 max-w-screen-2xl items-center">

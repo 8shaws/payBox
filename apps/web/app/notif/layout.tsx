@@ -10,9 +10,10 @@ import { NotifChildLayout } from "./child-layout";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "PayBox",
+  title: "Notif | PayBox",
   description: "By Akash Shaw",
-
+  creator: "Akash Shaw",
+  icons: ["/"]
 };
 export default async function NotifLayout({
   children,
