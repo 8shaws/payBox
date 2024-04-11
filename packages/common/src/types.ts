@@ -371,6 +371,7 @@ export interface NotifType {
     image: string,
     timestamp: string,
     updatedAt?: string,
+    title: string
     viewed?: boolean
 }
 
