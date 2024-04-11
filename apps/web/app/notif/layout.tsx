@@ -27,20 +27,14 @@ export default async function NotifLayout({
   if (!session || !session.user || !session.user?.email) {
     redirect('/signup');
   }
-  //@ts-ignore
-  const jwt = session?.user?.jwt;
-  const notifs = await getNotifs(jwt);
   return (
     <div className="">
       <SetClientJwtWrapper client={session?.user as ClientWithJwt}>
-        {notifs &&
           <NotifChildLayout
-            notifs={notifs}
             children={children}
             defaultLayout={defaultLayout}
             navCollapsedSize={4}
           />
-          }
           </SetClientJwtWrapper>
     </div>
   );

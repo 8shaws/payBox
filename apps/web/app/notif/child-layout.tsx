@@ -29,7 +29,6 @@ interface NotifChildLayoutProps {
     defaultCollapsed?: boolean;
     navCollapsedSize: number;
     children: React.ReactNode;
-    notifs: NotifType[]
 }
 
 
@@ -39,7 +38,6 @@ export function NotifChildLayout({
     defaultCollapsed = false,
     navCollapsedSize,
     children,
-    notifs
 }: NotifChildLayoutProps) {
     const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
     const [isMobile, setIsMobile] = useState(false);
@@ -66,10 +64,6 @@ export function NotifChildLayout({
             window.removeEventListener("resize", checkScreenWidth);
         };
     }, []);
-
-    useEffect(() => {
-        setNotifs(notifs)
-    }, [notifs])
 
 
     useEffect(() => {
@@ -159,7 +153,7 @@ export function NotifChildLayout({
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-primary-foreground">
                     <ScrollArea className="h-full rounded-md border">
-                        <div className="h-[93.5vh] p-4">
+                        <div className="h-[93.5vh] p-4 flex flex-col gap-y-8">
                             <div className="">
                                 <Breadcrumb>
                                     <BreadcrumbList key={"list"}>
