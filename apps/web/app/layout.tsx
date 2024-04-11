@@ -9,6 +9,7 @@ import RecoilRootWrapper from "@paybox/recoil/src/hooks/recoilRootWraper";
 import { authOptions } from "./api/auth/[...nextauth]/util";
 import RootChildLayout from "./RootChildLayout";
 import NotifWrapper from "./NotifWrapper";
+import { ClientWithJwt } from "@paybox/common";
 
 const fontSans = FontSans({
   subsets: ["latin"],

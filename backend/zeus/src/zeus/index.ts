@@ -19625,7 +19625,7 @@ export type ModelTypes = {
     notif_to_subs: Array<ModelTypes["notif_to_subs"]>;
     /** An aggregate relationship */
     notif_to_subs_aggregate: ModelTypes["notif_to_subs_aggregate"];
-    tag?: string | undefined;
+    tag: string;
     timestamp: ModelTypes["timestamp"];
     title: string;
     updatedAt: ModelTypes["timestamptz"];
@@ -23296,7 +23296,7 @@ export type GraphQLTypes = {
     notif_to_subs: Array<GraphQLTypes["notif_to_subs"]>;
     /** An aggregate relationship */
     notif_to_subs_aggregate: GraphQLTypes["notif_to_subs_aggregate"];
-    tag?: string | undefined;
+    tag: string;
     timestamp: GraphQLTypes["timestamp"];
     title: string;
     updatedAt: GraphQLTypes["timestamptz"];

@@ -7,6 +7,7 @@ import { authOptions } from "../api/auth/[...nextauth]/util";
 import { BACKEND_URL, ClientWithJwt } from "@paybox/common";
 import { headers } from "next/headers";
 import { revalidateTag } from "next/cache";
+import SetClientJwtWrapper from "@/components/set-client-jwt-wrapper";
 
 export default async function SettingsProfilePage() {
   const session = await getServerSession(authOptions);
@@ -15,15 +16,17 @@ export default async function SettingsProfilePage() {
   }
   revalidateTag("getTxn");
   return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-medium">Profile</h3>
-        <p className="text-sm text-muted-foreground">
-          This is how others will see you on the site.
-        </p>
+    <SetClientJwtWrapper client={session.user as ClientWithJwt}>
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-medium">Profile</h3>
+          <p className="text-sm text-muted-foreground">
+            This is how others will see you on the site.
+          </p>
+        </div>
+        <Separator />
+        <ProfileForm me={session.user as unknown as ClientWithJwt} />
       </div>
-      <Separator />
-      <ProfileForm me={session.user as unknown as ClientWithJwt} />
-    </div>
+    </SetClientJwtWrapper>
   );
 }

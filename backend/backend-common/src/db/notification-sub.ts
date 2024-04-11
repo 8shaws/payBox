@@ -1,6 +1,6 @@
-import { Chain } from "@paybox/zeus";
+import { Chain, order_by } from "@paybox/zeus";
 import { HASURA_URL, JWT } from "../config";
-import { Address, HASURA_ADMIN_SERCRET, dbResStatus } from "@paybox/common";
+import { Address, HASURA_ADMIN_SERCRET, NotifType, dbResStatus } from "@paybox/common";
 
 const chain = Chain(HASURA_URL, {
     headers: {
@@ -50,5 +50,52 @@ export const insertSub = async (
     }
     return {
         status: dbResStatus.Error,
+    }
+}
+
+/**
+ * 
+ * @param clientId 
+ * @param offset 
+ * @param limit 
+ * @returns 
+ */
+export const getNotif = async (
+    clientId: string,
+    offset: number,
+    limit: number
+): Promise<{
+    status: dbResStatus,
+    notifs?: NotifType[]
+}> => {
+    const response = await chain("query")({
+        notification: [{
+            order_by: [{timestamp: order_by.desc}],
+            offset,
+            limit,
+            where: {
+                clientId: {_eq: clientId}
+            }
+        }, {
+            body: true,
+            id: true,
+            image: true,
+            tag: true,
+            timestamp: true,
+            updatedAt: true,
+            viewed: true,
+            title: true,
+            clientId: true
+        }]
+    }, {operationName: "getNotif"});
+
+    if(Array.isArray(response.notification)) {
+        return {
+            status: dbResStatus.Ok,
+            notifs: response.notification as NotifType[]
+        }
+    }
+    return {
+        status: dbResStatus.Error
     }
 }

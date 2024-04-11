@@ -8,83 +8,43 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { cn } from "@/lib/utils";
-import {
-    Drawer,
-    DrawerContent,
-    DrawerDescription,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-
-import { Textarea } from "@/components/ui/textarea"
 
 import { LinksProps, Sidenav } from "@/components/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import { AccountSwitcher } from "@/app/account/components/account-switcher";
-import { AccountType, ClientWithJwt, Friend, FriendshipType } from "@paybox/common";
+import { AccountType, NotifType } from "@paybox/common";
 import { usePathname, useRouter } from "next/navigation";
-// import { clientNavLinks, commonNavLinks, getNavLinks } from "./navLinks";
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
-import { acceptedFriendshipAtom, accountsAtom, clientAtom, clientJwtAtom, friendsAtom, getAccounts } from "@paybox/recoil";
+import { accountsAtom, clientAtom, getAccounts, notifsAtom } from "@paybox/recoil";
 import { toast } from "sonner";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getFriendsTab, sidenavLinks } from "../friends/components/sidenav-links";
-import { clientNavLinks } from "../../account/components/navLinks";
-import { Bird, Rabbit, Settings, Share, Turtle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ClientNameTab } from "@/components/client-name-tab";
+import { clientNavLinks } from "../account/components/navLinks";
+import { topNavLinks } from "./nav.links";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
-interface FriendshipLayoutProps {
+interface NotifChildLayoutProps {
     defaultLayout: number[] | undefined;
     defaultCollapsed?: boolean;
     navCollapsedSize: number;
     children: React.ReactNode;
-    friendships: FriendshipType[];
-    jwt: string;
-    client: ClientWithJwt
 }
 
 
 
-export function FriendshipLayout({
+export function NotifChildLayout({
     defaultLayout = [100, 480],
     defaultCollapsed = false,
     navCollapsedSize,
     children,
-    friendships,
-    jwt,
-    client
-}: FriendshipLayoutProps) {
+}: NotifChildLayoutProps) {
     const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
-    const [selectedUser, setSelectedUser] = React.useState(userData[0]);
     const [isMobile, setIsMobile] = useState(false);
-    // const [selectedChat, setSelectedChat] = React.useState<string>(
-    //     accounts[0].id
-    // );
-    const setFriendships = useSetRecoilState(acceptedFriendshipAtom);
-    const setFriends = useSetRecoilState(friendsAtom);
-    // const loadAccounts = useRecoilCallback(({ snapshot, set }) => async () => {
-    //     const load = snapshot.getLoadable(getAccounts);
-    //     if (load.state === 'hasValue') {
-    //         const accounts = load.contents;
-    //         console.log(accounts)
-    //         set(accountsAtom, accounts);
-    //     }
-    // });
-    const setClient = useSetRecoilState(clientAtom);
-    const setJwt = useSetRecoilState(clientJwtAtom);
+    const setNotifs = useSetRecoilState(notifsAtom);
+
+
+    const client = useRecoilValue(clientAtom);
 
     const path = usePathname()
     const router = useRouter();
@@ -99,31 +59,12 @@ export function FriendshipLayout({
 
         window.addEventListener("resize", checkScreenWidth);
 
+
         return () => {
             window.removeEventListener("resize", checkScreenWidth);
         };
     }, []);
 
-    useEffect(() => {
-        if (client) {
-            setClient(client);
-        }
-    }, [client])
-
-    useEffect(() => {
-        if (friendships.length > 0) {
-            setFriendships(friendships);
-            setFriends(friendships.map(friendship => friendship.friend as Friend));
-        }
-    }, [friendships])
-
-    useEffect(() => {
-        setJwt(jwt);
-    }, [jwt])
-
-    // useEffect(() => {
-    //     setSelectedTab(path.split("/")[3] || "dashboard")
-    // }, [selectedAccount])
 
     useEffect(() => {
         if (path.split("/").length === 2) {
@@ -131,7 +72,7 @@ export function FriendshipLayout({
             router.push(path)
         }
         if (path.split("/").length === 3) {
-            setSelectedTab(path.split("/")[3] || "dashboard");
+            setSelectedTab(path.split("/")[3] || "");
             router.push(path)
         }
     }, [path]);
@@ -160,8 +101,8 @@ export function FriendshipLayout({
                     defaultSize={defaultLayout[0]}
                     collapsedSize={navCollapsedSize}
                     collapsible={true}
-                    minSize={isMobile ? 0 : 14}
-                    maxSize={isMobile ? 14 : 25}
+                    minSize={isMobile ? 0 : 10}
+                    maxSize={isMobile ? 10 : 18}
                     onCollapse={() => {
                         setIsCollapsed(true);
                         document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
@@ -181,31 +122,26 @@ export function FriendshipLayout({
                 >
                     <div
                         className={cn(
-                            "flex h-[58px] items-center",
-                            isCollapsed ? "h-[58px] justify-center" : ""
+                            "flex h-[52px] items-center justify-start",
+                            isCollapsed ? "h-[52px] justify-center" : "px-4"
                         )}
                     >
-                        <ClientNameTab
-                            isCollapsed={isCollapsed}
-                        />
+                        <ClientNameTab isCollapsed={isCollapsed} />
                     </div>
-                    <Separator />
-                    {path.includes("/chat") &&
-                        getFriendsTab(friendships).length > 0 &&
-                        <Sidenav
-                            isCollapsed={isCollapsed}
-                            links={getFriendsTab(friendships) as LinksProps[]}
-                            selectedTab={selectedTab}
-                            setSelectedTab={setSelectedTab}
-                        />}
                     <Separator />
                     <Sidenav
                         isCollapsed={isCollapsed}
-                        links={sidenavLinks as LinksProps[]}
+                        links={topNavLinks as LinksProps[]}
                         selectedTab={selectedTab}
                         setSelectedTab={setSelectedTab}
                     />
-                    <Separator />
+                    {/* <Separator /> */}
+                    {/* <Sidenav
+                        isCollapsed={isCollapsed}
+                        links={commonNavLinks as LinksProps[]}
+                        selectedTab={selectedTab}
+                        setSelectedTab={setSelectedTab}
+                    /> */}
                     <div className="flex-grow" />
                     <Sidenav
                         isCollapsed={isCollapsed}
@@ -216,8 +152,8 @@ export function FriendshipLayout({
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-primary-foreground">
-                    <ScrollArea className="h-full rounded-md border-t-0">
-                        <div className="h-[93.5vh] p-4">
+                    <ScrollArea className="h-full rounded-md border">
+                        <div className="h-[93.5vh] p-4 flex flex-col gap-y-8">
                             <div className="">
                                 <Breadcrumb>
                                     <BreadcrumbList key={"list"}>
@@ -242,7 +178,6 @@ export function FriendshipLayout({
                                                 </>
                                             )
                                         })}
-
                                     </BreadcrumbList>
                                 </Breadcrumb>
                             </div>

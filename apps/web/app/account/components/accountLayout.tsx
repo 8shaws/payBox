@@ -8,8 +8,16 @@ import {
     ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { cn } from "@/lib/utils";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
-import { LinksProps, Sidenav } from "@/app/account/components/sidebar";
+import { LinksProps, Sidenav } from "@/components/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import { AccountSwitcher } from "@/app/account/components/account-switcher";
@@ -112,7 +120,7 @@ export function AccountsLayout({
                         sizes
                     )}`;
                 }}
-                className="min-h-screen w-screen rounded-lg border"
+                className="min-h-fit w-screen rounded-lg border"
             >
                 <ResizablePanel
                     defaultSize={defaultLayout[0]}
@@ -134,7 +142,7 @@ export function AccountsLayout({
                     }}
                     className={cn(
                         isCollapsed && " min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out",
-                        "flex flex-col h-screen"
+                        "flex flex-col h-[93vh]"
                     )}
                 >
                     <div
@@ -173,8 +181,39 @@ export function AccountsLayout({
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-primary-foreground">
+
                     <ScrollArea className="h-full rounded-md border">
-                        {children}
+                        <div className="h-[93.5vh] p-4">
+                            <div className="">
+                                <Breadcrumb>
+                                    <BreadcrumbList key={"list"}>
+                                        <BreadcrumbItem key={"home"}>
+                                            <BreadcrumbLink href={`/`}>Home</BreadcrumbLink>
+                                        </BreadcrumbItem>
+                                        {path.split("/").map((item, index) => {
+                                            let link = path.split("/").slice(0, index + 1).join("/")
+                                            if(index+1 === path.split("/").length) {
+                                                return (
+                                                    <BreadcrumbItem key={link}>
+                                                        <BreadcrumbPage>{item.charAt(0).toLocaleUpperCase()}{item.slice(1)}</BreadcrumbPage>
+                                                    </BreadcrumbItem>
+                                                )
+                                            }
+                                            return (
+                                                <>
+                                                    <BreadcrumbItem key={link}>
+                                                        <BreadcrumbLink href={link}>{item.charAt(0).toLocaleUpperCase()}{item.slice(1)}</BreadcrumbLink>
+                                                    </BreadcrumbItem>
+                                                    <BreadcrumbSeparator />
+                                                </>
+                                            )
+                                        })}
+
+                                    </BreadcrumbList>
+                                </Breadcrumb>
+                            </div>
+                            {children}
+                        </div>
                     </ScrollArea>
                 </ResizablePanel>
             </ResizablePanelGroup>

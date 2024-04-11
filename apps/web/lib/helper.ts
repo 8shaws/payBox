@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
-import { AccountType, BACKEND_URL, FriendPubKeys, FriendshipStatusEnum, FriendshipType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
+import { AccountType, BACKEND_URL, FriendPubKeys, FriendshipStatusEnum, FriendshipType, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
 
 export function toBase64(file: File) {
   return new Promise((resolve, reject) => {
@@ -137,7 +137,7 @@ export async function isWord(word: string): Promise<boolean> {
  * @param id 
  */
 export const getFriendPubKey = async (
-  jwt: string, 
+  jwt: string,
   id: string
 ): Promise<FriendPubKeys | undefined> => {
   try {
@@ -148,7 +148,7 @@ export const getFriendPubKey = async (
         "Content-type": "application/json"
       }
     }).then(res => res.json());
-    if(response.status == responseStatus.Error) {
+    if (response.status == responseStatus.Error) {
       console.log("error getting pub keys for friend");
       throw new Error(response.msg);
     }
@@ -156,5 +156,38 @@ export const getFriendPubKey = async (
     return response.keys as FriendPubKeys;
   } catch (error) {
     console.error(error);
+  }
+}
+
+/**
+ * 
+ * @param jwt 
+ * @param limit 
+ * @param offset 
+ * @returns notifications
+ */
+export const getNotifs = async (
+  jwt: string,
+  limit: number = 25,
+  offset: number = 0
+): Promise<NotifType[]> => {
+  try {
+    const { status, notifs }: {status: responseStatus, notifs: NotifType[]} =
+      await fetch(`${BACKEND_URL}/notif?limit=${limit}&offset=${offset}`, {
+        method: "get",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${jwt}`,
+        },
+        cache: "no-cache"
+      }).then(res => res.json());
+      if(status === responseStatus.Error) {
+        console.log("error getting notifications");
+        return [];
+      }
+      return notifs;
+  } catch (error) {
+    console.error(error);
+    return []
   }
 }

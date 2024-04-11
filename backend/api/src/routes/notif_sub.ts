@@ -1,11 +1,14 @@
-import { insertSub } from "@paybox/backend-common";
-import { NOTIF_CACHE_EXPIRE, NotifSubType, SubscibeValid, dbResStatus, responseStatus } from "@paybox/common";
+import { getNotif, insertSub } from "@paybox/backend-common";
+import { GetNotifValid, NOTIF_CACHE_EXPIRE, NotifSubType, SubscibeValid, dbResStatus, responseStatus } from "@paybox/common";
 import { Router } from "express";
 import { Redis } from "..";
 
-export const notifyRouter = Router();
+export const notifSubRouter = Router();
 
-notifyRouter.post('/subscribe', async (req, res) => {
+/**
+ * Subscribe to notifications
+ */
+notifSubRouter.post('/subscribe', async (req, res) => {
     try {
         //@ts-ignore
         const id = req.id;

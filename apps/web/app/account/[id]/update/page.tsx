@@ -21,6 +21,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 // @ts-ignore
                 jwt={session?.user.jwt}
                 accountName={account.name}
+                walletId={account.walletId}
             />}
         </>
     );

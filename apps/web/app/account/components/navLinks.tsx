@@ -19,7 +19,7 @@ import {
     UserRound,
     UserRoundCog
 } from "lucide-react";
-import { LinksProps } from "./sidebar";
+import { LinksProps } from "../../../components/sidebar";
 
 export const commonNavLinks = [
     {
