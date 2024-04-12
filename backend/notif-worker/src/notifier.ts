@@ -2,7 +2,7 @@ import webpush from "web-push";
 
 import { VAPID_PRIVATE_KEY, VAPID_PUBLIC_KEY } from "./config";
 import { deleteSubs, getSubs } from "./db/notif-sub";
-import { NotifTopics, dbResStatus } from "@paybox/common";
+import { NotifTopics, TopicTypes, dbResStatus } from "@paybox/common";
 import { addNotif } from "./db/notif";
 
 const vapidKeys = {
@@ -35,6 +35,7 @@ export const notify = async ({
   tag,
   vibrate,
   actions,
+  topic
 }: {
   to: string,
   title: string,
@@ -42,6 +43,7 @@ export const notify = async ({
   href?: string,
   image: string,
   tag: NotifTopics,
+  topic: TopicTypes
   vibrate?: number[],
   actions?: any[],
   payload?: any,
@@ -94,6 +96,7 @@ export const notify = async ({
       subs,
       image,
       tag,
+      topic
     );
     if(mutate.status == dbResStatus.Error) {
       console.error('Error adding notification to db.');

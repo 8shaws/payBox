@@ -1,6 +1,6 @@
 import { Chain } from "@paybox/zeus";
 import { HASURA_URL, JWT } from "../config";
-import { HASURA_ADMIN_SERCRET, NotifSubType, NotifTopics, dbResStatus } from "@paybox/common";
+import { HASURA_ADMIN_SERCRET, MsgTopics, NotifSubType, NotifTopics, TopicTypes, dbResStatus } from "@paybox/common";
 
 const chain = Chain(HASURA_URL, {
     headers: {
@@ -26,8 +26,9 @@ export const addNotif = async (
     body: string,
     timestamp: string,
     notifSubs: NotifSubType[],
-    image: string,
-    tag: NotifTopics,
+    image: string | null,
+    tag: NotifTopics | MsgTopics,
+    topic: TopicTypes
 ): Promise<{
     status: dbResStatus,
 }> => {
@@ -40,6 +41,7 @@ export const addNotif = async (
                 tag,
                 timestamp,
                 title,
+                topic,
                 viewed: false,
                 notif_to_subs: {
                     data: notifSubs.map((sub) => ({
