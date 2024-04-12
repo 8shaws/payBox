@@ -5,3 +5,8 @@ export const notifsAtom = atom<NotifType[]>({
     default: [],
     key: "notifs",
 });
+
+export const msgNotifAtom = atom<NotifType[]>({
+    default: [],
+    key: "msgNotifAtom"
+})
