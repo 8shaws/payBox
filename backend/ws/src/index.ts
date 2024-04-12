@@ -1,4 +1,4 @@
-import { BTC_WS_URL, CLIENT_URL, dbResStatus, WsChatMessageType, WsMessageTypeEnum, WSPORT, FriendshipStatus } from "@paybox/common";
+import { BTC_WS_URL, CLIENT_URL, dbResStatus, WsChatMessageType, WsMessageTypeEnum, WSPORT, FriendshipStatus, TopicTypes, JWT, HASURA_ADMIN_SERCRET, HASURA_URL } from "@paybox/common";
 import bodyParser from "body-parser";
 import express from "express";
 import http from "http";
@@ -20,6 +20,7 @@ import { ChatWorker } from "./workers/chat";
 import Prometheus from "prom-client";
 import responseTime from "response-time";
 import compression from "compression";
+import {subscribeNotif} from "./db/notif";
 
 export * from "./managers";
 
