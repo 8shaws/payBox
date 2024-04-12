@@ -164,16 +164,23 @@ export const getFriendPubKey = async (
  * @param jwt 
  * @param limit 
  * @param offset 
+ * @param topic 
  * @returns notifications
  */
-export const getNotifs = async (
+export const getNotifs = async ({
+  jwt,
+  limit = 25,
+  offset = 0,
+  topic = "notif"
+}: {
   jwt: string,
-  limit: number = 25,
-  offset: number = 0
-): Promise<NotifType[]> => {
+  limit?: number,
+  offset?: number,
+  topic: string
+}): Promise<NotifType[]> => {
   try {
     const { status, notifs }: {status: responseStatus, notifs: NotifType[]} =
-      await fetch(`${BACKEND_URL}/notif?limit=${limit}&offset=${offset}`, {
+      await fetch(`${BACKEND_URL}/notif?limit=${limit}&offset=${offset}&topic=${topic}`, {
         method: "get",
         headers: {
           "Content-type": "application/json",

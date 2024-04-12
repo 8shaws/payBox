@@ -1,6 +1,6 @@
 import { Chain, order_by } from "@paybox/zeus";
 import { HASURA_URL, JWT } from "../config";
-import { Address, HASURA_ADMIN_SERCRET, NotifType, dbResStatus } from "@paybox/common";
+import { Address, HASURA_ADMIN_SERCRET, NotifType, TopicTypes, dbResStatus } from "@paybox/common";
 
 const chain = Chain(HASURA_URL, {
     headers: {
@@ -63,7 +63,8 @@ export const insertSub = async (
 export const getNotif = async (
     clientId: string,
     offset: number,
-    limit: number
+    limit: number,
+    topic: TopicTypes
 ): Promise<{
     status: dbResStatus,
     notifs?: NotifType[]
@@ -74,7 +75,8 @@ export const getNotif = async (
             offset,
             limit,
             where: {
-                clientId: {_eq: clientId}
+                clientId: {_eq: clientId},
+                topic: {_eq: topic}
             }
         }, {
             body: true,
@@ -85,7 +87,8 @@ export const getNotif = async (
             updatedAt: true,
             viewed: true,
             title: true,
-            clientId: true
+            clientId: true,
+            topic: true
         }]
     }, {operationName: "getNotif"});
 

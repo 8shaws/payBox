@@ -14,8 +14,8 @@ notifRouter.get('/', async (req, res) => {
         //@ts-ignore
         const id = req.id;
         if(id){
-            const {limit, offset} = GetNotifValid.parse(req.query);
-            const {notifs, status} = await getNotif(id, offset, limit);
+            const {limit, offset, topic} = GetNotifValid.parse(req.query);
+            const {notifs, status} = await getNotif(id, offset, limit, topic);
             if(status == dbResStatus.Error) {
                 return res.status(500).json({
                     status: responseStatus.Error,
