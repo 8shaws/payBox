@@ -64,7 +64,8 @@ export const getNotif = async (
     clientId: string,
     offset: number,
     limit: number,
-    topic: TopicTypes
+    topic: TopicTypes,
+    viewed: boolean
 ): Promise<{
     status: dbResStatus,
     notifs?: NotifType[]
@@ -76,7 +77,8 @@ export const getNotif = async (
             limit,
             where: {
                 clientId: {_eq: clientId},
-                topic: {_eq: topic}
+                topic: {_eq: topic},
+                viewed: {_eq: viewed}
             }
         }, {
             body: true,
@@ -96,6 +98,64 @@ export const getNotif = async (
         return {
             status: dbResStatus.Ok,
             notifs: response.notification as NotifType[]
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}
+
+/**
+ * 
+ * @param id 
+ * @returns 
+ */
+export const updateNotif = async (
+    id: string
+): Promise<{
+    status: dbResStatus
+}> => {
+    const resposne = chain("mutation")({
+        update_notification: [{
+            where: {id: {_eq: id}},
+            _set: {viewed: true}
+        }, {
+            affected_rows: true
+        }]
+    }, {operationName: "updateNotif"});
+    if((await resposne).update_notification?.affected_rows) {
+        return {
+            status: dbResStatus.Ok
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}
+
+/**
+ * 
+ * @param id 
+ * @returns 
+ */
+export const markViewed = async (
+    id: string[]
+): Promise<{
+    status: dbResStatus
+}> => {
+    const response = await chain("mutation")({
+        update_notification_many: [{
+            updates: id.map((id) => ({
+                where: {id: {_eq: id}},
+                _set: {viewed: true}
+            }))
+        }, {
+            affected_rows: true
+        }]
+    }, {operationName: "markViewed"});
+    if(Array.isArray(response.update_notification_many)) {
+        return {
+            status: dbResStatus.Ok
         }
     }
     return {
