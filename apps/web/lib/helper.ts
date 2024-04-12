@@ -179,7 +179,7 @@ export const getNotifs = async ({
   topic: string
 }): Promise<NotifType[]> => {
   try {
-    const { status, notifs }: {status: responseStatus, notifs: NotifType[]} =
+    const { status, notifs }: { status: responseStatus, notifs: NotifType[] } =
       await fetch(`${BACKEND_URL}/notif?limit=${limit}&offset=${offset}&topic=${topic}`, {
         method: "get",
         headers: {
@@ -188,13 +188,43 @@ export const getNotifs = async ({
         },
         cache: "no-cache"
       }).then(res => res.json());
-      if(status === responseStatus.Error) {
-        console.log("error getting notifications");
-        return [];
-      }
-      return notifs;
+    if (status === responseStatus.Error) {
+      console.log("error getting notifications");
+      return [];
+    }
+    return notifs;
   } catch (error) {
     console.error(error);
     return []
+  }
+}
+
+/**
+ * 
+ * @param jwt 
+ * @param id 
+ * @returns 
+ */
+export const updateNotif = async (
+  jwt: string,
+  id: string
+): Promise<void> => {
+  try {
+    const { status, msg }: { status: responseStatus, msg: string } =
+      await fetch(`${BACKEND_URL}/notif/viewed?id=${id}`, {
+        method: "put",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${jwt}`,
+        },
+        cache: "no-cache"
+      }).then(res => res.json());
+    if (status === responseStatus.Error) {
+      console.log("error getting notifications");
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+    return;
   }
 }
