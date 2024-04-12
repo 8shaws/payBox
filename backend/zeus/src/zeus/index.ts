@@ -6226,6 +6226,7 @@ export type ValueTypes = {
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
+    topic?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     viewed?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
@@ -6401,6 +6402,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    topic?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -6437,6 +6443,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     title?: string | undefined | null | Variable<any, string>;
+    topic?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -6453,6 +6460,7 @@ export type ValueTypes = {
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
+    topic?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -6473,6 +6481,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     title?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    topic?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["order_by"]
       | undefined
@@ -6488,6 +6497,7 @@ export type ValueTypes = {
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
+    topic?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -6508,6 +6518,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     title?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    topic?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["order_by"]
       | undefined
@@ -6571,6 +6582,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     title?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    topic?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["order_by"]
       | undefined
@@ -6601,6 +6613,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     title?: string | undefined | null | Variable<any, string>;
+    topic?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -6634,6 +6647,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     title?: string | undefined | null | Variable<any, string>;
+    topic?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -14429,6 +14443,7 @@ export type ResolverInputTypes = {
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
+    topic?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     viewed?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
@@ -14532,6 +14547,7 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     title?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    topic?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -14557,6 +14573,7 @@ export type ResolverInputTypes = {
     tag?: string | undefined | null;
     timestamp?: ResolverInputTypes["timestamp"] | undefined | null;
     title?: string | undefined | null;
+    topic?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     viewed?: boolean | undefined | null;
   };
@@ -14569,6 +14586,7 @@ export type ResolverInputTypes = {
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
+    topic?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -14581,6 +14599,7 @@ export type ResolverInputTypes = {
     tag?: ResolverInputTypes["order_by"] | undefined | null;
     timestamp?: ResolverInputTypes["order_by"] | undefined | null;
     title?: ResolverInputTypes["order_by"] | undefined | null;
+    topic?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** aggregate min on columns */
@@ -14592,6 +14611,7 @@ export type ResolverInputTypes = {
     tag?: boolean | `@${string}`;
     timestamp?: boolean | `@${string}`;
     title?: boolean | `@${string}`;
+    topic?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -14604,6 +14624,7 @@ export type ResolverInputTypes = {
     tag?: ResolverInputTypes["order_by"] | undefined | null;
     timestamp?: ResolverInputTypes["order_by"] | undefined | null;
     title?: ResolverInputTypes["order_by"] | undefined | null;
+    topic?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** response of any mutation on the table "notification" */
@@ -14643,6 +14664,7 @@ export type ResolverInputTypes = {
     tag?: ResolverInputTypes["order_by"] | undefined | null;
     timestamp?: ResolverInputTypes["order_by"] | undefined | null;
     title?: ResolverInputTypes["order_by"] | undefined | null;
+    topic?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
     viewed?: ResolverInputTypes["order_by"] | undefined | null;
   };
@@ -14665,6 +14687,7 @@ export type ResolverInputTypes = {
     tag?: string | undefined | null;
     timestamp?: ResolverInputTypes["timestamp"] | undefined | null;
     title?: string | undefined | null;
+    topic?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     viewed?: boolean | undefined | null;
   };
@@ -14684,6 +14707,7 @@ export type ResolverInputTypes = {
     tag?: string | undefined | null;
     timestamp?: ResolverInputTypes["timestamp"] | undefined | null;
     title?: string | undefined | null;
+    topic?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     viewed?: boolean | undefined | null;
   };
@@ -19628,6 +19652,7 @@ export type ModelTypes = {
     tag: string;
     timestamp: ModelTypes["timestamp"];
     title: string;
+    topic: string;
     updatedAt: ModelTypes["timestamptz"];
     viewed: boolean;
   };
@@ -19696,6 +19721,7 @@ export type ModelTypes = {
     tag?: ModelTypes["String_comparison_exp"] | undefined;
     timestamp?: ModelTypes["timestamp_comparison_exp"] | undefined;
     title?: ModelTypes["String_comparison_exp"] | undefined;
+    topic?: ModelTypes["String_comparison_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     viewed?: ModelTypes["Boolean_comparison_exp"] | undefined;
   };
@@ -19713,6 +19739,7 @@ export type ModelTypes = {
     tag?: string | undefined;
     timestamp?: ModelTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     viewed?: boolean | undefined;
   };
@@ -19725,6 +19752,7 @@ export type ModelTypes = {
     tag?: string | undefined;
     timestamp?: ModelTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** order by max() on columns of table "notification" */
@@ -19736,6 +19764,7 @@ export type ModelTypes = {
     tag?: ModelTypes["order_by"] | undefined;
     timestamp?: ModelTypes["order_by"] | undefined;
     title?: ModelTypes["order_by"] | undefined;
+    topic?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
   /** aggregate min on columns */
@@ -19747,6 +19776,7 @@ export type ModelTypes = {
     tag?: string | undefined;
     timestamp?: ModelTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** order by min() on columns of table "notification" */
@@ -19758,6 +19788,7 @@ export type ModelTypes = {
     tag?: ModelTypes["order_by"] | undefined;
     timestamp?: ModelTypes["order_by"] | undefined;
     title?: ModelTypes["order_by"] | undefined;
+    topic?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
   /** response of any mutation on the table "notification" */
@@ -19792,6 +19823,7 @@ export type ModelTypes = {
     tag?: ModelTypes["order_by"] | undefined;
     timestamp?: ModelTypes["order_by"] | undefined;
     title?: ModelTypes["order_by"] | undefined;
+    topic?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
     viewed?: ModelTypes["order_by"] | undefined;
   };
@@ -19811,6 +19843,7 @@ export type ModelTypes = {
     tag?: string | undefined;
     timestamp?: ModelTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     viewed?: boolean | undefined;
   };
@@ -19830,6 +19863,7 @@ export type ModelTypes = {
     tag?: string | undefined;
     timestamp?: ModelTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     viewed?: boolean | undefined;
   };
@@ -23299,6 +23333,7 @@ export type GraphQLTypes = {
     tag: string;
     timestamp: GraphQLTypes["timestamp"];
     title: string;
+    topic: string;
     updatedAt: GraphQLTypes["timestamptz"];
     viewed: boolean;
   };
@@ -23371,6 +23406,7 @@ export type GraphQLTypes = {
     tag?: GraphQLTypes["String_comparison_exp"] | undefined;
     timestamp?: GraphQLTypes["timestamp_comparison_exp"] | undefined;
     title?: GraphQLTypes["String_comparison_exp"] | undefined;
+    topic?: GraphQLTypes["String_comparison_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     viewed?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
   };
@@ -23389,6 +23425,7 @@ export type GraphQLTypes = {
     tag?: string | undefined;
     timestamp?: GraphQLTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     viewed?: boolean | undefined;
   };
@@ -23402,6 +23439,7 @@ export type GraphQLTypes = {
     tag?: string | undefined;
     timestamp?: GraphQLTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** order by max() on columns of table "notification" */
@@ -23413,6 +23451,7 @@ export type GraphQLTypes = {
     tag?: GraphQLTypes["order_by"] | undefined;
     timestamp?: GraphQLTypes["order_by"] | undefined;
     title?: GraphQLTypes["order_by"] | undefined;
+    topic?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
   /** aggregate min on columns */
@@ -23425,6 +23464,7 @@ export type GraphQLTypes = {
     tag?: string | undefined;
     timestamp?: GraphQLTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** order by min() on columns of table "notification" */
@@ -23436,6 +23476,7 @@ export type GraphQLTypes = {
     tag?: GraphQLTypes["order_by"] | undefined;
     timestamp?: GraphQLTypes["order_by"] | undefined;
     title?: GraphQLTypes["order_by"] | undefined;
+    topic?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
   /** response of any mutation on the table "notification" */
@@ -23471,6 +23512,7 @@ export type GraphQLTypes = {
     tag?: GraphQLTypes["order_by"] | undefined;
     timestamp?: GraphQLTypes["order_by"] | undefined;
     title?: GraphQLTypes["order_by"] | undefined;
+    topic?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
     viewed?: GraphQLTypes["order_by"] | undefined;
   };
@@ -23493,6 +23535,7 @@ export type GraphQLTypes = {
     tag?: string | undefined;
     timestamp?: GraphQLTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     viewed?: boolean | undefined;
   };
@@ -23512,6 +23555,7 @@ export type GraphQLTypes = {
     tag?: string | undefined;
     timestamp?: GraphQLTypes["timestamp"] | undefined;
     title?: string | undefined;
+    topic?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     viewed?: boolean | undefined;
   };
@@ -25160,6 +25204,7 @@ export const enum notification_select_column {
   tag = "tag",
   timestamp = "timestamp",
   title = "title",
+  topic = "topic",
   updatedAt = "updatedAt",
   viewed = "viewed",
 }
@@ -25205,6 +25250,7 @@ export const enum notification_update_column {
   tag = "tag",
   timestamp = "timestamp",
   title = "title",
+  topic = "topic",
   updatedAt = "updatedAt",
   viewed = "viewed",
 }

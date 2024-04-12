@@ -3421,9 +3421,10 @@ export type Notification = {
   notif_to_subs: Array<Notif_To_Subs>;
   /** An aggregate relationship */
   notif_to_subs_aggregate: Notif_To_Subs_Aggregate;
-  tag?: Maybe<Scalars['String']['output']>;
+  tag: Scalars['String']['output'];
   timestamp: Scalars['timestamp']['output'];
   title: Scalars['String']['output'];
+  topic: Scalars['String']['output'];
   updatedAt: Scalars['timestamptz']['output'];
   viewed: Scalars['Boolean']['output'];
 };
@@ -3526,6 +3527,7 @@ export type Notification_Bool_Exp = {
   tag?: InputMaybe<String_Comparison_Exp>;
   timestamp?: InputMaybe<Timestamp_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
+  topic?: InputMaybe<String_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   viewed?: InputMaybe<Boolean_Comparison_Exp>;
 };
@@ -3547,6 +3549,7 @@ export type Notification_Insert_Input = {
   tag?: InputMaybe<Scalars['String']['input']>;
   timestamp?: InputMaybe<Scalars['timestamp']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  topic?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
   viewed?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -3561,6 +3564,7 @@ export type Notification_Max_Fields = {
   tag?: Maybe<Scalars['String']['output']>;
   timestamp?: Maybe<Scalars['timestamp']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  topic?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3573,6 +3577,7 @@ export type Notification_Max_Order_By = {
   tag?: InputMaybe<Order_By>;
   timestamp?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  topic?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -3586,6 +3591,7 @@ export type Notification_Min_Fields = {
   tag?: Maybe<Scalars['String']['output']>;
   timestamp?: Maybe<Scalars['timestamp']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  topic?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3598,6 +3604,7 @@ export type Notification_Min_Order_By = {
   tag?: InputMaybe<Order_By>;
   timestamp?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  topic?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -3635,6 +3642,7 @@ export type Notification_Order_By = {
   tag?: InputMaybe<Order_By>;
   timestamp?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  topic?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
   viewed?: InputMaybe<Order_By>;
 };
@@ -3660,6 +3668,8 @@ export enum Notification_Select_Column {
   Timestamp = 'timestamp',
   /** column name */
   Title = 'title',
+  /** column name */
+  Topic = 'topic',
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
@@ -3687,6 +3697,7 @@ export type Notification_Set_Input = {
   tag?: InputMaybe<Scalars['String']['input']>;
   timestamp?: InputMaybe<Scalars['timestamp']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  topic?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
   viewed?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -3708,6 +3719,7 @@ export type Notification_Stream_Cursor_Value_Input = {
   tag?: InputMaybe<Scalars['String']['input']>;
   timestamp?: InputMaybe<Scalars['timestamp']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  topic?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
   viewed?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -4011,6 +4023,8 @@ export enum Notification_Update_Column {
   Timestamp = 'timestamp',
   /** column name */
   Title = 'title',
+  /** column name */
+  Topic = 'topic',
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */

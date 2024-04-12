@@ -1356,6 +1356,7 @@ export const AllTypesProps: Record<string, any> = {
     tag: "String_comparison_exp",
     timestamp: "timestamp_comparison_exp",
     title: "String_comparison_exp",
+    topic: "String_comparison_exp",
     updatedAt: "timestamptz_comparison_exp",
     viewed: "Boolean_comparison_exp",
   },
@@ -1376,6 +1377,7 @@ export const AllTypesProps: Record<string, any> = {
     tag: "order_by",
     timestamp: "order_by",
     title: "order_by",
+    topic: "order_by",
     updatedAt: "order_by",
   },
   notification_min_order_by: {
@@ -1386,6 +1388,7 @@ export const AllTypesProps: Record<string, any> = {
     tag: "order_by",
     timestamp: "order_by",
     title: "order_by",
+    topic: "order_by",
     updatedAt: "order_by",
   },
   notification_obj_rel_insert_input: {
@@ -1407,6 +1410,7 @@ export const AllTypesProps: Record<string, any> = {
     tag: "order_by",
     timestamp: "order_by",
     title: "order_by",
+    topic: "order_by",
     updatedAt: "order_by",
     viewed: "order_by",
   },
@@ -3141,6 +3145,7 @@ export const ReturnTypes: Record<string, any> = {
     tag: "String",
     timestamp: "timestamp",
     title: "String",
+    topic: "String",
     updatedAt: "timestamptz",
     viewed: "Boolean",
   },
@@ -3161,6 +3166,7 @@ export const ReturnTypes: Record<string, any> = {
     tag: "String",
     timestamp: "timestamp",
     title: "String",
+    topic: "String",
     updatedAt: "timestamptz",
   },
   notification_min_fields: {
@@ -3171,6 +3177,7 @@ export const ReturnTypes: Record<string, any> = {
     tag: "String",
     timestamp: "timestamp",
     title: "String",
+    topic: "String",
     updatedAt: "timestamptz",
   },
   notification_mutation_response: {
