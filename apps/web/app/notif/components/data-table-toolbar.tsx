@@ -12,10 +12,12 @@ import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
+  tab: "Mails" | "Notif"
 }
 
 export function DataTableToolbar<TData>({
   table,
+  tab
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
@@ -23,7 +25,7 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Filter txns..."
+          placeholder={`Filter ${tab}...`}
           value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("id")?.setFilterValue(event.target.value)
