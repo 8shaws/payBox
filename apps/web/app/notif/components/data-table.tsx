@@ -27,6 +27,8 @@ import {
 
 import { DataTablePagination } from "../components/data-table-pagination";
 import { DataTableToolbar } from "../components/data-table-toolbar";
+import { useRecoilValue } from "recoil";
+import { notifsAtom } from "@paybox/recoil";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,9 +38,10 @@ interface DataTableProps<TData, TValue> {
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
-  tab
+  tab,
+  data
 }: DataTableProps<TData, TValue>) {
+  
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
