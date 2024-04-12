@@ -16,7 +16,7 @@ export default async function NotifTab({
     });
     return (
         <>
-            <SetNotifs notifs={notifs}>
+            <SetNotifs notifs={notifs} tab='Notif'>
                 {notifs && <DataTable data={notifs} columns={columns} tab="Notif" />}
             </SetNotifs>
         </>
