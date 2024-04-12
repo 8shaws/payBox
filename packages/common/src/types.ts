@@ -367,12 +367,13 @@ export interface NotifType {
     id: string,
     clientId?: string,
     body: string,
-    tag: string,
+    tag: MsgTopics | NotifTopics,
     image: string,
     timestamp: string,
     updatedAt?: string,
     title: string
-    viewed?: boolean
+    viewed?: boolean,
+    topic: TopicTypes,
 }
 
 export interface FriendPubKeys {

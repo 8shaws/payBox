@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TopicTypes } from "../types";
 
 export const SubscibeValid = z.object({
     endpoint: z.string(),
@@ -10,6 +11,7 @@ export const SubscibeValid = z.object({
 export const GetNotifValid = z.object({
     limit: z.string().transform((val) => parseInt(val)),
     offset: z.string().transform((val) => parseInt(val)),
+    topic: z.nativeEnum(TopicTypes)
 })
 
 export const NotifSchema = z.object({
