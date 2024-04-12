@@ -27,16 +27,21 @@ import {
 
 import { DataTablePagination } from "../components/data-table-pagination";
 import { DataTableToolbar } from "../components/data-table-toolbar";
+import { useRecoilValue } from "recoil";
+import { notifsAtom } from "@paybox/recoil";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  tab: "Mails" | "Notif"
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  tab,
+  data
 }: DataTableProps<TData, TValue>) {
+  
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -69,7 +74,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4 w-full">
-      <DataTableToolbar table={table} />
+      <DataTableToolbar table={table} tab={tab}/>
       <div className="rounded-md px-1 border">
         <Table>
           <TableHeader>

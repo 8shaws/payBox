@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TopicTypes } from "../types";
 
 export const SubscibeValid = z.object({
     endpoint: z.string(),
@@ -10,6 +11,10 @@ export const SubscibeValid = z.object({
 export const GetNotifValid = z.object({
     limit: z.string().transform((val) => parseInt(val)),
     offset: z.string().transform((val) => parseInt(val)),
+    topic: z.nativeEnum(TopicTypes),
+    viewed: z.string().refine((val) => val === "true" || val === "false", {
+        message: "should be a boolean.",
+    }).transform((val) => val === "true"),
 })
 
 export const NotifSchema = z.object({
@@ -22,4 +27,15 @@ export const NotifSchema = z.object({
     title: z.string(),
     viewed: z.boolean(),
     updatedAt: z.string().optional(),
-})
+});
+
+export const NotifUpdateValid = z.object({
+    ids: z
+        .array(
+            z.string()
+                .regex(
+                    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+                    "should be a valid UUID.",
+                ),
+        )
+});

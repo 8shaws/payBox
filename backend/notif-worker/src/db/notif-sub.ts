@@ -75,3 +75,38 @@ export const deleteSubs = async (
         status: dbResStatus.Error
     }
 }
+
+/**
+ * 
+ * @param clientId 
+ * @returns 
+ */
+export const getSubsId = async (
+    clientId: string
+) => {
+    const response = await chain("query")({
+        notification_subscription: [{
+            where: {
+                client: {
+                    id: { _eq: clientId }
+                }
+            }
+        }, {
+            id: true,
+            auth: true,
+            endpoint: true,
+            expirationTime: true,
+            p256dh: true,
+            clientId: true,
+        }]
+    }, { operationName: "getSubsId" });
+    if(Array.isArray(response.notification_subscription)) {
+        return {
+            status: dbResStatus.Ok,
+            subs: response.notification_subscription as NotifSubType[]
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}

@@ -22,7 +22,7 @@ export const HASURA_ADMIN_SECRET =
 
 export const JWT =
   process.env.AUTH_JWT ||
-  "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAzV+GuQ2lQ0CWgnNloOr8\nAbSRem6A9Jh72Wn1oP3HZ/lYq10/kY398CL2777Xb6QYYSn/vwBsIwuQ3HjoR0gN\nNSWzzks/nOrbOK9coS8j5vlg/L6YACawCfUEM07JkeoK19dYTWg/8VctaNefmR53\nLmLBs7jtX1yn7Eo/lDtdaVT1P+amb2tNAyJ/2yFi717yLRcsAmtjmSkJRcuUhs6q\nLkoPvaVYLqFddhDJte/Hphz+MHGC11PanvbjE04STUpEMw6wACVKFQj+094fQW2s\njhfU7xdLxv3h+zshD+CBC9qDN5AvHN4FM1YJj8uahqUUydUiGcscr2KBXegNEJJX\nELzkxV1ohrcq8jV92CZ4V7WNRxDpcwdTxtGs5pR1eqkexBFhliQ8wf/AUVlis/UK\nlnqBR7ycz53Mztzgsvpzi36tJ0S+bWqrTgHEog9v88M69qayVN6UG59voWVVrQvL\ngj+35acKpRF5/mQqOzwt/8xihenvGCcgkrWUKTUAaMC/wX6BeEdwLcRROI4rbnN/\njulRfCfXbvLEr7rBkaaPwcPOc8YDZpxXW+DYaOr8qsjJ992HmnlC6SDKZbeSo8o2\nmrPZR+5mCFvzhllM4S6qsHL4VrUfU2T88v2JQYe5uiG29flkZXacRRgZLborz5qa\njbR9dShyu2e/mXjoqgc71ZUCAwEAAQ==\n-----END PUBLIC KEY-----";
+  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsiYWRtaW4iXSwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjY0MjQ3NzE2fQ.RMvnfvZtfhgQvCGj5HeT_4qDk1jjGTVLvO4hXQhxvH1QOU3E4yWv5rqDwhGeH9m2aZh7EiV8s3zQ70XkvPV-TA";
 
 export const AUTH_JWT_PUBLIC_KEY =
   process.env.AUTH_JWT_PUBLIC_KEY ||
@@ -61,13 +61,13 @@ export const R2_TOKEN = process.env.R2_TOKEN || "";
 export const CHAT_REDIS_URL = process.env.CHAT_REDIS_URL || "redis://localhost:6379";
 
 export const NOTIF_KAFKA_URL =
-    process.env.NOTIF_KAFKA_URL || KAFKA_NOTIF_URL;
+  process.env.NOTIF_KAFKA_URL || KAFKA_NOTIF_URL;
 
 export const NOTIF_KAFKA_ID =
-    process.env.NOTIF_KAFKA_ID || KAFKA_NOTIF_CLIENT_ID;
+  process.env.NOTIF_KAFKA_ID || KAFKA_NOTIF_CLIENT_ID;
 
 export const CHAT_KAFKA_URL =
-    process.env.CHAT_KAFKA_URL || KAFKA_URL;
+  process.env.CHAT_KAFKA_URL || KAFKA_URL;
 
 export const CHAT_KAFKA_ID =
-    process.env.CHAT_KAFKA_ID || KAFKA_CLIENT_ID;
+  process.env.CHAT_KAFKA_ID || KAFKA_CLIENT_ID;

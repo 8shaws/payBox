@@ -20,6 +20,10 @@ import {
 import Link from "next/link";
 import { get } from "http";
 import { Clock4 } from "lucide-react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { clientJwtAtom, notifsAtom } from "@paybox/recoil";
+import { toast } from "sonner";
+import { updateNotif } from "@/lib/helper";
 
 export const columns: ColumnDef<NotifType>[] = [
   {
@@ -142,7 +146,7 @@ export const columns: ColumnDef<NotifType>[] = [
   },
   
   {
-    accessorKey: "timestamp",
+    accessorKey: "priority",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
     ),
@@ -179,27 +183,43 @@ export const columns: ColumnDef<NotifType>[] = [
       return value.includes(row.getValue(id));
     },
   },
-  {
-    accessorKey: "viewed",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tick" />
-    ),
-    cell: ({ row }) => {
-
-      return (
-        <div className="flex ml-2">
-          {!row.original.viewed && <Checkbox
-            onCheckedChange={(value) => {
-              //todo: call the api to update the viewed status
-            }}
-            className="translate-y-[2px]"
-          />}
-        </div>
-      );
-    },
-    enableSorting: false,
-    enableHiding: false,
-  },
+  // {
+  //   accessorKey: "viewed",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Tick" />
+  //   ),
+  //   cell: ({ row }) => {
+  //     const jwt = useRecoilValue(clientJwtAtom);
+  //     const setNotifs = useSetRecoilState(notifsAtom);
+  //     return (
+  //       <div className="flex ml-2">
+  //         {<Checkbox
+  //           checked={row.getValue("viewed")}
+  //           onCheckedChange={(value) => {
+  //             toast.promise(updateNotif(jwt as string, row.original.id), {
+  //               loading: "Updating...",
+  //               success: () => {
+  //                 setNotifs((oldNotifs) => {
+  //                   return oldNotifs.map((notif) => {
+  //                     if (notif.id === row.original.id) {
+  //                       return { ...notif, viewed: true };
+  //                     }
+  //                     return notif;
+  //                   });
+  //                 });
+  //                 return "Notification Marked as Viewed.."
+  //               },
+  //               error: "Error updating notification",
+  //             })
+  //           }}
+  //           className="translate-y-[2px]"
+  //         />}
+  //       </div>
+  //     );
+  //   },
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,

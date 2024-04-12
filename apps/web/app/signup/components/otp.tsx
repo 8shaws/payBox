@@ -49,7 +49,7 @@ export function OTPForm() {
                 },
             }).then((res) => res.json()), {
             loading: "Validating OTP",
-            success: async ({ status, msg, valid, walletId, account }) => {
+            success: ({ status, msg, valid, walletId, account }) => {
                 // TODO: Add the walletId to the session
                 if (status === responseStatus.Ok) {
                     session.update()

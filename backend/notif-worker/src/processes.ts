@@ -1,10 +1,12 @@
-import { NotifTopics, OTP_CACHE_EXPIRE, TOTP_DIGITS, TOTP_TIME, dbResStatus } from "@paybox/common";
+import { MsgTopics, NotifTopics, OTP_CACHE_EXPIRE, TOTP_DIGITS, TOTP_TIME, TopicTypes, dbResStatus } from "@paybox/common";
 import { getClientFriendship } from "./db/friendship";
 import { getUsername } from "./db/client";
 import { notify } from "./notifier";
 import { getTxnDetails } from "./db/txn";
 import { RedisBase, upadteMobileEmail } from "@paybox/backend-common";
 import { genOtp, sendOTP } from "./auth/utils";
+import { addNotif } from "./db/notif";
+import { getSubs, getSubsId } from "./db/notif-sub";
 
 /**
  * 
@@ -39,7 +41,8 @@ export const notifyFriendRequest = async (
         vibrate: [200, 100, 200],
         payload: {
             friendshipId
-        }
+        },
+        topic: TopicTypes.Notif
     });
 };
 
@@ -70,7 +73,8 @@ export const notifyFriendRequestAccepted = async (
         vibrate: [200, 100, 200],
         payload: {
             friendshipId
-        }
+        },
+        topic: TopicTypes.Notif
     });
 }
 
@@ -101,7 +105,8 @@ export const notifyFriendRequestRejected = async (
         vibrate: [200, 100, 200],
         payload: {
             friendshipId
-        }
+        },
+        topic: TopicTypes.Notif
     });
 }
 
@@ -137,7 +142,8 @@ export const notifyReceiveTxn = async (
         vibrate: [200, 100, 200],
         payload: {
             txnId
-        }
+        },
+        topic: TopicTypes.Notif
     });
 }
 
@@ -180,7 +186,8 @@ export const notifyPaid = async (
         vibrate: [200, 100, 200],
         payload: {
             txnId
-        }
+        },
+        topic: TopicTypes.Notif
     });
 }
 
@@ -198,10 +205,34 @@ export const otpSendProcess = async (
     email: string,
     clientId: string
 ): Promise<void> => {
-    const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
+    try {
+        
+        const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
         await sendOTP(name, email, otp, Number(mobile));
         await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
+    
+        const { status, subs } = await getSubsId(clientId);
+        if (status == dbResStatus.Error || !subs) {
+          return;
+        }
+        const mutate = await addNotif(
+            clientId,
+            "Validation Otp send",
+            "Paybox validation service",
+            new Date().toISOString(),
+            subs,
+            null,
+            MsgTopics.SendOtp,
+            TopicTypes.Msg
+        );
+        if (mutate.status == dbResStatus.Error) {
+            console.error('Error adding notification to db.');
+        }
         return;
+    } catch (error) {
+        console.log(error);
+        return;
+    }
 }
 
 /**
@@ -218,13 +249,38 @@ export const resendOtpProcess = async (
     email: string,
     clientId: string
 ): Promise<void> => {
-    const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
-    await sendOTP(name, email, otp, Number(mobile));
-    console.log(clientId);
-    await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
-    const { status } = await upadteMobileEmail(clientId, Number(mobile), email);
-    if (status == dbResStatus.Error) {
-        throw new Error("Error updating mobile and email");
+    try {
+        
+        const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
+        await sendOTP(name, email, otp, Number(mobile));
+        await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
+
+        const updateQuery = await upadteMobileEmail(clientId, Number(mobile), email);
+        if (updateQuery.status == dbResStatus.Error) {
+            throw new Error("Error updating mobile and email");
+        }
+    
+        const { status, subs } = await getSubsId(clientId);
+            if (status == dbResStatus.Error || !subs) {
+              return;
+            }
+            const mutate = await addNotif(
+                clientId,
+                "Validation Otp send",
+                "Paybox validation service",
+                new Date().toISOString(),
+                subs,
+                null,
+                MsgTopics.ResendOtp,
+                TopicTypes.Msg
+            );
+            if (mutate.status == dbResStatus.Error) {
+                console.error('Error adding notification to db.');
+            }
+    
+        return;
+    } catch (error) {
+        console.log(error);
+        return;
     }
-    return;
 }
