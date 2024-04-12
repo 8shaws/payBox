@@ -171,16 +171,18 @@ export const getNotifs = async ({
   jwt,
   limit = 25,
   offset = 0,
-  topic = "notif"
+  topic = "notif",
+  viewed = false
 }: {
   jwt: string,
   limit?: number,
   offset?: number,
-  topic: string
+  topic: string,
+  viewed?: boolean
 }): Promise<NotifType[]> => {
   try {
     const { status, notifs }: { status: responseStatus, notifs: NotifType[] } =
-      await fetch(`${BACKEND_URL}/notif?limit=${limit}&offset=${offset}&topic=${topic}`, {
+      await fetch(`${BACKEND_URL}/notif?limit=${limit}&offset=${offset}&topic=${topic}&viewed=${viewed}`, {
         method: "get",
         headers: {
           "Content-type": "application/json",
@@ -226,5 +228,36 @@ export const updateNotif = async (
   } catch (error) {
     console.log(error);
     return;
+  }
+}
+
+/**
+ * 
+ * @param jwt 
+ * @param notifIds 
+ * @returns 
+ */
+export const markViewed = async (
+  jwt: string, 
+  notifIds: string[]
+): Promise<{status: responseStatus, msg?: string}> => {
+  try {
+    const {status}: {status: responseStatus} = await fetch(`${BACKEND_URL}/notif/viewed`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${jwt}`,
+      },
+      body: JSON.stringify({ ids: notifIds }),
+      cache: "no-cache"
+    }).then(res => res.json());
+    if(status === responseStatus.Error) {
+      console.log("error marking notifications as viewed");
+      return Promise.reject({msg: "error marking notifications as viewed", status: responseStatus.Error});
+    }
+    return Promise.resolve({status: responseStatus.Ok});
+  } catch (error) {
+    console.log(error);
+    return Promise.reject({msg: "error marking notifications as viewed", status: responseStatus.Error});
   }
 }
