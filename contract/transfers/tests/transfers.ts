@@ -6,9 +6,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const idl = JSON.parse(fs.readFileSync('./target/idl/paybox_txn.json', 'utf8'));
+const idl = JSON.parse(fs.readFileSync('./target/idl/solana_lamport_transfer.json', 'utf8'));
 
-const programId = new anchor.web3.PublicKey(process.env.PROGRAM_ID as string);
+const programId = new anchor.web3.PublicKey("4i1c9jaTU1ZAnfnAVF1DqPeJVaw1vNMY9FYNJP5ALq5t");
 const provider = anchor.AnchorProvider.env();
 anchor.setProvider(provider);
 // const program = anchor.workspace.PayboxTxn,
@@ -17,20 +17,25 @@ const program = new anchor.Program(idl, programId, provider);
 
 async function main() {
   // let seed = anchor.utils.bytes.utf8.encode(`paybox`);
-  let clientSeed = anchor.utils.bytes.utf8.encode(`account`);
-  let clientPubkey: PublicKey;
-  [clientPubkey] = anchor.web3.PublicKey.findProgramAddressSync(
-    [clientSeed],
-    program.programId
-  );
-  // await provider.connection.requestAirdrop(client.publicKey, 10000000);
+  let to = Keypair.fromSecretKey(new Uint8Array(decode(process.env.TO!)));
+  let from = Keypair.fromSecretKey(new Uint8Array(decode(process.env.FROM!)));
+  // let clientSeed = Buffer.concat([
+  //   Buffer.from("account"),
+  //   demoKeyPair.publicKey.toBuffer().subarray(0, 24),
+  // ])
+  // let [clientAddress, clientBump] = await anchor.web3.PublicKey.findProgramAddress(
+  //   [clientSeed],
+  //   program.programId
+  // );
+  // await provider.connection.requestAirdrop(from.publicKey, 10000000);
   const tx = await program.methods
-    .addAccount(programId)
+    .transferLamports(new anchor.BN(1000000))
     .accounts({
-      client: clientPubkey,
-      authority: provider.wallet.publicKey,
+      from: from.publicKey,
+      to: to.publicKey,
       systemProgram: SystemProgram.programId,
     })
+    .signers([from])
     .rpc();
 
   console.log('Transaction', tx)
@@ -38,16 +43,16 @@ async function main() {
   console.log('Success', tx)
   // const account = await program.account.client.fetch(clientPubkey);
   // console.log('Account', account);
-  const getLenTx = await program.methods
-    .getLength()
-    .accounts({
-      client: clientPubkey,
-      authority: provider.wallet.publicKey,
-    })
-    .rpc();
+  // const getLenTx = await program.methods
+  //   .getLength()
+  //   .accounts({
+  //     client: clientAddress,
+  //     authority: provider.wallet.publicKey,
+  //   })
+  //   .rpc();
 
-  await provider.connection.confirmTransaction(getLenTx, 'processed');
-  console.log('Transaction', getLenTx)
+  // await provider.connection.confirmTransaction(getLenTx, 'processed');
+  // console.log('Transaction', getLenTx)
 }
 
 main().catch(console.error);
