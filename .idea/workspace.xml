@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68b95ec0-bf7d-419c-b9b9-0866ed110dbf" name="Changes" comment="" />
+    <list default="true" id="68b95ec0-bf7d-419c-b9b9-0866ed110dbf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/transfers/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/transfers/Anchor.toml" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/Anchor.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/transfers/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/transfers/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/transfers/programs/transfers/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/programs/transfers/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/transfers/programs/transfers/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/programs/transfers/src/lib.rs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +42,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;chat&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;transfer&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -64,6 +74,8 @@
       <workItem from="1710590254900" duration="3697000" />
       <workItem from="1710945967098" duration="5000" />
       <workItem from="1710982257738" duration="8000" />
+      <workItem from="1713001219497" duration="47000" />
+      <workItem from="1713001275540" duration="151000" />
     </task>
     <servers />
   </component>

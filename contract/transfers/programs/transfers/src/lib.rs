@@ -1,101 +1,36 @@
-use anchor_lang::prelude::*;
-use std::mem::size_of;
-use std::ops::DerefMut;
-use anchor_lang::solana_program::{
-    pubkey::Pubkey,
-};
+#![cfg_attr(not(debug_assertions), deny(warnings))]
 
-declare_id!("AGXridxL3idGh8HJThTWciVEAAtqA7NKm7hEF5vDRJvE");
+use anchor_lang::prelude::*;
+
+pub mod instructions;
+use instructions::*;
+
+#[cfg(not(feature = "no-entrypoint"))]
+use solana_security_txt::security_txt;
+
+declare_id!("UdwTHQ9ag5Cvjo1ZMPg3zqTeX1aodFAtVzrnwFGZYhb");
+
+#[cfg(not(feature = "no-entrypoint"))]
+security_txt! {
+    name: "Paybox Wallet Transfer Program",
+    project_url: "https://github.com/shawakash/payBox",
+    contacts: "mailto:dev.paybox@gmail.com",
+    policy: "https://github.com/shawakash/payBox/blob/dev/SECURITY.md",
+    preferred_languages: "en",
+    source_code: "https://github.com/shawakash/payBox",
+    source_release: "v0",
+    auditors: "https://github.com/shawakash/"
+}
 
 #[program]
-mod paybox_txn {
+pub mod paybox {
     use super::*;
 
-    pub fn get_length(ctx: Context<GetLength>) -> Result<usize> {
-        require_keys_eq!(
-            ctx.accounts.authority.key(),
-            ctx.accounts.client.authority,
-            ErrorCode::Unauthorized
-        );
-
-        let client = &mut ctx.accounts.client;
-        let txn = &client.transactions;
-        msg!("Txn Length: # {}", txn.len());
-        Ok(txn.len())
+    pub fn transfer_lamports(ctx: Context<TransferSol>, amount: u64) -> Result<()> {
+        instructions::transfer::transfer_lamports(ctx, amount)
     }
 
-    // pub fn transer() -> Result<()> {
-
-    // }
-
-    pub fn add_account(ctx: Context<AddAccount>, _program_id: Pubkey) -> Result<()> {
-        let client = ctx.accounts.client.deref_mut();
-        let bump = ctx.bumps.client;
-
-        *client = AccountData {
-            authority: *ctx.accounts.authority.key,
-            bump,
-            transactions: [].to_vec(),
-        };
-
-        msg!("Initialized new client with default account with txn: {}!", client.transactions.len());
-        Ok(())
+    pub fn transfer_spl_tokens(ctx: Context<TransferSpl>, amount: u64) -> Result<()> {
+        instructions::transfer::transfer_spl_tokens(ctx, amount)
     }
 }
-
-#[error_code]
-pub enum ErrorCode {
-    #[msg("You are not authorized to perform this action.")]
-    Unauthorized,
-}
-
-#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
-pub struct Counter {
-    pub count: u64
-}
-
-#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
-pub struct Transaction {
-    pub sender: Pubkey,
-    pub receiver: Pubkey,
-    pub amount: u64,
-}
-
-#[account]
-pub struct AccountData {
-    pub authority: Pubkey,
-    pub bump: u8,
-    pub transactions: Vec<Transaction>,
-}
-
-#[derive(Accounts)]
-pub struct GetLength<'info> {
-    #[account(
-        mut,
-        seeds = [b"account".as_ref()],
-        bump = client.bump
-    )]
-    pub client: Account<'info, AccountData>,
-    #[account(mut)]
-    authority: Signer<'info>,
-}
-
-#[derive(Accounts)]
-pub struct AddAccount<'info> {
-    #[account(
-        init, 
-        payer = authority, 
-        space = size_of::<AccountData>(), 
-        seeds = [b"account".as_ref()], 
-        bump
-    )]
-    pub client: Account<'info, AccountData>,
-    #[account(mut)]
-    authority: Signer<'info>,
-    pub system_program: Program<'info, System>,
-}
-
-// #[derive(Accounts)]
-// pub struct Transfer<'info> {
-//     #[account()]
-// }
