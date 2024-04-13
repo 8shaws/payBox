@@ -1,101 +1,41 @@
 use anchor_lang::prelude::*;
-use std::mem::size_of;
-use std::ops::DerefMut;
-use anchor_lang::solana_program::{
-    pubkey::Pubkey,
-};
+use anchor_spl::token::{self, Token, TokenAccount, Transfer as SplTransfer};
+use anchor_lang::solana_program::system_instruction;
 
-declare_id!("AGXridxL3idGh8HJThTWciVEAAtqA7NKm7hEF5vDRJvE");
+declare_id!("47oqMxTiA7unK5K8fjrQVW6JjPx5R2TnUgZ24sFjcw9J");
 
 #[program]
-mod paybox_txn {
+pub mod solana_lamport_transfer {
     use super::*;
+    pub fn transfer_lamports(ctx: Context<TransferLamports>, amount: u64) -> Result<()> {
+        let from_account = &ctx.accounts.from;
+        let to_account = &ctx.accounts.to;
 
-    pub fn get_length(ctx: Context<GetLength>) -> Result<usize> {
-        require_keys_eq!(
-            ctx.accounts.authority.key(),
-            ctx.accounts.client.authority,
-            ErrorCode::Unauthorized
-        );
+        // Create the transfer instruction
+        let transfer_instruction = system_instruction::transfer(from_account.key, to_account.key, amount);
 
-        let client = &mut ctx.accounts.client;
-        let txn = &client.transactions;
-        msg!("Txn Length: # {}", txn.len());
-        Ok(txn.len())
-    }
+        // Invoke the transfer instruction
+        anchor_lang::solana_program::program::invoke_signed(
+            &transfer_instruction,
+            &[
+                from_account.to_account_info(),
+                to_account.clone(),
+                ctx.accounts.system_program.to_account_info(),
+            ],
+            &[],
+        )?;
 
-    // pub fn transer() -> Result<()> {
-
-    // }
-
-    pub fn add_account(ctx: Context<AddAccount>, _program_id: Pubkey) -> Result<()> {
-        let client = ctx.accounts.client.deref_mut();
-        let bump = ctx.bumps.client;
-
-        *client = AccountData {
-            authority: *ctx.accounts.authority.key,
-            bump,
-            transactions: [].to_vec(),
-        };
-
-        msg!("Initialized new client with default account with txn: {}!", client.transactions.len());
         Ok(())
     }
 }
 
-#[error_code]
-pub enum ErrorCode {
-    #[msg("You are not authorized to perform this action.")]
-    Unauthorized,
-}
 
-#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
-pub struct Counter {
-    pub count: u64
-}
-
-#[derive(AnchorSerialize, AnchorDeserialize, Clone)]
-pub struct Transaction {
-    pub sender: Pubkey,
-    pub receiver: Pubkey,
-    pub amount: u64,
-}
-
-#[account]
-pub struct AccountData {
-    pub authority: Pubkey,
-    pub bump: u8,
-    pub transactions: Vec<Transaction>,
-}
 
 #[derive(Accounts)]
-pub struct GetLength<'info> {
-    #[account(
-        mut,
-        seeds = [b"account".as_ref()],
-        bump = client.bump
-    )]
-    pub client: Account<'info, AccountData>,
+pub struct TransferLamports<'info> {
     #[account(mut)]
-    authority: Signer<'info>,
-}
-
-#[derive(Accounts)]
-pub struct AddAccount<'info> {
-    #[account(
-        init, 
-        payer = authority, 
-        space = size_of::<AccountData>(), 
-        seeds = [b"account".as_ref()], 
-        bump
-    )]
-    pub client: Account<'info, AccountData>,
+    pub from: Signer<'info>,
     #[account(mut)]
-    authority: Signer<'info>,
+    pub to: AccountInfo<'info>,
     pub system_program: Program<'info, System>,
 }
-
-// #[derive(Accounts)]
-// pub struct Transfer<'info> {
-//     #[account()]
-// }
