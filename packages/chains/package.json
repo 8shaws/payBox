@@ -5,7 +5,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "private": "true",
-  "author": "",
+  "author": "Paybox",
   "description": "Onchain helper functions and constants for Paybox",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
