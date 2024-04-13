@@ -6,9 +6,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const idl = JSON.parse(fs.readFileSync('./target/idl/solana_lamport_transfer.json', 'utf8'));
+const idl = JSON.parse(fs.readFileSync('./target/idl/paybox.json', 'utf8'));
 
-const programId = new anchor.web3.PublicKey("4i1c9jaTU1ZAnfnAVF1DqPeJVaw1vNMY9FYNJP5ALq5t");
+const programId = new anchor.web3.PublicKey("UdwTHQ9ag5Cvjo1ZMPg3zqTeX1aodFAtVzrnwFGZYhb");
 const provider = anchor.AnchorProvider.env();
 anchor.setProvider(provider);
 // const program = anchor.workspace.PayboxTxn,
