@@ -12,15 +12,16 @@ import {
 } from "@solana/spl-token";
 import { TokenContract } from '../target/types/token_contract';
 import { BN } from 'bn.js';
+import { Program } from '@coral-xyz/anchor';
 dotenv.config();
 
 
 const idl = JSON.parse(fs.readFileSync('./target/idl/token_contract.json', 'utf8'));
 
-const programId = new anchor.web3.PublicKey("2q1PSEpwKHp2SM6wUnEceV8jaLLpmGMxK3mnoRmduX9i");
+const programId = new anchor.web3.PublicKey("5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6");
 const provider = anchor.AnchorProvider.env();
 anchor.setProvider(provider);
-const program = new anchor.Program(idl as anchor.Idl, programId, provider);
+const program = anchor.workspace.TokenContract as Program<TokenContract>;
 
 async function main() {
 
@@ -64,7 +65,7 @@ async function main() {
   const res = await provider.sendAndConfirm(mint_tx, [mint]);
 
   console.log(
-    await program.provider.connection.getParsedAccountInfo(mint.publicKey)
+    await provider.connection.getParsedAccountInfo(mint.publicKey)
   );
 
   console.log("Account: ", res);
@@ -86,8 +87,45 @@ async function main() {
 
   // Get minted token amount on the ATA for our anchor wallet
   //@ts-ignore
-  const minted = (await program.provider.connection.getParsedAccountInfo(associatedTokenAccount)).value.data.parsed.info.tokenAmount.uiAmount;
+  const minted = (await provider.connection.getParsedAccountInfo(associatedTokenAccount)).value.data.parsed.info.tokenAmount.uiAmount;
   console.log("Minted: ", minted);
+
+
+  // testing the transfer
+  const toWallet: anchor.web3.Keypair = anchor.web3.Keypair.generate();
+  // The ATA for a token on the to wallet (but might not exist yet)
+  const toATA = await getAssociatedTokenAddress(
+    mint.publicKey,
+    toWallet.publicKey
+  );
+  console.log("To ATA: ", toATA.toString());
+
+  // Fires a list of instructions
+  // create the ata if not exist
+  const transfer_tx = new anchor.web3.Transaction().add(
+    // Create the ATA account that is associated with our To wallet
+    createAssociatedTokenAccountInstruction(
+      key, toATA, toWallet.publicKey, mint.publicKey
+    )
+  );
+
+  // Sends and create the transaction
+  await provider.sendAndConfirm(transfer_tx, []);
+
+  // Executes our transfer smart contract 
+  await program.methods
+    .transferToken(new BN(500000)).accounts({
+      tokenProgram: TOKEN_PROGRAM_ID,
+      from: associatedTokenAccount,
+      fromAuthority: key,
+      to: toATA,
+    }).rpc();
+
+  // Get minted token amount on the ATA for our anchor wallet
+  //@ts-ignore
+  const transferminted = (await program.provider.connection.getParsedAccountInfo(associatedTokenAccount)).value.data.parsed.info.tokenAmount.amount;
+  console.log("Minted: ", transferminted);
+
 }
 
 main().catch(console.error);
