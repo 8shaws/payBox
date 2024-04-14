@@ -3,7 +3,7 @@ use anchor_spl::token;
 use anchor_spl::token::{Token, MintTo, Transfer};
 
 
-declare_id!("2q1PSEpwKHp2SM6wUnEceV8jaLLpmGMxK3mnoRmduX9i");
+declare_id!("5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6");
 
 #[program]
 pub mod token_contract {
@@ -27,7 +27,23 @@ pub mod token_contract {
         Ok(())
     }
 
-    g
+    pub fn transfer_token(ctx: Context<TransferToken>, amount: u64) -> Result<()> {
+        // Create the Transfer struct for our context
+        let transfer_instruction = Transfer{
+            from: ctx.accounts.from.to_account_info(),
+            to: ctx.accounts.to.to_account_info(),
+            authority: ctx.accounts.from_authority.to_account_info(),
+        };
+         
+        let cpi_program = ctx.accounts.token_program.to_account_info();
+        // Create the Context for our Transfer request
+        let cpi_ctx = CpiContext::new(cpi_program, transfer_instruction);
+
+        // Execute anchor's helper function to transfer tokens
+        anchor_spl::token::transfer(cpi_ctx, amount)?;
+ 
+        Ok(())
+    }
 
 }
 
@@ -45,3 +61,15 @@ pub struct MintToken<'info> {
     pub authority: AccountInfo<'info>,
 }
 
+#[derive(Accounts)]
+pub struct TransferToken<'info> {
+    pub token_program: Program<'info, Token>,
+    /// CHECK: The associated token account that we are transferring the token from
+    #[account(mut)]
+    pub from: UncheckedAccount<'info>,
+    /// CHECK: The associated token account that we are transferring the token to
+    #[account(mut)]
+    pub to: AccountInfo<'info>,
+    // the authority of the from account 
+    pub from_authority: Signer<'info>,
+}
