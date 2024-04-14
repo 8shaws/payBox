@@ -3,13 +3,14 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
+token_contract = "CnQY56UWDHc6kkeENU7jp4QZEkEpUsE3cJNKRm9Q5qvK"
 transfers = "UdwTHQ9ag5Cvjo1ZMPg3zqTeX1aodFAtVzrnwFGZYhb"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "Devnet"
 wallet = "/Users/phillo/.config/solana/id.json"
 
 [scripts]
