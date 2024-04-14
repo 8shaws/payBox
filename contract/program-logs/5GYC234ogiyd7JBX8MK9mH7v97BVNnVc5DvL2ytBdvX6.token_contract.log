@@ -1,0 +1,38 @@
+Streaming transaction logs mentioning 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6. Confirmed commitment
+Transaction executed in slot 292341638:
+  Signature: 2tq4R3LBbeeCnvn4FFKrRJxtYafR6CLcT1gQYEs88BMzEXUrRBTkyST4SmWvdTSbDnBhtMoTgYma2yzxDmTGFPM8
+  Status: Ok
+  Log Messages:
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 invoke [1]
+    Program log: Instruction: MintToken
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
+    Program log: Instruction: MintTo
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 4538 of 196020 compute units
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 consumed 8734 of 200000 compute units
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 success
+Transaction executed in slot 292341640:
+  Signature: 2tq4R3LBbeeCnvn4FFKrRJxtYafR6CLcT1gQYEs88BMzEXUrRBTkyST4SmWvdTSbDnBhtMoTgYma2yzxDmTGFPM8
+  Status: Ok
+  Log Messages:
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 invoke [1]
+    Program log: Instruction: MintToken
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
+    Program log: Instruction: MintTo
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 4538 of 196020 compute units
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 consumed 8734 of 200000 compute units
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 success
+Transaction executed in slot 292341652:
+  Signature: 2YqYnJTowtoKT9AJ1GvGWqDoEuCAdttc9UbdrRDphHe79Riu6KDUWFSMJHCndPkoWtNe1YEHEPn3FqCND5G1CGfz
+  Status: Ok
+  Log Messages:
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 invoke [1]
+    Program log: Instruction: TransferToken
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
+    Program log: Instruction: Transfer
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 4645 of 196008 compute units
+    Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 consumed 8853 of 200000 compute units
+    Program 5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6 success
+Disconnected: receiving on an empty and disconnected channel
