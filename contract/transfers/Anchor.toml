@@ -3,7 +3,7 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
-token_contract = "CnQY56UWDHc6kkeENU7jp4QZEkEpUsE3cJNKRm9Q5qvK"
+token_contract = "2q1PSEpwKHp2SM6wUnEceV8jaLLpmGMxK3mnoRmduX9i"
 transfers = "UdwTHQ9ag5Cvjo1ZMPg3zqTeX1aodFAtVzrnwFGZYhb"
 
 [registry]
