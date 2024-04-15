@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { TopicTypes } from "../types";
+import { TopicTypes } from "../enum";
 
 export const SubscibeValid = z.object({
     endpoint: z.string(),

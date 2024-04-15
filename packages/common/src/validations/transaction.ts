@@ -8,7 +8,7 @@ import {
   isEthereumPrivateKey,
   isSolanaAddress,
 } from "../constant";
-import { Network } from "../types";
+import { Network } from "../enum";
 import { Cluster } from "@solana/web3.js";
 
 const AddressType = z.union([
