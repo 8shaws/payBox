@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FriendshipStatusEnum } from "../types";
+import { FriendshipStatusEnum } from "../enum";
 
 export const RequestFriendshipValid = z.object({
     username: z

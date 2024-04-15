@@ -1,0 +1,26 @@
+table:
+  name: client_settings
+  schema: public
+configuration:
+  column_config:
+    client_id:
+      custom_name: clientId
+    created_at:
+      custom_name: createdAt
+    prefered_explorer:
+      custom_name: preferedExplorer
+    prefered_wallet:
+      custom_name: preferedWallet
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    client_id: clientId
+    created_at: createdAt
+    prefered_explorer: preferedExplorer
+    prefered_wallet: preferedWallet
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+  - name: client
+    using:
+      foreign_key_constraint_on: client_id

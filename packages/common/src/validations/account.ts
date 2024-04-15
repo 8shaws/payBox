@@ -1,5 +1,5 @@
 import z from "zod";
-import { Network } from "../types";
+import { Network } from "../enum";
 import { isBitcoinPrivateKey, isBitcoinPublicKey, isEthereumPrivateKey, isEthereumPublicKey, isSolanaAddress, isSolanaPrivateKey, secretPhraseRefine } from "../constant";
 import { SolKeyParser } from "./sol";
 import { EthKeyParser } from "./eth";

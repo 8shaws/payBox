@@ -1,0 +1,26 @@
+table:
+  name: centralized_txn
+  schema: public
+configuration:
+  column_config:
+    account_id:
+      custom_name: accountId
+    client_id:
+      custom_name: clientId
+    created_at:
+      custom_name: createdAt
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    account_id: accountId
+    client_id: clientId
+    created_at: createdAt
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+  - name: account
+    using:
+      foreign_key_constraint_on: account_id
+  - name: client
+    using:
+      foreign_key_constraint_on: client_id

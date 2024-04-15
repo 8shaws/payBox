@@ -1,4 +1,4 @@
-import { Network } from "./types";
+import { Network } from "./enum";
 import { Cluster } from "@solana/web3.js";
 
 export const PORT: number = 8080;

@@ -3237,6 +3237,11 @@
   resolved "https://registry.npmjs.org/@mobily/ts-belt/-/ts-belt-3.13.1.tgz"
   integrity sha512-K5KqIhPI/EoCTbA6CGbrenM9s41OouyK8A03fGJJcla/zKucsgLbz8HNbeseoLarRPgyWJsUyCYqFhI7t3Ra9Q==
 
+"@moonpay/moonpay-node@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@moonpay/moonpay-node/-/moonpay-node-0.2.5.tgz#e5450eb10b041b6f9094f7f9a6671c788aeebfb1"
+  integrity sha512-GZUBovahXfhMftaKfbKOLzbpvZ/z7qa/t2QWWw2oEbxMPjndb517b5OLQTlQ9HIINWnjZqTuprFM0HHaIH4XGQ==
+
 "@napi-rs/snappy-android-arm-eabi@7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@napi-rs/snappy-android-arm-eabi/-/snappy-android-arm-eabi-7.2.2.tgz#85fee3ba198dad4b444b5f12bceebcf72db0d65e"

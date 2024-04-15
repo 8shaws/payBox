@@ -265,13 +265,13 @@ export const encryptWithPassword = (
   const hashedPassword = crypto.createHash('sha256').update(password).digest();
   const iv = crypto.randomBytes(16);
   const cipher = crypto.createCipheriv('aes-256-cbc', hashedPassword, iv);
-  
+
   let encryptedPrivateKey = cipher.update(privateKey, 'utf8', 'hex');
   encryptedPrivateKey += cipher.final('hex');
 
   const commonCipherIv = crypto.randomBytes(16);
   const commonCipher = crypto.createCipheriv('aes-256-cbc', commonEncryptionKey, commonCipherIv);
-  
+
   encryptedPrivateKey = commonCipher.update(encryptedPrivateKey, 'hex', 'hex');
   encryptedPrivateKey += commonCipher.final('hex');
 
@@ -302,4 +302,8 @@ export const decryptWithPassword = (
   privateKey += decipher.final('utf8');
 
   return privateKey;
+}
+
+export const generateUUID = () => {
+  return uuidv4();
 }

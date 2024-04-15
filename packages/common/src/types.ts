@@ -15,38 +15,13 @@ import {
 import {Message} from "@solana/web3.js";
 import {BitcoinCluster, EthCluster, USDCCluster} from "./constant";
 import {Cluster} from "@solana/web3.js";
+import { BitcoinChainId, BitcoinToken, EthChainId, EthToken, MsgTopics, Network, NotifTopics, SolChainId, SolToken, TopicTypes, WsMessageTypeEnum, hookStatus } from "./enum";
 
-export enum Network {
-    Sol = "sol",
-    Eth = "eth",
-    Bitcoin = "bitcoin",
-    USDC = "usdc",
-}
+
 
 export type Client = z.infer<typeof ClientSignupFormValidate> & { id: string, valid: boolean };
 
-export enum SignType {
-    Signin = "Signin",
-    Signout = "Signout",
-    Signup = "Signup",
-}
-
 export type ClientForm = z.infer<typeof ClientSignupFormValidate>;
-
-export enum responseStatus {
-    Error = "error",
-    Ok = "ok",
-}
-
-export enum wsResponseStatus {
-    Error = "error",
-    Ok = "ok",
-}
-
-export enum hookStatus {
-    Error = "error",
-    Ok = "ok",
-}
 
 export type useSignUpHookProps = {
     status: hookStatus;
@@ -118,41 +93,11 @@ export type PublishType = {
     }>;
 };
 
-export enum dbResStatus {
-    Error = "error",
-    Ok = "ok",
-}
-
-export enum Partitions {
-    SolTxn = "solTxn",
-    EthTxn = "ethTxn",
-    BtcTxn = "btcTxn",
-    USDCTxn = "usdcTxn",
-}
-
-export enum Topics {
-    Txn = "transaction",
-    Client = "client",
-}
 
 export type TxnSolana = {
     message: Message;
     signatures: string[];
 };
-
-export enum SolToken {
-    Lamp = "lamp",
-    Sol = "sol",
-}
-
-export enum EthToken {
-    Eth = "eth",
-    Gwei = "gwei",
-}
-
-export enum BitcoinToken {
-    Bitcoin = "bitcoin",
-}
 
 export type Token = SolToken | EthToken | BitcoinToken;
 
@@ -216,31 +161,6 @@ export type UsdcKey = {
     textnetUsdc: number,
 }
 
-export enum CoinType {
-    Sol = "501",
-    Eth = "60",
-    Bitcoin = "0"
-}
-
-export enum EthChainId {
-    Mainnet = "epi155:1",
-    Goerli = "epi155:5",
-    Kovan = "epi155:42",
-    Rinkeby = "epi155:4",
-    Ropsten = "epi155:3",
-    Sepolia = "epi155:1337",
-}
-
-export enum BitcoinChainId {
-    Mainnet = "bip122:000000000019d6689c085ae165831e93",
-    Testnet = "bip122:000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"
-}
-
-export enum SolChainId {
-    Mainnet = "solana:101",
-    Devnet = "solana:101",
-    Testnet = "solana:101"
-}
 
 export type EthChain = {
     chainId: EthChainId,
@@ -270,25 +190,11 @@ export type ChainAccountPrivate = ChainAccount & WalletKeys;
 
 export type NetworkPublicKeyType = z.infer<typeof networkPublicKey>;
 
-export enum WsMessageType {
-    Index = "index",
-    Message = "message"
-}
-
 
 export type getClientId = {
     id?: unknown;
 };
 
-export enum SignStatus {
-    Verify = "verify",
-    Details = "details"
-}
-
-export enum WsMessageTypeEnum {
-    Join = "join",
-    Chat = "message"
-}
 
 export type ChatPayload = {
     senderId: string,
@@ -302,13 +208,7 @@ export type WsChatMessageType = {
 }
 
 export type FriendshipStatus = "pending" | "accepted" | "rejected" | "blocked" | "deleted";
-export enum FriendshipStatusEnum {
-    Pending = "pending",
-    Accepted = "accepted",
-    Rejected = "rejected",
-    Blocked = "blocked",
-    Deleted = "deleted"
-}
+
 
 export type ChatType = {
     id: string,
@@ -333,24 +233,6 @@ export type AcceptFriendship = FriendshipType & {
     chats: ChatType[]
 }
 
-export enum NotifTopics {
-    FriendRequest = "friendRequest",
-    FriendRequestAccepted = "friendRequestAccepted",
-    FriendRequestRejected = "friendRequestRejected",
-    TxnAccept = "txnAccept",
-    TxnReject = "txnReject",
-    Paid = "paid",
-}
-
-export enum TopicTypes {
-    Msg = "msg-notif",
-    Notif = "notif",
-}
-
-export enum MsgTopics {
-    SendOtp = "otp",
-    ResendOtp = "resendOtp",
-}
 
 export type Friend = Pick<Client, "id" | "firstname" | "lastname" | "email" | "mobile" | "username">
 export interface NotifSubType {

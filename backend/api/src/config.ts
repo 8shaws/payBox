@@ -65,16 +65,22 @@ export const R2_QRCODE_BUCKET_NAME = "paybox-qrcode";
 export const R2_CLIENT_BUCKET_NAME = "paybox-qrcode";
 
 export const NOTIF_KAFKA_URL =
-    process.env.NOTIF_KAFKA_URL || KAFKA_NOTIF_URL;
+  process.env.NOTIF_KAFKA_URL || KAFKA_NOTIF_URL;
 
 export const NOTIF_KAFKA_ID =
-    process.env.NOTIF_KAFKA_ID || KAFKA_NOTIF_CLIENT_ID;
+  process.env.NOTIF_KAFKA_ID || KAFKA_NOTIF_CLIENT_ID;
 
 export const CHAT_KAFKA_URL =
-    process.env.CHAT_KAFKA_URL || KAFKA_URL;
+  process.env.CHAT_KAFKA_URL || KAFKA_URL;
 
 export const CHAT_KAFKA_ID =
-    process.env.CHAT_KAFKA_ID || KAFKA_CLIENT_ID;
+  process.env.CHAT_KAFKA_ID || KAFKA_CLIENT_ID;
 
-export const PRIVATE_KEY_ENCRYPTION_KEY = 
+export const PRIVATE_KEY_ENCRYPTION_KEY =
   process.env.PRIVATE_KEY_ENCRYPTION_KEY || "e53e0e6fb7120f8793e0127371f6265a52e9baecdbf3e336f7965a6b5bad9282";
+
+export const MOONPAY_SECRET_KEY =
+  process.env.MOONPAY_SECRET_KEY || "";
+
+export const MOONPAY_API_KEY = 
+  process.env.MOONPAY_API_KEY || "";

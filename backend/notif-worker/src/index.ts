@@ -95,7 +95,7 @@ if (cluster.isPrimary) {
         try {
             await ConsumerWorker.getInstance().connectCounsumer(
                 "notif-group",
-                [TopicTypes.Notif, TopicTypes.Msg],
+                [TopicTypes.Notif, TopicTypes.Msg, TopicTypes.Db],
                 true
             );
             await ConsumerWorker.getInstance().runConsumer();
