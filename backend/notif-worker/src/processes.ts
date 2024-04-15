@@ -2,7 +2,7 @@ import { MsgTopics, NotifTopics, OTP_CACHE_EXPIRE, TOTP_DIGITS, TOTP_TIME, Topic
 import { getClientFriendship } from "./db/friendship";
 import { getUsername } from "./db/client";
 import { notify } from "./notifier";
-import { getTxnDetails } from "./db/txn";
+import { getTxnDetails, insertCentTxn } from "./db/txn";
 import { RedisBase, upadteMobileEmail } from "@paybox/backend-common";
 import { genOtp, sendOTP } from "./auth/utils";
 import { addNotif } from "./db/notif";
@@ -284,3 +284,39 @@ export const resendOtpProcess = async (
         return;
     }
 }
+
+/**
+ * 
+ * @param param0 
+ * @returns 
+ */
+export const processInsertCentTxn = async ({
+    id,
+    accountId,
+    provider,
+    status,
+    clientId
+}: {
+    id: string,
+    accountId: string,
+    provider: string,
+    status: string,
+    clientId: string
+}): Promise<void> => {
+    try {
+        const { status: dbstatus } = await insertCentTxn(
+            id,
+            accountId,
+            provider,
+            status,
+            clientId
+        );
+        if(dbstatus == dbResStatus.Error) {
+            throw new Error("Error inserting txn");
+        }
+        return;
+    } catch (error) {
+        console.log(error);
+        return;
+    }  
+};

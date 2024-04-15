@@ -1,6 +1,6 @@
 import { Consumer } from "kafkajs";
 import { kafka } from "..";
-import { MsgTopics, NotifTopics, TopicTypes } from "@paybox/common";
+import { DBTopics, MsgTopics, NotifTopics, TopicTypes } from "@paybox/common";
 import {notifyFriendRequest, notifyFriendRequestAccepted, notifyFriendRequestRejected, notifyPaid, notifyReceiveTxn, otpSendProcess, resendOtpProcess} from "../processes";
 
 export class ConsumerWorker {
@@ -99,16 +99,29 @@ export class ConsumerWorker {
                             }
                             break;
                             
+                        case TopicTypes.Db:
+                            switch(payload.type) {
+                                case DBTopics.InsertCentTxn:
+
+                                    break;
+                                
+                                default:
+                                    console.log(`No handler in topic: ${topic} for type: ${payload.type}`)
+                                    break;
+                            }
+                            break;
+
                         default:
                             console.log(`No handler for topic: ${topic}`)
                             break;
                     }
-    
+                    // Acknowledge the message
+                    this.consumer.commitOffsets([{ topic, partition, offset: (message.offset as string) }]);
                     await heartbeat();
                 } catch (error) {
                     if(error) {
                         console.log(error);
-                        const resume = pause();
+                        // const resume = pause();
                         // setTimeout(resume, 1000)
                     }
                     // throw error;
