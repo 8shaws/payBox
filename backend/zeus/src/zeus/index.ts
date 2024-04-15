@@ -2285,6 +2285,288 @@ export type ValueTypes = {
     textnetBtc?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** list off all the centralized transactions */
+  ["centralized_txn"]: AliasType<{
+    /** An object relationship */
+    account?: ValueTypes["account"];
+    accountId?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ValueTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    provider?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "centralized_txn" */
+  ["centralized_txn_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["centralized_txn_aggregate_fields"];
+    nodes?: ValueTypes["centralized_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "centralized_txn" */
+  ["centralized_txn_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["centralized_txn_max_fields"];
+    min?: ValueTypes["centralized_txn_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
+  ["centralized_txn_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["centralized_txn_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["centralized_txn_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    account?:
+      | ValueTypes["account_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    accountId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client?:
+      | ValueTypes["client_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    provider?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    status?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "centralized_txn" */
+  ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for inserting data into table "centralized_txn" */
+  ["centralized_txn_insert_input"]: {
+    account?:
+      | ValueTypes["account_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    accountId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    client?:
+      | ValueTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    provider?: string | undefined | null | Variable<any, string>;
+    status?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["centralized_txn_max_fields"]: AliasType<{
+    accountId?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    provider?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["centralized_txn_min_fields"]: AliasType<{
+    accountId?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    provider?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "centralized_txn" */
+  ["centralized_txn_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["centralized_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "centralized_txn" */
+  ["centralized_txn_on_conflict"]: {
+    constraint:
+      | ValueTypes["centralized_txn_constraint"]
+      | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["centralized_txn_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "centralized_txn". */
+  ["centralized_txn_order_by"]: {
+    account?:
+      | ValueTypes["account_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    accountId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client?:
+      | ValueTypes["client_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    provider?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: centralized_txn */
+  ["centralized_txn_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "centralized_txn" */
+  ["centralized_txn_select_column"]: centralized_txn_select_column;
+  /** input type for updating data in table "centralized_txn" */
+  ["centralized_txn_set_input"]: {
+    accountId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    provider?: string | undefined | null | Variable<any, string>;
+    status?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "centralized_txn" */
+  ["centralized_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["centralized_txn_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["centralized_txn_stream_cursor_value_input"]: {
+    accountId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    provider?: string | undefined | null | Variable<any, string>;
+    status?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "centralized_txn" */
+  ["centralized_txn_update_column"]: centralized_txn_update_column;
+  ["centralized_txn_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["centralized_txn_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["centralized_txn_bool_exp"] | Variable<any, string>;
+  };
   /** chat messages for clients */
   ["chat"]: AliasType<{
     /** An object relationship */
@@ -2784,6 +3066,8 @@ export type ValueTypes = {
       },
       ValueTypes["chat_aggregate"],
     ];
+    /** An object relationship */
+    client_setting?: ValueTypes["client_settings"];
     createdAt?: boolean | `@${string}`;
     email?: boolean | `@${string}`;
     firstname?: boolean | `@${string}`;
@@ -3282,6 +3566,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    client_setting?:
+      | ValueTypes["client_settings_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -3416,6 +3705,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    client_setting?:
+      | ValueTypes["client_settings_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -3538,6 +3832,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    client_setting?:
+      | ValueTypes["client_settings_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["order_by"]
       | undefined
@@ -3629,6 +3928,295 @@ export type ValueTypes = {
       | Variable<any, string>;
     username?: string | undefined | null | Variable<any, string>;
     valid?: boolean | undefined | null | Variable<any, string>;
+  };
+  /** settings for client */
+  ["client_settings"]: AliasType<{
+    /** An object relationship */
+    client?: ValueTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    lang?: boolean | `@${string}`;
+    preferedExplorer?: boolean | `@${string}`;
+    preferedWallet?: boolean | `@${string}`;
+    testmode?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "client_settings" */
+  ["client_settings_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["client_settings_aggregate_fields"];
+    nodes?: ValueTypes["client_settings"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "client_settings" */
+  ["client_settings_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["client_settings_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["client_settings_max_fields"];
+    min?: ValueTypes["client_settings_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "client_settings". All fields are combined with a logical 'AND'. */
+  ["client_settings_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["client_settings_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["client_settings_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["client_settings_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    client?:
+      | ValueTypes["client_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    lang?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    preferedExplorer?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    preferedWallet?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    testmode?:
+      | ValueTypes["Boolean_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "client_settings" */
+  ["client_settings_constraint"]: client_settings_constraint;
+  /** input type for inserting data into table "client_settings" */
+  ["client_settings_insert_input"]: {
+    client?:
+      | ValueTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    lang?: string | undefined | null | Variable<any, string>;
+    preferedExplorer?: string | undefined | null | Variable<any, string>;
+    preferedWallet?: string | undefined | null | Variable<any, string>;
+    testmode?: boolean | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["client_settings_max_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    lang?: boolean | `@${string}`;
+    preferedExplorer?: boolean | `@${string}`;
+    preferedWallet?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["client_settings_min_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    lang?: boolean | `@${string}`;
+    preferedExplorer?: boolean | `@${string}`;
+    preferedWallet?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "client_settings" */
+  ["client_settings_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["client_settings"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** input type for inserting object relation for remote table "client_settings" */
+  ["client_settings_obj_rel_insert_input"]: {
+    data: ValueTypes["client_settings_insert_input"] | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["client_settings_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** on_conflict condition type for table "client_settings" */
+  ["client_settings_on_conflict"]: {
+    constraint:
+      | ValueTypes["client_settings_constraint"]
+      | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["client_settings_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["client_settings_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "client_settings". */
+  ["client_settings_order_by"]: {
+    client?:
+      | ValueTypes["client_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    lang?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    preferedExplorer?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    preferedWallet?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    testmode?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: client_settings */
+  ["client_settings_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "client_settings" */
+  ["client_settings_select_column"]: client_settings_select_column;
+  /** input type for updating data in table "client_settings" */
+  ["client_settings_set_input"]: {
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    lang?: string | undefined | null | Variable<any, string>;
+    preferedExplorer?: string | undefined | null | Variable<any, string>;
+    preferedWallet?: string | undefined | null | Variable<any, string>;
+    testmode?: boolean | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "client_settings" */
+  ["client_settings_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["client_settings_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["client_settings_stream_cursor_value_input"]: {
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    lang?: string | undefined | null | Variable<any, string>;
+    preferedExplorer?: string | undefined | null | Variable<any, string>;
+    preferedWallet?: string | undefined | null | Variable<any, string>;
+    testmode?: boolean | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "client_settings" */
+  ["client_settings_update_column"]: client_settings_update_column;
+  ["client_settings_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["client_settings_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["client_settings_bool_exp"] | Variable<any, string>;
   };
   /** aggregate stddev on columns */
   ["client_stddev_fields"]: AliasType<{
@@ -4756,6 +5344,17 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["bitcoin"],
     ];
+    delete_centralized_txn?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["centralized_txn_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_mutation_response"],
+    ];
+    delete_centralized_txn_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["centralized_txn"],
+    ];
     delete_chat?: [
       {
         /** filter the rows which have to be deleted */
@@ -4777,6 +5376,17 @@ export type ValueTypes = {
     delete_client_by_pk?: [
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["client"],
+    ];
+    delete_client_settings?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["client_settings_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["client_settings_mutation_response"],
+    ];
+    delete_client_settings_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["client_settings"],
     ];
     delete_eth?: [
       {
@@ -4952,6 +5562,34 @@ export type ValueTypes = {
       },
       ValueTypes["bitcoin"],
     ];
+    insert_centralized_txn?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["centralized_txn_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["centralized_txn_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_mutation_response"],
+    ];
+    insert_centralized_txn_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["centralized_txn_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["centralized_txn_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn"],
+    ];
     insert_chat?: [
       {
         /** the rows to be inserted */
@@ -5007,6 +5645,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["client"],
+    ];
+    insert_client_settings?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["client_settings_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["client_settings_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings_mutation_response"],
+    ];
+    insert_client_settings_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["client_settings_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["client_settings_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings"],
     ];
     insert_eth?: [
       {
@@ -5356,6 +6022,44 @@ export type ValueTypes = {
       },
       ValueTypes["bitcoin_mutation_response"],
     ];
+    update_centralized_txn?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["centralized_txn_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["centralized_txn_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_mutation_response"],
+    ];
+    update_centralized_txn_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["centralized_txn_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["centralized_txn_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn"],
+    ];
+    update_centralized_txn_many?: [
+      {
+        /** updates to execute, in order */
+        updates:
+          | Array<ValueTypes["centralized_txn_updates"]>
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_mutation_response"],
+    ];
     update_chat?: [
       {
         /** sets the columns of the filtered rows to the given values */
@@ -5441,6 +6145,44 @@ export type ValueTypes = {
         updates: Array<ValueTypes["client_updates"]> | Variable<any, string>;
       },
       ValueTypes["client_mutation_response"],
+    ];
+    update_client_settings?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["client_settings_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["client_settings_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["client_settings_mutation_response"],
+    ];
+    update_client_settings_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["client_settings_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["client_settings_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings"],
+    ];
+    update_client_settings_many?: [
+      {
+        /** updates to execute, in order */
+        updates:
+          | Array<ValueTypes["client_settings_updates"]>
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings_mutation_response"],
     ];
     update_eth?: [
       {
@@ -7348,6 +8090,78 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["bitcoin"],
     ];
+    centralized_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn"],
+    ];
+    centralized_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_aggregate"],
+    ];
+    centralized_txn_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["centralized_txn"],
+    ];
     chat?: [
       {
         /** distinct select on columns */
@@ -7491,6 +8305,78 @@ export type ValueTypes = {
     client_by_pk?: [
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["client"],
+    ];
+    client_settings?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["client_settings_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["client_settings_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["client_settings_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings"],
+    ];
+    client_settings_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["client_settings_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["client_settings_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["client_settings_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings_aggregate"],
+    ];
+    client_settings_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["client_settings"],
     ];
     eth?: [
       {
@@ -8764,6 +9650,102 @@ export type ValueTypes = {
       },
       ValueTypes["bitcoin"],
     ];
+    centralized_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn"],
+    ];
+    centralized_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_aggregate"],
+    ];
+    centralized_txn_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["centralized_txn"],
+    ];
+    centralized_txn_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              | ValueTypes["centralized_txn_stream_cursor_input"]
+              | undefined
+              | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn"],
+    ];
     chat?: [
       {
         /** distinct select on columns */
@@ -8927,6 +9909,102 @@ export type ValueTypes = {
     client_by_pk?: [
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["client"],
+    ];
+    client_settings?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["client_settings_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["client_settings_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["client_settings_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings"],
+    ];
+    client_settings_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["client_settings_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["client_settings_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["client_settings_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings_aggregate"],
+    ];
+    client_settings_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["client_settings"],
+    ];
+    client_settings_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              | ValueTypes["client_settings_stream_cursor_input"]
+              | undefined
+              | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["client_settings_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["client_settings"],
     ];
     client_stream?: [
       {
@@ -11823,6 +12901,179 @@ export type ResolverInputTypes = {
     textnetBtc?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** list off all the centralized transactions */
+  ["centralized_txn"]: AliasType<{
+    /** An object relationship */
+    account?: ResolverInputTypes["account"];
+    accountId?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ResolverInputTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    provider?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "centralized_txn" */
+  ["centralized_txn_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["centralized_txn_aggregate_fields"];
+    nodes?: ResolverInputTypes["centralized_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "centralized_txn" */
+  ["centralized_txn_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["centralized_txn_max_fields"];
+    min?: ResolverInputTypes["centralized_txn_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
+  ["centralized_txn_bool_exp"]: {
+    _and?:
+      | Array<ResolverInputTypes["centralized_txn_bool_exp"]>
+      | undefined
+      | null;
+    _not?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    _or?:
+      | Array<ResolverInputTypes["centralized_txn_bool_exp"]>
+      | undefined
+      | null;
+    account?: ResolverInputTypes["account_bool_exp"] | undefined | null;
+    accountId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    provider?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    status?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "centralized_txn" */
+  ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for inserting data into table "centralized_txn" */
+  ["centralized_txn_insert_input"]: {
+    account?:
+      | ResolverInputTypes["account_obj_rel_insert_input"]
+      | undefined
+      | null;
+    accountId?: ResolverInputTypes["uuid"] | undefined | null;
+    client?:
+      | ResolverInputTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    provider?: string | undefined | null;
+    status?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["centralized_txn_max_fields"]: AliasType<{
+    accountId?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    provider?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["centralized_txn_min_fields"]: AliasType<{
+    accountId?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    provider?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "centralized_txn" */
+  ["centralized_txn_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["centralized_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "centralized_txn" */
+  ["centralized_txn_on_conflict"]: {
+    constraint: ResolverInputTypes["centralized_txn_constraint"];
+    update_columns: Array<ResolverInputTypes["centralized_txn_update_column"]>;
+    where?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "centralized_txn". */
+  ["centralized_txn_order_by"]: {
+    account?: ResolverInputTypes["account_order_by"] | undefined | null;
+    accountId?: ResolverInputTypes["order_by"] | undefined | null;
+    client?: ResolverInputTypes["client_order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    provider?: ResolverInputTypes["order_by"] | undefined | null;
+    status?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: centralized_txn */
+  ["centralized_txn_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "centralized_txn" */
+  ["centralized_txn_select_column"]: centralized_txn_select_column;
+  /** input type for updating data in table "centralized_txn" */
+  ["centralized_txn_set_input"]: {
+    accountId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    provider?: string | undefined | null;
+    status?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "centralized_txn" */
+  ["centralized_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["centralized_txn_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["centralized_txn_stream_cursor_value_input"]: {
+    accountId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    provider?: string | undefined | null;
+    status?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "centralized_txn" */
+  ["centralized_txn_update_column"]: centralized_txn_update_column;
+  ["centralized_txn_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["centralized_txn_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["centralized_txn_bool_exp"];
+  };
   /** chat messages for clients */
   ["chat"]: AliasType<{
     /** An object relationship */
@@ -12123,6 +13374,8 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["chat_aggregate"],
     ];
+    /** An object relationship */
+    client_setting?: ResolverInputTypes["client_settings"];
     createdAt?: boolean | `@${string}`;
     email?: boolean | `@${string}`;
     firstname?: boolean | `@${string}`;
@@ -12468,6 +13721,10 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["chat_aggregate_bool_exp"]
       | undefined
       | null;
+    client_setting?:
+      | ResolverInputTypes["client_settings_bool_exp"]
+      | undefined
+      | null;
     createdAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -12544,6 +13801,10 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     chats?: ResolverInputTypes["chat_arr_rel_insert_input"] | undefined | null;
+    client_setting?:
+      | ResolverInputTypes["client_settings_obj_rel_insert_input"]
+      | undefined
+      | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     email?: string | undefined | null;
     firstname?: string | undefined | null;
@@ -12636,6 +13897,10 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["chat_aggregate_order_by"]
       | undefined
       | null;
+    client_setting?:
+      | ResolverInputTypes["client_settings_order_by"]
+      | undefined
+      | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     email?: ResolverInputTypes["order_by"] | undefined | null;
     firstname?: ResolverInputTypes["order_by"] | undefined | null;
@@ -12689,6 +13954,192 @@ export type ResolverInputTypes = {
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     username?: string | undefined | null;
     valid?: boolean | undefined | null;
+  };
+  /** settings for client */
+  ["client_settings"]: AliasType<{
+    /** An object relationship */
+    client?: ResolverInputTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    lang?: boolean | `@${string}`;
+    preferedExplorer?: boolean | `@${string}`;
+    preferedWallet?: boolean | `@${string}`;
+    testmode?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "client_settings" */
+  ["client_settings_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["client_settings_aggregate_fields"];
+    nodes?: ResolverInputTypes["client_settings"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "client_settings" */
+  ["client_settings_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["client_settings_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["client_settings_max_fields"];
+    min?: ResolverInputTypes["client_settings_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "client_settings". All fields are combined with a logical 'AND'. */
+  ["client_settings_bool_exp"]: {
+    _and?:
+      | Array<ResolverInputTypes["client_settings_bool_exp"]>
+      | undefined
+      | null;
+    _not?: ResolverInputTypes["client_settings_bool_exp"] | undefined | null;
+    _or?:
+      | Array<ResolverInputTypes["client_settings_bool_exp"]>
+      | undefined
+      | null;
+    client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    lang?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    preferedExplorer?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
+    preferedWallet?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
+    testmode?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "client_settings" */
+  ["client_settings_constraint"]: client_settings_constraint;
+  /** input type for inserting data into table "client_settings" */
+  ["client_settings_insert_input"]: {
+    client?:
+      | ResolverInputTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    lang?: string | undefined | null;
+    preferedExplorer?: string | undefined | null;
+    preferedWallet?: string | undefined | null;
+    testmode?: boolean | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["client_settings_max_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    lang?: boolean | `@${string}`;
+    preferedExplorer?: boolean | `@${string}`;
+    preferedWallet?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["client_settings_min_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    lang?: boolean | `@${string}`;
+    preferedExplorer?: boolean | `@${string}`;
+    preferedWallet?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "client_settings" */
+  ["client_settings_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["client_settings"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** input type for inserting object relation for remote table "client_settings" */
+  ["client_settings_obj_rel_insert_input"]: {
+    data: ResolverInputTypes["client_settings_insert_input"];
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["client_settings_on_conflict"]
+      | undefined
+      | null;
+  };
+  /** on_conflict condition type for table "client_settings" */
+  ["client_settings_on_conflict"]: {
+    constraint: ResolverInputTypes["client_settings_constraint"];
+    update_columns: Array<ResolverInputTypes["client_settings_update_column"]>;
+    where?: ResolverInputTypes["client_settings_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "client_settings". */
+  ["client_settings_order_by"]: {
+    client?: ResolverInputTypes["client_order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    lang?: ResolverInputTypes["order_by"] | undefined | null;
+    preferedExplorer?: ResolverInputTypes["order_by"] | undefined | null;
+    preferedWallet?: ResolverInputTypes["order_by"] | undefined | null;
+    testmode?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: client_settings */
+  ["client_settings_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "client_settings" */
+  ["client_settings_select_column"]: client_settings_select_column;
+  /** input type for updating data in table "client_settings" */
+  ["client_settings_set_input"]: {
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    lang?: string | undefined | null;
+    preferedExplorer?: string | undefined | null;
+    preferedWallet?: string | undefined | null;
+    testmode?: boolean | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "client_settings" */
+  ["client_settings_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["client_settings_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["client_settings_stream_cursor_value_input"]: {
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    lang?: string | undefined | null;
+    preferedExplorer?: string | undefined | null;
+    preferedWallet?: string | undefined | null;
+    testmode?: boolean | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "client_settings" */
+  ["client_settings_update_column"]: client_settings_update_column;
+  ["client_settings_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["client_settings_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["client_settings_bool_exp"];
   };
   /** aggregate stddev on columns */
   ["client_stddev_fields"]: AliasType<{
@@ -13381,6 +14832,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["bitcoin"],
     ];
+    delete_centralized_txn?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["centralized_txn_bool_exp"];
+      },
+      ResolverInputTypes["centralized_txn_mutation_response"],
+    ];
+    delete_centralized_txn_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["centralized_txn"],
+    ];
     delete_chat?: [
       {
         /** filter the rows which have to be deleted */
@@ -13402,6 +14864,17 @@ export type ResolverInputTypes = {
     delete_client_by_pk?: [
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["client"],
+    ];
+    delete_client_settings?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["client_settings_bool_exp"];
+      },
+      ResolverInputTypes["client_settings_mutation_response"],
+    ];
+    delete_client_settings_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["client_settings"],
     ];
     delete_eth?: [
       {
@@ -13563,6 +15036,30 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["bitcoin"],
     ];
+    insert_centralized_txn?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["centralized_txn_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["centralized_txn_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn_mutation_response"],
+    ];
+    insert_centralized_txn_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["centralized_txn_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["centralized_txn_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn"],
+    ];
     insert_chat?: [
       {
         /** the rows to be inserted */
@@ -13604,6 +15101,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["client"],
+    ];
+    insert_client_settings?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["client_settings_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["client_settings_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["client_settings_mutation_response"],
+    ];
+    insert_client_settings_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["client_settings_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["client_settings_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["client_settings"],
     ];
     insert_eth?: [
       {
@@ -13871,6 +15392,35 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["bitcoin_mutation_response"],
     ];
+    update_centralized_txn?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["centralized_txn_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["centralized_txn_bool_exp"];
+      },
+      ResolverInputTypes["centralized_txn_mutation_response"],
+    ];
+    update_centralized_txn_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["centralized_txn_set_input"]
+          | undefined
+          | null;
+        pk_columns: ResolverInputTypes["centralized_txn_pk_columns_input"];
+      },
+      ResolverInputTypes["centralized_txn"],
+    ];
+    update_centralized_txn_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["centralized_txn_updates"]>;
+      },
+      ResolverInputTypes["centralized_txn_mutation_response"],
+    ];
     update_chat?: [
       {
         /** sets the columns of the filtered rows to the given values */
@@ -13930,6 +15480,35 @@ export type ResolverInputTypes = {
         updates: Array<ResolverInputTypes["client_updates"]>;
       },
       ResolverInputTypes["client_mutation_response"],
+    ];
+    update_client_settings?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["client_settings_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["client_settings_bool_exp"];
+      },
+      ResolverInputTypes["client_settings_mutation_response"],
+    ];
+    update_client_settings_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["client_settings_set_input"]
+          | undefined
+          | null;
+        pk_columns: ResolverInputTypes["client_settings_pk_columns_input"];
+      },
+      ResolverInputTypes["client_settings"],
+    ];
+    update_client_settings_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["client_settings_updates"]>;
+      },
+      ResolverInputTypes["client_settings_mutation_response"],
     ];
     update_eth?: [
       {
@@ -15178,6 +16757,62 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["bitcoin"],
     ];
+    centralized_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn"],
+    ];
+    centralized_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn_aggregate"],
+    ];
+    centralized_txn_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["centralized_txn"],
+    ];
     chat?: [
       {
         /** distinct select on columns */
@@ -15277,6 +16912,62 @@ export type ResolverInputTypes = {
     client_by_pk?: [
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["client"],
+    ];
+    client_settings?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["client_settings_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["client_settings_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["client_settings_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["client_settings"],
+    ];
+    client_settings_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["client_settings_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["client_settings_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["client_settings_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["client_settings_aggregate"],
+    ];
+    client_settings_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["client_settings"],
     ];
     eth?: [
       {
@@ -16117,6 +17808,78 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["bitcoin"],
     ];
+    centralized_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn"],
+    ];
+    centralized_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn_aggregate"],
+    ];
+    centralized_txn_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["centralized_txn"],
+    ];
+    centralized_txn_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          | ResolverInputTypes["centralized_txn_stream_cursor_input"]
+          | undefined
+          | null
+        > /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn"],
+    ];
     chat?: [
       {
         /** distinct select on columns */
@@ -16227,6 +17990,78 @@ export type ResolverInputTypes = {
     client_by_pk?: [
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["client"],
+    ];
+    client_settings?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["client_settings_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["client_settings_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["client_settings_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["client_settings"],
+    ];
+    client_settings_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["client_settings_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["client_settings_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["client_settings_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["client_settings_aggregate"],
+    ];
+    client_settings_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["client_settings"],
+    ];
+    client_settings_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          | ResolverInputTypes["client_settings_stream_cursor_input"]
+          | undefined
+          | null
+        > /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["client_settings_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["client_settings"],
     ];
     client_stream?: [
       {
@@ -18301,6 +20136,143 @@ export type ModelTypes = {
     regtestBtc?: number | undefined;
     textnetBtc?: number | undefined;
   };
+  /** list off all the centralized transactions */
+  ["centralized_txn"]: {
+    /** An object relationship */
+    account: ModelTypes["account"];
+    accountId: ModelTypes["uuid"];
+    /** An object relationship */
+    client: ModelTypes["client"];
+    clientId: ModelTypes["uuid"];
+    createdAt: ModelTypes["timestamptz"];
+    id: ModelTypes["uuid"];
+    provider: string;
+    status: string;
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "centralized_txn" */
+  ["centralized_txn_aggregate"]: {
+    aggregate?: ModelTypes["centralized_txn_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["centralized_txn"]>;
+  };
+  /** aggregate fields of "centralized_txn" */
+  ["centralized_txn_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["centralized_txn_max_fields"] | undefined;
+    min?: ModelTypes["centralized_txn_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
+  ["centralized_txn_bool_exp"]: {
+    _and?: Array<ModelTypes["centralized_txn_bool_exp"]> | undefined;
+    _not?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["centralized_txn_bool_exp"]> | undefined;
+    account?: ModelTypes["account_bool_exp"] | undefined;
+    accountId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    client?: ModelTypes["client_bool_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    provider?: ModelTypes["String_comparison_exp"] | undefined;
+    status?: ModelTypes["String_comparison_exp"] | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for inserting data into table "centralized_txn" */
+  ["centralized_txn_insert_input"]: {
+    account?: ModelTypes["account_obj_rel_insert_input"] | undefined;
+    accountId?: ModelTypes["uuid"] | undefined;
+    client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["centralized_txn_max_fields"]: {
+    accountId?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["centralized_txn_min_fields"]: {
+    accountId?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "centralized_txn" */
+  ["centralized_txn_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["centralized_txn"]>;
+  };
+  /** on_conflict condition type for table "centralized_txn" */
+  ["centralized_txn_on_conflict"]: {
+    constraint: ModelTypes["centralized_txn_constraint"];
+    update_columns: Array<ModelTypes["centralized_txn_update_column"]>;
+    where?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "centralized_txn". */
+  ["centralized_txn_order_by"]: {
+    account?: ModelTypes["account_order_by"] | undefined;
+    accountId?: ModelTypes["order_by"] | undefined;
+    client?: ModelTypes["client_order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    provider?: ModelTypes["order_by"] | undefined;
+    status?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: centralized_txn */
+  ["centralized_txn_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["centralized_txn_select_column"]: centralized_txn_select_column;
+  /** input type for updating data in table "centralized_txn" */
+  ["centralized_txn_set_input"]: {
+    accountId?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "centralized_txn" */
+  ["centralized_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["centralized_txn_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["centralized_txn_stream_cursor_value_input"]: {
+    accountId?: ModelTypes["uuid"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["centralized_txn_update_column"]: centralized_txn_update_column;
+  ["centralized_txn_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["centralized_txn_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["centralized_txn_bool_exp"];
+  };
   /** chat messages for clients */
   ["chat"]: {
     /** An object relationship */
@@ -18481,6 +20453,8 @@ export type ModelTypes = {
     chats: Array<ModelTypes["chat"]>;
     /** An aggregate relationship */
     chats_aggregate: ModelTypes["chat_aggregate"];
+    /** An object relationship */
+    client_setting?: ModelTypes["client_settings"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     email: string;
     firstname?: string | undefined;
@@ -18549,6 +20523,7 @@ export type ModelTypes = {
     address?: ModelTypes["address_bool_exp"] | undefined;
     chats?: ModelTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: ModelTypes["chat_aggregate_bool_exp"] | undefined;
+    client_setting?: ModelTypes["client_settings_bool_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     email?: ModelTypes["String_comparison_exp"] | undefined;
     firstname?: ModelTypes["String_comparison_exp"] | undefined;
@@ -18594,6 +20569,9 @@ export type ModelTypes = {
     accounts?: ModelTypes["account_arr_rel_insert_input"] | undefined;
     address?: ModelTypes["address_obj_rel_insert_input"] | undefined;
     chats?: ModelTypes["chat_arr_rel_insert_input"] | undefined;
+    client_setting?:
+      | ModelTypes["client_settings_obj_rel_insert_input"]
+      | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     email?: string | undefined;
     firstname?: string | undefined;
@@ -18663,6 +20641,7 @@ export type ModelTypes = {
     accounts_aggregate?: ModelTypes["account_aggregate_order_by"] | undefined;
     address?: ModelTypes["address_order_by"] | undefined;
     chats_aggregate?: ModelTypes["chat_aggregate_order_by"] | undefined;
+    client_setting?: ModelTypes["client_settings_order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     email?: ModelTypes["order_by"] | undefined;
     firstname?: ModelTypes["order_by"] | undefined;
@@ -18707,6 +20686,150 @@ export type ModelTypes = {
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     username?: string | undefined;
     valid?: boolean | undefined;
+  };
+  /** settings for client */
+  ["client_settings"]: {
+    /** An object relationship */
+    client: ModelTypes["client"];
+    clientId: ModelTypes["uuid"];
+    createdAt: ModelTypes["timestamptz"];
+    id: ModelTypes["uuid"];
+    lang: string;
+    preferedExplorer: string;
+    preferedWallet: string;
+    testmode: boolean;
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "client_settings" */
+  ["client_settings_aggregate"]: {
+    aggregate?: ModelTypes["client_settings_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["client_settings"]>;
+  };
+  /** aggregate fields of "client_settings" */
+  ["client_settings_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["client_settings_max_fields"] | undefined;
+    min?: ModelTypes["client_settings_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "client_settings". All fields are combined with a logical 'AND'. */
+  ["client_settings_bool_exp"]: {
+    _and?: Array<ModelTypes["client_settings_bool_exp"]> | undefined;
+    _not?: ModelTypes["client_settings_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["client_settings_bool_exp"]> | undefined;
+    client?: ModelTypes["client_bool_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    lang?: ModelTypes["String_comparison_exp"] | undefined;
+    preferedExplorer?: ModelTypes["String_comparison_exp"] | undefined;
+    preferedWallet?: ModelTypes["String_comparison_exp"] | undefined;
+    testmode?: ModelTypes["Boolean_comparison_exp"] | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["client_settings_constraint"]: client_settings_constraint;
+  /** input type for inserting data into table "client_settings" */
+  ["client_settings_insert_input"]: {
+    client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    testmode?: boolean | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["client_settings_max_fields"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["client_settings_min_fields"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "client_settings" */
+  ["client_settings_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["client_settings"]>;
+  };
+  /** input type for inserting object relation for remote table "client_settings" */
+  ["client_settings_obj_rel_insert_input"]: {
+    data: ModelTypes["client_settings_insert_input"];
+    /** upsert condition */
+    on_conflict?: ModelTypes["client_settings_on_conflict"] | undefined;
+  };
+  /** on_conflict condition type for table "client_settings" */
+  ["client_settings_on_conflict"]: {
+    constraint: ModelTypes["client_settings_constraint"];
+    update_columns: Array<ModelTypes["client_settings_update_column"]>;
+    where?: ModelTypes["client_settings_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "client_settings". */
+  ["client_settings_order_by"]: {
+    client?: ModelTypes["client_order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    lang?: ModelTypes["order_by"] | undefined;
+    preferedExplorer?: ModelTypes["order_by"] | undefined;
+    preferedWallet?: ModelTypes["order_by"] | undefined;
+    testmode?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: client_settings */
+  ["client_settings_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["client_settings_select_column"]: client_settings_select_column;
+  /** input type for updating data in table "client_settings" */
+  ["client_settings_set_input"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    testmode?: boolean | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "client_settings" */
+  ["client_settings_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["client_settings_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["client_settings_stream_cursor_value_input"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    testmode?: boolean | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["client_settings_update_column"]: client_settings_update_column;
+  ["client_settings_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["client_settings_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["client_settings_bool_exp"];
   };
   /** aggregate stddev on columns */
   ["client_stddev_fields"]: {
@@ -19244,6 +21367,12 @@ export type ModelTypes = {
     delete_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
     /** delete single row from the table: "bitcoin" */
     delete_bitcoin_by_pk?: ModelTypes["bitcoin"] | undefined;
+    /** delete data from the table: "centralized_txn" */
+    delete_centralized_txn?:
+      | ModelTypes["centralized_txn_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "centralized_txn" */
+    delete_centralized_txn_by_pk?: ModelTypes["centralized_txn"] | undefined;
     /** delete data from the table: "chat" */
     delete_chat?: ModelTypes["chat_mutation_response"] | undefined;
     /** delete single row from the table: "chat" */
@@ -19252,6 +21381,12 @@ export type ModelTypes = {
     delete_client?: ModelTypes["client_mutation_response"] | undefined;
     /** delete single row from the table: "client" */
     delete_client_by_pk?: ModelTypes["client"] | undefined;
+    /** delete data from the table: "client_settings" */
+    delete_client_settings?:
+      | ModelTypes["client_settings_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "client_settings" */
+    delete_client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
     /** delete data from the table: "eth" */
     delete_eth?: ModelTypes["eth_mutation_response"] | undefined;
     /** delete single row from the table: "eth" */
@@ -19306,6 +21441,12 @@ export type ModelTypes = {
     insert_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
     /** insert a single row into the table: "bitcoin" */
     insert_bitcoin_one?: ModelTypes["bitcoin"] | undefined;
+    /** insert data into the table: "centralized_txn" */
+    insert_centralized_txn?:
+      | ModelTypes["centralized_txn_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "centralized_txn" */
+    insert_centralized_txn_one?: ModelTypes["centralized_txn"] | undefined;
     /** insert data into the table: "chat" */
     insert_chat?: ModelTypes["chat_mutation_response"] | undefined;
     /** insert a single row into the table: "chat" */
@@ -19314,6 +21455,12 @@ export type ModelTypes = {
     insert_client?: ModelTypes["client_mutation_response"] | undefined;
     /** insert a single row into the table: "client" */
     insert_client_one?: ModelTypes["client"] | undefined;
+    /** insert data into the table: "client_settings" */
+    insert_client_settings?:
+      | ModelTypes["client_settings_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "client_settings" */
+    insert_client_settings_one?: ModelTypes["client_settings"] | undefined;
     /** insert data into the table: "eth" */
     insert_eth?: ModelTypes["eth_mutation_response"] | undefined;
     /** insert a single row into the table: "eth" */
@@ -19380,6 +21527,16 @@ export type ModelTypes = {
     update_bitcoin_many?:
       | Array<ModelTypes["bitcoin_mutation_response"] | undefined>
       | undefined;
+    /** update data of the table: "centralized_txn" */
+    update_centralized_txn?:
+      | ModelTypes["centralized_txn_mutation_response"]
+      | undefined;
+    /** update single row of the table: "centralized_txn" */
+    update_centralized_txn_by_pk?: ModelTypes["centralized_txn"] | undefined;
+    /** update multiples rows of table: "centralized_txn" */
+    update_centralized_txn_many?:
+      | Array<ModelTypes["centralized_txn_mutation_response"] | undefined>
+      | undefined;
     /** update data of the table: "chat" */
     update_chat?: ModelTypes["chat_mutation_response"] | undefined;
     /** update single row of the table: "chat" */
@@ -19395,6 +21552,16 @@ export type ModelTypes = {
     /** update multiples rows of table: "client" */
     update_client_many?:
       | Array<ModelTypes["client_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "client_settings" */
+    update_client_settings?:
+      | ModelTypes["client_settings_mutation_response"]
+      | undefined;
+    /** update single row of the table: "client_settings" */
+    update_client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
+    /** update multiples rows of table: "client_settings" */
+    update_client_settings_many?:
+      | Array<ModelTypes["client_settings_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "eth" */
     update_eth?: ModelTypes["eth_mutation_response"] | undefined;
@@ -20099,6 +22266,12 @@ export type ModelTypes = {
     bitcoin_aggregate: ModelTypes["bitcoin_aggregate"];
     /** fetch data from the table: "bitcoin" using primary key columns */
     bitcoin_by_pk?: ModelTypes["bitcoin"] | undefined;
+    /** fetch data from the table: "centralized_txn" */
+    centralized_txn: Array<ModelTypes["centralized_txn"]>;
+    /** fetch aggregated fields from the table: "centralized_txn" */
+    centralized_txn_aggregate: ModelTypes["centralized_txn_aggregate"];
+    /** fetch data from the table: "centralized_txn" using primary key columns */
+    centralized_txn_by_pk?: ModelTypes["centralized_txn"] | undefined;
     /** fetch data from the table: "chat" */
     chat: Array<ModelTypes["chat"]>;
     /** fetch aggregated fields from the table: "chat" */
@@ -20111,6 +22284,12 @@ export type ModelTypes = {
     client_aggregate: ModelTypes["client_aggregate"];
     /** fetch data from the table: "client" using primary key columns */
     client_by_pk?: ModelTypes["client"] | undefined;
+    /** fetch data from the table: "client_settings" */
+    client_settings: Array<ModelTypes["client_settings"]>;
+    /** fetch aggregated fields from the table: "client_settings" */
+    client_settings_aggregate: ModelTypes["client_settings_aggregate"];
+    /** fetch data from the table: "client_settings" using primary key columns */
+    client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
     /** fetch data from the table: "eth" */
     eth: Array<ModelTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -20405,6 +22584,14 @@ export type ModelTypes = {
     bitcoin_by_pk?: ModelTypes["bitcoin"] | undefined;
     /** fetch data from the table in a streaming manner: "bitcoin" */
     bitcoin_stream: Array<ModelTypes["bitcoin"]>;
+    /** fetch data from the table: "centralized_txn" */
+    centralized_txn: Array<ModelTypes["centralized_txn"]>;
+    /** fetch aggregated fields from the table: "centralized_txn" */
+    centralized_txn_aggregate: ModelTypes["centralized_txn_aggregate"];
+    /** fetch data from the table: "centralized_txn" using primary key columns */
+    centralized_txn_by_pk?: ModelTypes["centralized_txn"] | undefined;
+    /** fetch data from the table in a streaming manner: "centralized_txn" */
+    centralized_txn_stream: Array<ModelTypes["centralized_txn"]>;
     /** fetch data from the table: "chat" */
     chat: Array<ModelTypes["chat"]>;
     /** fetch aggregated fields from the table: "chat" */
@@ -20419,6 +22606,14 @@ export type ModelTypes = {
     client_aggregate: ModelTypes["client_aggregate"];
     /** fetch data from the table: "client" using primary key columns */
     client_by_pk?: ModelTypes["client"] | undefined;
+    /** fetch data from the table: "client_settings" */
+    client_settings: Array<ModelTypes["client_settings"]>;
+    /** fetch aggregated fields from the table: "client_settings" */
+    client_settings_aggregate: ModelTypes["client_settings_aggregate"];
+    /** fetch data from the table: "client_settings" using primary key columns */
+    client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
+    /** fetch data from the table in a streaming manner: "client_settings" */
+    client_settings_stream: Array<ModelTypes["client_settings"]>;
     /** fetch data from the table in a streaming manner: "client" */
     client_stream: Array<ModelTypes["client"]>;
     /** fetch data from the table: "eth" */
@@ -21903,6 +24098,152 @@ export type GraphQLTypes = {
     regtestBtc?: number | undefined;
     textnetBtc?: number | undefined;
   };
+  /** list off all the centralized transactions */
+  ["centralized_txn"]: {
+    __typename: "centralized_txn";
+    /** An object relationship */
+    account: GraphQLTypes["account"];
+    accountId: GraphQLTypes["uuid"];
+    /** An object relationship */
+    client: GraphQLTypes["client"];
+    clientId: GraphQLTypes["uuid"];
+    createdAt: GraphQLTypes["timestamptz"];
+    id: GraphQLTypes["uuid"];
+    provider: string;
+    status: string;
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "centralized_txn" */
+  ["centralized_txn_aggregate"]: {
+    __typename: "centralized_txn_aggregate";
+    aggregate?: GraphQLTypes["centralized_txn_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["centralized_txn"]>;
+  };
+  /** aggregate fields of "centralized_txn" */
+  ["centralized_txn_aggregate_fields"]: {
+    __typename: "centralized_txn_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["centralized_txn_max_fields"] | undefined;
+    min?: GraphQLTypes["centralized_txn_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
+  ["centralized_txn_bool_exp"]: {
+    _and?: Array<GraphQLTypes["centralized_txn_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["centralized_txn_bool_exp"]> | undefined;
+    account?: GraphQLTypes["account_bool_exp"] | undefined;
+    accountId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    client?: GraphQLTypes["client_bool_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    provider?: GraphQLTypes["String_comparison_exp"] | undefined;
+    status?: GraphQLTypes["String_comparison_exp"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "centralized_txn" */
+  ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for inserting data into table "centralized_txn" */
+  ["centralized_txn_insert_input"]: {
+    account?: GraphQLTypes["account_obj_rel_insert_input"] | undefined;
+    accountId?: GraphQLTypes["uuid"] | undefined;
+    client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["centralized_txn_max_fields"]: {
+    __typename: "centralized_txn_max_fields";
+    accountId?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["centralized_txn_min_fields"]: {
+    __typename: "centralized_txn_min_fields";
+    accountId?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "centralized_txn" */
+  ["centralized_txn_mutation_response"]: {
+    __typename: "centralized_txn_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["centralized_txn"]>;
+  };
+  /** on_conflict condition type for table "centralized_txn" */
+  ["centralized_txn_on_conflict"]: {
+    constraint: GraphQLTypes["centralized_txn_constraint"];
+    update_columns: Array<GraphQLTypes["centralized_txn_update_column"]>;
+    where?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "centralized_txn". */
+  ["centralized_txn_order_by"]: {
+    account?: GraphQLTypes["account_order_by"] | undefined;
+    accountId?: GraphQLTypes["order_by"] | undefined;
+    client?: GraphQLTypes["client_order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    provider?: GraphQLTypes["order_by"] | undefined;
+    status?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: centralized_txn */
+  ["centralized_txn_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "centralized_txn" */
+  ["centralized_txn_select_column"]: centralized_txn_select_column;
+  /** input type for updating data in table "centralized_txn" */
+  ["centralized_txn_set_input"]: {
+    accountId?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "centralized_txn" */
+  ["centralized_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["centralized_txn_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["centralized_txn_stream_cursor_value_input"]: {
+    accountId?: GraphQLTypes["uuid"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    provider?: string | undefined;
+    status?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "centralized_txn" */
+  ["centralized_txn_update_column"]: centralized_txn_update_column;
+  ["centralized_txn_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["centralized_txn_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["centralized_txn_bool_exp"];
+  };
   /** chat messages for clients */
   ["chat"]: {
     __typename: "chat";
@@ -22093,6 +24434,8 @@ export type GraphQLTypes = {
     chats: Array<GraphQLTypes["chat"]>;
     /** An aggregate relationship */
     chats_aggregate: GraphQLTypes["chat_aggregate"];
+    /** An object relationship */
+    client_setting?: GraphQLTypes["client_settings"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     email: string;
     firstname?: string | undefined;
@@ -22166,6 +24509,7 @@ export type GraphQLTypes = {
     address?: GraphQLTypes["address_bool_exp"] | undefined;
     chats?: GraphQLTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: GraphQLTypes["chat_aggregate_bool_exp"] | undefined;
+    client_setting?: GraphQLTypes["client_settings_bool_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     email?: GraphQLTypes["String_comparison_exp"] | undefined;
     firstname?: GraphQLTypes["String_comparison_exp"] | undefined;
@@ -22212,6 +24556,9 @@ export type GraphQLTypes = {
     accounts?: GraphQLTypes["account_arr_rel_insert_input"] | undefined;
     address?: GraphQLTypes["address_obj_rel_insert_input"] | undefined;
     chats?: GraphQLTypes["chat_arr_rel_insert_input"] | undefined;
+    client_setting?:
+      | GraphQLTypes["client_settings_obj_rel_insert_input"]
+      | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     email?: string | undefined;
     firstname?: string | undefined;
@@ -22288,6 +24635,7 @@ export type GraphQLTypes = {
     accounts_aggregate?: GraphQLTypes["account_aggregate_order_by"] | undefined;
     address?: GraphQLTypes["address_order_by"] | undefined;
     chats_aggregate?: GraphQLTypes["chat_aggregate_order_by"] | undefined;
+    client_setting?: GraphQLTypes["client_settings_order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     email?: GraphQLTypes["order_by"] | undefined;
     firstname?: GraphQLTypes["order_by"] | undefined;
@@ -22333,6 +24681,159 @@ export type GraphQLTypes = {
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     username?: string | undefined;
     valid?: boolean | undefined;
+  };
+  /** settings for client */
+  ["client_settings"]: {
+    __typename: "client_settings";
+    /** An object relationship */
+    client: GraphQLTypes["client"];
+    clientId: GraphQLTypes["uuid"];
+    createdAt: GraphQLTypes["timestamptz"];
+    id: GraphQLTypes["uuid"];
+    lang: string;
+    preferedExplorer: string;
+    preferedWallet: string;
+    testmode: boolean;
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "client_settings" */
+  ["client_settings_aggregate"]: {
+    __typename: "client_settings_aggregate";
+    aggregate?: GraphQLTypes["client_settings_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["client_settings"]>;
+  };
+  /** aggregate fields of "client_settings" */
+  ["client_settings_aggregate_fields"]: {
+    __typename: "client_settings_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["client_settings_max_fields"] | undefined;
+    min?: GraphQLTypes["client_settings_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "client_settings". All fields are combined with a logical 'AND'. */
+  ["client_settings_bool_exp"]: {
+    _and?: Array<GraphQLTypes["client_settings_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["client_settings_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["client_settings_bool_exp"]> | undefined;
+    client?: GraphQLTypes["client_bool_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    lang?: GraphQLTypes["String_comparison_exp"] | undefined;
+    preferedExplorer?: GraphQLTypes["String_comparison_exp"] | undefined;
+    preferedWallet?: GraphQLTypes["String_comparison_exp"] | undefined;
+    testmode?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "client_settings" */
+  ["client_settings_constraint"]: client_settings_constraint;
+  /** input type for inserting data into table "client_settings" */
+  ["client_settings_insert_input"]: {
+    client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    testmode?: boolean | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["client_settings_max_fields"]: {
+    __typename: "client_settings_max_fields";
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["client_settings_min_fields"]: {
+    __typename: "client_settings_min_fields";
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "client_settings" */
+  ["client_settings_mutation_response"]: {
+    __typename: "client_settings_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["client_settings"]>;
+  };
+  /** input type for inserting object relation for remote table "client_settings" */
+  ["client_settings_obj_rel_insert_input"]: {
+    data: GraphQLTypes["client_settings_insert_input"];
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["client_settings_on_conflict"] | undefined;
+  };
+  /** on_conflict condition type for table "client_settings" */
+  ["client_settings_on_conflict"]: {
+    constraint: GraphQLTypes["client_settings_constraint"];
+    update_columns: Array<GraphQLTypes["client_settings_update_column"]>;
+    where?: GraphQLTypes["client_settings_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "client_settings". */
+  ["client_settings_order_by"]: {
+    client?: GraphQLTypes["client_order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    lang?: GraphQLTypes["order_by"] | undefined;
+    preferedExplorer?: GraphQLTypes["order_by"] | undefined;
+    preferedWallet?: GraphQLTypes["order_by"] | undefined;
+    testmode?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: client_settings */
+  ["client_settings_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "client_settings" */
+  ["client_settings_select_column"]: client_settings_select_column;
+  /** input type for updating data in table "client_settings" */
+  ["client_settings_set_input"]: {
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    testmode?: boolean | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "client_settings" */
+  ["client_settings_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["client_settings_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["client_settings_stream_cursor_value_input"]: {
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    lang?: string | undefined;
+    preferedExplorer?: string | undefined;
+    preferedWallet?: string | undefined;
+    testmode?: boolean | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "client_settings" */
+  ["client_settings_update_column"]: client_settings_update_column;
+  ["client_settings_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["client_settings_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["client_settings_bool_exp"];
   };
   /** aggregate stddev on columns */
   ["client_stddev_fields"]: {
@@ -22906,6 +25407,12 @@ export type GraphQLTypes = {
     delete_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
     /** delete single row from the table: "bitcoin" */
     delete_bitcoin_by_pk?: GraphQLTypes["bitcoin"] | undefined;
+    /** delete data from the table: "centralized_txn" */
+    delete_centralized_txn?:
+      | GraphQLTypes["centralized_txn_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "centralized_txn" */
+    delete_centralized_txn_by_pk?: GraphQLTypes["centralized_txn"] | undefined;
     /** delete data from the table: "chat" */
     delete_chat?: GraphQLTypes["chat_mutation_response"] | undefined;
     /** delete single row from the table: "chat" */
@@ -22914,6 +25421,12 @@ export type GraphQLTypes = {
     delete_client?: GraphQLTypes["client_mutation_response"] | undefined;
     /** delete single row from the table: "client" */
     delete_client_by_pk?: GraphQLTypes["client"] | undefined;
+    /** delete data from the table: "client_settings" */
+    delete_client_settings?:
+      | GraphQLTypes["client_settings_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "client_settings" */
+    delete_client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
     /** delete data from the table: "eth" */
     delete_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
     /** delete single row from the table: "eth" */
@@ -22970,6 +25483,12 @@ export type GraphQLTypes = {
     insert_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
     /** insert a single row into the table: "bitcoin" */
     insert_bitcoin_one?: GraphQLTypes["bitcoin"] | undefined;
+    /** insert data into the table: "centralized_txn" */
+    insert_centralized_txn?:
+      | GraphQLTypes["centralized_txn_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "centralized_txn" */
+    insert_centralized_txn_one?: GraphQLTypes["centralized_txn"] | undefined;
     /** insert data into the table: "chat" */
     insert_chat?: GraphQLTypes["chat_mutation_response"] | undefined;
     /** insert a single row into the table: "chat" */
@@ -22978,6 +25497,12 @@ export type GraphQLTypes = {
     insert_client?: GraphQLTypes["client_mutation_response"] | undefined;
     /** insert a single row into the table: "client" */
     insert_client_one?: GraphQLTypes["client"] | undefined;
+    /** insert data into the table: "client_settings" */
+    insert_client_settings?:
+      | GraphQLTypes["client_settings_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "client_settings" */
+    insert_client_settings_one?: GraphQLTypes["client_settings"] | undefined;
     /** insert data into the table: "eth" */
     insert_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
     /** insert a single row into the table: "eth" */
@@ -23046,6 +25571,16 @@ export type GraphQLTypes = {
     update_bitcoin_many?:
       | Array<GraphQLTypes["bitcoin_mutation_response"] | undefined>
       | undefined;
+    /** update data of the table: "centralized_txn" */
+    update_centralized_txn?:
+      | GraphQLTypes["centralized_txn_mutation_response"]
+      | undefined;
+    /** update single row of the table: "centralized_txn" */
+    update_centralized_txn_by_pk?: GraphQLTypes["centralized_txn"] | undefined;
+    /** update multiples rows of table: "centralized_txn" */
+    update_centralized_txn_many?:
+      | Array<GraphQLTypes["centralized_txn_mutation_response"] | undefined>
+      | undefined;
     /** update data of the table: "chat" */
     update_chat?: GraphQLTypes["chat_mutation_response"] | undefined;
     /** update single row of the table: "chat" */
@@ -23061,6 +25596,16 @@ export type GraphQLTypes = {
     /** update multiples rows of table: "client" */
     update_client_many?:
       | Array<GraphQLTypes["client_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "client_settings" */
+    update_client_settings?:
+      | GraphQLTypes["client_settings_mutation_response"]
+      | undefined;
+    /** update single row of the table: "client_settings" */
+    update_client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
+    /** update multiples rows of table: "client_settings" */
+    update_client_settings_many?:
+      | Array<GraphQLTypes["client_settings_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "eth" */
     update_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
@@ -23805,6 +26350,12 @@ export type GraphQLTypes = {
     bitcoin_aggregate: GraphQLTypes["bitcoin_aggregate"];
     /** fetch data from the table: "bitcoin" using primary key columns */
     bitcoin_by_pk?: GraphQLTypes["bitcoin"] | undefined;
+    /** fetch data from the table: "centralized_txn" */
+    centralized_txn: Array<GraphQLTypes["centralized_txn"]>;
+    /** fetch aggregated fields from the table: "centralized_txn" */
+    centralized_txn_aggregate: GraphQLTypes["centralized_txn_aggregate"];
+    /** fetch data from the table: "centralized_txn" using primary key columns */
+    centralized_txn_by_pk?: GraphQLTypes["centralized_txn"] | undefined;
     /** fetch data from the table: "chat" */
     chat: Array<GraphQLTypes["chat"]>;
     /** fetch aggregated fields from the table: "chat" */
@@ -23817,6 +26368,12 @@ export type GraphQLTypes = {
     client_aggregate: GraphQLTypes["client_aggregate"];
     /** fetch data from the table: "client" using primary key columns */
     client_by_pk?: GraphQLTypes["client"] | undefined;
+    /** fetch data from the table: "client_settings" */
+    client_settings: Array<GraphQLTypes["client_settings"]>;
+    /** fetch aggregated fields from the table: "client_settings" */
+    client_settings_aggregate: GraphQLTypes["client_settings_aggregate"];
+    /** fetch data from the table: "client_settings" using primary key columns */
+    client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
     /** fetch data from the table: "eth" */
     eth: Array<GraphQLTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -24129,6 +26686,14 @@ export type GraphQLTypes = {
     bitcoin_by_pk?: GraphQLTypes["bitcoin"] | undefined;
     /** fetch data from the table in a streaming manner: "bitcoin" */
     bitcoin_stream: Array<GraphQLTypes["bitcoin"]>;
+    /** fetch data from the table: "centralized_txn" */
+    centralized_txn: Array<GraphQLTypes["centralized_txn"]>;
+    /** fetch aggregated fields from the table: "centralized_txn" */
+    centralized_txn_aggregate: GraphQLTypes["centralized_txn_aggregate"];
+    /** fetch data from the table: "centralized_txn" using primary key columns */
+    centralized_txn_by_pk?: GraphQLTypes["centralized_txn"] | undefined;
+    /** fetch data from the table in a streaming manner: "centralized_txn" */
+    centralized_txn_stream: Array<GraphQLTypes["centralized_txn"]>;
     /** fetch data from the table: "chat" */
     chat: Array<GraphQLTypes["chat"]>;
     /** fetch aggregated fields from the table: "chat" */
@@ -24143,6 +26708,14 @@ export type GraphQLTypes = {
     client_aggregate: GraphQLTypes["client_aggregate"];
     /** fetch data from the table: "client" using primary key columns */
     client_by_pk?: GraphQLTypes["client"] | undefined;
+    /** fetch data from the table: "client_settings" */
+    client_settings: Array<GraphQLTypes["client_settings"]>;
+    /** fetch aggregated fields from the table: "client_settings" */
+    client_settings_aggregate: GraphQLTypes["client_settings_aggregate"];
+    /** fetch data from the table: "client_settings" using primary key columns */
+    client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
+    /** fetch data from the table in a streaming manner: "client_settings" */
+    client_settings_stream: Array<GraphQLTypes["client_settings"]>;
     /** fetch data from the table in a streaming manner: "client" */
     client_stream: Array<GraphQLTypes["client"]>;
     /** fetch data from the table: "eth" */
@@ -25054,6 +27627,30 @@ export const enum bitcoin_update_column {
   textnetBtc = "textnetBtc",
   updatedAt = "updatedAt",
 }
+/** unique or primary key constraints on table "centralized_txn" */
+export const enum centralized_txn_constraint {
+  centralized_txn_pkey = "centralized_txn_pkey",
+}
+/** select columns of table "centralized_txn" */
+export const enum centralized_txn_select_column {
+  accountId = "accountId",
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  provider = "provider",
+  status = "status",
+  updatedAt = "updatedAt",
+}
+/** update columns of table "centralized_txn" */
+export const enum centralized_txn_update_column {
+  accountId = "accountId",
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  provider = "provider",
+  status = "status",
+  updatedAt = "updatedAt",
+}
 /** unique or primary key constraints on table "chat" */
 export const enum chat_constraint {
   chat_pkey = "chat_pkey",
@@ -25093,6 +27690,33 @@ export const enum client_select_column {
   updatedAt = "updatedAt",
   username = "username",
   valid = "valid",
+}
+/** unique or primary key constraints on table "client_settings" */
+export const enum client_settings_constraint {
+  client_settings_client_id_key = "client_settings_client_id_key",
+  client_settings_pkey = "client_settings_pkey",
+}
+/** select columns of table "client_settings" */
+export const enum client_settings_select_column {
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  lang = "lang",
+  preferedExplorer = "preferedExplorer",
+  preferedWallet = "preferedWallet",
+  testmode = "testmode",
+  updatedAt = "updatedAt",
+}
+/** update columns of table "client_settings" */
+export const enum client_settings_update_column {
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  lang = "lang",
+  preferedExplorer = "preferedExplorer",
+  preferedWallet = "preferedWallet",
+  testmode = "testmode",
+  updatedAt = "updatedAt",
 }
 /** update columns of table "client" */
 export const enum client_update_column {
@@ -25459,6 +28083,18 @@ type ZEUS_VARIABLES = {
   ["bitcoin_stream_cursor_value_input"]: ValueTypes["bitcoin_stream_cursor_value_input"];
   ["bitcoin_update_column"]: ValueTypes["bitcoin_update_column"];
   ["bitcoin_updates"]: ValueTypes["bitcoin_updates"];
+  ["centralized_txn_bool_exp"]: ValueTypes["centralized_txn_bool_exp"];
+  ["centralized_txn_constraint"]: ValueTypes["centralized_txn_constraint"];
+  ["centralized_txn_insert_input"]: ValueTypes["centralized_txn_insert_input"];
+  ["centralized_txn_on_conflict"]: ValueTypes["centralized_txn_on_conflict"];
+  ["centralized_txn_order_by"]: ValueTypes["centralized_txn_order_by"];
+  ["centralized_txn_pk_columns_input"]: ValueTypes["centralized_txn_pk_columns_input"];
+  ["centralized_txn_select_column"]: ValueTypes["centralized_txn_select_column"];
+  ["centralized_txn_set_input"]: ValueTypes["centralized_txn_set_input"];
+  ["centralized_txn_stream_cursor_input"]: ValueTypes["centralized_txn_stream_cursor_input"];
+  ["centralized_txn_stream_cursor_value_input"]: ValueTypes["centralized_txn_stream_cursor_value_input"];
+  ["centralized_txn_update_column"]: ValueTypes["centralized_txn_update_column"];
+  ["centralized_txn_updates"]: ValueTypes["centralized_txn_updates"];
   ["chat_aggregate_bool_exp"]: ValueTypes["chat_aggregate_bool_exp"];
   ["chat_aggregate_bool_exp_count"]: ValueTypes["chat_aggregate_bool_exp_count"];
   ["chat_aggregate_order_by"]: ValueTypes["chat_aggregate_order_by"];
@@ -25487,6 +28123,19 @@ type ZEUS_VARIABLES = {
   ["client_pk_columns_input"]: ValueTypes["client_pk_columns_input"];
   ["client_select_column"]: ValueTypes["client_select_column"];
   ["client_set_input"]: ValueTypes["client_set_input"];
+  ["client_settings_bool_exp"]: ValueTypes["client_settings_bool_exp"];
+  ["client_settings_constraint"]: ValueTypes["client_settings_constraint"];
+  ["client_settings_insert_input"]: ValueTypes["client_settings_insert_input"];
+  ["client_settings_obj_rel_insert_input"]: ValueTypes["client_settings_obj_rel_insert_input"];
+  ["client_settings_on_conflict"]: ValueTypes["client_settings_on_conflict"];
+  ["client_settings_order_by"]: ValueTypes["client_settings_order_by"];
+  ["client_settings_pk_columns_input"]: ValueTypes["client_settings_pk_columns_input"];
+  ["client_settings_select_column"]: ValueTypes["client_settings_select_column"];
+  ["client_settings_set_input"]: ValueTypes["client_settings_set_input"];
+  ["client_settings_stream_cursor_input"]: ValueTypes["client_settings_stream_cursor_input"];
+  ["client_settings_stream_cursor_value_input"]: ValueTypes["client_settings_stream_cursor_value_input"];
+  ["client_settings_update_column"]: ValueTypes["client_settings_update_column"];
+  ["client_settings_updates"]: ValueTypes["client_settings_updates"];
   ["client_stream_cursor_input"]: ValueTypes["client_stream_cursor_input"];
   ["client_stream_cursor_value_input"]: ValueTypes["client_stream_cursor_value_input"];
   ["client_update_column"]: ValueTypes["client_update_column"];

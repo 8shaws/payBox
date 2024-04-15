@@ -951,6 +951,210 @@ export type Bitcoin_Variance_Fields = {
   textnetBtc?: Maybe<Scalars['Float']['output']>;
 };
 
+/** list off all the centralized transactions */
+export type Centralized_Txn = {
+  __typename?: 'centralized_txn';
+  /** An object relationship */
+  account: Account;
+  accountId: Scalars['uuid']['output'];
+  /** An object relationship */
+  client: Client;
+  clientId: Scalars['uuid']['output'];
+  createdAt: Scalars['timestamptz']['output'];
+  id: Scalars['uuid']['output'];
+  provider: Scalars['String']['output'];
+  status: Scalars['String']['output'];
+  updatedAt: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "centralized_txn" */
+export type Centralized_Txn_Aggregate = {
+  __typename?: 'centralized_txn_aggregate';
+  aggregate?: Maybe<Centralized_Txn_Aggregate_Fields>;
+  nodes: Array<Centralized_Txn>;
+};
+
+/** aggregate fields of "centralized_txn" */
+export type Centralized_Txn_Aggregate_Fields = {
+  __typename?: 'centralized_txn_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Centralized_Txn_Max_Fields>;
+  min?: Maybe<Centralized_Txn_Min_Fields>;
+};
+
+
+/** aggregate fields of "centralized_txn" */
+export type Centralized_Txn_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
+export type Centralized_Txn_Bool_Exp = {
+  _and?: InputMaybe<Array<Centralized_Txn_Bool_Exp>>;
+  _not?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  _or?: InputMaybe<Array<Centralized_Txn_Bool_Exp>>;
+  account?: InputMaybe<Account_Bool_Exp>;
+  accountId?: InputMaybe<Uuid_Comparison_Exp>;
+  client?: InputMaybe<Client_Bool_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
+  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  provider?: InputMaybe<String_Comparison_Exp>;
+  status?: InputMaybe<String_Comparison_Exp>;
+  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "centralized_txn" */
+export enum Centralized_Txn_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  CentralizedTxnPkey = 'centralized_txn_pkey'
+}
+
+/** input type for inserting data into table "centralized_txn" */
+export type Centralized_Txn_Insert_Input = {
+  account?: InputMaybe<Account_Obj_Rel_Insert_Input>;
+  accountId?: InputMaybe<Scalars['uuid']['input']>;
+  client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  provider?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Centralized_Txn_Max_Fields = {
+  __typename?: 'centralized_txn_max_fields';
+  accountId?: Maybe<Scalars['uuid']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  provider?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Centralized_Txn_Min_Fields = {
+  __typename?: 'centralized_txn_min_fields';
+  accountId?: Maybe<Scalars['uuid']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  provider?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "centralized_txn" */
+export type Centralized_Txn_Mutation_Response = {
+  __typename?: 'centralized_txn_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Centralized_Txn>;
+};
+
+/** on_conflict condition type for table "centralized_txn" */
+export type Centralized_Txn_On_Conflict = {
+  constraint: Centralized_Txn_Constraint;
+  update_columns?: Array<Centralized_Txn_Update_Column>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "centralized_txn". */
+export type Centralized_Txn_Order_By = {
+  account?: InputMaybe<Account_Order_By>;
+  accountId?: InputMaybe<Order_By>;
+  client?: InputMaybe<Client_Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  provider?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: centralized_txn */
+export type Centralized_Txn_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column {
+  /** column name */
+  AccountId = 'accountId',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "centralized_txn" */
+export type Centralized_Txn_Set_Input = {
+  accountId?: InputMaybe<Scalars['uuid']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  provider?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "centralized_txn" */
+export type Centralized_Txn_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Centralized_Txn_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Centralized_Txn_Stream_Cursor_Value_Input = {
+  accountId?: InputMaybe<Scalars['uuid']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  provider?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "centralized_txn" */
+export enum Centralized_Txn_Update_Column {
+  /** column name */
+  AccountId = 'accountId',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+export type Centralized_Txn_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Centralized_Txn_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Centralized_Txn_Bool_Exp;
+};
+
 /** chat messages for clients */
 export type Chat = {
   __typename?: 'chat';
@@ -1201,6 +1405,8 @@ export type Client = {
   chats: Array<Chat>;
   /** An aggregate relationship */
   chats_aggregate: Chat_Aggregate;
+  /** An object relationship */
+  client_setting?: Maybe<Client_Settings>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   email: Scalars['String']['output'];
   firstname?: Maybe<Scalars['String']['output']>;
@@ -1443,6 +1649,7 @@ export type Client_Bool_Exp = {
   address?: InputMaybe<Address_Bool_Exp>;
   chats?: InputMaybe<Chat_Bool_Exp>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Bool_Exp>;
+  client_setting?: InputMaybe<Client_Settings_Bool_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   email?: InputMaybe<String_Comparison_Exp>;
   firstname?: InputMaybe<String_Comparison_Exp>;
@@ -1485,6 +1692,7 @@ export type Client_Insert_Input = {
   accounts?: InputMaybe<Account_Arr_Rel_Insert_Input>;
   address?: InputMaybe<Address_Obj_Rel_Insert_Input>;
   chats?: InputMaybe<Chat_Arr_Rel_Insert_Input>;
+  client_setting?: InputMaybe<Client_Settings_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   firstname?: InputMaybe<Scalars['String']['input']>;
@@ -1559,6 +1767,7 @@ export type Client_Order_By = {
   accounts_aggregate?: InputMaybe<Account_Aggregate_Order_By>;
   address?: InputMaybe<Address_Order_By>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Order_By>;
+  client_setting?: InputMaybe<Client_Settings_Order_By>;
   createdAt?: InputMaybe<Order_By>;
   email?: InputMaybe<Order_By>;
   firstname?: InputMaybe<Order_By>;
@@ -1618,6 +1827,224 @@ export type Client_Set_Input = {
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
   valid?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** settings for client */
+export type Client_Settings = {
+  __typename?: 'client_settings';
+  /** An object relationship */
+  client: Client;
+  clientId: Scalars['uuid']['output'];
+  createdAt: Scalars['timestamptz']['output'];
+  id: Scalars['uuid']['output'];
+  lang: Scalars['String']['output'];
+  preferedExplorer: Scalars['String']['output'];
+  preferedWallet: Scalars['String']['output'];
+  testmode: Scalars['Boolean']['output'];
+  updatedAt: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "client_settings" */
+export type Client_Settings_Aggregate = {
+  __typename?: 'client_settings_aggregate';
+  aggregate?: Maybe<Client_Settings_Aggregate_Fields>;
+  nodes: Array<Client_Settings>;
+};
+
+/** aggregate fields of "client_settings" */
+export type Client_Settings_Aggregate_Fields = {
+  __typename?: 'client_settings_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Client_Settings_Max_Fields>;
+  min?: Maybe<Client_Settings_Min_Fields>;
+};
+
+
+/** aggregate fields of "client_settings" */
+export type Client_Settings_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Client_Settings_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "client_settings". All fields are combined with a logical 'AND'. */
+export type Client_Settings_Bool_Exp = {
+  _and?: InputMaybe<Array<Client_Settings_Bool_Exp>>;
+  _not?: InputMaybe<Client_Settings_Bool_Exp>;
+  _or?: InputMaybe<Array<Client_Settings_Bool_Exp>>;
+  client?: InputMaybe<Client_Bool_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
+  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  lang?: InputMaybe<String_Comparison_Exp>;
+  preferedExplorer?: InputMaybe<String_Comparison_Exp>;
+  preferedWallet?: InputMaybe<String_Comparison_Exp>;
+  testmode?: InputMaybe<Boolean_Comparison_Exp>;
+  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "client_settings" */
+export enum Client_Settings_Constraint {
+  /** unique or primary key constraint on columns "client_id" */
+  ClientSettingsClientIdKey = 'client_settings_client_id_key',
+  /** unique or primary key constraint on columns "id" */
+  ClientSettingsPkey = 'client_settings_pkey'
+}
+
+/** input type for inserting data into table "client_settings" */
+export type Client_Settings_Insert_Input = {
+  client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  lang?: InputMaybe<Scalars['String']['input']>;
+  preferedExplorer?: InputMaybe<Scalars['String']['input']>;
+  preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  testmode?: InputMaybe<Scalars['Boolean']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Client_Settings_Max_Fields = {
+  __typename?: 'client_settings_max_fields';
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  lang?: Maybe<Scalars['String']['output']>;
+  preferedExplorer?: Maybe<Scalars['String']['output']>;
+  preferedWallet?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Client_Settings_Min_Fields = {
+  __typename?: 'client_settings_min_fields';
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  lang?: Maybe<Scalars['String']['output']>;
+  preferedExplorer?: Maybe<Scalars['String']['output']>;
+  preferedWallet?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "client_settings" */
+export type Client_Settings_Mutation_Response = {
+  __typename?: 'client_settings_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Client_Settings>;
+};
+
+/** input type for inserting object relation for remote table "client_settings" */
+export type Client_Settings_Obj_Rel_Insert_Input = {
+  data: Client_Settings_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Client_Settings_On_Conflict>;
+};
+
+/** on_conflict condition type for table "client_settings" */
+export type Client_Settings_On_Conflict = {
+  constraint: Client_Settings_Constraint;
+  update_columns?: Array<Client_Settings_Update_Column>;
+  where?: InputMaybe<Client_Settings_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "client_settings". */
+export type Client_Settings_Order_By = {
+  client?: InputMaybe<Client_Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  lang?: InputMaybe<Order_By>;
+  preferedExplorer?: InputMaybe<Order_By>;
+  preferedWallet?: InputMaybe<Order_By>;
+  testmode?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: client_settings */
+export type Client_Settings_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "client_settings" */
+export enum Client_Settings_Select_Column {
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Lang = 'lang',
+  /** column name */
+  PreferedExplorer = 'preferedExplorer',
+  /** column name */
+  PreferedWallet = 'preferedWallet',
+  /** column name */
+  Testmode = 'testmode',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "client_settings" */
+export type Client_Settings_Set_Input = {
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  lang?: InputMaybe<Scalars['String']['input']>;
+  preferedExplorer?: InputMaybe<Scalars['String']['input']>;
+  preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  testmode?: InputMaybe<Scalars['Boolean']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "client_settings" */
+export type Client_Settings_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Client_Settings_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Client_Settings_Stream_Cursor_Value_Input = {
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  lang?: InputMaybe<Scalars['String']['input']>;
+  preferedExplorer?: InputMaybe<Scalars['String']['input']>;
+  preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  testmode?: InputMaybe<Scalars['Boolean']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "client_settings" */
+export enum Client_Settings_Update_Column {
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Lang = 'lang',
+  /** column name */
+  PreferedExplorer = 'preferedExplorer',
+  /** column name */
+  PreferedWallet = 'preferedWallet',
+  /** column name */
+  Testmode = 'testmode',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+export type Client_Settings_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Client_Settings_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Client_Settings_Bool_Exp;
 };
 
 /** aggregate stddev on columns */
@@ -2405,6 +2832,10 @@ export type Mutation_Root = {
   delete_bitcoin?: Maybe<Bitcoin_Mutation_Response>;
   /** delete single row from the table: "bitcoin" */
   delete_bitcoin_by_pk?: Maybe<Bitcoin>;
+  /** delete data from the table: "centralized_txn" */
+  delete_centralized_txn?: Maybe<Centralized_Txn_Mutation_Response>;
+  /** delete single row from the table: "centralized_txn" */
+  delete_centralized_txn_by_pk?: Maybe<Centralized_Txn>;
   /** delete data from the table: "chat" */
   delete_chat?: Maybe<Chat_Mutation_Response>;
   /** delete single row from the table: "chat" */
@@ -2413,6 +2844,10 @@ export type Mutation_Root = {
   delete_client?: Maybe<Client_Mutation_Response>;
   /** delete single row from the table: "client" */
   delete_client_by_pk?: Maybe<Client>;
+  /** delete data from the table: "client_settings" */
+  delete_client_settings?: Maybe<Client_Settings_Mutation_Response>;
+  /** delete single row from the table: "client_settings" */
+  delete_client_settings_by_pk?: Maybe<Client_Settings>;
   /** delete data from the table: "eth" */
   delete_eth?: Maybe<Eth_Mutation_Response>;
   /** delete single row from the table: "eth" */
@@ -2457,6 +2892,10 @@ export type Mutation_Root = {
   insert_bitcoin?: Maybe<Bitcoin_Mutation_Response>;
   /** insert a single row into the table: "bitcoin" */
   insert_bitcoin_one?: Maybe<Bitcoin>;
+  /** insert data into the table: "centralized_txn" */
+  insert_centralized_txn?: Maybe<Centralized_Txn_Mutation_Response>;
+  /** insert a single row into the table: "centralized_txn" */
+  insert_centralized_txn_one?: Maybe<Centralized_Txn>;
   /** insert data into the table: "chat" */
   insert_chat?: Maybe<Chat_Mutation_Response>;
   /** insert a single row into the table: "chat" */
@@ -2465,6 +2904,10 @@ export type Mutation_Root = {
   insert_client?: Maybe<Client_Mutation_Response>;
   /** insert a single row into the table: "client" */
   insert_client_one?: Maybe<Client>;
+  /** insert data into the table: "client_settings" */
+  insert_client_settings?: Maybe<Client_Settings_Mutation_Response>;
+  /** insert a single row into the table: "client_settings" */
+  insert_client_settings_one?: Maybe<Client_Settings>;
   /** insert data into the table: "eth" */
   insert_eth?: Maybe<Eth_Mutation_Response>;
   /** insert a single row into the table: "eth" */
@@ -2515,6 +2958,12 @@ export type Mutation_Root = {
   update_bitcoin_by_pk?: Maybe<Bitcoin>;
   /** update multiples rows of table: "bitcoin" */
   update_bitcoin_many?: Maybe<Array<Maybe<Bitcoin_Mutation_Response>>>;
+  /** update data of the table: "centralized_txn" */
+  update_centralized_txn?: Maybe<Centralized_Txn_Mutation_Response>;
+  /** update single row of the table: "centralized_txn" */
+  update_centralized_txn_by_pk?: Maybe<Centralized_Txn>;
+  /** update multiples rows of table: "centralized_txn" */
+  update_centralized_txn_many?: Maybe<Array<Maybe<Centralized_Txn_Mutation_Response>>>;
   /** update data of the table: "chat" */
   update_chat?: Maybe<Chat_Mutation_Response>;
   /** update single row of the table: "chat" */
@@ -2527,6 +2976,12 @@ export type Mutation_Root = {
   update_client_by_pk?: Maybe<Client>;
   /** update multiples rows of table: "client" */
   update_client_many?: Maybe<Array<Maybe<Client_Mutation_Response>>>;
+  /** update data of the table: "client_settings" */
+  update_client_settings?: Maybe<Client_Settings_Mutation_Response>;
+  /** update single row of the table: "client_settings" */
+  update_client_settings_by_pk?: Maybe<Client_Settings>;
+  /** update multiples rows of table: "client_settings" */
+  update_client_settings_many?: Maybe<Array<Maybe<Client_Settings_Mutation_Response>>>;
   /** update data of the table: "eth" */
   update_eth?: Maybe<Eth_Mutation_Response>;
   /** update single row of the table: "eth" */
@@ -2615,6 +3070,18 @@ export type Mutation_RootDelete_Bitcoin_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Centralized_TxnArgs = {
+  where: Centralized_Txn_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Centralized_Txn_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_ChatArgs = {
   where: Chat_Bool_Exp;
 };
@@ -2634,6 +3101,18 @@ export type Mutation_RootDelete_ClientArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Client_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Client_SettingsArgs = {
+  where: Client_Settings_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Client_Settings_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -2777,6 +3256,20 @@ export type Mutation_RootInsert_Bitcoin_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Centralized_TxnArgs = {
+  objects: Array<Centralized_Txn_Insert_Input>;
+  on_conflict?: InputMaybe<Centralized_Txn_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Centralized_Txn_OneArgs = {
+  object: Centralized_Txn_Insert_Input;
+  on_conflict?: InputMaybe<Centralized_Txn_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_ChatArgs = {
   objects: Array<Chat_Insert_Input>;
   on_conflict?: InputMaybe<Chat_On_Conflict>;
@@ -2801,6 +3294,20 @@ export type Mutation_RootInsert_ClientArgs = {
 export type Mutation_RootInsert_Client_OneArgs = {
   object: Client_Insert_Input;
   on_conflict?: InputMaybe<Client_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Client_SettingsArgs = {
+  objects: Array<Client_Settings_Insert_Input>;
+  on_conflict?: InputMaybe<Client_Settings_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Client_Settings_OneArgs = {
+  object: Client_Settings_Insert_Input;
+  on_conflict?: InputMaybe<Client_Settings_On_Conflict>;
 };
 
 
@@ -2979,6 +3486,26 @@ export type Mutation_RootUpdate_Bitcoin_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Centralized_TxnArgs = {
+  _set?: InputMaybe<Centralized_Txn_Set_Input>;
+  where: Centralized_Txn_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Centralized_Txn_By_PkArgs = {
+  _set?: InputMaybe<Centralized_Txn_Set_Input>;
+  pk_columns: Centralized_Txn_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Centralized_Txn_ManyArgs = {
+  updates: Array<Centralized_Txn_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_ChatArgs = {
   _set?: InputMaybe<Chat_Set_Input>;
   where: Chat_Bool_Exp;
@@ -3017,6 +3544,26 @@ export type Mutation_RootUpdate_Client_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Client_ManyArgs = {
   updates: Array<Client_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Client_SettingsArgs = {
+  _set?: InputMaybe<Client_Settings_Set_Input>;
+  where: Client_Settings_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Client_Settings_By_PkArgs = {
+  _set?: InputMaybe<Client_Settings_Set_Input>;
+  pk_columns: Client_Settings_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Client_Settings_ManyArgs = {
+  updates: Array<Client_Settings_Updates>;
 };
 
 
@@ -4074,6 +4621,12 @@ export type Query_Root = {
   bitcoin_aggregate: Bitcoin_Aggregate;
   /** fetch data from the table: "bitcoin" using primary key columns */
   bitcoin_by_pk?: Maybe<Bitcoin>;
+  /** fetch data from the table: "centralized_txn" */
+  centralized_txn: Array<Centralized_Txn>;
+  /** fetch aggregated fields from the table: "centralized_txn" */
+  centralized_txn_aggregate: Centralized_Txn_Aggregate;
+  /** fetch data from the table: "centralized_txn" using primary key columns */
+  centralized_txn_by_pk?: Maybe<Centralized_Txn>;
   /** fetch data from the table: "chat" */
   chat: Array<Chat>;
   /** fetch aggregated fields from the table: "chat" */
@@ -4086,6 +4639,12 @@ export type Query_Root = {
   client_aggregate: Client_Aggregate;
   /** fetch data from the table: "client" using primary key columns */
   client_by_pk?: Maybe<Client>;
+  /** fetch data from the table: "client_settings" */
+  client_settings: Array<Client_Settings>;
+  /** fetch aggregated fields from the table: "client_settings" */
+  client_settings_aggregate: Client_Settings_Aggregate;
+  /** fetch data from the table: "client_settings" using primary key columns */
+  client_settings_by_pk?: Maybe<Client_Settings>;
   /** fetch data from the table: "eth" */
   eth: Array<Eth>;
   /** fetch aggregated fields from the table: "eth" */
@@ -4206,6 +4765,29 @@ export type Query_RootBitcoin_By_PkArgs = {
 };
 
 
+export type Query_RootCentralized_TxnArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+
+export type Query_RootCentralized_Txn_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+
+export type Query_RootCentralized_Txn_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
 export type Query_RootChatArgs = {
   distinct_on?: InputMaybe<Array<Chat_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4248,6 +4830,29 @@ export type Query_RootClient_AggregateArgs = {
 
 
 export type Query_RootClient_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootClient_SettingsArgs = {
+  distinct_on?: InputMaybe<Array<Client_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Client_Settings_Order_By>>;
+  where?: InputMaybe<Client_Settings_Bool_Exp>;
+};
+
+
+export type Query_RootClient_Settings_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Client_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Client_Settings_Order_By>>;
+  where?: InputMaybe<Client_Settings_Bool_Exp>;
+};
+
+
+export type Query_RootClient_Settings_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -4780,6 +5385,14 @@ export type Subscription_Root = {
   bitcoin_by_pk?: Maybe<Bitcoin>;
   /** fetch data from the table in a streaming manner: "bitcoin" */
   bitcoin_stream: Array<Bitcoin>;
+  /** fetch data from the table: "centralized_txn" */
+  centralized_txn: Array<Centralized_Txn>;
+  /** fetch aggregated fields from the table: "centralized_txn" */
+  centralized_txn_aggregate: Centralized_Txn_Aggregate;
+  /** fetch data from the table: "centralized_txn" using primary key columns */
+  centralized_txn_by_pk?: Maybe<Centralized_Txn>;
+  /** fetch data from the table in a streaming manner: "centralized_txn" */
+  centralized_txn_stream: Array<Centralized_Txn>;
   /** fetch data from the table: "chat" */
   chat: Array<Chat>;
   /** fetch aggregated fields from the table: "chat" */
@@ -4794,6 +5407,14 @@ export type Subscription_Root = {
   client_aggregate: Client_Aggregate;
   /** fetch data from the table: "client" using primary key columns */
   client_by_pk?: Maybe<Client>;
+  /** fetch data from the table: "client_settings" */
+  client_settings: Array<Client_Settings>;
+  /** fetch aggregated fields from the table: "client_settings" */
+  client_settings_aggregate: Client_Settings_Aggregate;
+  /** fetch data from the table: "client_settings" using primary key columns */
+  client_settings_by_pk?: Maybe<Client_Settings>;
+  /** fetch data from the table in a streaming manner: "client_settings" */
+  client_settings_stream: Array<Client_Settings>;
   /** fetch data from the table in a streaming manner: "client" */
   client_stream: Array<Client>;
   /** fetch data from the table: "eth" */
@@ -4953,6 +5574,36 @@ export type Subscription_RootBitcoin_StreamArgs = {
 };
 
 
+export type Subscription_RootCentralized_TxnArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+
+export type Subscription_RootCentralized_Txn_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+
+export type Subscription_RootCentralized_Txn_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootCentralized_Txn_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Centralized_Txn_Stream_Cursor_Input>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+
 export type Subscription_RootChatArgs = {
   distinct_on?: InputMaybe<Array<Chat_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -5003,6 +5654,36 @@ export type Subscription_RootClient_AggregateArgs = {
 
 export type Subscription_RootClient_By_PkArgs = {
   id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootClient_SettingsArgs = {
+  distinct_on?: InputMaybe<Array<Client_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Client_Settings_Order_By>>;
+  where?: InputMaybe<Client_Settings_Bool_Exp>;
+};
+
+
+export type Subscription_RootClient_Settings_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Client_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Client_Settings_Order_By>>;
+  where?: InputMaybe<Client_Settings_Bool_Exp>;
+};
+
+
+export type Subscription_RootClient_Settings_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootClient_Settings_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Client_Settings_Stream_Cursor_Input>>;
+  where?: InputMaybe<Client_Settings_Bool_Exp>;
 };
 
 
