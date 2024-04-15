@@ -45,3 +45,44 @@ export const getTxnDetails = async (
         status: dbResStatus.Error
     }
 }
+
+/**
+ * 
+ * @param id 
+ * @param accountId 
+ * @param provider 
+ * @param status 
+ * @param clientId 
+ * @returns 
+ */
+export const insertCentTxn = async (
+    id: string,
+    accountId: string,
+    provider: string,
+    status: string,
+    clientId: string
+): Promise<{
+    status: dbResStatus,
+}> => {
+    const response = await chain("mutation")({
+        insert_centralized_txn_one: [{
+            object: {
+                accountId,
+                clientId,
+                id,
+                provider,
+                status
+            }
+        }, {
+            id: true
+        }]
+    }, {operationName: "insertCentTxn"});
+    if(response.insert_centralized_txn_one?.id) {
+        return {
+            status: dbResStatus.Ok
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}
