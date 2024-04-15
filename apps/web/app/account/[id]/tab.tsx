@@ -36,7 +36,6 @@ export const Tab = ({
     }
 }) => {
     const accountState = useRecoilValue(accountAtom);
-    console.log(accountState)
     const [tabData, setTabData] = React.useState<{
         publicKey: string | undefined,
         name: string | undefined
