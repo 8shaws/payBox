@@ -19,6 +19,13 @@ object_relationships:
         table:
           name: address
           schema: public
+  - name: client_setting
+    using:
+      foreign_key_constraint_on:
+        column: client_id
+        table:
+          name: client_settings
+          schema: public
 array_relationships:
   - name: accounts
     using:
