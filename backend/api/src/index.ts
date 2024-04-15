@@ -9,6 +9,7 @@ import {
   GMAIL_APP_PASS,
   INFURA_PROJECT_ID,
   MAIL_SERVICE,
+  MOONPAY_SECRET_KEY,
   R2_ACCESS_KEY_ID,
   R2_ENDPOINT,
   R2_SECRET_ACCESS_KEY,
@@ -42,6 +43,8 @@ import compression from 'compression';
 import { NotifWorker } from "./workers/notfi";
 import { friendshipRouter } from "./routes/friendship";
 import { notifRouter } from "./routes/notif";
+import { MoonPay } from "@moonpay/moonpay-node";
+import { buyRouter } from "./routes/buy";
 
 
 export * from "./Redis";
@@ -52,6 +55,7 @@ export const server = http.createServer(app);
 export const wss = new WebSocketServer({ server });
 // export const apolloServer = createApollo();
 
+export const moonPay = new MoonPay(MOONPAY_SECRET_KEY);
 
 
 
@@ -154,6 +158,7 @@ app.use("/wallet", extractClientId, checkValidation, walletRouter);
 app.use("/friendship", extractClientId, checkValidation, friendshipRouter);
 app.use('/notif', extractClientId, checkValidation, notifRouter);
 app.use('/notif_sub', extractClientId, notifSubRouter);
+app.use('/buy', extractClientId, checkValidation, buyRouter);
 
 app.get("/metrics", async (_req, res) => {
   res.set("Content-Type", Prometheus.register.contentType);
