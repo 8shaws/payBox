@@ -16,3 +16,12 @@ export const GetBuyUrlSchema = z.object({
         .string()
         .email('Invalid email address'),
 });
+
+export const GetQuoteSchema = z.object({
+    baseCurrencyCode: z.nativeEnum(BaseCurrencyCode),
+    baseCurrencyAmount: z
+        .number().optional(),
+    currencyCode: z.nativeEnum(CryptoCurrencyCode),
+    quoteCurrencyAmount: z.number().optional(),
+    areFeesIncluded: z.boolean(),
+});
