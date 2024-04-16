@@ -7,3 +7,4 @@ export * from "./wallet";
 export * from "./chat";
 export * from "./friendship";
 export * from "./notification";
+export * from "./hook";
