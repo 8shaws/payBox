@@ -45,6 +45,7 @@ import { friendshipRouter } from "./routes/friendship";
 import { notifRouter } from "./routes/notif";
 import { MoonPay } from "@moonpay/moonpay-node";
 import { buyRouter } from "./routes/buy";
+import { hooksRouter } from "./routes/webhooks";
 
 
 export * from "./Redis";
@@ -159,6 +160,7 @@ app.use("/friendship", extractClientId, checkValidation, friendshipRouter);
 app.use('/notif', extractClientId, checkValidation, notifRouter);
 app.use('/notif_sub', extractClientId, notifSubRouter);
 app.use('/buy', extractClientId, checkValidation, buyRouter);
+app.use('/hooks', hooksRouter);
 
 app.get("/metrics", async (_req, res) => {
   res.set("Content-Type", Prometheus.register.contentType);

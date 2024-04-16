@@ -18,7 +18,6 @@ buyRouter.get('/', async (req, res) => {
             const query
                 = GetBuyUrlSchema.parse(req.body);
 
-            let txnId = generateUUID();
             let signedUrl;
             switch (query.clientPlatform) {
                 case ClientProvider.MoonPay:
@@ -30,7 +29,6 @@ buyRouter.get('/', async (req, res) => {
                         quoteCurrencyAmount: query.quoteCurrencyAmount,
                         walletAddress: query.walletAddress,
                         email: query.email,
-                        externalTransactionId: txnId,
                         externalCustomerId: id,
                         paymentMethod: 'credit_debit_card',
                         redirectURL: `${CLIENT_URL}/account/${query.walletAddress}/buy/success`,
@@ -45,22 +43,6 @@ buyRouter.get('/', async (req, res) => {
                     });
             }
             console.log(signedUrl);
-
-            //todo: add the txn to db to authenticate it later
-            await NotifWorker.getInstance().publishOne({
-                topic: TopicTypes.Db,
-                message: [{
-                    key: txnId,
-                    partition: 0,
-                    value: JSON.stringify({
-                        type: DBTopics.InsertCentTxn,
-                        clientId: id,
-                        acccountId: query.walletAddress,
-                        provider: query.clientPlatform,
-                        status: TxnStatus.Initiated,
-                    })
-                }]
-            });
 
             return res.status(200).json({
                 status: responseStatus.Ok,
