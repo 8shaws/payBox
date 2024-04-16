@@ -2290,14 +2290,25 @@ export type ValueTypes = {
     /** An object relationship */
     account?: ValueTypes["account"];
     accountId?: boolean | `@${string}`;
+    baseCurrency?: boolean | `@${string}`;
+    baseCurrencyAmount?: boolean | `@${string}`;
     /** An object relationship */
     client?: ValueTypes["client"];
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    cryptoTransactionId?: boolean | `@${string}`;
+    failedReason?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    paymentMethod?: boolean | `@${string}`;
     provider?: boolean | `@${string}`;
+    providerTxnId?: boolean | `@${string}`;
+    quoteCurrency?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    signature?: boolean | `@${string}`;
     status?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
+    walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** aggregated selection of "centralized_txn" */
@@ -2308,6 +2319,7 @@ export type ValueTypes = {
   }>;
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: AliasType<{
+    avg?: ValueTypes["centralized_txn_avg_fields"];
     count?: [
       {
         columns?:
@@ -2321,6 +2333,20 @@ export type ValueTypes = {
     ];
     max?: ValueTypes["centralized_txn_max_fields"];
     min?: ValueTypes["centralized_txn_min_fields"];
+    stddev?: ValueTypes["centralized_txn_stddev_fields"];
+    stddev_pop?: ValueTypes["centralized_txn_stddev_pop_fields"];
+    stddev_samp?: ValueTypes["centralized_txn_stddev_samp_fields"];
+    sum?: ValueTypes["centralized_txn_sum_fields"];
+    var_pop?: ValueTypes["centralized_txn_var_pop_fields"];
+    var_samp?: ValueTypes["centralized_txn_var_samp_fields"];
+    variance?: ValueTypes["centralized_txn_variance_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate avg on columns */
+  ["centralized_txn_avg_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
@@ -2350,6 +2376,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    baseCurrency?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    baseCurrencyAmount?:
+      | ValueTypes["float8_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     client?:
       | ValueTypes["client_bool_exp"]
       | undefined
@@ -2365,12 +2401,52 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    cryptoTransactionId?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    failedReason?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["float8_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     id?:
       | ValueTypes["uuid_comparison_exp"]
       | undefined
       | null
       | Variable<any, string>;
+    paymentMethod?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     provider?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    providerTxnId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrency?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["float8_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    signature?:
       | ValueTypes["String_comparison_exp"]
       | undefined
       | null
@@ -2385,9 +2461,28 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    walletAddress?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
   };
   /** unique or primary key constraints on table "centralized_txn" */
   ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for incrementing numeric columns in table "centralized_txn" */
+  ["centralized_txn_inc_input"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** input type for inserting data into table "centralized_txn" */
   ["centralized_txn_insert_input"]: {
     account?:
@@ -2396,6 +2491,12 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     accountId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    baseCurrency?: string | undefined | null | Variable<any, string>;
+    baseCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
     client?:
       | ValueTypes["client_obj_rel_insert_input"]
       | undefined
@@ -2407,35 +2508,74 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    cryptoTransactionId?: string | undefined | null | Variable<any, string>;
+    failedReason?: string | undefined | null | Variable<any, string>;
+    feeAmount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    paymentMethod?: string | undefined | null | Variable<any, string>;
     provider?: string | undefined | null | Variable<any, string>;
+    providerTxnId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrency?: string | undefined | null | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    signature?: string | undefined | null | Variable<any, string>;
     status?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    walletAddress?: string | undefined | null | Variable<any, string>;
   };
   /** aggregate max on columns */
   ["centralized_txn_max_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
+    baseCurrency?: boolean | `@${string}`;
+    baseCurrencyAmount?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    cryptoTransactionId?: boolean | `@${string}`;
+    failedReason?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    paymentMethod?: boolean | `@${string}`;
     provider?: boolean | `@${string}`;
+    providerTxnId?: boolean | `@${string}`;
+    quoteCurrency?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    signature?: boolean | `@${string}`;
     status?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
+    walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
+    baseCurrency?: boolean | `@${string}`;
+    baseCurrencyAmount?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    cryptoTransactionId?: boolean | `@${string}`;
+    failedReason?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    paymentMethod?: boolean | `@${string}`;
     provider?: boolean | `@${string}`;
+    providerTxnId?: boolean | `@${string}`;
+    quoteCurrency?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    signature?: boolean | `@${string}`;
     status?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
+    walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** response of any mutation on the table "centralized_txn" */
@@ -2472,6 +2612,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    baseCurrency?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     client?:
       | ValueTypes["client_order_by"]
       | undefined
@@ -2487,14 +2637,59 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    cryptoTransactionId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    failedReason?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    paymentMethod?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     provider?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    providerTxnId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrency?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    signature?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
     status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletAddress?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -2509,21 +2704,65 @@ export type ValueTypes = {
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    baseCurrency?: string | undefined | null | Variable<any, string>;
+    baseCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    cryptoTransactionId?: string | undefined | null | Variable<any, string>;
+    failedReason?: string | undefined | null | Variable<any, string>;
+    feeAmount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    paymentMethod?: string | undefined | null | Variable<any, string>;
     provider?: string | undefined | null | Variable<any, string>;
+    providerTxnId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrency?: string | undefined | null | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    signature?: string | undefined | null | Variable<any, string>;
     status?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    walletAddress?: string | undefined | null | Variable<any, string>;
   };
+  /** aggregate stddev on columns */
+  ["centralized_txn_stddev_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate stddev_pop on columns */
+  ["centralized_txn_stddev_pop_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate stddev_samp on columns */
+  ["centralized_txn_stddev_samp_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -2540,24 +2779,60 @@ export type ValueTypes = {
   /** Initial value of the column from where the streaming should start */
   ["centralized_txn_stream_cursor_value_input"]: {
     accountId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    baseCurrency?: string | undefined | null | Variable<any, string>;
+    baseCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    cryptoTransactionId?: string | undefined | null | Variable<any, string>;
+    failedReason?: string | undefined | null | Variable<any, string>;
+    feeAmount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    paymentMethod?: string | undefined | null | Variable<any, string>;
     provider?: string | undefined | null | Variable<any, string>;
+    providerTxnId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrency?: string | undefined | null | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["float8"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    signature?: string | undefined | null | Variable<any, string>;
     status?: string | undefined | null | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    walletAddress?: string | undefined | null | Variable<any, string>;
   };
+  /** aggregate sum on columns */
+  ["centralized_txn_sum_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
   /** update columns of table "centralized_txn" */
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?:
+      | ValueTypes["centralized_txn_inc_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     /** sets the columns of the filtered rows to the given values */
     _set?:
       | ValueTypes["centralized_txn_set_input"]
@@ -2567,6 +2842,27 @@ export type ValueTypes = {
     /** filter the rows which have to be updated */
     where: ValueTypes["centralized_txn_bool_exp"] | Variable<any, string>;
   };
+  /** aggregate var_pop on columns */
+  ["centralized_txn_var_pop_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate var_samp on columns */
+  ["centralized_txn_var_samp_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate variance on columns */
+  ["centralized_txn_variance_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
   /** chat messages for clients */
   ["chat"]: AliasType<{
     /** An object relationship */
@@ -6024,7 +6320,15 @@ export type ValueTypes = {
     ];
     update_centralized_txn?: [
       {
-        /** sets the columns of the filtered rows to the given values */
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ValueTypes["centralized_txn_inc_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** sets the columns of the filtered rows to the given values */;
         _set?:
           | ValueTypes["centralized_txn_set_input"]
           | undefined
@@ -6039,7 +6343,15 @@ export type ValueTypes = {
     ];
     update_centralized_txn_by_pk?: [
       {
-        /** sets the columns of the filtered rows to the given values */
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ValueTypes["centralized_txn_inc_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** sets the columns of the filtered rows to the given values */;
         _set?:
           | ValueTypes["centralized_txn_set_input"]
           | undefined
@@ -12906,14 +13218,25 @@ export type ResolverInputTypes = {
     /** An object relationship */
     account?: ResolverInputTypes["account"];
     accountId?: boolean | `@${string}`;
+    baseCurrency?: boolean | `@${string}`;
+    baseCurrencyAmount?: boolean | `@${string}`;
     /** An object relationship */
     client?: ResolverInputTypes["client"];
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    cryptoTransactionId?: boolean | `@${string}`;
+    failedReason?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    paymentMethod?: boolean | `@${string}`;
     provider?: boolean | `@${string}`;
+    providerTxnId?: boolean | `@${string}`;
+    quoteCurrency?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    signature?: boolean | `@${string}`;
     status?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
+    walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** aggregated selection of "centralized_txn" */
@@ -12924,6 +13247,7 @@ export type ResolverInputTypes = {
   }>;
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: AliasType<{
+    avg?: ResolverInputTypes["centralized_txn_avg_fields"];
     count?: [
       {
         columns?:
@@ -12936,6 +13260,20 @@ export type ResolverInputTypes = {
     ];
     max?: ResolverInputTypes["centralized_txn_max_fields"];
     min?: ResolverInputTypes["centralized_txn_min_fields"];
+    stddev?: ResolverInputTypes["centralized_txn_stddev_fields"];
+    stddev_pop?: ResolverInputTypes["centralized_txn_stddev_pop_fields"];
+    stddev_samp?: ResolverInputTypes["centralized_txn_stddev_samp_fields"];
+    sum?: ResolverInputTypes["centralized_txn_sum_fields"];
+    var_pop?: ResolverInputTypes["centralized_txn_var_pop_fields"];
+    var_samp?: ResolverInputTypes["centralized_txn_var_samp_fields"];
+    variance?: ResolverInputTypes["centralized_txn_variance_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate avg on columns */
+  ["centralized_txn_avg_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
@@ -12951,22 +13289,66 @@ export type ResolverInputTypes = {
       | null;
     account?: ResolverInputTypes["account_bool_exp"] | undefined | null;
     accountId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    baseCurrency?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
+    baseCurrencyAmount?:
+      | ResolverInputTypes["float8_comparison_exp"]
+      | undefined
+      | null;
     client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
     clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     createdAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
       | null;
+    cryptoTransactionId?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
+    failedReason?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
+    feeAmount?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    paymentMethod?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
     provider?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    providerTxnId?:
+      | ResolverInputTypes["uuid_comparison_exp"]
+      | undefined
+      | null;
+    quoteCurrency?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
+    quoteCurrencyAmount?:
+      | ResolverInputTypes["float8_comparison_exp"]
+      | undefined
+      | null;
+    signature?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     status?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
       | null;
+    walletAddress?:
+      | ResolverInputTypes["String_comparison_exp"]
+      | undefined
+      | null;
   };
   /** unique or primary key constraints on table "centralized_txn" */
   ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for incrementing numeric columns in table "centralized_txn" */
+  ["centralized_txn_inc_input"]: {
+    baseCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
+    feeAmount?: ResolverInputTypes["float8"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
+  };
   /** input type for inserting data into table "centralized_txn" */
   ["centralized_txn_insert_input"]: {
     account?:
@@ -12974,37 +13356,70 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
+    baseCurrency?: string | undefined | null;
+    baseCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
     client?:
       | ResolverInputTypes["client_obj_rel_insert_input"]
       | undefined
       | null;
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    cryptoTransactionId?: string | undefined | null;
+    failedReason?: string | undefined | null;
+    feeAmount?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
+    paymentMethod?: string | undefined | null;
     provider?: string | undefined | null;
+    providerTxnId?: ResolverInputTypes["uuid"] | undefined | null;
+    quoteCurrency?: string | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
+    signature?: string | undefined | null;
     status?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    walletAddress?: string | undefined | null;
   };
   /** aggregate max on columns */
   ["centralized_txn_max_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
+    baseCurrency?: boolean | `@${string}`;
+    baseCurrencyAmount?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    cryptoTransactionId?: boolean | `@${string}`;
+    failedReason?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    paymentMethod?: boolean | `@${string}`;
     provider?: boolean | `@${string}`;
+    providerTxnId?: boolean | `@${string}`;
+    quoteCurrency?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    signature?: boolean | `@${string}`;
     status?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
+    walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
+    baseCurrency?: boolean | `@${string}`;
+    baseCurrencyAmount?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    cryptoTransactionId?: boolean | `@${string}`;
+    failedReason?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
+    paymentMethod?: boolean | `@${string}`;
     provider?: boolean | `@${string}`;
+    providerTxnId?: boolean | `@${string}`;
+    quoteCurrency?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    signature?: boolean | `@${string}`;
     status?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
+    walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** response of any mutation on the table "centralized_txn" */
@@ -13025,13 +13440,24 @@ export type ResolverInputTypes = {
   ["centralized_txn_order_by"]: {
     account?: ResolverInputTypes["account_order_by"] | undefined | null;
     accountId?: ResolverInputTypes["order_by"] | undefined | null;
+    baseCurrency?: ResolverInputTypes["order_by"] | undefined | null;
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
     client?: ResolverInputTypes["client_order_by"] | undefined | null;
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    cryptoTransactionId?: ResolverInputTypes["order_by"] | undefined | null;
+    failedReason?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
+    paymentMethod?: ResolverInputTypes["order_by"] | undefined | null;
     provider?: ResolverInputTypes["order_by"] | undefined | null;
+    providerTxnId?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrency?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    signature?: ResolverInputTypes["order_by"] | undefined | null;
     status?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+    walletAddress?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** primary key columns input for table: centralized_txn */
   ["centralized_txn_pk_columns_input"]: {
@@ -13042,13 +13468,45 @@ export type ResolverInputTypes = {
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
+    baseCurrency?: string | undefined | null;
+    baseCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    cryptoTransactionId?: string | undefined | null;
+    failedReason?: string | undefined | null;
+    feeAmount?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
+    paymentMethod?: string | undefined | null;
     provider?: string | undefined | null;
+    providerTxnId?: ResolverInputTypes["uuid"] | undefined | null;
+    quoteCurrency?: string | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
+    signature?: string | undefined | null;
     status?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    walletAddress?: string | undefined | null;
   };
+  /** aggregate stddev on columns */
+  ["centralized_txn_stddev_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate stddev_pop on columns */
+  ["centralized_txn_stddev_pop_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate stddev_samp on columns */
+  ["centralized_txn_stddev_samp_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -13059,21 +13517,62 @@ export type ResolverInputTypes = {
   /** Initial value of the column from where the streaming should start */
   ["centralized_txn_stream_cursor_value_input"]: {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
+    baseCurrency?: string | undefined | null;
+    baseCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    cryptoTransactionId?: string | undefined | null;
+    failedReason?: string | undefined | null;
+    feeAmount?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
+    paymentMethod?: string | undefined | null;
     provider?: string | undefined | null;
+    providerTxnId?: ResolverInputTypes["uuid"] | undefined | null;
+    quoteCurrency?: string | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["float8"] | undefined | null;
+    signature?: string | undefined | null;
     status?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    walletAddress?: string | undefined | null;
   };
+  /** aggregate sum on columns */
+  ["centralized_txn_sum_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
   /** update columns of table "centralized_txn" */
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: ResolverInputTypes["centralized_txn_inc_input"] | undefined | null;
     /** sets the columns of the filtered rows to the given values */
     _set?: ResolverInputTypes["centralized_txn_set_input"] | undefined | null;
     /** filter the rows which have to be updated */
     where: ResolverInputTypes["centralized_txn_bool_exp"];
   };
+  /** aggregate var_pop on columns */
+  ["centralized_txn_var_pop_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate var_samp on columns */
+  ["centralized_txn_var_samp_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate variance on columns */
+  ["centralized_txn_variance_fields"]: AliasType<{
+    baseCurrencyAmount?: boolean | `@${string}`;
+    feeAmount?: boolean | `@${string}`;
+    quoteCurrencyAmount?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
   /** chat messages for clients */
   ["chat"]: AliasType<{
     /** An object relationship */
@@ -15394,7 +15893,11 @@ export type ResolverInputTypes = {
     ];
     update_centralized_txn?: [
       {
-        /** sets the columns of the filtered rows to the given values */
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ResolverInputTypes["centralized_txn_inc_input"]
+          | undefined
+          | null /** sets the columns of the filtered rows to the given values */;
         _set?:
           | ResolverInputTypes["centralized_txn_set_input"]
           | undefined
@@ -15405,7 +15908,11 @@ export type ResolverInputTypes = {
     ];
     update_centralized_txn_by_pk?: [
       {
-        /** sets the columns of the filtered rows to the given values */
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ResolverInputTypes["centralized_txn_inc_input"]
+          | undefined
+          | null /** sets the columns of the filtered rows to the given values */;
         _set?:
           | ResolverInputTypes["centralized_txn_set_input"]
           | undefined
@@ -20141,14 +20648,25 @@ export type ModelTypes = {
     /** An object relationship */
     account: ModelTypes["account"];
     accountId: ModelTypes["uuid"];
+    baseCurrency: string;
+    baseCurrencyAmount: ModelTypes["float8"];
     /** An object relationship */
     client: ModelTypes["client"];
     clientId: ModelTypes["uuid"];
     createdAt: ModelTypes["timestamptz"];
+    cryptoTransactionId: string;
+    failedReason?: string | undefined;
+    feeAmount: ModelTypes["float8"];
     id: ModelTypes["uuid"];
+    paymentMethod?: string | undefined;
     provider: string;
+    providerTxnId: ModelTypes["uuid"];
+    quoteCurrency: string;
+    quoteCurrencyAmount: ModelTypes["float8"];
+    signature?: string | undefined;
     status: string;
     updatedAt: ModelTypes["timestamptz"];
+    walletAddress: string;
   };
   /** aggregated selection of "centralized_txn" */
   ["centralized_txn_aggregate"]: {
@@ -20157,9 +20675,23 @@ export type ModelTypes = {
   };
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: {
+    avg?: ModelTypes["centralized_txn_avg_fields"] | undefined;
     count: number;
     max?: ModelTypes["centralized_txn_max_fields"] | undefined;
     min?: ModelTypes["centralized_txn_min_fields"] | undefined;
+    stddev?: ModelTypes["centralized_txn_stddev_fields"] | undefined;
+    stddev_pop?: ModelTypes["centralized_txn_stddev_pop_fields"] | undefined;
+    stddev_samp?: ModelTypes["centralized_txn_stddev_samp_fields"] | undefined;
+    sum?: ModelTypes["centralized_txn_sum_fields"] | undefined;
+    var_pop?: ModelTypes["centralized_txn_var_pop_fields"] | undefined;
+    var_samp?: ModelTypes["centralized_txn_var_samp_fields"] | undefined;
+    variance?: ModelTypes["centralized_txn_variance_fields"] | undefined;
+  };
+  /** aggregate avg on columns */
+  ["centralized_txn_avg_fields"]: {
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
   ["centralized_txn_bool_exp"]: {
@@ -20168,46 +20700,96 @@ export type ModelTypes = {
     _or?: Array<ModelTypes["centralized_txn_bool_exp"]> | undefined;
     account?: ModelTypes["account_bool_exp"] | undefined;
     accountId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    baseCurrency?: ModelTypes["String_comparison_exp"] | undefined;
+    baseCurrencyAmount?: ModelTypes["float8_comparison_exp"] | undefined;
     client?: ModelTypes["client_bool_exp"] | undefined;
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    cryptoTransactionId?: ModelTypes["String_comparison_exp"] | undefined;
+    failedReason?: ModelTypes["String_comparison_exp"] | undefined;
+    feeAmount?: ModelTypes["float8_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    paymentMethod?: ModelTypes["String_comparison_exp"] | undefined;
     provider?: ModelTypes["String_comparison_exp"] | undefined;
+    providerTxnId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    quoteCurrency?: ModelTypes["String_comparison_exp"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8_comparison_exp"] | undefined;
+    signature?: ModelTypes["String_comparison_exp"] | undefined;
     status?: ModelTypes["String_comparison_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    walletAddress?: ModelTypes["String_comparison_exp"] | undefined;
   };
   ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for incrementing numeric columns in table "centralized_txn" */
+  ["centralized_txn_inc_input"]: {
+    baseCurrencyAmount?: ModelTypes["float8"] | undefined;
+    feeAmount?: ModelTypes["float8"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
+  };
   /** input type for inserting data into table "centralized_txn" */
   ["centralized_txn_insert_input"]: {
     account?: ModelTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: ModelTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: ModelTypes["float8"] | undefined;
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: ModelTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
   };
   /** aggregate max on columns */
   ["centralized_txn_max_fields"]: {
     accountId?: ModelTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: ModelTypes["float8"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: ModelTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
   };
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: {
     accountId?: ModelTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: ModelTypes["float8"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: ModelTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
   };
   /** response of any mutation on the table "centralized_txn" */
   ["centralized_txn_mutation_response"]: {
@@ -20226,13 +20808,24 @@ export type ModelTypes = {
   ["centralized_txn_order_by"]: {
     account?: ModelTypes["account_order_by"] | undefined;
     accountId?: ModelTypes["order_by"] | undefined;
+    baseCurrency?: ModelTypes["order_by"] | undefined;
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
     client?: ModelTypes["client_order_by"] | undefined;
     clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
+    cryptoTransactionId?: ModelTypes["order_by"] | undefined;
+    failedReason?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
+    paymentMethod?: ModelTypes["order_by"] | undefined;
     provider?: ModelTypes["order_by"] | undefined;
+    providerTxnId?: ModelTypes["order_by"] | undefined;
+    quoteCurrency?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    signature?: ModelTypes["order_by"] | undefined;
     status?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
+    walletAddress?: ModelTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: centralized_txn */
   ["centralized_txn_pk_columns_input"]: {
@@ -20242,12 +20835,41 @@ export type ModelTypes = {
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: ModelTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: ModelTypes["float8"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: ModelTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
+  };
+  /** aggregate stddev on columns */
+  ["centralized_txn_stddev_fields"]: {
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate stddev_pop on columns */
+  ["centralized_txn_stddev_pop_fields"]: {
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate stddev_samp on columns */
+  ["centralized_txn_stddev_samp_fields"]: {
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
   };
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
@@ -20259,19 +20881,56 @@ export type ModelTypes = {
   /** Initial value of the column from where the streaming should start */
   ["centralized_txn_stream_cursor_value_input"]: {
     accountId?: ModelTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: ModelTypes["float8"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: ModelTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
+  };
+  /** aggregate sum on columns */
+  ["centralized_txn_sum_fields"]: {
+    baseCurrencyAmount?: ModelTypes["float8"] | undefined;
+    feeAmount?: ModelTypes["float8"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
   };
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: ModelTypes["centralized_txn_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: ModelTypes["centralized_txn_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: ModelTypes["centralized_txn_bool_exp"];
+  };
+  /** aggregate var_pop on columns */
+  ["centralized_txn_var_pop_fields"]: {
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate var_samp on columns */
+  ["centralized_txn_var_samp_fields"]: {
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate variance on columns */
+  ["centralized_txn_variance_fields"]: {
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
   };
   /** chat messages for clients */
   ["chat"]: {
@@ -24104,14 +24763,25 @@ export type GraphQLTypes = {
     /** An object relationship */
     account: GraphQLTypes["account"];
     accountId: GraphQLTypes["uuid"];
+    baseCurrency: string;
+    baseCurrencyAmount: GraphQLTypes["float8"];
     /** An object relationship */
     client: GraphQLTypes["client"];
     clientId: GraphQLTypes["uuid"];
     createdAt: GraphQLTypes["timestamptz"];
+    cryptoTransactionId: string;
+    failedReason?: string | undefined;
+    feeAmount: GraphQLTypes["float8"];
     id: GraphQLTypes["uuid"];
+    paymentMethod?: string | undefined;
     provider: string;
+    providerTxnId: GraphQLTypes["uuid"];
+    quoteCurrency: string;
+    quoteCurrencyAmount: GraphQLTypes["float8"];
+    signature?: string | undefined;
     status: string;
     updatedAt: GraphQLTypes["timestamptz"];
+    walletAddress: string;
   };
   /** aggregated selection of "centralized_txn" */
   ["centralized_txn_aggregate"]: {
@@ -24122,9 +24792,26 @@ export type GraphQLTypes = {
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: {
     __typename: "centralized_txn_aggregate_fields";
+    avg?: GraphQLTypes["centralized_txn_avg_fields"] | undefined;
     count: number;
     max?: GraphQLTypes["centralized_txn_max_fields"] | undefined;
     min?: GraphQLTypes["centralized_txn_min_fields"] | undefined;
+    stddev?: GraphQLTypes["centralized_txn_stddev_fields"] | undefined;
+    stddev_pop?: GraphQLTypes["centralized_txn_stddev_pop_fields"] | undefined;
+    stddev_samp?:
+      | GraphQLTypes["centralized_txn_stddev_samp_fields"]
+      | undefined;
+    sum?: GraphQLTypes["centralized_txn_sum_fields"] | undefined;
+    var_pop?: GraphQLTypes["centralized_txn_var_pop_fields"] | undefined;
+    var_samp?: GraphQLTypes["centralized_txn_var_samp_fields"] | undefined;
+    variance?: GraphQLTypes["centralized_txn_variance_fields"] | undefined;
+  };
+  /** aggregate avg on columns */
+  ["centralized_txn_avg_fields"]: {
+    __typename: "centralized_txn_avg_fields";
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
   ["centralized_txn_bool_exp"]: {
@@ -24133,49 +24820,99 @@ export type GraphQLTypes = {
     _or?: Array<GraphQLTypes["centralized_txn_bool_exp"]> | undefined;
     account?: GraphQLTypes["account_bool_exp"] | undefined;
     accountId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    baseCurrency?: GraphQLTypes["String_comparison_exp"] | undefined;
+    baseCurrencyAmount?: GraphQLTypes["float8_comparison_exp"] | undefined;
     client?: GraphQLTypes["client_bool_exp"] | undefined;
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    cryptoTransactionId?: GraphQLTypes["String_comparison_exp"] | undefined;
+    failedReason?: GraphQLTypes["String_comparison_exp"] | undefined;
+    feeAmount?: GraphQLTypes["float8_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    paymentMethod?: GraphQLTypes["String_comparison_exp"] | undefined;
     provider?: GraphQLTypes["String_comparison_exp"] | undefined;
+    providerTxnId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    quoteCurrency?: GraphQLTypes["String_comparison_exp"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8_comparison_exp"] | undefined;
+    signature?: GraphQLTypes["String_comparison_exp"] | undefined;
     status?: GraphQLTypes["String_comparison_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    walletAddress?: GraphQLTypes["String_comparison_exp"] | undefined;
   };
   /** unique or primary key constraints on table "centralized_txn" */
   ["centralized_txn_constraint"]: centralized_txn_constraint;
+  /** input type for incrementing numeric columns in table "centralized_txn" */
+  ["centralized_txn_inc_input"]: {
+    baseCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+    feeAmount?: GraphQLTypes["float8"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+  };
   /** input type for inserting data into table "centralized_txn" */
   ["centralized_txn_insert_input"]: {
     account?: GraphQLTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: GraphQLTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: GraphQLTypes["float8"] | undefined;
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: GraphQLTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
   };
   /** aggregate max on columns */
   ["centralized_txn_max_fields"]: {
     __typename: "centralized_txn_max_fields";
     accountId?: GraphQLTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: GraphQLTypes["float8"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: GraphQLTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
   };
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: {
     __typename: "centralized_txn_min_fields";
     accountId?: GraphQLTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: GraphQLTypes["float8"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: GraphQLTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
   };
   /** response of any mutation on the table "centralized_txn" */
   ["centralized_txn_mutation_response"]: {
@@ -24195,13 +24932,24 @@ export type GraphQLTypes = {
   ["centralized_txn_order_by"]: {
     account?: GraphQLTypes["account_order_by"] | undefined;
     accountId?: GraphQLTypes["order_by"] | undefined;
+    baseCurrency?: GraphQLTypes["order_by"] | undefined;
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
     client?: GraphQLTypes["client_order_by"] | undefined;
     clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
+    cryptoTransactionId?: GraphQLTypes["order_by"] | undefined;
+    failedReason?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
+    paymentMethod?: GraphQLTypes["order_by"] | undefined;
     provider?: GraphQLTypes["order_by"] | undefined;
+    providerTxnId?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrency?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    signature?: GraphQLTypes["order_by"] | undefined;
     status?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
+    walletAddress?: GraphQLTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: centralized_txn */
   ["centralized_txn_pk_columns_input"]: {
@@ -24212,12 +24960,44 @@ export type GraphQLTypes = {
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: GraphQLTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: GraphQLTypes["float8"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: GraphQLTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
+  };
+  /** aggregate stddev on columns */
+  ["centralized_txn_stddev_fields"]: {
+    __typename: "centralized_txn_stddev_fields";
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate stddev_pop on columns */
+  ["centralized_txn_stddev_pop_fields"]: {
+    __typename: "centralized_txn_stddev_pop_fields";
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate stddev_samp on columns */
+  ["centralized_txn_stddev_samp_fields"]: {
+    __typename: "centralized_txn_stddev_samp_fields";
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
   };
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
@@ -24229,20 +25009,61 @@ export type GraphQLTypes = {
   /** Initial value of the column from where the streaming should start */
   ["centralized_txn_stream_cursor_value_input"]: {
     accountId?: GraphQLTypes["uuid"] | undefined;
+    baseCurrency?: string | undefined;
+    baseCurrencyAmount?: GraphQLTypes["float8"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    cryptoTransactionId?: string | undefined;
+    failedReason?: string | undefined;
+    feeAmount?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
+    paymentMethod?: string | undefined;
     provider?: string | undefined;
+    providerTxnId?: GraphQLTypes["uuid"] | undefined;
+    quoteCurrency?: string | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+    signature?: string | undefined;
     status?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+    walletAddress?: string | undefined;
+  };
+  /** aggregate sum on columns */
+  ["centralized_txn_sum_fields"]: {
+    __typename: "centralized_txn_sum_fields";
+    baseCurrencyAmount?: GraphQLTypes["float8"] | undefined;
+    feeAmount?: GraphQLTypes["float8"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
   };
   /** update columns of table "centralized_txn" */
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: GraphQLTypes["centralized_txn_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: GraphQLTypes["centralized_txn_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: GraphQLTypes["centralized_txn_bool_exp"];
+  };
+  /** aggregate var_pop on columns */
+  ["centralized_txn_var_pop_fields"]: {
+    __typename: "centralized_txn_var_pop_fields";
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate var_samp on columns */
+  ["centralized_txn_var_samp_fields"]: {
+    __typename: "centralized_txn_var_samp_fields";
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
+  };
+  /** aggregate variance on columns */
+  ["centralized_txn_variance_fields"]: {
+    __typename: "centralized_txn_variance_fields";
+    baseCurrencyAmount?: number | undefined;
+    feeAmount?: number | undefined;
+    quoteCurrencyAmount?: number | undefined;
   };
   /** chat messages for clients */
   ["chat"]: {
@@ -27634,22 +28455,44 @@ export const enum centralized_txn_constraint {
 /** select columns of table "centralized_txn" */
 export const enum centralized_txn_select_column {
   accountId = "accountId",
+  baseCurrency = "baseCurrency",
+  baseCurrencyAmount = "baseCurrencyAmount",
   clientId = "clientId",
   createdAt = "createdAt",
+  cryptoTransactionId = "cryptoTransactionId",
+  failedReason = "failedReason",
+  feeAmount = "feeAmount",
   id = "id",
+  paymentMethod = "paymentMethod",
   provider = "provider",
+  providerTxnId = "providerTxnId",
+  quoteCurrency = "quoteCurrency",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+  signature = "signature",
   status = "status",
   updatedAt = "updatedAt",
+  walletAddress = "walletAddress",
 }
 /** update columns of table "centralized_txn" */
 export const enum centralized_txn_update_column {
   accountId = "accountId",
+  baseCurrency = "baseCurrency",
+  baseCurrencyAmount = "baseCurrencyAmount",
   clientId = "clientId",
   createdAt = "createdAt",
+  cryptoTransactionId = "cryptoTransactionId",
+  failedReason = "failedReason",
+  feeAmount = "feeAmount",
   id = "id",
+  paymentMethod = "paymentMethod",
   provider = "provider",
+  providerTxnId = "providerTxnId",
+  quoteCurrency = "quoteCurrency",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+  signature = "signature",
   status = "status",
   updatedAt = "updatedAt",
+  walletAddress = "walletAddress",
 }
 /** unique or primary key constraints on table "chat" */
 export const enum chat_constraint {
@@ -28085,6 +28928,7 @@ type ZEUS_VARIABLES = {
   ["bitcoin_updates"]: ValueTypes["bitcoin_updates"];
   ["centralized_txn_bool_exp"]: ValueTypes["centralized_txn_bool_exp"];
   ["centralized_txn_constraint"]: ValueTypes["centralized_txn_constraint"];
+  ["centralized_txn_inc_input"]: ValueTypes["centralized_txn_inc_input"];
   ["centralized_txn_insert_input"]: ValueTypes["centralized_txn_insert_input"];
   ["centralized_txn_on_conflict"]: ValueTypes["centralized_txn_on_conflict"];
   ["centralized_txn_order_by"]: ValueTypes["centralized_txn_order_by"];
