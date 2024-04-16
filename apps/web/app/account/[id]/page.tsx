@@ -15,6 +15,7 @@ import { CodeWrapper } from "./Code-wrapper";
 import { Share } from "./share";
 import { CLIENT_URL } from "@paybox/common";
 import BuyButton from "./buy-button";
+import { loadMoonPay } from '@moonpay/moonpay-js';
 
 interface PageProps {
     params: { id: string }
@@ -23,6 +24,7 @@ export default async function Page({
     params,
 }: PageProps) {
     //todo: fetch all the monitor detaial like txn etc
+   
 
     return (
         <>

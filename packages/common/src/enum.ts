@@ -17,18 +17,18 @@ export enum BaseCurrencyCode {
 }
 
 export enum CryptoCurrencyCode {
-    Bitcoin = 'BTC',
-    Ethereum = 'ETH',
-    Litecoin = 'LTC',
-    BitcoinCash = 'BCH',
-    Ripple = 'XRP',
-    Cardano = 'ADA',
-    Polkadot = 'DOT',
-    BinanceCoin = 'BNB',
-    Chainlink = 'LINK',
-    Stellar = 'XLM',
-    Dogecoin = 'DOGE',
-    Solana = 'SOL',
+    Bitcoin = 'btc',
+    Ethereum = 'eth',
+    Litecoin = 'ltc',
+    BitcoinCash = 'bch',
+    Ripple = 'xrp',
+    Cardano = 'ada',
+    Polkadot = 'dot',
+    BinanceCoin = 'bnd',
+    Chainlink = 'link',
+    Stellar = 'xlm',
+    Dogecoin = 'doge',
+    Solana = 'sol',
 }
 
 export enum Network {

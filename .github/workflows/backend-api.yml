@@ -45,6 +45,9 @@ jobs:
           printf 'CHAT_KAFKA_ID=%s\n' "${{secrets.CHAT_KAFKA_ID}}" >> .env
           printf 'CHAT_KAFKA_URL=%s\n' "${{secrets.CHAT_KAFKA_URL}}" >> .env
           printf 'PROCESS=%s\n' "${{secrets.PROCESS}}" >> .env
+          printf 'MOONPAY_WEBHOOK_KEY=%s\n' "${{secrets.MOONPAY_WEBHOOK_KEY}}" >> .env
+          printf 'MOONPAY_API_KEY=%s\n' "${{secrets.MOONPAY_API_KEY}}" >> .env
+          printf 'MOONPAY_SECRET_KEY=%s\n' "${{secrets.MOONPAY_SECRET_KEY}}" >> .env
           cd ../..
 
       - name: docker login
