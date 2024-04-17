@@ -5,10 +5,9 @@ import { publicKeyType } from './account';
 export const GetBuyUrlSchema = z.object({
     clientPlatform: z
         .nativeEnum(ClientProvider),
-    amount: z
-        .string(),
+    amount: z.number(),
     type: z.string(),
-    currencyCode: z.nativeEnum(CryptoCurrencyCode),
+    defaultCurrencyCode: z.nativeEnum(CryptoCurrencyCode),
     walletAddress: publicKeyType,
     email: z
         .string()
