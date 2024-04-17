@@ -10,12 +10,16 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Network } from "@paybox/common"
-import { accountAtom } from "@paybox/recoil"
-import React, { useEffect } from "react"
-import { useRecoilValue } from "recoil"
+import { ClientProvider, CryptoCurrencyCode, GetBuyUrlSchema, Network } from "@paybox/common"
+import { accountAtom, clientAtom, quoteAtom } from "@paybox/recoil"
+import React, { useEffect, useState } from "react"
+import { useRecoilState, useRecoilValue } from "recoil"
 import SolanaIcon from "./icon/SolanaIcon"
-import EthIcon from "./icon/Eth"
+import EthIcon from "./icon/Eth";
+
+import { cryptoIcon } from "./icon/icon"
+import { BitcoinIcon } from "./icon/bitcoin"
+import { ArrowUpDown, CaseUpperIcon } from "lucide-react"
 
 export function FundDialog({
     open,
@@ -27,56 +31,53 @@ export function FundDialog({
     token: Network,
 }) {
     const account = useRecoilValue(accountAtom);
-    const [tabData, setTabData] = React.useState<{
-        name: string,
-        publicKey: string,
-        icon: React.ElementType,
-        value: "Solana" | "Ethereum" | "Bitcoin",
-        selectedCurrency: "USD" | "SOL" | "ETH" | "BTC"
-    } | null>(null);
-    const ref = React.useRef<HTMLInputElement>(null);
+    const client = useRecoilValue(clientAtom);
+    const [quoteState, setQuoteAtom] = useRecoilState(quoteAtom);
+    const [key, setKey] = useState<string>();
+    const [amount, setAmount] = useState<number>(0)
 
     useEffect(() => {
         if (token == Network.Sol && account?.sol) {
-            setTabData({
-                name: account?.name,
-                publicKey: account?.sol.publicKey,
-                icon: SolanaIcon,
-                value: "Solana",
-                selectedCurrency: "SOL"
-            })
+            setKey(account.sol.publicKey);
         } else if (token == Network.Eth && account?.eth) {
-            setTabData({
-                name: account?.name,
-                publicKey: account?.eth.publicKey,
-                icon: EthIcon,
-                value: "Ethereum",
-                selectedCurrency: "ETH"
-            })
+            setKey(account.eth.publicKey);
         }
+        setQuoteAtom({
+            type: "fiat",
+            amount: amount,
+            token: "usd"
+        })
     }, [token]);
 
-    const getUrl = async () => {
-        if(ref.current?.value) {
-            //todo: fetch the api to get the url
-            const call = async () => {
 
+    useEffect(() => {
+        setQuoteAtom((old) => {
+            return {
+                ...old,
+                amount
             }
-            console.log(ref.current.value)
-        }
+        })
+    }, [amount])
+
+    function onSubmit(data: any) {
+
+    }
+
+    if (!token) {
+        return <></>
     }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Fund your {tabData?.value} Account</DialogTitle>
+                    <DialogTitle>Fund {token.charAt(0).toLocaleUpperCase() + token.slice(1)} to your Account</DialogTitle>
                     <DialogDescription>
-                        It's safe and secure to fund your account with {tabData?.value} tokens.
+                        It's safe and secure to fund your account with {token.toUpperCase()} tokens.
                     </DialogDescription>
                     <div className="flex flex-col gap-y-2 items-center justify-center">
-                        <div className="text-xl font-semibold">Buy {tabData?.value}</div>
-                        {tabData && <tabData.icon className="w-12 h-12" />}
+                        <div className="text-xl font-semibold">Buy {token.charAt(0)}{token.slice(1)}</div>
+                        {token == Network.Sol ? <SolanaIcon className="w-12 h-12" /> : token == Network.Eth ? <EthIcon className="w-12 h-12" /> : <BitcoinIcon className="w-12 h-12" />}
                     </div>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
@@ -84,28 +85,50 @@ export function FundDialog({
                         className="dark:bg-primary-foreground border flex gap-x-4 px-4 py-[5px] rounded justify-start cursor-not-allowed"
                     >
                         <span className="text-white">
-                            {tabData?.name}
+                            {account?.name}
                         </span>
-                        <div className="text-muted-foreground">({tabData?.publicKey.slice(0, 4)}...{tabData?.publicKey.slice(tabData.publicKey.length - 5)})</div>
+                        <div className="text-muted-foreground">({key?.slice(0, 4)}...{key?.slice(key?.length - 5)})</div>
                     </div>
-                    <div className="flex relative items-center ">
-                        <Label htmlFor="username" className="text-right absolute right-3 text-muted-foreground">
-                            {tabData?.selectedCurrency}
-                        </Label>
+                    <div className="flex relative item-center justify-center ">
+                        <Label
+                            className="text-right absolute right-3 top-[10px] text-muted-foreground"
+                        >{quoteState.type == "fiat" ? token.toLocaleUpperCase() : "USD"}</Label>
                         <Input
-                            ref={ref}
                             required
                             id="amount"
                             type="number"
                             placeholder="Amount"
+                            onChange={(e) => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        amount: Number(e.target.value)
+                                    }
+                                })
+                            }}
                             className="w-full px-4 py-[5px] [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
                         />
                     </div>
+                        <div
+                            className="flex gap-x-1 px-2 text-muted-foreground items-center"
+                            onClick={() => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        type: old.type == "fiat" ? "crypto" : "fiat"
+                                    }
+                                });
+                            }}>
+                            <span>
+                                {quoteState.type == "fiat" ? "$" : ""} {quoteState.amount} {quoteState.type == "crypto" ? token.toLocaleUpperCase() : ""}
+                            </span>
+                            <ArrowUpDown className="w-4 h-4" />
+                        </div>
                 </div>
                 <DialogFooter>
-                    <Button onClick={getUrl} type="submit">Save changes</Button>
+                    <Button type="submit">Submit</Button>
                 </DialogFooter>
             </DialogContent>
-        </Dialog>
+        </Dialog >
     )
 }
