@@ -9,7 +9,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { AccountType } from "@paybox/common"
-import { accountAtom, accountsAtom } from "@paybox/recoil"
+import { accountAtom, accountsAtom, clientJwtAtom } from "@paybox/recoil"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect } from "react"
@@ -19,11 +19,11 @@ import { toast } from "sonner"
 export const AccountLayout = ({
     children,
     account,
-    id
+    id,
 }: {
     children: React.ReactNode,
     account: AccountType,
-    id: string
+    id: string,
 }) => {
     const setAccount = useSetRecoilState(accountAtom);
     const accounts = useRecoilValue(accountsAtom);

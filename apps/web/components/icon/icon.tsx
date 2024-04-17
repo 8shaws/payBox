@@ -1,3 +1,8 @@
+import { Network } from "@paybox/common"
+import SolanaIcon from "./SolanaIcon"
+import EthIcon from "./Eth"
+import { BitcoinIcon } from "./bitcoin"
+
 type IconProps = React.HTMLAttributes<SVGElement>
 
 export const Icons = {
@@ -132,4 +137,17 @@ export const Icons = {
             <path d="M21 12a9 9 0 1 1-6.219-8.56" />
         </svg>
     ),
+}
+
+export const cryptoIcon = (chain: Network): {icon: React.ElementType} | null => {
+    switch(chain) {
+        case Network.Sol:
+            return {icon: SolanaIcon};
+        case Network.Eth:
+            return {icon: EthIcon};
+        case Network.Bitcoin:
+            return {icon: BitcoinIcon};
+        default:
+            return null
+    }
 }

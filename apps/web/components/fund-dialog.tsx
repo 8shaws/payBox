@@ -10,16 +10,24 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ClientProvider, CryptoCurrencyCode, GetBuyUrlSchema, Network } from "@paybox/common"
-import { accountAtom, clientAtom, quoteAtom } from "@paybox/recoil"
+import { BACKEND_URL, ClientProvider, CryptoCurrencyCode, GetBuyUrlSchema, Network, responseStatus } from "@paybox/common"
+import { accountAtom, clientAtom, clientJwtAtom, getQuote, quoteAtom } from "@paybox/recoil"
 import React, { useEffect, useState } from "react"
 import { useRecoilState, useRecoilValue } from "recoil"
 import SolanaIcon from "./icon/SolanaIcon"
 import EthIcon from "./icon/Eth";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 import { cryptoIcon } from "./icon/icon"
 import { BitcoinIcon } from "./icon/bitcoin"
 import { ArrowUpDown, CaseUpperIcon } from "lucide-react"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 export function FundDialog({
     open,
@@ -32,9 +40,13 @@ export function FundDialog({
 }) {
     const account = useRecoilValue(accountAtom);
     const client = useRecoilValue(clientAtom);
+    const jwt = useRecoilValue(clientJwtAtom);
     const [quoteState, setQuoteAtom] = useRecoilState(quoteAtom);
     const [key, setKey] = useState<string>();
-    const [amount, setAmount] = useState<number>(0)
+    const [amount, setAmount] = useState<number>(0);
+    const router = useRouter();
+
+    const quoteValue = useRecoilValue(getQuote);
 
     useEffect(() => {
         if (token == Network.Sol && account?.sol) {
@@ -59,7 +71,44 @@ export function FundDialog({
         })
     }, [amount])
 
-    function onSubmit(data: any) {
+    function onSubmit() {
+        const call = async () => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/buy/`, {
+                    method: "post",
+                    headers: {
+                        'Content-type': "application/json",
+                        Authorization: `Bearer ${jwt}`
+                    },
+                    body: JSON.stringify({
+                        clientPlatform: ClientProvider.MoonPay,
+                        amount,
+                        type: quoteState.type == "crypto" ? "fiat" : "crypto",
+                        defaultCurrencyCode: token,
+                        walletAddress: key,
+                        email: client?.email,
+                    })
+                }).then(res => res.json());
+                if(response.status === responseStatus.Error) {
+                    return Promise.reject({msg: response.msg});
+                }
+                return Promise.resolve({url: response.url})
+            } catch (error) {
+                console.log(error);
+                return Promise.reject({ msg: "Internal Error" })
+            }
+        };
+
+        toast.promise(call(), {
+            loading: "Getting the url...",
+            success: ({url}) => {
+                router.push(url);
+                return 'Redirecting to Payment Portal...';
+            },
+            error: ({msg}) => {
+                return msg;
+            }
+        });
 
     }
 
@@ -99,6 +148,7 @@ export function FundDialog({
                             type="number"
                             placeholder="Amount"
                             onChange={(e) => {
+                                setAmount(Number(e.target.value))
                                 setQuoteAtom((old) => {
                                     return {
                                         ...old,
@@ -109,24 +159,36 @@ export function FundDialog({
                             className="w-full px-4 py-[5px] [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
                         />
                     </div>
-                        <div
-                            className="flex gap-x-1 px-2 text-muted-foreground items-center"
-                            onClick={() => {
-                                setQuoteAtom((old) => {
-                                    return {
-                                        ...old,
-                                        type: old.type == "fiat" ? "crypto" : "fiat"
-                                    }
-                                });
-                            }}>
-                            <span>
-                                {quoteState.type == "fiat" ? "$" : ""} {quoteState.amount} {quoteState.type == "crypto" ? token.toLocaleUpperCase() : ""}
-                            </span>
-                            <ArrowUpDown className="w-4 h-4" />
-                        </div>
+
+                    <div
+                        className="flex gap-x-1 px-2 text-muted-foreground items-center"
+                        onClick={() => {
+                            setQuoteAtom((old) => {
+                                return {
+                                    ...old,
+                                    type: old.type == "fiat" ? "crypto" : "fiat"
+                                }
+                            });
+                        }}>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="flex gap-x-1 px-2 text-muted-foreground items-center hover:underline cursor-pointer">
+                                        <span>
+                                            {quoteState.type == "fiat" ? "$" : ""} {quoteValue} {quoteState.type == "crypto" ? token.toLocaleUpperCase() : ""}
+                                        </span>
+                                        <ArrowUpDown className="w-4 h-4" />
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Add to library</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    </div>
                 </div>
                 <DialogFooter>
-                    <Button type="submit">Submit</Button>
+                    <Button type="button" onClick={onSubmit}>Submit</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog >

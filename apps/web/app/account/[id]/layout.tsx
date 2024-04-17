@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import { AccountLayout } from "./account-layout";
 import React from "react";
 import { getAccount } from "@/lib/helper";
+import { Wrapper } from "../warpLayout";
 
 export const metadata: Metadata = {
   title: "Account | PayBox",
@@ -38,11 +39,13 @@ export default async function AccountMainLayout({
     <>
     <div className=" dark:bg-primary-foreground">
         {account && 
-            <AccountLayout
-                account={account}
-                children={children}
-                id={id}
-            />
+        <Wrapper session={session}>
+          <AccountLayout
+              account={account}
+              children={children}
+              id={id}
+          />
+        </Wrapper>
         }
 
     </div>
