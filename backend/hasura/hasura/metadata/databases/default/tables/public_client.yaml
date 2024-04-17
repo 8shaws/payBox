@@ -34,6 +34,13 @@ array_relationships:
         table:
           name: account
           schema: public
+  - name: centralized_txns
+    using:
+      foreign_key_constraint_on:
+        column: client_id
+        table:
+          name: centralized_txn
+          schema: public
   - name: chats
     using:
       foreign_key_constraint_on:
