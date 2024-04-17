@@ -1,4 +1,4 @@
-import { CLIENT_URL, ClientProvider, DBTopics, GetBuyUrlSchema, GetQuoteSchema, TopicTypes, TxnStatus, responseStatus } from "@paybox/common";
+import { BaseCurrencyCode, CLIENT_URL, ClientProvider, DBTopics, GetBuyUrlSchema, GetQuoteSchema, TopicTypes, TxnStatus, responseStatus } from "@paybox/common";
 import { Router, response } from "express";
 import { MoonPay } from '@moonpay/moonpay-node';
 import { MOONPAY_API_KEY, MOONPAY_SECRET_KEY } from "../config";
@@ -10,7 +10,7 @@ import sdk from '@api/moonpaydocs';
 
 export const buyRouter = Router();
 
-buyRouter.get('/', async (req, res) => {
+buyRouter.post('/', async (req, res) => {
     try {
         //@ts-ignore
         const id = req.id;
@@ -22,12 +22,10 @@ buyRouter.get('/', async (req, res) => {
             let signedUrl;
             switch (query.clientPlatform) {
                 case ClientProvider.MoonPay:
-                    const params = {
+                    let params = {
                         apiKey: MOONPAY_API_KEY,
-                        baseCurrencyCode: query.baseCurrencyCode,
-                        baseCurrencyAmount: query.baseCurrencyAmount,
+                        baseCurrencyCode: "usd",
                         defaultCurrencyCode: query.defaultCurrencyCode,
-                        quoteCurrencyAmount: query.quoteCurrencyAmount,
                         walletAddress: query.walletAddress,
                         email: query.email,
                         externalCustomerId: id,
@@ -35,6 +33,13 @@ buyRouter.get('/', async (req, res) => {
                         redirectURL: `${CLIENT_URL}/account/${query.walletAddress}/buy/success`,
                         showWalletAddressForm: "true",
                     };
+                    if(query.type == "fiat") {
+                        //@ts-ignore
+                        params = {...params, baseCurrencyAmount: query.amount}
+                    } else {
+                        //@ts-ignore
+                        params = {...params, quoteCurrencyAmount: query.amount}
+                    }
                     signedUrl = moonPay.url.generate({ flow: 'buy', params });
                     break;
                 default:
@@ -64,16 +69,16 @@ buyRouter.get('/', async (req, res) => {
     }
 });
 
-buyRouter.get('/quote', async (req, res) => {
+buyRouter.post('/quote', async (req, res) => {
     try {
         //@ts-ignore
         const id = req.id;
         if (id) {
 
-            const { baseCurrencyAmount, baseCurrencyCode, currencyCode, quoteCurrencyAmount, areFeesIncluded }
+            const { baseCurrencyAmount, currencyCode, quoteCurrencyAmount, areFeesIncluded }
                 = GetQuoteSchema.parse(req.body);
             sdk.auth(MOONPAY_API_KEY);
-            const data = await sdk.getBuyQuote({ currencyCode, query: { baseCurrencyCode, quoteCurrencyAmount, areFeesIncluded, baseCurrencyAmount  } });
+            const data = await sdk.getBuyQuote({ currencyCode, query: { baseCurrencyCode: "usd", quoteCurrencyAmount, areFeesIncluded, baseCurrencyAmount  } });
             return res.status(200).json({
                 status: responseStatus.Ok,
                 data

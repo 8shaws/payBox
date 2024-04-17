@@ -1,19 +1,24 @@
 "use client";
-import { clientJwtAtom } from '@paybox/recoil'
+import { clientAtom, clientJwtAtom } from '@paybox/recoil'
+import { Session } from 'next-auth';
 import React, { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 export function Wrapper({
     children,
-    jwt
+    session
 }: {
     children: React.ReactNode,
-    jwt: string
+    session: Session
 }) {
     const setJwt = useSetRecoilState(clientJwtAtom);
+    const setClient = useSetRecoilState(clientAtom);
     useEffect(() => {
-        setJwt(jwt);
-    }, [jwt])
+        //@ts-ignore
+        setJwt(session?.user?.jwt);
+        //@ts-ignore
+        setClient(session?.user);
+    }, [session])
     return (
         <>
             {children}

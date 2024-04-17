@@ -48,3 +48,11 @@ object_relationships:
   - name: wallet
     using:
       foreign_key_constraint_on: wallet_id
+array_relationships:
+  - name: centralized_txns
+    using:
+      foreign_key_constraint_on:
+        column: account_id
+        table:
+          name: centralized_txn
+          schema: public

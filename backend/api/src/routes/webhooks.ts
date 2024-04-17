@@ -8,7 +8,6 @@ hooksRouter.post("/moonpay", async (req, res) => {
     try {
         
         const {data} = req.body;
-        console.log(data)
         //mutate the db
         const {status, id} = await insertCentTxn(data);
         if(status == dbResStatus.Error) {

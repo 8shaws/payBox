@@ -5,12 +5,9 @@ import { publicKeyType } from './account';
 export const GetBuyUrlSchema = z.object({
     clientPlatform: z
         .nativeEnum(ClientProvider),
-    baseCurrencyCode: z.nativeEnum(BaseCurrencyCode),
-    baseCurrencyAmount: z
-        .string(),
+    amount: z.number(),
+    type: z.string(),
     defaultCurrencyCode: z.nativeEnum(CryptoCurrencyCode),
-    quoteCurrencyAmount: z
-        .string(),
     walletAddress: publicKeyType,
     email: z
         .string()
@@ -18,10 +15,9 @@ export const GetBuyUrlSchema = z.object({
 });
 
 export const GetQuoteSchema = z.object({
-    baseCurrencyCode: z.nativeEnum(BaseCurrencyCode),
     baseCurrencyAmount: z
-        .number().optional(),
+        .number().optional().default(0),
     currencyCode: z.nativeEnum(CryptoCurrencyCode),
-    quoteCurrencyAmount: z.number().optional(),
+    quoteCurrencyAmount: z.number().optional().default(0),
     areFeesIncluded: z.boolean(),
 });
