@@ -11,11 +11,12 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { BACKEND_URL, ClientProvider, CryptoCurrencyCode, GetBuyUrlSchema, Network, responseStatus } from "@paybox/common"
-import { accountAtom, clientAtom, clientJwtAtom, getQuote, quoteAtom } from "@paybox/recoil"
+import { accountAtom, clientAtom, clientJwtAtom, fetchQuote, getQuote, quoteAtom, useQuote } from "@paybox/recoil"
 import React, { useEffect, useState } from "react"
 import { useRecoilState, useRecoilValue } from "recoil"
 import SolanaIcon from "./icon/SolanaIcon"
 import EthIcon from "./icon/Eth";
+import { Badge } from "@/components/ui/badge"
 import {
     Tooltip,
     TooltipContent,
@@ -45,6 +46,11 @@ export function FundDialog({
     const [key, setKey] = useState<string>();
     const [amount, setAmount] = useState<number>(0);
     const router = useRouter();
+    const rate = useQuote({
+        quoteCurrencyAmount: 0,
+        areFeesIncluded: false,
+        currencyCode: token || "eth"
+    });
 
     const quoteValue = useRecoilValue(getQuote);
 
@@ -87,6 +93,7 @@ export function FundDialog({
                         defaultCurrencyCode: token,
                         walletAddress: key,
                         email: client?.email,
+                        accountId: account?.id
                     })
                 }).then(res => res.json());
                 if(response.status === responseStatus.Error) {
@@ -147,7 +154,9 @@ export function FundDialog({
                             id="amount"
                             type="number"
                             placeholder="Amount"
+                            value={amount == 0 ? undefined : amount.toString()}
                             onChange={(e) => {
+                                if(Number(e.target.value) > 10000) return
                                 setAmount(Number(e.target.value))
                                 setQuoteAtom((old) => {
                                     return {
@@ -181,14 +190,44 @@ export function FundDialog({
                                     </div>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                    <p>Add to library</p>
+                                    <p>Quote for {token.charAt(0).toLocaleUpperCase()+token.slice(1)} with Usd</p>
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
+                        <div className="flex-grow" />
+                        <div className="badges flex gap-x-2">
+                            <Badge variant={"secondary"} onClick={() => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        type: "fiat"
+                                    }
+                                })
+                                setAmount(100);
+                            }} className="cursor-pointer bg-muted text-white">$100</Badge>
+                            <Badge variant={"secondary"} onClick={() => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        type: "fiat"
+                                    }
+                                })
+                                setAmount(500);
+                            }} className="cursor-pointer bg-muted text-white">$500</Badge>
+                            <Badge variant={"secondary"} onClick={() => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        type: "fiat"
+                                    }
+                                })
+                                setAmount(1000);
+                            }} className="cursor-pointer bg-muted text-white">$1000</Badge>
+                        </div>
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="button" onClick={onSubmit}>Submit</Button>
+                    <Button type="button" className="w-full" onClick={onSubmit}>Checkout</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog >

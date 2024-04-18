@@ -30,7 +30,7 @@ buyRouter.post('/', async (req, res) => {
                         email: query.email,
                         externalCustomerId: id,
                         paymentMethod: 'credit_debit_card',
-                        redirectURL: `${CLIENT_URL}/account/${query.walletAddress}/buy/success`,
+                        redirectURL: `${CLIENT_URL}/account/${query.accountId}/txn`,
                         showWalletAddressForm: "true",
                     };
                     if(query.type == "fiat") {
