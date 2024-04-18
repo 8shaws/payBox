@@ -2700,6 +2700,216 @@ export type Client_Variance_Fields = {
   mobile?: Maybe<Scalars['Float']['output']>;
 };
 
+/** blockchains connections metadata */
+export type Connections = {
+  __typename?: 'connections';
+  btcNetwork: Scalars['String']['output'];
+  clientId: Scalars['uuid']['output'];
+  clientSettingsId: Scalars['uuid']['output'];
+  createdAt: Scalars['timestamptz']['output'];
+  ethNetwork: Scalars['String']['output'];
+  id: Scalars['uuid']['output'];
+  solNetwork: Scalars['String']['output'];
+  updatedAt: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "connections" */
+export type Connections_Aggregate = {
+  __typename?: 'connections_aggregate';
+  aggregate?: Maybe<Connections_Aggregate_Fields>;
+  nodes: Array<Connections>;
+};
+
+/** aggregate fields of "connections" */
+export type Connections_Aggregate_Fields = {
+  __typename?: 'connections_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Connections_Max_Fields>;
+  min?: Maybe<Connections_Min_Fields>;
+};
+
+
+/** aggregate fields of "connections" */
+export type Connections_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Connections_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+export type Connections_Bool_Exp = {
+  _and?: InputMaybe<Array<Connections_Bool_Exp>>;
+  _not?: InputMaybe<Connections_Bool_Exp>;
+  _or?: InputMaybe<Array<Connections_Bool_Exp>>;
+  btcNetwork?: InputMaybe<String_Comparison_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
+  clientSettingsId?: InputMaybe<Uuid_Comparison_Exp>;
+  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  ethNetwork?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  solNetwork?: InputMaybe<String_Comparison_Exp>;
+  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "connections" */
+export enum Connections_Constraint {
+  /** unique or primary key constraint on columns "client_id" */
+  ConnectionsClientIdKey = 'connections_client_id_key',
+  /** unique or primary key constraint on columns "client_settings_id" */
+  ConnectionsClientSettingsIdKey = 'connections_client_settings_id_key',
+  /** unique or primary key constraint on columns "id" */
+  ConnectionsPkey = 'connections_pkey'
+}
+
+/** input type for inserting data into table "connections" */
+export type Connections_Insert_Input = {
+  btcNetwork?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  clientSettingsId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethNetwork?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  solNetwork?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Connections_Max_Fields = {
+  __typename?: 'connections_max_fields';
+  btcNetwork?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  clientSettingsId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  ethNetwork?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  solNetwork?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Connections_Min_Fields = {
+  __typename?: 'connections_min_fields';
+  btcNetwork?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  clientSettingsId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  ethNetwork?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  solNetwork?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "connections" */
+export type Connections_Mutation_Response = {
+  __typename?: 'connections_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Connections>;
+};
+
+/** on_conflict condition type for table "connections" */
+export type Connections_On_Conflict = {
+  constraint: Connections_Constraint;
+  update_columns?: Array<Connections_Update_Column>;
+  where?: InputMaybe<Connections_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "connections". */
+export type Connections_Order_By = {
+  btcNetwork?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  clientSettingsId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  ethNetwork?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  solNetwork?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: connections */
+export type Connections_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "connections" */
+export enum Connections_Select_Column {
+  /** column name */
+  BtcNetwork = 'btcNetwork',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  ClientSettingsId = 'clientSettingsId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  EthNetwork = 'ethNetwork',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SolNetwork = 'solNetwork',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "connections" */
+export type Connections_Set_Input = {
+  btcNetwork?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  clientSettingsId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethNetwork?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  solNetwork?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "connections" */
+export type Connections_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Connections_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Connections_Stream_Cursor_Value_Input = {
+  btcNetwork?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  clientSettingsId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethNetwork?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  solNetwork?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "connections" */
+export enum Connections_Update_Column {
+  /** column name */
+  BtcNetwork = 'btcNetwork',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  ClientSettingsId = 'clientSettingsId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  EthNetwork = 'ethNetwork',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SolNetwork = 'solNetwork',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+export type Connections_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Connections_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Connections_Bool_Exp;
+};
+
 /** ordering argument of a cursor */
 export enum Cursor_Ordering {
   /** ascending ordering of the cursor */
@@ -3404,6 +3614,10 @@ export type Mutation_Root = {
   delete_client_settings?: Maybe<Client_Settings_Mutation_Response>;
   /** delete single row from the table: "client_settings" */
   delete_client_settings_by_pk?: Maybe<Client_Settings>;
+  /** delete data from the table: "connections" */
+  delete_connections?: Maybe<Connections_Mutation_Response>;
+  /** delete single row from the table: "connections" */
+  delete_connections_by_pk?: Maybe<Connections>;
   /** delete data from the table: "eth" */
   delete_eth?: Maybe<Eth_Mutation_Response>;
   /** delete single row from the table: "eth" */
@@ -3464,6 +3678,10 @@ export type Mutation_Root = {
   insert_client_settings?: Maybe<Client_Settings_Mutation_Response>;
   /** insert a single row into the table: "client_settings" */
   insert_client_settings_one?: Maybe<Client_Settings>;
+  /** insert data into the table: "connections" */
+  insert_connections?: Maybe<Connections_Mutation_Response>;
+  /** insert a single row into the table: "connections" */
+  insert_connections_one?: Maybe<Connections>;
   /** insert data into the table: "eth" */
   insert_eth?: Maybe<Eth_Mutation_Response>;
   /** insert a single row into the table: "eth" */
@@ -3538,6 +3756,12 @@ export type Mutation_Root = {
   update_client_settings_by_pk?: Maybe<Client_Settings>;
   /** update multiples rows of table: "client_settings" */
   update_client_settings_many?: Maybe<Array<Maybe<Client_Settings_Mutation_Response>>>;
+  /** update data of the table: "connections" */
+  update_connections?: Maybe<Connections_Mutation_Response>;
+  /** update single row of the table: "connections" */
+  update_connections_by_pk?: Maybe<Connections>;
+  /** update multiples rows of table: "connections" */
+  update_connections_many?: Maybe<Array<Maybe<Connections_Mutation_Response>>>;
   /** update data of the table: "eth" */
   update_eth?: Maybe<Eth_Mutation_Response>;
   /** update single row of the table: "eth" */
@@ -3669,6 +3893,18 @@ export type Mutation_RootDelete_Client_SettingsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Client_Settings_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ConnectionsArgs = {
+  where: Connections_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Connections_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -3864,6 +4100,20 @@ export type Mutation_RootInsert_Client_SettingsArgs = {
 export type Mutation_RootInsert_Client_Settings_OneArgs = {
   object: Client_Settings_Insert_Input;
   on_conflict?: InputMaybe<Client_Settings_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_ConnectionsArgs = {
+  objects: Array<Connections_Insert_Input>;
+  on_conflict?: InputMaybe<Connections_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Connections_OneArgs = {
+  object: Connections_Insert_Input;
+  on_conflict?: InputMaybe<Connections_On_Conflict>;
 };
 
 
@@ -4122,6 +4372,26 @@ export type Mutation_RootUpdate_Client_Settings_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Client_Settings_ManyArgs = {
   updates: Array<Client_Settings_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_ConnectionsArgs = {
+  _set?: InputMaybe<Connections_Set_Input>;
+  where: Connections_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Connections_By_PkArgs = {
+  _set?: InputMaybe<Connections_Set_Input>;
+  pk_columns: Connections_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Connections_ManyArgs = {
+  updates: Array<Connections_Updates>;
 };
 
 
@@ -5203,6 +5473,12 @@ export type Query_Root = {
   client_settings_aggregate: Client_Settings_Aggregate;
   /** fetch data from the table: "client_settings" using primary key columns */
   client_settings_by_pk?: Maybe<Client_Settings>;
+  /** fetch data from the table: "connections" */
+  connections: Array<Connections>;
+  /** fetch aggregated fields from the table: "connections" */
+  connections_aggregate: Connections_Aggregate;
+  /** fetch data from the table: "connections" using primary key columns */
+  connections_by_pk?: Maybe<Connections>;
   /** fetch data from the table: "eth" */
   eth: Array<Eth>;
   /** fetch aggregated fields from the table: "eth" */
@@ -5411,6 +5687,29 @@ export type Query_RootClient_Settings_AggregateArgs = {
 
 
 export type Query_RootClient_Settings_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootConnectionsArgs = {
+  distinct_on?: InputMaybe<Array<Connections_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Connections_Order_By>>;
+  where?: InputMaybe<Connections_Bool_Exp>;
+};
+
+
+export type Query_RootConnections_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Connections_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Connections_Order_By>>;
+  where?: InputMaybe<Connections_Bool_Exp>;
+};
+
+
+export type Query_RootConnections_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -5975,6 +6274,14 @@ export type Subscription_Root = {
   client_settings_stream: Array<Client_Settings>;
   /** fetch data from the table in a streaming manner: "client" */
   client_stream: Array<Client>;
+  /** fetch data from the table: "connections" */
+  connections: Array<Connections>;
+  /** fetch aggregated fields from the table: "connections" */
+  connections_aggregate: Connections_Aggregate;
+  /** fetch data from the table: "connections" using primary key columns */
+  connections_by_pk?: Maybe<Connections>;
+  /** fetch data from the table in a streaming manner: "connections" */
+  connections_stream: Array<Connections>;
   /** fetch data from the table: "eth" */
   eth: Array<Eth>;
   /** fetch aggregated fields from the table: "eth" */
@@ -6249,6 +6556,36 @@ export type Subscription_RootClient_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Client_Stream_Cursor_Input>>;
   where?: InputMaybe<Client_Bool_Exp>;
+};
+
+
+export type Subscription_RootConnectionsArgs = {
+  distinct_on?: InputMaybe<Array<Connections_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Connections_Order_By>>;
+  where?: InputMaybe<Connections_Bool_Exp>;
+};
+
+
+export type Subscription_RootConnections_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Connections_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Connections_Order_By>>;
+  where?: InputMaybe<Connections_Bool_Exp>;
+};
+
+
+export type Subscription_RootConnections_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootConnections_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Connections_Stream_Cursor_Input>>;
+  where?: InputMaybe<Connections_Bool_Exp>;
 };
 
 

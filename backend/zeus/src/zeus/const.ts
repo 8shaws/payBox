@@ -1016,6 +1016,74 @@ export const AllTypesProps: Record<string, any> = {
     _set: "client_set_input",
     where: "client_bool_exp",
   },
+  connections_aggregate_fields: {
+    count: {
+      columns: "connections_select_column",
+    },
+  },
+  connections_bool_exp: {
+    _and: "connections_bool_exp",
+    _not: "connections_bool_exp",
+    _or: "connections_bool_exp",
+    btcNetwork: "String_comparison_exp",
+    clientId: "uuid_comparison_exp",
+    clientSettingsId: "uuid_comparison_exp",
+    createdAt: "timestamptz_comparison_exp",
+    ethNetwork: "String_comparison_exp",
+    id: "uuid_comparison_exp",
+    solNetwork: "String_comparison_exp",
+    updatedAt: "timestamptz_comparison_exp",
+  },
+  connections_constraint: "enum" as const,
+  connections_insert_input: {
+    clientId: "uuid",
+    clientSettingsId: "uuid",
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  connections_on_conflict: {
+    constraint: "connections_constraint",
+    update_columns: "connections_update_column",
+    where: "connections_bool_exp",
+  },
+  connections_order_by: {
+    btcNetwork: "order_by",
+    clientId: "order_by",
+    clientSettingsId: "order_by",
+    createdAt: "order_by",
+    ethNetwork: "order_by",
+    id: "order_by",
+    solNetwork: "order_by",
+    updatedAt: "order_by",
+  },
+  connections_pk_columns_input: {
+    id: "uuid",
+  },
+  connections_select_column: "enum" as const,
+  connections_set_input: {
+    clientId: "uuid",
+    clientSettingsId: "uuid",
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  connections_stream_cursor_input: {
+    initial_value: "connections_stream_cursor_value_input",
+    ordering: "cursor_ordering",
+  },
+  connections_stream_cursor_value_input: {
+    clientId: "uuid",
+    clientSettingsId: "uuid",
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  connections_update_column: "enum" as const,
+  connections_updates: {
+    _set: "connections_set_input",
+    where: "connections_bool_exp",
+  },
   cursor_ordering: "enum" as const,
   eth_aggregate_fields: {
     count: {
@@ -1301,6 +1369,12 @@ export const AllTypesProps: Record<string, any> = {
     delete_client_settings_by_pk: {
       id: "uuid",
     },
+    delete_connections: {
+      where: "connections_bool_exp",
+    },
+    delete_connections_by_pk: {
+      id: "uuid",
+    },
     delete_eth: {
       where: "eth_bool_exp",
     },
@@ -1404,6 +1478,14 @@ export const AllTypesProps: Record<string, any> = {
     insert_client_settings_one: {
       object: "client_settings_insert_input",
       on_conflict: "client_settings_on_conflict",
+    },
+    insert_connections: {
+      objects: "connections_insert_input",
+      on_conflict: "connections_on_conflict",
+    },
+    insert_connections_one: {
+      object: "connections_insert_input",
+      on_conflict: "connections_on_conflict",
     },
     insert_eth: {
       objects: "eth_insert_input",
@@ -1551,6 +1633,17 @@ export const AllTypesProps: Record<string, any> = {
     },
     update_client_settings_many: {
       updates: "client_settings_updates",
+    },
+    update_connections: {
+      _set: "connections_set_input",
+      where: "connections_bool_exp",
+    },
+    update_connections_by_pk: {
+      _set: "connections_set_input",
+      pk_columns: "connections_pk_columns_input",
+    },
+    update_connections_many: {
+      updates: "connections_updates",
     },
     update_eth: {
       _inc: "eth_inc_input",
@@ -2109,6 +2202,19 @@ export const AllTypesProps: Record<string, any> = {
     client_settings_by_pk: {
       id: "uuid",
     },
+    connections: {
+      distinct_on: "connections_select_column",
+      order_by: "connections_order_by",
+      where: "connections_bool_exp",
+    },
+    connections_aggregate: {
+      distinct_on: "connections_select_column",
+      order_by: "connections_order_by",
+      where: "connections_bool_exp",
+    },
+    connections_by_pk: {
+      id: "uuid",
+    },
     eth: {
       distinct_on: "eth_select_column",
       order_by: "eth_order_by",
@@ -2422,6 +2528,23 @@ export const AllTypesProps: Record<string, any> = {
     client_stream: {
       cursor: "client_stream_cursor_input",
       where: "client_bool_exp",
+    },
+    connections: {
+      distinct_on: "connections_select_column",
+      order_by: "connections_order_by",
+      where: "connections_bool_exp",
+    },
+    connections_aggregate: {
+      distinct_on: "connections_select_column",
+      order_by: "connections_order_by",
+      where: "connections_bool_exp",
+    },
+    connections_by_pk: {
+      id: "uuid",
+    },
+    connections_stream: {
+      cursor: "connections_stream_cursor_input",
+      where: "connections_bool_exp",
     },
     eth: {
       distinct_on: "eth_select_column",
@@ -3513,6 +3636,49 @@ export const ReturnTypes: Record<string, any> = {
   client_variance_fields: {
     mobile: "Float",
   },
+  connections: {
+    btcNetwork: "String",
+    clientId: "uuid",
+    clientSettingsId: "uuid",
+    createdAt: "timestamptz",
+    ethNetwork: "String",
+    id: "uuid",
+    solNetwork: "String",
+    updatedAt: "timestamptz",
+  },
+  connections_aggregate: {
+    aggregate: "connections_aggregate_fields",
+    nodes: "connections",
+  },
+  connections_aggregate_fields: {
+    count: "Int",
+    max: "connections_max_fields",
+    min: "connections_min_fields",
+  },
+  connections_max_fields: {
+    btcNetwork: "String",
+    clientId: "uuid",
+    clientSettingsId: "uuid",
+    createdAt: "timestamptz",
+    ethNetwork: "String",
+    id: "uuid",
+    solNetwork: "String",
+    updatedAt: "timestamptz",
+  },
+  connections_min_fields: {
+    btcNetwork: "String",
+    clientId: "uuid",
+    clientSettingsId: "uuid",
+    createdAt: "timestamptz",
+    ethNetwork: "String",
+    id: "uuid",
+    solNetwork: "String",
+    updatedAt: "timestamptz",
+  },
+  connections_mutation_response: {
+    affected_rows: "Int",
+    returning: "connections",
+  },
   eth: {
     account: "account",
     accountId: "uuid",
@@ -3698,6 +3864,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_client_by_pk: "client",
     delete_client_settings: "client_settings_mutation_response",
     delete_client_settings_by_pk: "client_settings",
+    delete_connections: "connections_mutation_response",
+    delete_connections_by_pk: "connections",
     delete_eth: "eth_mutation_response",
     delete_eth_by_pk: "eth",
     delete_friendship: "friendship_mutation_response",
@@ -3729,6 +3897,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_client_one: "client",
     insert_client_settings: "client_settings_mutation_response",
     insert_client_settings_one: "client_settings",
+    insert_connections: "connections_mutation_response",
+    insert_connections_one: "connections",
     insert_eth: "eth_mutation_response",
     insert_eth_one: "eth",
     insert_friendship: "friendship_mutation_response",
@@ -3767,6 +3937,9 @@ export const ReturnTypes: Record<string, any> = {
     update_client_settings: "client_settings_mutation_response",
     update_client_settings_by_pk: "client_settings",
     update_client_settings_many: "client_settings_mutation_response",
+    update_connections: "connections_mutation_response",
+    update_connections_by_pk: "connections",
+    update_connections_many: "connections_mutation_response",
     update_eth: "eth_mutation_response",
     update_eth_by_pk: "eth",
     update_eth_many: "eth_mutation_response",
@@ -3945,6 +4118,9 @@ export const ReturnTypes: Record<string, any> = {
     client_settings: "client_settings",
     client_settings_aggregate: "client_settings_aggregate",
     client_settings_by_pk: "client_settings",
+    connections: "connections",
+    connections_aggregate: "connections_aggregate",
+    connections_by_pk: "connections",
     eth: "eth",
     eth_aggregate: "eth_aggregate",
     eth_by_pk: "eth",
@@ -4094,6 +4270,10 @@ export const ReturnTypes: Record<string, any> = {
     client_settings_by_pk: "client_settings",
     client_settings_stream: "client_settings",
     client_stream: "client",
+    connections: "connections",
+    connections_aggregate: "connections_aggregate",
+    connections_by_pk: "connections",
+    connections_stream: "connections",
     eth: "eth",
     eth_aggregate: "eth_aggregate",
     eth_by_pk: "eth",

@@ -5346,6 +5346,284 @@ export type ValueTypes = {
     mobile?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** blockchains connections metadata */
+  ["connections"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["connections_aggregate_fields"];
+    nodes?: ValueTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["connections_max_fields"];
+    min?: ValueTypes["connections_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["connections_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["connections_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["connections_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    btcNetwork?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    solNetwork?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "connections" */
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    solNetwork?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["connections_min_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: ValueTypes["connections_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["connections_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["connections_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    solNetwork?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "connections" */
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    solNetwork?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["connections_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    solNetwork?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "connections" */
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["connections_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["connections_bool_exp"] | Variable<any, string>;
+  };
   /** ordering argument of a cursor */
   ["cursor_ordering"]: cursor_ordering;
   /** eth address and token for client wallets */
@@ -6429,6 +6707,17 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["client_settings"],
     ];
+    delete_connections?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["connections_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
+    ];
+    delete_connections_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["connections"],
+    ];
     delete_eth?: [
       {
         /** filter the rows which have to be deleted */
@@ -6714,6 +7003,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["client_settings"],
+    ];
+    insert_connections?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["connections_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["connections_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
+    ];
+    insert_connections_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["connections_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["connections_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
     ];
     insert_eth?: [
       {
@@ -7240,6 +7557,44 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["client_settings_mutation_response"],
+    ];
+    update_connections?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["connections_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["connections_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
+    ];
+    update_connections_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["connections_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["connections_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
+    ];
+    update_connections_many?: [
+      {
+        /** updates to execute, in order */
+        updates:
+          | Array<ValueTypes["connections_updates"]>
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
     ];
     update_eth?: [
       {
@@ -9435,6 +9790,78 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["client_settings"],
     ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["connections"],
+    ];
     eth?: [
       {
         /** distinct select on columns */
@@ -11082,6 +11509,100 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["client"],
+    ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["connections"],
+    ];
+    connections_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              ValueTypes["connections_stream_cursor_input"] | undefined | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
     ];
     eth?: [
       {
@@ -15836,6 +16357,168 @@ export type ResolverInputTypes = {
     mobile?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** blockchains connections metadata */
+  ["connections"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["connections_aggregate_fields"];
+    nodes?: ResolverInputTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["connections_max_fields"];
+    min?: ResolverInputTypes["connections_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?: Array<ResolverInputTypes["connections_bool_exp"]> | undefined | null;
+    _not?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["connections_bool_exp"]> | undefined | null;
+    btcNetwork?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    clientSettingsId?:
+      | ResolverInputTypes["uuid_comparison_exp"]
+      | undefined
+      | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    ethNetwork?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    solNetwork?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "connections" */
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethNetwork?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    solNetwork?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["connections_min_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: ResolverInputTypes["connections_constraint"];
+    update_columns: Array<ResolverInputTypes["connections_update_column"]>;
+    where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    ethNetwork?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    solNetwork?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "connections" */
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethNetwork?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    solNetwork?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["connections_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethNetwork?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    solNetwork?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "connections" */
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["connections_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["connections_bool_exp"];
+  };
   /** ordering argument of a cursor */
   ["cursor_ordering"]: cursor_ordering;
   /** eth address and token for client wallets */
@@ -16506,6 +17189,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["client_settings"],
     ];
+    delete_connections?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["connections_bool_exp"];
+      },
+      ResolverInputTypes["connections_mutation_response"],
+    ];
+    delete_connections_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["connections"],
+    ];
     delete_eth?: [
       {
         /** filter the rows which have to be deleted */
@@ -16755,6 +17449,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["client_settings"],
+    ];
+    insert_connections?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["connections_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["connections_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["connections_mutation_response"],
+    ];
+    insert_connections_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["connections_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["connections_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["connections"],
     ];
     insert_eth?: [
       {
@@ -17147,6 +17865,32 @@ export type ResolverInputTypes = {
         updates: Array<ResolverInputTypes["client_settings_updates"]>;
       },
       ResolverInputTypes["client_settings_mutation_response"],
+    ];
+    update_connections?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["connections_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["connections_bool_exp"];
+      },
+      ResolverInputTypes["connections_mutation_response"],
+    ];
+    update_connections_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["connections_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["connections_pk_columns_input"];
+      },
+      ResolverInputTypes["connections"],
+    ];
+    update_connections_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["connections_updates"]>;
+      },
+      ResolverInputTypes["connections_mutation_response"],
     ];
     update_eth?: [
       {
@@ -18607,6 +19351,56 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["client_settings"],
     ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["connections"],
+    ];
     eth?: [
       {
         /** distinct select on columns */
@@ -19711,6 +20505,69 @@ export type ResolverInputTypes = {
         where?: ResolverInputTypes["client_bool_exp"] | undefined | null;
       },
       ResolverInputTypes["client"],
+    ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["connections"],
+    ];
+    connections_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          | ResolverInputTypes["connections_stream_cursor_input"]
+          | undefined
+          | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections"],
     ];
     eth?: [
       {
@@ -22905,6 +23762,141 @@ export type ModelTypes = {
   ["client_variance_fields"]: {
     mobile?: number | undefined;
   };
+  /** blockchains connections metadata */
+  ["connections"]: {
+    btcNetwork: string;
+    clientId: ModelTypes["uuid"];
+    clientSettingsId: ModelTypes["uuid"];
+    createdAt: ModelTypes["timestamptz"];
+    ethNetwork: string;
+    id: ModelTypes["uuid"];
+    solNetwork: string;
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: {
+    aggregate?: ModelTypes["connections_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["connections"]>;
+  };
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["connections_max_fields"] | undefined;
+    min?: ModelTypes["connections_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?: Array<ModelTypes["connections_bool_exp"]> | undefined;
+    _not?: ModelTypes["connections_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["connections_bool_exp"]> | undefined;
+    btcNetwork?: ModelTypes["String_comparison_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    clientSettingsId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    ethNetwork?: ModelTypes["String_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    solNetwork?: ModelTypes["String_comparison_exp"] | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["connections_min_fields"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["connections"]>;
+  };
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: ModelTypes["connections_constraint"];
+    update_columns: Array<ModelTypes["connections_update_column"]>;
+    where?: ModelTypes["connections_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    clientSettingsId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    ethNetwork?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    solNetwork?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["connections_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["connections_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["connections_bool_exp"];
+  };
   ["cursor_ordering"]: cursor_ordering;
   /** eth address and token for client wallets */
   ["eth"]: {
@@ -23404,6 +24396,12 @@ export type ModelTypes = {
       | undefined;
     /** delete single row from the table: "client_settings" */
     delete_client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
+    /** delete data from the table: "connections" */
+    delete_connections?:
+      | ModelTypes["connections_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "connections" */
+    delete_connections_by_pk?: ModelTypes["connections"] | undefined;
     /** delete data from the table: "eth" */
     delete_eth?: ModelTypes["eth_mutation_response"] | undefined;
     /** delete single row from the table: "eth" */
@@ -23478,6 +24476,12 @@ export type ModelTypes = {
       | undefined;
     /** insert a single row into the table: "client_settings" */
     insert_client_settings_one?: ModelTypes["client_settings"] | undefined;
+    /** insert data into the table: "connections" */
+    insert_connections?:
+      | ModelTypes["connections_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "connections" */
+    insert_connections_one?: ModelTypes["connections"] | undefined;
     /** insert data into the table: "eth" */
     insert_eth?: ModelTypes["eth_mutation_response"] | undefined;
     /** insert a single row into the table: "eth" */
@@ -23579,6 +24583,16 @@ export type ModelTypes = {
     /** update multiples rows of table: "client_settings" */
     update_client_settings_many?:
       | Array<ModelTypes["client_settings_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "connections" */
+    update_connections?:
+      | ModelTypes["connections_mutation_response"]
+      | undefined;
+    /** update single row of the table: "connections" */
+    update_connections_by_pk?: ModelTypes["connections"] | undefined;
+    /** update multiples rows of table: "connections" */
+    update_connections_many?:
+      | Array<ModelTypes["connections_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "eth" */
     update_eth?: ModelTypes["eth_mutation_response"] | undefined;
@@ -24307,6 +25321,12 @@ export type ModelTypes = {
     client_settings_aggregate: ModelTypes["client_settings_aggregate"];
     /** fetch data from the table: "client_settings" using primary key columns */
     client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
+    /** fetch data from the table: "connections" */
+    connections: Array<ModelTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: ModelTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: ModelTypes["connections"] | undefined;
     /** fetch data from the table: "eth" */
     eth: Array<ModelTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -24633,6 +25653,14 @@ export type ModelTypes = {
     client_settings_stream: Array<ModelTypes["client_settings"]>;
     /** fetch data from the table in a streaming manner: "client" */
     client_stream: Array<ModelTypes["client"]>;
+    /** fetch data from the table: "connections" */
+    connections: Array<ModelTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: ModelTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: ModelTypes["connections"] | undefined;
+    /** fetch data from the table in a streaming manner: "connections" */
+    connections_stream: Array<ModelTypes["connections"]>;
     /** fetch data from the table: "eth" */
     eth: Array<ModelTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -27320,6 +28348,150 @@ export type GraphQLTypes = {
     __typename: "client_variance_fields";
     mobile?: number | undefined;
   };
+  /** blockchains connections metadata */
+  ["connections"]: {
+    __typename: "connections";
+    btcNetwork: string;
+    clientId: GraphQLTypes["uuid"];
+    clientSettingsId: GraphQLTypes["uuid"];
+    createdAt: GraphQLTypes["timestamptz"];
+    ethNetwork: string;
+    id: GraphQLTypes["uuid"];
+    solNetwork: string;
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: {
+    __typename: "connections_aggregate";
+    aggregate?: GraphQLTypes["connections_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["connections"]>;
+  };
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: {
+    __typename: "connections_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["connections_max_fields"] | undefined;
+    min?: GraphQLTypes["connections_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?: Array<GraphQLTypes["connections_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["connections_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["connections_bool_exp"]> | undefined;
+    btcNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    ethNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    solNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "connections" */
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: {
+    __typename: "connections_max_fields";
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["connections_min_fields"]: {
+    __typename: "connections_min_fields";
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: {
+    __typename: "connections_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["connections"]>;
+  };
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: GraphQLTypes["connections_constraint"];
+    update_columns: Array<GraphQLTypes["connections_update_column"]>;
+    where?: GraphQLTypes["connections_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    clientSettingsId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    ethNetwork?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    solNetwork?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "connections" */
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["connections_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "connections" */
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["connections_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["connections_bool_exp"];
+  };
   /** ordering argument of a cursor */
   ["cursor_ordering"]: cursor_ordering;
   /** eth address and token for client wallets */
@@ -27847,6 +29019,12 @@ export type GraphQLTypes = {
       | undefined;
     /** delete single row from the table: "client_settings" */
     delete_client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
+    /** delete data from the table: "connections" */
+    delete_connections?:
+      | GraphQLTypes["connections_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "connections" */
+    delete_connections_by_pk?: GraphQLTypes["connections"] | undefined;
     /** delete data from the table: "eth" */
     delete_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
     /** delete single row from the table: "eth" */
@@ -27923,6 +29101,12 @@ export type GraphQLTypes = {
       | undefined;
     /** insert a single row into the table: "client_settings" */
     insert_client_settings_one?: GraphQLTypes["client_settings"] | undefined;
+    /** insert data into the table: "connections" */
+    insert_connections?:
+      | GraphQLTypes["connections_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "connections" */
+    insert_connections_one?: GraphQLTypes["connections"] | undefined;
     /** insert data into the table: "eth" */
     insert_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
     /** insert a single row into the table: "eth" */
@@ -28026,6 +29210,16 @@ export type GraphQLTypes = {
     /** update multiples rows of table: "client_settings" */
     update_client_settings_many?:
       | Array<GraphQLTypes["client_settings_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "connections" */
+    update_connections?:
+      | GraphQLTypes["connections_mutation_response"]
+      | undefined;
+    /** update single row of the table: "connections" */
+    update_connections_by_pk?: GraphQLTypes["connections"] | undefined;
+    /** update multiples rows of table: "connections" */
+    update_connections_many?:
+      | Array<GraphQLTypes["connections_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "eth" */
     update_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
@@ -28794,6 +29988,12 @@ export type GraphQLTypes = {
     client_settings_aggregate: GraphQLTypes["client_settings_aggregate"];
     /** fetch data from the table: "client_settings" using primary key columns */
     client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
+    /** fetch data from the table: "connections" */
+    connections: Array<GraphQLTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: GraphQLTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: GraphQLTypes["connections"] | undefined;
     /** fetch data from the table: "eth" */
     eth: Array<GraphQLTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -29138,6 +30338,14 @@ export type GraphQLTypes = {
     client_settings_stream: Array<GraphQLTypes["client_settings"]>;
     /** fetch data from the table in a streaming manner: "client" */
     client_stream: Array<GraphQLTypes["client"]>;
+    /** fetch data from the table: "connections" */
+    connections: Array<GraphQLTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: GraphQLTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: GraphQLTypes["connections"] | undefined;
+    /** fetch data from the table in a streaming manner: "connections" */
+    connections_stream: Array<GraphQLTypes["connections"]>;
     /** fetch data from the table: "eth" */
     eth: Array<GraphQLTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -30221,6 +31429,34 @@ export const enum client_update_column {
   username = "username",
   valid = "valid",
 }
+/** unique or primary key constraints on table "connections" */
+export const enum connections_constraint {
+  connections_client_id_key = "connections_client_id_key",
+  connections_client_settings_id_key = "connections_client_settings_id_key",
+  connections_pkey = "connections_pkey",
+}
+/** select columns of table "connections" */
+export const enum connections_select_column {
+  btcNetwork = "btcNetwork",
+  clientId = "clientId",
+  clientSettingsId = "clientSettingsId",
+  createdAt = "createdAt",
+  ethNetwork = "ethNetwork",
+  id = "id",
+  solNetwork = "solNetwork",
+  updatedAt = "updatedAt",
+}
+/** update columns of table "connections" */
+export const enum connections_update_column {
+  btcNetwork = "btcNetwork",
+  clientId = "clientId",
+  clientSettingsId = "clientSettingsId",
+  createdAt = "createdAt",
+  ethNetwork = "ethNetwork",
+  id = "id",
+  solNetwork = "solNetwork",
+  updatedAt = "updatedAt",
+}
 /** ordering argument of a cursor */
 export const enum cursor_ordering {
   ASC = "ASC",
@@ -30663,6 +31899,18 @@ type ZEUS_VARIABLES = {
   ["client_stream_cursor_value_input"]: ValueTypes["client_stream_cursor_value_input"];
   ["client_update_column"]: ValueTypes["client_update_column"];
   ["client_updates"]: ValueTypes["client_updates"];
+  ["connections_bool_exp"]: ValueTypes["connections_bool_exp"];
+  ["connections_constraint"]: ValueTypes["connections_constraint"];
+  ["connections_insert_input"]: ValueTypes["connections_insert_input"];
+  ["connections_on_conflict"]: ValueTypes["connections_on_conflict"];
+  ["connections_order_by"]: ValueTypes["connections_order_by"];
+  ["connections_pk_columns_input"]: ValueTypes["connections_pk_columns_input"];
+  ["connections_select_column"]: ValueTypes["connections_select_column"];
+  ["connections_set_input"]: ValueTypes["connections_set_input"];
+  ["connections_stream_cursor_input"]: ValueTypes["connections_stream_cursor_input"];
+  ["connections_stream_cursor_value_input"]: ValueTypes["connections_stream_cursor_value_input"];
+  ["connections_update_column"]: ValueTypes["connections_update_column"];
+  ["connections_updates"]: ValueTypes["connections_updates"];
   ["cursor_ordering"]: ValueTypes["cursor_ordering"];
   ["eth_bool_exp"]: ValueTypes["eth_bool_exp"];
   ["eth_constraint"]: ValueTypes["eth_constraint"];
