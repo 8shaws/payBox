@@ -16,6 +16,7 @@ import React, { useEffect, useState } from "react"
 import { useRecoilState, useRecoilValue } from "recoil"
 import SolanaIcon from "./icon/SolanaIcon"
 import EthIcon from "./icon/Eth";
+import { Badge } from "@/components/ui/badge"
 import {
     Tooltip,
     TooltipContent,
@@ -153,7 +154,9 @@ export function FundDialog({
                             id="amount"
                             type="number"
                             placeholder="Amount"
+                            value={amount == 0 ? undefined : amount.toString()}
                             onChange={(e) => {
+                                if(Number(e.target.value) > 10000) return
                                 setAmount(Number(e.target.value))
                                 setQuoteAtom((old) => {
                                     return {
@@ -191,10 +194,40 @@ export function FundDialog({
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
+                        <div className="flex-grow" />
+                        <div className="badges flex gap-x-2">
+                            <Badge variant={"secondary"} onClick={() => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        type: "fiat"
+                                    }
+                                })
+                                setAmount(100);
+                            }} className="cursor-pointer bg-muted text-white">$100</Badge>
+                            <Badge variant={"secondary"} onClick={() => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        type: "fiat"
+                                    }
+                                })
+                                setAmount(500);
+                            }} className="cursor-pointer bg-muted text-white">$500</Badge>
+                            <Badge variant={"secondary"} onClick={() => {
+                                setQuoteAtom((old) => {
+                                    return {
+                                        ...old,
+                                        type: "fiat"
+                                    }
+                                })
+                                setAmount(1000);
+                            }} className="cursor-pointer bg-muted text-white">$1000</Badge>
+                        </div>
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button type="button" onClick={onSubmit}>Submit</Button>
+                    <Button type="button" className="w-full" onClick={onSubmit}>Checkout</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog >
