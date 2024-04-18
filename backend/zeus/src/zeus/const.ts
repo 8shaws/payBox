@@ -4,6 +4,18 @@ export const AllTypesProps: Record<string, any> = {
   Boolean_comparison_exp: {},
   Int_comparison_exp: {},
   String_comparison_exp: {},
+  account: {
+    centralized_txns: {
+      distinct_on: "centralized_txn_select_column",
+      order_by: "centralized_txn_order_by",
+      where: "centralized_txn_bool_exp",
+    },
+    centralized_txns_aggregate: {
+      distinct_on: "centralized_txn_select_column",
+      order_by: "centralized_txn_order_by",
+      where: "centralized_txn_bool_exp",
+    },
+  },
   account_aggregate_bool_exp: {
     bool_and: "account_aggregate_bool_exp_bool_and",
     bool_or: "account_aggregate_bool_exp_bool_or",
@@ -45,6 +57,8 @@ export const AllTypesProps: Record<string, any> = {
     _not: "account_bool_exp",
     _or: "account_bool_exp",
     bitcoin: "bitcoin_bool_exp",
+    centralized_txns: "centralized_txn_bool_exp",
+    centralized_txns_aggregate: "centralized_txn_aggregate_bool_exp",
     client: "client_bool_exp",
     clientId: "uuid_comparison_exp",
     createdAt: "timestamptz_comparison_exp",
@@ -61,6 +75,7 @@ export const AllTypesProps: Record<string, any> = {
   account_constraint: "enum" as const,
   account_insert_input: {
     bitcoin: "bitcoin_obj_rel_insert_input",
+    centralized_txns: "centralized_txn_arr_rel_insert_input",
     client: "client_obj_rel_insert_input",
     clientId: "uuid",
     createdAt: "timestamptz",
@@ -100,6 +115,7 @@ export const AllTypesProps: Record<string, any> = {
   },
   account_order_by: {
     bitcoin: "bitcoin_order_by",
+    centralized_txns_aggregate: "centralized_txn_aggregate_order_by",
     client: "client_order_by",
     clientId: "order_by",
     createdAt: "order_by",
@@ -316,10 +332,102 @@ export const AllTypesProps: Record<string, any> = {
     _set: "bitcoin_set_input",
     where: "bitcoin_bool_exp",
   },
+  centralized_txn_aggregate_bool_exp: {
+    avg: "centralized_txn_aggregate_bool_exp_avg",
+    corr: "centralized_txn_aggregate_bool_exp_corr",
+    count: "centralized_txn_aggregate_bool_exp_count",
+    covar_samp: "centralized_txn_aggregate_bool_exp_covar_samp",
+    max: "centralized_txn_aggregate_bool_exp_max",
+    min: "centralized_txn_aggregate_bool_exp_min",
+    stddev_samp: "centralized_txn_aggregate_bool_exp_stddev_samp",
+    sum: "centralized_txn_aggregate_bool_exp_sum",
+    var_samp: "centralized_txn_aggregate_bool_exp_var_samp",
+  },
+  centralized_txn_aggregate_bool_exp_avg: {
+    arguments:
+      "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_corr: {
+    arguments: "centralized_txn_aggregate_bool_exp_corr_arguments",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_corr_arguments: {
+    X: "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns",
+    Y: "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns",
+  },
+  centralized_txn_aggregate_bool_exp_count: {
+    arguments: "centralized_txn_select_column",
+    filter: "centralized_txn_bool_exp",
+    predicate: "Int_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_covar_samp: {
+    arguments: "centralized_txn_aggregate_bool_exp_covar_samp_arguments",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_covar_samp_arguments: {
+    X: "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns",
+    Y: "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns",
+  },
+  centralized_txn_aggregate_bool_exp_max: {
+    arguments:
+      "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_min: {
+    arguments:
+      "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_stddev_samp: {
+    arguments:
+      "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_sum: {
+    arguments:
+      "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
+  centralized_txn_aggregate_bool_exp_var_samp: {
+    arguments:
+      "centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns",
+    filter: "centralized_txn_bool_exp",
+    predicate: "float8_comparison_exp",
+  },
   centralized_txn_aggregate_fields: {
     count: {
       columns: "centralized_txn_select_column",
     },
+  },
+  centralized_txn_aggregate_order_by: {
+    avg: "centralized_txn_avg_order_by",
+    count: "order_by",
+    max: "centralized_txn_max_order_by",
+    min: "centralized_txn_min_order_by",
+    stddev: "centralized_txn_stddev_order_by",
+    stddev_pop: "centralized_txn_stddev_pop_order_by",
+    stddev_samp: "centralized_txn_stddev_samp_order_by",
+    sum: "centralized_txn_sum_order_by",
+    var_pop: "centralized_txn_var_pop_order_by",
+    var_samp: "centralized_txn_var_samp_order_by",
+    variance: "centralized_txn_variance_order_by",
+  },
+  centralized_txn_arr_rel_insert_input: {
+    data: "centralized_txn_insert_input",
+    on_conflict: "centralized_txn_on_conflict",
+  },
+  centralized_txn_avg_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
   },
   centralized_txn_bool_exp: {
     _and: "centralized_txn_bool_exp",
@@ -365,6 +473,46 @@ export const AllTypesProps: Record<string, any> = {
     quoteCurrencyAmount: "float8",
     updatedAt: "timestamptz",
   },
+  centralized_txn_max_order_by: {
+    accountId: "order_by",
+    baseCurrency: "order_by",
+    baseCurrencyAmount: "order_by",
+    clientId: "order_by",
+    createdAt: "order_by",
+    cryptoTransactionId: "order_by",
+    failedReason: "order_by",
+    feeAmount: "order_by",
+    id: "order_by",
+    paymentMethod: "order_by",
+    provider: "order_by",
+    providerTxnId: "order_by",
+    quoteCurrency: "order_by",
+    quoteCurrencyAmount: "order_by",
+    signature: "order_by",
+    status: "order_by",
+    updatedAt: "order_by",
+    walletAddress: "order_by",
+  },
+  centralized_txn_min_order_by: {
+    accountId: "order_by",
+    baseCurrency: "order_by",
+    baseCurrencyAmount: "order_by",
+    clientId: "order_by",
+    createdAt: "order_by",
+    cryptoTransactionId: "order_by",
+    failedReason: "order_by",
+    feeAmount: "order_by",
+    id: "order_by",
+    paymentMethod: "order_by",
+    provider: "order_by",
+    providerTxnId: "order_by",
+    quoteCurrency: "order_by",
+    quoteCurrencyAmount: "order_by",
+    signature: "order_by",
+    status: "order_by",
+    updatedAt: "order_by",
+    walletAddress: "order_by",
+  },
   centralized_txn_on_conflict: {
     constraint: "centralized_txn_constraint",
     update_columns: "centralized_txn_update_column",
@@ -396,6 +544,22 @@ export const AllTypesProps: Record<string, any> = {
     id: "uuid",
   },
   centralized_txn_select_column: "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns:
+    "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns:
+    "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns:
+    "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns:
+    "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns:
+    "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns:
+    "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns:
+    "enum" as const,
+  centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns:
+    "enum" as const,
   centralized_txn_set_input: {
     accountId: "uuid",
     baseCurrencyAmount: "float8",
@@ -406,6 +570,21 @@ export const AllTypesProps: Record<string, any> = {
     providerTxnId: "uuid",
     quoteCurrencyAmount: "float8",
     updatedAt: "timestamptz",
+  },
+  centralized_txn_stddev_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
+  },
+  centralized_txn_stddev_pop_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
+  },
+  centralized_txn_stddev_samp_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
   },
   centralized_txn_stream_cursor_input: {
     initial_value: "centralized_txn_stream_cursor_value_input",
@@ -422,11 +601,31 @@ export const AllTypesProps: Record<string, any> = {
     quoteCurrencyAmount: "float8",
     updatedAt: "timestamptz",
   },
+  centralized_txn_sum_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
+  },
   centralized_txn_update_column: "enum" as const,
   centralized_txn_updates: {
     _inc: "centralized_txn_inc_input",
     _set: "centralized_txn_set_input",
     where: "centralized_txn_bool_exp",
+  },
+  centralized_txn_var_pop_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
+  },
+  centralized_txn_var_samp_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
+  },
+  centralized_txn_variance_order_by: {
+    baseCurrencyAmount: "order_by",
+    feeAmount: "order_by",
+    quoteCurrencyAmount: "order_by",
   },
   chat_aggregate_bool_exp: {
     count: "chat_aggregate_bool_exp_count",
@@ -542,6 +741,16 @@ export const AllTypesProps: Record<string, any> = {
       order_by: "account_order_by",
       where: "account_bool_exp",
     },
+    centralized_txns: {
+      distinct_on: "centralized_txn_select_column",
+      order_by: "centralized_txn_order_by",
+      where: "centralized_txn_bool_exp",
+    },
+    centralized_txns_aggregate: {
+      distinct_on: "centralized_txn_select_column",
+      order_by: "centralized_txn_order_by",
+      where: "centralized_txn_bool_exp",
+    },
     chats: {
       distinct_on: "chat_select_column",
       order_by: "chat_order_by",
@@ -625,6 +834,8 @@ export const AllTypesProps: Record<string, any> = {
     accounts: "account_bool_exp",
     accounts_aggregate: "account_aggregate_bool_exp",
     address: "address_bool_exp",
+    centralized_txns: "centralized_txn_bool_exp",
+    centralized_txns_aggregate: "centralized_txn_aggregate_bool_exp",
     chats: "chat_bool_exp",
     chats_aggregate: "chat_aggregate_bool_exp",
     client_setting: "client_settings_bool_exp",
@@ -659,6 +870,7 @@ export const AllTypesProps: Record<string, any> = {
   client_insert_input: {
     accounts: "account_arr_rel_insert_input",
     address: "address_obj_rel_insert_input",
+    centralized_txns: "centralized_txn_arr_rel_insert_input",
     chats: "chat_arr_rel_insert_input",
     client_setting: "client_settings_obj_rel_insert_input",
     createdAt: "timestamptz",
@@ -685,6 +897,7 @@ export const AllTypesProps: Record<string, any> = {
   client_order_by: {
     accounts_aggregate: "account_aggregate_order_by",
     address: "address_order_by",
+    centralized_txns_aggregate: "centralized_txn_aggregate_order_by",
     chats_aggregate: "chat_aggregate_order_by",
     client_setting: "client_settings_order_by",
     createdAt: "order_by",
@@ -2811,6 +3024,8 @@ export const ReturnTypes: Record<string, any> = {
   },
   account: {
     bitcoin: "bitcoin",
+    centralized_txns: "centralized_txn",
+    centralized_txns_aggregate: "centralized_txn_aggregate",
     client: "client",
     clientId: "uuid",
     createdAt: "timestamptz",
@@ -3161,6 +3376,8 @@ export const ReturnTypes: Record<string, any> = {
     accounts: "account",
     accounts_aggregate: "account_aggregate",
     address: "address",
+    centralized_txns: "centralized_txn",
+    centralized_txns_aggregate: "centralized_txn_aggregate",
     chats: "chat",
     chats_aggregate: "chat_aggregate",
     client_setting: "client_settings",

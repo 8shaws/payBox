@@ -83,6 +83,10 @@ export type Account = {
   __typename?: 'account';
   /** An object relationship */
   bitcoin?: Maybe<Bitcoin>;
+  /** An array relationship */
+  centralized_txns: Array<Centralized_Txn>;
+  /** An aggregate relationship */
+  centralized_txns_aggregate: Centralized_Txn_Aggregate;
   /** An object relationship */
   client: Client;
   /** clientId */
@@ -100,6 +104,26 @@ export type Account = {
   /** An object relationship */
   wallet: Wallet;
   walletId: Scalars['uuid']['output'];
+};
+
+
+/** accounts in a wallet */
+export type AccountCentralized_TxnsArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+
+/** accounts in a wallet */
+export type AccountCentralized_Txns_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
 };
 
 /** aggregated selection of "account" */
@@ -171,6 +195,8 @@ export type Account_Bool_Exp = {
   _not?: InputMaybe<Account_Bool_Exp>;
   _or?: InputMaybe<Array<Account_Bool_Exp>>;
   bitcoin?: InputMaybe<Bitcoin_Bool_Exp>;
+  centralized_txns?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp>;
   client?: InputMaybe<Client_Bool_Exp>;
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -194,6 +220,7 @@ export enum Account_Constraint {
 /** input type for inserting data into table "account" */
 export type Account_Insert_Input = {
   bitcoin?: InputMaybe<Bitcoin_Obj_Rel_Insert_Input>;
+  centralized_txns?: InputMaybe<Centralized_Txn_Arr_Rel_Insert_Input>;
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   /** clientId */
   clientId?: InputMaybe<Scalars['uuid']['input']>;
@@ -285,6 +312,7 @@ export type Account_On_Conflict = {
 /** Ordering options when selecting data from "account". */
 export type Account_Order_By = {
   bitcoin?: InputMaybe<Bitcoin_Order_By>;
+  centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Order_By>;
   client?: InputMaybe<Client_Order_By>;
   clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
@@ -957,14 +985,25 @@ export type Centralized_Txn = {
   /** An object relationship */
   account: Account;
   accountId: Scalars['uuid']['output'];
+  baseCurrency: Scalars['String']['output'];
+  baseCurrencyAmount: Scalars['float8']['output'];
   /** An object relationship */
   client: Client;
   clientId: Scalars['uuid']['output'];
   createdAt: Scalars['timestamptz']['output'];
+  cryptoTransactionId: Scalars['String']['output'];
+  failedReason?: Maybe<Scalars['String']['output']>;
+  feeAmount: Scalars['float8']['output'];
   id: Scalars['uuid']['output'];
+  paymentMethod?: Maybe<Scalars['String']['output']>;
   provider: Scalars['String']['output'];
+  providerTxnId: Scalars['uuid']['output'];
+  quoteCurrency: Scalars['String']['output'];
+  quoteCurrencyAmount: Scalars['float8']['output'];
+  signature?: Maybe<Scalars['String']['output']>;
   status: Scalars['String']['output'];
   updatedAt: Scalars['timestamptz']['output'];
+  walletAddress: Scalars['String']['output'];
 };
 
 /** aggregated selection of "centralized_txn" */
@@ -974,12 +1013,105 @@ export type Centralized_Txn_Aggregate = {
   nodes: Array<Centralized_Txn>;
 };
 
+export type Centralized_Txn_Aggregate_Bool_Exp = {
+  avg?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Avg>;
+  corr?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Corr>;
+  count?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Count>;
+  covar_samp?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Covar_Samp>;
+  max?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Max>;
+  min?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Min>;
+  stddev_samp?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Stddev_Samp>;
+  sum?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Sum>;
+  var_samp?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp_Var_Samp>;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Avg = {
+  arguments: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Avg_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Corr = {
+  arguments: Centralized_Txn_Aggregate_Bool_Exp_Corr_Arguments;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Corr_Arguments = {
+  X: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Corr_Arguments_Columns;
+  Y: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Corr_Arguments_Columns;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Covar_Samp = {
+  arguments: Centralized_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments = {
+  X: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments_Columns;
+  Y: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments_Columns;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Max = {
+  arguments: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Max_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Min = {
+  arguments: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Min_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Stddev_Samp = {
+  arguments: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Stddev_Samp_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Sum = {
+  arguments: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Sum_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Centralized_Txn_Aggregate_Bool_Exp_Var_Samp = {
+  arguments: Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Var_Samp_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
 /** aggregate fields of "centralized_txn" */
 export type Centralized_Txn_Aggregate_Fields = {
   __typename?: 'centralized_txn_aggregate_fields';
+  avg?: Maybe<Centralized_Txn_Avg_Fields>;
   count: Scalars['Int']['output'];
   max?: Maybe<Centralized_Txn_Max_Fields>;
   min?: Maybe<Centralized_Txn_Min_Fields>;
+  stddev?: Maybe<Centralized_Txn_Stddev_Fields>;
+  stddev_pop?: Maybe<Centralized_Txn_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Centralized_Txn_Stddev_Samp_Fields>;
+  sum?: Maybe<Centralized_Txn_Sum_Fields>;
+  var_pop?: Maybe<Centralized_Txn_Var_Pop_Fields>;
+  var_samp?: Maybe<Centralized_Txn_Var_Samp_Fields>;
+  variance?: Maybe<Centralized_Txn_Variance_Fields>;
 };
 
 
@@ -989,6 +1121,43 @@ export type Centralized_Txn_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** order by aggregate values of table "centralized_txn" */
+export type Centralized_Txn_Aggregate_Order_By = {
+  avg?: InputMaybe<Centralized_Txn_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Centralized_Txn_Max_Order_By>;
+  min?: InputMaybe<Centralized_Txn_Min_Order_By>;
+  stddev?: InputMaybe<Centralized_Txn_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Centralized_Txn_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Centralized_Txn_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Centralized_Txn_Sum_Order_By>;
+  var_pop?: InputMaybe<Centralized_Txn_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Centralized_Txn_Var_Samp_Order_By>;
+  variance?: InputMaybe<Centralized_Txn_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "centralized_txn" */
+export type Centralized_Txn_Arr_Rel_Insert_Input = {
+  data: Array<Centralized_Txn_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Centralized_Txn_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Centralized_Txn_Avg_Fields = {
+  __typename?: 'centralized_txn_avg_fields';
+  baseCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+  feeAmount?: Maybe<Scalars['Float']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by avg() on columns of table "centralized_txn" */
+export type Centralized_Txn_Avg_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+};
+
 /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
 export type Centralized_Txn_Bool_Exp = {
   _and?: InputMaybe<Array<Centralized_Txn_Bool_Exp>>;
@@ -996,13 +1165,24 @@ export type Centralized_Txn_Bool_Exp = {
   _or?: InputMaybe<Array<Centralized_Txn_Bool_Exp>>;
   account?: InputMaybe<Account_Bool_Exp>;
   accountId?: InputMaybe<Uuid_Comparison_Exp>;
+  baseCurrency?: InputMaybe<String_Comparison_Exp>;
+  baseCurrencyAmount?: InputMaybe<Float8_Comparison_Exp>;
   client?: InputMaybe<Client_Bool_Exp>;
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  cryptoTransactionId?: InputMaybe<String_Comparison_Exp>;
+  failedReason?: InputMaybe<String_Comparison_Exp>;
+  feeAmount?: InputMaybe<Float8_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  paymentMethod?: InputMaybe<String_Comparison_Exp>;
   provider?: InputMaybe<String_Comparison_Exp>;
+  providerTxnId?: InputMaybe<Uuid_Comparison_Exp>;
+  quoteCurrency?: InputMaybe<String_Comparison_Exp>;
+  quoteCurrencyAmount?: InputMaybe<Float8_Comparison_Exp>;
+  signature?: InputMaybe<String_Comparison_Exp>;
   status?: InputMaybe<String_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  walletAddress?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "centralized_txn" */
@@ -1011,41 +1191,125 @@ export enum Centralized_Txn_Constraint {
   CentralizedTxnPkey = 'centralized_txn_pkey'
 }
 
+/** input type for incrementing numeric columns in table "centralized_txn" */
+export type Centralized_Txn_Inc_Input = {
+  baseCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
+  feeAmount?: InputMaybe<Scalars['float8']['input']>;
+  quoteCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
+};
+
 /** input type for inserting data into table "centralized_txn" */
 export type Centralized_Txn_Insert_Input = {
   account?: InputMaybe<Account_Obj_Rel_Insert_Input>;
   accountId?: InputMaybe<Scalars['uuid']['input']>;
+  baseCurrency?: InputMaybe<Scalars['String']['input']>;
+  baseCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  cryptoTransactionId?: InputMaybe<Scalars['String']['input']>;
+  failedReason?: InputMaybe<Scalars['String']['input']>;
+  feeAmount?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  paymentMethod?: InputMaybe<Scalars['String']['input']>;
   provider?: InputMaybe<Scalars['String']['input']>;
+  providerTxnId?: InputMaybe<Scalars['uuid']['input']>;
+  quoteCurrency?: InputMaybe<Scalars['String']['input']>;
+  quoteCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
+  signature?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  walletAddress?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type Centralized_Txn_Max_Fields = {
   __typename?: 'centralized_txn_max_fields';
   accountId?: Maybe<Scalars['uuid']['output']>;
+  baseCurrency?: Maybe<Scalars['String']['output']>;
+  baseCurrencyAmount?: Maybe<Scalars['float8']['output']>;
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  cryptoTransactionId?: Maybe<Scalars['String']['output']>;
+  failedReason?: Maybe<Scalars['String']['output']>;
+  feeAmount?: Maybe<Scalars['float8']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
+  paymentMethod?: Maybe<Scalars['String']['output']>;
   provider?: Maybe<Scalars['String']['output']>;
+  providerTxnId?: Maybe<Scalars['uuid']['output']>;
+  quoteCurrency?: Maybe<Scalars['String']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['float8']['output']>;
+  signature?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+  walletAddress?: Maybe<Scalars['String']['output']>;
+};
+
+/** order by max() on columns of table "centralized_txn" */
+export type Centralized_Txn_Max_Order_By = {
+  accountId?: InputMaybe<Order_By>;
+  baseCurrency?: InputMaybe<Order_By>;
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  cryptoTransactionId?: InputMaybe<Order_By>;
+  failedReason?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  paymentMethod?: InputMaybe<Order_By>;
+  provider?: InputMaybe<Order_By>;
+  providerTxnId?: InputMaybe<Order_By>;
+  quoteCurrency?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+  signature?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+  walletAddress?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Centralized_Txn_Min_Fields = {
   __typename?: 'centralized_txn_min_fields';
   accountId?: Maybe<Scalars['uuid']['output']>;
+  baseCurrency?: Maybe<Scalars['String']['output']>;
+  baseCurrencyAmount?: Maybe<Scalars['float8']['output']>;
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  cryptoTransactionId?: Maybe<Scalars['String']['output']>;
+  failedReason?: Maybe<Scalars['String']['output']>;
+  feeAmount?: Maybe<Scalars['float8']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
+  paymentMethod?: Maybe<Scalars['String']['output']>;
   provider?: Maybe<Scalars['String']['output']>;
+  providerTxnId?: Maybe<Scalars['uuid']['output']>;
+  quoteCurrency?: Maybe<Scalars['String']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['float8']['output']>;
+  signature?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+  walletAddress?: Maybe<Scalars['String']['output']>;
+};
+
+/** order by min() on columns of table "centralized_txn" */
+export type Centralized_Txn_Min_Order_By = {
+  accountId?: InputMaybe<Order_By>;
+  baseCurrency?: InputMaybe<Order_By>;
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  cryptoTransactionId?: InputMaybe<Order_By>;
+  failedReason?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  paymentMethod?: InputMaybe<Order_By>;
+  provider?: InputMaybe<Order_By>;
+  providerTxnId?: InputMaybe<Order_By>;
+  quoteCurrency?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+  signature?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+  walletAddress?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "centralized_txn" */
@@ -1068,13 +1332,24 @@ export type Centralized_Txn_On_Conflict = {
 export type Centralized_Txn_Order_By = {
   account?: InputMaybe<Account_Order_By>;
   accountId?: InputMaybe<Order_By>;
+  baseCurrency?: InputMaybe<Order_By>;
+  baseCurrencyAmount?: InputMaybe<Order_By>;
   client?: InputMaybe<Client_Order_By>;
   clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
+  cryptoTransactionId?: InputMaybe<Order_By>;
+  failedReason?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  paymentMethod?: InputMaybe<Order_By>;
   provider?: InputMaybe<Order_By>;
+  providerTxnId?: InputMaybe<Order_By>;
+  quoteCurrency?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+  signature?: InputMaybe<Order_By>;
   status?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
+  walletAddress?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: centralized_txn */
@@ -1087,28 +1362,186 @@ export enum Centralized_Txn_Select_Column {
   /** column name */
   AccountId = 'accountId',
   /** column name */
+  BaseCurrency = 'baseCurrency',
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
   ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
+  CryptoTransactionId = 'cryptoTransactionId',
+  /** column name */
+  FailedReason = 'failedReason',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
   Id = 'id',
+  /** column name */
+  PaymentMethod = 'paymentMethod',
   /** column name */
   Provider = 'provider',
   /** column name */
+  ProviderTxnId = 'providerTxnId',
+  /** column name */
+  QuoteCurrency = 'quoteCurrency',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount',
+  /** column name */
+  Signature = 'signature',
+  /** column name */
   Status = 'status',
   /** column name */
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  WalletAddress = 'walletAddress'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Avg_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Corr_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_max_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Max_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_min_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Min_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Stddev_Samp_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Sum_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
+}
+
+/** select "centralized_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "centralized_txn" */
+export enum Centralized_Txn_Select_Column_Centralized_Txn_Aggregate_Bool_Exp_Var_Samp_Arguments_Columns {
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount'
 }
 
 /** input type for updating data in table "centralized_txn" */
 export type Centralized_Txn_Set_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
+  baseCurrency?: InputMaybe<Scalars['String']['input']>;
+  baseCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  cryptoTransactionId?: InputMaybe<Scalars['String']['input']>;
+  failedReason?: InputMaybe<Scalars['String']['input']>;
+  feeAmount?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  paymentMethod?: InputMaybe<Scalars['String']['input']>;
   provider?: InputMaybe<Scalars['String']['input']>;
+  providerTxnId?: InputMaybe<Scalars['uuid']['input']>;
+  quoteCurrency?: InputMaybe<Scalars['String']['input']>;
+  quoteCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
+  signature?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  walletAddress?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Centralized_Txn_Stddev_Fields = {
+  __typename?: 'centralized_txn_stddev_fields';
+  baseCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+  feeAmount?: Maybe<Scalars['Float']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev() on columns of table "centralized_txn" */
+export type Centralized_Txn_Stddev_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Centralized_Txn_Stddev_Pop_Fields = {
+  __typename?: 'centralized_txn_stddev_pop_fields';
+  baseCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+  feeAmount?: Maybe<Scalars['Float']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_pop() on columns of table "centralized_txn" */
+export type Centralized_Txn_Stddev_Pop_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Centralized_Txn_Stddev_Samp_Fields = {
+  __typename?: 'centralized_txn_stddev_samp_fields';
+  baseCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+  feeAmount?: Maybe<Scalars['Float']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_samp() on columns of table "centralized_txn" */
+export type Centralized_Txn_Stddev_Samp_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
 };
 
 /** Streaming cursor of the table "centralized_txn" */
@@ -1122,12 +1555,38 @@ export type Centralized_Txn_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Centralized_Txn_Stream_Cursor_Value_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
+  baseCurrency?: InputMaybe<Scalars['String']['input']>;
+  baseCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  cryptoTransactionId?: InputMaybe<Scalars['String']['input']>;
+  failedReason?: InputMaybe<Scalars['String']['input']>;
+  feeAmount?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  paymentMethod?: InputMaybe<Scalars['String']['input']>;
   provider?: InputMaybe<Scalars['String']['input']>;
+  providerTxnId?: InputMaybe<Scalars['uuid']['input']>;
+  quoteCurrency?: InputMaybe<Scalars['String']['input']>;
+  quoteCurrencyAmount?: InputMaybe<Scalars['float8']['input']>;
+  signature?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  walletAddress?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Centralized_Txn_Sum_Fields = {
+  __typename?: 'centralized_txn_sum_fields';
+  baseCurrencyAmount?: Maybe<Scalars['float8']['output']>;
+  feeAmount?: Maybe<Scalars['float8']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['float8']['output']>;
+};
+
+/** order by sum() on columns of table "centralized_txn" */
+export type Centralized_Txn_Sum_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "centralized_txn" */
@@ -1135,24 +1594,93 @@ export enum Centralized_Txn_Update_Column {
   /** column name */
   AccountId = 'accountId',
   /** column name */
+  BaseCurrency = 'baseCurrency',
+  /** column name */
+  BaseCurrencyAmount = 'baseCurrencyAmount',
+  /** column name */
   ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
+  CryptoTransactionId = 'cryptoTransactionId',
+  /** column name */
+  FailedReason = 'failedReason',
+  /** column name */
+  FeeAmount = 'feeAmount',
+  /** column name */
   Id = 'id',
+  /** column name */
+  PaymentMethod = 'paymentMethod',
   /** column name */
   Provider = 'provider',
   /** column name */
+  ProviderTxnId = 'providerTxnId',
+  /** column name */
+  QuoteCurrency = 'quoteCurrency',
+  /** column name */
+  QuoteCurrencyAmount = 'quoteCurrencyAmount',
+  /** column name */
+  Signature = 'signature',
+  /** column name */
   Status = 'status',
   /** column name */
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  WalletAddress = 'walletAddress'
 }
 
 export type Centralized_Txn_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Centralized_Txn_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Centralized_Txn_Set_Input>;
   /** filter the rows which have to be updated */
   where: Centralized_Txn_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Centralized_Txn_Var_Pop_Fields = {
+  __typename?: 'centralized_txn_var_pop_fields';
+  baseCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+  feeAmount?: Maybe<Scalars['Float']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_pop() on columns of table "centralized_txn" */
+export type Centralized_Txn_Var_Pop_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Centralized_Txn_Var_Samp_Fields = {
+  __typename?: 'centralized_txn_var_samp_fields';
+  baseCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+  feeAmount?: Maybe<Scalars['Float']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_samp() on columns of table "centralized_txn" */
+export type Centralized_Txn_Var_Samp_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Centralized_Txn_Variance_Fields = {
+  __typename?: 'centralized_txn_variance_fields';
+  baseCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+  feeAmount?: Maybe<Scalars['Float']['output']>;
+  quoteCurrencyAmount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by variance() on columns of table "centralized_txn" */
+export type Centralized_Txn_Variance_Order_By = {
+  baseCurrencyAmount?: InputMaybe<Order_By>;
+  feeAmount?: InputMaybe<Order_By>;
+  quoteCurrencyAmount?: InputMaybe<Order_By>;
 };
 
 /** chat messages for clients */
@@ -1402,6 +1930,10 @@ export type Client = {
   /** An object relationship */
   address?: Maybe<Address>;
   /** An array relationship */
+  centralized_txns: Array<Centralized_Txn>;
+  /** An aggregate relationship */
+  centralized_txns_aggregate: Centralized_Txn_Aggregate;
+  /** An array relationship */
   chats: Array<Chat>;
   /** An aggregate relationship */
   chats_aggregate: Chat_Aggregate;
@@ -1461,6 +1993,26 @@ export type ClientAccounts_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Account_Order_By>>;
   where?: InputMaybe<Account_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientCentralized_TxnsArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientCentralized_Txns_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Centralized_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Centralized_Txn_Order_By>>;
+  where?: InputMaybe<Centralized_Txn_Bool_Exp>;
 };
 
 
@@ -1647,6 +2199,8 @@ export type Client_Bool_Exp = {
   accounts?: InputMaybe<Account_Bool_Exp>;
   accounts_aggregate?: InputMaybe<Account_Aggregate_Bool_Exp>;
   address?: InputMaybe<Address_Bool_Exp>;
+  centralized_txns?: InputMaybe<Centralized_Txn_Bool_Exp>;
+  centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp>;
   chats?: InputMaybe<Chat_Bool_Exp>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Bool_Exp>;
   client_setting?: InputMaybe<Client_Settings_Bool_Exp>;
@@ -1691,6 +2245,7 @@ export type Client_Inc_Input = {
 export type Client_Insert_Input = {
   accounts?: InputMaybe<Account_Arr_Rel_Insert_Input>;
   address?: InputMaybe<Address_Obj_Rel_Insert_Input>;
+  centralized_txns?: InputMaybe<Centralized_Txn_Arr_Rel_Insert_Input>;
   chats?: InputMaybe<Chat_Arr_Rel_Insert_Input>;
   client_setting?: InputMaybe<Client_Settings_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -1766,6 +2321,7 @@ export type Client_On_Conflict = {
 export type Client_Order_By = {
   accounts_aggregate?: InputMaybe<Account_Aggregate_Order_By>;
   address?: InputMaybe<Address_Order_By>;
+  centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Order_By>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Order_By>;
   client_setting?: InputMaybe<Client_Settings_Order_By>;
   createdAt?: InputMaybe<Order_By>;
@@ -3487,6 +4043,7 @@ export type Mutation_RootUpdate_Bitcoin_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Centralized_TxnArgs = {
+  _inc?: InputMaybe<Centralized_Txn_Inc_Input>;
   _set?: InputMaybe<Centralized_Txn_Set_Input>;
   where: Centralized_Txn_Bool_Exp;
 };
@@ -3494,6 +4051,7 @@ export type Mutation_RootUpdate_Centralized_TxnArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Centralized_Txn_By_PkArgs = {
+  _inc?: InputMaybe<Centralized_Txn_Inc_Input>;
   _set?: InputMaybe<Centralized_Txn_Set_Input>;
   pk_columns: Centralized_Txn_Pk_Columns_Input;
 };
