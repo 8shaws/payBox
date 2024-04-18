@@ -8,6 +8,12 @@ export const GetBuyUrlSchema = z.object({
     amount: z.number(),
     type: z.string(),
     defaultCurrencyCode: z.nativeEnum(CryptoCurrencyCode),
+    accountId: z.
+        string()
+        .regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "should be a valid UUID.",
+        ),
     walletAddress: publicKeyType,
     email: z
         .string()
