@@ -1,0 +1,28 @@
+table:
+  name: connections
+  schema: public
+configuration:
+  column_config:
+    btc_network:
+      custom_name: btcNetwork
+    client_id:
+      custom_name: clientId
+    client_settings_id:
+      custom_name: clientSettingsId
+    created_at:
+      custom_name: createdAt
+    eth_network:
+      custom_name: ethNetwork
+    sol_network:
+      custom_name: solNetwork
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    btc_network: btcNetwork
+    client_id: clientId
+    client_settings_id: clientSettingsId
+    created_at: createdAt
+    eth_network: ethNetwork
+    sol_network: solNetwork
+    updated_at: updatedAt
+  custom_root_fields: {}

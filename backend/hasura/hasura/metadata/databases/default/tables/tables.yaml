@@ -5,6 +5,7 @@
 - "!include public_chat.yaml"
 - "!include public_client.yaml"
 - "!include public_client_settings.yaml"
+- "!include public_connections.yaml"
 - "!include public_eth.yaml"
 - "!include public_friendship.yaml"
 - "!include public_notif_to_subs.yaml"

@@ -1084,6 +1084,74 @@ export type ValueTypes = {
   ["account"]: AliasType<{
     /** An object relationship */
     bitcoin?: ValueTypes["bitcoin"];
+    centralized_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn"],
+    ];
+    centralized_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_aggregate"],
+    ];
     /** An object relationship */
     client?: ValueTypes["client"];
     /** clientId */
@@ -1227,6 +1295,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    centralized_txns?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    centralized_txns_aggregate?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     client?:
       | ValueTypes["client_bool_exp"]
       | undefined
@@ -1286,6 +1364,11 @@ export type ValueTypes = {
   ["account_insert_input"]: {
     bitcoin?:
       | ValueTypes["bitcoin_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    centralized_txns?:
+      | ValueTypes["centralized_txn_arr_rel_insert_input"]
       | undefined
       | null
       | Variable<any, string>;
@@ -1439,6 +1522,11 @@ export type ValueTypes = {
   ["account_order_by"]: {
     bitcoin?:
       | ValueTypes["bitcoin_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    centralized_txns_aggregate?:
+      | ValueTypes["centralized_txn_aggregate_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -2317,6 +2405,179 @@ export type ValueTypes = {
     nodes?: ValueTypes["centralized_txn"];
     __typename?: boolean | `@${string}`;
   }>;
+  ["centralized_txn_aggregate_bool_exp"]: {
+    avg?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_avg"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    corr?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_corr"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    count?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_count"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    covar_samp?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_covar_samp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    max?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_max"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_min"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev_samp?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    sum?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_sum"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    var_samp?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_var_samp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_avg"]: {
+    arguments:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_corr"]: {
+    arguments:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_corr_arguments"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_corr_arguments"]: {
+    X:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"]
+      | Variable<any, string>;
+    Y:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"]
+      | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ValueTypes["centralized_txn_select_column"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Int_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments:
+      | ValueTypes["centralized_txn_aggregate_bool_exp_covar_samp_arguments"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"]
+      | Variable<any, string>;
+    Y:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"]
+      | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_max"]: {
+    arguments:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_min"]: {
+    arguments:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_sum"]: {
+    arguments:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["centralized_txn_aggregate_bool_exp_var_samp"]: {
+    arguments:
+      | ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: AliasType<{
     avg?: ValueTypes["centralized_txn_avg_fields"];
@@ -2342,6 +2603,72 @@ export type ValueTypes = {
     variance?: ValueTypes["centralized_txn_variance_fields"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by aggregate values of table "centralized_txn" */
+  ["centralized_txn_aggregate_order_by"]: {
+    avg?:
+      | ValueTypes["centralized_txn_avg_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    count?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    max?:
+      | ValueTypes["centralized_txn_max_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["centralized_txn_min_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev?:
+      | ValueTypes["centralized_txn_stddev_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev_pop?:
+      | ValueTypes["centralized_txn_stddev_pop_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev_samp?:
+      | ValueTypes["centralized_txn_stddev_samp_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    sum?:
+      | ValueTypes["centralized_txn_sum_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    var_pop?:
+      | ValueTypes["centralized_txn_var_pop_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    var_samp?:
+      | ValueTypes["centralized_txn_var_samp_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    variance?:
+      | ValueTypes["centralized_txn_variance_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** input type for inserting array relation for remote table "centralized_txn" */
+  ["centralized_txn_arr_rel_insert_input"]: {
+    data:
+      | Array<ValueTypes["centralized_txn_insert_input"]>
+      | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["centralized_txn_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** aggregate avg on columns */
   ["centralized_txn_avg_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -2349,6 +2676,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by avg() on columns of table "centralized_txn" */
+  ["centralized_txn_avg_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
   ["centralized_txn_bool_exp"]: {
     _and?:
@@ -2556,6 +2901,91 @@ export type ValueTypes = {
     walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by max() on columns of table "centralized_txn" */
+  ["centralized_txn_max_order_by"]: {
+    accountId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    baseCurrency?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    cryptoTransactionId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    failedReason?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    paymentMethod?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    provider?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    providerTxnId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrency?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    signature?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletAddress?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
@@ -2578,6 +3008,91 @@ export type ValueTypes = {
     walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by min() on columns of table "centralized_txn" */
+  ["centralized_txn_min_order_by"]: {
+    accountId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    baseCurrency?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    cryptoTransactionId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    failedReason?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    paymentMethod?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    provider?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    providerTxnId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrency?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    signature?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletAddress?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** response of any mutation on the table "centralized_txn" */
   ["centralized_txn_mutation_response"]: AliasType<{
     /** number of rows affected by the mutation */
@@ -2701,6 +3216,22 @@ export type ValueTypes = {
   };
   /** select columns of table "centralized_txn" */
   ["centralized_txn_select_column"]: centralized_txn_select_column;
+  /** select "centralized_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_max_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_min_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns;
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
@@ -2749,6 +3280,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by stddev() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** aggregate stddev_pop on columns */
   ["centralized_txn_stddev_pop_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -2756,6 +3305,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by stddev_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_pop_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** aggregate stddev_samp on columns */
   ["centralized_txn_stddev_samp_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -2763,6 +3330,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by stddev_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_samp_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -2824,6 +3409,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by sum() on columns of table "centralized_txn" */
+  ["centralized_txn_sum_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** update columns of table "centralized_txn" */
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
@@ -2849,6 +3452,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by var_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_var_pop_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** aggregate var_samp on columns */
   ["centralized_txn_var_samp_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -2856,6 +3477,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by var_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_var_samp_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** aggregate variance on columns */
   ["centralized_txn_variance_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -2863,6 +3502,24 @@ export type ValueTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by variance() on columns of table "centralized_txn" */
+  ["centralized_txn_variance_order_by"]: {
+    baseCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    feeAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    quoteCurrencyAmount?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** chat messages for clients */
   ["chat"]: AliasType<{
     /** An object relationship */
@@ -3294,6 +3951,74 @@ export type ValueTypes = {
     ];
     /** An object relationship */
     address?: ValueTypes["address"];
+    centralized_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn"],
+    ];
+    centralized_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["centralized_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["centralized_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["centralized_txn_aggregate"],
+    ];
     chats?: [
       {
         /** distinct select on columns */
@@ -3852,6 +4577,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    centralized_txns?:
+      | ValueTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    centralized_txns_aggregate?:
+      | ValueTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     chats?:
       | ValueTypes["chat_bool_exp"]
       | undefined
@@ -3996,6 +4731,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    centralized_txns?:
+      | ValueTypes["centralized_txn_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     chats?:
       | ValueTypes["chat_arr_rel_insert_input"]
       | undefined
@@ -4120,6 +4860,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     address?:
       | ValueTypes["address_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    centralized_txns_aggregate?:
+      | ValueTypes["centralized_txn_aggregate_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -4601,6 +5346,284 @@ export type ValueTypes = {
     mobile?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** blockchains connections metadata */
+  ["connections"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["connections_aggregate_fields"];
+    nodes?: ValueTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["connections_max_fields"];
+    min?: ValueTypes["connections_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["connections_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["connections_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["connections_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    btcNetwork?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    solNetwork?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "connections" */
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    solNetwork?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["connections_min_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: ValueTypes["connections_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["connections_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["connections_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    solNetwork?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "connections" */
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    solNetwork?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["connections_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    clientSettingsId?:
+      | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethNetwork?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    solNetwork?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "connections" */
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["connections_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["connections_bool_exp"] | Variable<any, string>;
+  };
   /** ordering argument of a cursor */
   ["cursor_ordering"]: cursor_ordering;
   /** eth address and token for client wallets */
@@ -5684,6 +6707,17 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["client_settings"],
     ];
+    delete_connections?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["connections_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
+    ];
+    delete_connections_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["connections"],
+    ];
     delete_eth?: [
       {
         /** filter the rows which have to be deleted */
@@ -5969,6 +7003,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["client_settings"],
+    ];
+    insert_connections?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["connections_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["connections_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
+    ];
+    insert_connections_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["connections_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["connections_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
     ];
     insert_eth?: [
       {
@@ -6495,6 +7557,44 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["client_settings_mutation_response"],
+    ];
+    update_connections?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["connections_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["connections_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
+    ];
+    update_connections_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["connections_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["connections_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
+    ];
+    update_connections_many?: [
+      {
+        /** updates to execute, in order */
+        updates:
+          | Array<ValueTypes["connections_updates"]>
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_mutation_response"],
     ];
     update_eth?: [
       {
@@ -8690,6 +9790,78 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["client_settings"],
     ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["connections"],
+    ];
     eth?: [
       {
         /** distinct select on columns */
@@ -10337,6 +11509,100 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["client"],
+    ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["connections_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["connections_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["connections"],
+    ];
+    connections_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              ValueTypes["connections_stream_cursor_input"] | undefined | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["connections_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["connections"],
     ];
     eth?: [
       {
@@ -12502,6 +13768,58 @@ export type ResolverInputTypes = {
   ["account"]: AliasType<{
     /** An object relationship */
     bitcoin?: ResolverInputTypes["bitcoin"];
+    centralized_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn"],
+    ];
+    centralized_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn_aggregate"],
+    ];
     /** An object relationship */
     client?: ResolverInputTypes["client"];
     /** clientId */
@@ -12596,6 +13914,14 @@ export type ResolverInputTypes = {
     _not?: ResolverInputTypes["account_bool_exp"] | undefined | null;
     _or?: Array<ResolverInputTypes["account_bool_exp"]> | undefined | null;
     bitcoin?: ResolverInputTypes["bitcoin_bool_exp"] | undefined | null;
+    centralized_txns?:
+      | ResolverInputTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null;
+    centralized_txns_aggregate?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined
+      | null;
     client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
     clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     createdAt?:
@@ -12621,6 +13947,10 @@ export type ResolverInputTypes = {
   ["account_insert_input"]: {
     bitcoin?:
       | ResolverInputTypes["bitcoin_obj_rel_insert_input"]
+      | undefined
+      | null;
+    centralized_txns?:
+      | ResolverInputTypes["centralized_txn_arr_rel_insert_input"]
       | undefined
       | null;
     client?:
@@ -12712,6 +14042,10 @@ export type ResolverInputTypes = {
   /** Ordering options when selecting data from "account". */
   ["account_order_by"]: {
     bitcoin?: ResolverInputTypes["bitcoin_order_by"] | undefined | null;
+    centralized_txns_aggregate?:
+      | ResolverInputTypes["centralized_txn_aggregate_order_by"]
+      | undefined
+      | null;
     client?: ResolverInputTypes["client_order_by"] | undefined | null;
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
@@ -13245,6 +14579,109 @@ export type ResolverInputTypes = {
     nodes?: ResolverInputTypes["centralized_txn"];
     __typename?: boolean | `@${string}`;
   }>;
+  ["centralized_txn_aggregate_bool_exp"]: {
+    avg?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_avg"]
+      | undefined
+      | null;
+    corr?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_corr"]
+      | undefined
+      | null;
+    count?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_count"]
+      | undefined
+      | null;
+    covar_samp?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_covar_samp"]
+      | undefined
+      | null;
+    max?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_max"]
+      | undefined
+      | null;
+    min?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_min"]
+      | undefined
+      | null;
+    stddev_samp?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined
+      | null;
+    sum?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_sum"]
+      | undefined
+      | null;
+    var_samp?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp_var_samp"]
+      | undefined
+      | null;
+  };
+  ["centralized_txn_aggregate_bool_exp_avg"]: {
+    arguments: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_corr"]: {
+    arguments: ResolverInputTypes["centralized_txn_aggregate_bool_exp_corr_arguments"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_corr_arguments"]: {
+    X: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"];
+    Y: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"];
+  };
+  ["centralized_txn_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ResolverInputTypes["centralized_txn_select_column"]>
+      | undefined
+      | null;
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Int_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments: ResolverInputTypes["centralized_txn_aggregate_bool_exp_covar_samp_arguments"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+    Y: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  };
+  ["centralized_txn_aggregate_bool_exp_max"]: {
+    arguments: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_min"]: {
+    arguments: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_sum"]: {
+    arguments: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_var_samp"]: {
+    arguments: ResolverInputTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["centralized_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: AliasType<{
     avg?: ResolverInputTypes["centralized_txn_avg_fields"];
@@ -13269,6 +14706,47 @@ export type ResolverInputTypes = {
     variance?: ResolverInputTypes["centralized_txn_variance_fields"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by aggregate values of table "centralized_txn" */
+  ["centralized_txn_aggregate_order_by"]: {
+    avg?: ResolverInputTypes["centralized_txn_avg_order_by"] | undefined | null;
+    count?: ResolverInputTypes["order_by"] | undefined | null;
+    max?: ResolverInputTypes["centralized_txn_max_order_by"] | undefined | null;
+    min?: ResolverInputTypes["centralized_txn_min_order_by"] | undefined | null;
+    stddev?:
+      | ResolverInputTypes["centralized_txn_stddev_order_by"]
+      | undefined
+      | null;
+    stddev_pop?:
+      | ResolverInputTypes["centralized_txn_stddev_pop_order_by"]
+      | undefined
+      | null;
+    stddev_samp?:
+      | ResolverInputTypes["centralized_txn_stddev_samp_order_by"]
+      | undefined
+      | null;
+    sum?: ResolverInputTypes["centralized_txn_sum_order_by"] | undefined | null;
+    var_pop?:
+      | ResolverInputTypes["centralized_txn_var_pop_order_by"]
+      | undefined
+      | null;
+    var_samp?:
+      | ResolverInputTypes["centralized_txn_var_samp_order_by"]
+      | undefined
+      | null;
+    variance?:
+      | ResolverInputTypes["centralized_txn_variance_order_by"]
+      | undefined
+      | null;
+  };
+  /** input type for inserting array relation for remote table "centralized_txn" */
+  ["centralized_txn_arr_rel_insert_input"]: {
+    data: Array<ResolverInputTypes["centralized_txn_insert_input"]>;
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["centralized_txn_on_conflict"]
+      | undefined
+      | null;
+  };
   /** aggregate avg on columns */
   ["centralized_txn_avg_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -13276,6 +14754,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by avg() on columns of table "centralized_txn" */
+  ["centralized_txn_avg_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
   ["centralized_txn_bool_exp"]: {
     _and?:
@@ -13400,6 +14884,27 @@ export type ResolverInputTypes = {
     walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by max() on columns of table "centralized_txn" */
+  ["centralized_txn_max_order_by"]: {
+    accountId?: ResolverInputTypes["order_by"] | undefined | null;
+    baseCurrency?: ResolverInputTypes["order_by"] | undefined | null;
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    cryptoTransactionId?: ResolverInputTypes["order_by"] | undefined | null;
+    failedReason?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    paymentMethod?: ResolverInputTypes["order_by"] | undefined | null;
+    provider?: ResolverInputTypes["order_by"] | undefined | null;
+    providerTxnId?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrency?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    signature?: ResolverInputTypes["order_by"] | undefined | null;
+    status?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+    walletAddress?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
@@ -13422,6 +14927,27 @@ export type ResolverInputTypes = {
     walletAddress?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by min() on columns of table "centralized_txn" */
+  ["centralized_txn_min_order_by"]: {
+    accountId?: ResolverInputTypes["order_by"] | undefined | null;
+    baseCurrency?: ResolverInputTypes["order_by"] | undefined | null;
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    cryptoTransactionId?: ResolverInputTypes["order_by"] | undefined | null;
+    failedReason?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    paymentMethod?: ResolverInputTypes["order_by"] | undefined | null;
+    provider?: ResolverInputTypes["order_by"] | undefined | null;
+    providerTxnId?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrency?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    signature?: ResolverInputTypes["order_by"] | undefined | null;
+    status?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+    walletAddress?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** response of any mutation on the table "centralized_txn" */
   ["centralized_txn_mutation_response"]: AliasType<{
     /** number of rows affected by the mutation */
@@ -13465,6 +14991,22 @@ export type ResolverInputTypes = {
   };
   /** select columns of table "centralized_txn" */
   ["centralized_txn_select_column"]: centralized_txn_select_column;
+  /** select "centralized_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_max_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_min_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns;
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
@@ -13493,6 +15035,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by stddev() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** aggregate stddev_pop on columns */
   ["centralized_txn_stddev_pop_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -13500,6 +15048,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by stddev_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_pop_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** aggregate stddev_samp on columns */
   ["centralized_txn_stddev_samp_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -13507,6 +15061,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by stddev_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_samp_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -13542,6 +15102,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by sum() on columns of table "centralized_txn" */
+  ["centralized_txn_sum_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** update columns of table "centralized_txn" */
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
@@ -13559,6 +15125,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by var_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_var_pop_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** aggregate var_samp on columns */
   ["centralized_txn_var_samp_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -13566,6 +15138,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by var_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_var_samp_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** aggregate variance on columns */
   ["centralized_txn_variance_fields"]: AliasType<{
     baseCurrencyAmount?: boolean | `@${string}`;
@@ -13573,6 +15151,12 @@ export type ResolverInputTypes = {
     quoteCurrencyAmount?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** order by variance() on columns of table "centralized_txn" */
+  ["centralized_txn_variance_order_by"]: {
+    baseCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    feeAmount?: ResolverInputTypes["order_by"] | undefined | null;
+    quoteCurrencyAmount?: ResolverInputTypes["order_by"] | undefined | null;
+  };
   /** chat messages for clients */
   ["chat"]: AliasType<{
     /** An object relationship */
@@ -13827,6 +15411,58 @@ export type ResolverInputTypes = {
     ];
     /** An object relationship */
     address?: ResolverInputTypes["address"];
+    centralized_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn"],
+    ];
+    centralized_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["centralized_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["centralized_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?:
+          | ResolverInputTypes["centralized_txn_bool_exp"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["centralized_txn_aggregate"],
+    ];
     chats?: [
       {
         /** distinct select on columns */
@@ -14215,6 +15851,14 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     address?: ResolverInputTypes["address_bool_exp"] | undefined | null;
+    centralized_txns?:
+      | ResolverInputTypes["centralized_txn_bool_exp"]
+      | undefined
+      | null;
+    centralized_txns_aggregate?:
+      | ResolverInputTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined
+      | null;
     chats?: ResolverInputTypes["chat_bool_exp"] | undefined | null;
     chats_aggregate?:
       | ResolverInputTypes["chat_aggregate_bool_exp"]
@@ -14297,6 +15941,10 @@ export type ResolverInputTypes = {
       | null;
     address?:
       | ResolverInputTypes["address_obj_rel_insert_input"]
+      | undefined
+      | null;
+    centralized_txns?:
+      | ResolverInputTypes["centralized_txn_arr_rel_insert_input"]
       | undefined
       | null;
     chats?: ResolverInputTypes["chat_arr_rel_insert_input"] | undefined | null;
@@ -14392,6 +16040,10 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     address?: ResolverInputTypes["address_order_by"] | undefined | null;
+    centralized_txns_aggregate?:
+      | ResolverInputTypes["centralized_txn_aggregate_order_by"]
+      | undefined
+      | null;
     chats_aggregate?:
       | ResolverInputTypes["chat_aggregate_order_by"]
       | undefined
@@ -14705,6 +16357,168 @@ export type ResolverInputTypes = {
     mobile?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
+  /** blockchains connections metadata */
+  ["connections"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["connections_aggregate_fields"];
+    nodes?: ResolverInputTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["connections_max_fields"];
+    min?: ResolverInputTypes["connections_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?: Array<ResolverInputTypes["connections_bool_exp"]> | undefined | null;
+    _not?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["connections_bool_exp"]> | undefined | null;
+    btcNetwork?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    clientSettingsId?:
+      | ResolverInputTypes["uuid_comparison_exp"]
+      | undefined
+      | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    ethNetwork?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    solNetwork?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "connections" */
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethNetwork?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    solNetwork?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["connections_min_fields"]: AliasType<{
+    btcNetwork?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    clientSettingsId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    ethNetwork?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    solNetwork?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["connections"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: ResolverInputTypes["connections_constraint"];
+    update_columns: Array<ResolverInputTypes["connections_update_column"]>;
+    where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    ethNetwork?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    solNetwork?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "connections" */
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethNetwork?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    solNetwork?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["connections_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    clientSettingsId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethNetwork?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    solNetwork?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "connections" */
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["connections_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["connections_bool_exp"];
+  };
   /** ordering argument of a cursor */
   ["cursor_ordering"]: cursor_ordering;
   /** eth address and token for client wallets */
@@ -15375,6 +17189,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["client_settings"],
     ];
+    delete_connections?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["connections_bool_exp"];
+      },
+      ResolverInputTypes["connections_mutation_response"],
+    ];
+    delete_connections_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["connections"],
+    ];
     delete_eth?: [
       {
         /** filter the rows which have to be deleted */
@@ -15624,6 +17449,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["client_settings"],
+    ];
+    insert_connections?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["connections_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["connections_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["connections_mutation_response"],
+    ];
+    insert_connections_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["connections_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["connections_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["connections"],
     ];
     insert_eth?: [
       {
@@ -16016,6 +17865,32 @@ export type ResolverInputTypes = {
         updates: Array<ResolverInputTypes["client_settings_updates"]>;
       },
       ResolverInputTypes["client_settings_mutation_response"],
+    ];
+    update_connections?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["connections_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["connections_bool_exp"];
+      },
+      ResolverInputTypes["connections_mutation_response"],
+    ];
+    update_connections_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["connections_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["connections_pk_columns_input"];
+      },
+      ResolverInputTypes["connections"],
+    ];
+    update_connections_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["connections_updates"]>;
+      },
+      ResolverInputTypes["connections_mutation_response"],
     ];
     update_eth?: [
       {
@@ -17476,6 +19351,56 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["client_settings"],
     ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["connections"],
+    ];
     eth?: [
       {
         /** distinct select on columns */
@@ -18580,6 +20505,69 @@ export type ResolverInputTypes = {
         where?: ResolverInputTypes["client_bool_exp"] | undefined | null;
       },
       ResolverInputTypes["client"],
+    ];
+    connections?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections"],
+    ];
+    connections_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["connections_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["connections_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections_aggregate"],
+    ];
+    connections_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["connections"],
+    ];
+    connections_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          | ResolverInputTypes["connections_stream_cursor_input"]
+          | undefined
+          | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["connections"],
     ];
     eth?: [
       {
@@ -20041,6 +22029,10 @@ export type ModelTypes = {
   ["account"]: {
     /** An object relationship */
     bitcoin?: ModelTypes["bitcoin"] | undefined;
+    /** An array relationship */
+    centralized_txns: Array<ModelTypes["centralized_txn"]>;
+    /** An aggregate relationship */
+    centralized_txns_aggregate: ModelTypes["centralized_txn_aggregate"];
     /** An object relationship */
     client: ModelTypes["client"];
     /** clientId */
@@ -20111,6 +22103,10 @@ export type ModelTypes = {
     _not?: ModelTypes["account_bool_exp"] | undefined;
     _or?: Array<ModelTypes["account_bool_exp"]> | undefined;
     bitcoin?: ModelTypes["bitcoin_bool_exp"] | undefined;
+    centralized_txns?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    centralized_txns_aggregate?:
+      | ModelTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined;
     client?: ModelTypes["client_bool_exp"] | undefined;
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
@@ -20128,6 +22124,9 @@ export type ModelTypes = {
   /** input type for inserting data into table "account" */
   ["account_insert_input"]: {
     bitcoin?: ModelTypes["bitcoin_obj_rel_insert_input"] | undefined;
+    centralized_txns?:
+      | ModelTypes["centralized_txn_arr_rel_insert_input"]
+      | undefined;
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
     /** clientId */
     clientId?: ModelTypes["uuid"] | undefined;
@@ -20208,6 +22207,9 @@ export type ModelTypes = {
   /** Ordering options when selecting data from "account". */
   ["account_order_by"]: {
     bitcoin?: ModelTypes["bitcoin_order_by"] | undefined;
+    centralized_txns_aggregate?:
+      | ModelTypes["centralized_txn_aggregate_order_by"]
+      | undefined;
     client?: ModelTypes["client_order_by"] | undefined;
     clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
@@ -20673,6 +22675,85 @@ export type ModelTypes = {
     aggregate?: ModelTypes["centralized_txn_aggregate_fields"] | undefined;
     nodes: Array<ModelTypes["centralized_txn"]>;
   };
+  ["centralized_txn_aggregate_bool_exp"]: {
+    avg?: ModelTypes["centralized_txn_aggregate_bool_exp_avg"] | undefined;
+    corr?: ModelTypes["centralized_txn_aggregate_bool_exp_corr"] | undefined;
+    count?: ModelTypes["centralized_txn_aggregate_bool_exp_count"] | undefined;
+    covar_samp?:
+      | ModelTypes["centralized_txn_aggregate_bool_exp_covar_samp"]
+      | undefined;
+    max?: ModelTypes["centralized_txn_aggregate_bool_exp_max"] | undefined;
+    min?: ModelTypes["centralized_txn_aggregate_bool_exp_min"] | undefined;
+    stddev_samp?:
+      | ModelTypes["centralized_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined;
+    sum?: ModelTypes["centralized_txn_aggregate_bool_exp_sum"] | undefined;
+    var_samp?:
+      | ModelTypes["centralized_txn_aggregate_bool_exp_var_samp"]
+      | undefined;
+  };
+  ["centralized_txn_aggregate_bool_exp_avg"]: {
+    arguments: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_corr"]: {
+    arguments: ModelTypes["centralized_txn_aggregate_bool_exp_corr_arguments"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_corr_arguments"]: {
+    X: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"];
+    Y: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"];
+  };
+  ["centralized_txn_aggregate_bool_exp_count"]: {
+    arguments?: Array<ModelTypes["centralized_txn_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["Int_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments: ModelTypes["centralized_txn_aggregate_bool_exp_covar_samp_arguments"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+    Y: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  };
+  ["centralized_txn_aggregate_bool_exp_max"]: {
+    arguments: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_min"]: {
+    arguments: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_sum"]: {
+    arguments: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_var_samp"]: {
+    arguments: ModelTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: {
     avg?: ModelTypes["centralized_txn_avg_fields"] | undefined;
@@ -20687,11 +22768,39 @@ export type ModelTypes = {
     var_samp?: ModelTypes["centralized_txn_var_samp_fields"] | undefined;
     variance?: ModelTypes["centralized_txn_variance_fields"] | undefined;
   };
+  /** order by aggregate values of table "centralized_txn" */
+  ["centralized_txn_aggregate_order_by"]: {
+    avg?: ModelTypes["centralized_txn_avg_order_by"] | undefined;
+    count?: ModelTypes["order_by"] | undefined;
+    max?: ModelTypes["centralized_txn_max_order_by"] | undefined;
+    min?: ModelTypes["centralized_txn_min_order_by"] | undefined;
+    stddev?: ModelTypes["centralized_txn_stddev_order_by"] | undefined;
+    stddev_pop?: ModelTypes["centralized_txn_stddev_pop_order_by"] | undefined;
+    stddev_samp?:
+      | ModelTypes["centralized_txn_stddev_samp_order_by"]
+      | undefined;
+    sum?: ModelTypes["centralized_txn_sum_order_by"] | undefined;
+    var_pop?: ModelTypes["centralized_txn_var_pop_order_by"] | undefined;
+    var_samp?: ModelTypes["centralized_txn_var_samp_order_by"] | undefined;
+    variance?: ModelTypes["centralized_txn_variance_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "centralized_txn" */
+  ["centralized_txn_arr_rel_insert_input"]: {
+    data: Array<ModelTypes["centralized_txn_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ModelTypes["centralized_txn_on_conflict"] | undefined;
+  };
   /** aggregate avg on columns */
   ["centralized_txn_avg_fields"]: {
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
+  };
+  /** order by avg() on columns of table "centralized_txn" */
+  ["centralized_txn_avg_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
   };
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
   ["centralized_txn_bool_exp"]: {
@@ -20770,6 +22879,27 @@ export type ModelTypes = {
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     walletAddress?: string | undefined;
   };
+  /** order by max() on columns of table "centralized_txn" */
+  ["centralized_txn_max_order_by"]: {
+    accountId?: ModelTypes["order_by"] | undefined;
+    baseCurrency?: ModelTypes["order_by"] | undefined;
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    cryptoTransactionId?: ModelTypes["order_by"] | undefined;
+    failedReason?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    paymentMethod?: ModelTypes["order_by"] | undefined;
+    provider?: ModelTypes["order_by"] | undefined;
+    providerTxnId?: ModelTypes["order_by"] | undefined;
+    quoteCurrency?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    signature?: ModelTypes["order_by"] | undefined;
+    status?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+    walletAddress?: ModelTypes["order_by"] | undefined;
+  };
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: {
     accountId?: ModelTypes["uuid"] | undefined;
@@ -20790,6 +22920,27 @@ export type ModelTypes = {
     status?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     walletAddress?: string | undefined;
+  };
+  /** order by min() on columns of table "centralized_txn" */
+  ["centralized_txn_min_order_by"]: {
+    accountId?: ModelTypes["order_by"] | undefined;
+    baseCurrency?: ModelTypes["order_by"] | undefined;
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    cryptoTransactionId?: ModelTypes["order_by"] | undefined;
+    failedReason?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    paymentMethod?: ModelTypes["order_by"] | undefined;
+    provider?: ModelTypes["order_by"] | undefined;
+    providerTxnId?: ModelTypes["order_by"] | undefined;
+    quoteCurrency?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    signature?: ModelTypes["order_by"] | undefined;
+    status?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+    walletAddress?: ModelTypes["order_by"] | undefined;
   };
   /** response of any mutation on the table "centralized_txn" */
   ["centralized_txn_mutation_response"]: {
@@ -20832,6 +22983,14 @@ export type ModelTypes = {
     id: ModelTypes["uuid"];
   };
   ["centralized_txn_select_column"]: centralized_txn_select_column;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns;
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns;
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: ModelTypes["uuid"] | undefined;
@@ -20859,17 +23018,35 @@ export type ModelTypes = {
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by stddev() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+  };
   /** aggregate stddev_pop on columns */
   ["centralized_txn_stddev_pop_fields"]: {
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by stddev_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_pop_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+  };
   /** aggregate stddev_samp on columns */
   ["centralized_txn_stddev_samp_fields"]: {
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
+  };
+  /** order by stddev_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_samp_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
   };
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
@@ -20905,6 +23082,12 @@ export type ModelTypes = {
     feeAmount?: ModelTypes["float8"] | undefined;
     quoteCurrencyAmount?: ModelTypes["float8"] | undefined;
   };
+  /** order by sum() on columns of table "centralized_txn" */
+  ["centralized_txn_sum_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+  };
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
     /** increments the numeric columns with given value of the filtered values */
@@ -20920,17 +23103,35 @@ export type ModelTypes = {
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by var_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_var_pop_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+  };
   /** aggregate var_samp on columns */
   ["centralized_txn_var_samp_fields"]: {
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by var_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_var_samp_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
+  };
   /** aggregate variance on columns */
   ["centralized_txn_variance_fields"]: {
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
+  };
+  /** order by variance() on columns of table "centralized_txn" */
+  ["centralized_txn_variance_order_by"]: {
+    baseCurrencyAmount?: ModelTypes["order_by"] | undefined;
+    feeAmount?: ModelTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: ModelTypes["order_by"] | undefined;
   };
   /** chat messages for clients */
   ["chat"]: {
@@ -21109,6 +23310,10 @@ export type ModelTypes = {
     /** An object relationship */
     address?: ModelTypes["address"] | undefined;
     /** An array relationship */
+    centralized_txns: Array<ModelTypes["centralized_txn"]>;
+    /** An aggregate relationship */
+    centralized_txns_aggregate: ModelTypes["centralized_txn_aggregate"];
+    /** An array relationship */
     chats: Array<ModelTypes["chat"]>;
     /** An aggregate relationship */
     chats_aggregate: ModelTypes["chat_aggregate"];
@@ -21180,6 +23385,10 @@ export type ModelTypes = {
     accounts?: ModelTypes["account_bool_exp"] | undefined;
     accounts_aggregate?: ModelTypes["account_aggregate_bool_exp"] | undefined;
     address?: ModelTypes["address_bool_exp"] | undefined;
+    centralized_txns?: ModelTypes["centralized_txn_bool_exp"] | undefined;
+    centralized_txns_aggregate?:
+      | ModelTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined;
     chats?: ModelTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: ModelTypes["chat_aggregate_bool_exp"] | undefined;
     client_setting?: ModelTypes["client_settings_bool_exp"] | undefined;
@@ -21227,6 +23436,9 @@ export type ModelTypes = {
   ["client_insert_input"]: {
     accounts?: ModelTypes["account_arr_rel_insert_input"] | undefined;
     address?: ModelTypes["address_obj_rel_insert_input"] | undefined;
+    centralized_txns?:
+      | ModelTypes["centralized_txn_arr_rel_insert_input"]
+      | undefined;
     chats?: ModelTypes["chat_arr_rel_insert_input"] | undefined;
     client_setting?:
       | ModelTypes["client_settings_obj_rel_insert_input"]
@@ -21299,6 +23511,9 @@ export type ModelTypes = {
   ["client_order_by"]: {
     accounts_aggregate?: ModelTypes["account_aggregate_order_by"] | undefined;
     address?: ModelTypes["address_order_by"] | undefined;
+    centralized_txns_aggregate?:
+      | ModelTypes["centralized_txn_aggregate_order_by"]
+      | undefined;
     chats_aggregate?: ModelTypes["chat_aggregate_order_by"] | undefined;
     client_setting?: ModelTypes["client_settings_order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
@@ -21546,6 +23761,141 @@ export type ModelTypes = {
   /** aggregate variance on columns */
   ["client_variance_fields"]: {
     mobile?: number | undefined;
+  };
+  /** blockchains connections metadata */
+  ["connections"]: {
+    btcNetwork: string;
+    clientId: ModelTypes["uuid"];
+    clientSettingsId: ModelTypes["uuid"];
+    createdAt: ModelTypes["timestamptz"];
+    ethNetwork: string;
+    id: ModelTypes["uuid"];
+    solNetwork: string;
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: {
+    aggregate?: ModelTypes["connections_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["connections"]>;
+  };
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["connections_max_fields"] | undefined;
+    min?: ModelTypes["connections_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?: Array<ModelTypes["connections_bool_exp"]> | undefined;
+    _not?: ModelTypes["connections_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["connections_bool_exp"]> | undefined;
+    btcNetwork?: ModelTypes["String_comparison_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    clientSettingsId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    ethNetwork?: ModelTypes["String_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    solNetwork?: ModelTypes["String_comparison_exp"] | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["connections_min_fields"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["connections"]>;
+  };
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: ModelTypes["connections_constraint"];
+    update_columns: Array<ModelTypes["connections_update_column"]>;
+    where?: ModelTypes["connections_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    clientSettingsId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    ethNetwork?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    solNetwork?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["connections_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    clientSettingsId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["connections_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["connections_bool_exp"];
   };
   ["cursor_ordering"]: cursor_ordering;
   /** eth address and token for client wallets */
@@ -22046,6 +24396,12 @@ export type ModelTypes = {
       | undefined;
     /** delete single row from the table: "client_settings" */
     delete_client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
+    /** delete data from the table: "connections" */
+    delete_connections?:
+      | ModelTypes["connections_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "connections" */
+    delete_connections_by_pk?: ModelTypes["connections"] | undefined;
     /** delete data from the table: "eth" */
     delete_eth?: ModelTypes["eth_mutation_response"] | undefined;
     /** delete single row from the table: "eth" */
@@ -22120,6 +24476,12 @@ export type ModelTypes = {
       | undefined;
     /** insert a single row into the table: "client_settings" */
     insert_client_settings_one?: ModelTypes["client_settings"] | undefined;
+    /** insert data into the table: "connections" */
+    insert_connections?:
+      | ModelTypes["connections_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "connections" */
+    insert_connections_one?: ModelTypes["connections"] | undefined;
     /** insert data into the table: "eth" */
     insert_eth?: ModelTypes["eth_mutation_response"] | undefined;
     /** insert a single row into the table: "eth" */
@@ -22221,6 +24583,16 @@ export type ModelTypes = {
     /** update multiples rows of table: "client_settings" */
     update_client_settings_many?:
       | Array<ModelTypes["client_settings_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "connections" */
+    update_connections?:
+      | ModelTypes["connections_mutation_response"]
+      | undefined;
+    /** update single row of the table: "connections" */
+    update_connections_by_pk?: ModelTypes["connections"] | undefined;
+    /** update multiples rows of table: "connections" */
+    update_connections_many?:
+      | Array<ModelTypes["connections_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "eth" */
     update_eth?: ModelTypes["eth_mutation_response"] | undefined;
@@ -22949,6 +25321,12 @@ export type ModelTypes = {
     client_settings_aggregate: ModelTypes["client_settings_aggregate"];
     /** fetch data from the table: "client_settings" using primary key columns */
     client_settings_by_pk?: ModelTypes["client_settings"] | undefined;
+    /** fetch data from the table: "connections" */
+    connections: Array<ModelTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: ModelTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: ModelTypes["connections"] | undefined;
     /** fetch data from the table: "eth" */
     eth: Array<ModelTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -23275,6 +25653,14 @@ export type ModelTypes = {
     client_settings_stream: Array<ModelTypes["client_settings"]>;
     /** fetch data from the table in a streaming manner: "client" */
     client_stream: Array<ModelTypes["client"]>;
+    /** fetch data from the table: "connections" */
+    connections: Array<ModelTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: ModelTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: ModelTypes["connections"] | undefined;
+    /** fetch data from the table in a streaming manner: "connections" */
+    connections_stream: Array<ModelTypes["connections"]>;
     /** fetch data from the table: "eth" */
     eth: Array<ModelTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -24119,6 +26505,10 @@ export type GraphQLTypes = {
     __typename: "account";
     /** An object relationship */
     bitcoin?: GraphQLTypes["bitcoin"] | undefined;
+    /** An array relationship */
+    centralized_txns: Array<GraphQLTypes["centralized_txn"]>;
+    /** An aggregate relationship */
+    centralized_txns_aggregate: GraphQLTypes["centralized_txn_aggregate"];
     /** An object relationship */
     client: GraphQLTypes["client"];
     /** clientId */
@@ -24191,6 +26581,10 @@ export type GraphQLTypes = {
     _not?: GraphQLTypes["account_bool_exp"] | undefined;
     _or?: Array<GraphQLTypes["account_bool_exp"]> | undefined;
     bitcoin?: GraphQLTypes["bitcoin_bool_exp"] | undefined;
+    centralized_txns?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    centralized_txns_aggregate?:
+      | GraphQLTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined;
     client?: GraphQLTypes["client_bool_exp"] | undefined;
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
@@ -24209,6 +26603,9 @@ export type GraphQLTypes = {
   /** input type for inserting data into table "account" */
   ["account_insert_input"]: {
     bitcoin?: GraphQLTypes["bitcoin_obj_rel_insert_input"] | undefined;
+    centralized_txns?:
+      | GraphQLTypes["centralized_txn_arr_rel_insert_input"]
+      | undefined;
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
     /** clientId */
     clientId?: GraphQLTypes["uuid"] | undefined;
@@ -24292,6 +26689,9 @@ export type GraphQLTypes = {
   /** Ordering options when selecting data from "account". */
   ["account_order_by"]: {
     bitcoin?: GraphQLTypes["bitcoin_order_by"] | undefined;
+    centralized_txns_aggregate?:
+      | GraphQLTypes["centralized_txn_aggregate_order_by"]
+      | undefined;
     client?: GraphQLTypes["client_order_by"] | undefined;
     clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
@@ -24789,6 +27189,89 @@ export type GraphQLTypes = {
     aggregate?: GraphQLTypes["centralized_txn_aggregate_fields"] | undefined;
     nodes: Array<GraphQLTypes["centralized_txn"]>;
   };
+  ["centralized_txn_aggregate_bool_exp"]: {
+    avg?: GraphQLTypes["centralized_txn_aggregate_bool_exp_avg"] | undefined;
+    corr?: GraphQLTypes["centralized_txn_aggregate_bool_exp_corr"] | undefined;
+    count?:
+      | GraphQLTypes["centralized_txn_aggregate_bool_exp_count"]
+      | undefined;
+    covar_samp?:
+      | GraphQLTypes["centralized_txn_aggregate_bool_exp_covar_samp"]
+      | undefined;
+    max?: GraphQLTypes["centralized_txn_aggregate_bool_exp_max"] | undefined;
+    min?: GraphQLTypes["centralized_txn_aggregate_bool_exp_min"] | undefined;
+    stddev_samp?:
+      | GraphQLTypes["centralized_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined;
+    sum?: GraphQLTypes["centralized_txn_aggregate_bool_exp_sum"] | undefined;
+    var_samp?:
+      | GraphQLTypes["centralized_txn_aggregate_bool_exp_var_samp"]
+      | undefined;
+  };
+  ["centralized_txn_aggregate_bool_exp_avg"]: {
+    arguments: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_corr"]: {
+    arguments: GraphQLTypes["centralized_txn_aggregate_bool_exp_corr_arguments"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_corr_arguments"]: {
+    X: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"];
+    Y: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"];
+  };
+  ["centralized_txn_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<GraphQLTypes["centralized_txn_select_column"]>
+      | undefined;
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Int_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments: GraphQLTypes["centralized_txn_aggregate_bool_exp_covar_samp_arguments"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+    Y: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  };
+  ["centralized_txn_aggregate_bool_exp_max"]: {
+    arguments: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_min"]: {
+    arguments: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_sum"]: {
+    arguments: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["centralized_txn_aggregate_bool_exp_var_samp"]: {
+    arguments: GraphQLTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
   /** aggregate fields of "centralized_txn" */
   ["centralized_txn_aggregate_fields"]: {
     __typename: "centralized_txn_aggregate_fields";
@@ -24806,12 +27289,42 @@ export type GraphQLTypes = {
     var_samp?: GraphQLTypes["centralized_txn_var_samp_fields"] | undefined;
     variance?: GraphQLTypes["centralized_txn_variance_fields"] | undefined;
   };
+  /** order by aggregate values of table "centralized_txn" */
+  ["centralized_txn_aggregate_order_by"]: {
+    avg?: GraphQLTypes["centralized_txn_avg_order_by"] | undefined;
+    count?: GraphQLTypes["order_by"] | undefined;
+    max?: GraphQLTypes["centralized_txn_max_order_by"] | undefined;
+    min?: GraphQLTypes["centralized_txn_min_order_by"] | undefined;
+    stddev?: GraphQLTypes["centralized_txn_stddev_order_by"] | undefined;
+    stddev_pop?:
+      | GraphQLTypes["centralized_txn_stddev_pop_order_by"]
+      | undefined;
+    stddev_samp?:
+      | GraphQLTypes["centralized_txn_stddev_samp_order_by"]
+      | undefined;
+    sum?: GraphQLTypes["centralized_txn_sum_order_by"] | undefined;
+    var_pop?: GraphQLTypes["centralized_txn_var_pop_order_by"] | undefined;
+    var_samp?: GraphQLTypes["centralized_txn_var_samp_order_by"] | undefined;
+    variance?: GraphQLTypes["centralized_txn_variance_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "centralized_txn" */
+  ["centralized_txn_arr_rel_insert_input"]: {
+    data: Array<GraphQLTypes["centralized_txn_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["centralized_txn_on_conflict"] | undefined;
+  };
   /** aggregate avg on columns */
   ["centralized_txn_avg_fields"]: {
     __typename: "centralized_txn_avg_fields";
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
+  };
+  /** order by avg() on columns of table "centralized_txn" */
+  ["centralized_txn_avg_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
   };
   /** Boolean expression to filter rows from the table "centralized_txn". All fields are combined with a logical 'AND'. */
   ["centralized_txn_bool_exp"]: {
@@ -24892,6 +27405,27 @@ export type GraphQLTypes = {
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     walletAddress?: string | undefined;
   };
+  /** order by max() on columns of table "centralized_txn" */
+  ["centralized_txn_max_order_by"]: {
+    accountId?: GraphQLTypes["order_by"] | undefined;
+    baseCurrency?: GraphQLTypes["order_by"] | undefined;
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    cryptoTransactionId?: GraphQLTypes["order_by"] | undefined;
+    failedReason?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    paymentMethod?: GraphQLTypes["order_by"] | undefined;
+    provider?: GraphQLTypes["order_by"] | undefined;
+    providerTxnId?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrency?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    signature?: GraphQLTypes["order_by"] | undefined;
+    status?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+    walletAddress?: GraphQLTypes["order_by"] | undefined;
+  };
   /** aggregate min on columns */
   ["centralized_txn_min_fields"]: {
     __typename: "centralized_txn_min_fields";
@@ -24913,6 +27447,27 @@ export type GraphQLTypes = {
     status?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
     walletAddress?: string | undefined;
+  };
+  /** order by min() on columns of table "centralized_txn" */
+  ["centralized_txn_min_order_by"]: {
+    accountId?: GraphQLTypes["order_by"] | undefined;
+    baseCurrency?: GraphQLTypes["order_by"] | undefined;
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    cryptoTransactionId?: GraphQLTypes["order_by"] | undefined;
+    failedReason?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    paymentMethod?: GraphQLTypes["order_by"] | undefined;
+    provider?: GraphQLTypes["order_by"] | undefined;
+    providerTxnId?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrency?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    signature?: GraphQLTypes["order_by"] | undefined;
+    status?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+    walletAddress?: GraphQLTypes["order_by"] | undefined;
   };
   /** response of any mutation on the table "centralized_txn" */
   ["centralized_txn_mutation_response"]: {
@@ -24957,6 +27512,22 @@ export type GraphQLTypes = {
   };
   /** select columns of table "centralized_txn" */
   ["centralized_txn_select_column"]: centralized_txn_select_column;
+  /** select "centralized_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_max_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_min_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns;
+  /** select "centralized_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "centralized_txn" */
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"]: centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns;
   /** input type for updating data in table "centralized_txn" */
   ["centralized_txn_set_input"]: {
     accountId?: GraphQLTypes["uuid"] | undefined;
@@ -24985,6 +27556,12 @@ export type GraphQLTypes = {
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by stddev() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+  };
   /** aggregate stddev_pop on columns */
   ["centralized_txn_stddev_pop_fields"]: {
     __typename: "centralized_txn_stddev_pop_fields";
@@ -24992,12 +27569,24 @@ export type GraphQLTypes = {
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by stddev_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_pop_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+  };
   /** aggregate stddev_samp on columns */
   ["centralized_txn_stddev_samp_fields"]: {
     __typename: "centralized_txn_stddev_samp_fields";
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
+  };
+  /** order by stddev_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_stddev_samp_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
   };
   /** Streaming cursor of the table "centralized_txn" */
   ["centralized_txn_stream_cursor_input"]: {
@@ -25034,6 +27623,12 @@ export type GraphQLTypes = {
     feeAmount?: GraphQLTypes["float8"] | undefined;
     quoteCurrencyAmount?: GraphQLTypes["float8"] | undefined;
   };
+  /** order by sum() on columns of table "centralized_txn" */
+  ["centralized_txn_sum_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+  };
   /** update columns of table "centralized_txn" */
   ["centralized_txn_update_column"]: centralized_txn_update_column;
   ["centralized_txn_updates"]: {
@@ -25051,6 +27646,12 @@ export type GraphQLTypes = {
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by var_pop() on columns of table "centralized_txn" */
+  ["centralized_txn_var_pop_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+  };
   /** aggregate var_samp on columns */
   ["centralized_txn_var_samp_fields"]: {
     __typename: "centralized_txn_var_samp_fields";
@@ -25058,12 +27659,24 @@ export type GraphQLTypes = {
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
   };
+  /** order by var_samp() on columns of table "centralized_txn" */
+  ["centralized_txn_var_samp_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+  };
   /** aggregate variance on columns */
   ["centralized_txn_variance_fields"]: {
     __typename: "centralized_txn_variance_fields";
     baseCurrencyAmount?: number | undefined;
     feeAmount?: number | undefined;
     quoteCurrencyAmount?: number | undefined;
+  };
+  /** order by variance() on columns of table "centralized_txn" */
+  ["centralized_txn_variance_order_by"]: {
+    baseCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
+    feeAmount?: GraphQLTypes["order_by"] | undefined;
+    quoteCurrencyAmount?: GraphQLTypes["order_by"] | undefined;
   };
   /** chat messages for clients */
   ["chat"]: {
@@ -25252,6 +27865,10 @@ export type GraphQLTypes = {
     /** An object relationship */
     address?: GraphQLTypes["address"] | undefined;
     /** An array relationship */
+    centralized_txns: Array<GraphQLTypes["centralized_txn"]>;
+    /** An aggregate relationship */
+    centralized_txns_aggregate: GraphQLTypes["centralized_txn_aggregate"];
+    /** An array relationship */
     chats: Array<GraphQLTypes["chat"]>;
     /** An aggregate relationship */
     chats_aggregate: GraphQLTypes["chat_aggregate"];
@@ -25328,6 +27945,10 @@ export type GraphQLTypes = {
     accounts?: GraphQLTypes["account_bool_exp"] | undefined;
     accounts_aggregate?: GraphQLTypes["account_aggregate_bool_exp"] | undefined;
     address?: GraphQLTypes["address_bool_exp"] | undefined;
+    centralized_txns?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
+    centralized_txns_aggregate?:
+      | GraphQLTypes["centralized_txn_aggregate_bool_exp"]
+      | undefined;
     chats?: GraphQLTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: GraphQLTypes["chat_aggregate_bool_exp"] | undefined;
     client_setting?: GraphQLTypes["client_settings_bool_exp"] | undefined;
@@ -25376,6 +27997,9 @@ export type GraphQLTypes = {
   ["client_insert_input"]: {
     accounts?: GraphQLTypes["account_arr_rel_insert_input"] | undefined;
     address?: GraphQLTypes["address_obj_rel_insert_input"] | undefined;
+    centralized_txns?:
+      | GraphQLTypes["centralized_txn_arr_rel_insert_input"]
+      | undefined;
     chats?: GraphQLTypes["chat_arr_rel_insert_input"] | undefined;
     client_setting?:
       | GraphQLTypes["client_settings_obj_rel_insert_input"]
@@ -25455,6 +28079,9 @@ export type GraphQLTypes = {
   ["client_order_by"]: {
     accounts_aggregate?: GraphQLTypes["account_aggregate_order_by"] | undefined;
     address?: GraphQLTypes["address_order_by"] | undefined;
+    centralized_txns_aggregate?:
+      | GraphQLTypes["centralized_txn_aggregate_order_by"]
+      | undefined;
     chats_aggregate?: GraphQLTypes["chat_aggregate_order_by"] | undefined;
     client_setting?: GraphQLTypes["client_settings_order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
@@ -25720,6 +28347,150 @@ export type GraphQLTypes = {
   ["client_variance_fields"]: {
     __typename: "client_variance_fields";
     mobile?: number | undefined;
+  };
+  /** blockchains connections metadata */
+  ["connections"]: {
+    __typename: "connections";
+    btcNetwork: string;
+    clientId: GraphQLTypes["uuid"];
+    clientSettingsId: GraphQLTypes["uuid"];
+    createdAt: GraphQLTypes["timestamptz"];
+    ethNetwork: string;
+    id: GraphQLTypes["uuid"];
+    solNetwork: string;
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "connections" */
+  ["connections_aggregate"]: {
+    __typename: "connections_aggregate";
+    aggregate?: GraphQLTypes["connections_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["connections"]>;
+  };
+  /** aggregate fields of "connections" */
+  ["connections_aggregate_fields"]: {
+    __typename: "connections_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["connections_max_fields"] | undefined;
+    min?: GraphQLTypes["connections_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "connections". All fields are combined with a logical 'AND'. */
+  ["connections_bool_exp"]: {
+    _and?: Array<GraphQLTypes["connections_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["connections_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["connections_bool_exp"]> | undefined;
+    btcNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    ethNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    solNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "connections" */
+  ["connections_constraint"]: connections_constraint;
+  /** input type for inserting data into table "connections" */
+  ["connections_insert_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["connections_max_fields"]: {
+    __typename: "connections_max_fields";
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["connections_min_fields"]: {
+    __typename: "connections_min_fields";
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "connections" */
+  ["connections_mutation_response"]: {
+    __typename: "connections_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["connections"]>;
+  };
+  /** on_conflict condition type for table "connections" */
+  ["connections_on_conflict"]: {
+    constraint: GraphQLTypes["connections_constraint"];
+    update_columns: Array<GraphQLTypes["connections_update_column"]>;
+    where?: GraphQLTypes["connections_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "connections". */
+  ["connections_order_by"]: {
+    btcNetwork?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    clientSettingsId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    ethNetwork?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    solNetwork?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: connections */
+  ["connections_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "connections" */
+  ["connections_select_column"]: connections_select_column;
+  /** input type for updating data in table "connections" */
+  ["connections_set_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "connections" */
+  ["connections_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["connections_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["connections_stream_cursor_value_input"]: {
+    btcNetwork?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethNetwork?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    solNetwork?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "connections" */
+  ["connections_update_column"]: connections_update_column;
+  ["connections_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["connections_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["connections_bool_exp"];
   };
   /** ordering argument of a cursor */
   ["cursor_ordering"]: cursor_ordering;
@@ -26248,6 +29019,12 @@ export type GraphQLTypes = {
       | undefined;
     /** delete single row from the table: "client_settings" */
     delete_client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
+    /** delete data from the table: "connections" */
+    delete_connections?:
+      | GraphQLTypes["connections_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "connections" */
+    delete_connections_by_pk?: GraphQLTypes["connections"] | undefined;
     /** delete data from the table: "eth" */
     delete_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
     /** delete single row from the table: "eth" */
@@ -26324,6 +29101,12 @@ export type GraphQLTypes = {
       | undefined;
     /** insert a single row into the table: "client_settings" */
     insert_client_settings_one?: GraphQLTypes["client_settings"] | undefined;
+    /** insert data into the table: "connections" */
+    insert_connections?:
+      | GraphQLTypes["connections_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "connections" */
+    insert_connections_one?: GraphQLTypes["connections"] | undefined;
     /** insert data into the table: "eth" */
     insert_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
     /** insert a single row into the table: "eth" */
@@ -26427,6 +29210,16 @@ export type GraphQLTypes = {
     /** update multiples rows of table: "client_settings" */
     update_client_settings_many?:
       | Array<GraphQLTypes["client_settings_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "connections" */
+    update_connections?:
+      | GraphQLTypes["connections_mutation_response"]
+      | undefined;
+    /** update single row of the table: "connections" */
+    update_connections_by_pk?: GraphQLTypes["connections"] | undefined;
+    /** update multiples rows of table: "connections" */
+    update_connections_many?:
+      | Array<GraphQLTypes["connections_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "eth" */
     update_eth?: GraphQLTypes["eth_mutation_response"] | undefined;
@@ -27195,6 +29988,12 @@ export type GraphQLTypes = {
     client_settings_aggregate: GraphQLTypes["client_settings_aggregate"];
     /** fetch data from the table: "client_settings" using primary key columns */
     client_settings_by_pk?: GraphQLTypes["client_settings"] | undefined;
+    /** fetch data from the table: "connections" */
+    connections: Array<GraphQLTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: GraphQLTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: GraphQLTypes["connections"] | undefined;
     /** fetch data from the table: "eth" */
     eth: Array<GraphQLTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -27539,6 +30338,14 @@ export type GraphQLTypes = {
     client_settings_stream: Array<GraphQLTypes["client_settings"]>;
     /** fetch data from the table in a streaming manner: "client" */
     client_stream: Array<GraphQLTypes["client"]>;
+    /** fetch data from the table: "connections" */
+    connections: Array<GraphQLTypes["connections"]>;
+    /** fetch aggregated fields from the table: "connections" */
+    connections_aggregate: GraphQLTypes["connections_aggregate"];
+    /** fetch data from the table: "connections" using primary key columns */
+    connections_by_pk?: GraphQLTypes["connections"] | undefined;
+    /** fetch data from the table in a streaming manner: "connections" */
+    connections_stream: Array<GraphQLTypes["connections"]>;
     /** fetch data from the table: "eth" */
     eth: Array<GraphQLTypes["eth"]>;
     /** fetch aggregated fields from the table: "eth" */
@@ -28473,6 +31280,54 @@ export const enum centralized_txn_select_column {
   updatedAt = "updatedAt",
   walletAddress = "walletAddress",
 }
+/** select "centralized_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
+/** select "centralized_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
+/** select "centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
+/** select "centralized_txn_aggregate_bool_exp_max_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
+/** select "centralized_txn_aggregate_bool_exp_min_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
+/** select "centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
+/** select "centralized_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
+/** select "centralized_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "centralized_txn" */
+export const enum centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns {
+  baseCurrencyAmount = "baseCurrencyAmount",
+  feeAmount = "feeAmount",
+  quoteCurrencyAmount = "quoteCurrencyAmount",
+}
 /** update columns of table "centralized_txn" */
 export const enum centralized_txn_update_column {
   accountId = "accountId",
@@ -28573,6 +31428,34 @@ export const enum client_update_column {
   updatedAt = "updatedAt",
   username = "username",
   valid = "valid",
+}
+/** unique or primary key constraints on table "connections" */
+export const enum connections_constraint {
+  connections_client_id_key = "connections_client_id_key",
+  connections_client_settings_id_key = "connections_client_settings_id_key",
+  connections_pkey = "connections_pkey",
+}
+/** select columns of table "connections" */
+export const enum connections_select_column {
+  btcNetwork = "btcNetwork",
+  clientId = "clientId",
+  clientSettingsId = "clientSettingsId",
+  createdAt = "createdAt",
+  ethNetwork = "ethNetwork",
+  id = "id",
+  solNetwork = "solNetwork",
+  updatedAt = "updatedAt",
+}
+/** update columns of table "connections" */
+export const enum connections_update_column {
+  btcNetwork = "btcNetwork",
+  clientId = "clientId",
+  clientSettingsId = "clientSettingsId",
+  createdAt = "createdAt",
+  ethNetwork = "ethNetwork",
+  id = "id",
+  solNetwork = "solNetwork",
+  updatedAt = "updatedAt",
 }
 /** ordering argument of a cursor */
 export const enum cursor_ordering {
@@ -28926,19 +31809,51 @@ type ZEUS_VARIABLES = {
   ["bitcoin_stream_cursor_value_input"]: ValueTypes["bitcoin_stream_cursor_value_input"];
   ["bitcoin_update_column"]: ValueTypes["bitcoin_update_column"];
   ["bitcoin_updates"]: ValueTypes["bitcoin_updates"];
+  ["centralized_txn_aggregate_bool_exp"]: ValueTypes["centralized_txn_aggregate_bool_exp"];
+  ["centralized_txn_aggregate_bool_exp_avg"]: ValueTypes["centralized_txn_aggregate_bool_exp_avg"];
+  ["centralized_txn_aggregate_bool_exp_corr"]: ValueTypes["centralized_txn_aggregate_bool_exp_corr"];
+  ["centralized_txn_aggregate_bool_exp_corr_arguments"]: ValueTypes["centralized_txn_aggregate_bool_exp_corr_arguments"];
+  ["centralized_txn_aggregate_bool_exp_count"]: ValueTypes["centralized_txn_aggregate_bool_exp_count"];
+  ["centralized_txn_aggregate_bool_exp_covar_samp"]: ValueTypes["centralized_txn_aggregate_bool_exp_covar_samp"];
+  ["centralized_txn_aggregate_bool_exp_covar_samp_arguments"]: ValueTypes["centralized_txn_aggregate_bool_exp_covar_samp_arguments"];
+  ["centralized_txn_aggregate_bool_exp_max"]: ValueTypes["centralized_txn_aggregate_bool_exp_max"];
+  ["centralized_txn_aggregate_bool_exp_min"]: ValueTypes["centralized_txn_aggregate_bool_exp_min"];
+  ["centralized_txn_aggregate_bool_exp_stddev_samp"]: ValueTypes["centralized_txn_aggregate_bool_exp_stddev_samp"];
+  ["centralized_txn_aggregate_bool_exp_sum"]: ValueTypes["centralized_txn_aggregate_bool_exp_sum"];
+  ["centralized_txn_aggregate_bool_exp_var_samp"]: ValueTypes["centralized_txn_aggregate_bool_exp_var_samp"];
+  ["centralized_txn_aggregate_order_by"]: ValueTypes["centralized_txn_aggregate_order_by"];
+  ["centralized_txn_arr_rel_insert_input"]: ValueTypes["centralized_txn_arr_rel_insert_input"];
+  ["centralized_txn_avg_order_by"]: ValueTypes["centralized_txn_avg_order_by"];
   ["centralized_txn_bool_exp"]: ValueTypes["centralized_txn_bool_exp"];
   ["centralized_txn_constraint"]: ValueTypes["centralized_txn_constraint"];
   ["centralized_txn_inc_input"]: ValueTypes["centralized_txn_inc_input"];
   ["centralized_txn_insert_input"]: ValueTypes["centralized_txn_insert_input"];
+  ["centralized_txn_max_order_by"]: ValueTypes["centralized_txn_max_order_by"];
+  ["centralized_txn_min_order_by"]: ValueTypes["centralized_txn_min_order_by"];
   ["centralized_txn_on_conflict"]: ValueTypes["centralized_txn_on_conflict"];
   ["centralized_txn_order_by"]: ValueTypes["centralized_txn_order_by"];
   ["centralized_txn_pk_columns_input"]: ValueTypes["centralized_txn_pk_columns_input"];
   ["centralized_txn_select_column"]: ValueTypes["centralized_txn_select_column"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_avg_arguments_columns"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_corr_arguments_columns"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_max_arguments_columns"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_min_arguments_columns"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_sum_arguments_columns"];
+  ["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"]: ValueTypes["centralized_txn_select_column_centralized_txn_aggregate_bool_exp_var_samp_arguments_columns"];
   ["centralized_txn_set_input"]: ValueTypes["centralized_txn_set_input"];
+  ["centralized_txn_stddev_order_by"]: ValueTypes["centralized_txn_stddev_order_by"];
+  ["centralized_txn_stddev_pop_order_by"]: ValueTypes["centralized_txn_stddev_pop_order_by"];
+  ["centralized_txn_stddev_samp_order_by"]: ValueTypes["centralized_txn_stddev_samp_order_by"];
   ["centralized_txn_stream_cursor_input"]: ValueTypes["centralized_txn_stream_cursor_input"];
   ["centralized_txn_stream_cursor_value_input"]: ValueTypes["centralized_txn_stream_cursor_value_input"];
+  ["centralized_txn_sum_order_by"]: ValueTypes["centralized_txn_sum_order_by"];
   ["centralized_txn_update_column"]: ValueTypes["centralized_txn_update_column"];
   ["centralized_txn_updates"]: ValueTypes["centralized_txn_updates"];
+  ["centralized_txn_var_pop_order_by"]: ValueTypes["centralized_txn_var_pop_order_by"];
+  ["centralized_txn_var_samp_order_by"]: ValueTypes["centralized_txn_var_samp_order_by"];
+  ["centralized_txn_variance_order_by"]: ValueTypes["centralized_txn_variance_order_by"];
   ["chat_aggregate_bool_exp"]: ValueTypes["chat_aggregate_bool_exp"];
   ["chat_aggregate_bool_exp_count"]: ValueTypes["chat_aggregate_bool_exp_count"];
   ["chat_aggregate_order_by"]: ValueTypes["chat_aggregate_order_by"];
@@ -28984,6 +31899,18 @@ type ZEUS_VARIABLES = {
   ["client_stream_cursor_value_input"]: ValueTypes["client_stream_cursor_value_input"];
   ["client_update_column"]: ValueTypes["client_update_column"];
   ["client_updates"]: ValueTypes["client_updates"];
+  ["connections_bool_exp"]: ValueTypes["connections_bool_exp"];
+  ["connections_constraint"]: ValueTypes["connections_constraint"];
+  ["connections_insert_input"]: ValueTypes["connections_insert_input"];
+  ["connections_on_conflict"]: ValueTypes["connections_on_conflict"];
+  ["connections_order_by"]: ValueTypes["connections_order_by"];
+  ["connections_pk_columns_input"]: ValueTypes["connections_pk_columns_input"];
+  ["connections_select_column"]: ValueTypes["connections_select_column"];
+  ["connections_set_input"]: ValueTypes["connections_set_input"];
+  ["connections_stream_cursor_input"]: ValueTypes["connections_stream_cursor_input"];
+  ["connections_stream_cursor_value_input"]: ValueTypes["connections_stream_cursor_value_input"];
+  ["connections_update_column"]: ValueTypes["connections_update_column"];
+  ["connections_updates"]: ValueTypes["connections_updates"];
   ["cursor_ordering"]: ValueTypes["cursor_ordering"];
   ["eth_bool_exp"]: ValueTypes["eth_bool_exp"];
   ["eth_constraint"]: ValueTypes["eth_constraint"];

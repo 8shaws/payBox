@@ -625,6 +625,11 @@ export const createBaseClient = async (
           lastname,
           mobile: mobile || null,
           password: hashPassword,
+          client_setting: {
+            data: {
+              lang: "en",
+            }
+          }
         },
       },
       {
