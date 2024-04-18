@@ -34,7 +34,7 @@ export enum CryptoCurrencyCode {
 export enum Network {
     Sol = "sol",
     Eth = "eth",
-    Bitcoin = "bitcoin",
+    Bitcoin = "btc",
     USDC = "usdc",
 }
 
