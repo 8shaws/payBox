@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { BACKEND_URL, ClientProvider, CryptoCurrencyCode, GetBuyUrlSchema, Network, responseStatus } from "@paybox/common"
-import { accountAtom, clientAtom, clientJwtAtom, getQuote, quoteAtom } from "@paybox/recoil"
+import { accountAtom, clientAtom, clientJwtAtom, fetchQuote, getQuote, quoteAtom, useQuote } from "@paybox/recoil"
 import React, { useEffect, useState } from "react"
 import { useRecoilState, useRecoilValue } from "recoil"
 import SolanaIcon from "./icon/SolanaIcon"
@@ -45,6 +45,11 @@ export function FundDialog({
     const [key, setKey] = useState<string>();
     const [amount, setAmount] = useState<number>(0);
     const router = useRouter();
+    const rate = useQuote({
+        quoteCurrencyAmount: 0,
+        areFeesIncluded: false,
+        currencyCode: token || "eth"
+    });
 
     const quoteValue = useRecoilValue(getQuote);
 
@@ -87,6 +92,7 @@ export function FundDialog({
                         defaultCurrencyCode: token,
                         walletAddress: key,
                         email: client?.email,
+                        accountId: account?.id
                     })
                 }).then(res => res.json());
                 if(response.status === responseStatus.Error) {
@@ -181,7 +187,7 @@ export function FundDialog({
                                     </div>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                    <p>Add to library</p>
+                                    <p>Quote for {token.charAt(0).toLocaleUpperCase()+token.slice(1)} with Usd</p>
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
