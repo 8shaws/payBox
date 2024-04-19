@@ -11,8 +11,8 @@ import {
   unixToISOString,
 } from "@paybox/common";
 import { Router } from "express";
-import { getAllTxn, getTxnByHash, getTxns, insertTxn } from "@paybox/backend-common";
-import { Redis, calculateGas } from "..";
+import { checkPassword, getAllTxn, getNetworkPrivateKey, getTxnByHash, getTxns, insertTxn } from "@paybox/backend-common";
+import { Redis, calculateGas, decryptWithPassword } from "..";
 import { txnCheckAddress } from "../auth/middleware";
 import { dbResStatus } from "../types/client";
 import { Cluster } from "@solana/web3.js";
@@ -23,16 +23,26 @@ import { Worker } from "../workers/txn";
 
 export const txnRouter = Router();
 
-txnRouter.post("/send", txnCheckAddress, async (req, res) => {
+txnRouter.post("/send", async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
+    //@ts-ignore
     if (id) {
-      const { from, amount, to, network, cluster } = TxnSendQuery.parse(
-        req.query,
+      const { from, amount, to, network, cluster, password: hashPassword } = TxnSendQuery.parse(
+        req.body,
       );
+
+      let { privateKey: hashedPrivate, status } = await getNetworkPrivateKey(from, network);
+      if (status == dbResStatus.Error || !hashedPrivate) {
+        return res
+          .status(400)
+          .json({ status: responseStatus.Error, msg: "No such address in database" });
+      }
+      let fromPrivateKey = decryptWithPassword(hashedPrivate, hashPassword);
+
       if (network == Network.Eth) {
-        const transaction = await (new EthOps(cluster as EthCluster, INFURA_PROJECT_ID)).acceptTxn({ amount, to, from });
+        const transaction = await (new EthOps(cluster as EthCluster, INFURA_PROJECT_ID)).acceptTxn({ amount, to, from: fromPrivateKey });
         if (!transaction) {
           return res
             .status(400)
@@ -75,7 +85,7 @@ txnRouter.post("/send", txnCheckAddress, async (req, res) => {
       }
       let instance;
       if (network == Network.Sol) {
-        instance = await (new SolOps(cluster as Cluster)).acceptTxn({ from, amount, to });
+        instance = await (new SolOps(cluster as Cluster)).acceptTxn({ from: fromPrivateKey, amount, to });
         if (!instance) {
           return res
             .status(400)
