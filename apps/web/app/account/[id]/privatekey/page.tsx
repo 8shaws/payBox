@@ -5,7 +5,7 @@ import {
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/util";
 import { PrivateKeyFrom } from "@/app/account/[id]/privatekey/components/private-key-form";
-import { AlertMsg } from "@/app/account/[id]/msg-comp";
+import { AlertMsg } from "@/app/account/[id]/components/msg-comp";
 
 
 export default async function Page({ params }: { params: { id: string } }) {

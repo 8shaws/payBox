@@ -11,11 +11,19 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import React from "react";
 import { Tab } from "./tab";
-import { CodeWrapper } from "./Code-wrapper";
-import { Share } from "./share";
+import { CodeWrapper } from "./components/Code-wrapper";
+import { Share } from "./components/share";
 import { CLIENT_URL } from "@paybox/common";
-import BuyButton from "./buy-button";
+import BuyButton from "./components/buy-button";
 import { loadMoonPay } from '@moonpay/moonpay-js';
+import TransferButton from "./components/tsf-btn";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 interface PageProps {
     params: { id: string }
@@ -24,13 +32,33 @@ export default async function Page({
     params,
 }: PageProps) {
     //todo: fetch all the monitor detaial like txn etc
-   
+
 
     return (
         <>
-            <div className="flex flex-col h-screen justify-around items-center p-5">
-                <div className="">
-                    <BuyButton />
+            <div className="flex flex-col h-fit justify-start gap-y-10 items-center p-5">
+                <div className="flex justify-around w-1/3">
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <BuyButton />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Fund your Wallet with tokens</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <TransferButton />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Transfer Tokens from your account</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+
                 </div>
                 <div className="flex w-full justify-around items-center">
                     <Card className="w-fit">
