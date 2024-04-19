@@ -561,7 +561,7 @@ export const changeMainAccount = async (
       }
     }]
   }, { operationName: "changeMainAccount" });
-  if(Array.isArray(response.update_account_many) && response.update_account_many[1]?.returning[0]?.id) {
+  if (Array.isArray(response.update_account_many) && response.update_account_many[1]?.returning[0]?.id) {
     return {
       status: dbResStatus.Ok
     }
@@ -571,3 +571,78 @@ export const changeMainAccount = async (
     status: dbResStatus.Error
   }
 };
+
+
+/**
+ * 
+ * @param pubKey 
+ * @returns 
+ */
+export const getNetworkPrivateKey = async (
+  pubKey: string,
+  network: Network
+): Promise<{
+  status: dbResStatus;
+  privateKey?: string;
+}> => {
+
+  switch (network) {
+    case Network.Eth:
+      const ethResponse = await chain("query")({
+        eth: [{
+          where: {
+            publicKey: { _eq: pubKey }
+          },
+          limit: 1
+        }, {
+          privateKey: true
+        }]
+      }, { operationName: "getEthPrivateKey" });
+      if (ethResponse.eth[0]?.privateKey) {
+        return {
+          status: dbResStatus.Ok,
+          privateKey: ethResponse.eth[0].privateKey as string
+        }
+      }
+      break;
+    case Network.Sol:
+      const solResponse = await chain("query")({
+        sol: [{
+          where: {
+            publicKey: { _eq: pubKey }
+          },
+          limit: 1
+        }, {
+          privateKey: true
+        }]
+      }, { operationName: "getSolPrivateKey" });
+      if (solResponse.sol[0]?.privateKey) {
+        return {
+          status: dbResStatus.Ok,
+          privateKey: solResponse.sol[0].privateKey as string
+        }
+      }
+      break;
+    case Network.Bitcoin:
+      const btcResponse = await chain("query")({
+        bitcoin: [{
+          where: {
+            publicKey: { _eq: pubKey }
+          },
+          limit: 1
+        }, {
+          privateKey: true
+        }]
+      }, { operationName: "getBtcPrivateKey" });
+      if (btcResponse.bitcoin[0]?.privateKey) {
+        return {
+          status: dbResStatus.Ok,
+          privateKey: btcResponse.bitcoin[0].privateKey as string
+        }
+      }
+      break;
+  }
+  return {
+    status: dbResStatus.Error
+  }
+}

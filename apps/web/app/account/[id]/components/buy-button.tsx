@@ -22,12 +22,12 @@ function BuyButton() {
         <>
             <Button
                 onClick={() => setOpen(!open)}
-                className="dark:bg-card w-40 h-fit flex flex-col gap-y-2 p-4"
+                className="dark:bg-card w-fit h-fit flex  gap-x-2 px-2"
             >
                 <div className="">
-                    <DollarSign className="w-6 h-6 dark:text-muted-foreground" />
+                    <DollarSign className="w-4 h-5 text-muted-foreground" />
                 </div>
-                <div className="text-xl text-white font-semibold">Buy Tokens</div>
+                <div className="text-lg text-white font-semibold">Buy</div>
             </Button>
             <TokenCommandMenu open={open} setOpen={setOpen} onSelect={setSelectedToken}/>
             <FundDialog open={urlOpen} setOpen={setUrlOpen} token={selectedToken as Network}/>

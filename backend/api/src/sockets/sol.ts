@@ -116,28 +116,27 @@ export class SolOps {
       }
       return false;
     }
-  
+    //todo: use the contract
     async acceptTxn({
       from,
       to,
       amount,
     }: AcceptSolTxn): Promise<TransactionResponse | null> {
       try {
-        const senderPublicKey = Keypair.fromSeed(new PublicKey(from).toBuffer());
-        const receiverSigner = Keypair.fromSeed(new PublicKey(to).toBuffer());
+        const senderKey = Keypair.fromSecretKey(new PublicKey(from).toBuffer());
         /**
          * Do some airdrop for new keypair generated
          */
         // const airdropSignature = await this.connection.requestAirdrop(
-        //     senderPublicKey.publicKey,
+        //     senderKey.publicKey,
         //     LAMPORTS_PER_SOL
         // );
         const { blockhash } = await this.connection.getRecentBlockhash();
   
         const transaction = new Transaction().add(
           SystemProgram.transfer({
-            fromPubkey: senderPublicKey.publicKey,
-            toPubkey: receiverSigner.publicKey,
+            fromPubkey: senderKey.publicKey,
+            toPubkey: new PublicKey(to),
             lamports: amount * 10 ** 9, // Convert amount to lamports
           }),
         );
@@ -147,7 +146,7 @@ export class SolOps {
         const signature = await sendAndConfirmTransaction(
           this.connection,
           transaction,
-          [senderPublicKey],
+          [senderKey],
         );
         const status = await this.connection.getSignatureStatuses([signature]);
         if (status.value[0]?.confirmationStatus == "confirmed") {

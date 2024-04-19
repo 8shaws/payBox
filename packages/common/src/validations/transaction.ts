@@ -26,19 +26,7 @@ const AddressType = z.union([
 export const TxnSendQuery = z.object({
   from: AddressType,
   to: AddressType,
-  amount: z
-    .string()
-    .refine(
-      (value) => {
-        const numericValue = parseFloat(value as unknown as string);
-        return !isNaN(numericValue);
-      },
-      {
-        message: "Amount must be a valid number",
-        path: ["amount"],
-      },
-    )
-    .transform((value) => parseFloat(value as unknown as string)),
+  amount: z.number(),
   network: z.nativeEnum(Network),
   cluster: z
     .union([
@@ -46,7 +34,14 @@ export const TxnSendQuery = z.object({
       z.nativeEnum(EthCluster),
       z.nativeEnum(BitcoinCluster),
       z.nativeEnum(USDCCluster),
-  ]),
+    ]),
+  password: z
+    .string()
+    .refine(value =>
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/.test(value), {
+      message: 'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
+    }
+    )
 });
 
 export const TxnsQeury = z.object({

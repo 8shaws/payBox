@@ -26,3 +26,10 @@ configuration:
     sol_network: solNetwork
     updated_at: updatedAt
   custom_root_fields: {}
+object_relationships:
+  - name: client
+    using:
+      foreign_key_constraint_on: client_id
+  - name: client_setting
+    using:
+      foreign_key_constraint_on: client_settings_id

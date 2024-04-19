@@ -236,7 +236,8 @@ export const authOptions: NextAuthOptions = {
           name: `${me.firstname} ${me.lastname}`,
           valid: me.valid,
           status: me.status,
-          msg: me.msg
+          msg: me.msg,
+          password: me.password,
         },
       };
     },

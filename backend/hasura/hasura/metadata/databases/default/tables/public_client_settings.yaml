@@ -24,3 +24,10 @@ object_relationships:
   - name: client
     using:
       foreign_key_constraint_on: client_id
+  - name: connection
+    using:
+      foreign_key_constraint_on:
+        column: client_settings_id
+        table:
+          name: connections
+          schema: public
