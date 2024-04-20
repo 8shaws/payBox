@@ -4089,6 +4089,8 @@ export type ValueTypes = {
     ];
     /** An object relationship */
     client_setting?: ValueTypes["client_settings"];
+    /** An object relationship */
+    connection?: ValueTypes["connections"];
     createdAt?: boolean | `@${string}`;
     email?: boolean | `@${string}`;
     firstname?: boolean | `@${string}`;
@@ -4602,6 +4604,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    connection?:
+      | ValueTypes["connections_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -4746,6 +4753,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    connection?:
+      | ValueTypes["connections_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -4878,6 +4890,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    connection?:
+      | ValueTypes["connections_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["order_by"]
       | undefined
@@ -4975,9 +4992,11 @@ export type ValueTypes = {
     /** An object relationship */
     client?: ValueTypes["client"];
     clientId?: boolean | `@${string}`;
+    /** An object relationship */
+    connection?: ValueTypes["connections"];
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    lang?: boolean | `@${string}`;
+    locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
     testmode?: boolean | `@${string}`;
@@ -5034,6 +5053,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    connection?:
+      | ValueTypes["connections_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -5044,7 +5068,7 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    lang?:
+    locale?:
       | ValueTypes["String_comparison_exp"]
       | undefined
       | null
@@ -5080,13 +5104,18 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    connection?:
+      | ValueTypes["connections_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    lang?: string | undefined | null | Variable<any, string>;
+    locale?: string | undefined | null | Variable<any, string>;
     preferedExplorer?: string | undefined | null | Variable<any, string>;
     preferedWallet?: string | undefined | null | Variable<any, string>;
     testmode?: boolean | undefined | null | Variable<any, string>;
@@ -5101,7 +5130,7 @@ export type ValueTypes = {
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    lang?: boolean | `@${string}`;
+    locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -5112,7 +5141,7 @@ export type ValueTypes = {
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    lang?: boolean | `@${string}`;
+    locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -5162,13 +5191,18 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    connection?:
+      | ValueTypes["connections_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    lang?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    locale?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     preferedExplorer?:
       | ValueTypes["order_by"]
       | undefined
@@ -5205,7 +5239,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    lang?: string | undefined | null | Variable<any, string>;
+    locale?: string | undefined | null | Variable<any, string>;
     preferedExplorer?: string | undefined | null | Variable<any, string>;
     preferedWallet?: string | undefined | null | Variable<any, string>;
     testmode?: boolean | undefined | null | Variable<any, string>;
@@ -5237,7 +5271,7 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    lang?: string | undefined | null | Variable<any, string>;
+    locale?: string | undefined | null | Variable<any, string>;
     preferedExplorer?: string | undefined | null | Variable<any, string>;
     preferedWallet?: string | undefined | null | Variable<any, string>;
     testmode?: boolean | undefined | null | Variable<any, string>;
@@ -5349,8 +5383,12 @@ export type ValueTypes = {
   /** blockchains connections metadata */
   ["connections"]: AliasType<{
     btcNetwork?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ValueTypes["client"];
     clientId?: boolean | `@${string}`;
     clientSettingsId?: boolean | `@${string}`;
+    /** An object relationship */
+    client_setting?: ValueTypes["client_settings"];
     createdAt?: boolean | `@${string}`;
     ethNetwork?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -5403,6 +5441,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    client?:
+      | ValueTypes["client_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     clientId?:
       | ValueTypes["uuid_comparison_exp"]
       | undefined
@@ -5410,6 +5453,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     clientSettingsId?:
       | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client_setting?:
+      | ValueTypes["client_settings_bool_exp"]
       | undefined
       | null
       | Variable<any, string>;
@@ -5444,9 +5492,19 @@ export type ValueTypes = {
   /** input type for inserting data into table "connections" */
   ["connections_insert_input"]: {
     btcNetwork?: string | undefined | null | Variable<any, string>;
+    client?:
+      | ValueTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     clientSettingsId?:
       | ValueTypes["uuid"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client_setting?:
+      | ValueTypes["client_settings_obj_rel_insert_input"]
       | undefined
       | null
       | Variable<any, string>;
@@ -5496,6 +5554,16 @@ export type ValueTypes = {
     returning?: ValueTypes["connections"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "connections" */
+  ["connections_obj_rel_insert_input"]: {
+    data: ValueTypes["connections_insert_input"] | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["connections_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** on_conflict condition type for table "connections" */
   ["connections_on_conflict"]: {
     constraint: ValueTypes["connections_constraint"] | Variable<any, string>;
@@ -5515,6 +5583,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    client?:
+      | ValueTypes["client_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     clientId?:
       | ValueTypes["order_by"]
       | undefined
@@ -5522,6 +5595,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     clientSettingsId?:
       | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client_setting?:
+      | ValueTypes["client_settings_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -15511,6 +15589,8 @@ export type ResolverInputTypes = {
     ];
     /** An object relationship */
     client_setting?: ResolverInputTypes["client_settings"];
+    /** An object relationship */
+    connection?: ResolverInputTypes["connections"];
     createdAt?: boolean | `@${string}`;
     email?: boolean | `@${string}`;
     firstname?: boolean | `@${string}`;
@@ -15868,6 +15948,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["client_settings_bool_exp"]
       | undefined
       | null;
+    connection?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
     createdAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -15950,6 +16031,10 @@ export type ResolverInputTypes = {
     chats?: ResolverInputTypes["chat_arr_rel_insert_input"] | undefined | null;
     client_setting?:
       | ResolverInputTypes["client_settings_obj_rel_insert_input"]
+      | undefined
+      | null;
+    connection?:
+      | ResolverInputTypes["connections_obj_rel_insert_input"]
       | undefined
       | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
@@ -16052,6 +16137,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["client_settings_order_by"]
       | undefined
       | null;
+    connection?: ResolverInputTypes["connections_order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     email?: ResolverInputTypes["order_by"] | undefined | null;
     firstname?: ResolverInputTypes["order_by"] | undefined | null;
@@ -16111,9 +16197,11 @@ export type ResolverInputTypes = {
     /** An object relationship */
     client?: ResolverInputTypes["client"];
     clientId?: boolean | `@${string}`;
+    /** An object relationship */
+    connection?: ResolverInputTypes["connections"];
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    lang?: boolean | `@${string}`;
+    locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
     testmode?: boolean | `@${string}`;
@@ -16155,12 +16243,13 @@ export type ResolverInputTypes = {
       | null;
     client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
     clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    connection?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
     createdAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
       | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
-    lang?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    locale?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     preferedExplorer?:
       | ResolverInputTypes["String_comparison_exp"]
       | undefined
@@ -16184,9 +16273,13 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    connection?:
+      | ResolverInputTypes["connections_obj_rel_insert_input"]
+      | undefined
+      | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    lang?: string | undefined | null;
+    locale?: string | undefined | null;
     preferedExplorer?: string | undefined | null;
     preferedWallet?: string | undefined | null;
     testmode?: boolean | undefined | null;
@@ -16197,7 +16290,7 @@ export type ResolverInputTypes = {
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    lang?: boolean | `@${string}`;
+    locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -16208,7 +16301,7 @@ export type ResolverInputTypes = {
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    lang?: boolean | `@${string}`;
+    locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -16241,9 +16334,10 @@ export type ResolverInputTypes = {
   ["client_settings_order_by"]: {
     client?: ResolverInputTypes["client_order_by"] | undefined | null;
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    connection?: ResolverInputTypes["connections_order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
-    lang?: ResolverInputTypes["order_by"] | undefined | null;
+    locale?: ResolverInputTypes["order_by"] | undefined | null;
     preferedExplorer?: ResolverInputTypes["order_by"] | undefined | null;
     preferedWallet?: ResolverInputTypes["order_by"] | undefined | null;
     testmode?: ResolverInputTypes["order_by"] | undefined | null;
@@ -16260,7 +16354,7 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    lang?: string | undefined | null;
+    locale?: string | undefined | null;
     preferedExplorer?: string | undefined | null;
     preferedWallet?: string | undefined | null;
     testmode?: boolean | undefined | null;
@@ -16278,7 +16372,7 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    lang?: string | undefined | null;
+    locale?: string | undefined | null;
     preferedExplorer?: string | undefined | null;
     preferedWallet?: string | undefined | null;
     testmode?: boolean | undefined | null;
@@ -16360,8 +16454,12 @@ export type ResolverInputTypes = {
   /** blockchains connections metadata */
   ["connections"]: AliasType<{
     btcNetwork?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ResolverInputTypes["client"];
     clientId?: boolean | `@${string}`;
     clientSettingsId?: boolean | `@${string}`;
+    /** An object relationship */
+    client_setting?: ResolverInputTypes["client_settings"];
     createdAt?: boolean | `@${string}`;
     ethNetwork?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
@@ -16397,9 +16495,14 @@ export type ResolverInputTypes = {
     _not?: ResolverInputTypes["connections_bool_exp"] | undefined | null;
     _or?: Array<ResolverInputTypes["connections_bool_exp"]> | undefined | null;
     btcNetwork?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
     clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     clientSettingsId?:
       | ResolverInputTypes["uuid_comparison_exp"]
+      | undefined
+      | null;
+    client_setting?:
+      | ResolverInputTypes["client_settings_bool_exp"]
       | undefined
       | null;
     createdAt?:
@@ -16419,8 +16522,16 @@ export type ResolverInputTypes = {
   /** input type for inserting data into table "connections" */
   ["connections_insert_input"]: {
     btcNetwork?: string | undefined | null;
+    client?:
+      | ResolverInputTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null;
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     clientSettingsId?: ResolverInputTypes["uuid"] | undefined | null;
+    client_setting?:
+      | ResolverInputTypes["client_settings_obj_rel_insert_input"]
+      | undefined
+      | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     ethNetwork?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
@@ -16459,6 +16570,15 @@ export type ResolverInputTypes = {
     returning?: ResolverInputTypes["connections"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "connections" */
+  ["connections_obj_rel_insert_input"]: {
+    data: ResolverInputTypes["connections_insert_input"];
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["connections_on_conflict"]
+      | undefined
+      | null;
+  };
   /** on_conflict condition type for table "connections" */
   ["connections_on_conflict"]: {
     constraint: ResolverInputTypes["connections_constraint"];
@@ -16468,8 +16588,13 @@ export type ResolverInputTypes = {
   /** Ordering options when selecting data from "connections". */
   ["connections_order_by"]: {
     btcNetwork?: ResolverInputTypes["order_by"] | undefined | null;
+    client?: ResolverInputTypes["client_order_by"] | undefined | null;
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     clientSettingsId?: ResolverInputTypes["order_by"] | undefined | null;
+    client_setting?:
+      | ResolverInputTypes["client_settings_order_by"]
+      | undefined
+      | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     ethNetwork?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
@@ -23319,6 +23444,8 @@ export type ModelTypes = {
     chats_aggregate: ModelTypes["chat_aggregate"];
     /** An object relationship */
     client_setting?: ModelTypes["client_settings"] | undefined;
+    /** An object relationship */
+    connection?: ModelTypes["connections"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     email: string;
     firstname?: string | undefined;
@@ -23392,6 +23519,7 @@ export type ModelTypes = {
     chats?: ModelTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: ModelTypes["chat_aggregate_bool_exp"] | undefined;
     client_setting?: ModelTypes["client_settings_bool_exp"] | undefined;
+    connection?: ModelTypes["connections_bool_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     email?: ModelTypes["String_comparison_exp"] | undefined;
     firstname?: ModelTypes["String_comparison_exp"] | undefined;
@@ -23443,6 +23571,7 @@ export type ModelTypes = {
     client_setting?:
       | ModelTypes["client_settings_obj_rel_insert_input"]
       | undefined;
+    connection?: ModelTypes["connections_obj_rel_insert_input"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     email?: string | undefined;
     firstname?: string | undefined;
@@ -23516,6 +23645,7 @@ export type ModelTypes = {
       | undefined;
     chats_aggregate?: ModelTypes["chat_aggregate_order_by"] | undefined;
     client_setting?: ModelTypes["client_settings_order_by"] | undefined;
+    connection?: ModelTypes["connections_order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     email?: ModelTypes["order_by"] | undefined;
     firstname?: ModelTypes["order_by"] | undefined;
@@ -23566,9 +23696,11 @@ export type ModelTypes = {
     /** An object relationship */
     client: ModelTypes["client"];
     clientId: ModelTypes["uuid"];
+    /** An object relationship */
+    connection?: ModelTypes["connections"] | undefined;
     createdAt: ModelTypes["timestamptz"];
     id: ModelTypes["uuid"];
-    lang: string;
+    locale: string;
     preferedExplorer: string;
     preferedWallet: string;
     testmode: boolean;
@@ -23592,9 +23724,10 @@ export type ModelTypes = {
     _or?: Array<ModelTypes["client_settings_bool_exp"]> | undefined;
     client?: ModelTypes["client_bool_exp"] | undefined;
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    connection?: ModelTypes["connections_bool_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
-    lang?: ModelTypes["String_comparison_exp"] | undefined;
+    locale?: ModelTypes["String_comparison_exp"] | undefined;
     preferedExplorer?: ModelTypes["String_comparison_exp"] | undefined;
     preferedWallet?: ModelTypes["String_comparison_exp"] | undefined;
     testmode?: ModelTypes["Boolean_comparison_exp"] | undefined;
@@ -23605,9 +23738,10 @@ export type ModelTypes = {
   ["client_settings_insert_input"]: {
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
+    connection?: ModelTypes["connections_obj_rel_insert_input"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     testmode?: boolean | undefined;
@@ -23618,7 +23752,7 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -23628,7 +23762,7 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -23656,9 +23790,10 @@ export type ModelTypes = {
   ["client_settings_order_by"]: {
     client?: ModelTypes["client_order_by"] | undefined;
     clientId?: ModelTypes["order_by"] | undefined;
+    connection?: ModelTypes["connections_order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
-    lang?: ModelTypes["order_by"] | undefined;
+    locale?: ModelTypes["order_by"] | undefined;
     preferedExplorer?: ModelTypes["order_by"] | undefined;
     preferedWallet?: ModelTypes["order_by"] | undefined;
     testmode?: ModelTypes["order_by"] | undefined;
@@ -23674,7 +23809,7 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     testmode?: boolean | undefined;
@@ -23692,7 +23827,7 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     testmode?: boolean | undefined;
@@ -23765,8 +23900,12 @@ export type ModelTypes = {
   /** blockchains connections metadata */
   ["connections"]: {
     btcNetwork: string;
+    /** An object relationship */
+    client: ModelTypes["client"];
     clientId: ModelTypes["uuid"];
     clientSettingsId: ModelTypes["uuid"];
+    /** An object relationship */
+    client_setting: ModelTypes["client_settings"];
     createdAt: ModelTypes["timestamptz"];
     ethNetwork: string;
     id: ModelTypes["uuid"];
@@ -23790,8 +23929,10 @@ export type ModelTypes = {
     _not?: ModelTypes["connections_bool_exp"] | undefined;
     _or?: Array<ModelTypes["connections_bool_exp"]> | undefined;
     btcNetwork?: ModelTypes["String_comparison_exp"] | undefined;
+    client?: ModelTypes["client_bool_exp"] | undefined;
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     clientSettingsId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    client_setting?: ModelTypes["client_settings_bool_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     ethNetwork?: ModelTypes["String_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
@@ -23802,8 +23943,12 @@ export type ModelTypes = {
   /** input type for inserting data into table "connections" */
   ["connections_insert_input"]: {
     btcNetwork?: string | undefined;
+    client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     clientSettingsId?: ModelTypes["uuid"] | undefined;
+    client_setting?:
+      | ModelTypes["client_settings_obj_rel_insert_input"]
+      | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     ethNetwork?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
@@ -23839,6 +23984,12 @@ export type ModelTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<ModelTypes["connections"]>;
   };
+  /** input type for inserting object relation for remote table "connections" */
+  ["connections_obj_rel_insert_input"]: {
+    data: ModelTypes["connections_insert_input"];
+    /** upsert condition */
+    on_conflict?: ModelTypes["connections_on_conflict"] | undefined;
+  };
   /** on_conflict condition type for table "connections" */
   ["connections_on_conflict"]: {
     constraint: ModelTypes["connections_constraint"];
@@ -23848,8 +23999,10 @@ export type ModelTypes = {
   /** Ordering options when selecting data from "connections". */
   ["connections_order_by"]: {
     btcNetwork?: ModelTypes["order_by"] | undefined;
+    client?: ModelTypes["client_order_by"] | undefined;
     clientId?: ModelTypes["order_by"] | undefined;
     clientSettingsId?: ModelTypes["order_by"] | undefined;
+    client_setting?: ModelTypes["client_settings_order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     ethNetwork?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
@@ -27874,6 +28027,8 @@ export type GraphQLTypes = {
     chats_aggregate: GraphQLTypes["chat_aggregate"];
     /** An object relationship */
     client_setting?: GraphQLTypes["client_settings"] | undefined;
+    /** An object relationship */
+    connection?: GraphQLTypes["connections"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     email: string;
     firstname?: string | undefined;
@@ -27952,6 +28107,7 @@ export type GraphQLTypes = {
     chats?: GraphQLTypes["chat_bool_exp"] | undefined;
     chats_aggregate?: GraphQLTypes["chat_aggregate_bool_exp"] | undefined;
     client_setting?: GraphQLTypes["client_settings_bool_exp"] | undefined;
+    connection?: GraphQLTypes["connections_bool_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     email?: GraphQLTypes["String_comparison_exp"] | undefined;
     firstname?: GraphQLTypes["String_comparison_exp"] | undefined;
@@ -28004,6 +28160,7 @@ export type GraphQLTypes = {
     client_setting?:
       | GraphQLTypes["client_settings_obj_rel_insert_input"]
       | undefined;
+    connection?: GraphQLTypes["connections_obj_rel_insert_input"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     email?: string | undefined;
     firstname?: string | undefined;
@@ -28084,6 +28241,7 @@ export type GraphQLTypes = {
       | undefined;
     chats_aggregate?: GraphQLTypes["chat_aggregate_order_by"] | undefined;
     client_setting?: GraphQLTypes["client_settings_order_by"] | undefined;
+    connection?: GraphQLTypes["connections_order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     email?: GraphQLTypes["order_by"] | undefined;
     firstname?: GraphQLTypes["order_by"] | undefined;
@@ -28136,9 +28294,11 @@ export type GraphQLTypes = {
     /** An object relationship */
     client: GraphQLTypes["client"];
     clientId: GraphQLTypes["uuid"];
+    /** An object relationship */
+    connection?: GraphQLTypes["connections"] | undefined;
     createdAt: GraphQLTypes["timestamptz"];
     id: GraphQLTypes["uuid"];
-    lang: string;
+    locale: string;
     preferedExplorer: string;
     preferedWallet: string;
     testmode: boolean;
@@ -28164,9 +28324,10 @@ export type GraphQLTypes = {
     _or?: Array<GraphQLTypes["client_settings_bool_exp"]> | undefined;
     client?: GraphQLTypes["client_bool_exp"] | undefined;
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    connection?: GraphQLTypes["connections_bool_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
-    lang?: GraphQLTypes["String_comparison_exp"] | undefined;
+    locale?: GraphQLTypes["String_comparison_exp"] | undefined;
     preferedExplorer?: GraphQLTypes["String_comparison_exp"] | undefined;
     preferedWallet?: GraphQLTypes["String_comparison_exp"] | undefined;
     testmode?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
@@ -28178,9 +28339,10 @@ export type GraphQLTypes = {
   ["client_settings_insert_input"]: {
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
+    connection?: GraphQLTypes["connections_obj_rel_insert_input"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     testmode?: boolean | undefined;
@@ -28192,7 +28354,7 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -28203,7 +28365,7 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -28232,9 +28394,10 @@ export type GraphQLTypes = {
   ["client_settings_order_by"]: {
     client?: GraphQLTypes["client_order_by"] | undefined;
     clientId?: GraphQLTypes["order_by"] | undefined;
+    connection?: GraphQLTypes["connections_order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
-    lang?: GraphQLTypes["order_by"] | undefined;
+    locale?: GraphQLTypes["order_by"] | undefined;
     preferedExplorer?: GraphQLTypes["order_by"] | undefined;
     preferedWallet?: GraphQLTypes["order_by"] | undefined;
     testmode?: GraphQLTypes["order_by"] | undefined;
@@ -28251,7 +28414,7 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     testmode?: boolean | undefined;
@@ -28269,7 +28432,7 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    lang?: string | undefined;
+    locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
     testmode?: boolean | undefined;
@@ -28352,8 +28515,12 @@ export type GraphQLTypes = {
   ["connections"]: {
     __typename: "connections";
     btcNetwork: string;
+    /** An object relationship */
+    client: GraphQLTypes["client"];
     clientId: GraphQLTypes["uuid"];
     clientSettingsId: GraphQLTypes["uuid"];
+    /** An object relationship */
+    client_setting: GraphQLTypes["client_settings"];
     createdAt: GraphQLTypes["timestamptz"];
     ethNetwork: string;
     id: GraphQLTypes["uuid"];
@@ -28379,8 +28546,10 @@ export type GraphQLTypes = {
     _not?: GraphQLTypes["connections_bool_exp"] | undefined;
     _or?: Array<GraphQLTypes["connections_bool_exp"]> | undefined;
     btcNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
+    client?: GraphQLTypes["client_bool_exp"] | undefined;
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     clientSettingsId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    client_setting?: GraphQLTypes["client_settings_bool_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     ethNetwork?: GraphQLTypes["String_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
@@ -28392,8 +28561,12 @@ export type GraphQLTypes = {
   /** input type for inserting data into table "connections" */
   ["connections_insert_input"]: {
     btcNetwork?: string | undefined;
+    client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     clientSettingsId?: GraphQLTypes["uuid"] | undefined;
+    client_setting?:
+      | GraphQLTypes["client_settings_obj_rel_insert_input"]
+      | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     ethNetwork?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
@@ -28432,6 +28605,12 @@ export type GraphQLTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<GraphQLTypes["connections"]>;
   };
+  /** input type for inserting object relation for remote table "connections" */
+  ["connections_obj_rel_insert_input"]: {
+    data: GraphQLTypes["connections_insert_input"];
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["connections_on_conflict"] | undefined;
+  };
   /** on_conflict condition type for table "connections" */
   ["connections_on_conflict"]: {
     constraint: GraphQLTypes["connections_constraint"];
@@ -28441,8 +28620,10 @@ export type GraphQLTypes = {
   /** Ordering options when selecting data from "connections". */
   ["connections_order_by"]: {
     btcNetwork?: GraphQLTypes["order_by"] | undefined;
+    client?: GraphQLTypes["client_order_by"] | undefined;
     clientId?: GraphQLTypes["order_by"] | undefined;
     clientSettingsId?: GraphQLTypes["order_by"] | undefined;
+    client_setting?: GraphQLTypes["client_settings_order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     ethNetwork?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
@@ -31399,7 +31580,7 @@ export const enum client_settings_select_column {
   clientId = "clientId",
   createdAt = "createdAt",
   id = "id",
-  lang = "lang",
+  locale = "locale",
   preferedExplorer = "preferedExplorer",
   preferedWallet = "preferedWallet",
   testmode = "testmode",
@@ -31410,7 +31591,7 @@ export const enum client_settings_update_column {
   clientId = "clientId",
   createdAt = "createdAt",
   id = "id",
-  lang = "lang",
+  locale = "locale",
   preferedExplorer = "preferedExplorer",
   preferedWallet = "preferedWallet",
   testmode = "testmode",
@@ -31902,6 +32083,7 @@ type ZEUS_VARIABLES = {
   ["connections_bool_exp"]: ValueTypes["connections_bool_exp"];
   ["connections_constraint"]: ValueTypes["connections_constraint"];
   ["connections_insert_input"]: ValueTypes["connections_insert_input"];
+  ["connections_obj_rel_insert_input"]: ValueTypes["connections_obj_rel_insert_input"];
   ["connections_on_conflict"]: ValueTypes["connections_on_conflict"];
   ["connections_order_by"]: ValueTypes["connections_order_by"];
   ["connections_pk_columns_input"]: ValueTypes["connections_pk_columns_input"];
