@@ -17,9 +17,34 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 
-import { Terminal } from "lucide-react";
+import { ChevronRight, Languages, Terminal } from "lucide-react";
 import TestModeSwitch from "./components/test-mode";
+import LocaleButton from "./components/locale-btn";
+import { BACKEND_URL, Locales, responseStatus } from "@paybox/common";
 
+//todo: get the local from db if not set, set it to en
+const getLocale = async (jwt: string) => {
+    try {
+        const { status, locale, msg }: { status: responseStatus, locale: Locales, msg?: string }
+            = await fetch(`${BACKEND_URL}/locale/locale`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json",
+                    authorization: `Bearer ${jwt}`,
+                },
+                cache: "no-cache"
+            }).then(res => res.json());
+        console.log(locale);
+        if (status === responseStatus.Error) {
+            console.log(msg)
+            return Locales.en;
+        }
+        return locale;
+    } catch (error) {
+        console.log(error);
+        return Locales.en;
+    }
+}
 
 
 export default async function Home({
@@ -37,7 +62,7 @@ export default async function Home({
     if (!jwt) {
         redirect('/signin');
     }
-
+    const locale = await getLocale(jwt) || Locales.en;
 
     const layout = cookies().get("react-resizable-panels:layout");
     const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
@@ -90,6 +115,15 @@ export default async function Home({
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
+                <div className="flex w-2/3 items-center space-x-2">
+                    <Button className="gap-x-2 px-2 cursor-none">
+                        <Languages className="w-5 h-5" />
+                        <span className="font-bold">
+                            Locale
+                        </span>
+                    </Button>
+                    <LocaleButton locale={locale} />
+                </div>
             </div>
 
         </main>

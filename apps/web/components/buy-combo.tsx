@@ -71,7 +71,6 @@ export function TokenCommandMenu({
                             <Button
                                 className="w-full h-fit gap-x-2 flex justify-start p-0 cursor-pointer border-none bg-transparent" variant={"secondary"}
                                 onClick={() => {
-                                    console.log("here")
                                     setOpen(false);
                                     onSelect(token.value);
                                 }}
