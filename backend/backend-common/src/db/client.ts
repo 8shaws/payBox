@@ -627,7 +627,7 @@ export const createBaseClient = async (
           password: hashPassword,
           client_setting: {
             data: {
-              lang: "en",
+              locale: "en",
             }
           }
         },
