@@ -4,3 +4,4 @@ export * from "./wallet";
 export * from "./friendship";
 export * from "./notif";
 export * from "./quote";
+export * from "./locale";
