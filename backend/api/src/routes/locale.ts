@@ -2,6 +2,7 @@ import { extractClientId } from "@paybox/backend-common";
 import { ChangeLocaleSchema, dbResStatus, responseStatus } from "@paybox/common";
 import { Router } from "express";
 import {updateLocale} from "@paybox/backend-common";
+import { getLocale } from "../db/locale";
 
 export const localeRouter = Router();
 
@@ -14,7 +15,6 @@ localeRouter.get('/', extractClientId, async (req, res) => {
         const id = req.id;
         if(id) {
             const {locale} = ChangeLocaleSchema.parse(req.query);
-
             //todo: save locale to db
             const {status} = await updateLocale(locale, id);
             if(status == dbResStatus.Error) {
@@ -41,3 +41,33 @@ localeRouter.get('/', extractClientId, async (req, res) => {
         })
     }
 });
+
+localeRouter.get('/locale', extractClientId, async (req, res) => {
+    try {
+        //@ts-ignore
+        const id = req.id;
+        if(id) {
+            const {status, locale} = await getLocale(id);
+            if(status == dbResStatus.Error || !locale) {
+                return res.status(404).json({
+                    msg: "Database Query error",
+                    status: responseStatus.Error
+                });
+            }
+            return res.status(200).json({
+                locale,
+                status: responseStatus.Ok
+            });
+        }
+        return res.status(401).json({
+            message: "Auth Error, Please login again...",
+            status: responseStatus.Error
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: 'Internal server error',
+            status: responseStatus.Ok
+        })
+    }
+})
