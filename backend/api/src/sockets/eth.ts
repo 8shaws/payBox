@@ -38,8 +38,8 @@ export class EthOps {
      * @param filter
      */
     constructor(
-        network: EthCluster = EthCluster.Sepolia,
         projectId: string = INFURA_PROJECT_ID,
+        network: EthCluster = EthCluster.Sepolia,
     ) {
         this.projectId = projectId;
         this.network = network;

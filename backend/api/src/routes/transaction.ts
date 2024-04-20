@@ -42,7 +42,7 @@ txnRouter.post("/send", async (req, res) => {
       let fromPrivateKey = decryptWithPassword(hashedPrivate, hashPassword);
 
       if (network == Network.Eth) {
-        const transaction = await (new EthOps(cluster as EthCluster, INFURA_PROJECT_ID)).acceptTxn({ amount, to, from: fromPrivateKey });
+        const transaction = await (new EthOps(INFURA_PROJECT_ID)).acceptTxn({ amount, to, from: fromPrivateKey });
         if (!transaction) {
           return res
             .status(400)
@@ -85,7 +85,7 @@ txnRouter.post("/send", async (req, res) => {
       }
       let instance;
       if (network == Network.Sol) {
-        instance = await (new SolOps(cluster as Cluster)).acceptTxn({ from: fromPrivateKey, amount, to });
+        instance = await (new SolOps()).acceptTxn({ from: fromPrivateKey, amount, to });
         if (!instance) {
           return res
             .status(400)
