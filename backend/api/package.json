@@ -20,6 +20,7 @@
     "@moonpay/moonpay-node": "^0.2.5",
     "@paybox/backend-common": "*",
     "@paybox/common": "^0.1.5",
+    "@paybox/zeus": "^0.1.2",
     "@paybox/openapi": "^0.1.2",
     "@solana/spl-token": "^0.3.11",
     "@solana/wallet-adapter-wallets": "^0.19.26",
