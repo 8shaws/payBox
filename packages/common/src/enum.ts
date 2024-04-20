@@ -174,3 +174,15 @@ export enum TxnStatus {
     Rejected = "rejected",
     Pending = "pending",
 }
+
+export enum Locales {
+    en = "en",
+    es = "es",
+    de = "de",
+    hi = "hi",
+    fr = "fr",
+    ja = "ja",
+    ko = "ko",
+    ru = "ru",
+    zh = "zh",
+}

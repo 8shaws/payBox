@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
-import { AccountType, BACKEND_URL, FriendPubKeys, FriendshipStatusEnum, FriendshipType, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
+import { AccountType, BACKEND_URL, FriendPubKeys, FriendshipStatusEnum, FriendshipType, Locales, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
 
 export function toBase64(file: File) {
   return new Promise((resolve, reject) => {
@@ -238,11 +238,11 @@ export const updateNotif = async (
  * @returns 
  */
 export const markViewed = async (
-  jwt: string, 
+  jwt: string,
   notifIds: string[]
-): Promise<{status: responseStatus, msg?: string}> => {
+): Promise<{ status: responseStatus, msg?: string }> => {
   try {
-    const {status}: {status: responseStatus} = await fetch(`${BACKEND_URL}/notif/viewed`, {
+    const { status }: { status: responseStatus } = await fetch(`${BACKEND_URL}/notif/viewed`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -251,13 +251,43 @@ export const markViewed = async (
       body: JSON.stringify({ ids: notifIds }),
       cache: "no-cache"
     }).then(res => res.json());
-    if(status === responseStatus.Error) {
+    if (status === responseStatus.Error) {
       console.log("error marking notifications as viewed");
-      return Promise.reject({msg: "error marking notifications as viewed", status: responseStatus.Error});
+      return Promise.reject({ msg: "error marking notifications as viewed", status: responseStatus.Error });
     }
-    return Promise.resolve({status: responseStatus.Ok});
+    return Promise.resolve({ status: responseStatus.Ok });
   } catch (error) {
     console.log(error);
-    return Promise.reject({msg: "error marking notifications as viewed", status: responseStatus.Error});
+    return Promise.reject({ msg: "error marking notifications as viewed", status: responseStatus.Error });
+  }
+}
+
+/**
+ * Fetch to update locale
+ * @param jwt 
+ * @param locale 
+ * @returns 
+ */
+export const updateLocale = async (
+  jwt: string,
+  locale: Locales
+): Promise<void> => {
+  try {
+    const { status, msg }: { status: responseStatus, msg?: string } =
+      await fetch(`${BACKEND_URL}/locale?locale=${locale}`, {
+        method: "get",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${jwt}`,
+        },
+        cache: "force-cache"
+      }).then(res => res.json());
+      if(status == responseStatus.Error) {
+        return Promise.reject({ msg: "error updating locale", status: responseStatus.Error });
+      }
+      return Promise.resolve();
+  } catch (error) {
+    console.log(error);
+    return Promise.reject({ msg: "error updating locale", status: responseStatus.Error });
   }
 }

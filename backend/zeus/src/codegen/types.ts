@@ -1939,6 +1939,8 @@ export type Client = {
   chats_aggregate: Chat_Aggregate;
   /** An object relationship */
   client_setting?: Maybe<Client_Settings>;
+  /** An object relationship */
+  connection?: Maybe<Connections>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   email: Scalars['String']['output'];
   firstname?: Maybe<Scalars['String']['output']>;
@@ -2204,6 +2206,7 @@ export type Client_Bool_Exp = {
   chats?: InputMaybe<Chat_Bool_Exp>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Bool_Exp>;
   client_setting?: InputMaybe<Client_Settings_Bool_Exp>;
+  connection?: InputMaybe<Connections_Bool_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   email?: InputMaybe<String_Comparison_Exp>;
   firstname?: InputMaybe<String_Comparison_Exp>;
@@ -2248,6 +2251,7 @@ export type Client_Insert_Input = {
   centralized_txns?: InputMaybe<Centralized_Txn_Arr_Rel_Insert_Input>;
   chats?: InputMaybe<Chat_Arr_Rel_Insert_Input>;
   client_setting?: InputMaybe<Client_Settings_Obj_Rel_Insert_Input>;
+  connection?: InputMaybe<Connections_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   firstname?: InputMaybe<Scalars['String']['input']>;
@@ -2324,6 +2328,7 @@ export type Client_Order_By = {
   centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Order_By>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Order_By>;
   client_setting?: InputMaybe<Client_Settings_Order_By>;
+  connection?: InputMaybe<Connections_Order_By>;
   createdAt?: InputMaybe<Order_By>;
   email?: InputMaybe<Order_By>;
   firstname?: InputMaybe<Order_By>;
@@ -2391,9 +2396,11 @@ export type Client_Settings = {
   /** An object relationship */
   client: Client;
   clientId: Scalars['uuid']['output'];
+  /** An object relationship */
+  connection?: Maybe<Connections>;
   createdAt: Scalars['timestamptz']['output'];
   id: Scalars['uuid']['output'];
-  lang: Scalars['String']['output'];
+  locale: Scalars['String']['output'];
   preferedExplorer: Scalars['String']['output'];
   preferedWallet: Scalars['String']['output'];
   testmode: Scalars['Boolean']['output'];
@@ -2429,9 +2436,10 @@ export type Client_Settings_Bool_Exp = {
   _or?: InputMaybe<Array<Client_Settings_Bool_Exp>>;
   client?: InputMaybe<Client_Bool_Exp>;
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
+  connection?: InputMaybe<Connections_Bool_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  lang?: InputMaybe<String_Comparison_Exp>;
+  locale?: InputMaybe<String_Comparison_Exp>;
   preferedExplorer?: InputMaybe<String_Comparison_Exp>;
   preferedWallet?: InputMaybe<String_Comparison_Exp>;
   testmode?: InputMaybe<Boolean_Comparison_Exp>;
@@ -2450,9 +2458,10 @@ export enum Client_Settings_Constraint {
 export type Client_Settings_Insert_Input = {
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
+  connection?: InputMaybe<Connections_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  lang?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2465,7 +2474,7 @@ export type Client_Settings_Max_Fields = {
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  lang?: Maybe<Scalars['String']['output']>;
+  locale?: Maybe<Scalars['String']['output']>;
   preferedExplorer?: Maybe<Scalars['String']['output']>;
   preferedWallet?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
@@ -2477,7 +2486,7 @@ export type Client_Settings_Min_Fields = {
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  lang?: Maybe<Scalars['String']['output']>;
+  locale?: Maybe<Scalars['String']['output']>;
   preferedExplorer?: Maybe<Scalars['String']['output']>;
   preferedWallet?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
@@ -2510,9 +2519,10 @@ export type Client_Settings_On_Conflict = {
 export type Client_Settings_Order_By = {
   client?: InputMaybe<Client_Order_By>;
   clientId?: InputMaybe<Order_By>;
+  connection?: InputMaybe<Connections_Order_By>;
   createdAt?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  lang?: InputMaybe<Order_By>;
+  locale?: InputMaybe<Order_By>;
   preferedExplorer?: InputMaybe<Order_By>;
   preferedWallet?: InputMaybe<Order_By>;
   testmode?: InputMaybe<Order_By>;
@@ -2533,7 +2543,7 @@ export enum Client_Settings_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Lang = 'lang',
+  Locale = 'locale',
   /** column name */
   PreferedExplorer = 'preferedExplorer',
   /** column name */
@@ -2549,7 +2559,7 @@ export type Client_Settings_Set_Input = {
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  lang?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2569,7 +2579,7 @@ export type Client_Settings_Stream_Cursor_Value_Input = {
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  lang?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2585,7 +2595,7 @@ export enum Client_Settings_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Lang = 'lang',
+  Locale = 'locale',
   /** column name */
   PreferedExplorer = 'preferedExplorer',
   /** column name */
@@ -2704,8 +2714,12 @@ export type Client_Variance_Fields = {
 export type Connections = {
   __typename?: 'connections';
   btcNetwork: Scalars['String']['output'];
+  /** An object relationship */
+  client: Client;
   clientId: Scalars['uuid']['output'];
   clientSettingsId: Scalars['uuid']['output'];
+  /** An object relationship */
+  client_setting: Client_Settings;
   createdAt: Scalars['timestamptz']['output'];
   ethNetwork: Scalars['String']['output'];
   id: Scalars['uuid']['output'];
@@ -2741,8 +2755,10 @@ export type Connections_Bool_Exp = {
   _not?: InputMaybe<Connections_Bool_Exp>;
   _or?: InputMaybe<Array<Connections_Bool_Exp>>;
   btcNetwork?: InputMaybe<String_Comparison_Exp>;
+  client?: InputMaybe<Client_Bool_Exp>;
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
   clientSettingsId?: InputMaybe<Uuid_Comparison_Exp>;
+  client_setting?: InputMaybe<Client_Settings_Bool_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   ethNetwork?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -2763,8 +2779,10 @@ export enum Connections_Constraint {
 /** input type for inserting data into table "connections" */
 export type Connections_Insert_Input = {
   btcNetwork?: InputMaybe<Scalars['String']['input']>;
+  client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   clientSettingsId?: InputMaybe<Scalars['uuid']['input']>;
+  client_setting?: InputMaybe<Client_Settings_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   ethNetwork?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
@@ -2807,6 +2825,13 @@ export type Connections_Mutation_Response = {
   returning: Array<Connections>;
 };
 
+/** input type for inserting object relation for remote table "connections" */
+export type Connections_Obj_Rel_Insert_Input = {
+  data: Connections_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Connections_On_Conflict>;
+};
+
 /** on_conflict condition type for table "connections" */
 export type Connections_On_Conflict = {
   constraint: Connections_Constraint;
@@ -2817,8 +2842,10 @@ export type Connections_On_Conflict = {
 /** Ordering options when selecting data from "connections". */
 export type Connections_Order_By = {
   btcNetwork?: InputMaybe<Order_By>;
+  client?: InputMaybe<Client_Order_By>;
   clientId?: InputMaybe<Order_By>;
   clientSettingsId?: InputMaybe<Order_By>;
+  client_setting?: InputMaybe<Client_Settings_Order_By>;
   createdAt?: InputMaybe<Order_By>;
   ethNetwork?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
