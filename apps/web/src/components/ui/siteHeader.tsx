@@ -11,6 +11,9 @@ import { useSession } from "next-auth/react"
 import { useState } from "react"
 import { useRecoilValue } from "recoil"
 import { getAuthSelector } from "@paybox/recoil"
+import { SearchMenu } from "../search-menu"
+import { UserRoundPlus } from "lucide-react"
+import { ClientNameTab } from "../client-name-tab"
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -35,8 +38,11 @@ export function SiteHeader() {
                   pathname === "/signup" ? "text-foreground" : "text-foreground/60"
                 )}
               >
-                {getAuth}
+                {getAuth == "Signin" ? <UserRoundPlus className="h-5 w-5" /> : <ClientNameTab isCollapsed />}
               </Link>
+            </div>
+            <div className="w-full flex-1 md:w-auto md:flex-none mr-2">
+              <SearchMenu />
             </div>
             <Link
               href={siteConfig.links.github}
@@ -48,7 +54,7 @@ export function SiteHeader() {
                   buttonVariants({
                     variant: "ghost",
                   }),
-                  "w-9 px-0"
+                  "w-9 px-0 mr-1"
                 )}
               >
                 <Icons.gitHub className="h-4 w-4" />
@@ -65,7 +71,7 @@ export function SiteHeader() {
                   buttonVariants({
                     variant: "ghost",
                   }),
-                  "w-9 px-0"
+                  "w-9 px-0 mr-1"
                 )}
               >
                 <Icons.twitter className="h-3 w-3 fill-current" />
