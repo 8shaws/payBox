@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
-import { AccountType, BACKEND_URL, FriendPubKeys, FriendshipStatusEnum, FriendshipType, Locales, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
+import { AccountType, BACKEND_URL, ChangePasswordValid, FriendPubKeys, FriendshipStatusEnum, FriendshipType, Locales, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
+import { z } from 'zod';
 
 export function toBase64(file: File) {
   return new Promise((resolve, reject) => {
@@ -282,12 +283,43 @@ export const updateLocale = async (
         },
         cache: "force-cache"
       }).then(res => res.json());
-      if(status == responseStatus.Error) {
-        return Promise.reject({ msg: "error updating locale", status: responseStatus.Error });
-      }
-      return Promise.resolve();
+    if (status == responseStatus.Error) {
+      return Promise.reject({ msg: "error updating locale", status: responseStatus.Error });
+    }
+    return Promise.resolve();
   } catch (error) {
     console.log(error);
     return Promise.reject({ msg: "error updating locale", status: responseStatus.Error });
+  }
+}
+
+/**
+ * 
+ * @param jwt 
+ * @param data 
+ * @returns 
+ */
+export const patchPassword = async (
+  jwt: string,
+  data: z.infer<typeof ChangePasswordValid>
+): Promise<void> => {
+  try {
+    const { status, msg }: { status: responseStatus, msg?: string } =
+      await fetch(`${BACKEND_URL}/client/password`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${jwt}`,
+          body: JSON.stringify(data)
+        },
+        cache: "no-cache"
+      }).then(res => res.json());
+    if (status == responseStatus.Error) {
+      return Promise.reject({ msg: "error updating password", status: responseStatus.Error });
+    }
+    return Promise.resolve();
+  } catch (error) {
+    console.log(error);
+    return Promise.reject({ msg: "error updating password", status: responseStatus.Error });
   }
 }
