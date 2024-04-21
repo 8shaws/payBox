@@ -54,6 +54,7 @@
     "@types/react-dom": "18.2.18",
     "@types/react-qr-reader": "^2.1.7",
     "@types/three": "^0.163.0",
+    "@typescript-eslint/parser": "^7.7.0",
     "autoprefixer": "10.4.16",
     "axios": "^1.6.5",
     "bs58": "^5.0.0",
