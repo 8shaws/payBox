@@ -129,6 +129,13 @@ export const ChangePasswordValid = z.object({
         message: 'New Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
       }
     ),
+  confirmPassword: z
+    .string()
+    .refine(value =>
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/.test(value),      {
+        message: 'Confirm Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
+      }
+    ),
 }).passthrough();
 
 export const OtpValid = z.object({
