@@ -17,10 +17,11 @@ import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
 import { Switch } from "@/src/components/ui/switch"
 
-import { ChevronRight, Languages, Terminal } from "lucide-react";
+import { ArrowBigRight, ArrowRight, ChevronRight, Languages, Terminal } from "lucide-react";
 import TestModeSwitch from "./components/test-mode";
 import LocaleButton from "./components/locale-btn";
 import { BACKEND_URL, Locales, responseStatus } from "@paybox/common";
+import ChangePassword from "./components/change-password";
 
 //todo: get the local from db if not set, set it to en
 const getLocale = async (jwt: string) => {
@@ -96,20 +97,6 @@ export default async function Home({
                             </div>
                             <TestModeSwitch />
                         </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                            {/* <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">
-                                    Name
-                                </Label>
-                                <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="username" className="text-right">
-                                    Username
-                                </Label>
-                                <Input id="username" value="@peduarte" className="col-span-3" />
-                            </div> */}
-                        </div>
                         <DialogFooter>
                             <Button type="submit">Save changes</Button>
                         </DialogFooter>
@@ -124,6 +111,7 @@ export default async function Home({
                     </Button>
                     <LocaleButton locale={locale} />
                 </div>
+                <ChangePassword />
             </div>
 
         </main>
