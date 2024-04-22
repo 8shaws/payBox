@@ -11,3 +11,4 @@ export * from "./friendship";
 export * from "./notification";
 export * from "./buy";
 export * from "./locale";
+export * from "./settings";
