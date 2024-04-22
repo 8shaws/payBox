@@ -43,3 +43,38 @@ export const updateTestmode = async (
     }
 }
 
+/**
+ * 
+ * @param clientId 
+ * @returns 
+ */
+export const getSettings = async (
+    clientId: string
+): Promise<{
+    status: dbResStatus,
+    settings?: Settings 
+}> => {
+    const response = await chain("query")({
+        client_settings: [{
+            limit: 1,
+            where: {
+                clientId: {_eq: clientId}
+            }
+        }, {
+            locale: true,
+            testmode: true,
+            preferedWallet: true,
+            preferedExplorer: true,
+            clientId: true
+        }]
+    }, {operationName: "getSettings"});
+    if(response.client_settings[0].locale) {
+        return {
+            status: dbResStatus.Ok,
+            settings: response.client_settings[0] as Settings
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}
