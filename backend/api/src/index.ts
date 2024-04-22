@@ -47,6 +47,7 @@ import { MoonPay } from "@moonpay/moonpay-node";
 import { buyRouter } from "./routes/buy";
 import { hooksRouter } from "./routes/webhooks";
 import { localeRouter } from "./routes/locale";
+import { settingsRouter } from "./routes/settings";
 
 
 export * from "./Redis";
@@ -161,6 +162,7 @@ app.use("/friendship", extractClientId, checkValidation, friendshipRouter);
 app.use('/notif', extractClientId, checkValidation, notifRouter);
 app.use('/notif_sub', extractClientId, notifSubRouter);
 app.use('/buy', extractClientId, checkValidation, buyRouter);
+app.use('/settings', extractClientId, checkValidation, settingsRouter);
 app.use('/hooks', hooksRouter);
 app.use('/locale', localeRouter);
 

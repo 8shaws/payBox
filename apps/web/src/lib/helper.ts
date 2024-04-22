@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
 import { AccountType, BACKEND_URL, ChangePasswordValid, FriendPubKeys, FriendshipStatusEnum, FriendshipType, Locales, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
 import { z } from 'zod';
+import Pako from 'pako';
 
 export function toBase64(file: File) {
   return new Promise((resolve, reject) => {
@@ -309,17 +310,41 @@ export const patchPassword = async (
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
+          "content-encoding": "gzip",
           authorization: `Bearer ${jwt}`,
-          body: JSON.stringify(data)
         },
-        cache: "no-cache"
+        body: Pako.gzip(JSON.stringify(data))
       }).then(res => res.json());
     if (status == responseStatus.Error) {
-      return Promise.reject({ msg: "error updating password", status: responseStatus.Error });
+      return Promise.reject({ msg, status: responseStatus.Error });
     }
     return Promise.resolve();
   } catch (error) {
     console.log(error);
     return Promise.reject({ msg: "error updating password", status: responseStatus.Error });
+  }
+}
+
+//todo: get the local from db if not set, set it to en
+const getLocale = async (jwt: string) => {
+  try {
+      const { status, locale, msg }: { status: responseStatus, locale: Locales, msg?: string }
+          = await fetch(`${BACKEND_URL}/locale/locale`, {
+              method: "GET",
+              headers: {
+                  "Content-type": "application/json",
+                  authorization: `Bearer ${jwt}`,
+              },
+              cache: "no-cache"
+          }).then(res => res.json());
+      console.log(locale);
+      if (status === responseStatus.Error) {
+          console.log(msg)
+          return Locales.en;
+      }
+      return locale;
+  } catch (error) {
+      console.log(error);
+      return Locales.en;
   }
 }

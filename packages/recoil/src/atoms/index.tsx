@@ -5,3 +5,4 @@ export * from "./friendship";
 export * from "./notif";
 export * from "./quote";
 export * from "./locale";
+export * from "./settings";

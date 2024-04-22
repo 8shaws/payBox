@@ -57,8 +57,12 @@ function ChangePassword() {
         }
         toast.promise(patchPassword(jwt as string, data), {
             loading: 'Updating Password',
-            success: 'Password Updated',
+            success: ({}) => {
+                setOpen(false);
+                return 'Password Updated';
+            },
             error: ({ msg }) => {
+                setOpen(false);
                 return msg
             }
         });
@@ -74,7 +78,7 @@ function ChangePassword() {
 
     return (
         <>
-            <Dialog open={open}>
+            <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild className="w-2/3">
                     <Button variant="secondary" onClick={() => setOpen(true)} className="flex gap-x-2 justify-between">
                         Change Password
@@ -99,7 +103,7 @@ function ChangePassword() {
                                 render={({ field }) => (
                                     <FormItem className=''>
                                         <div className="flex gap-x-2 items-center justify-center">
-                                            <Button className="mt-2 w-1/4 text-sm text-center cursor-none">
+                                            <Button type='button' className="mt-2 w-1/4 text-sm text-center cursor-none">
                                                 Current
                                             </Button>
                                             <FormControl className=''>
@@ -121,7 +125,7 @@ function ChangePassword() {
                                 render={({ field }) => (
                                     <FormItem className=''>
                                         <div className="flex gap-x-2 items-center justify-center">
-                                            <Button className="mt-2 w-1/4 text-sm text-center cursor-none">
+                                            <Button type='button' className="mt-2 w-1/4 text-sm text-center cursor-none">
                                                 New
                                             </Button>
                                             <FormControl className=''>
@@ -133,6 +137,7 @@ function ChangePassword() {
                                                         {...field}
                                                     />
                                                     <Button
+                                                        type='button'
                                                         onClick={() => setNewShow(!showNew)}
                                                         className="w-9 px-0 absolute right-0 top-0"
                                                         variant={"ghost"}
@@ -152,7 +157,7 @@ function ChangePassword() {
                                 render={({ field }) => (
                                     <FormItem className=''>
                                         <div className="flex gap-x-2 items-center justify-center">
-                                            <Button className="mt-2 w-1/4 text-sm text-center cursor-none">
+                                            <Button type='button' className="mt-2 w-1/4 text-sm text-center cursor-none">
                                                 Confirm
                                             </Button>
                                             <FormControl className=''>
@@ -164,6 +169,7 @@ function ChangePassword() {
                                                         {...field}
                                                     />
                                                     <Button
+                                                        type='button'
                                                         onClick={() => setConShow(!showCon)}
                                                         className="w-9 px-0 absolute right-0 top-0"
                                                         variant={"ghost"}

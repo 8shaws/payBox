@@ -265,3 +265,12 @@ export interface FriendPubKeys {
     id: string,
     walletId: string
 }
+
+export interface Settings {
+    locale: string,
+    testmode: boolean,
+    preferedWallet: string,
+    preferedExplorer: string,
+    id?: string,
+    clientId?: string,
+}

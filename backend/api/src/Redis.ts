@@ -7,6 +7,7 @@ import { WalletCache } from "./redis/wallet";
 import { AccountCache } from "./redis/account";
 import { RedisBase } from "@paybox/backend-common";
 import { NotifCache } from "./redis/notification";
+import { SettingsCache } from "./redis/settings";
 
 export class Redis extends RedisBase {
   public clientCache: ClientCache;
@@ -15,9 +16,11 @@ export class Redis extends RedisBase {
   public wallet: WalletCache;
   public account: AccountCache;
   public notif: NotifCache;
+  public settings: SettingsCache;
+
   private static redisInst: Redis;
 
-  constructor() {
+  private constructor() {
 
     super();
     this.clientCache = new ClientCache(this.client, this);
@@ -26,6 +29,7 @@ export class Redis extends RedisBase {
     this.wallet = new WalletCache(this.client, this);
     this.account = new AccountCache(this.client, this);
     this.notif = new NotifCache(this.client, this);
+    this.settings = new SettingsCache(this.client, this);
     
   }
 
