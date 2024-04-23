@@ -3,7 +3,7 @@ import { createReadStream } from "fs";
 import { AccountType, Address, QrcodeQuery, responseStatus } from "@paybox/common";
 import { generateQRCode } from "../auth/util";
 import { checkQrcode,  hasAddress,  } from "../auth/middleware";
-import {checkValidation, isValidated} from "@paybox/backend-common"
+import {checkValidation} from "@paybox/backend-common"
 import { Redis } from "..";
 import { R2_QRCODE_BUCKET_NAME } from "../config";
 
