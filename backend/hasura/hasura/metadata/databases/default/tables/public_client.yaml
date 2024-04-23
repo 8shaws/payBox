@@ -41,6 +41,13 @@ array_relationships:
         table:
           name: account
           schema: public
+  - name: address_books
+    using:
+      foreign_key_constraint_on:
+        column: client_id
+        table:
+          name: address_book
+          schema: public
   - name: centralized_txns
     using:
       foreign_key_constraint_on:
