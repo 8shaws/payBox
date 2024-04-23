@@ -1,0 +1,2 @@
+CREATE TABLE "public"."address_book" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "client_id" uuid NOT NULL, "sol" Text[] NOT NULL, "eth" Text[] NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("client_id") REFERENCES "public"."client"("id") ON UPDATE no action ON DELETE no action, UNIQUE ("id"), UNIQUE ("client_id"));COMMENT ON TABLE "public"."address_book" IS E'address_book for clients';
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

@@ -1,0 +1,23 @@
+table:
+  name: address_book
+  schema: public
+configuration:
+  column_config:
+    client_id:
+      custom_name: clientId
+    created_at:
+      custom_name: createdAt
+    public_key:
+      custom_name: publicKey
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    client_id: clientId
+    created_at: createdAt
+    public_key: publicKey
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+  - name: client
+    using:
+      foreign_key_constraint_on: client_id

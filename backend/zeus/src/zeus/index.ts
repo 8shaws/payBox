@@ -1679,6 +1679,378 @@ export type ValueTypes = {
     min?: ValueTypes["address_min_fields"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** address_book for clients */
+  ["address_book"]: AliasType<{
+    chain?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ValueTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    publicKey?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "address_book" */
+  ["address_book_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["address_book_aggregate_fields"];
+    nodes?: ValueTypes["address_book"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["address_book_aggregate_bool_exp"]: {
+    count?:
+      | ValueTypes["address_book_aggregate_bool_exp_count"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  ["address_book_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ValueTypes["address_book_select_column"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["address_book_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Int_comparison_exp"] | Variable<any, string>;
+  };
+  /** aggregate fields of "address_book" */
+  ["address_book_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["address_book_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["address_book_max_fields"];
+    min?: ValueTypes["address_book_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "address_book" */
+  ["address_book_aggregate_order_by"]: {
+    count?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    max?:
+      | ValueTypes["address_book_max_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["address_book_min_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** input type for inserting array relation for remote table "address_book" */
+  ["address_book_arr_rel_insert_input"]: {
+    data:
+      | Array<ValueTypes["address_book_insert_input"]>
+      | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["address_book_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Boolean expression to filter rows from the table "address_book". All fields are combined with a logical 'AND'. */
+  ["address_book_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["address_book_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["address_book_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["address_book_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    chain?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client?:
+      | ValueTypes["client_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    name?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    publicKey?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tag?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "address_book" */
+  ["address_book_constraint"]: address_book_constraint;
+  /** input type for inserting data into table "address_book" */
+  ["address_book_insert_input"]: {
+    chain?: string | undefined | null | Variable<any, string>;
+    client?:
+      | ValueTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    name?: string | undefined | null | Variable<any, string>;
+    publicKey?: string | undefined | null | Variable<any, string>;
+    tag?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["address_book_max_fields"]: AliasType<{
+    chain?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    publicKey?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "address_book" */
+  ["address_book_max_order_by"]: {
+    chain?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    publicKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tag?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate min on columns */
+  ["address_book_min_fields"]: AliasType<{
+    chain?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    publicKey?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "address_book" */
+  ["address_book_min_order_by"]: {
+    chain?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    publicKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tag?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** response of any mutation on the table "address_book" */
+  ["address_book_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["address_book"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "address_book" */
+  ["address_book_on_conflict"]: {
+    constraint: ValueTypes["address_book_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["address_book_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["address_book_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "address_book". */
+  ["address_book_order_by"]: {
+    chain?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    client?:
+      | ValueTypes["client_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    publicKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tag?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: address_book */
+  ["address_book_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "address_book" */
+  ["address_book_select_column"]: address_book_select_column;
+  /** input type for updating data in table "address_book" */
+  ["address_book_set_input"]: {
+    chain?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    name?: string | undefined | null | Variable<any, string>;
+    publicKey?: string | undefined | null | Variable<any, string>;
+    tag?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "address_book" */
+  ["address_book_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["address_book_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["address_book_stream_cursor_value_input"]: {
+    chain?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    name?: string | undefined | null | Variable<any, string>;
+    publicKey?: string | undefined | null | Variable<any, string>;
+    tag?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "address_book" */
+  ["address_book_update_column"]: address_book_update_column;
+  ["address_book_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["address_book_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["address_book_bool_exp"] | Variable<any, string>;
+  };
   /** Boolean expression to filter rows from the table "address". All fields are combined with a logical 'AND'. */
   ["address_bool_exp"]: {
     _and?:
@@ -3951,6 +4323,74 @@ export type ValueTypes = {
     ];
     /** An object relationship */
     address?: ValueTypes["address"];
+    address_books?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["address_book_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["address_book_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["address_book_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book"],
+    ];
+    address_books_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["address_book_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["address_book_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["address_book_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book_aggregate"],
+    ];
     centralized_txns?: [
       {
         /** distinct select on columns */
@@ -4579,6 +5019,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    address_books?:
+      | ValueTypes["address_book_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    address_books_aggregate?:
+      | ValueTypes["address_book_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     centralized_txns?:
       | ValueTypes["centralized_txn_bool_exp"]
       | undefined
@@ -4738,6 +5188,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    address_books?:
+      | ValueTypes["address_book_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     centralized_txns?:
       | ValueTypes["centralized_txn_arr_rel_insert_input"]
       | undefined
@@ -4872,6 +5327,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     address?:
       | ValueTypes["address_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    address_books_aggregate?:
+      | ValueTypes["address_book_aggregate_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -6762,6 +7222,17 @@ export type ValueTypes = {
       },
       ValueTypes["address_mutation_response"],
     ];
+    delete_address_book?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["address_book_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["address_book_mutation_response"],
+    ];
+    delete_address_book_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["address_book"],
+    ];
     delete_address_by_pk?: [
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["address"],
@@ -6963,6 +7434,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["address_mutation_response"],
+    ];
+    insert_address_book?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["address_book_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["address_book_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book_mutation_response"],
+    ];
+    insert_address_book_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["address_book_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["address_book_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book"],
     ];
     insert_address_one?: [
       {
@@ -7420,6 +7919,44 @@ export type ValueTypes = {
         where: ValueTypes["address_bool_exp"] | Variable<any, string>;
       },
       ValueTypes["address_mutation_response"],
+    ];
+    update_address_book?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["address_book_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["address_book_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["address_book_mutation_response"],
+    ];
+    update_address_book_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["address_book_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["address_book_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book"],
+    ];
+    update_address_book_many?: [
+      {
+        /** updates to execute, in order */
+        updates:
+          | Array<ValueTypes["address_book_updates"]>
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book_mutation_response"],
     ];
     update_address_by_pk?: [
       {
@@ -9540,6 +10077,78 @@ export type ValueTypes = {
       },
       ValueTypes["address_aggregate"],
     ];
+    address_book?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["address_book_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["address_book_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["address_book_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book"],
+    ];
+    address_book_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["address_book_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["address_book_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["address_book_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book_aggregate"],
+    ];
+    address_book_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["address_book"],
+    ];
     address_by_pk?: [
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["address"],
@@ -11131,6 +11740,100 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["address_aggregate"],
+    ];
+    address_book?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["address_book_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["address_book_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["address_book_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book"],
+    ];
+    address_book_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["address_book_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["address_book_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["address_book_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book_aggregate"],
+    ];
+    address_book_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["address_book"],
+    ];
+    address_book_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              ValueTypes["address_book_stream_cursor_input"] | undefined | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["address_book_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["address_book"],
     ];
     address_by_pk?: [
       { id: ValueTypes["uuid"] | Variable<any, string> },
@@ -14258,6 +14961,228 @@ export type ResolverInputTypes = {
     min?: ResolverInputTypes["address_min_fields"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** address_book for clients */
+  ["address_book"]: AliasType<{
+    chain?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ResolverInputTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    publicKey?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "address_book" */
+  ["address_book_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["address_book_aggregate_fields"];
+    nodes?: ResolverInputTypes["address_book"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["address_book_aggregate_bool_exp"]: {
+    count?:
+      | ResolverInputTypes["address_book_aggregate_bool_exp_count"]
+      | undefined
+      | null;
+  };
+  ["address_book_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ResolverInputTypes["address_book_select_column"]>
+      | undefined
+      | null;
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "address_book" */
+  ["address_book_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["address_book_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["address_book_max_fields"];
+    min?: ResolverInputTypes["address_book_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "address_book" */
+  ["address_book_aggregate_order_by"]: {
+    count?: ResolverInputTypes["order_by"] | undefined | null;
+    max?: ResolverInputTypes["address_book_max_order_by"] | undefined | null;
+    min?: ResolverInputTypes["address_book_min_order_by"] | undefined | null;
+  };
+  /** input type for inserting array relation for remote table "address_book" */
+  ["address_book_arr_rel_insert_input"]: {
+    data: Array<ResolverInputTypes["address_book_insert_input"]>;
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["address_book_on_conflict"]
+      | undefined
+      | null;
+  };
+  /** Boolean expression to filter rows from the table "address_book". All fields are combined with a logical 'AND'. */
+  ["address_book_bool_exp"]: {
+    _and?:
+      | Array<ResolverInputTypes["address_book_bool_exp"]>
+      | undefined
+      | null;
+    _not?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["address_book_bool_exp"]> | undefined | null;
+    chain?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    name?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    publicKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    tag?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "address_book" */
+  ["address_book_constraint"]: address_book_constraint;
+  /** input type for inserting data into table "address_book" */
+  ["address_book_insert_input"]: {
+    chain?: string | undefined | null;
+    client?:
+      | ResolverInputTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    name?: string | undefined | null;
+    publicKey?: string | undefined | null;
+    tag?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["address_book_max_fields"]: AliasType<{
+    chain?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    publicKey?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "address_book" */
+  ["address_book_max_order_by"]: {
+    chain?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    name?: ResolverInputTypes["order_by"] | undefined | null;
+    publicKey?: ResolverInputTypes["order_by"] | undefined | null;
+    tag?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate min on columns */
+  ["address_book_min_fields"]: AliasType<{
+    chain?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    publicKey?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "address_book" */
+  ["address_book_min_order_by"]: {
+    chain?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    name?: ResolverInputTypes["order_by"] | undefined | null;
+    publicKey?: ResolverInputTypes["order_by"] | undefined | null;
+    tag?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** response of any mutation on the table "address_book" */
+  ["address_book_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["address_book"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "address_book" */
+  ["address_book_on_conflict"]: {
+    constraint: ResolverInputTypes["address_book_constraint"];
+    update_columns: Array<ResolverInputTypes["address_book_update_column"]>;
+    where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "address_book". */
+  ["address_book_order_by"]: {
+    chain?: ResolverInputTypes["order_by"] | undefined | null;
+    client?: ResolverInputTypes["client_order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    name?: ResolverInputTypes["order_by"] | undefined | null;
+    publicKey?: ResolverInputTypes["order_by"] | undefined | null;
+    tag?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: address_book */
+  ["address_book_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "address_book" */
+  ["address_book_select_column"]: address_book_select_column;
+  /** input type for updating data in table "address_book" */
+  ["address_book_set_input"]: {
+    chain?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    name?: string | undefined | null;
+    publicKey?: string | undefined | null;
+    tag?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "address_book" */
+  ["address_book_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["address_book_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["address_book_stream_cursor_value_input"]: {
+    chain?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    name?: string | undefined | null;
+    publicKey?: string | undefined | null;
+    tag?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "address_book" */
+  ["address_book_update_column"]: address_book_update_column;
+  ["address_book_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["address_book_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["address_book_bool_exp"];
+  };
   /** Boolean expression to filter rows from the table "address". All fields are combined with a logical 'AND'. */
   ["address_bool_exp"]: {
     _and?: Array<ResolverInputTypes["address_bool_exp"]> | undefined | null;
@@ -15525,6 +16450,52 @@ export type ResolverInputTypes = {
     ];
     /** An object relationship */
     address?: ResolverInputTypes["address"];
+    address_books?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["address_book_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["address_book_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["address_book"],
+    ];
+    address_books_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["address_book_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["address_book_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["address_book_aggregate"],
+    ];
     centralized_txns?: [
       {
         /** distinct select on columns */
@@ -15967,6 +16938,14 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     address?: ResolverInputTypes["address_bool_exp"] | undefined | null;
+    address_books?:
+      | ResolverInputTypes["address_book_bool_exp"]
+      | undefined
+      | null;
+    address_books_aggregate?:
+      | ResolverInputTypes["address_book_aggregate_bool_exp"]
+      | undefined
+      | null;
     centralized_txns?:
       | ResolverInputTypes["centralized_txn_bool_exp"]
       | undefined
@@ -16058,6 +17037,10 @@ export type ResolverInputTypes = {
       | null;
     address?:
       | ResolverInputTypes["address_obj_rel_insert_input"]
+      | undefined
+      | null;
+    address_books?:
+      | ResolverInputTypes["address_book_arr_rel_insert_input"]
       | undefined
       | null;
     centralized_txns?:
@@ -16161,6 +17144,10 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     address?: ResolverInputTypes["address_order_by"] | undefined | null;
+    address_books_aggregate?:
+      | ResolverInputTypes["address_book_aggregate_order_by"]
+      | undefined
+      | null;
     centralized_txns_aggregate?:
       | ResolverInputTypes["centralized_txn_aggregate_order_by"]
       | undefined
@@ -17315,6 +18302,17 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["address_mutation_response"],
     ];
+    delete_address_book?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["address_book_bool_exp"];
+      },
+      ResolverInputTypes["address_book_mutation_response"],
+    ];
+    delete_address_book_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["address_book"],
+    ];
     delete_address_by_pk?: [
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["address"],
@@ -17509,6 +18507,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["address_mutation_response"],
+    ];
+    insert_address_book?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["address_book_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["address_book_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["address_book_mutation_response"],
+    ];
+    insert_address_book_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["address_book_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["address_book_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["address_book"],
     ];
     insert_address_one?: [
       {
@@ -17875,6 +18897,32 @@ export type ResolverInputTypes = {
         where: ResolverInputTypes["address_bool_exp"];
       },
       ResolverInputTypes["address_mutation_response"],
+    ];
+    update_address_book?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["address_book_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["address_book_bool_exp"];
+      },
+      ResolverInputTypes["address_book_mutation_response"],
+    ];
+    update_address_book_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["address_book_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["address_book_pk_columns_input"];
+      },
+      ResolverInputTypes["address_book"],
+    ];
+    update_address_book_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["address_book_updates"]>;
+      },
+      ResolverInputTypes["address_book_mutation_response"],
     ];
     update_address_by_pk?: [
       {
@@ -19270,6 +20318,56 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["address_aggregate"],
     ];
+    address_book?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["address_book_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["address_book_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["address_book"],
+    ];
+    address_book_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["address_book_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["address_book_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["address_book_aggregate"],
+    ];
+    address_book_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["address_book"],
+    ];
     address_by_pk?: [
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["address"],
@@ -20348,6 +21446,69 @@ export type ResolverInputTypes = {
         where?: ResolverInputTypes["address_bool_exp"] | undefined | null;
       },
       ResolverInputTypes["address_aggregate"],
+    ];
+    address_book?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["address_book_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["address_book_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["address_book"],
+    ];
+    address_book_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["address_book_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["address_book_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["address_book_aggregate"],
+    ];
+    address_book_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["address_book"],
+    ];
+    address_book_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          | ResolverInputTypes["address_book_stream_cursor_input"]
+          | undefined
+          | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["address_book_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["address_book"],
     ];
     address_by_pk?: [
       { id: ResolverInputTypes["uuid"] },
@@ -22477,6 +23638,189 @@ export type ModelTypes = {
     max?: ModelTypes["address_max_fields"] | undefined;
     min?: ModelTypes["address_min_fields"] | undefined;
   };
+  /** address_book for clients */
+  ["address_book"]: {
+    chain: string;
+    /** An object relationship */
+    client: ModelTypes["client"];
+    clientId: ModelTypes["uuid"];
+    createdAt: ModelTypes["timestamptz"];
+    id: ModelTypes["uuid"];
+    name: string;
+    publicKey: string;
+    tag?: string | undefined;
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "address_book" */
+  ["address_book_aggregate"]: {
+    aggregate?: ModelTypes["address_book_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["address_book"]>;
+  };
+  ["address_book_aggregate_bool_exp"]: {
+    count?: ModelTypes["address_book_aggregate_bool_exp_count"] | undefined;
+  };
+  ["address_book_aggregate_bool_exp_count"]: {
+    arguments?: Array<ModelTypes["address_book_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["address_book_bool_exp"] | undefined;
+    predicate: ModelTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "address_book" */
+  ["address_book_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["address_book_max_fields"] | undefined;
+    min?: ModelTypes["address_book_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "address_book" */
+  ["address_book_aggregate_order_by"]: {
+    count?: ModelTypes["order_by"] | undefined;
+    max?: ModelTypes["address_book_max_order_by"] | undefined;
+    min?: ModelTypes["address_book_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "address_book" */
+  ["address_book_arr_rel_insert_input"]: {
+    data: Array<ModelTypes["address_book_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ModelTypes["address_book_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "address_book". All fields are combined with a logical 'AND'. */
+  ["address_book_bool_exp"]: {
+    _and?: Array<ModelTypes["address_book_bool_exp"]> | undefined;
+    _not?: ModelTypes["address_book_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["address_book_bool_exp"]> | undefined;
+    chain?: ModelTypes["String_comparison_exp"] | undefined;
+    client?: ModelTypes["client_bool_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    name?: ModelTypes["String_comparison_exp"] | undefined;
+    publicKey?: ModelTypes["String_comparison_exp"] | undefined;
+    tag?: ModelTypes["String_comparison_exp"] | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["address_book_constraint"]: address_book_constraint;
+  /** input type for inserting data into table "address_book" */
+  ["address_book_insert_input"]: {
+    chain?: string | undefined;
+    client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["address_book_max_fields"]: {
+    chain?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "address_book" */
+  ["address_book_max_order_by"]: {
+    chain?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    name?: ModelTypes["order_by"] | undefined;
+    publicKey?: ModelTypes["order_by"] | undefined;
+    tag?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["address_book_min_fields"]: {
+    chain?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "address_book" */
+  ["address_book_min_order_by"]: {
+    chain?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    name?: ModelTypes["order_by"] | undefined;
+    publicKey?: ModelTypes["order_by"] | undefined;
+    tag?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "address_book" */
+  ["address_book_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["address_book"]>;
+  };
+  /** on_conflict condition type for table "address_book" */
+  ["address_book_on_conflict"]: {
+    constraint: ModelTypes["address_book_constraint"];
+    update_columns: Array<ModelTypes["address_book_update_column"]>;
+    where?: ModelTypes["address_book_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "address_book". */
+  ["address_book_order_by"]: {
+    chain?: ModelTypes["order_by"] | undefined;
+    client?: ModelTypes["client_order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    name?: ModelTypes["order_by"] | undefined;
+    publicKey?: ModelTypes["order_by"] | undefined;
+    tag?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: address_book */
+  ["address_book_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["address_book_select_column"]: address_book_select_column;
+  /** input type for updating data in table "address_book" */
+  ["address_book_set_input"]: {
+    chain?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "address_book" */
+  ["address_book_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["address_book_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["address_book_stream_cursor_value_input"]: {
+    chain?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["address_book_update_column"]: address_book_update_column;
+  ["address_book_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["address_book_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["address_book_bool_exp"];
+  };
   /** Boolean expression to filter rows from the table "address". All fields are combined with a logical 'AND'. */
   ["address_bool_exp"]: {
     _and?: Array<ModelTypes["address_bool_exp"]> | undefined;
@@ -23495,6 +24839,10 @@ export type ModelTypes = {
     /** An object relationship */
     address?: ModelTypes["address"] | undefined;
     /** An array relationship */
+    address_books: Array<ModelTypes["address_book"]>;
+    /** An aggregate relationship */
+    address_books_aggregate: ModelTypes["address_book_aggregate"];
+    /** An array relationship */
     centralized_txns: Array<ModelTypes["centralized_txn"]>;
     /** An aggregate relationship */
     centralized_txns_aggregate: ModelTypes["centralized_txn_aggregate"];
@@ -23572,6 +24920,10 @@ export type ModelTypes = {
     accounts?: ModelTypes["account_bool_exp"] | undefined;
     accounts_aggregate?: ModelTypes["account_aggregate_bool_exp"] | undefined;
     address?: ModelTypes["address_bool_exp"] | undefined;
+    address_books?: ModelTypes["address_book_bool_exp"] | undefined;
+    address_books_aggregate?:
+      | ModelTypes["address_book_aggregate_bool_exp"]
+      | undefined;
     centralized_txns?: ModelTypes["centralized_txn_bool_exp"] | undefined;
     centralized_txns_aggregate?:
       | ModelTypes["centralized_txn_aggregate_bool_exp"]
@@ -23624,6 +24976,7 @@ export type ModelTypes = {
   ["client_insert_input"]: {
     accounts?: ModelTypes["account_arr_rel_insert_input"] | undefined;
     address?: ModelTypes["address_obj_rel_insert_input"] | undefined;
+    address_books?: ModelTypes["address_book_arr_rel_insert_input"] | undefined;
     centralized_txns?:
       | ModelTypes["centralized_txn_arr_rel_insert_input"]
       | undefined;
@@ -23700,6 +25053,9 @@ export type ModelTypes = {
   ["client_order_by"]: {
     accounts_aggregate?: ModelTypes["account_aggregate_order_by"] | undefined;
     address?: ModelTypes["address_order_by"] | undefined;
+    address_books_aggregate?:
+      | ModelTypes["address_book_aggregate_order_by"]
+      | undefined;
     centralized_txns_aggregate?:
       | ModelTypes["centralized_txn_aggregate_order_by"]
       | undefined;
@@ -24607,6 +25963,12 @@ export type ModelTypes = {
     delete_account_by_pk?: ModelTypes["account"] | undefined;
     /** delete data from the table: "address" */
     delete_address?: ModelTypes["address_mutation_response"] | undefined;
+    /** delete data from the table: "address_book" */
+    delete_address_book?:
+      | ModelTypes["address_book_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "address_book" */
+    delete_address_book_by_pk?: ModelTypes["address_book"] | undefined;
     /** delete single row from the table: "address" */
     delete_address_by_pk?: ModelTypes["address"] | undefined;
     /** delete data from the table: "bitcoin" */
@@ -24687,6 +26049,12 @@ export type ModelTypes = {
     insert_account_one?: ModelTypes["account"] | undefined;
     /** insert data into the table: "address" */
     insert_address?: ModelTypes["address_mutation_response"] | undefined;
+    /** insert data into the table: "address_book" */
+    insert_address_book?:
+      | ModelTypes["address_book_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "address_book" */
+    insert_address_book_one?: ModelTypes["address_book"] | undefined;
     /** insert a single row into the table: "address" */
     insert_address_one?: ModelTypes["address"] | undefined;
     /** insert data into the table: "bitcoin" */
@@ -24771,6 +26139,16 @@ export type ModelTypes = {
       | undefined;
     /** update data of the table: "address" */
     update_address?: ModelTypes["address_mutation_response"] | undefined;
+    /** update data of the table: "address_book" */
+    update_address_book?:
+      | ModelTypes["address_book_mutation_response"]
+      | undefined;
+    /** update single row of the table: "address_book" */
+    update_address_book_by_pk?: ModelTypes["address_book"] | undefined;
+    /** update multiples rows of table: "address_book" */
+    update_address_book_many?:
+      | Array<ModelTypes["address_book_mutation_response"] | undefined>
+      | undefined;
     /** update single row of the table: "address" */
     update_address_by_pk?: ModelTypes["address"] | undefined;
     /** update multiples rows of table: "address" */
@@ -25526,6 +26904,12 @@ export type ModelTypes = {
     address: Array<ModelTypes["address"]>;
     /** fetch aggregated fields from the table: "address" */
     address_aggregate: ModelTypes["address_aggregate"];
+    /** fetch data from the table: "address_book" */
+    address_book: Array<ModelTypes["address_book"]>;
+    /** fetch aggregated fields from the table: "address_book" */
+    address_book_aggregate: ModelTypes["address_book_aggregate"];
+    /** fetch data from the table: "address_book" using primary key columns */
+    address_book_by_pk?: ModelTypes["address_book"] | undefined;
     /** fetch data from the table: "address" using primary key columns */
     address_by_pk?: ModelTypes["address"] | undefined;
     /** fetch data from the table: "bitcoin" */
@@ -25846,6 +27230,14 @@ export type ModelTypes = {
     address: Array<ModelTypes["address"]>;
     /** fetch aggregated fields from the table: "address" */
     address_aggregate: ModelTypes["address_aggregate"];
+    /** fetch data from the table: "address_book" */
+    address_book: Array<ModelTypes["address_book"]>;
+    /** fetch aggregated fields from the table: "address_book" */
+    address_book_aggregate: ModelTypes["address_book_aggregate"];
+    /** fetch data from the table: "address_book" using primary key columns */
+    address_book_by_pk?: ModelTypes["address_book"] | undefined;
+    /** fetch data from the table in a streaming manner: "address_book" */
+    address_book_stream: Array<ModelTypes["address_book"]>;
     /** fetch data from the table: "address" using primary key columns */
     address_by_pk?: ModelTypes["address"] | undefined;
     /** fetch data from the table in a streaming manner: "address" */
@@ -27018,6 +28410,198 @@ export type GraphQLTypes = {
     max?: GraphQLTypes["address_max_fields"] | undefined;
     min?: GraphQLTypes["address_min_fields"] | undefined;
   };
+  /** address_book for clients */
+  ["address_book"]: {
+    __typename: "address_book";
+    chain: string;
+    /** An object relationship */
+    client: GraphQLTypes["client"];
+    clientId: GraphQLTypes["uuid"];
+    createdAt: GraphQLTypes["timestamptz"];
+    id: GraphQLTypes["uuid"];
+    name: string;
+    publicKey: string;
+    tag?: string | undefined;
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "address_book" */
+  ["address_book_aggregate"]: {
+    __typename: "address_book_aggregate";
+    aggregate?: GraphQLTypes["address_book_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["address_book"]>;
+  };
+  ["address_book_aggregate_bool_exp"]: {
+    count?: GraphQLTypes["address_book_aggregate_bool_exp_count"] | undefined;
+  };
+  ["address_book_aggregate_bool_exp_count"]: {
+    arguments?: Array<GraphQLTypes["address_book_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["address_book_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "address_book" */
+  ["address_book_aggregate_fields"]: {
+    __typename: "address_book_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["address_book_max_fields"] | undefined;
+    min?: GraphQLTypes["address_book_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "address_book" */
+  ["address_book_aggregate_order_by"]: {
+    count?: GraphQLTypes["order_by"] | undefined;
+    max?: GraphQLTypes["address_book_max_order_by"] | undefined;
+    min?: GraphQLTypes["address_book_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "address_book" */
+  ["address_book_arr_rel_insert_input"]: {
+    data: Array<GraphQLTypes["address_book_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["address_book_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "address_book". All fields are combined with a logical 'AND'. */
+  ["address_book_bool_exp"]: {
+    _and?: Array<GraphQLTypes["address_book_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["address_book_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["address_book_bool_exp"]> | undefined;
+    chain?: GraphQLTypes["String_comparison_exp"] | undefined;
+    client?: GraphQLTypes["client_bool_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    name?: GraphQLTypes["String_comparison_exp"] | undefined;
+    publicKey?: GraphQLTypes["String_comparison_exp"] | undefined;
+    tag?: GraphQLTypes["String_comparison_exp"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "address_book" */
+  ["address_book_constraint"]: address_book_constraint;
+  /** input type for inserting data into table "address_book" */
+  ["address_book_insert_input"]: {
+    chain?: string | undefined;
+    client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["address_book_max_fields"]: {
+    __typename: "address_book_max_fields";
+    chain?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "address_book" */
+  ["address_book_max_order_by"]: {
+    chain?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    name?: GraphQLTypes["order_by"] | undefined;
+    publicKey?: GraphQLTypes["order_by"] | undefined;
+    tag?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["address_book_min_fields"]: {
+    __typename: "address_book_min_fields";
+    chain?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "address_book" */
+  ["address_book_min_order_by"]: {
+    chain?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    name?: GraphQLTypes["order_by"] | undefined;
+    publicKey?: GraphQLTypes["order_by"] | undefined;
+    tag?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "address_book" */
+  ["address_book_mutation_response"]: {
+    __typename: "address_book_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["address_book"]>;
+  };
+  /** on_conflict condition type for table "address_book" */
+  ["address_book_on_conflict"]: {
+    constraint: GraphQLTypes["address_book_constraint"];
+    update_columns: Array<GraphQLTypes["address_book_update_column"]>;
+    where?: GraphQLTypes["address_book_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "address_book". */
+  ["address_book_order_by"]: {
+    chain?: GraphQLTypes["order_by"] | undefined;
+    client?: GraphQLTypes["client_order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    name?: GraphQLTypes["order_by"] | undefined;
+    publicKey?: GraphQLTypes["order_by"] | undefined;
+    tag?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: address_book */
+  ["address_book_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "address_book" */
+  ["address_book_select_column"]: address_book_select_column;
+  /** input type for updating data in table "address_book" */
+  ["address_book_set_input"]: {
+    chain?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "address_book" */
+  ["address_book_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["address_book_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["address_book_stream_cursor_value_input"]: {
+    chain?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    publicKey?: string | undefined;
+    tag?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "address_book" */
+  ["address_book_update_column"]: address_book_update_column;
+  ["address_book_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["address_book_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["address_book_bool_exp"];
+  };
   /** Boolean expression to filter rows from the table "address". All fields are combined with a logical 'AND'. */
   ["address_bool_exp"]: {
     _and?: Array<GraphQLTypes["address_bool_exp"]> | undefined;
@@ -28102,6 +29686,10 @@ export type GraphQLTypes = {
     /** An object relationship */
     address?: GraphQLTypes["address"] | undefined;
     /** An array relationship */
+    address_books: Array<GraphQLTypes["address_book"]>;
+    /** An aggregate relationship */
+    address_books_aggregate: GraphQLTypes["address_book_aggregate"];
+    /** An array relationship */
     centralized_txns: Array<GraphQLTypes["centralized_txn"]>;
     /** An aggregate relationship */
     centralized_txns_aggregate: GraphQLTypes["centralized_txn_aggregate"];
@@ -28184,6 +29772,10 @@ export type GraphQLTypes = {
     accounts?: GraphQLTypes["account_bool_exp"] | undefined;
     accounts_aggregate?: GraphQLTypes["account_aggregate_bool_exp"] | undefined;
     address?: GraphQLTypes["address_bool_exp"] | undefined;
+    address_books?: GraphQLTypes["address_book_bool_exp"] | undefined;
+    address_books_aggregate?:
+      | GraphQLTypes["address_book_aggregate_bool_exp"]
+      | undefined;
     centralized_txns?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
     centralized_txns_aggregate?:
       | GraphQLTypes["centralized_txn_aggregate_bool_exp"]
@@ -28237,6 +29829,9 @@ export type GraphQLTypes = {
   ["client_insert_input"]: {
     accounts?: GraphQLTypes["account_arr_rel_insert_input"] | undefined;
     address?: GraphQLTypes["address_obj_rel_insert_input"] | undefined;
+    address_books?:
+      | GraphQLTypes["address_book_arr_rel_insert_input"]
+      | undefined;
     centralized_txns?:
       | GraphQLTypes["centralized_txn_arr_rel_insert_input"]
       | undefined;
@@ -28320,6 +29915,9 @@ export type GraphQLTypes = {
   ["client_order_by"]: {
     accounts_aggregate?: GraphQLTypes["account_aggregate_order_by"] | undefined;
     address?: GraphQLTypes["address_order_by"] | undefined;
+    address_books_aggregate?:
+      | GraphQLTypes["address_book_aggregate_order_by"]
+      | undefined;
     centralized_txns_aggregate?:
       | GraphQLTypes["centralized_txn_aggregate_order_by"]
       | undefined;
@@ -29282,6 +30880,12 @@ export type GraphQLTypes = {
     delete_account_by_pk?: GraphQLTypes["account"] | undefined;
     /** delete data from the table: "address" */
     delete_address?: GraphQLTypes["address_mutation_response"] | undefined;
+    /** delete data from the table: "address_book" */
+    delete_address_book?:
+      | GraphQLTypes["address_book_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "address_book" */
+    delete_address_book_by_pk?: GraphQLTypes["address_book"] | undefined;
     /** delete single row from the table: "address" */
     delete_address_by_pk?: GraphQLTypes["address"] | undefined;
     /** delete data from the table: "bitcoin" */
@@ -29364,6 +30968,12 @@ export type GraphQLTypes = {
     insert_account_one?: GraphQLTypes["account"] | undefined;
     /** insert data into the table: "address" */
     insert_address?: GraphQLTypes["address_mutation_response"] | undefined;
+    /** insert data into the table: "address_book" */
+    insert_address_book?:
+      | GraphQLTypes["address_book_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "address_book" */
+    insert_address_book_one?: GraphQLTypes["address_book"] | undefined;
     /** insert a single row into the table: "address" */
     insert_address_one?: GraphQLTypes["address"] | undefined;
     /** insert data into the table: "bitcoin" */
@@ -29450,6 +31060,16 @@ export type GraphQLTypes = {
       | undefined;
     /** update data of the table: "address" */
     update_address?: GraphQLTypes["address_mutation_response"] | undefined;
+    /** update data of the table: "address_book" */
+    update_address_book?:
+      | GraphQLTypes["address_book_mutation_response"]
+      | undefined;
+    /** update single row of the table: "address_book" */
+    update_address_book_by_pk?: GraphQLTypes["address_book"] | undefined;
+    /** update multiples rows of table: "address_book" */
+    update_address_book_many?:
+      | Array<GraphQLTypes["address_book_mutation_response"] | undefined>
+      | undefined;
     /** update single row of the table: "address" */
     update_address_by_pk?: GraphQLTypes["address"] | undefined;
     /** update multiples rows of table: "address" */
@@ -30245,6 +31865,12 @@ export type GraphQLTypes = {
     address: Array<GraphQLTypes["address"]>;
     /** fetch aggregated fields from the table: "address" */
     address_aggregate: GraphQLTypes["address_aggregate"];
+    /** fetch data from the table: "address_book" */
+    address_book: Array<GraphQLTypes["address_book"]>;
+    /** fetch aggregated fields from the table: "address_book" */
+    address_book_aggregate: GraphQLTypes["address_book_aggregate"];
+    /** fetch data from the table: "address_book" using primary key columns */
+    address_book_by_pk?: GraphQLTypes["address_book"] | undefined;
     /** fetch data from the table: "address" using primary key columns */
     address_by_pk?: GraphQLTypes["address"] | undefined;
     /** fetch data from the table: "bitcoin" */
@@ -30583,6 +32209,14 @@ export type GraphQLTypes = {
     address: Array<GraphQLTypes["address"]>;
     /** fetch aggregated fields from the table: "address" */
     address_aggregate: GraphQLTypes["address_aggregate"];
+    /** fetch data from the table: "address_book" */
+    address_book: Array<GraphQLTypes["address_book"]>;
+    /** fetch aggregated fields from the table: "address_book" */
+    address_book_aggregate: GraphQLTypes["address_book_aggregate"];
+    /** fetch data from the table: "address_book" using primary key columns */
+    address_book_by_pk?: GraphQLTypes["address_book"] | undefined;
+    /** fetch data from the table in a streaming manner: "address_book" */
+    address_book_stream: Array<GraphQLTypes["address_book"]>;
     /** fetch data from the table: "address" using primary key columns */
     address_by_pk?: GraphQLTypes["address"] | undefined;
     /** fetch data from the table in a streaming manner: "address" */
@@ -31484,6 +33118,32 @@ export const enum account_update_column {
   updatedAt = "updatedAt",
   walletId = "walletId",
 }
+/** unique or primary key constraints on table "address_book" */
+export const enum address_book_constraint {
+  address_book_pkey = "address_book_pkey",
+}
+/** select columns of table "address_book" */
+export const enum address_book_select_column {
+  chain = "chain",
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  name = "name",
+  publicKey = "publicKey",
+  tag = "tag",
+  updatedAt = "updatedAt",
+}
+/** update columns of table "address_book" */
+export const enum address_book_update_column {
+  chain = "chain",
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  name = "name",
+  publicKey = "publicKey",
+  tag = "tag",
+  updatedAt = "updatedAt",
+}
 /** unique or primary key constraints on table "address" */
 export const enum address_constraint {
   address_id_key = "address_id_key",
@@ -32075,6 +33735,24 @@ type ZEUS_VARIABLES = {
   ["account_stream_cursor_value_input"]: ValueTypes["account_stream_cursor_value_input"];
   ["account_update_column"]: ValueTypes["account_update_column"];
   ["account_updates"]: ValueTypes["account_updates"];
+  ["address_book_aggregate_bool_exp"]: ValueTypes["address_book_aggregate_bool_exp"];
+  ["address_book_aggregate_bool_exp_count"]: ValueTypes["address_book_aggregate_bool_exp_count"];
+  ["address_book_aggregate_order_by"]: ValueTypes["address_book_aggregate_order_by"];
+  ["address_book_arr_rel_insert_input"]: ValueTypes["address_book_arr_rel_insert_input"];
+  ["address_book_bool_exp"]: ValueTypes["address_book_bool_exp"];
+  ["address_book_constraint"]: ValueTypes["address_book_constraint"];
+  ["address_book_insert_input"]: ValueTypes["address_book_insert_input"];
+  ["address_book_max_order_by"]: ValueTypes["address_book_max_order_by"];
+  ["address_book_min_order_by"]: ValueTypes["address_book_min_order_by"];
+  ["address_book_on_conflict"]: ValueTypes["address_book_on_conflict"];
+  ["address_book_order_by"]: ValueTypes["address_book_order_by"];
+  ["address_book_pk_columns_input"]: ValueTypes["address_book_pk_columns_input"];
+  ["address_book_select_column"]: ValueTypes["address_book_select_column"];
+  ["address_book_set_input"]: ValueTypes["address_book_set_input"];
+  ["address_book_stream_cursor_input"]: ValueTypes["address_book_stream_cursor_input"];
+  ["address_book_stream_cursor_value_input"]: ValueTypes["address_book_stream_cursor_value_input"];
+  ["address_book_update_column"]: ValueTypes["address_book_update_column"];
+  ["address_book_updates"]: ValueTypes["address_book_updates"];
   ["address_bool_exp"]: ValueTypes["address_bool_exp"];
   ["address_constraint"]: ValueTypes["address_constraint"];
   ["address_insert_input"]: ValueTypes["address_insert_input"];
