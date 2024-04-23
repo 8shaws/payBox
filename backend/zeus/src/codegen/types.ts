@@ -2393,16 +2393,19 @@ export type Client_Set_Input = {
 /** settings for client */
 export type Client_Settings = {
   __typename?: 'client_settings';
+  btcNet: Scalars['String']['output'];
   /** An object relationship */
   client: Client;
   clientId: Scalars['uuid']['output'];
   /** An object relationship */
   connection?: Maybe<Connections>;
   createdAt: Scalars['timestamptz']['output'];
+  ethNet: Scalars['String']['output'];
   id: Scalars['uuid']['output'];
   locale: Scalars['String']['output'];
   preferedExplorer: Scalars['String']['output'];
   preferedWallet: Scalars['String']['output'];
+  solNet: Scalars['String']['output'];
   testmode: Scalars['Boolean']['output'];
   updatedAt: Scalars['timestamptz']['output'];
 };
@@ -2434,14 +2437,17 @@ export type Client_Settings_Bool_Exp = {
   _and?: InputMaybe<Array<Client_Settings_Bool_Exp>>;
   _not?: InputMaybe<Client_Settings_Bool_Exp>;
   _or?: InputMaybe<Array<Client_Settings_Bool_Exp>>;
+  btcNet?: InputMaybe<String_Comparison_Exp>;
   client?: InputMaybe<Client_Bool_Exp>;
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
   connection?: InputMaybe<Connections_Bool_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  ethNet?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   locale?: InputMaybe<String_Comparison_Exp>;
   preferedExplorer?: InputMaybe<String_Comparison_Exp>;
   preferedWallet?: InputMaybe<String_Comparison_Exp>;
+  solNet?: InputMaybe<String_Comparison_Exp>;
   testmode?: InputMaybe<Boolean_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
@@ -2456,14 +2462,17 @@ export enum Client_Settings_Constraint {
 
 /** input type for inserting data into table "client_settings" */
 export type Client_Settings_Insert_Input = {
+  btcNet?: InputMaybe<Scalars['String']['input']>;
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   connection?: InputMaybe<Connections_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethNet?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  solNet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -2471,24 +2480,30 @@ export type Client_Settings_Insert_Input = {
 /** aggregate max on columns */
 export type Client_Settings_Max_Fields = {
   __typename?: 'client_settings_max_fields';
+  btcNet?: Maybe<Scalars['String']['output']>;
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  ethNet?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
   preferedExplorer?: Maybe<Scalars['String']['output']>;
   preferedWallet?: Maybe<Scalars['String']['output']>;
+  solNet?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** aggregate min on columns */
 export type Client_Settings_Min_Fields = {
   __typename?: 'client_settings_min_fields';
+  btcNet?: Maybe<Scalars['String']['output']>;
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  ethNet?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
   preferedExplorer?: Maybe<Scalars['String']['output']>;
   preferedWallet?: Maybe<Scalars['String']['output']>;
+  solNet?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2517,14 +2532,17 @@ export type Client_Settings_On_Conflict = {
 
 /** Ordering options when selecting data from "client_settings". */
 export type Client_Settings_Order_By = {
+  btcNet?: InputMaybe<Order_By>;
   client?: InputMaybe<Client_Order_By>;
   clientId?: InputMaybe<Order_By>;
   connection?: InputMaybe<Connections_Order_By>;
   createdAt?: InputMaybe<Order_By>;
+  ethNet?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   locale?: InputMaybe<Order_By>;
   preferedExplorer?: InputMaybe<Order_By>;
   preferedWallet?: InputMaybe<Order_By>;
+  solNet?: InputMaybe<Order_By>;
   testmode?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
@@ -2537,9 +2555,13 @@ export type Client_Settings_Pk_Columns_Input = {
 /** select columns of table "client_settings" */
 export enum Client_Settings_Select_Column {
   /** column name */
+  BtcNet = 'btcNet',
+  /** column name */
   ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  EthNet = 'ethNet',
   /** column name */
   Id = 'id',
   /** column name */
@@ -2549,6 +2571,8 @@ export enum Client_Settings_Select_Column {
   /** column name */
   PreferedWallet = 'preferedWallet',
   /** column name */
+  SolNet = 'solNet',
+  /** column name */
   Testmode = 'testmode',
   /** column name */
   UpdatedAt = 'updatedAt'
@@ -2556,12 +2580,15 @@ export enum Client_Settings_Select_Column {
 
 /** input type for updating data in table "client_settings" */
 export type Client_Settings_Set_Input = {
+  btcNet?: InputMaybe<Scalars['String']['input']>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethNet?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  solNet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -2576,12 +2603,15 @@ export type Client_Settings_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Client_Settings_Stream_Cursor_Value_Input = {
+  btcNet?: InputMaybe<Scalars['String']['input']>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethNet?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  solNet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -2589,9 +2619,13 @@ export type Client_Settings_Stream_Cursor_Value_Input = {
 /** update columns of table "client_settings" */
 export enum Client_Settings_Update_Column {
   /** column name */
+  BtcNet = 'btcNet',
+  /** column name */
   ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  EthNet = 'ethNet',
   /** column name */
   Id = 'id',
   /** column name */
@@ -2600,6 +2634,8 @@ export enum Client_Settings_Update_Column {
   PreferedExplorer = 'preferedExplorer',
   /** column name */
   PreferedWallet = 'preferedWallet',
+  /** column name */
+  SolNet = 'solNet',
   /** column name */
   Testmode = 'testmode',
   /** column name */
