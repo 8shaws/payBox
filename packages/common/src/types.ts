@@ -279,3 +279,12 @@ export interface Settings {
 }
 
 export type ChainNet = EthCluster | SolCluster | BitcoinCluster
+
+export interface AddressBook {
+    id: string,
+    clientId: string,
+    name: string,
+    publicKey: string,
+    chain: string,
+    tag?: string,
+}
