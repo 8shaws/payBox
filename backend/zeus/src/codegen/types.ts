@@ -462,6 +462,266 @@ export type Address_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** address_book for clients */
+export type Address_Book = {
+  __typename?: 'address_book';
+  chain: Scalars['String']['output'];
+  /** An object relationship */
+  client: Client;
+  clientId: Scalars['uuid']['output'];
+  createdAt: Scalars['timestamptz']['output'];
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
+  publicKey: Scalars['String']['output'];
+  tag?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "address_book" */
+export type Address_Book_Aggregate = {
+  __typename?: 'address_book_aggregate';
+  aggregate?: Maybe<Address_Book_Aggregate_Fields>;
+  nodes: Array<Address_Book>;
+};
+
+export type Address_Book_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Address_Book_Aggregate_Bool_Exp_Count>;
+};
+
+export type Address_Book_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Address_Book_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Address_Book_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "address_book" */
+export type Address_Book_Aggregate_Fields = {
+  __typename?: 'address_book_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Address_Book_Max_Fields>;
+  min?: Maybe<Address_Book_Min_Fields>;
+};
+
+
+/** aggregate fields of "address_book" */
+export type Address_Book_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Address_Book_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "address_book" */
+export type Address_Book_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Address_Book_Max_Order_By>;
+  min?: InputMaybe<Address_Book_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "address_book" */
+export type Address_Book_Arr_Rel_Insert_Input = {
+  data: Array<Address_Book_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Address_Book_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "address_book". All fields are combined with a logical 'AND'. */
+export type Address_Book_Bool_Exp = {
+  _and?: InputMaybe<Array<Address_Book_Bool_Exp>>;
+  _not?: InputMaybe<Address_Book_Bool_Exp>;
+  _or?: InputMaybe<Array<Address_Book_Bool_Exp>>;
+  chain?: InputMaybe<String_Comparison_Exp>;
+  client?: InputMaybe<Client_Bool_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
+  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  publicKey?: InputMaybe<String_Comparison_Exp>;
+  tag?: InputMaybe<String_Comparison_Exp>;
+  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "address_book" */
+export enum Address_Book_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  AddressBookPkey = 'address_book_pkey'
+}
+
+/** input type for inserting data into table "address_book" */
+export type Address_Book_Insert_Input = {
+  chain?: InputMaybe<Scalars['String']['input']>;
+  client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  publicKey?: InputMaybe<Scalars['String']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Address_Book_Max_Fields = {
+  __typename?: 'address_book_max_fields';
+  chain?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  publicKey?: Maybe<Scalars['String']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by max() on columns of table "address_book" */
+export type Address_Book_Max_Order_By = {
+  chain?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  publicKey?: InputMaybe<Order_By>;
+  tag?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Address_Book_Min_Fields = {
+  __typename?: 'address_book_min_fields';
+  chain?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  publicKey?: Maybe<Scalars['String']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by min() on columns of table "address_book" */
+export type Address_Book_Min_Order_By = {
+  chain?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  publicKey?: InputMaybe<Order_By>;
+  tag?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "address_book" */
+export type Address_Book_Mutation_Response = {
+  __typename?: 'address_book_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Address_Book>;
+};
+
+/** on_conflict condition type for table "address_book" */
+export type Address_Book_On_Conflict = {
+  constraint: Address_Book_Constraint;
+  update_columns?: Array<Address_Book_Update_Column>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "address_book". */
+export type Address_Book_Order_By = {
+  chain?: InputMaybe<Order_By>;
+  client?: InputMaybe<Client_Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  publicKey?: InputMaybe<Order_By>;
+  tag?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: address_book */
+export type Address_Book_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "address_book" */
+export enum Address_Book_Select_Column {
+  /** column name */
+  Chain = 'chain',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  PublicKey = 'publicKey',
+  /** column name */
+  Tag = 'tag',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "address_book" */
+export type Address_Book_Set_Input = {
+  chain?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  publicKey?: InputMaybe<Scalars['String']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "address_book" */
+export type Address_Book_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Address_Book_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Address_Book_Stream_Cursor_Value_Input = {
+  chain?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  publicKey?: InputMaybe<Scalars['String']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "address_book" */
+export enum Address_Book_Update_Column {
+  /** column name */
+  Chain = 'chain',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  PublicKey = 'publicKey',
+  /** column name */
+  Tag = 'tag',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+export type Address_Book_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Address_Book_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Address_Book_Bool_Exp;
+};
+
 /** Boolean expression to filter rows from the table "address". All fields are combined with a logical 'AND'. */
 export type Address_Bool_Exp = {
   _and?: InputMaybe<Array<Address_Bool_Exp>>;
@@ -1930,6 +2190,10 @@ export type Client = {
   /** An object relationship */
   address?: Maybe<Address>;
   /** An array relationship */
+  address_books: Array<Address_Book>;
+  /** An aggregate relationship */
+  address_books_aggregate: Address_Book_Aggregate;
+  /** An array relationship */
   centralized_txns: Array<Centralized_Txn>;
   /** An aggregate relationship */
   centralized_txns_aggregate: Centralized_Txn_Aggregate;
@@ -1995,6 +2259,26 @@ export type ClientAccounts_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Account_Order_By>>;
   where?: InputMaybe<Account_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientAddress_BooksArgs = {
+  distinct_on?: InputMaybe<Array<Address_Book_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Address_Book_Order_By>>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientAddress_Books_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Address_Book_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Address_Book_Order_By>>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
 };
 
 
@@ -2201,6 +2485,8 @@ export type Client_Bool_Exp = {
   accounts?: InputMaybe<Account_Bool_Exp>;
   accounts_aggregate?: InputMaybe<Account_Aggregate_Bool_Exp>;
   address?: InputMaybe<Address_Bool_Exp>;
+  address_books?: InputMaybe<Address_Book_Bool_Exp>;
+  address_books_aggregate?: InputMaybe<Address_Book_Aggregate_Bool_Exp>;
   centralized_txns?: InputMaybe<Centralized_Txn_Bool_Exp>;
   centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp>;
   chats?: InputMaybe<Chat_Bool_Exp>;
@@ -2248,6 +2534,7 @@ export type Client_Inc_Input = {
 export type Client_Insert_Input = {
   accounts?: InputMaybe<Account_Arr_Rel_Insert_Input>;
   address?: InputMaybe<Address_Obj_Rel_Insert_Input>;
+  address_books?: InputMaybe<Address_Book_Arr_Rel_Insert_Input>;
   centralized_txns?: InputMaybe<Centralized_Txn_Arr_Rel_Insert_Input>;
   chats?: InputMaybe<Chat_Arr_Rel_Insert_Input>;
   client_setting?: InputMaybe<Client_Settings_Obj_Rel_Insert_Input>;
@@ -2325,6 +2612,7 @@ export type Client_On_Conflict = {
 export type Client_Order_By = {
   accounts_aggregate?: InputMaybe<Account_Aggregate_Order_By>;
   address?: InputMaybe<Address_Order_By>;
+  address_books_aggregate?: InputMaybe<Address_Book_Aggregate_Order_By>;
   centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Order_By>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Order_By>;
   client_setting?: InputMaybe<Client_Settings_Order_By>;
@@ -3655,6 +3943,10 @@ export type Mutation_Root = {
   delete_account_by_pk?: Maybe<Account>;
   /** delete data from the table: "address" */
   delete_address?: Maybe<Address_Mutation_Response>;
+  /** delete data from the table: "address_book" */
+  delete_address_book?: Maybe<Address_Book_Mutation_Response>;
+  /** delete single row from the table: "address_book" */
+  delete_address_book_by_pk?: Maybe<Address_Book>;
   /** delete single row from the table: "address" */
   delete_address_by_pk?: Maybe<Address>;
   /** delete data from the table: "bitcoin" */
@@ -3719,6 +4011,10 @@ export type Mutation_Root = {
   insert_account_one?: Maybe<Account>;
   /** insert data into the table: "address" */
   insert_address?: Maybe<Address_Mutation_Response>;
+  /** insert data into the table: "address_book" */
+  insert_address_book?: Maybe<Address_Book_Mutation_Response>;
+  /** insert a single row into the table: "address_book" */
+  insert_address_book_one?: Maybe<Address_Book>;
   /** insert a single row into the table: "address" */
   insert_address_one?: Maybe<Address>;
   /** insert data into the table: "bitcoin" */
@@ -3785,6 +4081,12 @@ export type Mutation_Root = {
   update_account_many?: Maybe<Array<Maybe<Account_Mutation_Response>>>;
   /** update data of the table: "address" */
   update_address?: Maybe<Address_Mutation_Response>;
+  /** update data of the table: "address_book" */
+  update_address_book?: Maybe<Address_Book_Mutation_Response>;
+  /** update single row of the table: "address_book" */
+  update_address_book_by_pk?: Maybe<Address_Book>;
+  /** update multiples rows of table: "address_book" */
+  update_address_book_many?: Maybe<Array<Maybe<Address_Book_Mutation_Response>>>;
   /** update single row of the table: "address" */
   update_address_by_pk?: Maybe<Address>;
   /** update multiples rows of table: "address" */
@@ -3891,6 +4193,18 @@ export type Mutation_RootDelete_Account_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootDelete_AddressArgs = {
   where: Address_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Address_BookArgs = {
+  where: Address_Book_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Address_Book_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -4086,6 +4400,20 @@ export type Mutation_RootInsert_Account_OneArgs = {
 export type Mutation_RootInsert_AddressArgs = {
   objects: Array<Address_Insert_Input>;
   on_conflict?: InputMaybe<Address_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Address_BookArgs = {
+  objects: Array<Address_Book_Insert_Input>;
+  on_conflict?: InputMaybe<Address_Book_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Address_Book_OneArgs = {
+  object: Address_Book_Insert_Input;
+  on_conflict?: InputMaybe<Address_Book_On_Conflict>;
 };
 
 
@@ -4316,6 +4644,26 @@ export type Mutation_RootUpdate_Account_ManyArgs = {
 export type Mutation_RootUpdate_AddressArgs = {
   _set?: InputMaybe<Address_Set_Input>;
   where: Address_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Address_BookArgs = {
+  _set?: InputMaybe<Address_Book_Set_Input>;
+  where: Address_Book_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Address_Book_By_PkArgs = {
+  _set?: InputMaybe<Address_Book_Set_Input>;
+  pk_columns: Address_Book_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Address_Book_ManyArgs = {
+  updates: Array<Address_Book_Updates>;
 };
 
 
@@ -5504,6 +5852,12 @@ export type Query_Root = {
   address: Array<Address>;
   /** fetch aggregated fields from the table: "address" */
   address_aggregate: Address_Aggregate;
+  /** fetch data from the table: "address_book" */
+  address_book: Array<Address_Book>;
+  /** fetch aggregated fields from the table: "address_book" */
+  address_book_aggregate: Address_Book_Aggregate;
+  /** fetch data from the table: "address_book" using primary key columns */
+  address_book_by_pk?: Maybe<Address_Book>;
   /** fetch data from the table: "address" using primary key columns */
   address_by_pk?: Maybe<Address>;
   /** fetch data from the table: "bitcoin" */
@@ -5631,6 +5985,29 @@ export type Query_RootAddress_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Address_Order_By>>;
   where?: InputMaybe<Address_Bool_Exp>;
+};
+
+
+export type Query_RootAddress_BookArgs = {
+  distinct_on?: InputMaybe<Array<Address_Book_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Address_Book_Order_By>>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
+};
+
+
+export type Query_RootAddress_Book_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Address_Book_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Address_Book_Order_By>>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
+};
+
+
+export type Query_RootAddress_Book_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -6293,6 +6670,14 @@ export type Subscription_Root = {
   address: Array<Address>;
   /** fetch aggregated fields from the table: "address" */
   address_aggregate: Address_Aggregate;
+  /** fetch data from the table: "address_book" */
+  address_book: Array<Address_Book>;
+  /** fetch aggregated fields from the table: "address_book" */
+  address_book_aggregate: Address_Book_Aggregate;
+  /** fetch data from the table: "address_book" using primary key columns */
+  address_book_by_pk?: Maybe<Address_Book>;
+  /** fetch data from the table in a streaming manner: "address_book" */
+  address_book_stream: Array<Address_Book>;
   /** fetch data from the table: "address" using primary key columns */
   address_by_pk?: Maybe<Address>;
   /** fetch data from the table in a streaming manner: "address" */
@@ -6457,6 +6842,36 @@ export type Subscription_RootAddress_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Address_Order_By>>;
   where?: InputMaybe<Address_Bool_Exp>;
+};
+
+
+export type Subscription_RootAddress_BookArgs = {
+  distinct_on?: InputMaybe<Array<Address_Book_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Address_Book_Order_By>>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
+};
+
+
+export type Subscription_RootAddress_Book_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Address_Book_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Address_Book_Order_By>>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
+};
+
+
+export type Subscription_RootAddress_Book_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootAddress_Book_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Address_Book_Stream_Cursor_Input>>;
+  where?: InputMaybe<Address_Book_Bool_Exp>;
 };
 
 
