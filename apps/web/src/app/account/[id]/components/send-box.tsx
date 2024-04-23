@@ -4,7 +4,7 @@ import SolanaIcon from '@/src/components/icon/SolanaIcon'
 import { Button } from '@/src/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/src/components/ui/dialog'
 import { BACKEND_URL, BitcoinCluster, EthCluster, Network, SolCluster, TxnSendQuery, responseStatus } from '@paybox/common'
-import { accountAtom, clientAtom, clientJwtAtom } from '@paybox/recoil';
+import { accountAtom, chainNetState, clientAtom, clientJwtAtom } from '@paybox/recoil';
 import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil';
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -29,21 +29,18 @@ function SendBox({
   token,
   open,
   setOpen,
-  cluster,
 }: {
   token: Network,
   open: boolean,
   setOpen: React.Dispatch<React.SetStateAction<boolean>>,
-  cluster: EthCluster | BitcoinCluster | SolCluster,
 }) {
+  const cluster = useRecoilValue(chainNetState(token))
   const account = useRecoilValue(accountAtom);
   const jwt = useRecoilValue(clientJwtAtom);
   const client = useRecoilValue(clientAtom);
   const [fromKey, setFromKey] = useState<string>('');
   const [toKey, setToKey] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
-
-
 
   useEffect(() => {
     if (account) {
@@ -80,11 +77,11 @@ function SendBox({
         },
         body: JSON.stringify(data),
       }).then(res => res.json());
-      if(response.status === responseStatus.Error) {
+      if (response.status === responseStatus.Error) {
         console.error(response.msg);
-        return Promise.reject({msg: response.msg});
+        return Promise.reject({ msg: response.msg });
       }
-      return Promise.resolve({sig: response.signature});
+      return Promise.resolve({ sig: response.signature });
     }
     toast.promise(call(), {
       loading: 'Sending transaction...',
@@ -111,33 +108,35 @@ function SendBox({
               {token == Network.Sol ? <SolanaIcon className="w-12 h-12" /> : token == Network.Eth ? <EthIcon className="w-12 h-12" /> : <BitcoinIcon className="w-12 h-12" />}
             </div>
           </DialogHeader>
-          <Input
-            id='to'
-            required
-            value={toKey}
-            onChange={(e) => setToKey(e.target.value)}
-            className=''
-            placeholder={`Recipient ${token.charAt(0).toLocaleUpperCase() + token.slice(1)} Address`}
-          />
-
-          <div className='flex relative item-center justify-center '>
-            <Label
-              className="text-right absolute right-3 mt-4 text-muted-foreground"
-            >
-              {token.toLocaleUpperCase()}
-            </Label>
+          <div className="space-y-4">
             <Input
-              id='amount'
+              id='to'
               required
-              value={amount == 0 ? '' : amount}
-              onChange={(e) => {
-                if(Number(e.target.value) > 10000) return
-                setAmount(Number(e.target.value))
-              }}
-              type='number'
-              className="w-full px-4 py-[5px] [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
-              placeholder={`Amount`}
+              value={toKey}
+              onChange={(e) => setToKey(e.target.value)}
+              className=''
+              placeholder={`Recipient ${token.charAt(0).toLocaleUpperCase() + token.slice(1)} Address`}
             />
+
+            <div className='flex relative item-center justify-center '>
+              <Label
+                className="text-right absolute right-3 mt-3 text-muted-foreground"
+              >
+                {token.toLocaleUpperCase()}
+              </Label>
+              <Input
+                id='amount'
+                required
+                value={amount == 0 ? '' : amount}
+                onChange={(e) => {
+                  if (Number(e.target.value) > 10000) return
+                  setAmount(Number(e.target.value))
+                }}
+                type='number'
+                className="w-full px-4 py-[5px] [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
+                placeholder={`Amount`}
+              />
+            </div>
           </div>
           <DialogFooter className='w-full'>
             <Button onClick={onSubmit}>Submit</Button>

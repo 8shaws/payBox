@@ -264,3 +264,16 @@ export const accountCreateRateLimit = rateLimit({
   }
 });
 
+export const settingsUpdateLimit = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minutes
+  max: 2,
+  message: {
+    status: responseStatus.Error,
+    msg: "Too many requests, please try again after  minutes"
+  },
+  keyGenerator: function (req, res) {
+    //@ts-ignore
+    return req.id;
+  }
+});
+

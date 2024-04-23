@@ -1,11 +1,11 @@
 import { Settings, TestModeSetSchema, dbResStatus, responseStatus } from "@paybox/common";
 import { Router } from "express";
 import { getSettings, updateTestmode } from "../db/settings";
-import { Redis } from "..";
+import { Redis, settingsUpdateLimit } from "..";
 
 export const settingsRouter = Router();
 
-settingsRouter.post('/testmode', async (req, res) => {
+settingsRouter.post('/nets', settingsUpdateLimit, async (req, res) => {
     try {
         //@ts-ignore
         const id = req.id;
@@ -13,9 +13,9 @@ settingsRouter.post('/testmode', async (req, res) => {
 
             await Redis.getRedisInst().deleteHash(`${id}:settings`)
 
-            const {testMode} = TestModeSetSchema.parse(req.body);
+            const {testMode, btcNet, ethNet, solNet} = TestModeSetSchema.parse(req.body);
 
-            const {status} = await updateTestmode(testMode, id);
+            const {status} = await updateTestmode(id, testMode, solNet, ethNet, btcNet);
             if(status == dbResStatus.Error) {
                 return res.status(404).json({
                     message: 'Data-base error',
@@ -50,7 +50,6 @@ settingsRouter.get('/', async (req, res) => {
                 });
             }
             const {status, settings} = await getSettings(id);
-            console.log(settings)
             if(status == dbResStatus.Error || !settings) {
                 return res.status(404).json({
                     message: 'Could not get settings',

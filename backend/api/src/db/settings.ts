@@ -1,6 +1,6 @@
 import { Chain } from "@paybox/zeus";
 import { HASURA_URL, JWT } from "../config";
-import { HASURA_ADMIN_SERCRET, Settings, dbResStatus, } from "@paybox/common";
+import { BitcoinCluster, EthCluster, HASURA_ADMIN_SERCRET, Settings, SolCluster, dbResStatus, } from "@paybox/common";
 
 const chain = Chain(HASURA_URL, {
     headers: {
@@ -13,22 +13,52 @@ const chain = Chain(HASURA_URL, {
  * 
  * @param testmode 
  * @param clientId 
+ * @param solNet 
+ * @param ethNet 
+ * @param btcNet 
  * @returns 
  */
 export const updateTestmode = async (
-    testmode: boolean,
-    clientId: string
+    clientId: string,
+    testmode?: boolean,
+    solNet?: SolCluster,
+    ethNet?: EthCluster,
+    btcNet?: BitcoinCluster
 ): Promise<{
     status: dbResStatus
 }> => {
+    let _set: {
+        testmode?: boolean,
+        solNet?: SolCluster,
+        ethNet?: EthCluster,
+        btcNet?: BitcoinCluster
+    } = {
+        testmode,
+    }
+    if(solNet) {
+        _set = {
+            ..._set,
+            solNet: solNet
+        }
+    }
+    if(ethNet) {
+        _set = {
+            ..._set,
+            ethNet: ethNet
+        }
+    }
+    if(btcNet) {
+        _set = {
+            ..._set,
+            btcNet: btcNet
+        }
+    }
     const response = await chain("mutation")({
         update_client_settings: [{
             where: {
                 clientId: { _eq: clientId }
             },
-            _set: {
-                testmode
-            }
+            _set
         }, {
             affected_rows: true
         }]
@@ -65,7 +95,10 @@ export const getSettings = async (
             testmode: true,
             preferedWallet: true,
             preferedExplorer: true,
-            clientId: true
+            clientId: true,
+            btcNet: true,
+            ethNet: true,
+            solNet: true
         }]
     }, {operationName: "getSettings"});
     if(response.client_settings[0].locale) {

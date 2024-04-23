@@ -1,6 +1,6 @@
 import { RedisClientType } from "redis";
 import { Redis } from "..";
-import { Settings } from "@paybox/common";
+import { BitcoinCluster, EthCluster, Settings, SolCluster } from "@paybox/common";
 
 export class SettingsCache {
     private client: RedisClientType;
@@ -18,6 +18,9 @@ export class SettingsCache {
             testmode: value.testmode == true ? "true" : "false",
             preferedWallet: value.preferedWallet,
             preferedExplorer: value.preferedExplorer,
+            solNet: value.solNet,
+            ethNet: value.ethNet,
+            btcNet: value.btcNet,
             clientId: value.clientId || "",
         });
         await this.client.expire(
@@ -37,6 +40,9 @@ export class SettingsCache {
                 preferedWallet: settings.preferedWallet as string,
                 preferedExplorer: settings.preferedExplorer as string,
                 clientId: settings.clientId as string,
+                solNet: settings.solNet as SolCluster,
+                ethNet: settings.ethNet as EthCluster,
+                btcNet: settings.btcNet as BitcoinCluster,
             } as T;
         }
         return null;

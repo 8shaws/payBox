@@ -13,7 +13,7 @@ import {
     networkPublicKey,
 } from "./validations";
 import {Message} from "@solana/web3.js";
-import {BitcoinCluster, EthCluster, USDCCluster} from "./constant";
+import {BitcoinCluster, EthCluster, SolCluster, USDCCluster} from "./constant";
 import {Cluster} from "@solana/web3.js";
 import { BitcoinChainId, BitcoinToken, EthChainId, EthToken, MsgTopics, Network, NotifTopics, SolChainId, SolToken, TopicTypes, WsMessageTypeEnum, hookStatus } from "./enum";
 
@@ -271,6 +271,11 @@ export interface Settings {
     testmode: boolean,
     preferedWallet: string,
     preferedExplorer: string,
+    solNet: SolCluster,
+    ethNet: EthCluster,
+    btcNet: BitcoinCluster,
     id?: string,
     clientId?: string,
 }
+
+export type ChainNet = EthCluster | SolCluster | BitcoinCluster

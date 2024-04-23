@@ -3,13 +3,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/util";
 import { redirect } from "next/navigation";
 import { Separator } from "@/src/components/ui/separator";
-import { Badge } from "@/src/components/ui/badge"; 
+import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button"
 
 import { Languages } from "lucide-react";
 import TestModeSwitch from "./components/test-mode";
 import LocaleButton from "./components/locale-btn";
-import { BACKEND_URL, ClientWithJwt, Locales, responseStatus } from "@paybox/common";
+import { BACKEND_URL, ClientWithJwt, Locales, Settings, responseStatus } from "@paybox/common";
 import ChangePassword from "./components/change-password";
 import SetClientJwtWrapper from "@/src/components/set-client-jwt-wrapper";
 
@@ -17,7 +17,8 @@ import SetClientJwtWrapper from "@/src/components/set-client-jwt-wrapper";
 
 const getSettings = async (jwt: string) => {
     try {
-        const { status, settings, msg }: { status: responseStatus, settings: any, msg?: string }
+        const { status, settings, msg }:
+            { status: responseStatus, settings: any, msg?: string }
             = await fetch(`${BACKEND_URL}/settings/`, {
                 method: "GET",
                 headers: {
@@ -45,14 +46,13 @@ export default async function Home({
     params: { slug: string }
     searchParams: { [key: string]: string | string[] | undefined }
 }) {
-    console.log(searchParams["friendshipId"]);
     const session = await getServerSession(authOptions);
 
     //@ts-ignore
     const jwt = session?.user.jwt as string;
     if (!session || !session.user || !session.user?.email || !jwt) {
         redirect("/signup");
-      }
+    }
     const settings = await getSettings(jwt);
 
     const layout = cookies().get("react-resizable-panels:layout");
@@ -70,7 +70,14 @@ export default async function Home({
                         </p>
                     </div>
                     <Separator />
-                    <TestModeSwitch testMode={settings?.testmode} />
+                    {settings && <TestModeSwitch
+                        testMode={settings?.testmode}
+                        nets={{
+                            btcNet: settings?.btcNet,
+                            ethNet: settings?.ethNet,
+                            solNet: settings?.solNet
+                        }}
+                    />}
                     <div className="flex w-2/3 items-center space-x-2">
                         <Button className="gap-x-2 px-2 cursor-none">
                             <Languages className="w-5 h-5" />

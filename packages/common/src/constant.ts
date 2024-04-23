@@ -68,9 +68,9 @@ export enum EthCluster {
 }
 
 export enum BitcoinCluster {
-  MAINNET = 'mainnet',
-  TESTNET = 'testnet',
-  REGTEST = 'regtest',
+  Mainnet = 'mainnet',
+  Testnet = 'testnet',
+  Regnet = 'regtest',
 }
 
 export enum USDCCluster {
@@ -86,6 +86,7 @@ export enum SolCluster {
   Mainnet = "mainnet",
   Devnet = "devnet",
   Testnet = "testnet",
+  Localnet = "localnet"
 }
 
 export const SOLSCAN_TXN_URL = (txnId: string, cluster: Cluster): string => {
@@ -287,3 +288,25 @@ export const VAPID_PUBLIC_KEY_DEFAULT =
   "BJx2UR_VLo9nv6j_-Kl9CoXLeJ1vekZN8iJYzTNKiE15NnHmt2wmCBIromimvx2sxuO5Akxeo_LVkBBOK34d6R0";
 export const VAPID_PRIVATE_KEY_DEFAULT =
   "iPEXpFYJxSXwfdMRGENRwi4yAirH8RynEesloyToVE0";
+
+
+export const SolNets = Object.keys(SolCluster).map((key) => {
+  return {
+    value: SolCluster[key as keyof typeof SolCluster],
+    label: key,
+  }
+});
+
+export const EthNets = Object.keys(EthCluster).map((key) => {
+  return {
+    value: EthCluster[key as keyof typeof EthCluster],
+    label: key,
+  }
+});
+
+export const BtcNets = Object.keys(BitcoinCluster).map((key) => {
+  return {
+    value: BitcoinCluster[key as keyof typeof BitcoinCluster],
+    label: key,
+  }
+});

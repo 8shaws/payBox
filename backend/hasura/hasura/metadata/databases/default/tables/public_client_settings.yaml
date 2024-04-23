@@ -3,24 +3,33 @@ table:
   schema: public
 configuration:
   column_config:
+    btc_net:
+      custom_name: btcNet
     client_id:
       custom_name: clientId
     created_at:
       custom_name: createdAt
+    eth_net:
+      custom_name: ethNet
     locale:
       custom_name: locale
     prefered_explorer:
       custom_name: preferedExplorer
     prefered_wallet:
       custom_name: preferedWallet
+    sol_net:
+      custom_name: solNet
     updated_at:
       custom_name: updatedAt
   custom_column_names:
+    btc_net: btcNet
     client_id: clientId
     created_at: createdAt
+    eth_net: ethNet
     locale: locale
     prefered_explorer: preferedExplorer
     prefered_wallet: preferedWallet
+    sol_net: solNet
     updated_at: updatedAt
   custom_root_fields: {}
 object_relationships:
