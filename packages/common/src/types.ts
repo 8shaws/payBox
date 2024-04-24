@@ -285,6 +285,6 @@ export interface AddressBook {
     clientId: string,
     name: string,
     publicKey: string,
-    chain: string,
+    chain: Network,
     tag?: string,
 }
