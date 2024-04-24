@@ -1,11 +1,11 @@
 import { Settings, TestModeSetSchema, dbResStatus, responseStatus } from "@paybox/common";
 import { Router } from "express";
 import { getSettings, updateTestmode } from "../db/settings";
-import { Redis, settingsUpdateLimit } from "..";
+import { Redis } from "..";
 
 export const settingsRouter = Router();
 
-settingsRouter.post('/nets', settingsUpdateLimit, async (req, res) => {
+settingsRouter.post('/nets', async (req, res) => {
     try {
         //@ts-ignore
         const id = req.id;

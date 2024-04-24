@@ -87,3 +87,30 @@ export const getBook = async (
         status: dbResStatus.Error
     }
 }
+
+/**
+ * 
+ * @param bookId 
+ * @returns 
+ */
+export const deleteBook = async (
+    bookId: string
+): Promise<{
+    status: dbResStatus
+}> => {
+    const response = await ins("mutation")({
+        delete_address_book_by_pk: [{
+            id: bookId
+        }, {
+            name: true
+        }]
+    }, {operationName: "delete_address_book_by_pk"});
+    if(response.delete_address_book_by_pk?.name) {
+        return {
+            status:dbResStatus.Ok
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}
