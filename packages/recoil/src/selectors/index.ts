@@ -4,3 +4,4 @@ export * from "./friendship";
 export * from "./wallet";
 export * from "./quote";
 export * from "./settings";
+export * from "./icon";

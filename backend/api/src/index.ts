@@ -48,7 +48,7 @@ import { buyRouter } from "./routes/buy";
 import { hooksRouter } from "./routes/webhooks";
 import { localeRouter } from "./routes/locale";
 import { settingsRouter } from "./routes/settings";
-import { bookRouter } from "./routes/address-book";
+import { bookRouter } from "./routes/book";
 
 
 export * from "./Redis";

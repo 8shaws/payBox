@@ -17,7 +17,8 @@ import {
     GanttChart,
     Settings,
     UserRound,
-    UserRoundCog
+    UserRoundCog,
+    BookA
 } from "lucide-react";
 import { LinksProps } from "../../../components/sidebar";
 
@@ -29,6 +30,14 @@ export const commonNavLinks = [
         icon: GanttChart,
         variant: "ghost",
         link: "/account",
+    },
+    {
+        id: "book",
+        title: "Address Book",
+        label: "128",
+        icon: BookA,
+        variant: "ghost",
+        link: "/account/import/book",
     },
     {
         id: "create",
