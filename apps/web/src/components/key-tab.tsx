@@ -25,7 +25,7 @@ function KeyTab({
                 </div>
                 <div className="">
                     <div className="text-base h-1/2 font-semibold w-full text-start">{chain === "Solana" ? "Solana Devnet" : "Ethereum Sepolia"}</div>
-                    {tabData ? <div className="w-full h-1/2 text-start font-normal">
+                    {tabData ? <div className="w-full text-muted-foreground h-1/2 text-start font-normal">
                         {tabData.publicKey?.slice(0, 4)}...{tabData.publicKey?.slice(tabData.publicKey?.length - 4)}
                     </div> :
                         <Skeleton className="h-[20px] w-[100px]" />

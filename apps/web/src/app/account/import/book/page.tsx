@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../../../api/auth/[...nextauth]/util";
-import { getAddressbook } from "@/src/actions/book";
+import { getAddressbook, rmAddress } from "@/src/actions/book";
 import {
     Card,
     CardContent,
@@ -26,13 +26,12 @@ import {
 } from "@/src/components/ui/avatar"
 
 import { ScrollArea } from "@/src/components/ui/scroll-area";
-import { Button } from "@/src/components/ui/button";
+import { Button, buttonVariants } from "@/src/components/ui/button";
 import { AddressBook, Network } from "@paybox/common";
 import { Separator } from "@/src/components/ui/separator";
-import { useRecoilValue } from "recoil";
-import { getNetIcon } from "@paybox/recoil";
 import { getIcon } from "@/src/actions/icon";
-import PayboxIcon from "@/src/components/icon/Paybox";
+import { cn } from "@/src/lib/utils";
+import RemoveButton from "./component/rm-button";
 
 
 
@@ -64,7 +63,7 @@ export default async function Page({
                                             <Button
                                                 variant={"ghost"}
                                                 key={address.id}
-                                                className="flex gap-x-4 rounded-b-none w-full h-fit py-4"
+                                                className="flex gap-x-4 rounded-none w-full h-fit py-4"
                                             >
                                                 <Avatar>
                                                     <AvatarImage src="https://github.com/shawakash.pn" alt="@shadcn" />
@@ -85,13 +84,18 @@ export default async function Page({
                                             <DialogHeader>
                                                 <DialogTitle>Edit Address</DialogTitle>
                                             </DialogHeader>
-                                            <DialogFooter className="">
-                                                <Button variant={"secondary"} className="">
-                                                    Cancel
-                                                </Button>
+                                            <DialogFooter className="w-full h-fit flex sm:flex-col gap-y-2">
                                                 <DialogClose>
-                                                    <Button>Close</Button>
+                                                    <RemoveButton jwt={jwt} id={address.id} />
                                                 </DialogClose>
+                                                <div className="flex w-full flex-row gap-x-4">
+                                                    <Button variant={"secondary"} className="w-1/2">
+                                                        Cancel
+                                                    </Button>
+                                                    <DialogClose className="w-1/2">
+                                                        <Button className="w-full">Close</Button>
+                                                    </DialogClose>
+                                                </div>
                                             </DialogFooter>
                                         </DialogContent>
                                     </Dialog>

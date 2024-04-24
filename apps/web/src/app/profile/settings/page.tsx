@@ -4,65 +4,22 @@ import { authOptions } from "../../api/auth/[...nextauth]/util";
 import { redirect } from "next/navigation";
 import { Separator } from "@/src/components/ui/separator";
 import { Badge } from "@/src/components/ui/badge";
-import { Button } from "@/src/components/ui/button"
+import { Button, buttonVariants } from "@/src/components/ui/button"
 
-import { BookA, Languages } from "lucide-react";
+import { BookA, Languages, Plus } from "lucide-react";
 import TestModeSwitch from "./components/test-mode";
 import LocaleButton from "./components/locale-btn";
 import { BACKEND_URL, ClientWithJwt, Locales, Settings, responseStatus } from "@paybox/common";
 import ChangePassword from "./components/change-password";
 import SetClientJwtWrapper from "@/src/components/set-client-jwt-wrapper";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/src/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/src/components/ui/dialog";
+import { cn } from "@/src/lib/utils";
+import { ScrollArea } from "@/src/components/ui/scroll-area";
+import Link from "next/link";
+import { getAddressbook } from "@/src/actions/book";
+import { getSettings } from "@/src/actions/settings";
 
 
-
-const getSettings = async (jwt: string) => {
-    try {
-        const { status, settings, msg }:
-            { status: responseStatus, settings: any, msg?: string }
-            = await fetch(`${BACKEND_URL}/settings/`, {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json",
-                    "content-encoding": "gzip",
-                    authorization: `Bearer ${jwt}`,
-                },
-                cache: "no-cache"
-            }).then(res => res.json());
-        if (status === responseStatus.Error) {
-            console.log(msg)
-            return null;
-        }
-        return settings;
-    } catch (error) {
-        console.log(error);
-        return null
-    }
-}
-
-const getAddressbook = async (jwt: string) => {
-    try {
-        const { status, book, msg }:
-            { status: responseStatus, book: any, msg?: string }
-            = await fetch(`${BACKEND_URL}/book/`, {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json",
-                    authorization: `Bearer ${jwt}`,
-                },
-                cache: "no-cache"
-            }).then(res => res.json());
-        if (status === responseStatus.Error) {
-            console.log(msg)
-            return null;
-        }
-        return book;
-    } catch (error) {
-        console.log(error);
-        return null
-    }
-
-}
 
 export default async function Home({
     params,
@@ -124,26 +81,51 @@ export default async function Home({
                             </DialogTrigger>
                             <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader className=" flex flex-row justify-between items-center">
-                                    <div className="w-5/6 flex flex-col gap-y-2">
-                                        <DialogTitle>Address Book</DialogTitle>
+                                    <div className="w-11/12 flex flex-col gap-y-2">
+                                        <DialogTitle>
+                                            <span className="font-bold">Address Book</span>
+                                        </DialogTitle>
                                         <DialogDescription>
                                             Save you most used addresses here...
                                         </DialogDescription>
                                     </div>
                                 </DialogHeader>
-                                <div className="flex flex-col gap-y-2">
-                                    {book && book.map((b: any) => (
-                                        <Button variant={"secondary"} key={b.id} className="flex justify-between">
-                                            <span>{b.name}</span>
-                                            <span>{b.publicKey}</span>
+                                <ScrollArea>
+                                    <div className="flex flex-col gap-y-2">
+                                        {book && book.map((b: any) => (
+                                            <Button variant={"secondary"} key={b.id} className="flex justify-between">
+                                                <span>{b.name}</span>
+                                                <span>{b.publicKey}</span>
+                                            </Button>
+                                        ))}
+                                    </div>
+                                </ScrollArea>
+                                <DialogFooter className="w-full gap-x-2">
+                                    <Link
+                                        href={"/account/import/book"}
+                                        target="_self"
+                                        rel="noreferrer"
+                                        className="w-1/2"
+                                    >
+                                        <div
+                                            className={cn(
+                                                buttonVariants({
+                                                    variant: "secondary",
+                                                }),
+                                                "w-full px-0 mr-1 gap-x-2 flex justify-center items-center"
+                                            )}
+                                        >
+                                            <Plus className="h-4 w-4" />
+                                            <span>Add Address</span>
+                                            <span className="sr-only">Add Address</span>
+                                        </div>
+                                    </Link>
+                                    <DialogClose className="w-1/2">
+                                        <Button className="w-full">
+                                            Close
                                         </Button>
-                                    ))}
-                                </div>
-                                <DialogClose>
-                                    <Button>
-                                        Close
-                                    </Button>
-                                </DialogClose>
+                                    </DialogClose>
+                                </DialogFooter>
                             </DialogContent>
                         </Dialog>
                     </div>
