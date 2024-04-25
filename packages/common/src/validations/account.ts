@@ -87,7 +87,7 @@ export const publicKeyType = z.union([
         message: "Invalid Ethereum address",
     }),
     z.string().refine(isBitcoinPublicKey, {
-        message: "Invalid Ethereum address",
+        message: "Invalid Bitcoin address",
     }),
 ]);
 

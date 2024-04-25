@@ -310,3 +310,10 @@ export const BtcNets = Object.keys(BitcoinCluster).map((key) => {
     label: key,
   }
 });
+
+export const chains = Object.keys(Network).map((key) => {
+  return {
+    value: Network[key as keyof typeof Network],
+    label: key,
+  }
+})
