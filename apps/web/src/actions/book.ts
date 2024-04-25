@@ -14,7 +14,7 @@ export const getAddressbook = async (jwt: string) => {
                 },
                 cache: "no-cache",
                 next: {
-                    tags: ["book"]
+                    tags: ["book"],
                 }
             }).then(res => res.json());
         if (status === responseStatus.Error) {

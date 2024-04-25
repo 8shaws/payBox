@@ -114,3 +114,46 @@ export const deleteBook = async (
         status: dbResStatus.Error
     }
 }
+
+/**
+ * 
+ * @param id 
+ * @param name 
+ * @param publicKey 
+ * @param chain 
+ * @param tag 
+ * @returns 
+ */
+export const updateBook = async (
+    id: string,
+    name?: string,
+    publicKey?: string,
+    chain?: string,
+    tag?: string
+): Promise<{
+    status: dbResStatus,
+}> => {
+    const response = await ins("mutation") ({
+        update_address_book: [{
+            where: {
+                id: {_eq: id}
+            },
+            _set: {
+                name,
+                publicKey,
+                chain,
+                tag
+            }
+        }, {
+            affected_rows: true
+        }]
+    }, {operationName: "update_address_book"});
+    if(response.update_address_book?.affected_rows) {
+        return {
+            status: dbResStatus.Ok
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}

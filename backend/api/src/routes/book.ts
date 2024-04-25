@@ -1,6 +1,6 @@
-import { InsertAddressBook, UUIDSchema, dbResStatus, responseStatus } from "@paybox/common";
-import { Router } from "express";
-import { deleteBook, getBook, insertAddress } from "../db/book";
+import { InsertAddressBook, UUIDSchema, UpdateBook, dbResStatus, responseStatus } from "@paybox/common";
+import { Router, response } from "express";
+import { deleteBook, getBook, insertAddress, updateBook } from "../db/book";
 
 export const bookRouter = Router();
 
@@ -112,4 +112,38 @@ bookRouter.delete('/', async (req, res) => {
             msg: "Internal server error"
         });
     }
-});
+}); 
+
+bookRouter.put('/', async (req, res) => {
+    try {
+        //@ts-ignore
+        const id = req.id;
+        if(id) {
+            const {id: bookId, chain, name, publicKey, tag} = UpdateBook.parse(req.body);
+
+            const {status} = await updateBook(bookId, name, publicKey, chain, tag);
+            if(status == dbResStatus.Error) {
+                return res.status(500).json({
+                    status: responseStatus.Error,
+                    msg: "Datatbase error"
+                });
+            }
+
+            return res.status(200).json({
+                status: responseStatus.Ok,
+                msg: "Address Book Updated"
+            });
+
+        }
+        return res.status(401).json({
+            status: responseStatus.Ok,
+            msg: "Unauthorized"
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            status: responseStatus.Error,
+            msg: "Internal Server Error"
+        })
+    }
+})

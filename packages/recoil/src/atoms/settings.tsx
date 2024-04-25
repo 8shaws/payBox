@@ -1,4 +1,4 @@
-import { BitcoinCluster, EthCluster, SolCluster } from "@paybox/common";
+import { AddressBook, BitcoinCluster, EthCluster, SolCluster } from "@paybox/common";
 import { atom, atomFamily } from "recoil";
 
 export const testmodeAtom = atom<boolean>({
@@ -22,4 +22,7 @@ export const solNetAtom = atom<SolCluster>({
 });
 
 
-
+export const booksAtom = atom<AddressBook[]>({
+    key: "booksAtom",
+    default: []
+});
