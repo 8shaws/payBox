@@ -42,7 +42,7 @@
   "dependencies": {
     "@microsoft/eslint-formatter-sarif": "2.1.7",
     "anchor": "^1.4.1",
-    "esbuild": "^0.19.11",
+    "esbuild": "^0.20.2",
     "eslint": "8.10.0",
     "husky": "^9.0.10",
     "next": "^14.1.3",
