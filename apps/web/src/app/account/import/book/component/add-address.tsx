@@ -95,11 +95,11 @@ function AddAddressBook({
 
         toast.promise(call(), {
             loading: "Adding address...",
-            success: ({id}) => {
+            success: ({ id }) => {
                 setBook((old) => [...old, { ...data, id } as AddressBook]);
                 return "Address added";
             },
-            error: ({msg}) => {
+            error: ({ msg }) => {
                 return msg;
             }
         });
@@ -217,9 +217,7 @@ function AddAddressBook({
                             <DialogClose className="w-full">
                                 <Button className="w-full" variant="secondary">Cancel</Button>
                             </DialogClose>
-                            <DialogClose className="w-full">
-                                <Button className="w-full" type="submit">Submit</Button>
-                            </DialogClose>
+                            <Button className="w-full" type="submit">Submit</Button>
                         </DialogFooter>
                     </form>
                 </Form>

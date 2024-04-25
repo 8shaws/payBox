@@ -9,106 +9,69 @@ import {
     CardHeader,
     CardTitle,
 } from "@/src/components/ui/card";
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/src/components/ui/dialog";
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/src/components/ui/avatar"
 
-import { ScrollArea } from "@/src/components/ui/scroll-area";
-import { Button, buttonVariants } from "@/src/components/ui/button";
-import { AddressBook, Network } from "@paybox/common";
-import { Separator } from "@/src/components/ui/separator";
-import { getIcon } from "@/src/actions/icon";
-import { cn } from "@/src/lib/utils";
-import RemoveButton from "./component/rm-button";
+import { PlusCircle } from "lucide-react";
+import AddAddressBook from "./component/add-address";
+import { Wrapper } from "../../warpLayout";
+import { redirect } from "next/navigation";
+import { toast } from "sonner";
+import ShowBook from "./component/show-book";
 
 
 
 export default async function Page({
-    params
-}: { params: { id: string } }) {
+    params,
+    searchParams
+}: {
+    params: { id: string },
+    searchParams: { [key: string]: string | string[] | undefined }
+}) {
     const session = await getServerSession(authOptions);
+
+    if (!session) {
+        redirect('/signup');
+    }
+
     //@ts-ignore
     const jwt = session?.user.jwt as string;
 
     const book = await getAddressbook(jwt);
 
     return (
-        <div className="flex justify-center items-center h-full">
-            <Card className="w-[450px]">
-                <CardHeader>
-                    <CardTitle>Address Book</CardTitle>
-                    <CardDescription>A currated list of your stored address...</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <ScrollArea className="h-72 w-full rounded-md border">
-                        <div className="flex flex-col">
-                            {book && book.map((address: AddressBook) => {
-                                const icon = getIcon(address.chain);
-                                return (
+        <Wrapper session={session} >
+            <div className="flex justify-center items-center h-full">
+                <Card className="w-[450px] h-fit">
+                    <CardHeader className="pt-4">
+                        <CardTitle className="flex justify-between items-center pt-0">
+                            <p className="text-center text-lg">Address Book</p>
+                            <div className="">
+                                <AddAddressBook type="plus" open={searchParams.open == "true" ? true : false} />
+                            </div>
+                        </CardTitle>
+                        <CardDescription>A currated list of your stored address...</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        {book.length > 0 ?
+                            <ShowBook book={book} />
+                            :
+                            <div className="flex flex-col justify-center items-center h-72 w-full gap-y-12">
+                                <div className="flex flex-col items-center justify-center gap-y-4">
+                                    <PlusCircle className="w-10 h-10" />
+                                    <div className="space-y-1">
+                                        <p className="text-center">Your Address Book is empty</p>
+                                        <p className="text-center text-muted-foreground">Click on the '+' or 'Add Address' button to save frequently used address...</p>
+                                    </div>
+                                </div>
+                                <AddAddressBook type="button" />
+                            </div>
+                        }
+                    </CardContent>
+                    <CardFooter>
+                        <p>Made with 💙 love by Paybox</p>
+                    </CardFooter>
+                </Card>
 
-                                    <Dialog>
-                                        <DialogTrigger>
-                                            <Button
-                                                variant={"ghost"}
-                                                key={address.id}
-                                                className="flex gap-x-4 rounded-none w-full h-fit py-4"
-                                            >
-                                                <Avatar>
-                                                    <AvatarImage src="https://github.com/shawakash.pn" alt="@shadcn" />
-                                                    <AvatarFallback>{address.name.slice(0, 2).toLocaleUpperCase()}</AvatarFallback>
-                                                </Avatar>
-                                                <div className="">
-                                                    <p className="text-base h-1/2 font-semibold w-full text-start">{address.name}</p>
-                                                    <p className="text-muted-foreground w-full h-1/2 text-start font-normal">{address.publicKey.slice(0, 4) + "..." + address.publicKey.slice(address.publicKey.length - 4)}</p>
-                                                </div>
-                                                <div className="flex flex-grow" />
-                                                <div className="">
-                                                    <icon.icon className="w-6 h-6" />
-                                                </div>
-                                            </Button>
-                                            <Separator />
-                                        </DialogTrigger>
-                                        <DialogContent>
-                                            <DialogHeader>
-                                                <DialogTitle>Edit Address</DialogTitle>
-                                            </DialogHeader>
-                                            <DialogFooter className="w-full h-fit flex sm:flex-col gap-y-2">
-                                                <DialogClose>
-                                                    <RemoveButton jwt={jwt} id={address.id} />
-                                                </DialogClose>
-                                                <div className="flex w-full flex-row gap-x-4">
-                                                    <Button variant={"secondary"} className="w-1/2">
-                                                        Cancel
-                                                    </Button>
-                                                    <DialogClose className="w-1/2">
-                                                        <Button className="w-full">Close</Button>
-                                                    </DialogClose>
-                                                </div>
-                                            </DialogFooter>
-                                        </DialogContent>
-                                    </Dialog>
-                                )
-                            })}
-                        </div>
-                    </ScrollArea>
-                </CardContent>
-                <CardFooter>
-                    <p>Made with 💙 love by Paybox</p>
-                </CardFooter>
-            </Card>
-
-        </div>
+            </div>
+        </Wrapper>
     );
 }
