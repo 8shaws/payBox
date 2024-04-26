@@ -5277,6 +5277,7 @@ export type ValueTypes = {
   };
   /** settings for client */
   ["client_settings"]: AliasType<{
+    btcExp?: boolean | `@${string}`;
     btcNet?: boolean | `@${string}`;
     /** An object relationship */
     client?: ValueTypes["client"];
@@ -5284,11 +5285,13 @@ export type ValueTypes = {
     /** An object relationship */
     connection?: ValueTypes["connections"];
     createdAt?: boolean | `@${string}`;
+    ethExp?: boolean | `@${string}`;
     ethNet?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
+    solExp?: boolean | `@${string}`;
     solNet?: boolean | `@${string}`;
     testmode?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -5334,6 +5337,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    btcExp?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     btcNet?:
       | ValueTypes["String_comparison_exp"]
       | undefined
@@ -5356,6 +5364,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    ethExp?:
+      | ValueTypes["String_comparison_exp"]
       | undefined
       | null
       | Variable<any, string>;
@@ -5384,6 +5397,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    solExp?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     solNet?:
       | ValueTypes["String_comparison_exp"]
       | undefined
@@ -5404,6 +5422,7 @@ export type ValueTypes = {
   ["client_settings_constraint"]: client_settings_constraint;
   /** input type for inserting data into table "client_settings" */
   ["client_settings_insert_input"]: {
+    btcExp?: string | undefined | null | Variable<any, string>;
     btcNet?: string | undefined | null | Variable<any, string>;
     client?:
       | ValueTypes["client_obj_rel_insert_input"]
@@ -5421,11 +5440,13 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    ethExp?: string | undefined | null | Variable<any, string>;
     ethNet?: string | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     locale?: string | undefined | null | Variable<any, string>;
     preferedExplorer?: string | undefined | null | Variable<any, string>;
     preferedWallet?: string | undefined | null | Variable<any, string>;
+    solExp?: string | undefined | null | Variable<any, string>;
     solNet?: string | undefined | null | Variable<any, string>;
     testmode?: boolean | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -5436,28 +5457,34 @@ export type ValueTypes = {
   };
   /** aggregate max on columns */
   ["client_settings_max_fields"]: AliasType<{
+    btcExp?: boolean | `@${string}`;
     btcNet?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    ethExp?: boolean | `@${string}`;
     ethNet?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
+    solExp?: boolean | `@${string}`;
     solNet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** aggregate min on columns */
   ["client_settings_min_fields"]: AliasType<{
+    btcExp?: boolean | `@${string}`;
     btcNet?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    ethExp?: boolean | `@${string}`;
     ethNet?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
+    solExp?: boolean | `@${string}`;
     solNet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
@@ -5496,6 +5523,7 @@ export type ValueTypes = {
   };
   /** Ordering options when selecting data from "client_settings". */
   ["client_settings_order_by"]: {
+    btcExp?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     btcNet?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     client?:
       | ValueTypes["client_order_by"]
@@ -5517,6 +5545,7 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    ethExp?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     ethNet?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     locale?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
@@ -5530,6 +5559,7 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    solExp?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     solNet?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     testmode?:
       | ValueTypes["order_by"]
@@ -5550,6 +5580,7 @@ export type ValueTypes = {
   ["client_settings_select_column"]: client_settings_select_column;
   /** input type for updating data in table "client_settings" */
   ["client_settings_set_input"]: {
+    btcExp?: string | undefined | null | Variable<any, string>;
     btcNet?: string | undefined | null | Variable<any, string>;
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
@@ -5557,11 +5588,13 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    ethExp?: string | undefined | null | Variable<any, string>;
     ethNet?: string | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     locale?: string | undefined | null | Variable<any, string>;
     preferedExplorer?: string | undefined | null | Variable<any, string>;
     preferedWallet?: string | undefined | null | Variable<any, string>;
+    solExp?: string | undefined | null | Variable<any, string>;
     solNet?: string | undefined | null | Variable<any, string>;
     testmode?: boolean | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -5585,6 +5618,7 @@ export type ValueTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["client_settings_stream_cursor_value_input"]: {
+    btcExp?: string | undefined | null | Variable<any, string>;
     btcNet?: string | undefined | null | Variable<any, string>;
     clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
@@ -5592,11 +5626,13 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    ethExp?: string | undefined | null | Variable<any, string>;
     ethNet?: string | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     locale?: string | undefined | null | Variable<any, string>;
     preferedExplorer?: string | undefined | null | Variable<any, string>;
     preferedWallet?: string | undefined | null | Variable<any, string>;
+    solExp?: string | undefined | null | Variable<any, string>;
     solNet?: string | undefined | null | Variable<any, string>;
     testmode?: boolean | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -16482,6 +16518,7 @@ export type ResolverInputTypes = {
   };
   /** settings for client */
   ["client_settings"]: AliasType<{
+    btcExp?: boolean | `@${string}`;
     btcNet?: boolean | `@${string}`;
     /** An object relationship */
     client?: ResolverInputTypes["client"];
@@ -16489,11 +16526,13 @@ export type ResolverInputTypes = {
     /** An object relationship */
     connection?: ResolverInputTypes["connections"];
     createdAt?: boolean | `@${string}`;
+    ethExp?: boolean | `@${string}`;
     ethNet?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
+    solExp?: boolean | `@${string}`;
     solNet?: boolean | `@${string}`;
     testmode?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -16532,6 +16571,7 @@ export type ResolverInputTypes = {
       | Array<ResolverInputTypes["client_settings_bool_exp"]>
       | undefined
       | null;
+    btcExp?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     btcNet?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
     clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
@@ -16540,6 +16580,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
       | null;
+    ethExp?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     ethNet?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     locale?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
@@ -16551,6 +16592,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["String_comparison_exp"]
       | undefined
       | null;
+    solExp?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     solNet?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     testmode?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null;
     updatedAt?:
@@ -16562,6 +16604,7 @@ export type ResolverInputTypes = {
   ["client_settings_constraint"]: client_settings_constraint;
   /** input type for inserting data into table "client_settings" */
   ["client_settings_insert_input"]: {
+    btcExp?: string | undefined | null;
     btcNet?: string | undefined | null;
     client?:
       | ResolverInputTypes["client_obj_rel_insert_input"]
@@ -16573,39 +16616,47 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethExp?: string | undefined | null;
     ethNet?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     locale?: string | undefined | null;
     preferedExplorer?: string | undefined | null;
     preferedWallet?: string | undefined | null;
+    solExp?: string | undefined | null;
     solNet?: string | undefined | null;
     testmode?: boolean | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
   /** aggregate max on columns */
   ["client_settings_max_fields"]: AliasType<{
+    btcExp?: boolean | `@${string}`;
     btcNet?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    ethExp?: boolean | `@${string}`;
     ethNet?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
+    solExp?: boolean | `@${string}`;
     solNet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** aggregate min on columns */
   ["client_settings_min_fields"]: AliasType<{
+    btcExp?: boolean | `@${string}`;
     btcNet?: boolean | `@${string}`;
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    ethExp?: boolean | `@${string}`;
     ethNet?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     locale?: boolean | `@${string}`;
     preferedExplorer?: boolean | `@${string}`;
     preferedWallet?: boolean | `@${string}`;
+    solExp?: boolean | `@${string}`;
     solNet?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
@@ -16635,16 +16686,19 @@ export type ResolverInputTypes = {
   };
   /** Ordering options when selecting data from "client_settings". */
   ["client_settings_order_by"]: {
+    btcExp?: ResolverInputTypes["order_by"] | undefined | null;
     btcNet?: ResolverInputTypes["order_by"] | undefined | null;
     client?: ResolverInputTypes["client_order_by"] | undefined | null;
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     connection?: ResolverInputTypes["connections_order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    ethExp?: ResolverInputTypes["order_by"] | undefined | null;
     ethNet?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     locale?: ResolverInputTypes["order_by"] | undefined | null;
     preferedExplorer?: ResolverInputTypes["order_by"] | undefined | null;
     preferedWallet?: ResolverInputTypes["order_by"] | undefined | null;
+    solExp?: ResolverInputTypes["order_by"] | undefined | null;
     solNet?: ResolverInputTypes["order_by"] | undefined | null;
     testmode?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
@@ -16657,14 +16711,17 @@ export type ResolverInputTypes = {
   ["client_settings_select_column"]: client_settings_select_column;
   /** input type for updating data in table "client_settings" */
   ["client_settings_set_input"]: {
+    btcExp?: string | undefined | null;
     btcNet?: string | undefined | null;
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethExp?: string | undefined | null;
     ethNet?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     locale?: string | undefined | null;
     preferedExplorer?: string | undefined | null;
     preferedWallet?: string | undefined | null;
+    solExp?: string | undefined | null;
     solNet?: string | undefined | null;
     testmode?: boolean | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
@@ -16678,14 +16735,17 @@ export type ResolverInputTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["client_settings_stream_cursor_value_input"]: {
+    btcExp?: string | undefined | null;
     btcNet?: string | undefined | null;
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    ethExp?: string | undefined | null;
     ethNet?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     locale?: string | undefined | null;
     preferedExplorer?: string | undefined | null;
     preferedWallet?: string | undefined | null;
+    solExp?: string | undefined | null;
     solNet?: string | undefined | null;
     testmode?: boolean | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
@@ -24019,6 +24079,7 @@ export type ModelTypes = {
   };
   /** settings for client */
   ["client_settings"]: {
+    btcExp: string;
     btcNet: string;
     /** An object relationship */
     client: ModelTypes["client"];
@@ -24026,11 +24087,13 @@ export type ModelTypes = {
     /** An object relationship */
     connection?: ModelTypes["connections"] | undefined;
     createdAt: ModelTypes["timestamptz"];
+    ethExp: string;
     ethNet: string;
     id: ModelTypes["uuid"];
     locale: string;
     preferedExplorer: string;
     preferedWallet: string;
+    solExp: string;
     solNet: string;
     testmode: boolean;
     updatedAt: ModelTypes["timestamptz"];
@@ -24051,16 +24114,19 @@ export type ModelTypes = {
     _and?: Array<ModelTypes["client_settings_bool_exp"]> | undefined;
     _not?: ModelTypes["client_settings_bool_exp"] | undefined;
     _or?: Array<ModelTypes["client_settings_bool_exp"]> | undefined;
+    btcExp?: ModelTypes["String_comparison_exp"] | undefined;
     btcNet?: ModelTypes["String_comparison_exp"] | undefined;
     client?: ModelTypes["client_bool_exp"] | undefined;
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     connection?: ModelTypes["connections_bool_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    ethExp?: ModelTypes["String_comparison_exp"] | undefined;
     ethNet?: ModelTypes["String_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
     locale?: ModelTypes["String_comparison_exp"] | undefined;
     preferedExplorer?: ModelTypes["String_comparison_exp"] | undefined;
     preferedWallet?: ModelTypes["String_comparison_exp"] | undefined;
+    solExp?: ModelTypes["String_comparison_exp"] | undefined;
     solNet?: ModelTypes["String_comparison_exp"] | undefined;
     testmode?: ModelTypes["Boolean_comparison_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
@@ -24068,43 +24134,52 @@ export type ModelTypes = {
   ["client_settings_constraint"]: client_settings_constraint;
   /** input type for inserting data into table "client_settings" */
   ["client_settings_insert_input"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     connection?: ModelTypes["connections_obj_rel_insert_input"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     testmode?: boolean | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
   ["client_settings_max_fields"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
   ["client_settings_min_fields"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
@@ -24129,16 +24204,19 @@ export type ModelTypes = {
   };
   /** Ordering options when selecting data from "client_settings". */
   ["client_settings_order_by"]: {
+    btcExp?: ModelTypes["order_by"] | undefined;
     btcNet?: ModelTypes["order_by"] | undefined;
     client?: ModelTypes["client_order_by"] | undefined;
     clientId?: ModelTypes["order_by"] | undefined;
     connection?: ModelTypes["connections_order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
+    ethExp?: ModelTypes["order_by"] | undefined;
     ethNet?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     locale?: ModelTypes["order_by"] | undefined;
     preferedExplorer?: ModelTypes["order_by"] | undefined;
     preferedWallet?: ModelTypes["order_by"] | undefined;
+    solExp?: ModelTypes["order_by"] | undefined;
     solNet?: ModelTypes["order_by"] | undefined;
     testmode?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
@@ -24150,14 +24228,17 @@ export type ModelTypes = {
   ["client_settings_select_column"]: client_settings_select_column;
   /** input type for updating data in table "client_settings" */
   ["client_settings_set_input"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     testmode?: boolean | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -24171,14 +24252,17 @@ export type ModelTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["client_settings_stream_cursor_value_input"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     testmode?: boolean | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -28560,6 +28644,7 @@ export type GraphQLTypes = {
   /** settings for client */
   ["client_settings"]: {
     __typename: "client_settings";
+    btcExp: string;
     btcNet: string;
     /** An object relationship */
     client: GraphQLTypes["client"];
@@ -28567,11 +28652,13 @@ export type GraphQLTypes = {
     /** An object relationship */
     connection?: GraphQLTypes["connections"] | undefined;
     createdAt: GraphQLTypes["timestamptz"];
+    ethExp: string;
     ethNet: string;
     id: GraphQLTypes["uuid"];
     locale: string;
     preferedExplorer: string;
     preferedWallet: string;
+    solExp: string;
     solNet: string;
     testmode: boolean;
     updatedAt: GraphQLTypes["timestamptz"];
@@ -28594,16 +28681,19 @@ export type GraphQLTypes = {
     _and?: Array<GraphQLTypes["client_settings_bool_exp"]> | undefined;
     _not?: GraphQLTypes["client_settings_bool_exp"] | undefined;
     _or?: Array<GraphQLTypes["client_settings_bool_exp"]> | undefined;
+    btcExp?: GraphQLTypes["String_comparison_exp"] | undefined;
     btcNet?: GraphQLTypes["String_comparison_exp"] | undefined;
     client?: GraphQLTypes["client_bool_exp"] | undefined;
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     connection?: GraphQLTypes["connections_bool_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    ethExp?: GraphQLTypes["String_comparison_exp"] | undefined;
     ethNet?: GraphQLTypes["String_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     locale?: GraphQLTypes["String_comparison_exp"] | undefined;
     preferedExplorer?: GraphQLTypes["String_comparison_exp"] | undefined;
     preferedWallet?: GraphQLTypes["String_comparison_exp"] | undefined;
+    solExp?: GraphQLTypes["String_comparison_exp"] | undefined;
     solNet?: GraphQLTypes["String_comparison_exp"] | undefined;
     testmode?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
@@ -28612,16 +28702,19 @@ export type GraphQLTypes = {
   ["client_settings_constraint"]: client_settings_constraint;
   /** input type for inserting data into table "client_settings" */
   ["client_settings_insert_input"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     connection?: GraphQLTypes["connections_obj_rel_insert_input"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     testmode?: boolean | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -28629,28 +28722,34 @@ export type GraphQLTypes = {
   /** aggregate max on columns */
   ["client_settings_max_fields"]: {
     __typename: "client_settings_max_fields";
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
   ["client_settings_min_fields"]: {
     __typename: "client_settings_min_fields";
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
@@ -28676,16 +28775,19 @@ export type GraphQLTypes = {
   };
   /** Ordering options when selecting data from "client_settings". */
   ["client_settings_order_by"]: {
+    btcExp?: GraphQLTypes["order_by"] | undefined;
     btcNet?: GraphQLTypes["order_by"] | undefined;
     client?: GraphQLTypes["client_order_by"] | undefined;
     clientId?: GraphQLTypes["order_by"] | undefined;
     connection?: GraphQLTypes["connections_order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
+    ethExp?: GraphQLTypes["order_by"] | undefined;
     ethNet?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     locale?: GraphQLTypes["order_by"] | undefined;
     preferedExplorer?: GraphQLTypes["order_by"] | undefined;
     preferedWallet?: GraphQLTypes["order_by"] | undefined;
+    solExp?: GraphQLTypes["order_by"] | undefined;
     solNet?: GraphQLTypes["order_by"] | undefined;
     testmode?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
@@ -28698,14 +28800,17 @@ export type GraphQLTypes = {
   ["client_settings_select_column"]: client_settings_select_column;
   /** input type for updating data in table "client_settings" */
   ["client_settings_set_input"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     testmode?: boolean | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -28719,14 +28824,17 @@ export type GraphQLTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["client_settings_stream_cursor_value_input"]: {
+    btcExp?: string | undefined;
     btcNet?: string | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    ethExp?: string | undefined;
     ethNet?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     locale?: string | undefined;
     preferedExplorer?: string | undefined;
     preferedWallet?: string | undefined;
+    solExp?: string | undefined;
     solNet?: string | undefined;
     testmode?: boolean | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -31683,28 +31791,34 @@ export const enum client_settings_constraint {
 }
 /** select columns of table "client_settings" */
 export const enum client_settings_select_column {
+  btcExp = "btcExp",
   btcNet = "btcNet",
   clientId = "clientId",
   createdAt = "createdAt",
+  ethExp = "ethExp",
   ethNet = "ethNet",
   id = "id",
   locale = "locale",
   preferedExplorer = "preferedExplorer",
   preferedWallet = "preferedWallet",
+  solExp = "solExp",
   solNet = "solNet",
   testmode = "testmode",
   updatedAt = "updatedAt",
 }
 /** update columns of table "client_settings" */
 export const enum client_settings_update_column {
+  btcExp = "btcExp",
   btcNet = "btcNet",
   clientId = "clientId",
   createdAt = "createdAt",
+  ethExp = "ethExp",
   ethNet = "ethNet",
   id = "id",
   locale = "locale",
   preferedExplorer = "preferedExplorer",
   preferedWallet = "preferedWallet",
+  solExp = "solExp",
   solNet = "solNet",
   testmode = "testmode",
   updatedAt = "updatedAt",
