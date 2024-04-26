@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - 'docker/**'
+      - 'backend/**'
   pull_request:
     branches:
       - dev
+    paths:
+      - 'docker/**'
+      - 'backend/**'
 
 jobs:
 
@@ -82,7 +88,7 @@ jobs:
       - name: Push @paybox/common Docker image
         run: docker push shawakash/paybox-common:${{ github.sha }}
         
-  chains_image:
+  blockchain_image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -94,11 +100,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build @paybox/chains Docker image
-        run: docker build -t shawakash/paybox-chains:${{ github.sha }} -f ./docker/chains/Dockerfile .
+      - name: Build @paybox/blockchain Docker image
+        run: docker build -t shawakash/paybox-blockchain:${{ github.sha }} -f ./docker/blockchain/Dockerfile .
 
       - name: Push @paybox/chains Docker image
-        run: docker push shawakash/paybox-chains:${{ github.sha }}
+        run: docker push shawakash/paybox-blockchain:${{ github.sha }}
 
   recoil_image:
     runs-on: ubuntu-latest

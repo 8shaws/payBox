@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - 'backend/mail/**'
   pull_request:
     branches:
       - dev
+    paths:
+      - 'backend/mail/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest

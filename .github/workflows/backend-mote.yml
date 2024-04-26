@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - 'backend/mote/**'
   pull_request:
     branches:
       - dev
+    paths:
+      - 'backend/mote/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest

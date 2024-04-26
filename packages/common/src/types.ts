@@ -16,6 +16,7 @@ import {Message} from "@solana/web3.js";
 import {BitcoinCluster, EthCluster, SolCluster, USDCCluster} from "./constant";
 import {Cluster} from "@solana/web3.js";
 import { BitcoinChainId, BitcoinToken, EthChainId, EthToken, MsgTopics, Network, NotifTopics, SolChainId, SolToken, TopicTypes, WsMessageTypeEnum, hookStatus } from "./enum";
+import { BtcExplorer, EthExplorer, SolExplorer } from "./settings";
 
 
 
@@ -132,33 +133,18 @@ export type AccountType = {
 
 export type SolKey = {
     publicKey: string,
-    devnetSol: number,
-    mainnetSol: number,
-    testnetSol: number,
 }
 
 export type EthKey = {
     publicKey: string,
-    goerliEth: number,
-    kovanEth: number,
-    mainnetEth: number,
-    rinkebyEth: number,
-    ropstenEth: number,
-    sepoliaEth: number,
 }
 
 export type BitcoinKey = {
     publicKey: string,
-    mainnetBtc: number,
-    regtestBtc: number,
-    textnetBtc: number,
 }
 
 export type UsdcKey = {
     publicKey: string,
-    mainnetUsdc: number,
-    regtestUsdc: number,
-    textnetUsdc: number,
 }
 
 
@@ -274,6 +260,9 @@ export interface Settings {
     solNet: SolCluster,
     ethNet: EthCluster,
     btcNet: BitcoinCluster,
+    btcExp?: BtcExplorer,
+    ethExp?: EthExplorer,
+    solExp?: SolExplorer,
     id?: string,
     clientId?: string,
 }

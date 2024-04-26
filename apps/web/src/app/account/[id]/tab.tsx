@@ -27,9 +27,9 @@ import KeyTab from '@/src/components/key-tab'
 
 export const Tab = ({
     chain,
-    account
+    account,
 }: {
-    chain: "Solana" | "Ethereum",
+    chain: "Solana" | "Ethereum" | "Bitcoin",
     account?: {
         key: Pick<EthKey, "publicKey"> | Pick<SolKey, "publicKey"> | undefined,
         name: string | undefined
@@ -43,27 +43,25 @@ export const Tab = ({
 
     useEffect(() => {
         if (account) {
-            if (chain === "Ethereum") {
-                setTabData({
-                    name: account?.name,
-                    publicKey: account?.key?.publicKey
-                });
-            } else {
-                setTabData({
-                    name: account?.name,
-                    publicKey: account?.key?.publicKey
-                });
-            }
+            setTabData({
+                name: account?.name,
+                publicKey: account?.key?.publicKey
+            })
         } else {
             if (chain === "Ethereum") {
                 setTabData({
                     name: accountState?.name,
                     publicKey: accountState?.eth.publicKey
                 });
-            } else {
+            } else if(chain === "Solana") {
                 setTabData({
                     name: accountState?.name,
                     publicKey: accountState?.sol.publicKey
+                });
+            } else if(chain === "Bitcoin" && accountState?.bitcoin) {
+                setTabData({
+                    name: accountState?.name,
+                    publicKey: accountState?.bitcoin.publicKey
                 });
             }
         }

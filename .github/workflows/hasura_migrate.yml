@@ -5,12 +5,10 @@ on:
     paths:
       - 'backend/hasura/**'
     branches:
-      - hasura_workflow
       - dev
   pull_request:
     branches:
       - dev
-      - hasura_workflow
     paths:
       - 'backend/hasura/**'
 

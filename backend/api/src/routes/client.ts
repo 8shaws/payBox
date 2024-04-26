@@ -43,6 +43,7 @@ import {
 import { SolOps } from "../sockets/sol";
 import { EthOps } from "../sockets/eth";
 import { NotifWorker } from "../workers/notfi";
+import { Bitcoin } from "../../../../packages/blockchain/dist";
 
 export const clientRouter = Router();
 
@@ -155,8 +156,9 @@ clientRouter.patch("/valid", extractClientId, isValidated, async (req, res) => {
       const seed = generateSeed(SECRET_PHASE_STRENGTH);
       const solKeys = await (new SolOps()).createWallet(seed, hashPassword);
       const ethKeys = (new EthOps()).createWallet(seed, hashPassword);
+      const btcKeys = await Bitcoin.getInstance().genRand();
 
-      const validate = await validateClient(id, seed, 'Account 1', solKeys, ethKeys);
+      const validate = await validateClient(id, seed, 'Account 1', solKeys, ethKeys, btcKeys);
       if (validate.status == dbResStatus.Error || validate.walletId == undefined || validate.account == undefined) {
         return res
           .status(503)

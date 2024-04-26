@@ -13,12 +13,13 @@ COPY ["tsconfig.json", "./tsconfig.json"]
 
 COPY ["packages/typescript-config", "./packages/typescript-config"]
 COPY ["packages/eslint-config", "./packages/teslint-config"]
-COPY ["packages/chains", "./packages/chains"]
+COPY ["packages/common", "./packages/common"]
+COPY ["packages/blockchain", "./packages/blockchain"]
 
 RUN cd /base
 RUN yarn install
 RUN yarn run build
 
-WORKDIR /base/packages/chains
+WORKDIR /base/packages/blockchain
 
 CMD ["yarn", "dev"]

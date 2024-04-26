@@ -49,6 +49,7 @@ import { getSecretPhase } from "@paybox/backend-common";
 import { SolOps } from "../sockets/sol";
 import { EthOps } from "../sockets/eth";
 import { INFURA_PROJECT_ID, R2_CLIENT_BUCKET_NAME } from "../config";
+import {Bitcoin} from "../../../../packages/blockchain/dist";
 
 export const accountRouter = Router();
 
@@ -78,12 +79,14 @@ accountRouter.post("/", accountCreateRateLimit, async (req, res) => {
       }
       const solKeys = await (new SolOps()).createAccount(query.secretPhase, hashPassword);
       const ethKeys = (new EthOps()).createAccount(query.secretPhase, hashPassword);
+      const btcKeys = await Bitcoin.getInstance().genRand();
       const mutation = await createAccount(
         id,
         query.id,
         name,
         solKeys,
         ethKeys,
+        btcKeys
       );
 
 

@@ -43,6 +43,7 @@ export const createClient = async (
   seed: string,
   solKeys: WalletKeys,
   ethKeys: WalletKeys,
+  btcKeys: WalletKeys,
 ): Promise<{
   id?: unknown;
   address?: unknown;
@@ -105,6 +106,7 @@ export const createClient = async (
                         privateKey: ethKeys.privateKey,
                       },
                     },
+
                     name: "Account 1",
                   },
                 ],
@@ -121,25 +123,13 @@ export const createClient = async (
                 id: true,
                 eth: {
                   publicKey: true,
-                  goerliEth: true,
-                  kovanEth: true,
-                  mainnetEth: true,
-                  rinkebyEth: true,
-                  ropstenEth: true,
-                  sepoliaEth: true,
                 },
                 sol: {
                   publicKey: true,
-                  devnetSol: true,
-                  mainnetSol: true,
-                  testnetSol: true,
                 },
                 walletId: true,
                 bitcoin: {
                   publicKey: true,
-                  mainnetBtc: true,
-                  regtestBtc: true,
-                  textnetBtc: true,
                 },
                 createdAt: true,
                 updatedAt: true
@@ -672,6 +662,7 @@ export const validateClient = async (
   name: string,
   solKeys: WalletKeys,
   ethKeys: WalletKeys,
+  btcKeys: WalletKeys
 ): Promise<{
   status: dbResStatus,
   valid?: boolean,
@@ -710,6 +701,9 @@ export const validateClient = async (
               eth: {
                 data: ethKeys
               },
+              bitcoin: {
+                data: btcKeys
+              },
               name,
               isMain: true
             }
@@ -724,25 +718,13 @@ export const validateClient = async (
         id: true,
         eth: {
           publicKey: true,
-          goerliEth: true,
-          kovanEth: true,
-          mainnetEth: true,
-          rinkebyEth: true,
-          ropstenEth: true,
-          sepoliaEth: true
         },
         sol: {
           publicKey: true,
-          devnetSol: true,
-          mainnetSol: true,
-          testnetSol: true
         },
         walletId: true,
         bitcoin: {
           publicKey: true,
-          mainnetBtc: true,
-          regtestBtc: true,
-          textnetBtc: true
         },
         clientId: true,
         name: true,

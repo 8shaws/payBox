@@ -3,12 +3,16 @@ table:
   schema: public
 configuration:
   column_config:
+    btc_exp:
+      custom_name: btcExp
     btc_net:
       custom_name: btcNet
     client_id:
       custom_name: clientId
     created_at:
       custom_name: createdAt
+    eth_exp:
+      custom_name: ethExp
     eth_net:
       custom_name: ethNet
     locale:
@@ -17,18 +21,23 @@ configuration:
       custom_name: preferedExplorer
     prefered_wallet:
       custom_name: preferedWallet
+    sol_exp:
+      custom_name: solExp
     sol_net:
       custom_name: solNet
     updated_at:
       custom_name: updatedAt
   custom_column_names:
+    btc_exp: btcExp
     btc_net: btcNet
     client_id: clientId
     created_at: createdAt
+    eth_exp: ethExp
     eth_net: ethNet
     locale: locale
     prefered_explorer: preferedExplorer
     prefered_wallet: preferedWallet
+    sol_exp: solExp
     sol_net: solNet
     updated_at: updatedAt
   custom_root_fields: {}

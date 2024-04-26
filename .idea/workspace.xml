@@ -8,12 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract/transfers/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract/transfers/Anchor.toml" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/Anchor.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract/transfers/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract/transfers/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract/transfers/programs/transfers/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/programs/transfers/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract/transfers/programs/transfers/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/contract/transfers/programs/transfers/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/blockchains/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/blockchains/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,22 +33,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;transfer&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/phillo/code/payBox/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "btc",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/phillo/code/payBox/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -76,6 +73,7 @@
       <workItem from="1710982257738" duration="8000" />
       <workItem from="1713001219497" duration="47000" />
       <workItem from="1713001275540" duration="151000" />
+      <workItem from="1714135171363" duration="784000" />
     </task>
     <servers />
   </component>

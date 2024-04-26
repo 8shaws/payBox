@@ -928,11 +928,8 @@ export type Bitcoin = {
   accountId: Scalars['uuid']['output'];
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id: Scalars['uuid']['output'];
-  mainnetBtc: Scalars['float8']['output'];
   privateKey: Scalars['String']['output'];
   publicKey: Scalars['String']['output'];
-  regtestBtc: Scalars['float8']['output'];
-  textnetBtc: Scalars['float8']['output'];
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -946,17 +943,9 @@ export type Bitcoin_Aggregate = {
 /** aggregate fields of "bitcoin" */
 export type Bitcoin_Aggregate_Fields = {
   __typename?: 'bitcoin_aggregate_fields';
-  avg?: Maybe<Bitcoin_Avg_Fields>;
   count: Scalars['Int']['output'];
   max?: Maybe<Bitcoin_Max_Fields>;
   min?: Maybe<Bitcoin_Min_Fields>;
-  stddev?: Maybe<Bitcoin_Stddev_Fields>;
-  stddev_pop?: Maybe<Bitcoin_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Bitcoin_Stddev_Samp_Fields>;
-  sum?: Maybe<Bitcoin_Sum_Fields>;
-  var_pop?: Maybe<Bitcoin_Var_Pop_Fields>;
-  var_samp?: Maybe<Bitcoin_Var_Samp_Fields>;
-  variance?: Maybe<Bitcoin_Variance_Fields>;
 };
 
 
@@ -964,14 +953,6 @@ export type Bitcoin_Aggregate_Fields = {
 export type Bitcoin_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Bitcoin_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Bitcoin_Avg_Fields = {
-  __typename?: 'bitcoin_avg_fields';
-  mainnetBtc?: Maybe<Scalars['Float']['output']>;
-  regtestBtc?: Maybe<Scalars['Float']['output']>;
-  textnetBtc?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "bitcoin". All fields are combined with a logical 'AND'. */
@@ -983,11 +964,8 @@ export type Bitcoin_Bool_Exp = {
   accountId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  mainnetBtc?: InputMaybe<Float8_Comparison_Exp>;
   privateKey?: InputMaybe<String_Comparison_Exp>;
   publicKey?: InputMaybe<String_Comparison_Exp>;
-  regtestBtc?: InputMaybe<Float8_Comparison_Exp>;
-  textnetBtc?: InputMaybe<Float8_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -1005,24 +983,14 @@ export enum Bitcoin_Constraint {
   BitcoinWalletIdKey = 'bitcoin_walletId_key'
 }
 
-/** input type for incrementing numeric columns in table "bitcoin" */
-export type Bitcoin_Inc_Input = {
-  mainnetBtc?: InputMaybe<Scalars['float8']['input']>;
-  regtestBtc?: InputMaybe<Scalars['float8']['input']>;
-  textnetBtc?: InputMaybe<Scalars['float8']['input']>;
-};
-
 /** input type for inserting data into table "bitcoin" */
 export type Bitcoin_Insert_Input = {
   account?: InputMaybe<Account_Obj_Rel_Insert_Input>;
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  mainnetBtc?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  regtestBtc?: InputMaybe<Scalars['float8']['input']>;
-  textnetBtc?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -1032,11 +1000,8 @@ export type Bitcoin_Max_Fields = {
   accountId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  mainnetBtc?: Maybe<Scalars['float8']['output']>;
   privateKey?: Maybe<Scalars['String']['output']>;
   publicKey?: Maybe<Scalars['String']['output']>;
-  regtestBtc?: Maybe<Scalars['float8']['output']>;
-  textnetBtc?: Maybe<Scalars['float8']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1046,11 +1011,8 @@ export type Bitcoin_Min_Fields = {
   accountId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  mainnetBtc?: Maybe<Scalars['float8']['output']>;
   privateKey?: Maybe<Scalars['String']['output']>;
   publicKey?: Maybe<Scalars['String']['output']>;
-  regtestBtc?: Maybe<Scalars['float8']['output']>;
-  textnetBtc?: Maybe<Scalars['float8']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1083,11 +1045,8 @@ export type Bitcoin_Order_By = {
   accountId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  mainnetBtc?: InputMaybe<Order_By>;
   privateKey?: InputMaybe<Order_By>;
   publicKey?: InputMaybe<Order_By>;
-  regtestBtc?: InputMaybe<Order_By>;
-  textnetBtc?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -1105,15 +1064,9 @@ export enum Bitcoin_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  MainnetBtc = 'mainnetBtc',
-  /** column name */
   PrivateKey = 'privateKey',
   /** column name */
   PublicKey = 'publicKey',
-  /** column name */
-  RegtestBtc = 'regtestBtc',
-  /** column name */
-  TextnetBtc = 'textnetBtc',
   /** column name */
   UpdatedAt = 'updatedAt'
 }
@@ -1123,36 +1076,9 @@ export type Bitcoin_Set_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  mainnetBtc?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  regtestBtc?: InputMaybe<Scalars['float8']['input']>;
-  textnetBtc?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
-};
-
-/** aggregate stddev on columns */
-export type Bitcoin_Stddev_Fields = {
-  __typename?: 'bitcoin_stddev_fields';
-  mainnetBtc?: Maybe<Scalars['Float']['output']>;
-  regtestBtc?: Maybe<Scalars['Float']['output']>;
-  textnetBtc?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Bitcoin_Stddev_Pop_Fields = {
-  __typename?: 'bitcoin_stddev_pop_fields';
-  mainnetBtc?: Maybe<Scalars['Float']['output']>;
-  regtestBtc?: Maybe<Scalars['Float']['output']>;
-  textnetBtc?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Bitcoin_Stddev_Samp_Fields = {
-  __typename?: 'bitcoin_stddev_samp_fields';
-  mainnetBtc?: Maybe<Scalars['Float']['output']>;
-  regtestBtc?: Maybe<Scalars['Float']['output']>;
-  textnetBtc?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Streaming cursor of the table "bitcoin" */
@@ -1168,20 +1094,9 @@ export type Bitcoin_Stream_Cursor_Value_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  mainnetBtc?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  regtestBtc?: InputMaybe<Scalars['float8']['input']>;
-  textnetBtc?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Bitcoin_Sum_Fields = {
-  __typename?: 'bitcoin_sum_fields';
-  mainnetBtc?: Maybe<Scalars['float8']['output']>;
-  regtestBtc?: Maybe<Scalars['float8']['output']>;
-  textnetBtc?: Maybe<Scalars['float8']['output']>;
 };
 
 /** update columns of table "bitcoin" */
@@ -1193,50 +1108,18 @@ export enum Bitcoin_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  MainnetBtc = 'mainnetBtc',
-  /** column name */
   PrivateKey = 'privateKey',
   /** column name */
   PublicKey = 'publicKey',
-  /** column name */
-  RegtestBtc = 'regtestBtc',
-  /** column name */
-  TextnetBtc = 'textnetBtc',
   /** column name */
   UpdatedAt = 'updatedAt'
 }
 
 export type Bitcoin_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Bitcoin_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Bitcoin_Set_Input>;
   /** filter the rows which have to be updated */
   where: Bitcoin_Bool_Exp;
-};
-
-/** aggregate var_pop on columns */
-export type Bitcoin_Var_Pop_Fields = {
-  __typename?: 'bitcoin_var_pop_fields';
-  mainnetBtc?: Maybe<Scalars['Float']['output']>;
-  regtestBtc?: Maybe<Scalars['Float']['output']>;
-  textnetBtc?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Bitcoin_Var_Samp_Fields = {
-  __typename?: 'bitcoin_var_samp_fields';
-  mainnetBtc?: Maybe<Scalars['Float']['output']>;
-  regtestBtc?: Maybe<Scalars['Float']['output']>;
-  textnetBtc?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Bitcoin_Variance_Fields = {
-  __typename?: 'bitcoin_variance_fields';
-  mainnetBtc?: Maybe<Scalars['Float']['output']>;
-  regtestBtc?: Maybe<Scalars['Float']['output']>;
-  textnetBtc?: Maybe<Scalars['Float']['output']>;
 };
 
 /** list off all the centralized transactions */
@@ -2681,6 +2564,7 @@ export type Client_Set_Input = {
 /** settings for client */
 export type Client_Settings = {
   __typename?: 'client_settings';
+  btcExp: Scalars['String']['output'];
   btcNet: Scalars['String']['output'];
   /** An object relationship */
   client: Client;
@@ -2688,11 +2572,13 @@ export type Client_Settings = {
   /** An object relationship */
   connection?: Maybe<Connections>;
   createdAt: Scalars['timestamptz']['output'];
+  ethExp: Scalars['String']['output'];
   ethNet: Scalars['String']['output'];
   id: Scalars['uuid']['output'];
   locale: Scalars['String']['output'];
   preferedExplorer: Scalars['String']['output'];
   preferedWallet: Scalars['String']['output'];
+  solExp: Scalars['String']['output'];
   solNet: Scalars['String']['output'];
   testmode: Scalars['Boolean']['output'];
   updatedAt: Scalars['timestamptz']['output'];
@@ -2725,16 +2611,19 @@ export type Client_Settings_Bool_Exp = {
   _and?: InputMaybe<Array<Client_Settings_Bool_Exp>>;
   _not?: InputMaybe<Client_Settings_Bool_Exp>;
   _or?: InputMaybe<Array<Client_Settings_Bool_Exp>>;
+  btcExp?: InputMaybe<String_Comparison_Exp>;
   btcNet?: InputMaybe<String_Comparison_Exp>;
   client?: InputMaybe<Client_Bool_Exp>;
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
   connection?: InputMaybe<Connections_Bool_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  ethExp?: InputMaybe<String_Comparison_Exp>;
   ethNet?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   locale?: InputMaybe<String_Comparison_Exp>;
   preferedExplorer?: InputMaybe<String_Comparison_Exp>;
   preferedWallet?: InputMaybe<String_Comparison_Exp>;
+  solExp?: InputMaybe<String_Comparison_Exp>;
   solNet?: InputMaybe<String_Comparison_Exp>;
   testmode?: InputMaybe<Boolean_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -2750,16 +2639,19 @@ export enum Client_Settings_Constraint {
 
 /** input type for inserting data into table "client_settings" */
 export type Client_Settings_Insert_Input = {
+  btcExp?: InputMaybe<Scalars['String']['input']>;
   btcNet?: InputMaybe<Scalars['String']['input']>;
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   connection?: InputMaybe<Connections_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethExp?: InputMaybe<Scalars['String']['input']>;
   ethNet?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  solExp?: InputMaybe<Scalars['String']['input']>;
   solNet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -2768,14 +2660,17 @@ export type Client_Settings_Insert_Input = {
 /** aggregate max on columns */
 export type Client_Settings_Max_Fields = {
   __typename?: 'client_settings_max_fields';
+  btcExp?: Maybe<Scalars['String']['output']>;
   btcNet?: Maybe<Scalars['String']['output']>;
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  ethExp?: Maybe<Scalars['String']['output']>;
   ethNet?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
   preferedExplorer?: Maybe<Scalars['String']['output']>;
   preferedWallet?: Maybe<Scalars['String']['output']>;
+  solExp?: Maybe<Scalars['String']['output']>;
   solNet?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -2783,14 +2678,17 @@ export type Client_Settings_Max_Fields = {
 /** aggregate min on columns */
 export type Client_Settings_Min_Fields = {
   __typename?: 'client_settings_min_fields';
+  btcExp?: Maybe<Scalars['String']['output']>;
   btcNet?: Maybe<Scalars['String']['output']>;
   clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  ethExp?: Maybe<Scalars['String']['output']>;
   ethNet?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
   preferedExplorer?: Maybe<Scalars['String']['output']>;
   preferedWallet?: Maybe<Scalars['String']['output']>;
+  solExp?: Maybe<Scalars['String']['output']>;
   solNet?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -2820,16 +2718,19 @@ export type Client_Settings_On_Conflict = {
 
 /** Ordering options when selecting data from "client_settings". */
 export type Client_Settings_Order_By = {
+  btcExp?: InputMaybe<Order_By>;
   btcNet?: InputMaybe<Order_By>;
   client?: InputMaybe<Client_Order_By>;
   clientId?: InputMaybe<Order_By>;
   connection?: InputMaybe<Connections_Order_By>;
   createdAt?: InputMaybe<Order_By>;
+  ethExp?: InputMaybe<Order_By>;
   ethNet?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   locale?: InputMaybe<Order_By>;
   preferedExplorer?: InputMaybe<Order_By>;
   preferedWallet?: InputMaybe<Order_By>;
+  solExp?: InputMaybe<Order_By>;
   solNet?: InputMaybe<Order_By>;
   testmode?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
@@ -2843,11 +2744,15 @@ export type Client_Settings_Pk_Columns_Input = {
 /** select columns of table "client_settings" */
 export enum Client_Settings_Select_Column {
   /** column name */
+  BtcExp = 'btcExp',
+  /** column name */
   BtcNet = 'btcNet',
   /** column name */
   ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  EthExp = 'ethExp',
   /** column name */
   EthNet = 'ethNet',
   /** column name */
@@ -2859,6 +2764,8 @@ export enum Client_Settings_Select_Column {
   /** column name */
   PreferedWallet = 'preferedWallet',
   /** column name */
+  SolExp = 'solExp',
+  /** column name */
   SolNet = 'solNet',
   /** column name */
   Testmode = 'testmode',
@@ -2868,14 +2775,17 @@ export enum Client_Settings_Select_Column {
 
 /** input type for updating data in table "client_settings" */
 export type Client_Settings_Set_Input = {
+  btcExp?: InputMaybe<Scalars['String']['input']>;
   btcNet?: InputMaybe<Scalars['String']['input']>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethExp?: InputMaybe<Scalars['String']['input']>;
   ethNet?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  solExp?: InputMaybe<Scalars['String']['input']>;
   solNet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -2891,14 +2801,17 @@ export type Client_Settings_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Client_Settings_Stream_Cursor_Value_Input = {
+  btcExp?: InputMaybe<Scalars['String']['input']>;
   btcNet?: InputMaybe<Scalars['String']['input']>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  ethExp?: InputMaybe<Scalars['String']['input']>;
   ethNet?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preferedExplorer?: InputMaybe<Scalars['String']['input']>;
   preferedWallet?: InputMaybe<Scalars['String']['input']>;
+  solExp?: InputMaybe<Scalars['String']['input']>;
   solNet?: InputMaybe<Scalars['String']['input']>;
   testmode?: InputMaybe<Scalars['Boolean']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -2907,11 +2820,15 @@ export type Client_Settings_Stream_Cursor_Value_Input = {
 /** update columns of table "client_settings" */
 export enum Client_Settings_Update_Column {
   /** column name */
+  BtcExp = 'btcExp',
+  /** column name */
   BtcNet = 'btcNet',
   /** column name */
   ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  EthExp = 'ethExp',
   /** column name */
   EthNet = 'ethNet',
   /** column name */
@@ -2922,6 +2839,8 @@ export enum Client_Settings_Update_Column {
   PreferedExplorer = 'preferedExplorer',
   /** column name */
   PreferedWallet = 'preferedWallet',
+  /** column name */
+  SolExp = 'solExp',
   /** column name */
   SolNet = 'solNet',
   /** column name */
@@ -3276,15 +3195,9 @@ export type Eth = {
   account: Account;
   accountId: Scalars['uuid']['output'];
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
-  goerliEth: Scalars['float8']['output'];
   id: Scalars['uuid']['output'];
-  kovanEth: Scalars['float8']['output'];
-  mainnetEth: Scalars['float8']['output'];
   privateKey: Scalars['String']['output'];
   publicKey: Scalars['String']['output'];
-  rinkebyEth: Scalars['float8']['output'];
-  ropstenEth: Scalars['float8']['output'];
-  sepoliaEth: Scalars['float8']['output'];
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3298,17 +3211,9 @@ export type Eth_Aggregate = {
 /** aggregate fields of "eth" */
 export type Eth_Aggregate_Fields = {
   __typename?: 'eth_aggregate_fields';
-  avg?: Maybe<Eth_Avg_Fields>;
   count: Scalars['Int']['output'];
   max?: Maybe<Eth_Max_Fields>;
   min?: Maybe<Eth_Min_Fields>;
-  stddev?: Maybe<Eth_Stddev_Fields>;
-  stddev_pop?: Maybe<Eth_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Eth_Stddev_Samp_Fields>;
-  sum?: Maybe<Eth_Sum_Fields>;
-  var_pop?: Maybe<Eth_Var_Pop_Fields>;
-  var_samp?: Maybe<Eth_Var_Samp_Fields>;
-  variance?: Maybe<Eth_Variance_Fields>;
 };
 
 
@@ -3316,17 +3221,6 @@ export type Eth_Aggregate_Fields = {
 export type Eth_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Eth_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Eth_Avg_Fields = {
-  __typename?: 'eth_avg_fields';
-  goerliEth?: Maybe<Scalars['Float']['output']>;
-  kovanEth?: Maybe<Scalars['Float']['output']>;
-  mainnetEth?: Maybe<Scalars['Float']['output']>;
-  rinkebyEth?: Maybe<Scalars['Float']['output']>;
-  ropstenEth?: Maybe<Scalars['Float']['output']>;
-  sepoliaEth?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "eth". All fields are combined with a logical 'AND'. */
@@ -3337,15 +3231,9 @@ export type Eth_Bool_Exp = {
   account?: InputMaybe<Account_Bool_Exp>;
   accountId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
-  goerliEth?: InputMaybe<Float8_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  kovanEth?: InputMaybe<Float8_Comparison_Exp>;
-  mainnetEth?: InputMaybe<Float8_Comparison_Exp>;
   privateKey?: InputMaybe<String_Comparison_Exp>;
   publicKey?: InputMaybe<String_Comparison_Exp>;
-  rinkebyEth?: InputMaybe<Float8_Comparison_Exp>;
-  ropstenEth?: InputMaybe<Float8_Comparison_Exp>;
-  sepoliaEth?: InputMaybe<Float8_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -3361,30 +3249,14 @@ export enum Eth_Constraint {
   EthWalletIdKey = 'eth_walletId_key'
 }
 
-/** input type for incrementing numeric columns in table "eth" */
-export type Eth_Inc_Input = {
-  goerliEth?: InputMaybe<Scalars['float8']['input']>;
-  kovanEth?: InputMaybe<Scalars['float8']['input']>;
-  mainnetEth?: InputMaybe<Scalars['float8']['input']>;
-  rinkebyEth?: InputMaybe<Scalars['float8']['input']>;
-  ropstenEth?: InputMaybe<Scalars['float8']['input']>;
-  sepoliaEth?: InputMaybe<Scalars['float8']['input']>;
-};
-
 /** input type for inserting data into table "eth" */
 export type Eth_Insert_Input = {
   account?: InputMaybe<Account_Obj_Rel_Insert_Input>;
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
-  goerliEth?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  kovanEth?: InputMaybe<Scalars['float8']['input']>;
-  mainnetEth?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  rinkebyEth?: InputMaybe<Scalars['float8']['input']>;
-  ropstenEth?: InputMaybe<Scalars['float8']['input']>;
-  sepoliaEth?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -3393,15 +3265,9 @@ export type Eth_Max_Fields = {
   __typename?: 'eth_max_fields';
   accountId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
-  goerliEth?: Maybe<Scalars['float8']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  kovanEth?: Maybe<Scalars['float8']['output']>;
-  mainnetEth?: Maybe<Scalars['float8']['output']>;
   privateKey?: Maybe<Scalars['String']['output']>;
   publicKey?: Maybe<Scalars['String']['output']>;
-  rinkebyEth?: Maybe<Scalars['float8']['output']>;
-  ropstenEth?: Maybe<Scalars['float8']['output']>;
-  sepoliaEth?: Maybe<Scalars['float8']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3410,15 +3276,9 @@ export type Eth_Min_Fields = {
   __typename?: 'eth_min_fields';
   accountId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
-  goerliEth?: Maybe<Scalars['float8']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  kovanEth?: Maybe<Scalars['float8']['output']>;
-  mainnetEth?: Maybe<Scalars['float8']['output']>;
   privateKey?: Maybe<Scalars['String']['output']>;
   publicKey?: Maybe<Scalars['String']['output']>;
-  rinkebyEth?: Maybe<Scalars['float8']['output']>;
-  ropstenEth?: Maybe<Scalars['float8']['output']>;
-  sepoliaEth?: Maybe<Scalars['float8']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3450,15 +3310,9 @@ export type Eth_Order_By = {
   account?: InputMaybe<Account_Order_By>;
   accountId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
-  goerliEth?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  kovanEth?: InputMaybe<Order_By>;
-  mainnetEth?: InputMaybe<Order_By>;
   privateKey?: InputMaybe<Order_By>;
   publicKey?: InputMaybe<Order_By>;
-  rinkebyEth?: InputMaybe<Order_By>;
-  ropstenEth?: InputMaybe<Order_By>;
-  sepoliaEth?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -3474,23 +3328,11 @@ export enum Eth_Select_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
-  GoerliEth = 'goerliEth',
-  /** column name */
   Id = 'id',
-  /** column name */
-  KovanEth = 'kovanEth',
-  /** column name */
-  MainnetEth = 'mainnetEth',
   /** column name */
   PrivateKey = 'privateKey',
   /** column name */
   PublicKey = 'publicKey',
-  /** column name */
-  RinkebyEth = 'rinkebyEth',
-  /** column name */
-  RopstenEth = 'ropstenEth',
-  /** column name */
-  SepoliaEth = 'sepoliaEth',
   /** column name */
   UpdatedAt = 'updatedAt'
 }
@@ -3499,49 +3341,10 @@ export enum Eth_Select_Column {
 export type Eth_Set_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
-  goerliEth?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  kovanEth?: InputMaybe<Scalars['float8']['input']>;
-  mainnetEth?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  rinkebyEth?: InputMaybe<Scalars['float8']['input']>;
-  ropstenEth?: InputMaybe<Scalars['float8']['input']>;
-  sepoliaEth?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
-};
-
-/** aggregate stddev on columns */
-export type Eth_Stddev_Fields = {
-  __typename?: 'eth_stddev_fields';
-  goerliEth?: Maybe<Scalars['Float']['output']>;
-  kovanEth?: Maybe<Scalars['Float']['output']>;
-  mainnetEth?: Maybe<Scalars['Float']['output']>;
-  rinkebyEth?: Maybe<Scalars['Float']['output']>;
-  ropstenEth?: Maybe<Scalars['Float']['output']>;
-  sepoliaEth?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Eth_Stddev_Pop_Fields = {
-  __typename?: 'eth_stddev_pop_fields';
-  goerliEth?: Maybe<Scalars['Float']['output']>;
-  kovanEth?: Maybe<Scalars['Float']['output']>;
-  mainnetEth?: Maybe<Scalars['Float']['output']>;
-  rinkebyEth?: Maybe<Scalars['Float']['output']>;
-  ropstenEth?: Maybe<Scalars['Float']['output']>;
-  sepoliaEth?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Eth_Stddev_Samp_Fields = {
-  __typename?: 'eth_stddev_samp_fields';
-  goerliEth?: Maybe<Scalars['Float']['output']>;
-  kovanEth?: Maybe<Scalars['Float']['output']>;
-  mainnetEth?: Maybe<Scalars['Float']['output']>;
-  rinkebyEth?: Maybe<Scalars['Float']['output']>;
-  ropstenEth?: Maybe<Scalars['Float']['output']>;
-  sepoliaEth?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Streaming cursor of the table "eth" */
@@ -3556,27 +3359,10 @@ export type Eth_Stream_Cursor_Input = {
 export type Eth_Stream_Cursor_Value_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
-  goerliEth?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  kovanEth?: InputMaybe<Scalars['float8']['input']>;
-  mainnetEth?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  rinkebyEth?: InputMaybe<Scalars['float8']['input']>;
-  ropstenEth?: InputMaybe<Scalars['float8']['input']>;
-  sepoliaEth?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Eth_Sum_Fields = {
-  __typename?: 'eth_sum_fields';
-  goerliEth?: Maybe<Scalars['float8']['output']>;
-  kovanEth?: Maybe<Scalars['float8']['output']>;
-  mainnetEth?: Maybe<Scalars['float8']['output']>;
-  rinkebyEth?: Maybe<Scalars['float8']['output']>;
-  ropstenEth?: Maybe<Scalars['float8']['output']>;
-  sepoliaEth?: Maybe<Scalars['float8']['output']>;
 };
 
 /** update columns of table "eth" */
@@ -3586,67 +3372,20 @@ export enum Eth_Update_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
-  GoerliEth = 'goerliEth',
-  /** column name */
   Id = 'id',
-  /** column name */
-  KovanEth = 'kovanEth',
-  /** column name */
-  MainnetEth = 'mainnetEth',
   /** column name */
   PrivateKey = 'privateKey',
   /** column name */
   PublicKey = 'publicKey',
   /** column name */
-  RinkebyEth = 'rinkebyEth',
-  /** column name */
-  RopstenEth = 'ropstenEth',
-  /** column name */
-  SepoliaEth = 'sepoliaEth',
-  /** column name */
   UpdatedAt = 'updatedAt'
 }
 
 export type Eth_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Eth_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Eth_Set_Input>;
   /** filter the rows which have to be updated */
   where: Eth_Bool_Exp;
-};
-
-/** aggregate var_pop on columns */
-export type Eth_Var_Pop_Fields = {
-  __typename?: 'eth_var_pop_fields';
-  goerliEth?: Maybe<Scalars['Float']['output']>;
-  kovanEth?: Maybe<Scalars['Float']['output']>;
-  mainnetEth?: Maybe<Scalars['Float']['output']>;
-  rinkebyEth?: Maybe<Scalars['Float']['output']>;
-  ropstenEth?: Maybe<Scalars['Float']['output']>;
-  sepoliaEth?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Eth_Var_Samp_Fields = {
-  __typename?: 'eth_var_samp_fields';
-  goerliEth?: Maybe<Scalars['Float']['output']>;
-  kovanEth?: Maybe<Scalars['Float']['output']>;
-  mainnetEth?: Maybe<Scalars['Float']['output']>;
-  rinkebyEth?: Maybe<Scalars['Float']['output']>;
-  ropstenEth?: Maybe<Scalars['Float']['output']>;
-  sepoliaEth?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Eth_Variance_Fields = {
-  __typename?: 'eth_variance_fields';
-  goerliEth?: Maybe<Scalars['Float']['output']>;
-  kovanEth?: Maybe<Scalars['Float']['output']>;
-  mainnetEth?: Maybe<Scalars['Float']['output']>;
-  rinkebyEth?: Maybe<Scalars['Float']['output']>;
-  ropstenEth?: Maybe<Scalars['Float']['output']>;
-  sepoliaEth?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Boolean expression to compare columns of type "float8". All fields are combined with logical 'AND'. */
@@ -4682,7 +4421,6 @@ export type Mutation_RootUpdate_Address_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_BitcoinArgs = {
-  _inc?: InputMaybe<Bitcoin_Inc_Input>;
   _set?: InputMaybe<Bitcoin_Set_Input>;
   where: Bitcoin_Bool_Exp;
 };
@@ -4690,7 +4428,6 @@ export type Mutation_RootUpdate_BitcoinArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Bitcoin_By_PkArgs = {
-  _inc?: InputMaybe<Bitcoin_Inc_Input>;
   _set?: InputMaybe<Bitcoin_Set_Input>;
   pk_columns: Bitcoin_Pk_Columns_Input;
 };
@@ -4808,7 +4545,6 @@ export type Mutation_RootUpdate_Connections_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_EthArgs = {
-  _inc?: InputMaybe<Eth_Inc_Input>;
   _set?: InputMaybe<Eth_Set_Input>;
   where: Eth_Bool_Exp;
 };
@@ -4816,7 +4552,6 @@ export type Mutation_RootUpdate_EthArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Eth_By_PkArgs = {
-  _inc?: InputMaybe<Eth_Inc_Input>;
   _set?: InputMaybe<Eth_Set_Input>;
   pk_columns: Eth_Pk_Columns_Input;
 };
@@ -4910,7 +4645,6 @@ export type Mutation_RootUpdate_Notification_Subscription_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_SolArgs = {
-  _inc?: InputMaybe<Sol_Inc_Input>;
   _set?: InputMaybe<Sol_Set_Input>;
   where: Sol_Bool_Exp;
 };
@@ -4918,7 +4652,6 @@ export type Mutation_RootUpdate_SolArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Sol_By_PkArgs = {
-  _inc?: InputMaybe<Sol_Inc_Input>;
   _set?: InputMaybe<Sol_Set_Input>;
   pk_columns: Sol_Pk_Columns_Input;
 };
@@ -6344,12 +6077,9 @@ export type Sol = {
   account: Account;
   accountId: Scalars['uuid']['output'];
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
-  devnetSol: Scalars['float8']['output'];
   id: Scalars['uuid']['output'];
-  mainnetSol: Scalars['float8']['output'];
   privateKey: Scalars['String']['output'];
   publicKey: Scalars['String']['output'];
-  testnetSol: Scalars['float8']['output'];
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -6363,17 +6093,9 @@ export type Sol_Aggregate = {
 /** aggregate fields of "sol" */
 export type Sol_Aggregate_Fields = {
   __typename?: 'sol_aggregate_fields';
-  avg?: Maybe<Sol_Avg_Fields>;
   count: Scalars['Int']['output'];
   max?: Maybe<Sol_Max_Fields>;
   min?: Maybe<Sol_Min_Fields>;
-  stddev?: Maybe<Sol_Stddev_Fields>;
-  stddev_pop?: Maybe<Sol_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Sol_Stddev_Samp_Fields>;
-  sum?: Maybe<Sol_Sum_Fields>;
-  var_pop?: Maybe<Sol_Var_Pop_Fields>;
-  var_samp?: Maybe<Sol_Var_Samp_Fields>;
-  variance?: Maybe<Sol_Variance_Fields>;
 };
 
 
@@ -6381,14 +6103,6 @@ export type Sol_Aggregate_Fields = {
 export type Sol_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Sol_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Sol_Avg_Fields = {
-  __typename?: 'sol_avg_fields';
-  devnetSol?: Maybe<Scalars['Float']['output']>;
-  mainnetSol?: Maybe<Scalars['Float']['output']>;
-  testnetSol?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "sol". All fields are combined with a logical 'AND'. */
@@ -6399,12 +6113,9 @@ export type Sol_Bool_Exp = {
   account?: InputMaybe<Account_Bool_Exp>;
   accountId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
-  devnetSol?: InputMaybe<Float8_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  mainnetSol?: InputMaybe<Float8_Comparison_Exp>;
   privateKey?: InputMaybe<String_Comparison_Exp>;
   publicKey?: InputMaybe<String_Comparison_Exp>;
-  testnetSol?: InputMaybe<Float8_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -6422,24 +6133,14 @@ export enum Sol_Constraint {
   SolPublicKeyKey = 'sol_publicKey_key'
 }
 
-/** input type for incrementing numeric columns in table "sol" */
-export type Sol_Inc_Input = {
-  devnetSol?: InputMaybe<Scalars['float8']['input']>;
-  mainnetSol?: InputMaybe<Scalars['float8']['input']>;
-  testnetSol?: InputMaybe<Scalars['float8']['input']>;
-};
-
 /** input type for inserting data into table "sol" */
 export type Sol_Insert_Input = {
   account?: InputMaybe<Account_Obj_Rel_Insert_Input>;
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
-  devnetSol?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  mainnetSol?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  testnetSol?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -6448,12 +6149,9 @@ export type Sol_Max_Fields = {
   __typename?: 'sol_max_fields';
   accountId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
-  devnetSol?: Maybe<Scalars['float8']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  mainnetSol?: Maybe<Scalars['float8']['output']>;
   privateKey?: Maybe<Scalars['String']['output']>;
   publicKey?: Maybe<Scalars['String']['output']>;
-  testnetSol?: Maybe<Scalars['float8']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -6462,12 +6160,9 @@ export type Sol_Min_Fields = {
   __typename?: 'sol_min_fields';
   accountId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
-  devnetSol?: Maybe<Scalars['float8']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  mainnetSol?: Maybe<Scalars['float8']['output']>;
   privateKey?: Maybe<Scalars['String']['output']>;
   publicKey?: Maybe<Scalars['String']['output']>;
-  testnetSol?: Maybe<Scalars['float8']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -6499,12 +6194,9 @@ export type Sol_Order_By = {
   account?: InputMaybe<Account_Order_By>;
   accountId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
-  devnetSol?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  mainnetSol?: InputMaybe<Order_By>;
   privateKey?: InputMaybe<Order_By>;
   publicKey?: InputMaybe<Order_By>;
-  testnetSol?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -6520,17 +6212,11 @@ export enum Sol_Select_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
-  DevnetSol = 'devnetSol',
-  /** column name */
   Id = 'id',
-  /** column name */
-  MainnetSol = 'mainnetSol',
   /** column name */
   PrivateKey = 'privateKey',
   /** column name */
   PublicKey = 'publicKey',
-  /** column name */
-  TestnetSol = 'testnetSol',
   /** column name */
   UpdatedAt = 'updatedAt'
 }
@@ -6539,37 +6225,10 @@ export enum Sol_Select_Column {
 export type Sol_Set_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
-  devnetSol?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  mainnetSol?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  testnetSol?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
-};
-
-/** aggregate stddev on columns */
-export type Sol_Stddev_Fields = {
-  __typename?: 'sol_stddev_fields';
-  devnetSol?: Maybe<Scalars['Float']['output']>;
-  mainnetSol?: Maybe<Scalars['Float']['output']>;
-  testnetSol?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Sol_Stddev_Pop_Fields = {
-  __typename?: 'sol_stddev_pop_fields';
-  devnetSol?: Maybe<Scalars['Float']['output']>;
-  mainnetSol?: Maybe<Scalars['Float']['output']>;
-  testnetSol?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Sol_Stddev_Samp_Fields = {
-  __typename?: 'sol_stddev_samp_fields';
-  devnetSol?: Maybe<Scalars['Float']['output']>;
-  mainnetSol?: Maybe<Scalars['Float']['output']>;
-  testnetSol?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Streaming cursor of the table "sol" */
@@ -6584,21 +6243,10 @@ export type Sol_Stream_Cursor_Input = {
 export type Sol_Stream_Cursor_Value_Input = {
   accountId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
-  devnetSol?: InputMaybe<Scalars['float8']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  mainnetSol?: InputMaybe<Scalars['float8']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   publicKey?: InputMaybe<Scalars['String']['input']>;
-  testnetSol?: InputMaybe<Scalars['float8']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Sol_Sum_Fields = {
-  __typename?: 'sol_sum_fields';
-  devnetSol?: Maybe<Scalars['float8']['output']>;
-  mainnetSol?: Maybe<Scalars['float8']['output']>;
-  testnetSol?: Maybe<Scalars['float8']['output']>;
 };
 
 /** update columns of table "sol" */
@@ -6608,52 +6256,20 @@ export enum Sol_Update_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
-  DevnetSol = 'devnetSol',
-  /** column name */
   Id = 'id',
-  /** column name */
-  MainnetSol = 'mainnetSol',
   /** column name */
   PrivateKey = 'privateKey',
   /** column name */
   PublicKey = 'publicKey',
   /** column name */
-  TestnetSol = 'testnetSol',
-  /** column name */
   UpdatedAt = 'updatedAt'
 }
 
 export type Sol_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Sol_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Sol_Set_Input>;
   /** filter the rows which have to be updated */
   where: Sol_Bool_Exp;
-};
-
-/** aggregate var_pop on columns */
-export type Sol_Var_Pop_Fields = {
-  __typename?: 'sol_var_pop_fields';
-  devnetSol?: Maybe<Scalars['Float']['output']>;
-  mainnetSol?: Maybe<Scalars['Float']['output']>;
-  testnetSol?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Sol_Var_Samp_Fields = {
-  __typename?: 'sol_var_samp_fields';
-  devnetSol?: Maybe<Scalars['Float']['output']>;
-  mainnetSol?: Maybe<Scalars['Float']['output']>;
-  testnetSol?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Sol_Variance_Fields = {
-  __typename?: 'sol_variance_fields';
-  devnetSol?: Maybe<Scalars['Float']['output']>;
-  mainnetSol?: Maybe<Scalars['Float']['output']>;
-  testnetSol?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Subscription_Root = {
