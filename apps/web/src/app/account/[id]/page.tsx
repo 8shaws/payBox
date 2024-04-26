@@ -87,6 +87,10 @@ export default async function Page({
                                 chain={"Ethereum"}
                                 key={"eth"}
                             />
+                            <Tab
+                                chain={"Bitcoin"}
+                                key={"btc"}
+                            />
                         </CardContent>
                         <CardFooter>
                             <p>Footer</p>
