@@ -2319,11 +2319,8 @@ export type ValueTypes = {
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetBtc?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -2335,7 +2332,6 @@ export type ValueTypes = {
   }>;
   /** aggregate fields of "bitcoin" */
   ["bitcoin_aggregate_fields"]: AliasType<{
-    avg?: ValueTypes["bitcoin_avg_fields"];
     count?: [
       {
         columns?:
@@ -2349,20 +2345,6 @@ export type ValueTypes = {
     ];
     max?: ValueTypes["bitcoin_max_fields"];
     min?: ValueTypes["bitcoin_min_fields"];
-    stddev?: ValueTypes["bitcoin_stddev_fields"];
-    stddev_pop?: ValueTypes["bitcoin_stddev_pop_fields"];
-    stddev_samp?: ValueTypes["bitcoin_stddev_samp_fields"];
-    sum?: ValueTypes["bitcoin_sum_fields"];
-    var_pop?: ValueTypes["bitcoin_var_pop_fields"];
-    var_samp?: ValueTypes["bitcoin_var_samp_fields"];
-    variance?: ValueTypes["bitcoin_variance_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate avg on columns */
-  ["bitcoin_avg_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "bitcoin". All fields are combined with a logical 'AND'. */
@@ -2402,11 +2384,6 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    mainnetBtc?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?:
       | ValueTypes["String_comparison_exp"]
       | undefined
@@ -2414,16 +2391,6 @@ export type ValueTypes = {
       | Variable<any, string>;
     publicKey?:
       | ValueTypes["String_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    regtestBtc?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    textnetBtc?:
-      | ValueTypes["float8_comparison_exp"]
       | undefined
       | null
       | Variable<any, string>;
@@ -2435,24 +2402,6 @@ export type ValueTypes = {
   };
   /** unique or primary key constraints on table "bitcoin" */
   ["bitcoin_constraint"]: bitcoin_constraint;
-  /** input type for incrementing numeric columns in table "bitcoin" */
-  ["bitcoin_inc_input"]: {
-    mainnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    regtestBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    textnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-  };
   /** input type for inserting data into table "bitcoin" */
   ["bitcoin_insert_input"]: {
     account?:
@@ -2467,23 +2416,8 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    mainnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    regtestBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    textnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -2495,11 +2429,8 @@ export type ValueTypes = {
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetBtc?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -2508,11 +2439,8 @@ export type ValueTypes = {
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetBtc?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -2564,27 +2492,12 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    mainnetBtc?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
     publicKey?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    regtestBtc?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    textnetBtc?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -2610,50 +2523,14 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    mainnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    regtestBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    textnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
   };
-  /** aggregate stddev on columns */
-  ["bitcoin_stddev_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_pop on columns */
-  ["bitcoin_stddev_pop_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_samp on columns */
-  ["bitcoin_stddev_samp_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** Streaming cursor of the table "bitcoin" */
   ["bitcoin_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -2676,45 +2553,17 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    mainnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    regtestBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    textnetBtc?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
   };
-  /** aggregate sum on columns */
-  ["bitcoin_sum_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** update columns of table "bitcoin" */
   ["bitcoin_update_column"]: bitcoin_update_column;
   ["bitcoin_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?:
-      | ValueTypes["bitcoin_inc_input"]
-      | undefined
-      | null
-      | Variable<any, string>;
     /** sets the columns of the filtered rows to the given values */
     _set?:
       | ValueTypes["bitcoin_set_input"]
@@ -2724,27 +2573,6 @@ export type ValueTypes = {
     /** filter the rows which have to be updated */
     where: ValueTypes["bitcoin_bool_exp"] | Variable<any, string>;
   };
-  /** aggregate var_pop on columns */
-  ["bitcoin_var_pop_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate var_samp on columns */
-  ["bitcoin_var_samp_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate variance on columns */
-  ["bitcoin_variance_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** list off all the centralized transactions */
   ["centralized_txn"]: AliasType<{
     /** An object relationship */
@@ -6206,15 +6034,9 @@ export type ValueTypes = {
     account?: ValueTypes["account"];
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    goerliEth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -6226,7 +6048,6 @@ export type ValueTypes = {
   }>;
   /** aggregate fields of "eth" */
   ["eth_aggregate_fields"]: AliasType<{
-    avg?: ValueTypes["eth_avg_fields"];
     count?: [
       {
         columns?:
@@ -6240,23 +6061,6 @@ export type ValueTypes = {
     ];
     max?: ValueTypes["eth_max_fields"];
     min?: ValueTypes["eth_min_fields"];
-    stddev?: ValueTypes["eth_stddev_fields"];
-    stddev_pop?: ValueTypes["eth_stddev_pop_fields"];
-    stddev_samp?: ValueTypes["eth_stddev_samp_fields"];
-    sum?: ValueTypes["eth_sum_fields"];
-    var_pop?: ValueTypes["eth_var_pop_fields"];
-    var_samp?: ValueTypes["eth_var_samp_fields"];
-    variance?: ValueTypes["eth_variance_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate avg on columns */
-  ["eth_avg_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "eth". All fields are combined with a logical 'AND'. */
@@ -6291,23 +6095,8 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    goerliEth?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
     id?:
       | ValueTypes["uuid_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    kovanEth?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    mainnetEth?:
-      | ValueTypes["float8_comparison_exp"]
       | undefined
       | null
       | Variable<any, string>;
@@ -6321,21 +6110,6 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    rinkebyEth?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    ropstenEth?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    sepoliaEth?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -6344,31 +6118,6 @@ export type ValueTypes = {
   };
   /** unique or primary key constraints on table "eth" */
   ["eth_constraint"]: eth_constraint;
-  /** input type for incrementing numeric columns in table "eth" */
-  ["eth_inc_input"]: {
-    goerliEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
-    kovanEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
-    mainnetEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    rinkebyEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    ropstenEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    sepoliaEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-  };
   /** input type for inserting data into table "eth" */
   ["eth_insert_input"]: {
     account?:
@@ -6382,31 +6131,9 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    goerliEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    kovanEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
-    mainnetEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    rinkebyEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    ropstenEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    sepoliaEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -6417,15 +6144,9 @@ export type ValueTypes = {
   ["eth_max_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    goerliEth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -6433,15 +6154,9 @@ export type ValueTypes = {
   ["eth_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    goerliEth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -6492,43 +6207,13 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    goerliEth?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    kovanEth?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    mainnetEth?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
     publicKey?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    rinkebyEth?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    ropstenEth?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    sepoliaEth?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -6553,67 +6238,15 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    goerliEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    kovanEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
-    mainnetEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    rinkebyEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    ropstenEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    sepoliaEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
   };
-  /** aggregate stddev on columns */
-  ["eth_stddev_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_pop on columns */
-  ["eth_stddev_pop_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_samp on columns */
-  ["eth_stddev_samp_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** Streaming cursor of the table "eth" */
   ["eth_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -6635,56 +6268,18 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    goerliEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    kovanEth?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
-    mainnetEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    rinkebyEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    ropstenEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    sepoliaEth?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
   };
-  /** aggregate sum on columns */
-  ["eth_sum_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** update columns of table "eth" */
   ["eth_update_column"]: eth_update_column;
   ["eth_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?:
-      | ValueTypes["eth_inc_input"]
-      | undefined
-      | null
-      | Variable<any, string>;
     /** sets the columns of the filtered rows to the given values */
     _set?:
       | ValueTypes["eth_set_input"]
@@ -6694,36 +6289,6 @@ export type ValueTypes = {
     /** filter the rows which have to be updated */
     where: ValueTypes["eth_bool_exp"] | Variable<any, string>;
   };
-  /** aggregate var_pop on columns */
-  ["eth_var_pop_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate var_samp on columns */
-  ["eth_var_samp_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate variance on columns */
-  ["eth_variance_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   ["float8"]: unknown;
   /** Boolean expression to compare columns of type "float8". All fields are combined with logical 'AND'. */
   ["float8_comparison_exp"]: {
@@ -7981,15 +7546,7 @@ export type ValueTypes = {
     ];
     update_bitcoin?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ValueTypes["bitcoin_inc_input"]
-          | undefined
-          | null
-          | Variable<
-              any,
-              string
-            > /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ValueTypes["bitcoin_set_input"]
           | undefined
@@ -8004,15 +7561,7 @@ export type ValueTypes = {
     ];
     update_bitcoin_by_pk?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ValueTypes["bitcoin_inc_input"]
-          | undefined
-          | null
-          | Variable<
-              any,
-              string
-            > /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ValueTypes["bitcoin_set_input"]
           | undefined
@@ -8249,15 +7798,7 @@ export type ValueTypes = {
     ];
     update_eth?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ValueTypes["eth_inc_input"]
-          | undefined
-          | null
-          | Variable<
-              any,
-              string
-            > /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ValueTypes["eth_set_input"]
           | undefined
@@ -8272,15 +7813,7 @@ export type ValueTypes = {
     ];
     update_eth_by_pk?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ValueTypes["eth_inc_input"]
-          | undefined
-          | null
-          | Variable<
-              any,
-              string
-            > /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ValueTypes["eth_set_input"]
           | undefined
@@ -8453,15 +7986,7 @@ export type ValueTypes = {
     ];
     update_sol?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ValueTypes["sol_inc_input"]
-          | undefined
-          | null
-          | Variable<
-              any,
-              string
-            > /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ValueTypes["sol_set_input"]
           | undefined
@@ -8476,15 +8001,7 @@ export type ValueTypes = {
     ];
     update_sol_by_pk?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ValueTypes["sol_inc_input"]
-          | undefined
-          | null
-          | Variable<
-              any,
-              string
-            > /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ValueTypes["sol_set_input"]
           | undefined
@@ -11169,12 +10686,9 @@ export type ValueTypes = {
     account?: ValueTypes["account"];
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    devnetSol?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -11186,7 +10700,6 @@ export type ValueTypes = {
   }>;
   /** aggregate fields of "sol" */
   ["sol_aggregate_fields"]: AliasType<{
-    avg?: ValueTypes["sol_avg_fields"];
     count?: [
       {
         columns?:
@@ -11200,20 +10713,6 @@ export type ValueTypes = {
     ];
     max?: ValueTypes["sol_max_fields"];
     min?: ValueTypes["sol_min_fields"];
-    stddev?: ValueTypes["sol_stddev_fields"];
-    stddev_pop?: ValueTypes["sol_stddev_pop_fields"];
-    stddev_samp?: ValueTypes["sol_stddev_samp_fields"];
-    sum?: ValueTypes["sol_sum_fields"];
-    var_pop?: ValueTypes["sol_var_pop_fields"];
-    var_samp?: ValueTypes["sol_var_samp_fields"];
-    variance?: ValueTypes["sol_variance_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate avg on columns */
-  ["sol_avg_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "sol". All fields are combined with a logical 'AND'. */
@@ -11248,18 +10747,8 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    devnetSol?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
     id?:
       | ValueTypes["uuid_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    mainnetSol?:
-      | ValueTypes["float8_comparison_exp"]
       | undefined
       | null
       | Variable<any, string>;
@@ -11273,11 +10762,6 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    testnetSol?:
-      | ValueTypes["float8_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -11286,20 +10770,6 @@ export type ValueTypes = {
   };
   /** unique or primary key constraints on table "sol" */
   ["sol_constraint"]: sol_constraint;
-  /** input type for incrementing numeric columns in table "sol" */
-  ["sol_inc_input"]: {
-    devnetSol?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
-    mainnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    testnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
-  };
   /** input type for inserting data into table "sol" */
   ["sol_insert_input"]: {
     account?:
@@ -11313,20 +10783,9 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    devnetSol?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    mainnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    testnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -11337,12 +10796,9 @@ export type ValueTypes = {
   ["sol_max_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    devnetSol?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -11350,12 +10806,9 @@ export type ValueTypes = {
   ["sol_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    devnetSol?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -11406,28 +10859,13 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    devnetSol?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    mainnetSol?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
     publicKey?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    testnetSol?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -11452,47 +10890,15 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    devnetSol?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    mainnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    testnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
   };
-  /** aggregate stddev on columns */
-  ["sol_stddev_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_pop on columns */
-  ["sol_stddev_pop_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_samp on columns */
-  ["sol_stddev_samp_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** Streaming cursor of the table "sol" */
   ["sol_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -11514,42 +10920,18 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    devnetSol?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    mainnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     publicKey?: string | undefined | null | Variable<any, string>;
-    testnetSol?:
-      | ValueTypes["float8"]
-      | undefined
-      | null
-      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
   };
-  /** aggregate sum on columns */
-  ["sol_sum_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** update columns of table "sol" */
   ["sol_update_column"]: sol_update_column;
   ["sol_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?:
-      | ValueTypes["sol_inc_input"]
-      | undefined
-      | null
-      | Variable<any, string>;
     /** sets the columns of the filtered rows to the given values */
     _set?:
       | ValueTypes["sol_set_input"]
@@ -11559,27 +10941,6 @@ export type ValueTypes = {
     /** filter the rows which have to be updated */
     where: ValueTypes["sol_bool_exp"] | Variable<any, string>;
   };
-  /** aggregate var_pop on columns */
-  ["sol_var_pop_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate var_samp on columns */
-  ["sol_var_samp_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate variance on columns */
-  ["sol_variance_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   ["subscription_root"]: AliasType<{
     account?: [
       {
@@ -15340,11 +14701,8 @@ export type ResolverInputTypes = {
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetBtc?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -15356,7 +14714,6 @@ export type ResolverInputTypes = {
   }>;
   /** aggregate fields of "bitcoin" */
   ["bitcoin_aggregate_fields"]: AliasType<{
-    avg?: ResolverInputTypes["bitcoin_avg_fields"];
     count?: [
       {
         columns?:
@@ -15369,20 +14726,6 @@ export type ResolverInputTypes = {
     ];
     max?: ResolverInputTypes["bitcoin_max_fields"];
     min?: ResolverInputTypes["bitcoin_min_fields"];
-    stddev?: ResolverInputTypes["bitcoin_stddev_fields"];
-    stddev_pop?: ResolverInputTypes["bitcoin_stddev_pop_fields"];
-    stddev_samp?: ResolverInputTypes["bitcoin_stddev_samp_fields"];
-    sum?: ResolverInputTypes["bitcoin_sum_fields"];
-    var_pop?: ResolverInputTypes["bitcoin_var_pop_fields"];
-    var_samp?: ResolverInputTypes["bitcoin_var_samp_fields"];
-    variance?: ResolverInputTypes["bitcoin_variance_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate avg on columns */
-  ["bitcoin_avg_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "bitcoin". All fields are combined with a logical 'AND'. */
@@ -15397,11 +14740,8 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
-    mainnetBtc?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     privateKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     publicKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
-    regtestBtc?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
-    textnetBtc?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -15409,12 +14749,6 @@ export type ResolverInputTypes = {
   };
   /** unique or primary key constraints on table "bitcoin" */
   ["bitcoin_constraint"]: bitcoin_constraint;
-  /** input type for incrementing numeric columns in table "bitcoin" */
-  ["bitcoin_inc_input"]: {
-    mainnetBtc?: ResolverInputTypes["float8"] | undefined | null;
-    regtestBtc?: ResolverInputTypes["float8"] | undefined | null;
-    textnetBtc?: ResolverInputTypes["float8"] | undefined | null;
-  };
   /** input type for inserting data into table "bitcoin" */
   ["bitcoin_insert_input"]: {
     account?:
@@ -15424,11 +14758,8 @@ export type ResolverInputTypes = {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    mainnetBtc?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    regtestBtc?: ResolverInputTypes["float8"] | undefined | null;
-    textnetBtc?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
   /** aggregate max on columns */
@@ -15436,11 +14767,8 @@ export type ResolverInputTypes = {
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetBtc?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -15449,11 +14777,8 @@ export type ResolverInputTypes = {
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetBtc?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -15483,11 +14808,8 @@ export type ResolverInputTypes = {
     accountId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
-    mainnetBtc?: ResolverInputTypes["order_by"] | undefined | null;
     privateKey?: ResolverInputTypes["order_by"] | undefined | null;
     publicKey?: ResolverInputTypes["order_by"] | undefined | null;
-    regtestBtc?: ResolverInputTypes["order_by"] | undefined | null;
-    textnetBtc?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** primary key columns input for table: bitcoin */
@@ -15501,34 +14823,10 @@ export type ResolverInputTypes = {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    mainnetBtc?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    regtestBtc?: ResolverInputTypes["float8"] | undefined | null;
-    textnetBtc?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
-  /** aggregate stddev on columns */
-  ["bitcoin_stddev_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_pop on columns */
-  ["bitcoin_stddev_pop_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_samp on columns */
-  ["bitcoin_stddev_samp_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** Streaming cursor of the table "bitcoin" */
   ["bitcoin_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -15541,51 +14839,18 @@ export type ResolverInputTypes = {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    mainnetBtc?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    regtestBtc?: ResolverInputTypes["float8"] | undefined | null;
-    textnetBtc?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
-  /** aggregate sum on columns */
-  ["bitcoin_sum_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** update columns of table "bitcoin" */
   ["bitcoin_update_column"]: bitcoin_update_column;
   ["bitcoin_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: ResolverInputTypes["bitcoin_inc_input"] | undefined | null;
     /** sets the columns of the filtered rows to the given values */
     _set?: ResolverInputTypes["bitcoin_set_input"] | undefined | null;
     /** filter the rows which have to be updated */
     where: ResolverInputTypes["bitcoin_bool_exp"];
   };
-  /** aggregate var_pop on columns */
-  ["bitcoin_var_pop_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate var_samp on columns */
-  ["bitcoin_var_samp_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate variance on columns */
-  ["bitcoin_variance_fields"]: AliasType<{
-    mainnetBtc?: boolean | `@${string}`;
-    regtestBtc?: boolean | `@${string}`;
-    textnetBtc?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** list off all the centralized transactions */
   ["centralized_txn"]: AliasType<{
     /** An object relationship */
@@ -17699,15 +16964,9 @@ export type ResolverInputTypes = {
     account?: ResolverInputTypes["account"];
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    goerliEth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -17719,7 +16978,6 @@ export type ResolverInputTypes = {
   }>;
   /** aggregate fields of "eth" */
   ["eth_aggregate_fields"]: AliasType<{
-    avg?: ResolverInputTypes["eth_avg_fields"];
     count?: [
       {
         columns?:
@@ -17732,23 +16990,6 @@ export type ResolverInputTypes = {
     ];
     max?: ResolverInputTypes["eth_max_fields"];
     min?: ResolverInputTypes["eth_min_fields"];
-    stddev?: ResolverInputTypes["eth_stddev_fields"];
-    stddev_pop?: ResolverInputTypes["eth_stddev_pop_fields"];
-    stddev_samp?: ResolverInputTypes["eth_stddev_samp_fields"];
-    sum?: ResolverInputTypes["eth_sum_fields"];
-    var_pop?: ResolverInputTypes["eth_var_pop_fields"];
-    var_samp?: ResolverInputTypes["eth_var_samp_fields"];
-    variance?: ResolverInputTypes["eth_variance_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate avg on columns */
-  ["eth_avg_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "eth". All fields are combined with a logical 'AND'. */
@@ -17762,15 +17003,9 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
       | null;
-    goerliEth?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
-    kovanEth?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
-    mainnetEth?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     privateKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     publicKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
-    rinkebyEth?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
-    ropstenEth?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
-    sepoliaEth?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -17778,15 +17013,6 @@ export type ResolverInputTypes = {
   };
   /** unique or primary key constraints on table "eth" */
   ["eth_constraint"]: eth_constraint;
-  /** input type for incrementing numeric columns in table "eth" */
-  ["eth_inc_input"]: {
-    goerliEth?: ResolverInputTypes["float8"] | undefined | null;
-    kovanEth?: ResolverInputTypes["float8"] | undefined | null;
-    mainnetEth?: ResolverInputTypes["float8"] | undefined | null;
-    rinkebyEth?: ResolverInputTypes["float8"] | undefined | null;
-    ropstenEth?: ResolverInputTypes["float8"] | undefined | null;
-    sepoliaEth?: ResolverInputTypes["float8"] | undefined | null;
-  };
   /** input type for inserting data into table "eth" */
   ["eth_insert_input"]: {
     account?:
@@ -17795,30 +17021,18 @@ export type ResolverInputTypes = {
       | null;
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
-    goerliEth?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    kovanEth?: ResolverInputTypes["float8"] | undefined | null;
-    mainnetEth?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    rinkebyEth?: ResolverInputTypes["float8"] | undefined | null;
-    ropstenEth?: ResolverInputTypes["float8"] | undefined | null;
-    sepoliaEth?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
   /** aggregate max on columns */
   ["eth_max_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    goerliEth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -17826,15 +17040,9 @@ export type ResolverInputTypes = {
   ["eth_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    goerliEth?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -17863,15 +17071,9 @@ export type ResolverInputTypes = {
     account?: ResolverInputTypes["account_order_by"] | undefined | null;
     accountId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
-    goerliEth?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
-    kovanEth?: ResolverInputTypes["order_by"] | undefined | null;
-    mainnetEth?: ResolverInputTypes["order_by"] | undefined | null;
     privateKey?: ResolverInputTypes["order_by"] | undefined | null;
     publicKey?: ResolverInputTypes["order_by"] | undefined | null;
-    rinkebyEth?: ResolverInputTypes["order_by"] | undefined | null;
-    ropstenEth?: ResolverInputTypes["order_by"] | undefined | null;
-    sepoliaEth?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** primary key columns input for table: eth */
@@ -17884,47 +17086,11 @@ export type ResolverInputTypes = {
   ["eth_set_input"]: {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
-    goerliEth?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    kovanEth?: ResolverInputTypes["float8"] | undefined | null;
-    mainnetEth?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    rinkebyEth?: ResolverInputTypes["float8"] | undefined | null;
-    ropstenEth?: ResolverInputTypes["float8"] | undefined | null;
-    sepoliaEth?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
-  /** aggregate stddev on columns */
-  ["eth_stddev_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_pop on columns */
-  ["eth_stddev_pop_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_samp on columns */
-  ["eth_stddev_samp_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** Streaming cursor of the table "eth" */
   ["eth_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -17936,67 +17102,19 @@ export type ResolverInputTypes = {
   ["eth_stream_cursor_value_input"]: {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
-    goerliEth?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    kovanEth?: ResolverInputTypes["float8"] | undefined | null;
-    mainnetEth?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    rinkebyEth?: ResolverInputTypes["float8"] | undefined | null;
-    ropstenEth?: ResolverInputTypes["float8"] | undefined | null;
-    sepoliaEth?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
-  /** aggregate sum on columns */
-  ["eth_sum_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** update columns of table "eth" */
   ["eth_update_column"]: eth_update_column;
   ["eth_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: ResolverInputTypes["eth_inc_input"] | undefined | null;
     /** sets the columns of the filtered rows to the given values */
     _set?: ResolverInputTypes["eth_set_input"] | undefined | null;
     /** filter the rows which have to be updated */
     where: ResolverInputTypes["eth_bool_exp"];
   };
-  /** aggregate var_pop on columns */
-  ["eth_var_pop_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate var_samp on columns */
-  ["eth_var_samp_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate variance on columns */
-  ["eth_variance_fields"]: AliasType<{
-    goerliEth?: boolean | `@${string}`;
-    kovanEth?: boolean | `@${string}`;
-    mainnetEth?: boolean | `@${string}`;
-    rinkebyEth?: boolean | `@${string}`;
-    ropstenEth?: boolean | `@${string}`;
-    sepoliaEth?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   ["float8"]: unknown;
   /** Boolean expression to compare columns of type "float8". All fields are combined with logical 'AND'. */
   ["float8_comparison_exp"]: {
@@ -18941,11 +18059,7 @@ export type ResolverInputTypes = {
     ];
     update_bitcoin?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ResolverInputTypes["bitcoin_inc_input"]
-          | undefined
-          | null /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ResolverInputTypes["bitcoin_set_input"]
           | undefined
@@ -18956,11 +18070,7 @@ export type ResolverInputTypes = {
     ];
     update_bitcoin_by_pk?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ResolverInputTypes["bitcoin_inc_input"]
-          | undefined
-          | null /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?: ResolverInputTypes["bitcoin_set_input"] | undefined | null;
         pk_columns: ResolverInputTypes["bitcoin_pk_columns_input"];
       },
@@ -19127,11 +18237,7 @@ export type ResolverInputTypes = {
     ];
     update_eth?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ResolverInputTypes["eth_inc_input"]
-          | undefined
-          | null /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ResolverInputTypes["eth_set_input"]
           | undefined
@@ -19142,11 +18248,7 @@ export type ResolverInputTypes = {
     ];
     update_eth_by_pk?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ResolverInputTypes["eth_inc_input"]
-          | undefined
-          | null /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?: ResolverInputTypes["eth_set_input"] | undefined | null;
         pk_columns: ResolverInputTypes["eth_pk_columns_input"];
       },
@@ -19268,11 +18370,7 @@ export type ResolverInputTypes = {
     ];
     update_sol?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ResolverInputTypes["sol_inc_input"]
-          | undefined
-          | null /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?:
           | ResolverInputTypes["sol_set_input"]
           | undefined
@@ -19283,11 +18381,7 @@ export type ResolverInputTypes = {
     ];
     update_sol_by_pk?: [
       {
-        /** increments the numeric columns with given value of the filtered values */
-        _inc?:
-          | ResolverInputTypes["sol_inc_input"]
-          | undefined
-          | null /** sets the columns of the filtered rows to the given values */;
+        /** sets the columns of the filtered rows to the given values */
         _set?: ResolverInputTypes["sol_set_input"] | undefined | null;
         pk_columns: ResolverInputTypes["sol_pk_columns_input"];
       },
@@ -21092,12 +20186,9 @@ export type ResolverInputTypes = {
     account?: ResolverInputTypes["account"];
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    devnetSol?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -21109,7 +20200,6 @@ export type ResolverInputTypes = {
   }>;
   /** aggregate fields of "sol" */
   ["sol_aggregate_fields"]: AliasType<{
-    avg?: ResolverInputTypes["sol_avg_fields"];
     count?: [
       {
         columns?:
@@ -21122,20 +20212,6 @@ export type ResolverInputTypes = {
     ];
     max?: ResolverInputTypes["sol_max_fields"];
     min?: ResolverInputTypes["sol_min_fields"];
-    stddev?: ResolverInputTypes["sol_stddev_fields"];
-    stddev_pop?: ResolverInputTypes["sol_stddev_pop_fields"];
-    stddev_samp?: ResolverInputTypes["sol_stddev_samp_fields"];
-    sum?: ResolverInputTypes["sol_sum_fields"];
-    var_pop?: ResolverInputTypes["sol_var_pop_fields"];
-    var_samp?: ResolverInputTypes["sol_var_samp_fields"];
-    variance?: ResolverInputTypes["sol_variance_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate avg on columns */
-  ["sol_avg_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
   /** Boolean expression to filter rows from the table "sol". All fields are combined with a logical 'AND'. */
@@ -21149,12 +20225,9 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
       | null;
-    devnetSol?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
-    mainnetSol?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     privateKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     publicKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
-    testnetSol?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -21162,12 +20235,6 @@ export type ResolverInputTypes = {
   };
   /** unique or primary key constraints on table "sol" */
   ["sol_constraint"]: sol_constraint;
-  /** input type for incrementing numeric columns in table "sol" */
-  ["sol_inc_input"]: {
-    devnetSol?: ResolverInputTypes["float8"] | undefined | null;
-    mainnetSol?: ResolverInputTypes["float8"] | undefined | null;
-    testnetSol?: ResolverInputTypes["float8"] | undefined | null;
-  };
   /** input type for inserting data into table "sol" */
   ["sol_insert_input"]: {
     account?:
@@ -21176,24 +20243,18 @@ export type ResolverInputTypes = {
       | null;
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
-    devnetSol?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    mainnetSol?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    testnetSol?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
   /** aggregate max on columns */
   ["sol_max_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    devnetSol?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -21201,12 +20262,9 @@ export type ResolverInputTypes = {
   ["sol_min_fields"]: AliasType<{
     accountId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
-    devnetSol?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     publicKey?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -21235,12 +20293,9 @@ export type ResolverInputTypes = {
     account?: ResolverInputTypes["account_order_by"] | undefined | null;
     accountId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
-    devnetSol?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
-    mainnetSol?: ResolverInputTypes["order_by"] | undefined | null;
     privateKey?: ResolverInputTypes["order_by"] | undefined | null;
     publicKey?: ResolverInputTypes["order_by"] | undefined | null;
-    testnetSol?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** primary key columns input for table: sol */
@@ -21253,35 +20308,11 @@ export type ResolverInputTypes = {
   ["sol_set_input"]: {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
-    devnetSol?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    mainnetSol?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    testnetSol?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
-  /** aggregate stddev on columns */
-  ["sol_stddev_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_pop on columns */
-  ["sol_stddev_pop_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate stddev_samp on columns */
-  ["sol_stddev_samp_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** Streaming cursor of the table "sol" */
   ["sol_stream_cursor_input"]: {
     /** Stream column input with initial value */
@@ -21293,52 +20324,19 @@ export type ResolverInputTypes = {
   ["sol_stream_cursor_value_input"]: {
     accountId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
-    devnetSol?: ResolverInputTypes["float8"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    mainnetSol?: ResolverInputTypes["float8"] | undefined | null;
     privateKey?: string | undefined | null;
     publicKey?: string | undefined | null;
-    testnetSol?: ResolverInputTypes["float8"] | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
-  /** aggregate sum on columns */
-  ["sol_sum_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   /** update columns of table "sol" */
   ["sol_update_column"]: sol_update_column;
   ["sol_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: ResolverInputTypes["sol_inc_input"] | undefined | null;
     /** sets the columns of the filtered rows to the given values */
     _set?: ResolverInputTypes["sol_set_input"] | undefined | null;
     /** filter the rows which have to be updated */
     where: ResolverInputTypes["sol_bool_exp"];
   };
-  /** aggregate var_pop on columns */
-  ["sol_var_pop_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate var_samp on columns */
-  ["sol_var_samp_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** aggregate variance on columns */
-  ["sol_variance_fields"]: AliasType<{
-    devnetSol?: boolean | `@${string}`;
-    mainnetSol?: boolean | `@${string}`;
-    testnetSol?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
   ["subscription_root"]: AliasType<{
     account?: [
       {
@@ -23963,11 +22961,8 @@ export type ModelTypes = {
     accountId: ModelTypes["uuid"];
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id: ModelTypes["uuid"];
-    mainnetBtc: ModelTypes["float8"];
     privateKey: string;
     publicKey: string;
-    regtestBtc: ModelTypes["float8"];
-    textnetBtc: ModelTypes["float8"];
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregated selection of "bitcoin" */
@@ -23977,23 +22972,9 @@ export type ModelTypes = {
   };
   /** aggregate fields of "bitcoin" */
   ["bitcoin_aggregate_fields"]: {
-    avg?: ModelTypes["bitcoin_avg_fields"] | undefined;
     count: number;
     max?: ModelTypes["bitcoin_max_fields"] | undefined;
     min?: ModelTypes["bitcoin_min_fields"] | undefined;
-    stddev?: ModelTypes["bitcoin_stddev_fields"] | undefined;
-    stddev_pop?: ModelTypes["bitcoin_stddev_pop_fields"] | undefined;
-    stddev_samp?: ModelTypes["bitcoin_stddev_samp_fields"] | undefined;
-    sum?: ModelTypes["bitcoin_sum_fields"] | undefined;
-    var_pop?: ModelTypes["bitcoin_var_pop_fields"] | undefined;
-    var_samp?: ModelTypes["bitcoin_var_samp_fields"] | undefined;
-    variance?: ModelTypes["bitcoin_variance_fields"] | undefined;
-  };
-  /** aggregate avg on columns */
-  ["bitcoin_avg_fields"]: {
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "bitcoin". All fields are combined with a logical 'AND'. */
   ["bitcoin_bool_exp"]: {
@@ -24004,31 +22985,19 @@ export type ModelTypes = {
     accountId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
-    mainnetBtc?: ModelTypes["float8_comparison_exp"] | undefined;
     privateKey?: ModelTypes["String_comparison_exp"] | undefined;
     publicKey?: ModelTypes["String_comparison_exp"] | undefined;
-    regtestBtc?: ModelTypes["float8_comparison_exp"] | undefined;
-    textnetBtc?: ModelTypes["float8_comparison_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
   };
   ["bitcoin_constraint"]: bitcoin_constraint;
-  /** input type for incrementing numeric columns in table "bitcoin" */
-  ["bitcoin_inc_input"]: {
-    mainnetBtc?: ModelTypes["float8"] | undefined;
-    regtestBtc?: ModelTypes["float8"] | undefined;
-    textnetBtc?: ModelTypes["float8"] | undefined;
-  };
   /** input type for inserting data into table "bitcoin" */
   ["bitcoin_insert_input"]: {
     account?: ModelTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetBtc?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: ModelTypes["float8"] | undefined;
-    textnetBtc?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -24036,11 +23005,8 @@ export type ModelTypes = {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetBtc?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: ModelTypes["float8"] | undefined;
-    textnetBtc?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
@@ -24048,11 +23014,8 @@ export type ModelTypes = {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetBtc?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: ModelTypes["float8"] | undefined;
-    textnetBtc?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** response of any mutation on the table "bitcoin" */
@@ -24080,11 +23043,8 @@ export type ModelTypes = {
     accountId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
-    mainnetBtc?: ModelTypes["order_by"] | undefined;
     privateKey?: ModelTypes["order_by"] | undefined;
     publicKey?: ModelTypes["order_by"] | undefined;
-    regtestBtc?: ModelTypes["order_by"] | undefined;
-    textnetBtc?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: bitcoin */
@@ -24097,30 +23057,9 @@ export type ModelTypes = {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetBtc?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: ModelTypes["float8"] | undefined;
-    textnetBtc?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
-  };
-  /** aggregate stddev on columns */
-  ["bitcoin_stddev_fields"]: {
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate stddev_pop on columns */
-  ["bitcoin_stddev_pop_fields"]: {
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate stddev_samp on columns */
-  ["bitcoin_stddev_samp_fields"]: {
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
   };
   /** Streaming cursor of the table "bitcoin" */
   ["bitcoin_stream_cursor_input"]: {
@@ -24134,45 +23073,16 @@ export type ModelTypes = {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetBtc?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: ModelTypes["float8"] | undefined;
-    textnetBtc?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
-  };
-  /** aggregate sum on columns */
-  ["bitcoin_sum_fields"]: {
-    mainnetBtc?: ModelTypes["float8"] | undefined;
-    regtestBtc?: ModelTypes["float8"] | undefined;
-    textnetBtc?: ModelTypes["float8"] | undefined;
   };
   ["bitcoin_update_column"]: bitcoin_update_column;
   ["bitcoin_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: ModelTypes["bitcoin_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: ModelTypes["bitcoin_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: ModelTypes["bitcoin_bool_exp"];
-  };
-  /** aggregate var_pop on columns */
-  ["bitcoin_var_pop_fields"]: {
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate var_samp on columns */
-  ["bitcoin_var_samp_fields"]: {
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate variance on columns */
-  ["bitcoin_variance_fields"]: {
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
   };
   /** list off all the centralized transactions */
   ["centralized_txn"]: {
@@ -25497,15 +24407,9 @@ export type ModelTypes = {
     account: ModelTypes["account"];
     accountId: ModelTypes["uuid"];
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    goerliEth: ModelTypes["float8"];
     id: ModelTypes["uuid"];
-    kovanEth: ModelTypes["float8"];
-    mainnetEth: ModelTypes["float8"];
     privateKey: string;
     publicKey: string;
-    rinkebyEth: ModelTypes["float8"];
-    ropstenEth: ModelTypes["float8"];
-    sepoliaEth: ModelTypes["float8"];
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregated selection of "eth" */
@@ -25515,26 +24419,9 @@ export type ModelTypes = {
   };
   /** aggregate fields of "eth" */
   ["eth_aggregate_fields"]: {
-    avg?: ModelTypes["eth_avg_fields"] | undefined;
     count: number;
     max?: ModelTypes["eth_max_fields"] | undefined;
     min?: ModelTypes["eth_min_fields"] | undefined;
-    stddev?: ModelTypes["eth_stddev_fields"] | undefined;
-    stddev_pop?: ModelTypes["eth_stddev_pop_fields"] | undefined;
-    stddev_samp?: ModelTypes["eth_stddev_samp_fields"] | undefined;
-    sum?: ModelTypes["eth_sum_fields"] | undefined;
-    var_pop?: ModelTypes["eth_var_pop_fields"] | undefined;
-    var_samp?: ModelTypes["eth_var_samp_fields"] | undefined;
-    variance?: ModelTypes["eth_variance_fields"] | undefined;
-  };
-  /** aggregate avg on columns */
-  ["eth_avg_fields"]: {
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "eth". All fields are combined with a logical 'AND'. */
   ["eth_bool_exp"]: {
@@ -25544,71 +24431,38 @@ export type ModelTypes = {
     account?: ModelTypes["account_bool_exp"] | undefined;
     accountId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
-    goerliEth?: ModelTypes["float8_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
-    kovanEth?: ModelTypes["float8_comparison_exp"] | undefined;
-    mainnetEth?: ModelTypes["float8_comparison_exp"] | undefined;
     privateKey?: ModelTypes["String_comparison_exp"] | undefined;
     publicKey?: ModelTypes["String_comparison_exp"] | undefined;
-    rinkebyEth?: ModelTypes["float8_comparison_exp"] | undefined;
-    ropstenEth?: ModelTypes["float8_comparison_exp"] | undefined;
-    sepoliaEth?: ModelTypes["float8_comparison_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
   };
   ["eth_constraint"]: eth_constraint;
-  /** input type for incrementing numeric columns in table "eth" */
-  ["eth_inc_input"]: {
-    goerliEth?: ModelTypes["float8"] | undefined;
-    kovanEth?: ModelTypes["float8"] | undefined;
-    mainnetEth?: ModelTypes["float8"] | undefined;
-    rinkebyEth?: ModelTypes["float8"] | undefined;
-    ropstenEth?: ModelTypes["float8"] | undefined;
-    sepoliaEth?: ModelTypes["float8"] | undefined;
-  };
   /** input type for inserting data into table "eth" */
   ["eth_insert_input"]: {
     account?: ModelTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    goerliEth?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    kovanEth?: ModelTypes["float8"] | undefined;
-    mainnetEth?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: ModelTypes["float8"] | undefined;
-    ropstenEth?: ModelTypes["float8"] | undefined;
-    sepoliaEth?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
   ["eth_max_fields"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    goerliEth?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    kovanEth?: ModelTypes["float8"] | undefined;
-    mainnetEth?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: ModelTypes["float8"] | undefined;
-    ropstenEth?: ModelTypes["float8"] | undefined;
-    sepoliaEth?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
   ["eth_min_fields"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    goerliEth?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    kovanEth?: ModelTypes["float8"] | undefined;
-    mainnetEth?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: ModelTypes["float8"] | undefined;
-    ropstenEth?: ModelTypes["float8"] | undefined;
-    sepoliaEth?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** response of any mutation on the table "eth" */
@@ -25635,15 +24489,9 @@ export type ModelTypes = {
     account?: ModelTypes["account_order_by"] | undefined;
     accountId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
-    goerliEth?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
-    kovanEth?: ModelTypes["order_by"] | undefined;
-    mainnetEth?: ModelTypes["order_by"] | undefined;
     privateKey?: ModelTypes["order_by"] | undefined;
     publicKey?: ModelTypes["order_by"] | undefined;
-    rinkebyEth?: ModelTypes["order_by"] | undefined;
-    ropstenEth?: ModelTypes["order_by"] | undefined;
-    sepoliaEth?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: eth */
@@ -25655,43 +24503,10 @@ export type ModelTypes = {
   ["eth_set_input"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    goerliEth?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    kovanEth?: ModelTypes["float8"] | undefined;
-    mainnetEth?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: ModelTypes["float8"] | undefined;
-    ropstenEth?: ModelTypes["float8"] | undefined;
-    sepoliaEth?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
-  };
-  /** aggregate stddev on columns */
-  ["eth_stddev_fields"]: {
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate stddev_pop on columns */
-  ["eth_stddev_pop_fields"]: {
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate stddev_samp on columns */
-  ["eth_stddev_samp_fields"]: {
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
   };
   /** Streaming cursor of the table "eth" */
   ["eth_stream_cursor_input"]: {
@@ -25704,61 +24519,17 @@ export type ModelTypes = {
   ["eth_stream_cursor_value_input"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    goerliEth?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    kovanEth?: ModelTypes["float8"] | undefined;
-    mainnetEth?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: ModelTypes["float8"] | undefined;
-    ropstenEth?: ModelTypes["float8"] | undefined;
-    sepoliaEth?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
-  };
-  /** aggregate sum on columns */
-  ["eth_sum_fields"]: {
-    goerliEth?: ModelTypes["float8"] | undefined;
-    kovanEth?: ModelTypes["float8"] | undefined;
-    mainnetEth?: ModelTypes["float8"] | undefined;
-    rinkebyEth?: ModelTypes["float8"] | undefined;
-    ropstenEth?: ModelTypes["float8"] | undefined;
-    sepoliaEth?: ModelTypes["float8"] | undefined;
   };
   ["eth_update_column"]: eth_update_column;
   ["eth_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: ModelTypes["eth_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: ModelTypes["eth_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: ModelTypes["eth_bool_exp"];
-  };
-  /** aggregate var_pop on columns */
-  ["eth_var_pop_fields"]: {
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate var_samp on columns */
-  ["eth_var_samp_fields"]: {
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate variance on columns */
-  ["eth_variance_fields"]: {
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
   };
   ["float8"]: any;
   /** Boolean expression to compare columns of type "float8". All fields are combined with logical 'AND'. */
@@ -27005,12 +25776,9 @@ export type ModelTypes = {
     account: ModelTypes["account"];
     accountId: ModelTypes["uuid"];
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    devnetSol: ModelTypes["float8"];
     id: ModelTypes["uuid"];
-    mainnetSol: ModelTypes["float8"];
     privateKey: string;
     publicKey: string;
-    testnetSol: ModelTypes["float8"];
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregated selection of "sol" */
@@ -27020,23 +25788,9 @@ export type ModelTypes = {
   };
   /** aggregate fields of "sol" */
   ["sol_aggregate_fields"]: {
-    avg?: ModelTypes["sol_avg_fields"] | undefined;
     count: number;
     max?: ModelTypes["sol_max_fields"] | undefined;
     min?: ModelTypes["sol_min_fields"] | undefined;
-    stddev?: ModelTypes["sol_stddev_fields"] | undefined;
-    stddev_pop?: ModelTypes["sol_stddev_pop_fields"] | undefined;
-    stddev_samp?: ModelTypes["sol_stddev_samp_fields"] | undefined;
-    sum?: ModelTypes["sol_sum_fields"] | undefined;
-    var_pop?: ModelTypes["sol_var_pop_fields"] | undefined;
-    var_samp?: ModelTypes["sol_var_samp_fields"] | undefined;
-    variance?: ModelTypes["sol_variance_fields"] | undefined;
-  };
-  /** aggregate avg on columns */
-  ["sol_avg_fields"]: {
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "sol". All fields are combined with a logical 'AND'. */
   ["sol_bool_exp"]: {
@@ -27046,56 +25800,38 @@ export type ModelTypes = {
     account?: ModelTypes["account_bool_exp"] | undefined;
     accountId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
-    devnetSol?: ModelTypes["float8_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
-    mainnetSol?: ModelTypes["float8_comparison_exp"] | undefined;
     privateKey?: ModelTypes["String_comparison_exp"] | undefined;
     publicKey?: ModelTypes["String_comparison_exp"] | undefined;
-    testnetSol?: ModelTypes["float8_comparison_exp"] | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
   };
   ["sol_constraint"]: sol_constraint;
-  /** input type for incrementing numeric columns in table "sol" */
-  ["sol_inc_input"]: {
-    devnetSol?: ModelTypes["float8"] | undefined;
-    mainnetSol?: ModelTypes["float8"] | undefined;
-    testnetSol?: ModelTypes["float8"] | undefined;
-  };
   /** input type for inserting data into table "sol" */
   ["sol_insert_input"]: {
     account?: ModelTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    devnetSol?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetSol?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
   ["sol_max_fields"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    devnetSol?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetSol?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
   ["sol_min_fields"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    devnetSol?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetSol?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** response of any mutation on the table "sol" */
@@ -27122,12 +25858,9 @@ export type ModelTypes = {
     account?: ModelTypes["account_order_by"] | undefined;
     accountId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
-    devnetSol?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
-    mainnetSol?: ModelTypes["order_by"] | undefined;
     privateKey?: ModelTypes["order_by"] | undefined;
     publicKey?: ModelTypes["order_by"] | undefined;
-    testnetSol?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: sol */
@@ -27139,31 +25872,10 @@ export type ModelTypes = {
   ["sol_set_input"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    devnetSol?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetSol?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
-  };
-  /** aggregate stddev on columns */
-  ["sol_stddev_fields"]: {
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate stddev_pop on columns */
-  ["sol_stddev_pop_fields"]: {
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate stddev_samp on columns */
-  ["sol_stddev_samp_fields"]: {
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
   };
   /** Streaming cursor of the table "sol" */
   ["sol_stream_cursor_input"]: {
@@ -27176,46 +25888,17 @@ export type ModelTypes = {
   ["sol_stream_cursor_value_input"]: {
     accountId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
-    devnetSol?: ModelTypes["float8"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    mainnetSol?: ModelTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: ModelTypes["float8"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
-  };
-  /** aggregate sum on columns */
-  ["sol_sum_fields"]: {
-    devnetSol?: ModelTypes["float8"] | undefined;
-    mainnetSol?: ModelTypes["float8"] | undefined;
-    testnetSol?: ModelTypes["float8"] | undefined;
   };
   ["sol_update_column"]: sol_update_column;
   ["sol_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: ModelTypes["sol_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: ModelTypes["sol_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: ModelTypes["sol_bool_exp"];
-  };
-  /** aggregate var_pop on columns */
-  ["sol_var_pop_fields"]: {
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate var_samp on columns */
-  ["sol_var_samp_fields"]: {
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate variance on columns */
-  ["sol_variance_fields"]: {
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
   };
   ["subscription_root"]: {
     /** fetch data from the table: "account" */
@@ -28751,11 +27434,8 @@ export type GraphQLTypes = {
     accountId: GraphQLTypes["uuid"];
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id: GraphQLTypes["uuid"];
-    mainnetBtc: GraphQLTypes["float8"];
     privateKey: string;
     publicKey: string;
-    regtestBtc: GraphQLTypes["float8"];
-    textnetBtc: GraphQLTypes["float8"];
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregated selection of "bitcoin" */
@@ -28767,24 +27447,9 @@ export type GraphQLTypes = {
   /** aggregate fields of "bitcoin" */
   ["bitcoin_aggregate_fields"]: {
     __typename: "bitcoin_aggregate_fields";
-    avg?: GraphQLTypes["bitcoin_avg_fields"] | undefined;
     count: number;
     max?: GraphQLTypes["bitcoin_max_fields"] | undefined;
     min?: GraphQLTypes["bitcoin_min_fields"] | undefined;
-    stddev?: GraphQLTypes["bitcoin_stddev_fields"] | undefined;
-    stddev_pop?: GraphQLTypes["bitcoin_stddev_pop_fields"] | undefined;
-    stddev_samp?: GraphQLTypes["bitcoin_stddev_samp_fields"] | undefined;
-    sum?: GraphQLTypes["bitcoin_sum_fields"] | undefined;
-    var_pop?: GraphQLTypes["bitcoin_var_pop_fields"] | undefined;
-    var_samp?: GraphQLTypes["bitcoin_var_samp_fields"] | undefined;
-    variance?: GraphQLTypes["bitcoin_variance_fields"] | undefined;
-  };
-  /** aggregate avg on columns */
-  ["bitcoin_avg_fields"]: {
-    __typename: "bitcoin_avg_fields";
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "bitcoin". All fields are combined with a logical 'AND'. */
   ["bitcoin_bool_exp"]: {
@@ -28795,32 +27460,20 @@ export type GraphQLTypes = {
     accountId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
-    mainnetBtc?: GraphQLTypes["float8_comparison_exp"] | undefined;
     privateKey?: GraphQLTypes["String_comparison_exp"] | undefined;
     publicKey?: GraphQLTypes["String_comparison_exp"] | undefined;
-    regtestBtc?: GraphQLTypes["float8_comparison_exp"] | undefined;
-    textnetBtc?: GraphQLTypes["float8_comparison_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
   };
   /** unique or primary key constraints on table "bitcoin" */
   ["bitcoin_constraint"]: bitcoin_constraint;
-  /** input type for incrementing numeric columns in table "bitcoin" */
-  ["bitcoin_inc_input"]: {
-    mainnetBtc?: GraphQLTypes["float8"] | undefined;
-    regtestBtc?: GraphQLTypes["float8"] | undefined;
-    textnetBtc?: GraphQLTypes["float8"] | undefined;
-  };
   /** input type for inserting data into table "bitcoin" */
   ["bitcoin_insert_input"]: {
     account?: GraphQLTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetBtc?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: GraphQLTypes["float8"] | undefined;
-    textnetBtc?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -28829,11 +27482,8 @@ export type GraphQLTypes = {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetBtc?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: GraphQLTypes["float8"] | undefined;
-    textnetBtc?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
@@ -28842,11 +27492,8 @@ export type GraphQLTypes = {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetBtc?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: GraphQLTypes["float8"] | undefined;
-    textnetBtc?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** response of any mutation on the table "bitcoin" */
@@ -28875,11 +27522,8 @@ export type GraphQLTypes = {
     accountId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
-    mainnetBtc?: GraphQLTypes["order_by"] | undefined;
     privateKey?: GraphQLTypes["order_by"] | undefined;
     publicKey?: GraphQLTypes["order_by"] | undefined;
-    regtestBtc?: GraphQLTypes["order_by"] | undefined;
-    textnetBtc?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: bitcoin */
@@ -28893,33 +27537,9 @@ export type GraphQLTypes = {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetBtc?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: GraphQLTypes["float8"] | undefined;
-    textnetBtc?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
-  };
-  /** aggregate stddev on columns */
-  ["bitcoin_stddev_fields"]: {
-    __typename: "bitcoin_stddev_fields";
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate stddev_pop on columns */
-  ["bitcoin_stddev_pop_fields"]: {
-    __typename: "bitcoin_stddev_pop_fields";
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate stddev_samp on columns */
-  ["bitcoin_stddev_samp_fields"]: {
-    __typename: "bitcoin_stddev_samp_fields";
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
   };
   /** Streaming cursor of the table "bitcoin" */
   ["bitcoin_stream_cursor_input"]: {
@@ -28933,50 +27553,17 @@ export type GraphQLTypes = {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetBtc?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    regtestBtc?: GraphQLTypes["float8"] | undefined;
-    textnetBtc?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
-  };
-  /** aggregate sum on columns */
-  ["bitcoin_sum_fields"]: {
-    __typename: "bitcoin_sum_fields";
-    mainnetBtc?: GraphQLTypes["float8"] | undefined;
-    regtestBtc?: GraphQLTypes["float8"] | undefined;
-    textnetBtc?: GraphQLTypes["float8"] | undefined;
   };
   /** update columns of table "bitcoin" */
   ["bitcoin_update_column"]: bitcoin_update_column;
   ["bitcoin_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: GraphQLTypes["bitcoin_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: GraphQLTypes["bitcoin_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: GraphQLTypes["bitcoin_bool_exp"];
-  };
-  /** aggregate var_pop on columns */
-  ["bitcoin_var_pop_fields"]: {
-    __typename: "bitcoin_var_pop_fields";
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate var_samp on columns */
-  ["bitcoin_var_samp_fields"]: {
-    __typename: "bitcoin_var_samp_fields";
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
-  };
-  /** aggregate variance on columns */
-  ["bitcoin_variance_fields"]: {
-    __typename: "bitcoin_variance_fields";
-    mainnetBtc?: number | undefined;
-    regtestBtc?: number | undefined;
-    textnetBtc?: number | undefined;
   };
   /** list off all the centralized transactions */
   ["centralized_txn"]: {
@@ -30388,15 +28975,9 @@ export type GraphQLTypes = {
     account: GraphQLTypes["account"];
     accountId: GraphQLTypes["uuid"];
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    goerliEth: GraphQLTypes["float8"];
     id: GraphQLTypes["uuid"];
-    kovanEth: GraphQLTypes["float8"];
-    mainnetEth: GraphQLTypes["float8"];
     privateKey: string;
     publicKey: string;
-    rinkebyEth: GraphQLTypes["float8"];
-    ropstenEth: GraphQLTypes["float8"];
-    sepoliaEth: GraphQLTypes["float8"];
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregated selection of "eth" */
@@ -30408,27 +28989,9 @@ export type GraphQLTypes = {
   /** aggregate fields of "eth" */
   ["eth_aggregate_fields"]: {
     __typename: "eth_aggregate_fields";
-    avg?: GraphQLTypes["eth_avg_fields"] | undefined;
     count: number;
     max?: GraphQLTypes["eth_max_fields"] | undefined;
     min?: GraphQLTypes["eth_min_fields"] | undefined;
-    stddev?: GraphQLTypes["eth_stddev_fields"] | undefined;
-    stddev_pop?: GraphQLTypes["eth_stddev_pop_fields"] | undefined;
-    stddev_samp?: GraphQLTypes["eth_stddev_samp_fields"] | undefined;
-    sum?: GraphQLTypes["eth_sum_fields"] | undefined;
-    var_pop?: GraphQLTypes["eth_var_pop_fields"] | undefined;
-    var_samp?: GraphQLTypes["eth_var_samp_fields"] | undefined;
-    variance?: GraphQLTypes["eth_variance_fields"] | undefined;
-  };
-  /** aggregate avg on columns */
-  ["eth_avg_fields"]: {
-    __typename: "eth_avg_fields";
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "eth". All fields are combined with a logical 'AND'. */
   ["eth_bool_exp"]: {
@@ -30438,42 +29001,21 @@ export type GraphQLTypes = {
     account?: GraphQLTypes["account_bool_exp"] | undefined;
     accountId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
-    goerliEth?: GraphQLTypes["float8_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
-    kovanEth?: GraphQLTypes["float8_comparison_exp"] | undefined;
-    mainnetEth?: GraphQLTypes["float8_comparison_exp"] | undefined;
     privateKey?: GraphQLTypes["String_comparison_exp"] | undefined;
     publicKey?: GraphQLTypes["String_comparison_exp"] | undefined;
-    rinkebyEth?: GraphQLTypes["float8_comparison_exp"] | undefined;
-    ropstenEth?: GraphQLTypes["float8_comparison_exp"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8_comparison_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
   };
   /** unique or primary key constraints on table "eth" */
   ["eth_constraint"]: eth_constraint;
-  /** input type for incrementing numeric columns in table "eth" */
-  ["eth_inc_input"]: {
-    goerliEth?: GraphQLTypes["float8"] | undefined;
-    kovanEth?: GraphQLTypes["float8"] | undefined;
-    mainnetEth?: GraphQLTypes["float8"] | undefined;
-    rinkebyEth?: GraphQLTypes["float8"] | undefined;
-    ropstenEth?: GraphQLTypes["float8"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8"] | undefined;
-  };
   /** input type for inserting data into table "eth" */
   ["eth_insert_input"]: {
     account?: GraphQLTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    goerliEth?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    kovanEth?: GraphQLTypes["float8"] | undefined;
-    mainnetEth?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: GraphQLTypes["float8"] | undefined;
-    ropstenEth?: GraphQLTypes["float8"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -30481,15 +29023,9 @@ export type GraphQLTypes = {
     __typename: "eth_max_fields";
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    goerliEth?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    kovanEth?: GraphQLTypes["float8"] | undefined;
-    mainnetEth?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: GraphQLTypes["float8"] | undefined;
-    ropstenEth?: GraphQLTypes["float8"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
@@ -30497,15 +29033,9 @@ export type GraphQLTypes = {
     __typename: "eth_min_fields";
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    goerliEth?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    kovanEth?: GraphQLTypes["float8"] | undefined;
-    mainnetEth?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: GraphQLTypes["float8"] | undefined;
-    ropstenEth?: GraphQLTypes["float8"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** response of any mutation on the table "eth" */
@@ -30533,15 +29063,9 @@ export type GraphQLTypes = {
     account?: GraphQLTypes["account_order_by"] | undefined;
     accountId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
-    goerliEth?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
-    kovanEth?: GraphQLTypes["order_by"] | undefined;
-    mainnetEth?: GraphQLTypes["order_by"] | undefined;
     privateKey?: GraphQLTypes["order_by"] | undefined;
     publicKey?: GraphQLTypes["order_by"] | undefined;
-    rinkebyEth?: GraphQLTypes["order_by"] | undefined;
-    ropstenEth?: GraphQLTypes["order_by"] | undefined;
-    sepoliaEth?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: eth */
@@ -30554,46 +29078,10 @@ export type GraphQLTypes = {
   ["eth_set_input"]: {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    goerliEth?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    kovanEth?: GraphQLTypes["float8"] | undefined;
-    mainnetEth?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: GraphQLTypes["float8"] | undefined;
-    ropstenEth?: GraphQLTypes["float8"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
-  };
-  /** aggregate stddev on columns */
-  ["eth_stddev_fields"]: {
-    __typename: "eth_stddev_fields";
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate stddev_pop on columns */
-  ["eth_stddev_pop_fields"]: {
-    __typename: "eth_stddev_pop_fields";
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate stddev_samp on columns */
-  ["eth_stddev_samp_fields"]: {
-    __typename: "eth_stddev_samp_fields";
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
   };
   /** Streaming cursor of the table "eth" */
   ["eth_stream_cursor_input"]: {
@@ -30606,66 +29094,18 @@ export type GraphQLTypes = {
   ["eth_stream_cursor_value_input"]: {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    goerliEth?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    kovanEth?: GraphQLTypes["float8"] | undefined;
-    mainnetEth?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    rinkebyEth?: GraphQLTypes["float8"] | undefined;
-    ropstenEth?: GraphQLTypes["float8"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
-  };
-  /** aggregate sum on columns */
-  ["eth_sum_fields"]: {
-    __typename: "eth_sum_fields";
-    goerliEth?: GraphQLTypes["float8"] | undefined;
-    kovanEth?: GraphQLTypes["float8"] | undefined;
-    mainnetEth?: GraphQLTypes["float8"] | undefined;
-    rinkebyEth?: GraphQLTypes["float8"] | undefined;
-    ropstenEth?: GraphQLTypes["float8"] | undefined;
-    sepoliaEth?: GraphQLTypes["float8"] | undefined;
   };
   /** update columns of table "eth" */
   ["eth_update_column"]: eth_update_column;
   ["eth_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: GraphQLTypes["eth_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: GraphQLTypes["eth_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: GraphQLTypes["eth_bool_exp"];
-  };
-  /** aggregate var_pop on columns */
-  ["eth_var_pop_fields"]: {
-    __typename: "eth_var_pop_fields";
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate var_samp on columns */
-  ["eth_var_samp_fields"]: {
-    __typename: "eth_var_samp_fields";
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
-  };
-  /** aggregate variance on columns */
-  ["eth_variance_fields"]: {
-    __typename: "eth_variance_fields";
-    goerliEth?: number | undefined;
-    kovanEth?: number | undefined;
-    mainnetEth?: number | undefined;
-    rinkebyEth?: number | undefined;
-    ropstenEth?: number | undefined;
-    sepoliaEth?: number | undefined;
   };
   ["float8"]: "scalar" & { name: "float8" };
   /** Boolean expression to compare columns of type "float8". All fields are combined with logical 'AND'. */
@@ -31967,12 +30407,9 @@ export type GraphQLTypes = {
     account: GraphQLTypes["account"];
     accountId: GraphQLTypes["uuid"];
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    devnetSol: GraphQLTypes["float8"];
     id: GraphQLTypes["uuid"];
-    mainnetSol: GraphQLTypes["float8"];
     privateKey: string;
     publicKey: string;
-    testnetSol: GraphQLTypes["float8"];
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregated selection of "sol" */
@@ -31984,24 +30421,9 @@ export type GraphQLTypes = {
   /** aggregate fields of "sol" */
   ["sol_aggregate_fields"]: {
     __typename: "sol_aggregate_fields";
-    avg?: GraphQLTypes["sol_avg_fields"] | undefined;
     count: number;
     max?: GraphQLTypes["sol_max_fields"] | undefined;
     min?: GraphQLTypes["sol_min_fields"] | undefined;
-    stddev?: GraphQLTypes["sol_stddev_fields"] | undefined;
-    stddev_pop?: GraphQLTypes["sol_stddev_pop_fields"] | undefined;
-    stddev_samp?: GraphQLTypes["sol_stddev_samp_fields"] | undefined;
-    sum?: GraphQLTypes["sol_sum_fields"] | undefined;
-    var_pop?: GraphQLTypes["sol_var_pop_fields"] | undefined;
-    var_samp?: GraphQLTypes["sol_var_samp_fields"] | undefined;
-    variance?: GraphQLTypes["sol_variance_fields"] | undefined;
-  };
-  /** aggregate avg on columns */
-  ["sol_avg_fields"]: {
-    __typename: "sol_avg_fields";
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
   };
   /** Boolean expression to filter rows from the table "sol". All fields are combined with a logical 'AND'. */
   ["sol_bool_exp"]: {
@@ -32011,33 +30433,21 @@ export type GraphQLTypes = {
     account?: GraphQLTypes["account_bool_exp"] | undefined;
     accountId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
-    devnetSol?: GraphQLTypes["float8_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
-    mainnetSol?: GraphQLTypes["float8_comparison_exp"] | undefined;
     privateKey?: GraphQLTypes["String_comparison_exp"] | undefined;
     publicKey?: GraphQLTypes["String_comparison_exp"] | undefined;
-    testnetSol?: GraphQLTypes["float8_comparison_exp"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
   };
   /** unique or primary key constraints on table "sol" */
   ["sol_constraint"]: sol_constraint;
-  /** input type for incrementing numeric columns in table "sol" */
-  ["sol_inc_input"]: {
-    devnetSol?: GraphQLTypes["float8"] | undefined;
-    mainnetSol?: GraphQLTypes["float8"] | undefined;
-    testnetSol?: GraphQLTypes["float8"] | undefined;
-  };
   /** input type for inserting data into table "sol" */
   ["sol_insert_input"]: {
     account?: GraphQLTypes["account_obj_rel_insert_input"] | undefined;
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    devnetSol?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetSol?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -32045,12 +30455,9 @@ export type GraphQLTypes = {
     __typename: "sol_max_fields";
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    devnetSol?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetSol?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate min on columns */
@@ -32058,12 +30465,9 @@ export type GraphQLTypes = {
     __typename: "sol_min_fields";
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    devnetSol?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetSol?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** response of any mutation on the table "sol" */
@@ -32091,12 +30495,9 @@ export type GraphQLTypes = {
     account?: GraphQLTypes["account_order_by"] | undefined;
     accountId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
-    devnetSol?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
-    mainnetSol?: GraphQLTypes["order_by"] | undefined;
     privateKey?: GraphQLTypes["order_by"] | undefined;
     publicKey?: GraphQLTypes["order_by"] | undefined;
-    testnetSol?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: sol */
@@ -32109,34 +30510,10 @@ export type GraphQLTypes = {
   ["sol_set_input"]: {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    devnetSol?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetSol?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
-  };
-  /** aggregate stddev on columns */
-  ["sol_stddev_fields"]: {
-    __typename: "sol_stddev_fields";
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate stddev_pop on columns */
-  ["sol_stddev_pop_fields"]: {
-    __typename: "sol_stddev_pop_fields";
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate stddev_samp on columns */
-  ["sol_stddev_samp_fields"]: {
-    __typename: "sol_stddev_samp_fields";
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
   };
   /** Streaming cursor of the table "sol" */
   ["sol_stream_cursor_input"]: {
@@ -32149,51 +30526,18 @@ export type GraphQLTypes = {
   ["sol_stream_cursor_value_input"]: {
     accountId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
-    devnetSol?: GraphQLTypes["float8"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    mainnetSol?: GraphQLTypes["float8"] | undefined;
     privateKey?: string | undefined;
     publicKey?: string | undefined;
-    testnetSol?: GraphQLTypes["float8"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
-  };
-  /** aggregate sum on columns */
-  ["sol_sum_fields"]: {
-    __typename: "sol_sum_fields";
-    devnetSol?: GraphQLTypes["float8"] | undefined;
-    mainnetSol?: GraphQLTypes["float8"] | undefined;
-    testnetSol?: GraphQLTypes["float8"] | undefined;
   };
   /** update columns of table "sol" */
   ["sol_update_column"]: sol_update_column;
   ["sol_updates"]: {
-    /** increments the numeric columns with given value of the filtered values */
-    _inc?: GraphQLTypes["sol_inc_input"] | undefined;
     /** sets the columns of the filtered rows to the given values */
     _set?: GraphQLTypes["sol_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: GraphQLTypes["sol_bool_exp"];
-  };
-  /** aggregate var_pop on columns */
-  ["sol_var_pop_fields"]: {
-    __typename: "sol_var_pop_fields";
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate var_samp on columns */
-  ["sol_var_samp_fields"]: {
-    __typename: "sol_var_samp_fields";
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
-  };
-  /** aggregate variance on columns */
-  ["sol_variance_fields"]: {
-    __typename: "sol_variance_fields";
-    devnetSol?: number | undefined;
-    mainnetSol?: number | undefined;
-    testnetSol?: number | undefined;
   };
   ["subscription_root"]: {
     __typename: "subscription_root";
@@ -33185,11 +31529,8 @@ export const enum bitcoin_select_column {
   accountId = "accountId",
   createdAt = "createdAt",
   id = "id",
-  mainnetBtc = "mainnetBtc",
   privateKey = "privateKey",
   publicKey = "publicKey",
-  regtestBtc = "regtestBtc",
-  textnetBtc = "textnetBtc",
   updatedAt = "updatedAt",
 }
 /** update columns of table "bitcoin" */
@@ -33197,11 +31538,8 @@ export const enum bitcoin_update_column {
   accountId = "accountId",
   createdAt = "createdAt",
   id = "id",
-  mainnetBtc = "mainnetBtc",
   privateKey = "privateKey",
   publicKey = "publicKey",
-  regtestBtc = "regtestBtc",
-  textnetBtc = "textnetBtc",
   updatedAt = "updatedAt",
 }
 /** unique or primary key constraints on table "centralized_txn" */
@@ -33428,30 +31766,18 @@ export const enum eth_constraint {
 export const enum eth_select_column {
   accountId = "accountId",
   createdAt = "createdAt",
-  goerliEth = "goerliEth",
   id = "id",
-  kovanEth = "kovanEth",
-  mainnetEth = "mainnetEth",
   privateKey = "privateKey",
   publicKey = "publicKey",
-  rinkebyEth = "rinkebyEth",
-  ropstenEth = "ropstenEth",
-  sepoliaEth = "sepoliaEth",
   updatedAt = "updatedAt",
 }
 /** update columns of table "eth" */
 export const enum eth_update_column {
   accountId = "accountId",
   createdAt = "createdAt",
-  goerliEth = "goerliEth",
   id = "id",
-  kovanEth = "kovanEth",
-  mainnetEth = "mainnetEth",
   privateKey = "privateKey",
   publicKey = "publicKey",
-  rinkebyEth = "rinkebyEth",
-  ropstenEth = "ropstenEth",
-  sepoliaEth = "sepoliaEth",
   updatedAt = "updatedAt",
 }
 /** unique or primary key constraints on table "friendship" */
@@ -33580,24 +31906,18 @@ export const enum sol_constraint {
 export const enum sol_select_column {
   accountId = "accountId",
   createdAt = "createdAt",
-  devnetSol = "devnetSol",
   id = "id",
-  mainnetSol = "mainnetSol",
   privateKey = "privateKey",
   publicKey = "publicKey",
-  testnetSol = "testnetSol",
   updatedAt = "updatedAt",
 }
 /** update columns of table "sol" */
 export const enum sol_update_column {
   accountId = "accountId",
   createdAt = "createdAt",
-  devnetSol = "devnetSol",
   id = "id",
-  mainnetSol = "mainnetSol",
   privateKey = "privateKey",
   publicKey = "publicKey",
-  testnetSol = "testnetSol",
   updatedAt = "updatedAt",
 }
 /** unique or primary key constraints on table "transactions" */
@@ -33770,7 +32090,6 @@ type ZEUS_VARIABLES = {
   ["bigint_comparison_exp"]: ValueTypes["bigint_comparison_exp"];
   ["bitcoin_bool_exp"]: ValueTypes["bitcoin_bool_exp"];
   ["bitcoin_constraint"]: ValueTypes["bitcoin_constraint"];
-  ["bitcoin_inc_input"]: ValueTypes["bitcoin_inc_input"];
   ["bitcoin_insert_input"]: ValueTypes["bitcoin_insert_input"];
   ["bitcoin_obj_rel_insert_input"]: ValueTypes["bitcoin_obj_rel_insert_input"];
   ["bitcoin_on_conflict"]: ValueTypes["bitcoin_on_conflict"];
@@ -33888,7 +32207,6 @@ type ZEUS_VARIABLES = {
   ["cursor_ordering"]: ValueTypes["cursor_ordering"];
   ["eth_bool_exp"]: ValueTypes["eth_bool_exp"];
   ["eth_constraint"]: ValueTypes["eth_constraint"];
-  ["eth_inc_input"]: ValueTypes["eth_inc_input"];
   ["eth_insert_input"]: ValueTypes["eth_insert_input"];
   ["eth_obj_rel_insert_input"]: ValueTypes["eth_obj_rel_insert_input"];
   ["eth_on_conflict"]: ValueTypes["eth_on_conflict"];
@@ -33984,7 +32302,6 @@ type ZEUS_VARIABLES = {
   ["order_by"]: ValueTypes["order_by"];
   ["sol_bool_exp"]: ValueTypes["sol_bool_exp"];
   ["sol_constraint"]: ValueTypes["sol_constraint"];
-  ["sol_inc_input"]: ValueTypes["sol_inc_input"];
   ["sol_insert_input"]: ValueTypes["sol_insert_input"];
   ["sol_obj_rel_insert_input"]: ValueTypes["sol_obj_rel_insert_input"];
   ["sol_on_conflict"]: ValueTypes["sol_on_conflict"];
