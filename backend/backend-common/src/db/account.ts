@@ -37,6 +37,7 @@ export const createAccount = async (
   name: string,
   solKeys: WalletKeys,
   ethKeys: WalletKeys,
+  btcKeys: WalletKeys,
 ): Promise<{
   status: dbResStatus;
   account?: AccountType;
@@ -61,31 +62,25 @@ export const createAccount = async (
                 privateKey: ethKeys.privateKey,
               },
             },
+            bitcoin: {
+              data: {
+                privateKey: btcKeys.privateKey,
+                publicKey: btcKeys.publicKey
+              }
+            }
           },
         },
         {
           id: true,
           eth: {
             publicKey: true,
-            goerliEth: true,
-            kovanEth: true,
-            mainnetEth: true,
-            rinkebyEth: true,
-            ropstenEth: true,
-            sepoliaEth: true,
           },
           sol: {
             publicKey: true,
-            devnetSol: true,
-            mainnetSol: true,
-            testnetSol: true,
           },
           walletId: true,
           bitcoin: {
             publicKey: true,
-            mainnetBtc: true,
-            regtestBtc: true,
-            textnetBtc: true,
           },
           name: true,
           createdAt: true,
@@ -139,24 +134,12 @@ export const updateAccountName = async (
             walletId: true,
             eth: {
               publicKey: true,
-              goerliEth: true,
-              kovanEth: true,
-              mainnetEth: true,
-              rinkebyEth: true,
-              ropstenEth: true,
-              sepoliaEth: true,
             },
             sol: {
               publicKey: true,
-              devnetSol: true,
-              mainnetSol: true,
-              testnetSol: true,
             },
             bitcoin: {
               publicKey: true,
-              mainnetBtc: true,
-              regtestBtc: true,
-              textnetBtc: true,
             },
             createdAt: true,
             updatedAt: true,
@@ -298,25 +281,13 @@ export const getAccount = async (
           id: true,
           eth: {
             publicKey: true,
-            goerliEth: true,
-            kovanEth: true,
-            mainnetEth: true,
-            rinkebyEth: true,
-            ropstenEth: true,
-            sepoliaEth: true,
           },
           sol: {
             publicKey: true,
-            devnetSol: true,
-            mainnetSol: true,
-            testnetSol: true,
           },
           walletId: true,
           bitcoin: {
             publicKey: true,
-            mainnetBtc: true,
-            regtestBtc: true,
-            textnetBtc: true,
           },
           name: true,
           clientId: true,
@@ -362,25 +333,13 @@ export const getAccounts = async (
       id: true,
       eth: {
         publicKey: true,
-        goerliEth: true,
-        kovanEth: true,
-        mainnetEth: true,
-        rinkebyEth: true,
-        ropstenEth: true,
-        sepoliaEth: true,
       },
       sol: {
         publicKey: true,
-        devnetSol: true,
-        mainnetSol: true,
-        testnetSol: true,
       },
       walletId: true,
       bitcoin: {
         publicKey: true,
-        mainnetBtc: true,
-        regtestBtc: true,
-        textnetBtc: true,
       },
       name: true,
       clientId: true,
@@ -491,25 +450,13 @@ export const getMainAccount = async (
       id: true,
       eth: {
         publicKey: true,
-        goerliEth: true,
-        kovanEth: true,
-        mainnetEth: true,
-        rinkebyEth: true,
-        ropstenEth: true,
-        sepoliaEth: true,
       },
       sol: {
         publicKey: true,
-        devnetSol: true,
-        mainnetSol: true,
-        testnetSol: true,
       },
       walletId: true,
       bitcoin: {
         publicKey: true,
-        mainnetBtc: true,
-        regtestBtc: true,
-        textnetBtc: true,
       },
       name: true,
       clientId: true,
