@@ -255,14 +255,12 @@ export interface FriendPubKeys {
 export interface Settings {
     locale: string,
     testmode: boolean,
-    preferedWallet: string,
-    preferedExplorer: string,
     solNet: SolCluster,
     ethNet: EthCluster,
     btcNet: BitcoinCluster,
-    btcExp?: BtcExplorer,
-    ethExp?: EthExplorer,
-    solExp?: SolExplorer,
+    btcExp: BtcExplorer,
+    ethExp: EthExplorer,
+    solExp: SolExplorer,
     id?: string,
     clientId?: string,
 }
