@@ -1,4 +1,4 @@
-import { AddressBook, BitcoinCluster, EthCluster, SolCluster } from "@paybox/common";
+import { AddressBook, BitcoinCluster, BtcExplorer, EthCluster, EthExplorer, ExplorerPref, SolCluster, SolExplorer } from "@paybox/common";
 import { atom, atomFamily } from "recoil";
 
 export const testmodeAtom = atom<boolean>({
@@ -25,4 +25,13 @@ export const solNetAtom = atom<SolCluster>({
 export const booksAtom = atom<AddressBook[]>({
     key: "booksAtom",
     default: []
+});
+
+export const expPrefAtom = atom<ExplorerPref>({
+    key: "expPref",
+    default: {
+        ethExp: EthExplorer.Etherscan,
+        btcExp: BtcExplorer.Mempool,
+        solExp: SolExplorer.Solscan
+    }
 });
