@@ -13,7 +13,7 @@ import React from "react";
 import { Tab } from "./tab";
 import { CodeWrapper } from "./components/Code-wrapper";
 import { Share } from "./components/share";
-import { CLIENT_URL } from "@paybox/common";
+import { CLIENT_URL, Network } from "@paybox/common";
 import BuyButton from "./components/buy-button";
 import { loadMoonPay } from '@moonpay/moonpay-js';
 import TransferButton from "./components/tsf-btn";
@@ -82,14 +82,17 @@ export default async function Page({
                             <Tab
                                 chain={"Solana"}
                                 key={"sol"}
+                                net={Network.Sol}
                             />
                             <Tab
                                 chain={"Ethereum"}
                                 key={"eth"}
+                                net={Network.Eth}
                             />
                             <Tab
                                 chain={"Bitcoin"}
                                 key={"btc"}
+                                net={Network.Bitcoin}
                             />
                         </CardContent>
                         <CardFooter>
