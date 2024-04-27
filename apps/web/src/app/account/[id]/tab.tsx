@@ -15,31 +15,44 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "@/src/components/ui/dialog"
+} from "@/src/components/ui/dialog";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/src/components/ui/tooltip"
+
 import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
 import { Textarea } from '@/src/components/ui/textarea'
 import { useRecoilValue } from 'recoil'
-import { accountAtom } from '@paybox/recoil'
+import { accountAtom, expPrefAtom } from '@paybox/recoil'
 import { QRCode } from 'react-qrcode-logo'
-import { AccountType, EthKey, SolKey } from '@paybox/common'
+import { AccountType, EthKey, Network, SolKey, getExplorerLink } from '@paybox/common'
 import KeyTab from '@/src/components/key-tab'
+import { Badge } from '@/src/components/ui/badge'
+import Link from 'next/link'
 
 export const Tab = ({
     chain,
     account,
+    net
 }: {
     chain: "Solana" | "Ethereum" | "Bitcoin",
     account?: {
         key: Pick<EthKey, "publicKey"> | Pick<SolKey, "publicKey"> | undefined,
         name: string | undefined
-    }
+    },
+    net: Network
 }) => {
     const accountState = useRecoilValue(accountAtom);
     const [tabData, setTabData] = React.useState<{
         publicKey: string | undefined,
         name: string | undefined
-    }>()
+    }>();
+
+    const pref = useRecoilValue(expPrefAtom);
 
     useEffect(() => {
         if (account) {
@@ -53,12 +66,12 @@ export const Tab = ({
                     name: accountState?.name,
                     publicKey: accountState?.eth.publicKey
                 });
-            } else if(chain === "Solana") {
+            } else if (chain === "Solana") {
                 setTabData({
                     name: accountState?.name,
                     publicKey: accountState?.sol.publicKey
                 });
-            } else if(chain === "Bitcoin" && accountState?.bitcoin) {
+            } else if (chain === "Bitcoin" && accountState?.bitcoin) {
                 setTabData({
                     name: accountState?.name,
                     publicKey: accountState?.bitcoin.publicKey
@@ -81,7 +94,30 @@ export const Tab = ({
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-sm">
                     <DialogHeader>
-                        <DialogTitle>{tabData?.name} {chain} Public Key</DialogTitle>
+                        <DialogTitle>{tabData?.name}
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger>
+                                        <Link
+                                            href={tabData?.publicKey && getExplorerLink(net, net == Network.Sol ? pref.solExp : net == Network.Eth ? pref.ethExp : pref.btcExp, tabData?.publicKey) || "#"}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <Badge
+                                                className='mx-2 w-fit h-fit text-sm'
+                                                variant={"secondary"}
+                                            >
+                                                {chain}
+                                            </Badge>
+                                        </Link>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Check the account on explorer...</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+                            Public Key
+                        </DialogTitle>
                         <DialogDescription>
                             Share this public key to receive money.
                         </DialogDescription>

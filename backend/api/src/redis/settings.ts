@@ -1,6 +1,6 @@
 import { RedisClientType } from "redis";
 import { Redis } from "..";
-import { BitcoinCluster, EthCluster, Settings, SolCluster } from "@paybox/common";
+import { BitcoinCluster, BtcExplorer, EthCluster, EthExplorer, ExplorerPref, Settings, SolCluster, SolExplorer } from "@paybox/common";
 
 export class SettingsCache {
     private client: RedisClientType;
@@ -16,11 +16,12 @@ export class SettingsCache {
         await this.client.hSet(key, {
             locale: value.locale,
             testmode: value.testmode == true ? "true" : "false",
-            preferedWallet: value.preferedWallet,
-            preferedExplorer: value.preferedExplorer,
             solNet: value.solNet,
             ethNet: value.ethNet,
             btcNet: value.btcNet,
+            btcExp: value.btcExp,
+            ethExp: value.ethExp,
+            solExp: value.solExp,
             clientId: value.clientId || "",
         });
         await this.client.expire(
@@ -37,15 +38,40 @@ export class SettingsCache {
             return {
                 locale: settings.locale as string,
                 testmode: settings.testmode == "true" ? true : false,
-                preferedWallet: settings.preferedWallet as string,
-                preferedExplorer: settings.preferedExplorer as string,
                 clientId: settings.clientId as string,
                 solNet: settings.solNet as SolCluster,
                 ethNet: settings.ethNet as EthCluster,
                 btcNet: settings.btcNet as BitcoinCluster,
+                btcExp: settings.btcExp as BtcExplorer,
+                ethExp: settings.ethExp as EthExplorer,
+                solExp: settings.solExp as SolExplorer,
             } as T;
         }
         return null;
+    }
+
+    async cacheClientPref(key: string, item: {
+        solExp: SolExplorer,
+        btcExp: BtcExplorer,
+        ethExp: EthExplorer
+    }) {
+
+        await this.client.hSet(key, item);
+        await this.client.expire(key, 60*5);
+        console.log(`Client pref cached with ${key}`);
+
+        return;
+    }
+
+    async getClientPref(key: string): Promise<null | ExplorerPref> {
+        const pref = await this.client.hGetAll(key);
+        if(!pref) return null;
+
+        return {
+            btcExp: pref.btcExp as BtcExplorer,
+            ethExp: pref.ethExp as EthExplorer,
+            solExp: pref.solExp as SolExplorer
+        }
     }
 
 }

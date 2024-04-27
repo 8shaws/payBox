@@ -14,8 +14,8 @@ import { ClientWithJwt } from "@paybox/common";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: 'swap',
-  adjustFontFallback: false
+  display: 'auto',
+  adjustFontFallback: true
 });
 
 export const metadata: Metadata = {

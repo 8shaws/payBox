@@ -15,6 +15,5 @@ export enum BtcExplorer {
     Blockstream = "Blockstream",
     Blockchain = "Blockchain",
     Blockcypher = "Blockcypher",
-    Smartbit = "Smartbit",
     Mempool = "Mempool",
 }

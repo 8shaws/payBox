@@ -1,5 +1,7 @@
+import { EnumLike } from "zod";
 import { Network } from "./enum";
 import { Cluster } from "@solana/web3.js";
+import { BtcExplorer, EthExplorer, ExplorerPref, SolExplorer } from "./settings";
 
 export const PORT: number = 8080;
 export const WSPORT: number = 8081;
@@ -317,3 +319,50 @@ export const chains = Object.keys(Network).map((key) => {
     label: key,
   }
 })
+
+//given a account address chain and cluster, return the explorer link
+export const getExplorerLink = (chain: Network, explorer: BtcExplorer | EthExplorer | SolExplorer, address: string) => {
+  switch (chain) {
+    case Network.Bitcoin:
+      switch(explorer) {
+        case BtcExplorer.Blockchain:
+          return `https://www.blockchain.com/explorer/search?search=${address}`;
+        case BtcExplorer.Blockcypher:
+          return `https://live.blockcypher.com/btc/address/${address}/`;
+        case BtcExplorer.Mempool:
+          return `https://mempool.space/address/${address}`;
+        case BtcExplorer.Blockstream:
+          return `https://blockstream.info/address/${address}`;
+        
+        default:
+          return '';
+      }
+
+    case Network.Eth:
+      switch(explorer) {
+        case EthExplorer.Etherscan:
+          return `https://etherscan.io/address/${address}`;
+        case EthExplorer.Blockscout:
+          return `https://blockscout.com/eth/mainnet/address/${address}`;
+        case EthExplorer.Ethplorer:
+          return `https://ethplorer.io/address/${address}`;
+        default:
+          return '';
+      }
+    case Network.Sol:
+      switch(explorer) {
+        case SolExplorer.SolanaBeach:
+          return `https://solana.beach/${address}`;
+        case SolExplorer.SolanaExplorer:
+          return `https://explorer.solana.com/address/${address}`;
+        case SolExplorer.Solscan:
+          return `https://solscan.io/address/${address}`;
+        case SolExplorer.SolanaFm:
+          return `https://solana.fm/address/${address}`;
+        default:
+          return '';
+      }
+    default:
+      return '';
+  }
+}
