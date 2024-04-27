@@ -4,16 +4,10 @@ on:
   push:
     branches:
       - dev
-    paths:
-      - 'docker/**'
-      - 'backend/**'
   pull_request:
     branches:
       - dev
-    paths:
-      - 'docker/**'
-      - 'backend/**'
-
+g
 jobs:
 
   openapi_image:
