@@ -6,7 +6,7 @@ import { Separator } from "@/src/components/ui/separator";
 import { Badge } from "@/src/components/ui/badge";
 import { Button, buttonVariants } from "@/src/components/ui/button"
 
-import { BookA, Languages, Plus } from "lucide-react";
+import { BookA, Languages, Plus, Sprout } from "lucide-react";
 import TestModeSwitch from "./components/test-mode";
 import LocaleButton from "./components/locale-btn";
 import { BACKEND_URL, ClientWithJwt, Locales, Settings, responseStatus } from "@paybox/common";
@@ -18,6 +18,7 @@ import { ScrollArea } from "@/src/components/ui/scroll-area";
 import Link from "next/link";
 import { getAddressbook } from "@/src/actions/book";
 import { getSettings } from "@/src/actions/settings";
+import Explore from "./components/explorer-pref";
 
 
 
@@ -36,7 +37,11 @@ export default async function Home({
         redirect("/signup");
     }
     const settings = await getSettings(jwt);
+    if(!settings) {
+        redirect("/signup");
+    }
     const book = await getAddressbook(jwt);
+    // const pref = await getPref(jwt);
 
     const layout = cookies().get("react-resizable-panels:layout");
     const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
@@ -128,6 +133,13 @@ export default async function Home({
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
+                    </div>
+                    <div className="">
+                        <Explore pref={{
+                            btcExp: settings.btcExp,
+                            ethExp: settings.ethExp,
+                            solExp: settings.solExp
+                        }} />
                     </div>
                 </div>
 

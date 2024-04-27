@@ -1,6 +1,7 @@
-import { BACKEND_URL, responseStatus } from "@paybox/common";
+import { BACKEND_URL, ExplorerPref, Settings, responseStatus } from "@paybox/common";
+import Pako from "pako";
 
-export const getSettings = async (jwt: string) => {
+export const getSettings = async (jwt: string): Promise<null | Settings> => {
     try {
         const { status, settings, msg }:
             { status: responseStatus, settings: any, msg?: string }
@@ -21,5 +22,22 @@ export const getSettings = async (jwt: string) => {
     } catch (error) {
         console.log(error);
         return null
+    }
+}
+
+
+export const getPref = async (jwt: string) => {
+    try {
+        const {pref, status}: {status: responseStatus, pref: ExplorerPref} = await fetch(`${BACKEND_URL}/settings/exp_pref`, {
+            method: "get",
+            headers: {
+                "Content-type": "application/json",
+                authorization: `Bearer ${jwt}`,
+            },
+        }).then(res => res.json());
+        console.log(pref);
+    } catch (error) {
+        console.log(error);
+        return null;
     }
 }

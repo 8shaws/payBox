@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { PRIVATE_KEY_ENCRYPTION_KEY } from './config';
-import { AccountType, BACKEND_URL, ChangePasswordValid, FriendPubKeys, FriendshipStatusEnum, FriendshipType, Locales, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
+import { AccountType, BACKEND_URL, ChangePasswordValid, ExplorerPref, FriendPubKeys, FriendshipStatusEnum, FriendshipType, Locales, NotifType, WS_BACKEND_URL, responseStatus } from '@paybox/common';
 import { z } from 'zod';
 import Pako from 'pako';
 
@@ -328,23 +328,50 @@ export const patchPassword = async (
 //todo: get the local from db if not set, set it to en
 const getLocale = async (jwt: string) => {
   try {
-      const { status, locale, msg }: { status: responseStatus, locale: Locales, msg?: string }
-          = await fetch(`${BACKEND_URL}/locale/locale`, {
-              method: "GET",
-              headers: {
-                  "Content-type": "application/json",
-                  authorization: `Bearer ${jwt}`,
-              },
-              cache: "no-cache"
-          }).then(res => res.json());
-      console.log(locale);
-      if (status === responseStatus.Error) {
-          console.log(msg)
-          return Locales.en;
-      }
-      return locale;
-  } catch (error) {
-      console.log(error);
+    const { status, locale, msg }: { status: responseStatus, locale: Locales, msg?: string }
+      = await fetch(`${BACKEND_URL}/locale/locale`, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${jwt}`,
+        },
+        cache: "no-cache"
+      }).then(res => res.json());
+    console.log(locale);
+    if (status === responseStatus.Error) {
+      console.log(msg)
       return Locales.en;
+    }
+    return locale;
+  } catch (error) {
+    console.log(error);
+    return Locales.en;
+  }
+}
+
+export const putExpPref = async (
+  jwt: string,
+  pref: ExplorerPref
+) => {
+  try {
+    const { status, msg }: { status: responseStatus, msg?: string }
+      = await fetch(`${BACKEND_URL}/settings/pref_exp`, {
+        method: "put",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${jwt}`,
+        },
+        body: JSON.stringify(pref)
+      }).then(res => res.json());
+
+      if(status == responseStatus.Error) {
+        return Promise.reject({ msg, status: responseStatus.Error });
+      }
+
+      return Promise.resolve({status});
+
+  } catch (error) {
+    console.log(error);
+    return Promise.reject({ msg: "error updating explorer preferences", status: responseStatus.Error });
   }
 }
