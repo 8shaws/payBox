@@ -49,6 +49,7 @@ import { hooksRouter } from "./routes/webhooks";
 import { localeRouter } from "./routes/locale";
 import { settingsRouter } from "./routes/settings";
 import { bookRouter } from "./routes/book";
+import { mainLimiter } from "./auth";
 
 
 export * from "./Redis";
@@ -122,6 +123,8 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerYaml));
 // app.use('/api-docs', express.static(path.join(__dirname, 'node_modules/swagger-ui-dist')));
 app.use(cors(corsOptions));
+
+app.use(mainLimiter);
 
 app.get("/", (_req, res) => {
   return res.status(200).json({

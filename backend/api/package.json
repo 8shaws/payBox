@@ -72,6 +72,7 @@
     "pino-loki": "^2.2.1",
     "prom-client": "^15.1.0",
     "qrcode": "^1.5.3",
+    "rate-limit-redis": "^4.2.0",
     "redis": "^4.6.12",
     "response-time": "^2.3.2",
     "speakeasy": "^2.0.0",

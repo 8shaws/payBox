@@ -21,6 +21,7 @@ import { R2_QRCODE_BUCKET_NAME } from "../config";
 import { Redis } from "..";
 import zlib from 'zlib';
 import pako from "pako";
+import RedisStore from 'rate-limit-redis';
 
 
 
@@ -276,4 +277,27 @@ export const settingsUpdateLimit = rateLimit({
     return req.id;
   }
 });
+
+export const validRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 15,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  store: new RedisStore({
+    sendCommand: (...args: string[]) => Redis.getInstance().client.sendCommand(args),
+  }),
+  message: async (req: Request, res: Response) => {
+    return 'Too many requests, please try again after 15 minutes'
+  }
+});
+
+export const mainLimiter = rateLimit({
+  skip: (req, res) => {
+    return req.url == '/_health' || req.url == '/_metrics' || req.url == '/';
+  },
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests, please try again after 15 minutes'
+});
+
 
