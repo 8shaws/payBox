@@ -31,6 +31,7 @@ import { useToast } from "../../components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useRecoilState } from "recoil";
 import { clientAtom, loadingAtom } from "@paybox/recoil";
+import Captcha from "@/src/components/verify-cloudflare";
 
 interface ClientSigninFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -41,8 +42,9 @@ export function ClientSigninForm({
   const [isLoading, setIsLoading] = useRecoilState(loadingAtom);
   const { data: session, update } = useSession(); // Use the useSession hook to get the session state
   const router = useRouter();
-  const { toast } = useToast();
   const [_client, setClient] = useRecoilState(clientAtom);
+
+  const [token, setToken] = React.useState<string>("")
 
   React.useEffect(() => {
     // Check if the session is defined and navigate to the protected page
@@ -52,12 +54,21 @@ export function ClientSigninForm({
     }
   }, [session, router]);
 
+  
+
   const form = useForm<z.infer<typeof ClientSigninFormValidate>>({
     resolver: zodResolver(ClientSigninFormValidate),
     defaultValues: {
       email: "",
+      token
     },
   });
+
+  React.useEffect(() => {
+    if(token) {
+      form.setValue("token", token);
+    }
+  }, [token]);
 
   async function onSubmit(values: z.infer<typeof ClientSigninFormValidate>) {
     signIn("credentials", {
@@ -182,6 +193,10 @@ export function ClientSigninForm({
           )}{" "}
           Google
         </Button>
+        <Captcha
+          setIsLoading={setIsLoading}
+          setToken={setToken}          
+        />
       </div>
     </div>
   );

@@ -59,6 +59,8 @@ export function FundDialog({
             setKey(account.sol.publicKey);
         } else if (token == Network.Eth && account?.eth) {
             setKey(account.eth.publicKey);
+        } else if(token == Network.Bitcoin && account?.bitcoin) {
+            setKey(account.bitcoin.publicKey);
         }
         setQuoteAtom({
             type: "fiat",

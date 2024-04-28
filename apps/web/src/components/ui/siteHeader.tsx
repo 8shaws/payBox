@@ -31,15 +31,15 @@ export function SiteHeader() {
         <div className="flex flex-1 text-sm items-center justify-between space-x-2 md:justify-end">
           <nav className="flex items-center">
             <div className="mr-4">
-              <Link
+              {getAuth == "Signin" ? <Link
                 href={`/${getAuth.toLocaleLowerCase()}`}
                 className={cn(
                   "transition-colors hover:text-foreground/80",
                   pathname === "/signup" ? "text-foreground" : "text-foreground/60"
                 )}
               >
-                {getAuth == "Signin" ? <UserRoundPlus className="h-5 w-5" /> : <ClientNameTab isCollapsed />}
-              </Link>
+                <UserRoundPlus className="h-5 w-5" />
+              </Link>:  <ClientNameTab isCollapsed />}
             </div>
             <div className="w-full flex-1 md:w-auto md:flex-none mr-2">
               <SearchMenu />

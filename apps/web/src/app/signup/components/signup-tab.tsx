@@ -9,6 +9,7 @@ import { OTPForm } from './otp';
 import { ResendOtp } from './resendOtp';
 import { useSession } from 'next-auth/react';
 import { SignStatus } from '@paybox/common';
+import { ScrollArea } from '@/src/components/ui/scroll-area';
 
 export function SignupTab() {
     const session = useSession();
@@ -28,45 +29,47 @@ export function SignupTab() {
                 <TabsTrigger value={SignStatus.Verify} disabled={status === SignStatus.Details}>Validations</TabsTrigger>
             </TabsList>
             <TabsContent value={SignStatus.Details}>
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Create Your Account</CardTitle>
-                        <CardDescription>
-                            Be Sure to add Legit Details as its gonna validate you.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        <ClientSignupForm />
-                    </CardContent>
-                    <CardFooter className="flex flex-col space-y-4">
-                        <div className="flex items-center justify-center space-x-2">
-                            <Checkbox id="terms" />
-                            <label
-                                htmlFor="terms"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Accept terms and conditions
-                            </label>
-                        </div>
-                        <p className="px-8 text-center text-sm text-muted-foreground">
-                            By clicking continue, you agree to our{" "}
-                            <Link
-                                href="/terms"
-                                className="underline underline-offset-4 hover:text-primary"
-                            >
-                                Terms of Service
-                            </Link>{" "}
-                            and{" "}
-                            <Link
-                                href="/privacy"
-                                className="underline underline-offset-4 hover:text-primary"
-                            >
-                                Privacy Policy
-                            </Link>
-                            .
-                        </p>
-                    </CardFooter>
-                </Card>
+                <ScrollArea className='flex flex-col h-[650px] border rounded-xl'>
+                    <Card className='border-none'>
+                        <CardHeader className='sticky top-0 rounded-t-xl  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mt-0'>
+                            <CardTitle>Create Your Account</CardTitle>
+                            <CardDescription>
+                                Be Sure to add Legit Details as its gonna validate you.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            <ClientSignupForm />
+                        </CardContent>
+                        <CardFooter className="flex flex-col space-y-4">
+                            <div className="flex items-center justify-center space-x-2">
+                                <Checkbox id="terms" />
+                                <label
+                                    htmlFor="terms"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Accept terms and conditions
+                                </label>
+                            </div>
+                            <p className="px-8 text-center text-sm text-muted-foreground">
+                                By clicking continue, you agree to our{" "}
+                                <Link
+                                    href="/terms"
+                                    className="underline underline-offset-4 hover:text-primary"
+                                >
+                                    Terms of Service
+                                </Link>{" "}
+                                and{" "}
+                                <Link
+                                    href="/privacy"
+                                    className="underline underline-offset-4 hover:text-primary"
+                                >
+                                    Privacy Policy
+                                </Link>
+                                .
+                            </p>
+                        </CardFooter>
+                    </Card>
+                </ScrollArea>
             </TabsContent>
             <TabsContent value={SignStatus.Verify}>
                 <Card className="min-h-48">

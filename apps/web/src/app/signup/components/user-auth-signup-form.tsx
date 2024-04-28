@@ -4,9 +4,10 @@ import * as React from "react";
 
 import { cn } from "@/src/lib/utils";
 import { Icons } from "@/src/components/ui/icons";
-import { Button } from "@/src/components/ui/button";
+import { Button, buttonVariants } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
+import Turnstile, { useTurnstile } from "react-turnstile";
 import {
   Form,
   FormControl,
@@ -34,17 +35,19 @@ import { useRecoilState } from "recoil";
 import { clientAtom, loadingAtom } from "@paybox/recoil";
 import { RocketIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
+import { SITEKEY } from "@/src/lib/config";
+import Captcha from "@/src/components/verify-cloudflare";
 
-interface ClientSignupFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface ClientSignupFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 export function ClientSignupForm({
   className,
   ...props
 }: ClientSignupFormProps) {
-  const [isLoading, setIsLoading] = useRecoilState(loadingAtom);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const { data: session, update } = useSession(); // Use the useSession hook to get the session state
-  const [_, setClient] = useRecoilState(clientAtom);
   const router = useRouter();
+  const [token, setToken] = React.useState<string>("");
 
   React.useEffect(() => {
     // Check if the session is defined and navigate to the protected page
@@ -54,11 +57,18 @@ export function ClientSignupForm({
     }
   }, [session, router]);
 
+  React.useEffect(() => {
+    if(token) {
+      form.setValue("token", token);
+    }
+  }, [token]);
+
   const form = useForm<z.infer<typeof ClientSignupFormValidate>>({
     resolver: zodResolver(ClientSignupFormValidate),
     defaultValues: {
       username: "",
       email: "",
+      token
     },
   });
 
@@ -230,8 +240,8 @@ export function ClientSignupForm({
             >
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                <RocketIcon/> <p>Sign Up with Email</p>
+              )}
+              <RocketIcon /> <p>Sign Up with Email</p>
             </Button>
           </div>
         </form>
@@ -283,6 +293,11 @@ export function ClientSignupForm({
           )}{" "}
           Google
         </Button>
+
+        <Captcha 
+          setIsLoading={setIsLoading}
+          setToken={setToken}           
+        />
       </div>
     </div>
   );
