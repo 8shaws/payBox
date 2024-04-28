@@ -50,6 +50,7 @@ export const ClientSignupFormValidate = z.object({
       usdc: z.string().optional(),
     })
     .optional(),
+  token: z.string()
 });
 
 export const ClientSigninFormValidate = z.object({
@@ -66,6 +67,7 @@ export const ClientSigninFormValidate = z.object({
         message: 'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
       }
     ),
+  token: z.string()
 });
 
 export const MetadataUpdateForm = z.object({
