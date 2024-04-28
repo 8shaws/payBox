@@ -9,6 +9,7 @@ import {
   GetQrQuerySchema,
   Network,
   QrcodeQuery,
+  TokenSchema,
   TxnSendQuery,
   responseStatus,
 } from "@paybox/common";
@@ -17,11 +18,12 @@ import { Address } from "web3";
 import { EthOps } from "../sockets/eth";
 import { SolOps } from "../sockets/sol";
 import rateLimit from "express-rate-limit";
-import { R2_QRCODE_BUCKET_NAME } from "../config";
+import { R2_QRCODE_BUCKET_NAME, SITE_SECRET_KEY } from "../config";
 import { Redis } from "..";
 import zlib from 'zlib';
 import pako from "pako";
 import RedisStore from 'rate-limit-redis';
+import { SiteVerifyUrl } from "../constants";
 
 
 
@@ -301,3 +303,42 @@ export const mainLimiter = rateLimit({
 });
 
 
+/**
+ * Captcha Verify middleware
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns 
+ */
+export const captchaVerify = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { token } = TokenSchema.parse(req.query);
+
+    let formData = new FormData();
+    formData.append('secret', SITE_SECRET_KEY);
+    formData.append('response', token);
+
+    const result = await fetch(SiteVerifyUrl, {
+      body: formData,
+      method: 'POST',
+    });
+    const challengeSucceeded = (await result.json()).success;
+
+    if (!challengeSucceeded) {
+      return res.status(403).json({ message: "Invalid reCAPTCHA token" });
+    }
+    next();
+
+  } catch (error) {
+    console.log('Verify Captcha middle: ', error);
+    return res.status(500).json({
+      status: responseStatus.Error,
+      msg: "Internal error",
+      error: error,
+    });
+  }
+}
