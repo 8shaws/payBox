@@ -34,7 +34,7 @@ import {
   generateSeed,
   setHashPassword,
 } from "../auth/util";
-import { resendOtpLimiter, validRateLimit } from "../auth/middleware";
+import { captchaVerify, passwordLimit, resendOtpLimiter, validRateLimit } from "../auth/middleware";
 import {
   Client,
   ClientSigninFormValidate,
@@ -47,7 +47,7 @@ import { Bitcoin } from "../../../../packages/blockchain/dist";
 
 export const clientRouter = Router();
 
-clientRouter.post('/', async (req, res) => {
+clientRouter.post('/', captchaVerify, async (req, res) => {
   try {
     const { username, email, firstname, lastname, mobile, password } =
       ClientSignupFormValidate.parse(req.body);
@@ -349,7 +349,7 @@ clientRouter.post("/providerAuth", async (req, res) => {
 /**
  * Login route
  */
-clientRouter.post("/login", async (req, res) => {
+clientRouter.post("/login", captchaVerify, async (req, res) => {
   try {
     const { email, password } = ClientSigninFormValidate.parse(req.body);
 
@@ -560,7 +560,9 @@ clientRouter.delete("/delete", extractClientId, async (req, res) => {
 
 clientRouter.patch(
   "/password",
+  passwordLimit,
   extractClientId,
+  captchaVerify,
   checkPassword,
   async (req, res) => {
     try {

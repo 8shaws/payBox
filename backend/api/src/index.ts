@@ -124,7 +124,7 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
 // app.use('/api-docs', express.static(path.join(__dirname, 'node_modules/swagger-ui-dist')));
 app.use(cors(corsOptions));
 
-app.use(mainLimiter);
+// app.use(mainLimiter);
 
 app.get("/", (_req, res) => {
   return res.status(200).json({

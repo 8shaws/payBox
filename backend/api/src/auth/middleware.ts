@@ -243,11 +243,13 @@ export const checkQrcode = async (
 export const resendOtpLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 15 minutes
   max: 1, // limit each client to 3 requests per windowMs
-  message: {
-    status: responseStatus.Error,
-    msg: "Too many requests, please try again after 1 minute"
+  message: async (_: Request, res: Response) => {
+    return res.status(429).json({
+      status: responseStatus.Error,
+      msg: 'Too many request, please try after some-time...'
+    });
   },
-  keyGenerator: function (req, res) {
+  keyGenerator: function (req: Request, _: Response) {
     //@ts-ignore
     return req.id; // Use the client id as the key
   }
@@ -257,11 +259,13 @@ export const resendOtpLimiter = rateLimit({
 export const accountCreateRateLimit = rateLimit({
   windowMs: 5 * 60 * 1000, // 15 minutes
   max: 2,
-  message: {
-    status: responseStatus.Error,
-    msg: "Too many requests, please try again after 5 minutes"
+  message: async (_: Request, res: Response) => {
+    return res.status(429).json({
+      status: responseStatus.Error,
+      msg: 'Too many request, please try after some-time...'
+    });
   },
-  keyGenerator: function (req, res) {
+  keyGenerator: function (req, _) {
     //@ts-ignore
     return req.id; // Use the client id as the key
   }
@@ -270,9 +274,11 @@ export const accountCreateRateLimit = rateLimit({
 export const settingsUpdateLimit = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes
   max: 2,
-  message: {
-    status: responseStatus.Error,
-    msg: "Too many requests, please try again after  minutes"
+  message: async (_: Request, res: Response) => {
+    return res.status(429).json({
+      status: responseStatus.Error,
+      msg: 'Too many request, please try after some-time...'
+    });
   },
   keyGenerator: function (req, res) {
     //@ts-ignore
@@ -289,7 +295,10 @@ export const validRateLimit = rateLimit({
     sendCommand: (...args: string[]) => Redis.getInstance().client.sendCommand(args),
   }),
   message: async (req: Request, res: Response) => {
-    return 'Too many requests, please try again after 15 minutes'
+    return res.status(429).json({
+      status: responseStatus.Error,
+      msg: 'Too many request, please try after some-time...'
+    });
   }
 });
 
@@ -342,3 +351,16 @@ export const captchaVerify = async (
     });
   }
 }
+
+export const passwordLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 25,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  message: async (req: Request, res: Response) => {
+    return res.status(429).json({
+      status: responseStatus.Error,
+      msg: 'Too many request, please try after some-time...'
+    });
+  }
+});
