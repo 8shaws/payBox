@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Dialog,
     DialogContent,
@@ -32,11 +32,15 @@ import { toast } from 'sonner';
 import { patchPassword } from '@/src/lib/helper';
 import { useRecoilValue } from 'recoil';
 import { clientJwtAtom } from '@paybox/recoil';
+import Captcha from '@/src/components/verify-cloudflare';
 
 function ChangePassword() {
     const jwt = useRecoilValue(clientJwtAtom);
     const [showNew, setNewShow] = React.useState(false);
     const [showCon, setConShow] = React.useState(false);
+    const [token, setToken] = React.useState<string>("");
+    const [loading, setLoading] = React.useState<boolean>(false);
+
     let [open, setOpen] = React.useState<boolean>(false);
     const form = useForm<z.infer<typeof ChangePasswordValid>>({
         resolver: zodResolver(ChangePasswordValid),
@@ -55,9 +59,9 @@ function ChangePassword() {
                 message: 'Confirm Password and New Password mismatches'
             })
         }
-        toast.promise(patchPassword(jwt as string, data), {
+        toast.promise(patchPassword(jwt as string, data, token), {
             loading: 'Updating Password',
-            success: ({}) => {
+            success: ({msg}) => {
                 setOpen(false);
                 return 'Password Updated';
             },
@@ -183,7 +187,13 @@ function ChangePassword() {
                                     </FormItem>
                                 )}
                             />
-                            <DialogFooter>
+                                <div className="">
+                                    <Captcha
+                                        setIsLoading={setLoading}
+                                        setToken={setToken}
+                                    />
+                                </div>
+                            <DialogFooter className='flex flex-col h-fit'>
                                 <Button className='w-full' variant={"secondary"} type="submit">Update Password</Button>
                             </DialogFooter>
                         </form>

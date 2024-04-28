@@ -84,3 +84,6 @@ export const MOONPAY_SECRET_KEY =
 
 export const MOONPAY_API_KEY = 
   process.env.MOONPAY_API_KEY || "";
+
+export const SITE_SECRET_KEY = 
+  process.env.SITE_SECRET_KEY || "";

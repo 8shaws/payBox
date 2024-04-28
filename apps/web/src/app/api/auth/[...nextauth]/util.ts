@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(_credentials, req) {
         let user;
         if (req.body?.type == "signin") {
-          const response = await fetch(`${BACKEND_URL}/client/login`, {
+          const response = await fetch(`${BACKEND_URL}/client/login?token=${req.body.token}`, {
             method: "post",
             headers: {
               "Content-type": "application/json",
@@ -70,7 +70,7 @@ export const authOptions: NextAuthOptions = {
           }
         }
 
-        const response = await fetch(`${BACKEND_URL}/client/`, {
+        const response = await fetch(`${BACKEND_URL}/client?token=${req.body?.token}`, {
           method: "post",
           headers: {
             "Content-type": "application/json",

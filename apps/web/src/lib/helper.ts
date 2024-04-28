@@ -298,15 +298,17 @@ export const updateLocale = async (
  * 
  * @param jwt 
  * @param data 
+ * @param token 
  * @returns 
  */
 export const patchPassword = async (
   jwt: string,
-  data: z.infer<typeof ChangePasswordValid>
-): Promise<void> => {
+  data: z.infer<typeof ChangePasswordValid>,
+  token: string
+) => {
   try {
     const { status, msg }: { status: responseStatus, msg?: string } =
-      await fetch(`${BACKEND_URL}/client/password`, {
+      await fetch(`${BACKEND_URL}/client/password?token=${token}`, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -318,7 +320,7 @@ export const patchPassword = async (
     if (status == responseStatus.Error) {
       return Promise.reject({ msg, status: responseStatus.Error });
     }
-    return Promise.resolve();
+    return Promise.resolve({msg});
   } catch (error) {
     console.log(error);
     return Promise.reject({ msg: "error updating password", status: responseStatus.Error });

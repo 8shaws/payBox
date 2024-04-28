@@ -20,7 +20,7 @@ import { BtcExplorer, EthExplorer, SolExplorer } from "./settings";
 
 
 
-export type Client = z.infer<typeof ClientSignupFormValidate> & { id: string, valid: boolean };
+export type Client = Omit<z.infer<typeof ClientSignupFormValidate>, "token"> & { id: string, valid: boolean };
 
 export type ClientForm = z.infer<typeof ClientSignupFormValidate>;
 
