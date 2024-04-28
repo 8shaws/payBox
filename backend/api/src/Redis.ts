@@ -39,4 +39,8 @@ export class Redis extends RedisBase {
     }
     return this.redisInst;
   }
+
+  get getClient(): RedisClientType {
+    return this.client;
+  }
 }

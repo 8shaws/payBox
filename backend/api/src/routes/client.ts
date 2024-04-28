@@ -34,7 +34,7 @@ import {
   generateSeed,
   setHashPassword,
 } from "../auth/util";
-import { resendOtpLimiter } from "../auth/middleware";
+import { resendOtpLimiter, validRateLimit } from "../auth/middleware";
 import {
   Client,
   ClientSigninFormValidate,
@@ -131,7 +131,7 @@ clientRouter.post('/', async (req, res) => {
   }
 });
 
-clientRouter.patch("/valid", extractClientId, isValidated, async (req, res) => {
+clientRouter.patch("/valid", validRateLimit, extractClientId, isValidated, async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
