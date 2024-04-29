@@ -41,6 +41,7 @@
   ],
   "dependencies": {
     "@microsoft/eslint-formatter-sarif": "2.1.7",
+    "@typescript-eslint/parser": "^7.7.1",
     "anchor": "^1.4.1",
     "esbuild": "^0.20.2",
     "eslint": "8.10.0",
