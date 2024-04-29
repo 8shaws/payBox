@@ -24,7 +24,7 @@ export default function APITestPage() {
 
   return (
     <div>
-      <MoonPayProvider
+      {/* <MoonPayProvider
         apiKey="pk_test_vbgzACHz9ggzGLm9vEEwAWZQlnjiZ4Ux"
         debug
       >
@@ -44,7 +44,7 @@ export default function APITestPage() {
         </button>
 
         <div onClick={() => router.push("/fromServer")}>Name: {name}</div>
-      </MoonPayProvider>
+      </MoonPayProvider> */}
     </div>
   );
 }

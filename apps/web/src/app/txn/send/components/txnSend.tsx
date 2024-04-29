@@ -105,9 +105,9 @@ export function PaymentCard({
   useEffect(() => {
     form.setValue("network", network);
     if (client.address) {
-      form.setValue("from", client.address[network] as string);
+      // form.setValue("from", client.address[network] as string);
     }
-    form.setValue("to", address[network] as string);
+    // form.setValue("to", address[network] as string);
   }, [network]);
   return (
     <Card className="w-[600px]">
@@ -238,7 +238,7 @@ export function PaymentCard({
                     <FormControl>
                       <Input
                         id="to"
-                        placeholder={`${address[network]}`}
+                        // placeholder={`${address[network]}`}
                         type="text"
                         autoCorrect="off"
                         disabled

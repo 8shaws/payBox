@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/src/components/ui/avatar'
 import { Button } from '@/src/components/ui/button'
 import { DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '@/src/components/ui/drawer'
 import { getFriendPubKey } from '@/src/lib/helper'
-import { Client, Friend, FriendPubKeys } from '@paybox/common'
+import { Client, Friend, FriendPubKeys, Network } from '@paybox/common'
 import { clientJwtAtom, friendsPubKeysAtom, friendPubKeySelector } from '@paybox/recoil'
 import React, { use, useEffect } from 'react'
 import { useRecoilValue, useSetRecoilState, } from 'recoil'
@@ -58,6 +58,7 @@ export function Content({
                                 key: pubKey?.eth,
                                 name: friend.firstname
                             }}
+                            net={Network.Eth}
                         />
                         <Tab
                             chain='Solana'
@@ -65,6 +66,15 @@ export function Content({
                                 key: pubKey?.sol,
                                 name: friend.firstname
                             }}
+                            net={Network.Sol}
+                        />
+                        <Tab
+                            chain='Bitcoin'
+                            account={{
+                                key: pubKey?.bitcoin,
+                                name: friend.firstname
+                            }}
+                            net={Network.Bitcoin}
                         />
                     </div>
                     <DrawerFooter className='w-full px-0'>
