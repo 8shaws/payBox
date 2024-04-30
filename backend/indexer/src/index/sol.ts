@@ -1,5 +1,4 @@
-import { Connection } from "@solana/web3.js";
-import { SOL_DEVNET_WS_NODE_URL, SOL_RPC_DEVENT_NODE_URL } from "../config";
+import { SOL_DEVNET_WS_NODE_URL } from "../config";
 import { WebSocket } from "ws";
 
 export class SolIndex {

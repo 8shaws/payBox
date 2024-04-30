@@ -6,6 +6,7 @@ import compression from "compression";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { SolIndex } from "./index/sol";
 
 export const app = express();
 export const server = http.createServer(app);
@@ -37,12 +38,19 @@ app.use(
 );
 app.use(cors(corsOptions));
 
-wss.on("connection", (ws) => {
-    ws.on("message", (message) => {
-        console.log(`Received message => ${message}`);
-    });
-    ws.send("Hello! Message From Server!!");
+
+wss.on("connection", async (ws) => {
+    ws.on("message", async (message) => {
+        const data = JSON.parse(message.toString());
+        console.log(data)
+        switch(data.type) {
+            case "accSub":
+                SolIndex.getInstance().accSubscribe(data.payload.address, ws)
+        }
+
+    })
 });
+
 
 app.get("/", (_req, res) => {
     return res.status(200).json({
