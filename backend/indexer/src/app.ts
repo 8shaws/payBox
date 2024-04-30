@@ -48,7 +48,7 @@ wss.on("connection", async (ws) => {
                 await SolIndex.getInstance().accSubscribe(data.payload.address, ws)
                 break;
             case "txnSub":
-                await SolIndex.getInstance().txnSubscribe(data.payload.from, data.payload.to, ws)
+                await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
                 break;
         }
 
