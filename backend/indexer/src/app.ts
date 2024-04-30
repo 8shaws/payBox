@@ -7,6 +7,8 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { SolIndex } from "./index/sol";
+import { PayloadParser } from "./types/valid";
+import { IndexType } from "./types/enum";
 
 export const app = express();
 export const server = http.createServer(app);
@@ -40,22 +42,31 @@ app.use(cors(corsOptions));
 
 
 wss.on("connection", async (ws) => {
+    //todo: add auth
     ws.on("message", async (message) => {
-        const data = JSON.parse(message.toString());
+        const data = PayloadParser.parse(JSON.parse(message.toString()));
         console.log(data)
         switch(data.type) {
-            case "accSub":
+            case IndexType.Account:
                 await SolIndex.getInstance().accSubscribe(data.payload.address, ws)
                 break;
-            case "txnSub":
+            case IndexType.Txn:
                 await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
                 break;
-            case "blockSub":
+            case IndexType.Block:
                 await SolIndex.getInstance().blockSubscribe(data.payload.address, data.payload.values, ws)
                 break;
+            case IndexType.Log:
+                await SolIndex.getInstance().logSubcribe(data.payload.from, ws)
+                break;
+            case IndexType.Program:
+                await SolIndex.getInstance().tokenSubscribe(data.payload.address, ws)
+                break;
+            default:
+                ws.send(JSON.stringify({error: "Invalid type"}))
+                ws.close()
+                break;
         }   
-
-
     })
 });
 

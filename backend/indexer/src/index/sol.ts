@@ -53,7 +53,7 @@ export class SolIndex {
 
     }
 
-    async logSubcribe(from: string, to: string, ws: any) {
+    async logSubcribe(from: string, ws: any) {
 
         if (this.ws.readyState !== WebSocket.OPEN) {
             await new Promise((resolve) => {
@@ -117,6 +117,7 @@ export class SolIndex {
         this.ws.on('message', (message) => {
             const data = JSON.parse(message.toString('utf-8'));
             console.log(data);
+            //todo: publish this to messaging queue for further processing
             ws.send(JSON.stringify(data));
         });
 
