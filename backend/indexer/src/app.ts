@@ -6,6 +6,9 @@ import compression from "compression";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { SolIndex } from "./index/sol";
+import { PayloadParser } from "./types/valid";
+import { IndexType } from "./types/enum";
 
 export const app = express();
 export const server = http.createServer(app);
@@ -37,12 +40,36 @@ app.use(
 );
 app.use(cors(corsOptions));
 
-wss.on("connection", (ws) => {
-    ws.on("message", (message) => {
-        console.log(`Received message => ${message}`);
-    });
-    ws.send("Hello! Message From Server!!");
+
+wss.on("connection", async (ws) => {
+    //todo: add auth
+    ws.on("message", async (message) => {
+        const data = PayloadParser.parse(JSON.parse(message.toString()));
+        console.log(data)
+        switch(data.type) {
+            case IndexType.Account:
+                await SolIndex.getInstance().accSubscribe(data.payload.address, ws)
+                break;
+            case IndexType.Txn:
+                await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
+                break;
+            case IndexType.Block:
+                await SolIndex.getInstance().blockSubscribe(data.payload.address, data.payload.values, ws)
+                break;
+            case IndexType.Log:
+                await SolIndex.getInstance().logSubcribe(data.payload.from, ws)
+                break;
+            case IndexType.Program:
+                await SolIndex.getInstance().tokenSubscribe(data.payload.address, ws)
+                break;
+            default:
+                ws.send(JSON.stringify({error: "Invalid type"}))
+                ws.close()
+                break;
+        }   
+    })
 });
+
 
 app.get("/", (_req, res) => {
     return res.status(200).json({
