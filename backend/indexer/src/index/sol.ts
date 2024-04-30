@@ -156,4 +156,34 @@ export class SolIndex {
         });
     }
 
+    async tokenSubscribe(programId: string, ws: any) {
+
+        if (this.ws.readyState !== WebSocket.OPEN) {
+            await new Promise((resolve) => {
+                this.ws.on('open', resolve);
+            });
+        }
+
+        const request = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "programSubscribe",
+            "params": [
+                programId,
+                {
+                    "encoding": "jsonParsed",
+                    "commitment": "finalized"
+                }
+            ]
+        }
+
+        this.ws.send(JSON.stringify(request));
+
+        this.ws.on('message', (message) => {
+            const data = JSON.parse(message.toString('utf-8'));
+            console.log(data);
+            ws.send(JSON.stringify(data));
+        });
+    }
+
 }
