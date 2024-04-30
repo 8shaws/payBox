@@ -50,7 +50,11 @@ wss.on("connection", async (ws) => {
             case "txnSub":
                 await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
                 break;
-        }
+            case "blockSub":
+                await SolIndex.getInstance().blockSubscribe(data.payload.address, data.payload.values, ws)
+                break;
+        }   
+
 
     })
 });

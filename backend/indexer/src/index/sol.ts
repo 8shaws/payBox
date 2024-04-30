@@ -1,5 +1,6 @@
 import { SOL_DEVNET_WS_NODE_URL } from "../config";
 import { WebSocket } from "ws";
+import { TxnSubValue } from "../types/enum";
 
 export class SolIndex {
     private static instance: SolIndex;
@@ -79,7 +80,7 @@ export class SolIndex {
                 }
             ]
         };
-        
+
         this.ws.send(JSON.stringify(request));
 
         this.ws.on('message', (message) => {
@@ -89,7 +90,7 @@ export class SolIndex {
         });
 
     }
-    
+
     //use this method to subscribe to a signature
     async txnSubscribe(hash: string, ws: any) {
 
@@ -119,6 +120,40 @@ export class SolIndex {
             ws.send(JSON.stringify(data));
         });
 
+    }
+
+    async blockSubscribe(address: string, values: TxnSubValue, ws: any) {
+
+        if (this.ws.readyState !== WebSocket.OPEN) {
+            await new Promise((resolve) => {
+                this.ws.on('open', resolve);
+            });
+        }
+
+        const request = {
+            "jsonrpc": "2.0",
+            "id": "1",
+            "method": "blockSubscribe",
+            "params": [
+                {
+                    "mentionsAccountOrProgram": address
+                },
+                {
+                    "commitment": "confirmed",
+                    "encoding": "jsonParsed",
+                    "showRewards": true,
+                    "transactionDetails": "full"
+                }
+            ]
+        }
+
+        this.ws.send(JSON.stringify(request));
+
+        this.ws.on('message', (message) => {
+            const data = JSON.parse(message.toString('utf-8'));
+            console.log(data);
+            ws.send(JSON.stringify(data));
+        });
     }
 
 }
