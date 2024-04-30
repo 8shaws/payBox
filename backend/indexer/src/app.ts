@@ -45,7 +45,11 @@ wss.on("connection", async (ws) => {
         console.log(data)
         switch(data.type) {
             case "accSub":
-                SolIndex.getInstance().accSubscribe(data.payload.address, ws)
+                await SolIndex.getInstance().accSubscribe(data.payload.address, ws)
+                break;
+            case "txnSub":
+                await SolIndex.getInstance().txnSubscribe(data.payload.from, data.payload.to, ws)
+                break;
         }
 
     })

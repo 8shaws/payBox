@@ -52,4 +52,42 @@ export class SolIndex {
 
     }
 
+    async txnSubscribe(from: string, to: string, ws: any) {
+
+        if (this.ws.readyState !== WebSocket.OPEN) {
+            await new Promise((resolve) => {
+                this.ws.on('open', resolve);
+            });
+        }
+
+        const request = {
+            jsonrpc: "2.0",
+            id: 420,
+            method: "logsSubscribe",
+            params: [
+                {
+                    mentions: [
+                        from
+                    ]
+                },
+                {
+                    commitment: "finalized",
+                    encoding: "jsonParsed",
+                    transactionDetails: "full",
+                    showRewards: true,
+                    maxSupportedTransactionVersion: 0
+                }
+            ]
+        };
+        
+        this.ws.send(JSON.stringify(request));
+
+        this.ws.on('message', (message) => {
+            const data = JSON.parse(message.toString('utf-8'));
+            console.log(data);
+            ws.send(JSON.stringify(data));
+        });
+
+    }
+
 }
