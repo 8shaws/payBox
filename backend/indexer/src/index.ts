@@ -16,9 +16,9 @@ if (cluster.isPrimary) {
 } else {
 
     Promise.all([
-        // new Promise((resolve) => {
-        //     Worker.getInstance().getProducer.on("producer.connect", resolve);
-        // }),
+        new Promise((resolve) => {
+            Worker.getInstance().getProducer.on("producer.connect", resolve);
+        }),
         new Promise((resolve) => {
             SolIndex.getInstance().wsInstance.on("open", resolve);
         }),
