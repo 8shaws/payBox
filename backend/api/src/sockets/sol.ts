@@ -33,10 +33,18 @@ import { encryptWithPassword } from "../auth";
 export class SolOps {
     private connection: Connection;
     private rpcUrl: string;
+    private static instance: SolOps;
 
-    constructor(net: Cluster = "devnet") {
+    private constructor(net: Cluster = "devnet") {
       this.rpcUrl = clusterApiUrl(net);
       this.connection = new Connection(this.rpcUrl, "confirmed");
+    }
+
+    public static getInstance(): SolOps {
+      if (!this.instance) {
+        this.instance = new SolOps();
+      }
+      return this.instance;
     }
   
     async createWallet(secretPhrase: string, hashPassword: string): Promise<WalletKeys> {
@@ -121,7 +129,7 @@ export class SolOps {
       from,
       to,
       amount,
-    }: AcceptSolTxn): Promise<TransactionResponse | null> {
+    }: AcceptSolTxn): Promise<string | null> {
       try {
         const senderKey = Keypair.fromSecretKey(new PublicKey(from).toBuffer());
         /**
@@ -147,12 +155,14 @@ export class SolOps {
           this.connection,
           transaction,
           [senderKey],
+          {
+            commitment: "processed"
+          }
         );
         const status = await this.connection.getSignatureStatuses([signature]);
-        if (status.value[0]?.confirmationStatus == "confirmed") {
-          console.log(`Transaction confirmed with signature: ${signature}`);
-          const txn = await this.connection.getTransaction(signature);
-          return txn;
+        if (status.value[0]?.confirmationStatus == "processed") {
+          console.log(`Transaction processed with signature: ${signature}`);
+          return signature;
         }
         return null;
       } catch (error) {

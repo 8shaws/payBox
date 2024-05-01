@@ -4,6 +4,7 @@ import {server} from "./app";
 import { Worker } from "./worker/producer";
 import { INDEXER_PORT } from "./config";
 import { SolIndex } from "./index/sol";
+import { EthIndex } from "./index/eth";
 
 const cpuCount = os.cpus().length - 2;
 
@@ -20,6 +21,9 @@ if (cluster.isPrimary) {
         }),
         new Promise((resolve) => {
             SolIndex.getInstance().wsInstance.on("open", resolve);
+        }),
+        new Promise((resolve) => {
+            EthIndex.getInstance().wsInstance.on("open", resolve);
         }),
     ]).then(() => {
         server.listen(INDEXER_PORT, async () => {

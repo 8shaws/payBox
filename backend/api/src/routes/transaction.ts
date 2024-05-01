@@ -42,95 +42,30 @@ txnRouter.post("/send", async (req, res) => {
       let fromPrivateKey = decryptWithPassword(hashedPrivate, hashPassword);
 
       if (network == Network.Eth) {
-        const transaction = await (new EthOps(INFURA_PROJECT_ID)).acceptTxn({ amount, to, from: fromPrivateKey });
+        const transaction = await EthOps.getInstance().acceptTxn({ amount, to, from: fromPrivateKey });
         if (!transaction) {
           return res
             .status(400)
             .json({ status: responseStatus.Error, msg: "Transaction failed" });
         }
 
-        /**
-         * Publishing the txn payload for que based system
-         */
-        try {
-          await Worker.getInstance().publishOne({
-            topic: "txn4",
-            message: [
-              {
-                partition: 1,
-                key: transaction.hash,
-                value: JSON.stringify({
-                  hash: transaction.hash,
-                  amount,
-                  time: unixToISOString(Number(transaction.blockNumber)),
-                  fee: calculateGas(transaction.gasLimit, transaction.gasPrice),
-                  id,
-                  from: transaction.from,
-                  to: transaction.to,
-                  blockHash: transaction.blockHash,
-                  chainId: Number(transaction.chainId),
-                  slot: Number(transaction.nonce),
-                  network,
-                  cluster,
-                }),
-              },
-            ],
-          });
-        } catch (error) {
-          console.log('Error in publishing: ', error);
-        }
+        
         return res
           .status(200)
           .json({ status: responseStatus.Ok, signature: transaction });
       }
-      let instance;
+      let sig;
       if (network == Network.Sol) {
-        instance = await (new SolOps()).acceptTxn({ from: fromPrivateKey, amount, to });
-        if (!instance) {
+        sig = await SolOps.getInstance().acceptTxn({ from: fromPrivateKey, amount, to });
+        if (!sig) {
           return res
             .status(400)
             .json({ status: responseStatus.Error, msg: "Transaction failed" });
         }
-        const { blockTime, meta, slot, transaction } = instance;
-        if (!meta || !blockTime) {
-          return res
-            .status(400)
-            .json({ status: responseStatus.Error, msg: "Transaction failed" });
-        }
-        /**
-         * Publishing the txn payload for que based system
-         */
-        try {
-          const sender = transaction.message?.accountKeys[0].toBase58();
-          const receiver = transaction.message?.accountKeys[1].toBase58();
-          await Worker.getInstance().publishOne({
-            topic: "txn4",
-            message: [
-              {
-                partition: 0,
-                key: transaction.signatures[0] || "",
-                value: JSON.stringify({
-                  hash: transaction.signatures[0],
-                  amount,
-                  fee: meta.fee,
-                  id,
-                  from: sender,
-                  to: receiver,
-                  blockHash: transaction.message.recentBlockhash,
-                  time: unixToISOString(blockTime),
-                  slot,
-                  network,
-                  cluster
-                }),
-              },
-            ],
-          });
-        } catch (error) {
-          console.log('Error in publishing: ', error);
-        }
+        
         return res
           .status(200)
-          .json({ status: responseStatus.Ok, signature: instance });
+          .json({ status: responseStatus.Ok, signature: sig });
       }
     }
   } catch (error) {

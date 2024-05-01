@@ -1,7 +1,7 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 import http from "http";
-import { CLIENT_URL } from "@paybox/common";
+import { CLIENT_URL, Network } from "@paybox/common";
 import compression from "compression";
 import morgan from "morgan";
 import bodyParser from "body-parser";
@@ -9,6 +9,7 @@ import cors from "cors";
 import { SolIndex } from "./index/sol";
 import { PayloadParser } from "./types/valid";
 import { IndexType } from "./types/enum";
+import { EthIndex } from "./index/eth";
 
 export const app = express();
 export const server = http.createServer(app);
@@ -51,13 +52,28 @@ wss.on("connection", async (ws) => {
                 await SolIndex.getInstance().accSubscribe(data.payload.address, ws)
                 break;
             case IndexType.Txn:
-                await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
+                switch(data.chain) {
+                    case Network.Eth:
+                        await EthIndex.getInstance().txnSubcribe(data.payload.hash, ws)
+                        break;
+                    case Network.Sol:
+                        await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
+                        break;
+                }
                 break;
             case IndexType.Block:
                 await SolIndex.getInstance().blockSubscribe(data.payload.address, data.payload.values, ws)
                 break;
             case IndexType.Log:
-                await SolIndex.getInstance().logSubcribe(data.payload.from, ws)
+                switch(data.chain) {
+                    case Network.Eth:
+                        await EthIndex.getInstance().log(data.payload.address, data.payload.topics, ws)
+                        break;
+                    
+                    case Network.Sol:
+                        await SolIndex.getInstance().logSubcribe(data.payload.from, ws)
+                        break;
+                }
                 break;
             case IndexType.Program:
                 await SolIndex.getInstance().tokenSubscribe(data.payload.address, ws)

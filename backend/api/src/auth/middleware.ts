@@ -46,8 +46,8 @@ export const txnCheckAddress = async (
       try {
         const { network, from, to, cluster } = TxnSendQuery.parse(req.query);
         if (network == Network.Eth) {
-          const sender = await (new EthOps()).checkAddress(from);
-          const receiver = await (new EthOps()).checkAddress(to);
+          const sender = await EthOps.getInstance().checkAddress(from);
+          const receiver = await EthOps.getInstance().checkAddress(to);
           if (!sender && !receiver) {
             return res.status(400).json({
               status: responseStatus.Error,
@@ -56,8 +56,8 @@ export const txnCheckAddress = async (
           }
         }
         if (network == Network.Sol) {
-          const sender = await (new SolOps()).checkAddress(from);
-          const receiver = await (new SolOps()).checkAddress(to);
+          const sender = await SolOps.getInstance().checkAddress(from);
+          const receiver = await SolOps.getInstance().checkAddress(to);
           if (!sender && !receiver) {
             return res.status(400).json({
               status: responseStatus.Error,
@@ -108,7 +108,7 @@ export const checkAddress = async (
         //   }
         // }
         if (sol != undefined) {
-          const isAddress = await (new SolOps()).checkAddress(sol);
+          const isAddress = await SolOps.getInstance().checkAddress(sol);
           if (!isAddress) {
             return res.status(400).json({
               status: responseStatus.Error,

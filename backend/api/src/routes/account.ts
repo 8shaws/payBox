@@ -77,8 +77,8 @@ accountRouter.post("/", accountCreateRateLimit, async (req, res) => {
           .status(503)
           .json({ msg: "Database Error", status: responseStatus.Error });
       }
-      const solKeys = await (new SolOps()).createAccount(query.secretPhase, hashPassword);
-      const ethKeys = (new EthOps()).createAccount(query.secretPhase, hashPassword);
+      const solKeys = await SolOps.getInstance().createAccount(query.secretPhase, hashPassword);
+      const ethKeys = await EthOps.getInstance().createAccount(query.secretPhase, hashPassword);
       const btcKeys = await Bitcoin.getInstance().genRand();
       const mutation = await createAccount(
         id,
@@ -325,10 +325,10 @@ accountRouter.post("/private", async (req, res) => {
       let keys = {} as WalletKeys;
       switch (network) {
         case Network.Sol:
-          keys = await (new SolOps()).fromSecret(secretKey, hashPassword);
+          keys = await SolOps.getInstance().fromSecret(secretKey, hashPassword);
           break;
         case Network.Eth:
-          keys = (new EthOps).fromSecret(secretKey, hashPassword);
+          keys = EthOps.getInstance().fromSecret(secretKey, hashPassword);
           break;
         case Network.Bitcoin:
         case Network.USDC:

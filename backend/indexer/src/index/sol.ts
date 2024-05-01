@@ -1,13 +1,22 @@
 import { SOL_DEVNET_WS_NODE_URL } from "../config";
 import { WebSocket } from "ws";
 import { TxnSubValue } from "../types/enum";
+import { Connection, clusterApiUrl } from "@solana/web3.js";
+import { Worker } from "../worker/producer";
+import { unixToISOString } from "@paybox/common";
 
 export class SolIndex {
     private static instance: SolIndex;
     private ws: WebSocket;
+    private connection: Connection;
 
     constructor() {
+        this.connection = new Connection(clusterApiUrl("devnet"), "confirmed");
         this.ws = new WebSocket(SOL_DEVNET_WS_NODE_URL);
+
+        this.ws.on('open', () => {
+            console.log("Connected to Solana websocket");
+        });
     }
 
     public static getInstance(): SolIndex {
@@ -119,6 +128,46 @@ export class SolIndex {
             console.log(data);
             //todo: publish this to messaging queue for further processing
             ws.send(JSON.stringify(data));
+
+            // /**
+            //  * Publishing the txn payload for que based system
+            //  */
+            // (async () => {
+
+            //     try {
+            //         const transaction = await this.connection.getParsedConfirmedTransaction(hash);
+            //         if (!transaction) {
+            //             return;
+            //         }
+                    
+            //         await Worker.getInstance().publishOne({
+            //             topic: "txn4",
+            //             message: [
+            //                 {
+            //                     partition: 1,
+            //                     key: hash,
+            //                     value: JSON.stringify({
+            //                         hash,
+            //                         amount,
+            //                         time: unixToISOString(Number(transaction.blockNumber)),
+            //                         fee: calculateGas(transaction.gasLimit, transaction.gasPrice),
+            //                         id,
+            //                         from: transaction.from,
+            //                         to: transaction.to,
+            //                         blockHash: transaction.blockHash,
+            //                         chainId: Number(transaction.chainId),
+            //                         slot: Number(transaction.nonce),
+            //                         network,
+            //                         cluster,
+            //                     }),
+            //                 },
+            //             ],
+            //         });
+            //     } catch (error) {
+            //         console.log('Error in publishing: ', error);
+            //     }
+            // })()
+
         });
 
     }

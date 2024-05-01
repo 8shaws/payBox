@@ -154,8 +154,8 @@ clientRouter.patch("/valid", validRateLimit, extractClientId, isValidated, async
       }
 
       const seed = generateSeed(SECRET_PHASE_STRENGTH);
-      const solKeys = await (new SolOps()).createWallet(seed, hashPassword);
-      const ethKeys = (new EthOps()).createWallet(seed, hashPassword);
+      const solKeys = await SolOps.getInstance().createWallet(seed, hashPassword);
+      const ethKeys = EthOps.getInstance().createWallet(seed, hashPassword);
       const btcKeys = await Bitcoin.getInstance().genRand();
 
       const validate = await validateClient(id, seed, 'Account 1', solKeys, ethKeys, btcKeys);
