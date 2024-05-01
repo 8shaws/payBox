@@ -29,6 +29,7 @@ export class EthOps {
     private projectId: string;
     private network: EthCluster;
     private httpProvider: InfuraProvider;
+    private static instance: EthOps;
 
     /**
      *
@@ -37,13 +38,19 @@ export class EthOps {
      * @param address
      * @param filter
      */
-    constructor(
-        projectId: string = INFURA_PROJECT_ID,
+    private constructor(
         network: EthCluster = EthCluster.Sepolia,
     ) {
-        this.projectId = projectId;
+        this.projectId = INFURA_PROJECT_ID;
         this.network = network;
         this.httpProvider = new ethers.InfuraProvider(this.network, this.projectId);
+    }
+
+    public static getInstance(): EthOps {
+        if (!this.instance) {
+            this.instance = new EthOps();
+        }
+        return this.instance;
     }
 
     /**
@@ -129,19 +136,9 @@ export class EthOps {
                 to: to,
                 value: ethers.parseEther(amount.toString()), // Convert amount to wei
             };
-            // Send the transaction
             let tx = await wallet.sendTransaction(transaction);
 
-            // Wait for the transaction to be mined
-            let receipt = await tx.wait();
-            const txn = await this.httpProvider.getTransaction(tx.hash);
-            if (receipt && receipt.status === 1) {
-                console.log(`Transaction confirmed with hash: ${tx.hash}`);
-                return txn;
-            } else {
-                console.log("Transaction failed");
-                return null;
-            }
+            return tx;
         } catch (error) {
             console.log(error);
             return null;

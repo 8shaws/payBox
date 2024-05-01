@@ -92,8 +92,8 @@ export const getAccountOnPhrase = async (
   count: number,
 ): Promise<ChainAccountPrivate[]> => {
   try {
-    const solAccounts = await (new SolOps()).fromPhrase(secretPhrase, count);
-    const ethAccounts = (new EthOps()).fromPhrase(secretPhrase, count);
+    const solAccounts = await SolOps.getInstance().fromPhrase(secretPhrase, count);
+    const ethAccounts = EthOps.getInstance().fromPhrase(secretPhrase, count);
     return [...solAccounts, ...ethAccounts];
   } catch (error) {
     console.log(error);

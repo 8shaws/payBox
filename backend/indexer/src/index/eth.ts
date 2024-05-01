@@ -1,13 +1,15 @@
 import { WebSocket } from "ws";
 import { ETH_WS_SEPOLIA_URL } from "../config";
+import Web3 from "web3";
 
 export class EthIndex {
     private ws: WebSocket;
+    private web3: Web3;
     private static instance: EthIndex;
 
     constructor() {
         this.ws = new WebSocket(ETH_WS_SEPOLIA_URL);
-
+        this.web3 = new Web3(new Web3.providers.WebsocketProvider(ETH_WS_SEPOLIA_URL));
         this.ws.on('open', () => {
             console.log("Connected to Ethereum websocket");
         });
