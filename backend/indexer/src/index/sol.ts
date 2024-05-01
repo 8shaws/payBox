@@ -8,6 +8,10 @@ export class SolIndex {
 
     constructor() {
         this.ws = new WebSocket(SOL_DEVNET_WS_NODE_URL);
+        
+        this.ws.on('open', () => {
+            console.log("Connected to Solana websocket");
+        });
     }
 
     public static getInstance(): SolIndex {
