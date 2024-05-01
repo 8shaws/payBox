@@ -52,7 +52,14 @@ wss.on("connection", async (ws) => {
                 await SolIndex.getInstance().accSubscribe(data.payload.address, ws)
                 break;
             case IndexType.Txn:
-                await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
+                switch(data.chain) {
+                    case Network.Eth:
+                        await EthIndex.getInstance().txnSubcribe(data.payload.hash, ws)
+                        break;
+                    case Network.Sol:
+                        await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
+                        break;
+                }
                 break;
             case IndexType.Block:
                 await SolIndex.getInstance().blockSubscribe(data.payload.address, data.payload.values, ws)
