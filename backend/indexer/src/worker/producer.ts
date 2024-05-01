@@ -1,5 +1,6 @@
 import { Kafka, Producer } from "kafkajs";
 import { INDEXER_KAFKA_ID, INDEXER_KAFKA_URL } from "../config";
+import { PublishType } from "@paybox/common";
 
 export const kafka = new Kafka({
     clientId: INDEXER_KAFKA_ID,
@@ -38,6 +39,26 @@ export class Worker {
     }
 
 
+    async publishOne(payload: PublishType) {
+        await this.producer.send({
+            topic: payload.topic,
+            messages: payload.message,
+        });
+        console.log("payload published successfully");
+        return;
+    }
+
+    async publishMany(payloads: PublishType[]) {
+        await this.producer.sendBatch({
+            topicMessages: payloads.map((payload) => {
+                return {
+                    topic: payload.topic,
+                    messages: payload.message,
+                };
+            }),
+        });
+        return;
+    }
 
 
 }
