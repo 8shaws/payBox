@@ -54,10 +54,10 @@ wss.on("connection", async (ws) => {
             case IndexType.Txn:
                 switch(data.chain) {
                     case Network.Eth:
-                        await EthIndex.getInstance().txnSubcribe(data.payload.hash, ws)
+                        await EthIndex.getInstance().txnSubcribe(data.payload.hash, data.payload.from, data.payload.to, ws)
                         break;
                     case Network.Sol:
-                        await SolIndex.getInstance().txnSubscribe(data.payload.hash, ws)
+                        await SolIndex.getInstance().txnSubscribe(data.payload.hash, data.payload.from, data.payload.to, ws)
                         break;
                 }
                 break;
