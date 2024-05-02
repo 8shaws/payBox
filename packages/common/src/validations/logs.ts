@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { WsMessageType } from "../enum";
-import { BitcoinCluster, EthCluster, SolCluster } from "../constant";
+import { BitcoinCluster, EthCluster, SolCluster } from "../enum";
 
 export const TxnLogMsgValid = z.object({
     type: z.nativeEnum(WsMessageType),

@@ -20,7 +20,9 @@
     "@types/randombytes": "^2.0.3",
     "bip32": "^4.0.0",
     "bitcoinjs-lib": "^6.1.5",
+    "dotenv": "^16.4.5",
     "ecpair": "^2.1.0",
+    "ethers": "^6.12.1",
     "randombytes": "^2.1.0",
     "regtest-client": "^0.2.1",
     "zod": "^3.22.4"

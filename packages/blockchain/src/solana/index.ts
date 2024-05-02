@@ -1,1 +1,1 @@
-export const Hola = ""
+export * from "./rpc";

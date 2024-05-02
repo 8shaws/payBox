@@ -1,5 +1,5 @@
 import { EnumLike } from "zod";
-import { Network } from "./enum";
+import { BitcoinCluster, EthCluster, Network, SolCluster, USDCCluster } from "./enum";
 import { Cluster } from "@solana/web3.js";
 import { BtcExplorer, EthExplorer, ExplorerPref, SolExplorer } from "./settings";
 
@@ -60,36 +60,6 @@ export const AddressSelectFramework = Object.keys(Network).map((key) => ({
   label: key,
 }));
 
-export enum EthCluster {
-  Mainnet = "mainnet",
-  Ropsten = "ropsten",
-  Rinkeby = "rinkeby",
-  Goerli = "goerli",
-  Kovan = "kovan",
-  Sepolia = "sepolia",
-}
-
-export enum BitcoinCluster {
-  Mainnet = 'mainnet',
-  Testnet = 'testnet',
-  Regnet = 'regtest',
-}
-
-export enum USDCCluster {
-  ETHEREUM_MAINNET = 'ethereum_mainnet',
-  ETHEREUM_ROPSTEN = 'ethereum_ropsten',
-  ETHEREUM_RINKEBY = 'ethereum_rinkeby',
-  ETHEREUM_TESTNET = 'ethereum_testnet',
-  ETHEREUM_LOCAL = 'ethereum_local',
-  OTHER = 'other',
-}
-
-export enum SolCluster {
-  Mainnet = "mainnet",
-  Devnet = "devnet",
-  Testnet = "testnet",
-  Localnet = "localnet"
-}
 
 export const SOLSCAN_TXN_URL = (txnId: string, cluster: Cluster): string => {
   return `https://solscan.io/tx/${txnId}?cluster=${cluster}`;

@@ -157,6 +157,7 @@ export enum TopicTypes {
     Msg = "msg-notif",
     Notif = "notif",
     Db = "db",
+    Txn = "txn"
 }
 
 export enum DBTopics {
@@ -166,6 +167,10 @@ export enum DBTopics {
 export enum MsgTopics {
     SendOtp = "otp",
     ResendOtp = "resendOtp",
+}
+
+export enum TxnTopic {
+    Finalized = "finalized"
 }
 
 export enum TxnStatus {
@@ -185,4 +190,35 @@ export enum Locales {
     ko = "ko",
     ru = "ru",
     zh = "zh",
+}
+
+export enum EthCluster {
+    Mainnet = "mainnet",
+    Ropsten = "ropsten",
+    Rinkeby = "rinkeby",
+    Goerli = "goerli",
+    Kovan = "kovan",
+    Sepolia = "sepolia",
+}
+
+export enum BitcoinCluster {
+    Mainnet = 'mainnet',
+    Testnet = 'testnet',
+    Regnet = 'regtest',
+}
+
+export enum USDCCluster {
+    ETHEREUM_MAINNET = 'ethereum_mainnet',
+    ETHEREUM_ROPSTEN = 'ethereum_ropsten',
+    ETHEREUM_RINKEBY = 'ethereum_rinkeby',
+    ETHEREUM_TESTNET = 'ethereum_testnet',
+    ETHEREUM_LOCAL = 'ethereum_local',
+    OTHER = 'other',
+}
+
+export enum SolCluster {
+    Mainnet = "mainnet-beta",
+    Devnet = "devnet",
+    Testnet = "testnet",
+    Localnet = "localnet"
 }

@@ -1,1 +1,1 @@
-export const demo = "demo";
+export * from "./rpc";

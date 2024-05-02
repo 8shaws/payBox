@@ -31,7 +31,7 @@ function NetworkTab({
     useEffect(() => {
         switch (chain) {
             case "Solana":
-                setSelectObject(SolNets.filter(({value}) => value != "mainnet"))
+                setSelectObject(SolNets.filter(({value}) => value != "mainnet-beta"))
                 break;
             case "Ethereum":
                 setSelectObject(EthNets.filter(({value}) => value != "mainnet"))

@@ -1,7 +1,7 @@
 import { Consumer } from "kafkajs";
 import { kafka } from "..";
-import { DBTopics, MsgTopics, NotifTopics, TopicTypes } from "@paybox/common";
-import {notifyFriendRequest, notifyFriendRequestAccepted, notifyFriendRequestRejected, notifyPaid, notifyReceiveTxn, otpSendProcess, resendOtpProcess} from "../processes";
+import { DBTopics, MsgTopics, NotifTopics, TopicTypes, TxnTopic } from "@paybox/common";
+import {finalizedTxn, notifyFriendRequest, notifyFriendRequestAccepted, notifyFriendRequestRejected, notifyPaid, notifyReceiveTxn, otpSendProcess, resendOtpProcess} from "../processes";
 
 export class ConsumerWorker {
     private consumer!: Consumer;
@@ -107,6 +107,19 @@ export class ConsumerWorker {
                                 
                                 default:
                                     console.log(`No handler in topic: ${topic} for type: ${payload.type}`)
+                                    break;
+                            }
+                            break;
+
+                        case TopicTypes.Txn:
+                            switch(payload.type) {
+                                case TxnTopic.Finalized:
+                                    await finalizedTxn({
+                                        chain: payload.chain,
+                                        from: payload.from,
+                                        hash: payload.hash,
+                                        to: payload.to
+                                    });
                                     break;
                             }
                             break;

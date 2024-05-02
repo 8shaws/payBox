@@ -1,12 +1,13 @@
-import { MsgTopics, NotifTopics, OTP_CACHE_EXPIRE, TOTP_DIGITS, TOTP_TIME, TopicTypes, dbResStatus } from "@paybox/common";
+import { MsgTopics, Network, NotifTopics, OTP_CACHE_EXPIRE, TOTP_DIGITS, TOTP_TIME, TopicTypes, dbResStatus } from "@paybox/common";
 import { getClientFriendship } from "./db/friendship";
 import { getUsername } from "./db/client";
 import { notify } from "./notifier";
-import { getTxnDetails, insertCentTxn } from "./db/txn";
+import { getTxnDetails, insertCentTxn, insertTxn } from "./db/txn";
 import { RedisBase, upadteMobileEmail } from "@paybox/backend-common";
 import { genOtp, sendOTP } from "./auth/utils";
 import { addNotif } from "./db/notif";
 import { getSubs, getSubsId } from "./db/notif-sub";
+import { EthRpc, SolRpc } from "@paybox/blockchain";
 
 /**
  * 
@@ -206,14 +207,14 @@ export const otpSendProcess = async (
     clientId: string
 ): Promise<void> => {
     try {
-        
+
         const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
         await sendOTP(name, email, otp, Number(mobile));
         await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
-    
+
         const { status, subs } = await getSubsId(clientId);
         if (status == dbResStatus.Error || !subs) {
-          return;
+            return;
         }
         const mutate = await addNotif(
             clientId,
@@ -250,7 +251,7 @@ export const resendOtpProcess = async (
     clientId: string
 ): Promise<void> => {
     try {
-        
+
         const otp = genOtp(TOTP_DIGITS, TOTP_TIME);
         await sendOTP(name, email, otp, Number(mobile));
         await RedisBase.getInstance().cacheIdUsingKey(otp.toString(), clientId, OTP_CACHE_EXPIRE);
@@ -259,25 +260,25 @@ export const resendOtpProcess = async (
         if (updateQuery.status == dbResStatus.Error) {
             throw new Error("Error updating mobile and email");
         }
-    
+
         const { status, subs } = await getSubsId(clientId);
-            if (status == dbResStatus.Error || !subs) {
-              return;
-            }
-            const mutate = await addNotif(
-                clientId,
-                "Validation Otp send",
-                "Paybox validation service",
-                new Date().toISOString(),
-                subs,
-                null,
-                MsgTopics.ResendOtp,
-                TopicTypes.Msg
-            );
-            if (mutate.status == dbResStatus.Error) {
-                console.error('Error adding notification to db.');
-            }
-    
+        if (status == dbResStatus.Error || !subs) {
+            return;
+        }
+        const mutate = await addNotif(
+            clientId,
+            "Validation Otp send",
+            "Paybox validation service",
+            new Date().toISOString(),
+            subs,
+            null,
+            MsgTopics.ResendOtp,
+            TopicTypes.Msg
+        );
+        if (mutate.status == dbResStatus.Error) {
+            console.error('Error adding notification to db.');
+        }
+
         return;
     } catch (error) {
         console.log(error);
@@ -311,12 +312,72 @@ export const processInsertCentTxn = async ({
             status,
             clientId
         );
-        if(dbstatus == dbResStatus.Error) {
+        if (dbstatus == dbResStatus.Error) {
             throw new Error("Error inserting txn");
         }
         return;
     } catch (error) {
         console.log(error);
         return;
-    }  
+    }
 };
+
+/**
+ * 
+ * @param 
+ * @returns 
+ */
+export const finalizedTxn = async ({
+    chain,
+    hash,
+    from,
+    to,
+}: {
+    chain: Network,
+    hash: string,
+    from: string,
+    to: string
+}
+): Promise<void> => {
+    try {
+        let txnId = "";
+        switch (chain) {
+            case Network.Eth:
+                {
+                    let ethTxn = await EthRpc.getInstance().getTxn(hash);
+                    if (ethTxn == null) {
+                        console.log(hash, "txn not yet confirmed...");
+                        return
+                    }
+                    const { status, id } = await insertTxn(ethTxn, from);
+                    if (status == dbResStatus.Error || !id) {
+                        console.log('DB mutate error...');
+                        return;
+                    }
+                    txnId = id
+                }
+                break;
+
+            case Network.Sol:
+                {
+                    const solTxn = await SolRpc.getInstance().getTxn(hash);
+                    if (solTxn == null) {
+                        console.log(hash, "txn not confirmed");
+                        return;
+                    }
+                    const { status, id } = await insertTxn(solTxn, from);
+                    if (status == dbResStatus.Error || !id) {
+                        console.log('DB mutate error...');
+                        return;
+                    }
+                    txnId = id
+                }
+                break;
+        }
+        await notifyReceiveTxn(to, from, txnId);
+        return;
+    } catch (error) {
+        console.log(error);
+        return;
+    }
+}

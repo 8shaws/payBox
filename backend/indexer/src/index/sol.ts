@@ -3,7 +3,7 @@ import { WebSocket } from "ws";
 import { TxnSubValue } from "../types/enum";
 import { Connection, clusterApiUrl } from "@solana/web3.js";
 import { Worker } from "../worker/producer";
-import { unixToISOString } from "@paybox/common";
+import { Network, TopicTypes, TxnTopic, unixToISOString } from "@paybox/common";
 
 export class SolIndex {
     private static instance: SolIndex;
@@ -101,7 +101,7 @@ export class SolIndex {
     }
 
     //use this method to subscribe to a signature
-    async txnSubscribe(hash: string, ws: any) {
+    async txnSubscribe(hash: string, from: string, to: string, ws: any) {
 
         if (this.ws.readyState !== WebSocket.OPEN) {
             await new Promise((resolve) => {
@@ -110,13 +110,17 @@ export class SolIndex {
         }
 
         const request = {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "signatureSubscribe",
-            "params": [
+            jsonrpc: "2.0",
+            id: 420,
+            method: "signatureSubscribe",
+            params: [
                 hash,
                 {
-                    "commitment": "finalized"
+                    commitment: "finalized",
+                    encoding: "jsonParsed",
+                    transactionDetails: "full",
+                    showRewards: true,
+                    maxSupportedTransactionVersion: 0
                 }
             ]
         }
@@ -132,41 +136,29 @@ export class SolIndex {
             // /**
             //  * Publishing the txn payload for que based system
             //  */
-            // (async () => {
+            (async () => {
+                try {
 
-            //     try {
-            //         const transaction = await this.connection.getParsedConfirmedTransaction(hash);
-            //         if (!transaction) {
-            //             return;
-            //         }
-                    
-            //         await Worker.getInstance().publishOne({
-            //             topic: "txn4",
-            //             message: [
-            //                 {
-            //                     partition: 1,
-            //                     key: hash,
-            //                     value: JSON.stringify({
-            //                         hash,
-            //                         amount,
-            //                         time: unixToISOString(Number(transaction.blockNumber)),
-            //                         fee: calculateGas(transaction.gasLimit, transaction.gasPrice),
-            //                         id,
-            //                         from: transaction.from,
-            //                         to: transaction.to,
-            //                         blockHash: transaction.blockHash,
-            //                         chainId: Number(transaction.chainId),
-            //                         slot: Number(transaction.nonce),
-            //                         network,
-            //                         cluster,
-            //                     }),
-            //                 },
-            //             ],
-            //         });
-            //     } catch (error) {
-            //         console.log('Error in publishing: ', error);
-            //     }
-            // })()
+                    await Worker.getInstance().publishOne({
+                        topic: TopicTypes.Txn,
+                        message: [
+                            {
+                                partition: 1,
+                                key: hash,
+                                value: JSON.stringify({
+                                    hash,
+                                    chain: Network.Sol,
+                                    from,
+                                    to,
+                                    type: TxnTopic.Finalized
+                                }),
+                            },
+                        ],
+                    });
+                } catch (error) {
+                    console.log('Error in publishing: ', error);
+                }
+            })()
 
         });
 

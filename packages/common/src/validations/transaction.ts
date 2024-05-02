@@ -1,13 +1,15 @@
 import { z } from "zod";
 import {
-  BitcoinCluster,
-  EthCluster,
-  SolCluster,
-  USDCCluster,
   isEthereumPublicKey,
   isEthereumPrivateKey,
   isSolanaAddress,
 } from "../constant";
+import {
+  BitcoinCluster,
+  EthCluster,
+  SolCluster,
+  USDCCluster,
+} from "../enum";
 import { Network } from "../enum";
 import { Cluster } from "@solana/web3.js";
 

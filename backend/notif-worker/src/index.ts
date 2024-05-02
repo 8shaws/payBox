@@ -70,6 +70,9 @@ if (cluster.isPrimary) {
     (async () => {
         await WorkerAdmin.getInstance().init([
             { topicName: TopicTypes.Notif, partitions: 1 },
+            { topicName: TopicTypes.Db, partitions: 1 },
+            { topicName: TopicTypes.Msg, partitions: 1 },
+            { topicName: TopicTypes.Txn, partitions: 1 },
         ]);
 
         // This can be connected in any service/s
@@ -94,8 +97,8 @@ if (cluster.isPrimary) {
     (async () => {
         try {
             await ConsumerWorker.getInstance().connectCounsumer(
-                "notif-group",
-                [TopicTypes.Notif, TopicTypes.Msg, TopicTypes.Db],
+                "worker-group",
+                [TopicTypes.Notif, TopicTypes.Msg, TopicTypes.Db, TopicTypes.Txn],
                 true
             );
             await ConsumerWorker.getInstance().runConsumer();

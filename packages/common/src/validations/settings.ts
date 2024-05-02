@@ -1,5 +1,5 @@
 import z from "zod";
-import { BitcoinCluster, EthCluster, SolCluster } from "../constant";
+import { BitcoinCluster, EthCluster, SolCluster } from "../enum";
 
 export const TestModeSetSchema = z.object({
     testMode: z.boolean().optional(),
