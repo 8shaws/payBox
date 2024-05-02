@@ -84,6 +84,7 @@ export class EthIndex {
 
 
         // /**
+        //todo: send only when specific format is recieved
         //  * Publishing the txn payload for que based system
         //  */
         (async () => {

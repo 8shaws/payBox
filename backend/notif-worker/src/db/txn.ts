@@ -1,6 +1,6 @@
 import { Chain } from "@paybox/zeus";
 import { HASURA_URL, JWT } from "../config";
-import { HASURA_ADMIN_SERCRET, Network, NotifSubType, dbResStatus } from "@paybox/common";
+import { HASURA_ADMIN_SERCRET, Network, NotifSubType, TxnType, dbResStatus } from "@paybox/common";
 
 const chain = Chain(HASURA_URL, {
     headers: {
@@ -79,6 +79,41 @@ export const insertCentTxn = async (
     }, {operationName: "insertCentTxn"});
     if(response.insert_centralized_txn_one?.id) {
         return {
+            status: dbResStatus.Ok
+        }
+    }
+    return {
+        status: dbResStatus.Error
+    }
+}
+
+/**
+ * 
+ * @param txn 
+ * @param clientId 
+ * @returns 
+ */
+export const insertTxn = async (
+    txn: Omit<TxnType, "id" | "time" | "clientId">,
+    clientId: string
+): Promise<{
+    status: dbResStatus,
+    id?: string
+}> => {
+    const response = await chain("mutation")({
+        insert_transactions_one: [{
+            object: {
+                ...txn,
+                clientId,
+            },
+        }, {
+            id: true,
+            status: true
+        }]
+    }, {operationName: "insertTxn"});
+    if(response.insert_transactions_one?.id) {
+        return {
+            id: response.insert_transactions_one.id as string,
             status: dbResStatus.Ok
         }
     }

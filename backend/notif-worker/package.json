@@ -15,10 +15,13 @@
   },
   "dependencies": {
     "@paybox/backend-common": "*",
+    "@paybox/blockchain": "*",
     "@paybox/common": "*",
     "@paybox/zeus": "*",
+    "@solana/web3.js": "^1.91.7",
     "dotenv": "^16.4.5",
     "esbuild": "^0.20.2",
+    "ethers": "^6.12.1",
     "express": "^4.19.1",
     "kafkajs": "^2.2.4",
     "nodemailer": "^6.9.13",
