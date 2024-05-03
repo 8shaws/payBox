@@ -3720,6 +3720,10 @@ export type Mutation_Root = {
   delete_friendship?: Maybe<Friendship_Mutation_Response>;
   /** delete single row from the table: "friendship" */
   delete_friendship_by_pk?: Maybe<Friendship>;
+  /** delete data from the table: "news_letter" */
+  delete_news_letter?: Maybe<News_Letter_Mutation_Response>;
+  /** delete single row from the table: "news_letter" */
+  delete_news_letter_by_pk?: Maybe<News_Letter>;
   /** delete data from the table: "notif_to_subs" */
   delete_notif_to_subs?: Maybe<Notif_To_Subs_Mutation_Response>;
   /** delete single row from the table: "notif_to_subs" */
@@ -3788,6 +3792,10 @@ export type Mutation_Root = {
   insert_friendship?: Maybe<Friendship_Mutation_Response>;
   /** insert a single row into the table: "friendship" */
   insert_friendship_one?: Maybe<Friendship>;
+  /** insert data into the table: "news_letter" */
+  insert_news_letter?: Maybe<News_Letter_Mutation_Response>;
+  /** insert a single row into the table: "news_letter" */
+  insert_news_letter_one?: Maybe<News_Letter>;
   /** insert data into the table: "notif_to_subs" */
   insert_notif_to_subs?: Maybe<Notif_To_Subs_Mutation_Response>;
   /** insert a single row into the table: "notif_to_subs" */
@@ -3878,6 +3886,12 @@ export type Mutation_Root = {
   update_friendship_by_pk?: Maybe<Friendship>;
   /** update multiples rows of table: "friendship" */
   update_friendship_many?: Maybe<Array<Maybe<Friendship_Mutation_Response>>>;
+  /** update data of the table: "news_letter" */
+  update_news_letter?: Maybe<News_Letter_Mutation_Response>;
+  /** update single row of the table: "news_letter" */
+  update_news_letter_by_pk?: Maybe<News_Letter>;
+  /** update multiples rows of table: "news_letter" */
+  update_news_letter_many?: Maybe<Array<Maybe<News_Letter_Mutation_Response>>>;
   /** update data of the table: "notif_to_subs" */
   update_notif_to_subs?: Maybe<Notif_To_Subs_Mutation_Response>;
   /** update single row of the table: "notif_to_subs" */
@@ -4045,6 +4059,19 @@ export type Mutation_RootDelete_FriendshipArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Friendship_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_News_LetterArgs = {
+  where: News_Letter_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_News_Letter_By_PkArgs = {
+  email: Scalars['String']['input'];
   id: Scalars['uuid']['input'];
 };
 
@@ -4272,6 +4299,20 @@ export type Mutation_RootInsert_FriendshipArgs = {
 export type Mutation_RootInsert_Friendship_OneArgs = {
   object: Friendship_Insert_Input;
   on_conflict?: InputMaybe<Friendship_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_News_LetterArgs = {
+  objects: Array<News_Letter_Insert_Input>;
+  on_conflict?: InputMaybe<News_Letter_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_News_Letter_OneArgs = {
+  object: News_Letter_Insert_Input;
+  on_conflict?: InputMaybe<News_Letter_On_Conflict>;
 };
 
 
@@ -4584,6 +4625,26 @@ export type Mutation_RootUpdate_Friendship_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_News_LetterArgs = {
+  _set?: InputMaybe<News_Letter_Set_Input>;
+  where: News_Letter_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_News_Letter_By_PkArgs = {
+  _set?: InputMaybe<News_Letter_Set_Input>;
+  pk_columns: News_Letter_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_News_Letter_ManyArgs = {
+  updates: Array<News_Letter_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Notif_To_SubsArgs = {
   _set?: InputMaybe<Notif_To_Subs_Set_Input>;
   where: Notif_To_Subs_Bool_Exp;
@@ -4702,6 +4763,169 @@ export type Mutation_RootUpdate_Wallet_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Wallet_ManyArgs = {
   updates: Array<Wallet_Updates>;
+};
+
+/** info related to news letter subscribers */
+export type News_Letter = {
+  __typename?: 'news_letter';
+  created_at: Scalars['timestamptz']['output'];
+  email: Scalars['String']['output'];
+  id: Scalars['uuid']['output'];
+  updated_at: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "news_letter" */
+export type News_Letter_Aggregate = {
+  __typename?: 'news_letter_aggregate';
+  aggregate?: Maybe<News_Letter_Aggregate_Fields>;
+  nodes: Array<News_Letter>;
+};
+
+/** aggregate fields of "news_letter" */
+export type News_Letter_Aggregate_Fields = {
+  __typename?: 'news_letter_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<News_Letter_Max_Fields>;
+  min?: Maybe<News_Letter_Min_Fields>;
+};
+
+
+/** aggregate fields of "news_letter" */
+export type News_Letter_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<News_Letter_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "news_letter". All fields are combined with a logical 'AND'. */
+export type News_Letter_Bool_Exp = {
+  _and?: InputMaybe<Array<News_Letter_Bool_Exp>>;
+  _not?: InputMaybe<News_Letter_Bool_Exp>;
+  _or?: InputMaybe<Array<News_Letter_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  email?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "news_letter" */
+export enum News_Letter_Constraint {
+  /** unique or primary key constraint on columns "email" */
+  NewsLetterEmailKey = 'news_letter_email_key',
+  /** unique or primary key constraint on columns "id" */
+  NewsLetterIdKey = 'news_letter_id_key',
+  /** unique or primary key constraint on columns "email", "id" */
+  NewsLetterPkey = 'news_letter_pkey'
+}
+
+/** input type for inserting data into table "news_letter" */
+export type News_Letter_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type News_Letter_Max_Fields = {
+  __typename?: 'news_letter_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type News_Letter_Min_Fields = {
+  __typename?: 'news_letter_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "news_letter" */
+export type News_Letter_Mutation_Response = {
+  __typename?: 'news_letter_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<News_Letter>;
+};
+
+/** on_conflict condition type for table "news_letter" */
+export type News_Letter_On_Conflict = {
+  constraint: News_Letter_Constraint;
+  update_columns?: Array<News_Letter_Update_Column>;
+  where?: InputMaybe<News_Letter_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "news_letter". */
+export type News_Letter_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  email?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: news_letter */
+export type News_Letter_Pk_Columns_Input = {
+  email: Scalars['String']['input'];
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "news_letter" */
+export enum News_Letter_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "news_letter" */
+export type News_Letter_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "news_letter" */
+export type News_Letter_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: News_Letter_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type News_Letter_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "news_letter" */
+export enum News_Letter_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type News_Letter_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<News_Letter_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: News_Letter_Bool_Exp;
 };
 
 /** join between noitfication subs and notifcation  */
@@ -5641,6 +5865,12 @@ export type Query_Root = {
   friendship_aggregate: Friendship_Aggregate;
   /** fetch data from the table: "friendship" using primary key columns */
   friendship_by_pk?: Maybe<Friendship>;
+  /** fetch data from the table: "news_letter" */
+  news_letter: Array<News_Letter>;
+  /** fetch aggregated fields from the table: "news_letter" */
+  news_letter_aggregate: News_Letter_Aggregate;
+  /** fetch data from the table: "news_letter" using primary key columns */
+  news_letter_by_pk?: Maybe<News_Letter>;
   /** An array relationship */
   notif_to_subs: Array<Notif_To_Subs>;
   /** An aggregate relationship */
@@ -5929,6 +6159,30 @@ export type Query_RootFriendship_AggregateArgs = {
 
 
 export type Query_RootFriendship_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootNews_LetterArgs = {
+  distinct_on?: InputMaybe<Array<News_Letter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<News_Letter_Order_By>>;
+  where?: InputMaybe<News_Letter_Bool_Exp>;
+};
+
+
+export type Query_RootNews_Letter_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<News_Letter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<News_Letter_Order_By>>;
+  where?: InputMaybe<News_Letter_Bool_Exp>;
+};
+
+
+export type Query_RootNews_Letter_By_PkArgs = {
+  email: Scalars['String']['input'];
   id: Scalars['uuid']['input'];
 };
 
@@ -6362,6 +6616,14 @@ export type Subscription_Root = {
   friendship_by_pk?: Maybe<Friendship>;
   /** fetch data from the table in a streaming manner: "friendship" */
   friendship_stream: Array<Friendship>;
+  /** fetch data from the table: "news_letter" */
+  news_letter: Array<News_Letter>;
+  /** fetch aggregated fields from the table: "news_letter" */
+  news_letter_aggregate: News_Letter_Aggregate;
+  /** fetch data from the table: "news_letter" using primary key columns */
+  news_letter_by_pk?: Maybe<News_Letter>;
+  /** fetch data from the table in a streaming manner: "news_letter" */
+  news_letter_stream: Array<News_Letter>;
   /** An array relationship */
   notif_to_subs: Array<Notif_To_Subs>;
   /** An aggregate relationship */
@@ -6740,6 +7002,37 @@ export type Subscription_RootFriendship_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Friendship_Stream_Cursor_Input>>;
   where?: InputMaybe<Friendship_Bool_Exp>;
+};
+
+
+export type Subscription_RootNews_LetterArgs = {
+  distinct_on?: InputMaybe<Array<News_Letter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<News_Letter_Order_By>>;
+  where?: InputMaybe<News_Letter_Bool_Exp>;
+};
+
+
+export type Subscription_RootNews_Letter_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<News_Letter_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<News_Letter_Order_By>>;
+  where?: InputMaybe<News_Letter_Bool_Exp>;
+};
+
+
+export type Subscription_RootNews_Letter_By_PkArgs = {
+  email: Scalars['String']['input'];
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootNews_Letter_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<News_Letter_Stream_Cursor_Input>>;
+  where?: InputMaybe<News_Letter_Bool_Exp>;
 };
 
 

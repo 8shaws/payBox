@@ -1480,6 +1480,12 @@ export const AllTypesProps: Record<string, any> = {
     delete_friendship_by_pk: {
       id: "uuid",
     },
+    delete_news_letter: {
+      where: "news_letter_bool_exp",
+    },
+    delete_news_letter_by_pk: {
+      id: "uuid",
+    },
     delete_notif_to_subs: {
       where: "notif_to_subs_bool_exp",
     },
@@ -1603,6 +1609,14 @@ export const AllTypesProps: Record<string, any> = {
     insert_friendship_one: {
       object: "friendship_insert_input",
       on_conflict: "friendship_on_conflict",
+    },
+    insert_news_letter: {
+      objects: "news_letter_insert_input",
+      on_conflict: "news_letter_on_conflict",
+    },
+    insert_news_letter_one: {
+      object: "news_letter_insert_input",
+      on_conflict: "news_letter_on_conflict",
     },
     insert_notif_to_subs: {
       objects: "notif_to_subs_insert_input",
@@ -1777,6 +1791,17 @@ export const AllTypesProps: Record<string, any> = {
     update_friendship_many: {
       updates: "friendship_updates",
     },
+    update_news_letter: {
+      _set: "news_letter_set_input",
+      where: "news_letter_bool_exp",
+    },
+    update_news_letter_by_pk: {
+      _set: "news_letter_set_input",
+      pk_columns: "news_letter_pk_columns_input",
+    },
+    update_news_letter_many: {
+      updates: "news_letter_updates",
+    },
     update_notif_to_subs: {
       _set: "notif_to_subs_set_input",
       where: "notif_to_subs_bool_exp",
@@ -1845,6 +1870,60 @@ export const AllTypesProps: Record<string, any> = {
     update_wallet_many: {
       updates: "wallet_updates",
     },
+  },
+  news_letter_aggregate_fields: {
+    count: {
+      columns: "news_letter_select_column",
+    },
+  },
+  news_letter_bool_exp: {
+    _and: "news_letter_bool_exp",
+    _not: "news_letter_bool_exp",
+    _or: "news_letter_bool_exp",
+    created_at: "timestamptz_comparison_exp",
+    email: "String_comparison_exp",
+    id: "uuid_comparison_exp",
+    updated_at: "timestamptz_comparison_exp",
+  },
+  news_letter_constraint: "enum" as const,
+  news_letter_insert_input: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+  },
+  news_letter_on_conflict: {
+    constraint: "news_letter_constraint",
+    update_columns: "news_letter_update_column",
+    where: "news_letter_bool_exp",
+  },
+  news_letter_order_by: {
+    created_at: "order_by",
+    email: "order_by",
+    id: "order_by",
+    updated_at: "order_by",
+  },
+  news_letter_pk_columns_input: {
+    id: "uuid",
+  },
+  news_letter_select_column: "enum" as const,
+  news_letter_set_input: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+  },
+  news_letter_stream_cursor_input: {
+    initial_value: "news_letter_stream_cursor_value_input",
+    ordering: "cursor_ordering",
+  },
+  news_letter_stream_cursor_value_input: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+  },
+  news_letter_update_column: "enum" as const,
+  news_letter_updates: {
+    _set: "news_letter_set_input",
+    where: "news_letter_bool_exp",
   },
   notif_to_subs_aggregate_bool_exp: {
     count: "notif_to_subs_aggregate_bool_exp_count",
@@ -2360,6 +2439,19 @@ export const AllTypesProps: Record<string, any> = {
     friendship_by_pk: {
       id: "uuid",
     },
+    news_letter: {
+      distinct_on: "news_letter_select_column",
+      order_by: "news_letter_order_by",
+      where: "news_letter_bool_exp",
+    },
+    news_letter_aggregate: {
+      distinct_on: "news_letter_select_column",
+      order_by: "news_letter_order_by",
+      where: "news_letter_bool_exp",
+    },
+    news_letter_by_pk: {
+      id: "uuid",
+    },
     notif_to_subs: {
       distinct_on: "notif_to_subs_select_column",
       order_by: "notif_to_subs_order_by",
@@ -2694,6 +2786,23 @@ export const AllTypesProps: Record<string, any> = {
     friendship_stream: {
       cursor: "friendship_stream_cursor_input",
       where: "friendship_bool_exp",
+    },
+    news_letter: {
+      distinct_on: "news_letter_select_column",
+      order_by: "news_letter_order_by",
+      where: "news_letter_bool_exp",
+    },
+    news_letter_aggregate: {
+      distinct_on: "news_letter_select_column",
+      order_by: "news_letter_order_by",
+      where: "news_letter_bool_exp",
+    },
+    news_letter_by_pk: {
+      id: "uuid",
+    },
+    news_letter_stream: {
+      cursor: "news_letter_stream_cursor_input",
+      where: "news_letter_bool_exp",
     },
     notif_to_subs: {
       distinct_on: "notif_to_subs_select_column",
@@ -3908,6 +4017,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_eth_by_pk: "eth",
     delete_friendship: "friendship_mutation_response",
     delete_friendship_by_pk: "friendship",
+    delete_news_letter: "news_letter_mutation_response",
+    delete_news_letter_by_pk: "news_letter",
     delete_notif_to_subs: "notif_to_subs_mutation_response",
     delete_notif_to_subs_by_pk: "notif_to_subs",
     delete_notification: "notification_mutation_response",
@@ -3943,6 +4054,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_eth_one: "eth",
     insert_friendship: "friendship_mutation_response",
     insert_friendship_one: "friendship",
+    insert_news_letter: "news_letter_mutation_response",
+    insert_news_letter_one: "news_letter",
     insert_notif_to_subs: "notif_to_subs_mutation_response",
     insert_notif_to_subs_one: "notif_to_subs",
     insert_notification: "notification_mutation_response",
@@ -3989,6 +4102,9 @@ export const ReturnTypes: Record<string, any> = {
     update_friendship: "friendship_mutation_response",
     update_friendship_by_pk: "friendship",
     update_friendship_many: "friendship_mutation_response",
+    update_news_letter: "news_letter_mutation_response",
+    update_news_letter_by_pk: "news_letter",
+    update_news_letter_many: "news_letter_mutation_response",
     update_notif_to_subs: "notif_to_subs_mutation_response",
     update_notif_to_subs_by_pk: "notif_to_subs",
     update_notif_to_subs_many: "notif_to_subs_mutation_response",
@@ -4009,6 +4125,37 @@ export const ReturnTypes: Record<string, any> = {
     update_wallet: "wallet_mutation_response",
     update_wallet_by_pk: "wallet",
     update_wallet_many: "wallet_mutation_response",
+  },
+  news_letter: {
+    created_at: "timestamptz",
+    email: "String",
+    id: "uuid",
+    updated_at: "timestamptz",
+  },
+  news_letter_aggregate: {
+    aggregate: "news_letter_aggregate_fields",
+    nodes: "news_letter",
+  },
+  news_letter_aggregate_fields: {
+    count: "Int",
+    max: "news_letter_max_fields",
+    min: "news_letter_min_fields",
+  },
+  news_letter_max_fields: {
+    created_at: "timestamptz",
+    email: "String",
+    id: "uuid",
+    updated_at: "timestamptz",
+  },
+  news_letter_min_fields: {
+    created_at: "timestamptz",
+    email: "String",
+    id: "uuid",
+    updated_at: "timestamptz",
+  },
+  news_letter_mutation_response: {
+    affected_rows: "Int",
+    returning: "news_letter",
   },
   notif_to_subs: {
     createdAt: "timestamptz",
@@ -4173,6 +4320,9 @@ export const ReturnTypes: Record<string, any> = {
     friendship: "friendship",
     friendship_aggregate: "friendship_aggregate",
     friendship_by_pk: "friendship",
+    news_letter: "news_letter",
+    news_letter_aggregate: "news_letter_aggregate",
+    news_letter_by_pk: "news_letter",
     notif_to_subs: "notif_to_subs",
     notif_to_subs_aggregate: "notif_to_subs_aggregate",
     notif_to_subs_by_pk: "notif_to_subs",
@@ -4275,6 +4425,10 @@ export const ReturnTypes: Record<string, any> = {
     friendship_aggregate: "friendship_aggregate",
     friendship_by_pk: "friendship",
     friendship_stream: "friendship",
+    news_letter: "news_letter",
+    news_letter_aggregate: "news_letter_aggregate",
+    news_letter_by_pk: "news_letter",
+    news_letter_stream: "news_letter",
     notif_to_subs: "notif_to_subs",
     notif_to_subs_aggregate: "notif_to_subs_aggregate",
     notif_to_subs_by_pk: "notif_to_subs",
