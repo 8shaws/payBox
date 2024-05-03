@@ -14,6 +14,7 @@ COPY ["tsconfig.json", "./tsconfig.json"]
 COPY ["packages/typescript-config", "./packages/typescript-config"]
 COPY ["packages/eslint-config", "./packages/teslint-config"]
 COPY ["packages/common", "./packages/common"]
+COPY ["backend/backend-common", "./backend/backend-common"]
 COPY ["packages/blockchain", "./packages/blockchain"]
 
 RUN cd /base

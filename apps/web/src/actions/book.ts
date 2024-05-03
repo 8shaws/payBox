@@ -50,3 +50,26 @@ export const rmAddress = async (jwt: string, id: string) => {
         return Promise.reject();
     }
 }
+
+export const subscribeNews = async (email: string): Promise<{
+    msg: string
+}> => {
+    try {
+        const { status, msg }:
+            { status: responseStatus, msg?: string }
+            = await fetch(`${BACKEND_URL}/utils/subscribe`, {
+                method: "post",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+            }).then(res => res.json());
+        if (status === responseStatus.Error) {
+            return Promise.reject({msg});
+        }
+        return Promise.resolve({msg: msg || ""});
+    } catch (error) {
+        console.log(error);
+        return Promise.reject({msg: "Internal Error"});
+    }
+}

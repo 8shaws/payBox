@@ -1,28 +1,21 @@
-import { response, type Request, type Response } from "express";
-import { importPKCS8, importSPKI, jwtVerify, SignJWT } from "jose";
 import bcryptjs from "bcryptjs";
-import { AUTH_JWT_PRIVATE_KEY, AUTH_JWT_PUBLIC_KEY, GMAIL, PRIVATE_KEY_ENCRYPTION_KEY, TWILLO_NUMBER } from "../config";
+import { PRIVATE_KEY_ENCRYPTION_KEY } from "../config";
 import {
   Address,
   CLIENT_URL,
   ChainAccountPrivate,
-  JWT_ALGO,
   SALT_ROUNDS,
-  getOtpTemplate,
 } from "@paybox/common";
 import * as qr from "qrcode";
-import fs from "fs";
 import * as bip39 from "bip39";
 // import ed from "ed25519-hd-key";
 // import * as ed25519 from 'ed25519';
 
 import crypto from 'crypto';
-import nodemailer from 'nodemailer';
 import { cloud } from "..";
 import { Readable } from "stream";
 import { PutObjectCommand, GetObjectCommand, CopyObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
-import { SolOps } from "../sockets/sol";
-import { EthOps } from "../sockets/eth";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { v4 as uuidv4 } from 'uuid';
 

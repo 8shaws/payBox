@@ -1,33 +1,20 @@
 import {
     InfuraProvider,
-    InfuraWebSocketProvider,
-    ProviderEvent,
-    TransactionReceipt,
     ethers,
 } from "ethers";
-import { WebSocket } from "ws";
 import {
     AcceptEthTxn,
-    ChainAccount,
     ChainAccountPrivate,
     EthChainId,
     EthCluster,
     Network,
     WalletKeys,
 } from "@paybox/common";
-import { EthNetwok } from "../types/address";
-import { INFURA_PROJECT_ID } from "../config";
-import { encryptWithPassword } from "../auth";
+import { ETH_NODE_API_KEY } from "../config";
+import { encryptWithPassword } from "@paybox/backend-common";
 
-
-interface EthereumTransactionData {
-    type: "transaction";
-    data: TransactionReceipt | null;
-}
 
 export class EthOps {
-    private projectId: string;
-    private network: EthCluster;
     private httpProvider: InfuraProvider;
     private static instance: EthOps;
 
@@ -39,16 +26,14 @@ export class EthOps {
      * @param filter
      */
     private constructor(
-        network: EthCluster = EthCluster.Sepolia,
+        net: EthCluster = EthCluster.Sepolia,
     ) {
-        this.projectId = INFURA_PROJECT_ID;
-        this.network = network;
-        this.httpProvider = new ethers.InfuraProvider(this.network, this.projectId);
+        this.httpProvider = new ethers.InfuraProvider(net, ETH_NODE_API_KEY);
     }
 
-    public static getInstance(): EthOps {
+    public static getInstance(net: EthCluster = EthCluster.Sepolia): EthOps {
         if (!this.instance) {
-            this.instance = new EthOps();
+            this.instance = new EthOps(net);
         }
         return this.instance;
     }

@@ -46,8 +46,7 @@ import {
 import { getPassword } from "@paybox/backend-common";
 import { accountCreateRateLimit, } from "../auth/middleware";
 import { getSecretPhase } from "@paybox/backend-common";
-import { SolOps } from "../sockets/sol";
-import { EthOps } from "../sockets/eth";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import { INFURA_PROJECT_ID, R2_CLIENT_BUCKET_NAME } from "../config";
 import {Bitcoin} from "../../../../packages/blockchain/dist";
 

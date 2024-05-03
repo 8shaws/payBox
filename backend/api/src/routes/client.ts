@@ -40,10 +40,9 @@ import {
   ClientSigninFormValidate,
   ClientSignupFormValidate,
 } from "@paybox/common";
-import { SolOps } from "../sockets/sol";
-import { EthOps } from "../sockets/eth";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import { NotifWorker } from "../workers/notfi";
-import { Bitcoin } from "../../../../packages/blockchain/dist";
+import { Bitcoin } from "@paybox/blockchain";
 
 export const clientRouter = Router();
 

@@ -17,6 +17,7 @@ import {
     ChainAccountPrivate,
     Network,
     SolChainId,
+    SolCluster,
     WalletKeys,
   } from "@paybox/common";
   import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
@@ -28,21 +29,21 @@ import {
   import bs58 from "bs58";
   import * as bip32 from "bip32";
   import { derivePath } from "ed25519-hd-key";
-import { encryptWithPassword } from "../auth";
+import { encryptWithPassword } from "@paybox/backend-common";
 
 export class SolOps {
     private connection: Connection;
-    private rpcUrl: string;
     private static instance: SolOps;
 
-    private constructor(net: Cluster = "devnet") {
-      this.rpcUrl = clusterApiUrl(net);
-      this.connection = new Connection(this.rpcUrl, "confirmed");
+    private constructor(
+        cluster: Cluster = SolCluster.Devnet
+    ) {
+      this.connection = new Connection(clusterApiUrl(cluster), "confirmed");
     }
 
-    public static getInstance(): SolOps {
+    public static getInstance(cluster: Cluster = SolCluster.Devnet): SolOps {
       if (!this.instance) {
-        this.instance = new SolOps();
+        this.instance = new SolOps(cluster);
       }
       return this.instance;
     }

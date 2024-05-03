@@ -6926,6 +6926,20 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["friendship"],
     ];
+    delete_news_letter?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["news_letter_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["news_letter_mutation_response"],
+    ];
+    delete_news_letter_by_pk?: [
+      {
+        email: string | Variable<any, string>;
+        id: ValueTypes["uuid"] | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
+    ];
     delete_notif_to_subs?: [
       {
         /** filter the rows which have to be deleted */
@@ -7301,6 +7315,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["friendship"],
+    ];
+    insert_news_letter?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["news_letter_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["news_letter_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter_mutation_response"],
+    ];
+    insert_news_letter_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["news_letter_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["news_letter_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
     ];
     insert_notif_to_subs?: [
       {
@@ -7904,6 +7946,44 @@ export type ValueTypes = {
       },
       ValueTypes["friendship_mutation_response"],
     ];
+    update_news_letter?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["news_letter_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["news_letter_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["news_letter_mutation_response"],
+    ];
+    update_news_letter_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["news_letter_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["news_letter_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
+    ];
+    update_news_letter_many?: [
+      {
+        /** updates to execute, in order */
+        updates:
+          | Array<ValueTypes["news_letter_updates"]>
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter_mutation_response"],
+    ];
     update_notif_to_subs?: [
       {
         /** sets the columns of the filtered rows to the given values */
@@ -8146,6 +8226,205 @@ export type ValueTypes = {
     ];
     __typename?: boolean | `@${string}`;
   }>;
+  /** info related to news letter subscribers */
+  ["news_letter"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "news_letter" */
+  ["news_letter_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["news_letter_aggregate_fields"];
+    nodes?: ValueTypes["news_letter"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "news_letter" */
+  ["news_letter_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["news_letter_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["news_letter_max_fields"];
+    min?: ValueTypes["news_letter_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "news_letter". All fields are combined with a logical 'AND'. */
+  ["news_letter_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["news_letter_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["news_letter_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["news_letter_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    created_at?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    email?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "news_letter" */
+  ["news_letter_constraint"]: news_letter_constraint;
+  /** input type for inserting data into table "news_letter" */
+  ["news_letter_insert_input"]: {
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    email?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["news_letter_max_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["news_letter_min_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "news_letter" */
+  ["news_letter_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["news_letter"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "news_letter" */
+  ["news_letter_on_conflict"]: {
+    constraint: ValueTypes["news_letter_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["news_letter_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["news_letter_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "news_letter". */
+  ["news_letter_order_by"]: {
+    created_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    email?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: news_letter */
+  ["news_letter_pk_columns_input"]: {
+    email: string | Variable<any, string>;
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "news_letter" */
+  ["news_letter_select_column"]: news_letter_select_column;
+  /** input type for updating data in table "news_letter" */
+  ["news_letter_set_input"]: {
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    email?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "news_letter" */
+  ["news_letter_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["news_letter_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["news_letter_stream_cursor_value_input"]: {
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    email?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "news_letter" */
+  ["news_letter_update_column"]: news_letter_update_column;
+  ["news_letter_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["news_letter_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["news_letter_bool_exp"] | Variable<any, string>;
+  };
   /** join between noitfication subs and notifcation  */
   ["notif_to_subs"]: AliasType<{
     createdAt?: boolean | `@${string}`;
@@ -10282,6 +10561,81 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["friendship"],
     ];
+    news_letter?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["news_letter_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["news_letter_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["news_letter_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
+    ];
+    news_letter_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["news_letter_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["news_letter_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["news_letter_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter_aggregate"],
+    ];
+    news_letter_by_pk?: [
+      {
+        email: string | Variable<any, string>;
+        id: ValueTypes["uuid"] | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
+    ];
     notif_to_subs?: [
       {
         /** distinct select on columns */
@@ -12003,6 +12357,103 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["friendship"],
+    ];
+    news_letter?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["news_letter_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["news_letter_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["news_letter_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
+    ];
+    news_letter_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["news_letter_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["news_letter_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["news_letter_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter_aggregate"],
+    ];
+    news_letter_by_pk?: [
+      {
+        email: string | Variable<any, string>;
+        id: ValueTypes["uuid"] | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
+    ];
+    news_letter_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              ValueTypes["news_letter_stream_cursor_input"] | undefined | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["news_letter_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["news_letter"],
     ];
     notif_to_subs?: [
       {
@@ -17583,6 +18034,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["friendship"],
     ];
+    delete_news_letter?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["news_letter_bool_exp"];
+      },
+      ResolverInputTypes["news_letter_mutation_response"],
+    ];
+    delete_news_letter_by_pk?: [
+      { email: string; id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["news_letter"],
+    ];
     delete_notif_to_subs?: [
       {
         /** filter the rows which have to be deleted */
@@ -17900,6 +18362,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["friendship"],
+    ];
+    insert_news_letter?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["news_letter_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["news_letter_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["news_letter_mutation_response"],
+    ];
+    insert_news_letter_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["news_letter_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["news_letter_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["news_letter"],
     ];
     insert_notif_to_subs?: [
       {
@@ -18347,6 +18833,32 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["friendship_mutation_response"],
     ];
+    update_news_letter?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["news_letter_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["news_letter_bool_exp"];
+      },
+      ResolverInputTypes["news_letter_mutation_response"],
+    ];
+    update_news_letter_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["news_letter_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["news_letter_pk_columns_input"];
+      },
+      ResolverInputTypes["news_letter"],
+    ];
+    update_news_letter_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["news_letter_updates"]>;
+      },
+      ResolverInputTypes["news_letter_mutation_response"],
+    ];
     update_notif_to_subs?: [
       {
         /** sets the columns of the filtered rows to the given values */
@@ -18516,6 +19028,134 @@ export type ResolverInputTypes = {
     ];
     __typename?: boolean | `@${string}`;
   }>;
+  /** info related to news letter subscribers */
+  ["news_letter"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "news_letter" */
+  ["news_letter_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["news_letter_aggregate_fields"];
+    nodes?: ResolverInputTypes["news_letter"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "news_letter" */
+  ["news_letter_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["news_letter_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["news_letter_max_fields"];
+    min?: ResolverInputTypes["news_letter_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "news_letter". All fields are combined with a logical 'AND'. */
+  ["news_letter_bool_exp"]: {
+    _and?: Array<ResolverInputTypes["news_letter_bool_exp"]> | undefined | null;
+    _not?: ResolverInputTypes["news_letter_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["news_letter_bool_exp"]> | undefined | null;
+    created_at?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    email?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    updated_at?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "news_letter" */
+  ["news_letter_constraint"]: news_letter_constraint;
+  /** input type for inserting data into table "news_letter" */
+  ["news_letter_insert_input"]: {
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    email?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["news_letter_max_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["news_letter_min_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "news_letter" */
+  ["news_letter_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["news_letter"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "news_letter" */
+  ["news_letter_on_conflict"]: {
+    constraint: ResolverInputTypes["news_letter_constraint"];
+    update_columns: Array<ResolverInputTypes["news_letter_update_column"]>;
+    where?: ResolverInputTypes["news_letter_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "news_letter". */
+  ["news_letter_order_by"]: {
+    created_at?: ResolverInputTypes["order_by"] | undefined | null;
+    email?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    updated_at?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: news_letter */
+  ["news_letter_pk_columns_input"]: {
+    email: string;
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "news_letter" */
+  ["news_letter_select_column"]: news_letter_select_column;
+  /** input type for updating data in table "news_letter" */
+  ["news_letter_set_input"]: {
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    email?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "news_letter" */
+  ["news_letter_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["news_letter_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["news_letter_stream_cursor_value_input"]: {
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    email?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "news_letter" */
+  ["news_letter_update_column"]: news_letter_update_column;
+  ["news_letter_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["news_letter_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["news_letter_bool_exp"];
+  };
   /** join between noitfication subs and notifcation  */
   ["notif_to_subs"]: AliasType<{
     createdAt?: boolean | `@${string}`;
@@ -19935,6 +20575,56 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["friendship"],
     ];
+    news_letter?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["news_letter_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["news_letter_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["news_letter_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["news_letter"],
+    ];
+    news_letter_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["news_letter_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["news_letter_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["news_letter_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["news_letter_aggregate"],
+    ];
+    news_letter_by_pk?: [
+      { email: string; id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["news_letter"],
+    ];
     notif_to_subs?: [
       {
         /** distinct select on columns */
@@ -21093,6 +21783,69 @@ export type ResolverInputTypes = {
         where?: ResolverInputTypes["friendship_bool_exp"] | undefined | null;
       },
       ResolverInputTypes["friendship"],
+    ];
+    news_letter?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["news_letter_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["news_letter_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["news_letter_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["news_letter"],
+    ];
+    news_letter_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["news_letter_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["news_letter_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["news_letter_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["news_letter_aggregate"],
+    ];
+    news_letter_by_pk?: [
+      { email: string; id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["news_letter"],
+    ];
+    news_letter_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          | ResolverInputTypes["news_letter_stream_cursor_input"]
+          | undefined
+          | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["news_letter_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["news_letter"],
     ];
     notif_to_subs?: [
       {
@@ -24864,6 +25617,12 @@ export type ModelTypes = {
     delete_friendship?: ModelTypes["friendship_mutation_response"] | undefined;
     /** delete single row from the table: "friendship" */
     delete_friendship_by_pk?: ModelTypes["friendship"] | undefined;
+    /** delete data from the table: "news_letter" */
+    delete_news_letter?:
+      | ModelTypes["news_letter_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "news_letter" */
+    delete_news_letter_by_pk?: ModelTypes["news_letter"] | undefined;
     /** delete data from the table: "notif_to_subs" */
     delete_notif_to_subs?:
       | ModelTypes["notif_to_subs_mutation_response"]
@@ -24950,6 +25709,12 @@ export type ModelTypes = {
     insert_friendship?: ModelTypes["friendship_mutation_response"] | undefined;
     /** insert a single row into the table: "friendship" */
     insert_friendship_one?: ModelTypes["friendship"] | undefined;
+    /** insert data into the table: "news_letter" */
+    insert_news_letter?:
+      | ModelTypes["news_letter_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "news_letter" */
+    insert_news_letter_one?: ModelTypes["news_letter"] | undefined;
     /** insert data into the table: "notif_to_subs" */
     insert_notif_to_subs?:
       | ModelTypes["notif_to_subs_mutation_response"]
@@ -25080,6 +25845,16 @@ export type ModelTypes = {
     update_friendship_many?:
       | Array<ModelTypes["friendship_mutation_response"] | undefined>
       | undefined;
+    /** update data of the table: "news_letter" */
+    update_news_letter?:
+      | ModelTypes["news_letter_mutation_response"]
+      | undefined;
+    /** update single row of the table: "news_letter" */
+    update_news_letter_by_pk?: ModelTypes["news_letter"] | undefined;
+    /** update multiples rows of table: "news_letter" */
+    update_news_letter_many?:
+      | Array<ModelTypes["news_letter_mutation_response"] | undefined>
+      | undefined;
     /** update data of the table: "notif_to_subs" */
     update_notif_to_subs?:
       | ModelTypes["notif_to_subs_mutation_response"]
@@ -25140,6 +25915,110 @@ export type ModelTypes = {
     update_wallet_many?:
       | Array<ModelTypes["wallet_mutation_response"] | undefined>
       | undefined;
+  };
+  /** info related to news letter subscribers */
+  ["news_letter"]: {
+    created_at: ModelTypes["timestamptz"];
+    email: string;
+    id: ModelTypes["uuid"];
+    updated_at: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "news_letter" */
+  ["news_letter_aggregate"]: {
+    aggregate?: ModelTypes["news_letter_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["news_letter"]>;
+  };
+  /** aggregate fields of "news_letter" */
+  ["news_letter_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["news_letter_max_fields"] | undefined;
+    min?: ModelTypes["news_letter_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "news_letter". All fields are combined with a logical 'AND'. */
+  ["news_letter_bool_exp"]: {
+    _and?: Array<ModelTypes["news_letter_bool_exp"]> | undefined;
+    _not?: ModelTypes["news_letter_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["news_letter_bool_exp"]> | undefined;
+    created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    email?: ModelTypes["String_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["news_letter_constraint"]: news_letter_constraint;
+  /** input type for inserting data into table "news_letter" */
+  ["news_letter_insert_input"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["news_letter_max_fields"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["news_letter_min_fields"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "news_letter" */
+  ["news_letter_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["news_letter"]>;
+  };
+  /** on_conflict condition type for table "news_letter" */
+  ["news_letter_on_conflict"]: {
+    constraint: ModelTypes["news_letter_constraint"];
+    update_columns: Array<ModelTypes["news_letter_update_column"]>;
+    where?: ModelTypes["news_letter_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "news_letter". */
+  ["news_letter_order_by"]: {
+    created_at?: ModelTypes["order_by"] | undefined;
+    email?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    updated_at?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: news_letter */
+  ["news_letter_pk_columns_input"]: {
+    email: string;
+    id: ModelTypes["uuid"];
+  };
+  ["news_letter_select_column"]: news_letter_select_column;
+  /** input type for updating data in table "news_letter" */
+  ["news_letter_set_input"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "news_letter" */
+  ["news_letter_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["news_letter_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["news_letter_stream_cursor_value_input"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["news_letter_update_column"]: news_letter_update_column;
+  ["news_letter_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["news_letter_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["news_letter_bool_exp"];
   };
   /** join between noitfication subs and notifcation  */
   ["notif_to_subs"]: {
@@ -25815,6 +26694,12 @@ export type ModelTypes = {
     friendship_aggregate: ModelTypes["friendship_aggregate"];
     /** fetch data from the table: "friendship" using primary key columns */
     friendship_by_pk?: ModelTypes["friendship"] | undefined;
+    /** fetch data from the table: "news_letter" */
+    news_letter: Array<ModelTypes["news_letter"]>;
+    /** fetch aggregated fields from the table: "news_letter" */
+    news_letter_aggregate: ModelTypes["news_letter_aggregate"];
+    /** fetch data from the table: "news_letter" using primary key columns */
+    news_letter_by_pk?: ModelTypes["news_letter"] | undefined;
     /** An array relationship */
     notif_to_subs: Array<ModelTypes["notif_to_subs"]>;
     /** An aggregate relationship */
@@ -26073,6 +26958,14 @@ export type ModelTypes = {
     friendship_by_pk?: ModelTypes["friendship"] | undefined;
     /** fetch data from the table in a streaming manner: "friendship" */
     friendship_stream: Array<ModelTypes["friendship"]>;
+    /** fetch data from the table: "news_letter" */
+    news_letter: Array<ModelTypes["news_letter"]>;
+    /** fetch aggregated fields from the table: "news_letter" */
+    news_letter_aggregate: ModelTypes["news_letter_aggregate"];
+    /** fetch data from the table: "news_letter" using primary key columns */
+    news_letter_by_pk?: ModelTypes["news_letter"] | undefined;
+    /** fetch data from the table in a streaming manner: "news_letter" */
+    news_letter_stream: Array<ModelTypes["news_letter"]>;
     /** An array relationship */
     notif_to_subs: Array<ModelTypes["notif_to_subs"]>;
     /** An aggregate relationship */
@@ -29476,6 +30369,12 @@ export type GraphQLTypes = {
       | undefined;
     /** delete single row from the table: "friendship" */
     delete_friendship_by_pk?: GraphQLTypes["friendship"] | undefined;
+    /** delete data from the table: "news_letter" */
+    delete_news_letter?:
+      | GraphQLTypes["news_letter_mutation_response"]
+      | undefined;
+    /** delete single row from the table: "news_letter" */
+    delete_news_letter_by_pk?: GraphQLTypes["news_letter"] | undefined;
     /** delete data from the table: "notif_to_subs" */
     delete_notif_to_subs?:
       | GraphQLTypes["notif_to_subs_mutation_response"]
@@ -29564,6 +30463,12 @@ export type GraphQLTypes = {
       | undefined;
     /** insert a single row into the table: "friendship" */
     insert_friendship_one?: GraphQLTypes["friendship"] | undefined;
+    /** insert data into the table: "news_letter" */
+    insert_news_letter?:
+      | GraphQLTypes["news_letter_mutation_response"]
+      | undefined;
+    /** insert a single row into the table: "news_letter" */
+    insert_news_letter_one?: GraphQLTypes["news_letter"] | undefined;
     /** insert data into the table: "notif_to_subs" */
     insert_notif_to_subs?:
       | GraphQLTypes["notif_to_subs_mutation_response"]
@@ -29696,6 +30601,16 @@ export type GraphQLTypes = {
     update_friendship_many?:
       | Array<GraphQLTypes["friendship_mutation_response"] | undefined>
       | undefined;
+    /** update data of the table: "news_letter" */
+    update_news_letter?:
+      | GraphQLTypes["news_letter_mutation_response"]
+      | undefined;
+    /** update single row of the table: "news_letter" */
+    update_news_letter_by_pk?: GraphQLTypes["news_letter"] | undefined;
+    /** update multiples rows of table: "news_letter" */
+    update_news_letter_many?:
+      | Array<GraphQLTypes["news_letter_mutation_response"] | undefined>
+      | undefined;
     /** update data of the table: "notif_to_subs" */
     update_notif_to_subs?:
       | GraphQLTypes["notif_to_subs_mutation_response"]
@@ -29757,6 +30672,119 @@ export type GraphQLTypes = {
     update_wallet_many?:
       | Array<GraphQLTypes["wallet_mutation_response"] | undefined>
       | undefined;
+  };
+  /** info related to news letter subscribers */
+  ["news_letter"]: {
+    __typename: "news_letter";
+    created_at: GraphQLTypes["timestamptz"];
+    email: string;
+    id: GraphQLTypes["uuid"];
+    updated_at: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "news_letter" */
+  ["news_letter_aggregate"]: {
+    __typename: "news_letter_aggregate";
+    aggregate?: GraphQLTypes["news_letter_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["news_letter"]>;
+  };
+  /** aggregate fields of "news_letter" */
+  ["news_letter_aggregate_fields"]: {
+    __typename: "news_letter_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["news_letter_max_fields"] | undefined;
+    min?: GraphQLTypes["news_letter_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "news_letter". All fields are combined with a logical 'AND'. */
+  ["news_letter_bool_exp"]: {
+    _and?: Array<GraphQLTypes["news_letter_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["news_letter_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["news_letter_bool_exp"]> | undefined;
+    created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    email?: GraphQLTypes["String_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "news_letter" */
+  ["news_letter_constraint"]: news_letter_constraint;
+  /** input type for inserting data into table "news_letter" */
+  ["news_letter_insert_input"]: {
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["news_letter_max_fields"]: {
+    __typename: "news_letter_max_fields";
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["news_letter_min_fields"]: {
+    __typename: "news_letter_min_fields";
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** response of any mutation on the table "news_letter" */
+  ["news_letter_mutation_response"]: {
+    __typename: "news_letter_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["news_letter"]>;
+  };
+  /** on_conflict condition type for table "news_letter" */
+  ["news_letter_on_conflict"]: {
+    constraint: GraphQLTypes["news_letter_constraint"];
+    update_columns: Array<GraphQLTypes["news_letter_update_column"]>;
+    where?: GraphQLTypes["news_letter_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "news_letter". */
+  ["news_letter_order_by"]: {
+    created_at?: GraphQLTypes["order_by"] | undefined;
+    email?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    updated_at?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: news_letter */
+  ["news_letter_pk_columns_input"]: {
+    email: string;
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "news_letter" */
+  ["news_letter_select_column"]: news_letter_select_column;
+  /** input type for updating data in table "news_letter" */
+  ["news_letter_set_input"]: {
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "news_letter" */
+  ["news_letter_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["news_letter_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["news_letter_stream_cursor_value_input"]: {
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    email?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "news_letter" */
+  ["news_letter_update_column"]: news_letter_update_column;
+  ["news_letter_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["news_letter_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["news_letter_bool_exp"];
   };
   /** join between noitfication subs and notifcation  */
   ["notif_to_subs"]: {
@@ -30469,6 +31497,12 @@ export type GraphQLTypes = {
     friendship_aggregate: GraphQLTypes["friendship_aggregate"];
     /** fetch data from the table: "friendship" using primary key columns */
     friendship_by_pk?: GraphQLTypes["friendship"] | undefined;
+    /** fetch data from the table: "news_letter" */
+    news_letter: Array<GraphQLTypes["news_letter"]>;
+    /** fetch aggregated fields from the table: "news_letter" */
+    news_letter_aggregate: GraphQLTypes["news_letter_aggregate"];
+    /** fetch data from the table: "news_letter" using primary key columns */
+    news_letter_by_pk?: GraphQLTypes["news_letter"] | undefined;
     /** An array relationship */
     notif_to_subs: Array<GraphQLTypes["notif_to_subs"]>;
     /** An aggregate relationship */
@@ -30737,6 +31771,14 @@ export type GraphQLTypes = {
     friendship_by_pk?: GraphQLTypes["friendship"] | undefined;
     /** fetch data from the table in a streaming manner: "friendship" */
     friendship_stream: Array<GraphQLTypes["friendship"]>;
+    /** fetch data from the table: "news_letter" */
+    news_letter: Array<GraphQLTypes["news_letter"]>;
+    /** fetch aggregated fields from the table: "news_letter" */
+    news_letter_aggregate: GraphQLTypes["news_letter_aggregate"];
+    /** fetch data from the table: "news_letter" using primary key columns */
+    news_letter_by_pk?: GraphQLTypes["news_letter"] | undefined;
+    /** fetch data from the table in a streaming manner: "news_letter" */
+    news_letter_stream: Array<GraphQLTypes["news_letter"]>;
     /** An array relationship */
     notif_to_subs: Array<GraphQLTypes["notif_to_subs"]>;
     /** An aggregate relationship */
@@ -31916,6 +32958,26 @@ export const enum friendship_update_column {
   status = "status",
   updatedAt = "updatedAt",
 }
+/** unique or primary key constraints on table "news_letter" */
+export const enum news_letter_constraint {
+  news_letter_email_key = "news_letter_email_key",
+  news_letter_id_key = "news_letter_id_key",
+  news_letter_pkey = "news_letter_pkey",
+}
+/** select columns of table "news_letter" */
+export const enum news_letter_select_column {
+  created_at = "created_at",
+  email = "email",
+  id = "id",
+  updated_at = "updated_at",
+}
+/** update columns of table "news_letter" */
+export const enum news_letter_update_column {
+  created_at = "created_at",
+  email = "email",
+  id = "id",
+  updated_at = "updated_at",
+}
 /** unique or primary key constraints on table "notif_to_subs" */
 export const enum notif_to_subs_constraint {
   notif_to_subs_pkey = "notif_to_subs_pkey",
@@ -32353,6 +33415,18 @@ type ZEUS_VARIABLES = {
   ["friendship_stream_cursor_value_input"]: ValueTypes["friendship_stream_cursor_value_input"];
   ["friendship_update_column"]: ValueTypes["friendship_update_column"];
   ["friendship_updates"]: ValueTypes["friendship_updates"];
+  ["news_letter_bool_exp"]: ValueTypes["news_letter_bool_exp"];
+  ["news_letter_constraint"]: ValueTypes["news_letter_constraint"];
+  ["news_letter_insert_input"]: ValueTypes["news_letter_insert_input"];
+  ["news_letter_on_conflict"]: ValueTypes["news_letter_on_conflict"];
+  ["news_letter_order_by"]: ValueTypes["news_letter_order_by"];
+  ["news_letter_pk_columns_input"]: ValueTypes["news_letter_pk_columns_input"];
+  ["news_letter_select_column"]: ValueTypes["news_letter_select_column"];
+  ["news_letter_set_input"]: ValueTypes["news_letter_set_input"];
+  ["news_letter_stream_cursor_input"]: ValueTypes["news_letter_stream_cursor_input"];
+  ["news_letter_stream_cursor_value_input"]: ValueTypes["news_letter_stream_cursor_value_input"];
+  ["news_letter_update_column"]: ValueTypes["news_letter_update_column"];
+  ["news_letter_updates"]: ValueTypes["news_letter_updates"];
   ["notif_to_subs_aggregate_bool_exp"]: ValueTypes["notif_to_subs_aggregate_bool_exp"];
   ["notif_to_subs_aggregate_bool_exp_count"]: ValueTypes["notif_to_subs_aggregate_bool_exp_count"];
   ["notif_to_subs_aggregate_order_by"]: ValueTypes["notif_to_subs_aggregate_order_by"];
