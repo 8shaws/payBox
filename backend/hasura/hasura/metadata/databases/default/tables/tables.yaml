@@ -9,6 +9,7 @@
 - "!include public_connections.yaml"
 - "!include public_eth.yaml"
 - "!include public_friendship.yaml"
+- "!include public_news_letter.yaml"
 - "!include public_notif_to_subs.yaml"
 - "!include public_notification.yaml"
 - "!include public_notification_subscription.yaml"
