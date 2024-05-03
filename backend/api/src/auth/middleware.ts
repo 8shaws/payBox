@@ -242,12 +242,10 @@ export const checkQrcode = async (
 export const resendOtpLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 15 minutes
   max: 1, // limit each client to 3 requests per windowMs
-  message: async (_: Request, res: Response) => {
-    return res.status(429).json({
-      status: responseStatus.Error,
-      msg: 'Too many request, please try after some-time...'
-    });
-  },
+  message: JSON.stringify({
+    status: responseStatus.Error,
+    msg: 'Too many request, please try after some-time...'
+  }),
   keyGenerator: function (req: Request, _: Response) {
     //@ts-ignore
     return req.id; // Use the client id as the key
@@ -258,12 +256,10 @@ export const resendOtpLimiter = rateLimit({
 export const accountCreateRateLimit = rateLimit({
   windowMs: 5 * 60 * 1000, // 15 minutes
   max: 2,
-  message: async (_: Request, res: Response) => {
-    return res.status(429).json({
-      status: responseStatus.Error,
-      msg: 'Too many request, please try after some-time...'
-    });
-  },
+  message: JSON.stringify({
+    status: responseStatus.Error,
+    msg: 'Too many request, please try after some-time...'
+  }),
   keyGenerator: function (req, _) {
     //@ts-ignore
     return req.id; // Use the client id as the key
@@ -273,12 +269,10 @@ export const accountCreateRateLimit = rateLimit({
 export const settingsUpdateLimit = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes
   max: 2,
-  message: async (_: Request, res: Response) => {
-    return res.status(429).json({
-      status: responseStatus.Error,
-      msg: 'Too many request, please try after some-time...'
-    });
-  },
+  message: JSON.stringify({
+    status: responseStatus.Error,
+    msg: 'Too many request, please try after some-time...'
+  }),
   keyGenerator: function (req, res) {
     //@ts-ignore
     return req.id;
@@ -293,21 +287,22 @@ export const validRateLimit = rateLimit({
   store: new RedisStore({
     sendCommand: (...args: string[]) => Redis.getInstance().client.sendCommand(args),
   }),
-  message: async (req: Request, res: Response) => {
-    return res.status(429).json({
+  message: JSON.stringify({
       status: responseStatus.Error,
       msg: 'Too many request, please try after some-time...'
-    });
-  }
+    })
 });
 
 export const mainLimiter = rateLimit({
   skip: (req, res) => {
-    return req.url == '/_health' || req.url == '/_metrics' || req.url == '/';
+    return req.url == '/_health' || req.url == '/_metrics' || req.url == "/";
   },
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests, please try again after 15 minutes'
+  message: JSON.stringify({
+      status: responseStatus.Error,
+      msg: 'Too many request, please try after some-time...'
+    })
 });
 
 

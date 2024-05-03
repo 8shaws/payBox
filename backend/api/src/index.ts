@@ -50,6 +50,7 @@ import { localeRouter } from "./routes/locale";
 import { settingsRouter } from "./routes/settings";
 import { bookRouter } from "./routes/book";
 import { mainLimiter } from "./auth";
+import { utilRouter } from "./routes/utils";
 
 
 export * from "./Redis";
@@ -124,7 +125,7 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
 // app.use('/api-docs', express.static(path.join(__dirname, 'node_modules/swagger-ui-dist')));
 app.use(cors(corsOptions));
 
-// app.use(mainLimiter);
+app.use(mainLimiter);
 
 app.get("/", (_req, res) => {
   return res.status(200).json({
@@ -170,6 +171,7 @@ app.use('/settings', extractClientId, checkValidation, settingsRouter);
 app.use('/book', extractClientId, checkValidation, bookRouter);
 app.use('/hooks', hooksRouter);
 app.use('/locale', localeRouter);
+app.use('/utils', utilRouter);
 
 app.get("/metrics", async (_req, res) => {
   res.set("Content-Type", Prometheus.register.contentType);
