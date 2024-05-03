@@ -15,8 +15,7 @@ import {
 } from "@paybox/common";
 import { getAddressByClient } from "@paybox/backend-common";
 import { Address } from "web3";
-import { EthOps } from "../sockets/eth";
-import { SolOps } from "../sockets/sol";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import rateLimit from "express-rate-limit";
 import { R2_QRCODE_BUCKET_NAME, SITE_SECRET_KEY } from "../config";
 import { Redis } from "..";

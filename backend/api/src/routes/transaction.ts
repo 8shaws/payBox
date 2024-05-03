@@ -16,9 +16,8 @@ import { Redis, calculateGas, decryptWithPassword } from "..";
 import { txnCheckAddress } from "../auth/middleware";
 import { dbResStatus } from "../types/client";
 import { Cluster } from "@solana/web3.js";
-import { EthOps } from "../sockets/eth";
 import { INFURA_PROJECT_ID } from "../config";
-import { SolOps } from "../sockets/sol";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import { Worker } from "../workers/txn";
 
 export const txnRouter = Router();
