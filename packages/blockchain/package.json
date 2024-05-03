@@ -15,6 +15,7 @@
   "dependencies": {
     "@bitcoinerlab/secp256k1": "^1.1.1",
     "@paybox/common": "*",
+    "@paybox/backend-common": "*",
     "@solana/web3.js": "^1.77.3",
     "@types/bitcoinjs-lib": "^5.0.0",
     "@types/randombytes": "^2.0.3",
