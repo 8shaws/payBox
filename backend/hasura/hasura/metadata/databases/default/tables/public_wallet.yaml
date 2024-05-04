@@ -12,6 +12,13 @@ configuration:
     updated_at: updatedAt
   custom_root_fields: {}
 object_relationships:
+  - name: analyze
+    using:
+      foreign_key_constraint_on:
+        column: walletId
+        table:
+          name: analyze
+          schema: public
   - name: client
     using:
       foreign_key_constraint_on: clientId

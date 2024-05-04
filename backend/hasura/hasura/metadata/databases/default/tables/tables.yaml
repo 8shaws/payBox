@@ -1,6 +1,7 @@
 - "!include public_account.yaml"
 - "!include public_address.yaml"
 - "!include public_address_book.yaml"
+- "!include public_analyze.yaml"
 - "!include public_bitcoin.yaml"
 - "!include public_centralized_txn.yaml"
 - "!include public_chat.yaml"
