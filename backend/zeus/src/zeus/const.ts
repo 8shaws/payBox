@@ -337,6 +337,71 @@ export const AllTypesProps: Record<string, any> = {
     _set: "address_set_input",
     where: "address_bool_exp",
   },
+  analyze_aggregate_fields: {
+    count: {
+      columns: "analyze_select_column",
+    },
+  },
+  analyze_bool_exp: {
+    _and: "analyze_bool_exp",
+    _not: "analyze_bool_exp",
+    _or: "analyze_bool_exp",
+    created_at: "timestamptz_comparison_exp",
+    id: "uuid_comparison_exp",
+    updated_at: "timestamptz_comparison_exp",
+    wallet: "wallet_bool_exp",
+    walletId: "uuid_comparison_exp",
+  },
+  analyze_constraint: "enum" as const,
+  analyze_insert_input: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+    wallet: "wallet_obj_rel_insert_input",
+    walletId: "uuid",
+  },
+  analyze_obj_rel_insert_input: {
+    data: "analyze_insert_input",
+    on_conflict: "analyze_on_conflict",
+  },
+  analyze_on_conflict: {
+    constraint: "analyze_constraint",
+    update_columns: "analyze_update_column",
+    where: "analyze_bool_exp",
+  },
+  analyze_order_by: {
+    created_at: "order_by",
+    id: "order_by",
+    updated_at: "order_by",
+    wallet: "wallet_order_by",
+    walletId: "order_by",
+  },
+  analyze_pk_columns_input: {
+    id: "uuid",
+    walletId: "uuid",
+  },
+  analyze_select_column: "enum" as const,
+  analyze_set_input: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+    walletId: "uuid",
+  },
+  analyze_stream_cursor_input: {
+    initial_value: "analyze_stream_cursor_value_input",
+    ordering: "cursor_ordering",
+  },
+  analyze_stream_cursor_value_input: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+    walletId: "uuid",
+  },
+  analyze_update_column: "enum" as const,
+  analyze_updates: {
+    _set: "analyze_set_input",
+    where: "analyze_bool_exp",
+  },
   bigint: `scalar.bigint` as const,
   bigint_comparison_exp: {
     _eq: "bigint",
@@ -1432,6 +1497,13 @@ export const AllTypesProps: Record<string, any> = {
     delete_address_by_pk: {
       id: "uuid",
     },
+    delete_analyze: {
+      where: "analyze_bool_exp",
+    },
+    delete_analyze_by_pk: {
+      id: "uuid",
+      walletId: "uuid",
+    },
     delete_bitcoin: {
       where: "bitcoin_bool_exp",
     },
@@ -1545,6 +1617,14 @@ export const AllTypesProps: Record<string, any> = {
     insert_address_one: {
       object: "address_insert_input",
       on_conflict: "address_on_conflict",
+    },
+    insert_analyze: {
+      objects: "analyze_insert_input",
+      on_conflict: "analyze_on_conflict",
+    },
+    insert_analyze_one: {
+      object: "analyze_insert_input",
+      on_conflict: "analyze_on_conflict",
     },
     insert_bitcoin: {
       objects: "bitcoin_insert_input",
@@ -1698,6 +1778,17 @@ export const AllTypesProps: Record<string, any> = {
     },
     update_address_many: {
       updates: "address_updates",
+    },
+    update_analyze: {
+      _set: "analyze_set_input",
+      where: "analyze_bool_exp",
+    },
+    update_analyze_by_pk: {
+      _set: "analyze_set_input",
+      pk_columns: "analyze_pk_columns_input",
+    },
+    update_analyze_many: {
+      updates: "analyze_updates",
     },
     update_bitcoin: {
       _set: "bitcoin_set_input",
@@ -2335,6 +2426,20 @@ export const AllTypesProps: Record<string, any> = {
     address_by_pk: {
       id: "uuid",
     },
+    analyze: {
+      distinct_on: "analyze_select_column",
+      order_by: "analyze_order_by",
+      where: "analyze_bool_exp",
+    },
+    analyze_aggregate: {
+      distinct_on: "analyze_select_column",
+      order_by: "analyze_order_by",
+      where: "analyze_bool_exp",
+    },
+    analyze_by_pk: {
+      id: "uuid",
+      walletId: "uuid",
+    },
     bitcoin: {
       distinct_on: "bitcoin_select_column",
       order_by: "bitcoin_order_by",
@@ -2650,6 +2755,24 @@ export const AllTypesProps: Record<string, any> = {
     address_stream: {
       cursor: "address_stream_cursor_input",
       where: "address_bool_exp",
+    },
+    analyze: {
+      distinct_on: "analyze_select_column",
+      order_by: "analyze_order_by",
+      where: "analyze_bool_exp",
+    },
+    analyze_aggregate: {
+      distinct_on: "analyze_select_column",
+      order_by: "analyze_order_by",
+      where: "analyze_bool_exp",
+    },
+    analyze_by_pk: {
+      id: "uuid",
+      walletId: "uuid",
+    },
+    analyze_stream: {
+      cursor: "analyze_stream_cursor_input",
+      where: "analyze_bool_exp",
     },
     bitcoin: {
       distinct_on: "bitcoin_select_column",
@@ -3289,6 +3412,7 @@ export const AllTypesProps: Record<string, any> = {
     _or: "wallet_bool_exp",
     accounts: "account_bool_exp",
     accounts_aggregate: "account_aggregate_bool_exp",
+    analyze: "analyze_bool_exp",
     client: "client_bool_exp",
     clientId: "uuid_comparison_exp",
     createdAt: "timestamptz_comparison_exp",
@@ -3299,6 +3423,7 @@ export const AllTypesProps: Record<string, any> = {
   wallet_constraint: "enum" as const,
   wallet_insert_input: {
     accounts: "account_arr_rel_insert_input",
+    analyze: "analyze_obj_rel_insert_input",
     client: "client_obj_rel_insert_input",
     clientId: "uuid",
     createdAt: "timestamptz",
@@ -3330,6 +3455,7 @@ export const AllTypesProps: Record<string, any> = {
   },
   wallet_order_by: {
     accounts_aggregate: "account_aggregate_order_by",
+    analyze: "analyze_order_by",
     client: "client_order_by",
     clientId: "order_by",
     createdAt: "order_by",
@@ -3504,6 +3630,38 @@ export const ReturnTypes: Record<string, any> = {
   address_mutation_response: {
     affected_rows: "Int",
     returning: "address",
+  },
+  analyze: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+    wallet: "wallet",
+    walletId: "uuid",
+  },
+  analyze_aggregate: {
+    aggregate: "analyze_aggregate_fields",
+    nodes: "analyze",
+  },
+  analyze_aggregate_fields: {
+    count: "Int",
+    max: "analyze_max_fields",
+    min: "analyze_min_fields",
+  },
+  analyze_max_fields: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+    walletId: "uuid",
+  },
+  analyze_min_fields: {
+    created_at: "timestamptz",
+    id: "uuid",
+    updated_at: "timestamptz",
+    walletId: "uuid",
+  },
+  analyze_mutation_response: {
+    affected_rows: "Int",
+    returning: "analyze",
   },
   bigint: `scalar.bigint` as const,
   bitcoin: {
@@ -4001,6 +4159,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_address_book: "address_book_mutation_response",
     delete_address_book_by_pk: "address_book",
     delete_address_by_pk: "address",
+    delete_analyze: "analyze_mutation_response",
+    delete_analyze_by_pk: "analyze",
     delete_bitcoin: "bitcoin_mutation_response",
     delete_bitcoin_by_pk: "bitcoin",
     delete_centralized_txn: "centralized_txn_mutation_response",
@@ -4038,6 +4198,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_address_book: "address_book_mutation_response",
     insert_address_book_one: "address_book",
     insert_address_one: "address",
+    insert_analyze: "analyze_mutation_response",
+    insert_analyze_one: "analyze",
     insert_bitcoin: "bitcoin_mutation_response",
     insert_bitcoin_one: "bitcoin",
     insert_centralized_txn: "centralized_txn_mutation_response",
@@ -4078,6 +4240,9 @@ export const ReturnTypes: Record<string, any> = {
     update_address_book_many: "address_book_mutation_response",
     update_address_by_pk: "address",
     update_address_many: "address_mutation_response",
+    update_analyze: "analyze_mutation_response",
+    update_analyze_by_pk: "analyze",
+    update_analyze_many: "analyze_mutation_response",
     update_bitcoin: "bitcoin_mutation_response",
     update_bitcoin_by_pk: "bitcoin",
     update_bitcoin_many: "bitcoin_mutation_response",
@@ -4296,6 +4461,9 @@ export const ReturnTypes: Record<string, any> = {
     address_book_aggregate: "address_book_aggregate",
     address_book_by_pk: "address_book",
     address_by_pk: "address",
+    analyze: "analyze",
+    analyze_aggregate: "analyze_aggregate",
+    analyze_by_pk: "analyze",
     bitcoin: "bitcoin",
     bitcoin_aggregate: "bitcoin_aggregate",
     bitcoin_by_pk: "bitcoin",
@@ -4393,6 +4561,10 @@ export const ReturnTypes: Record<string, any> = {
     address_book_stream: "address_book",
     address_by_pk: "address",
     address_stream: "address",
+    analyze: "analyze",
+    analyze_aggregate: "analyze_aggregate",
+    analyze_by_pk: "analyze",
+    analyze_stream: "analyze",
     bitcoin: "bitcoin",
     bitcoin_aggregate: "bitcoin_aggregate",
     bitcoin_by_pk: "bitcoin",
@@ -4595,6 +4767,7 @@ export const ReturnTypes: Record<string, any> = {
   wallet: {
     accounts: "account",
     accounts_aggregate: "account_aggregate",
+    analyze: "analyze",
     client: "client",
     clientId: "uuid",
     createdAt: "timestamptz",

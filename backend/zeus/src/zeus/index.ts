@@ -2291,6 +2291,236 @@ export type ValueTypes = {
     /** filter the rows which have to be updated */
     where: ValueTypes["address_bool_exp"] | Variable<any, string>;
   };
+  /** table containing info related to wallet  */
+  ["analyze"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    /** An object relationship */
+    wallet?: ValueTypes["wallet"];
+    walletId?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "analyze" */
+  ["analyze_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["analyze_aggregate_fields"];
+    nodes?: ValueTypes["analyze"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "analyze" */
+  ["analyze_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["analyze_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["analyze_max_fields"];
+    min?: ValueTypes["analyze_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "analyze". All fields are combined with a logical 'AND'. */
+  ["analyze_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["analyze_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["analyze_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["analyze_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    created_at?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    wallet?:
+      | ValueTypes["wallet_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "analyze" */
+  ["analyze_constraint"]: analyze_constraint;
+  /** input type for inserting data into table "analyze" */
+  ["analyze_insert_input"]: {
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    wallet?:
+      | ValueTypes["wallet_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["analyze_max_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    walletId?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["analyze_min_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    walletId?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "analyze" */
+  ["analyze_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["analyze"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** input type for inserting object relation for remote table "analyze" */
+  ["analyze_obj_rel_insert_input"]: {
+    data: ValueTypes["analyze_insert_input"] | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["analyze_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** on_conflict condition type for table "analyze" */
+  ["analyze_on_conflict"]: {
+    constraint: ValueTypes["analyze_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["analyze_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["analyze_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "analyze". */
+  ["analyze_order_by"]: {
+    created_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    wallet?:
+      | ValueTypes["wallet_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: analyze */
+  ["analyze_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+    walletId: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "analyze" */
+  ["analyze_select_column"]: analyze_select_column;
+  /** input type for updating data in table "analyze" */
+  ["analyze_set_input"]: {
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "analyze" */
+  ["analyze_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["analyze_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["analyze_stream_cursor_value_input"]: {
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    walletId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+  };
+  /** update columns of table "analyze" */
+  ["analyze_update_column"]: analyze_update_column;
+  ["analyze_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["analyze_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["analyze_bool_exp"] | Variable<any, string>;
+  };
   ["bigint"]: unknown;
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
   ["bigint_comparison_exp"]: {
@@ -6838,6 +7068,20 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["address"],
     ];
+    delete_analyze?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["analyze_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["analyze_mutation_response"],
+    ];
+    delete_analyze_by_pk?: [
+      {
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        walletId: ValueTypes["uuid"] | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
+    ];
     delete_bitcoin?: [
       {
         /** filter the rows which have to be deleted */
@@ -7091,6 +7335,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["address"],
+    ];
+    insert_analyze?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["analyze_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["analyze_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze_mutation_response"],
+    ];
+    insert_analyze_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["analyze_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["analyze_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
     ];
     insert_bitcoin?: [
       {
@@ -7621,6 +7893,42 @@ export type ValueTypes = {
         updates: Array<ValueTypes["address_updates"]> | Variable<any, string>;
       },
       ValueTypes["address_mutation_response"],
+    ];
+    update_analyze?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["analyze_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["analyze_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["analyze_mutation_response"],
+    ];
+    update_analyze_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["analyze_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["analyze_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
+    ];
+    update_analyze_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ValueTypes["analyze_updates"]> | Variable<any, string>;
+      },
+      ValueTypes["analyze_mutation_response"],
     ];
     update_bitcoin?: [
       {
@@ -9985,6 +10293,81 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["address"],
     ];
+    analyze?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["analyze_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["analyze_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["analyze_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
+    ];
+    analyze_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["analyze_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["analyze_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["analyze_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze_aggregate"],
+    ];
+    analyze_by_pk?: [
+      {
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        walletId: ValueTypes["uuid"] | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
+    ];
     bitcoin?: [
       {
         /** distinct select on columns */
@@ -11609,6 +11992,101 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["address"],
+    ];
+    analyze?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["analyze_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["analyze_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["analyze_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
+    ];
+    analyze_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["analyze_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["analyze_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["analyze_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze_aggregate"],
+    ];
+    analyze_by_pk?: [
+      {
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        walletId: ValueTypes["uuid"] | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
+    ];
+    analyze_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<ValueTypes["analyze_stream_cursor_input"] | undefined | null>
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["analyze_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["analyze"],
     ];
     bitcoin?: [
       {
@@ -14009,6 +14487,8 @@ export type ValueTypes = {
       ValueTypes["account_aggregate"],
     ];
     /** An object relationship */
+    analyze?: ValueTypes["analyze"];
+    /** An object relationship */
     client?: ValueTypes["client"];
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
@@ -14112,6 +14592,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    analyze?:
+      | ValueTypes["analyze_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     client?:
       | ValueTypes["client_bool_exp"]
       | undefined
@@ -14149,6 +14634,11 @@ export type ValueTypes = {
   ["wallet_insert_input"]: {
     accounts?:
       | ValueTypes["account_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    analyze?:
+      | ValueTypes["analyze_obj_rel_insert_input"]
       | undefined
       | null
       | Variable<any, string>;
@@ -14271,6 +14761,11 @@ export type ValueTypes = {
   ["wallet_order_by"]: {
     accounts_aggregate?:
       | ValueTypes["account_aggregate_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    analyze?:
+      | ValueTypes["analyze_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -15167,6 +15662,148 @@ export type ResolverInputTypes = {
     _set?: ResolverInputTypes["address_set_input"] | undefined | null;
     /** filter the rows which have to be updated */
     where: ResolverInputTypes["address_bool_exp"];
+  };
+  /** table containing info related to wallet  */
+  ["analyze"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    /** An object relationship */
+    wallet?: ResolverInputTypes["wallet"];
+    walletId?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "analyze" */
+  ["analyze_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["analyze_aggregate_fields"];
+    nodes?: ResolverInputTypes["analyze"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate fields of "analyze" */
+  ["analyze_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["analyze_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["analyze_max_fields"];
+    min?: ResolverInputTypes["analyze_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** Boolean expression to filter rows from the table "analyze". All fields are combined with a logical 'AND'. */
+  ["analyze_bool_exp"]: {
+    _and?: Array<ResolverInputTypes["analyze_bool_exp"]> | undefined | null;
+    _not?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["analyze_bool_exp"]> | undefined | null;
+    created_at?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    updated_at?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    wallet?: ResolverInputTypes["wallet_bool_exp"] | undefined | null;
+    walletId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+  };
+  /** unique or primary key constraints on table "analyze" */
+  ["analyze_constraint"]: analyze_constraint;
+  /** input type for inserting data into table "analyze" */
+  ["analyze_insert_input"]: {
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    wallet?:
+      | ResolverInputTypes["wallet_obj_rel_insert_input"]
+      | undefined
+      | null;
+    walletId?: ResolverInputTypes["uuid"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["analyze_max_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    walletId?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregate min on columns */
+  ["analyze_min_fields"]: AliasType<{
+    created_at?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    walletId?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** response of any mutation on the table "analyze" */
+  ["analyze_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["analyze"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** input type for inserting object relation for remote table "analyze" */
+  ["analyze_obj_rel_insert_input"]: {
+    data: ResolverInputTypes["analyze_insert_input"];
+    /** upsert condition */
+    on_conflict?: ResolverInputTypes["analyze_on_conflict"] | undefined | null;
+  };
+  /** on_conflict condition type for table "analyze" */
+  ["analyze_on_conflict"]: {
+    constraint: ResolverInputTypes["analyze_constraint"];
+    update_columns: Array<ResolverInputTypes["analyze_update_column"]>;
+    where?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "analyze". */
+  ["analyze_order_by"]: {
+    created_at?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    updated_at?: ResolverInputTypes["order_by"] | undefined | null;
+    wallet?: ResolverInputTypes["wallet_order_by"] | undefined | null;
+    walletId?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: analyze */
+  ["analyze_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+    walletId: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "analyze" */
+  ["analyze_select_column"]: analyze_select_column;
+  /** input type for updating data in table "analyze" */
+  ["analyze_set_input"]: {
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    walletId?: ResolverInputTypes["uuid"] | undefined | null;
+  };
+  /** Streaming cursor of the table "analyze" */
+  ["analyze_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["analyze_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["analyze_stream_cursor_value_input"]: {
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    walletId?: ResolverInputTypes["uuid"] | undefined | null;
+  };
+  /** update columns of table "analyze" */
+  ["analyze_update_column"]: analyze_update_column;
+  ["analyze_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["analyze_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["analyze_bool_exp"];
   };
   ["bigint"]: unknown;
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
@@ -17946,6 +18583,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["address"],
     ];
+    delete_analyze?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["analyze_bool_exp"];
+      },
+      ResolverInputTypes["analyze_mutation_response"],
+    ];
+    delete_analyze_by_pk?: [
+      { id: ResolverInputTypes["uuid"]; walletId: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["analyze"],
+    ];
     delete_bitcoin?: [
       {
         /** filter the rows which have to be deleted */
@@ -18182,6 +18830,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["address"],
+    ];
+    insert_analyze?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["analyze_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["analyze_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["analyze_mutation_response"],
+    ];
+    insert_analyze_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["analyze_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["analyze_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["analyze"],
     ];
     insert_bitcoin?: [
       {
@@ -18602,6 +19274,32 @@ export type ResolverInputTypes = {
         updates: Array<ResolverInputTypes["address_updates"]>;
       },
       ResolverInputTypes["address_mutation_response"],
+    ];
+    update_analyze?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["analyze_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["analyze_bool_exp"];
+      },
+      ResolverInputTypes["analyze_mutation_response"],
+    ];
+    update_analyze_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["analyze_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["analyze_pk_columns_input"];
+      },
+      ResolverInputTypes["analyze"],
+    ];
+    update_analyze_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["analyze_updates"]>;
+      },
+      ResolverInputTypes["analyze_mutation_response"],
     ];
     update_bitcoin?: [
       {
@@ -20166,6 +20864,56 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["address"],
     ];
+    analyze?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["analyze_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["analyze_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["analyze"],
+    ];
+    analyze_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["analyze_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["analyze_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["analyze_aggregate"],
+    ];
+    analyze_by_pk?: [
+      { id: ResolverInputTypes["uuid"]; walletId: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["analyze"],
+    ];
     bitcoin?: [
       {
         /** distinct select on columns */
@@ -21272,6 +22020,67 @@ export type ResolverInputTypes = {
         where?: ResolverInputTypes["address_bool_exp"] | undefined | null;
       },
       ResolverInputTypes["address"],
+    ];
+    analyze?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["analyze_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["analyze_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["analyze"],
+    ];
+    analyze_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["analyze_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["analyze_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["analyze_aggregate"],
+    ];
+    analyze_by_pk?: [
+      { id: ResolverInputTypes["uuid"]; walletId: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["analyze"],
+    ];
+    analyze_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          ResolverInputTypes["analyze_stream_cursor_input"] | undefined | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["analyze"],
     ];
     bitcoin?: [
       {
@@ -22913,6 +23722,8 @@ export type ResolverInputTypes = {
       ResolverInputTypes["account_aggregate"],
     ];
     /** An object relationship */
+    analyze?: ResolverInputTypes["analyze"];
+    /** An object relationship */
     client?: ResolverInputTypes["client"];
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
@@ -22980,6 +23791,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["account_aggregate_bool_exp"]
       | undefined
       | null;
+    analyze?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
     client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
     clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     createdAt?:
@@ -23002,6 +23814,10 @@ export type ResolverInputTypes = {
   ["wallet_insert_input"]: {
     accounts?:
       | ResolverInputTypes["account_arr_rel_insert_input"]
+      | undefined
+      | null;
+    analyze?:
+      | ResolverInputTypes["analyze_obj_rel_insert_input"]
       | undefined
       | null;
     client?:
@@ -23074,6 +23890,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["account_aggregate_order_by"]
       | undefined
       | null;
+    analyze?: ResolverInputTypes["analyze_order_by"] | undefined | null;
     client?: ResolverInputTypes["client_order_by"] | undefined | null;
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
@@ -23753,6 +24570,121 @@ export type ModelTypes = {
     _set?: ModelTypes["address_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: ModelTypes["address_bool_exp"];
+  };
+  /** table containing info related to wallet  */
+  ["analyze"]: {
+    created_at: ModelTypes["timestamptz"];
+    id: ModelTypes["uuid"];
+    updated_at: ModelTypes["timestamptz"];
+    /** An object relationship */
+    wallet: ModelTypes["wallet"];
+    walletId: ModelTypes["uuid"];
+  };
+  /** aggregated selection of "analyze" */
+  ["analyze_aggregate"]: {
+    aggregate?: ModelTypes["analyze_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["analyze"]>;
+  };
+  /** aggregate fields of "analyze" */
+  ["analyze_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["analyze_max_fields"] | undefined;
+    min?: ModelTypes["analyze_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "analyze". All fields are combined with a logical 'AND'. */
+  ["analyze_bool_exp"]: {
+    _and?: Array<ModelTypes["analyze_bool_exp"]> | undefined;
+    _not?: ModelTypes["analyze_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["analyze_bool_exp"]> | undefined;
+    created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    wallet?: ModelTypes["wallet_bool_exp"] | undefined;
+    walletId?: ModelTypes["uuid_comparison_exp"] | undefined;
+  };
+  ["analyze_constraint"]: analyze_constraint;
+  /** input type for inserting data into table "analyze" */
+  ["analyze_insert_input"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+    wallet?: ModelTypes["wallet_obj_rel_insert_input"] | undefined;
+    walletId?: ModelTypes["uuid"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["analyze_max_fields"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+    walletId?: ModelTypes["uuid"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["analyze_min_fields"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+    walletId?: ModelTypes["uuid"] | undefined;
+  };
+  /** response of any mutation on the table "analyze" */
+  ["analyze_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["analyze"]>;
+  };
+  /** input type for inserting object relation for remote table "analyze" */
+  ["analyze_obj_rel_insert_input"]: {
+    data: ModelTypes["analyze_insert_input"];
+    /** upsert condition */
+    on_conflict?: ModelTypes["analyze_on_conflict"] | undefined;
+  };
+  /** on_conflict condition type for table "analyze" */
+  ["analyze_on_conflict"]: {
+    constraint: ModelTypes["analyze_constraint"];
+    update_columns: Array<ModelTypes["analyze_update_column"]>;
+    where?: ModelTypes["analyze_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "analyze". */
+  ["analyze_order_by"]: {
+    created_at?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    updated_at?: ModelTypes["order_by"] | undefined;
+    wallet?: ModelTypes["wallet_order_by"] | undefined;
+    walletId?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: analyze */
+  ["analyze_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+    walletId: ModelTypes["uuid"];
+  };
+  ["analyze_select_column"]: analyze_select_column;
+  /** input type for updating data in table "analyze" */
+  ["analyze_set_input"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+    walletId?: ModelTypes["uuid"] | undefined;
+  };
+  /** Streaming cursor of the table "analyze" */
+  ["analyze_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["analyze_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["analyze_stream_cursor_value_input"]: {
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+    walletId?: ModelTypes["uuid"] | undefined;
+  };
+  ["analyze_update_column"]: analyze_update_column;
+  ["analyze_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["analyze_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["analyze_bool_exp"];
   };
   ["bigint"]: any;
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
@@ -25579,6 +26511,10 @@ export type ModelTypes = {
     delete_address_book_by_pk?: ModelTypes["address_book"] | undefined;
     /** delete single row from the table: "address" */
     delete_address_by_pk?: ModelTypes["address"] | undefined;
+    /** delete data from the table: "analyze" */
+    delete_analyze?: ModelTypes["analyze_mutation_response"] | undefined;
+    /** delete single row from the table: "analyze" */
+    delete_analyze_by_pk?: ModelTypes["analyze"] | undefined;
     /** delete data from the table: "bitcoin" */
     delete_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
     /** delete single row from the table: "bitcoin" */
@@ -25671,6 +26607,10 @@ export type ModelTypes = {
     insert_address_book_one?: ModelTypes["address_book"] | undefined;
     /** insert a single row into the table: "address" */
     insert_address_one?: ModelTypes["address"] | undefined;
+    /** insert data into the table: "analyze" */
+    insert_analyze?: ModelTypes["analyze_mutation_response"] | undefined;
+    /** insert a single row into the table: "analyze" */
+    insert_analyze_one?: ModelTypes["analyze"] | undefined;
     /** insert data into the table: "bitcoin" */
     insert_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
     /** insert a single row into the table: "bitcoin" */
@@ -25774,6 +26714,14 @@ export type ModelTypes = {
     /** update multiples rows of table: "address" */
     update_address_many?:
       | Array<ModelTypes["address_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "analyze" */
+    update_analyze?: ModelTypes["analyze_mutation_response"] | undefined;
+    /** update single row of the table: "analyze" */
+    update_analyze_by_pk?: ModelTypes["analyze"] | undefined;
+    /** update multiples rows of table: "analyze" */
+    update_analyze_many?:
+      | Array<ModelTypes["analyze_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "bitcoin" */
     update_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
@@ -26646,6 +27594,12 @@ export type ModelTypes = {
     address_book_by_pk?: ModelTypes["address_book"] | undefined;
     /** fetch data from the table: "address" using primary key columns */
     address_by_pk?: ModelTypes["address"] | undefined;
+    /** fetch data from the table: "analyze" */
+    analyze: Array<ModelTypes["analyze"]>;
+    /** fetch aggregated fields from the table: "analyze" */
+    analyze_aggregate: ModelTypes["analyze_aggregate"];
+    /** fetch data from the table: "analyze" using primary key columns */
+    analyze_by_pk?: ModelTypes["analyze"] | undefined;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<ModelTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -26894,6 +27848,14 @@ export type ModelTypes = {
     address_by_pk?: ModelTypes["address"] | undefined;
     /** fetch data from the table in a streaming manner: "address" */
     address_stream: Array<ModelTypes["address"]>;
+    /** fetch data from the table: "analyze" */
+    analyze: Array<ModelTypes["analyze"]>;
+    /** fetch aggregated fields from the table: "analyze" */
+    analyze_aggregate: ModelTypes["analyze_aggregate"];
+    /** fetch data from the table: "analyze" using primary key columns */
+    analyze_by_pk?: ModelTypes["analyze"] | undefined;
+    /** fetch data from the table in a streaming manner: "analyze" */
+    analyze_stream: Array<ModelTypes["analyze"]>;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<ModelTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -27570,6 +28532,8 @@ export type ModelTypes = {
     /** An aggregate relationship */
     accounts_aggregate: ModelTypes["account_aggregate"];
     /** An object relationship */
+    analyze?: ModelTypes["analyze"] | undefined;
+    /** An object relationship */
     client: ModelTypes["client"];
     clientId: ModelTypes["uuid"];
     createdAt?: ModelTypes["timestamptz"] | undefined;
@@ -27616,6 +28580,7 @@ export type ModelTypes = {
     _or?: Array<ModelTypes["wallet_bool_exp"]> | undefined;
     accounts?: ModelTypes["account_bool_exp"] | undefined;
     accounts_aggregate?: ModelTypes["account_aggregate_bool_exp"] | undefined;
+    analyze?: ModelTypes["analyze_bool_exp"] | undefined;
     client?: ModelTypes["client_bool_exp"] | undefined;
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
@@ -27627,6 +28592,7 @@ export type ModelTypes = {
   /** input type for inserting data into table "wallet" */
   ["wallet_insert_input"]: {
     accounts?: ModelTypes["account_arr_rel_insert_input"] | undefined;
+    analyze?: ModelTypes["analyze_obj_rel_insert_input"] | undefined;
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
@@ -27688,6 +28654,7 @@ export type ModelTypes = {
   /** Ordering options when selecting data from "wallet". */
   ["wallet_order_by"]: {
     accounts_aggregate?: ModelTypes["account_aggregate_order_by"] | undefined;
+    analyze?: ModelTypes["analyze_order_by"] | undefined;
     client?: ModelTypes["client_order_by"] | undefined;
     clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
@@ -28389,6 +29356,130 @@ export type GraphQLTypes = {
     _set?: GraphQLTypes["address_set_input"] | undefined;
     /** filter the rows which have to be updated */
     where: GraphQLTypes["address_bool_exp"];
+  };
+  /** table containing info related to wallet  */
+  ["analyze"]: {
+    __typename: "analyze";
+    created_at: GraphQLTypes["timestamptz"];
+    id: GraphQLTypes["uuid"];
+    updated_at: GraphQLTypes["timestamptz"];
+    /** An object relationship */
+    wallet: GraphQLTypes["wallet"];
+    walletId: GraphQLTypes["uuid"];
+  };
+  /** aggregated selection of "analyze" */
+  ["analyze_aggregate"]: {
+    __typename: "analyze_aggregate";
+    aggregate?: GraphQLTypes["analyze_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["analyze"]>;
+  };
+  /** aggregate fields of "analyze" */
+  ["analyze_aggregate_fields"]: {
+    __typename: "analyze_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["analyze_max_fields"] | undefined;
+    min?: GraphQLTypes["analyze_min_fields"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "analyze". All fields are combined with a logical 'AND'. */
+  ["analyze_bool_exp"]: {
+    _and?: Array<GraphQLTypes["analyze_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["analyze_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["analyze_bool_exp"]> | undefined;
+    created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    wallet?: GraphQLTypes["wallet_bool_exp"] | undefined;
+    walletId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "analyze" */
+  ["analyze_constraint"]: analyze_constraint;
+  /** input type for inserting data into table "analyze" */
+  ["analyze_insert_input"]: {
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+    wallet?: GraphQLTypes["wallet_obj_rel_insert_input"] | undefined;
+    walletId?: GraphQLTypes["uuid"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["analyze_max_fields"]: {
+    __typename: "analyze_max_fields";
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+    walletId?: GraphQLTypes["uuid"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["analyze_min_fields"]: {
+    __typename: "analyze_min_fields";
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+    walletId?: GraphQLTypes["uuid"] | undefined;
+  };
+  /** response of any mutation on the table "analyze" */
+  ["analyze_mutation_response"]: {
+    __typename: "analyze_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["analyze"]>;
+  };
+  /** input type for inserting object relation for remote table "analyze" */
+  ["analyze_obj_rel_insert_input"]: {
+    data: GraphQLTypes["analyze_insert_input"];
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["analyze_on_conflict"] | undefined;
+  };
+  /** on_conflict condition type for table "analyze" */
+  ["analyze_on_conflict"]: {
+    constraint: GraphQLTypes["analyze_constraint"];
+    update_columns: Array<GraphQLTypes["analyze_update_column"]>;
+    where?: GraphQLTypes["analyze_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "analyze". */
+  ["analyze_order_by"]: {
+    created_at?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    updated_at?: GraphQLTypes["order_by"] | undefined;
+    wallet?: GraphQLTypes["wallet_order_by"] | undefined;
+    walletId?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: analyze */
+  ["analyze_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+    walletId: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "analyze" */
+  ["analyze_select_column"]: analyze_select_column;
+  /** input type for updating data in table "analyze" */
+  ["analyze_set_input"]: {
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+    walletId?: GraphQLTypes["uuid"] | undefined;
+  };
+  /** Streaming cursor of the table "analyze" */
+  ["analyze_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["analyze_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["analyze_stream_cursor_value_input"]: {
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+    walletId?: GraphQLTypes["uuid"] | undefined;
+  };
+  /** update columns of table "analyze" */
+  ["analyze_update_column"]: analyze_update_column;
+  ["analyze_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["analyze_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["analyze_bool_exp"];
   };
   ["bigint"]: "scalar" & { name: "bigint" };
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
@@ -30329,6 +31420,10 @@ export type GraphQLTypes = {
     delete_address_book_by_pk?: GraphQLTypes["address_book"] | undefined;
     /** delete single row from the table: "address" */
     delete_address_by_pk?: GraphQLTypes["address"] | undefined;
+    /** delete data from the table: "analyze" */
+    delete_analyze?: GraphQLTypes["analyze_mutation_response"] | undefined;
+    /** delete single row from the table: "analyze" */
+    delete_analyze_by_pk?: GraphQLTypes["analyze"] | undefined;
     /** delete data from the table: "bitcoin" */
     delete_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
     /** delete single row from the table: "bitcoin" */
@@ -30423,6 +31518,10 @@ export type GraphQLTypes = {
     insert_address_book_one?: GraphQLTypes["address_book"] | undefined;
     /** insert a single row into the table: "address" */
     insert_address_one?: GraphQLTypes["address"] | undefined;
+    /** insert data into the table: "analyze" */
+    insert_analyze?: GraphQLTypes["analyze_mutation_response"] | undefined;
+    /** insert a single row into the table: "analyze" */
+    insert_analyze_one?: GraphQLTypes["analyze"] | undefined;
     /** insert data into the table: "bitcoin" */
     insert_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
     /** insert a single row into the table: "bitcoin" */
@@ -30528,6 +31627,14 @@ export type GraphQLTypes = {
     /** update multiples rows of table: "address" */
     update_address_many?:
       | Array<GraphQLTypes["address_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "analyze" */
+    update_analyze?: GraphQLTypes["analyze_mutation_response"] | undefined;
+    /** update single row of the table: "analyze" */
+    update_analyze_by_pk?: GraphQLTypes["analyze"] | undefined;
+    /** update multiples rows of table: "analyze" */
+    update_analyze_many?:
+      | Array<GraphQLTypes["analyze_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "bitcoin" */
     update_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
@@ -31449,6 +32556,12 @@ export type GraphQLTypes = {
     address_book_by_pk?: GraphQLTypes["address_book"] | undefined;
     /** fetch data from the table: "address" using primary key columns */
     address_by_pk?: GraphQLTypes["address"] | undefined;
+    /** fetch data from the table: "analyze" */
+    analyze: Array<GraphQLTypes["analyze"]>;
+    /** fetch aggregated fields from the table: "analyze" */
+    analyze_aggregate: GraphQLTypes["analyze_aggregate"];
+    /** fetch data from the table: "analyze" using primary key columns */
+    analyze_by_pk?: GraphQLTypes["analyze"] | undefined;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<GraphQLTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -31707,6 +32820,14 @@ export type GraphQLTypes = {
     address_by_pk?: GraphQLTypes["address"] | undefined;
     /** fetch data from the table in a streaming manner: "address" */
     address_stream: Array<GraphQLTypes["address"]>;
+    /** fetch data from the table: "analyze" */
+    analyze: Array<GraphQLTypes["analyze"]>;
+    /** fetch aggregated fields from the table: "analyze" */
+    analyze_aggregate: GraphQLTypes["analyze_aggregate"];
+    /** fetch data from the table: "analyze" using primary key columns */
+    analyze_by_pk?: GraphQLTypes["analyze"] | undefined;
+    /** fetch data from the table in a streaming manner: "analyze" */
+    analyze_stream: Array<GraphQLTypes["analyze"]>;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<GraphQLTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -32409,6 +33530,8 @@ export type GraphQLTypes = {
     /** An aggregate relationship */
     accounts_aggregate: GraphQLTypes["account_aggregate"];
     /** An object relationship */
+    analyze?: GraphQLTypes["analyze"] | undefined;
+    /** An object relationship */
     client: GraphQLTypes["client"];
     clientId: GraphQLTypes["uuid"];
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -32457,6 +33580,7 @@ export type GraphQLTypes = {
     _or?: Array<GraphQLTypes["wallet_bool_exp"]> | undefined;
     accounts?: GraphQLTypes["account_bool_exp"] | undefined;
     accounts_aggregate?: GraphQLTypes["account_aggregate_bool_exp"] | undefined;
+    analyze?: GraphQLTypes["analyze_bool_exp"] | undefined;
     client?: GraphQLTypes["client_bool_exp"] | undefined;
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
@@ -32469,6 +33593,7 @@ export type GraphQLTypes = {
   /** input type for inserting data into table "wallet" */
   ["wallet_insert_input"]: {
     accounts?: GraphQLTypes["account_arr_rel_insert_input"] | undefined;
+    analyze?: GraphQLTypes["analyze_obj_rel_insert_input"] | undefined;
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -32533,6 +33658,7 @@ export type GraphQLTypes = {
   /** Ordering options when selecting data from "wallet". */
   ["wallet_order_by"]: {
     accounts_aggregate?: GraphQLTypes["account_aggregate_order_by"] | undefined;
+    analyze?: GraphQLTypes["analyze_order_by"] | undefined;
     client?: GraphQLTypes["client_order_by"] | undefined;
     clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
@@ -32665,6 +33791,26 @@ export const enum address_update_column {
   sol = "sol",
   updatedAt = "updatedAt",
   usdc = "usdc",
+}
+/** unique or primary key constraints on table "analyze" */
+export const enum analyze_constraint {
+  analyze_id_key = "analyze_id_key",
+  analyze_pkey = "analyze_pkey",
+  analyze_walletId_key = "analyze_walletId_key",
+}
+/** select columns of table "analyze" */
+export const enum analyze_select_column {
+  created_at = "created_at",
+  id = "id",
+  updated_at = "updated_at",
+  walletId = "walletId",
+}
+/** update columns of table "analyze" */
+export const enum analyze_update_column {
+  created_at = "created_at",
+  id = "id",
+  updated_at = "updated_at",
+  walletId = "walletId",
 }
 /** unique or primary key constraints on table "bitcoin" */
 export const enum bitcoin_constraint {
@@ -33262,6 +34408,19 @@ type ZEUS_VARIABLES = {
   ["address_stream_cursor_value_input"]: ValueTypes["address_stream_cursor_value_input"];
   ["address_update_column"]: ValueTypes["address_update_column"];
   ["address_updates"]: ValueTypes["address_updates"];
+  ["analyze_bool_exp"]: ValueTypes["analyze_bool_exp"];
+  ["analyze_constraint"]: ValueTypes["analyze_constraint"];
+  ["analyze_insert_input"]: ValueTypes["analyze_insert_input"];
+  ["analyze_obj_rel_insert_input"]: ValueTypes["analyze_obj_rel_insert_input"];
+  ["analyze_on_conflict"]: ValueTypes["analyze_on_conflict"];
+  ["analyze_order_by"]: ValueTypes["analyze_order_by"];
+  ["analyze_pk_columns_input"]: ValueTypes["analyze_pk_columns_input"];
+  ["analyze_select_column"]: ValueTypes["analyze_select_column"];
+  ["analyze_set_input"]: ValueTypes["analyze_set_input"];
+  ["analyze_stream_cursor_input"]: ValueTypes["analyze_stream_cursor_input"];
+  ["analyze_stream_cursor_value_input"]: ValueTypes["analyze_stream_cursor_value_input"];
+  ["analyze_update_column"]: ValueTypes["analyze_update_column"];
+  ["analyze_updates"]: ValueTypes["analyze_updates"];
   ["bigint"]: ValueTypes["bigint"];
   ["bigint_comparison_exp"]: ValueTypes["bigint_comparison_exp"];
   ["bitcoin_bool_exp"]: ValueTypes["bitcoin_bool_exp"];

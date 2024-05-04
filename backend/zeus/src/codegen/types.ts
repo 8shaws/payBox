@@ -907,6 +907,181 @@ export type Address_Updates = {
   where: Address_Bool_Exp;
 };
 
+/** table containing info related to wallet  */
+export type Analyze = {
+  __typename?: 'analyze';
+  created_at: Scalars['timestamptz']['output'];
+  id: Scalars['uuid']['output'];
+  updated_at: Scalars['timestamptz']['output'];
+  /** An object relationship */
+  wallet: Wallet;
+  walletId: Scalars['uuid']['output'];
+};
+
+/** aggregated selection of "analyze" */
+export type Analyze_Aggregate = {
+  __typename?: 'analyze_aggregate';
+  aggregate?: Maybe<Analyze_Aggregate_Fields>;
+  nodes: Array<Analyze>;
+};
+
+/** aggregate fields of "analyze" */
+export type Analyze_Aggregate_Fields = {
+  __typename?: 'analyze_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Analyze_Max_Fields>;
+  min?: Maybe<Analyze_Min_Fields>;
+};
+
+
+/** aggregate fields of "analyze" */
+export type Analyze_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Analyze_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "analyze". All fields are combined with a logical 'AND'. */
+export type Analyze_Bool_Exp = {
+  _and?: InputMaybe<Array<Analyze_Bool_Exp>>;
+  _not?: InputMaybe<Analyze_Bool_Exp>;
+  _or?: InputMaybe<Array<Analyze_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  wallet?: InputMaybe<Wallet_Bool_Exp>;
+  walletId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "analyze" */
+export enum Analyze_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  AnalyzeIdKey = 'analyze_id_key',
+  /** unique or primary key constraint on columns "id", "walletId" */
+  AnalyzePkey = 'analyze_pkey',
+  /** unique or primary key constraint on columns "walletId" */
+  AnalyzeWalletIdKey = 'analyze_walletId_key'
+}
+
+/** input type for inserting data into table "analyze" */
+export type Analyze_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  wallet?: InputMaybe<Wallet_Obj_Rel_Insert_Input>;
+  walletId?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate max on columns */
+export type Analyze_Max_Fields = {
+  __typename?: 'analyze_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+  walletId?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** aggregate min on columns */
+export type Analyze_Min_Fields = {
+  __typename?: 'analyze_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+  walletId?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** response of any mutation on the table "analyze" */
+export type Analyze_Mutation_Response = {
+  __typename?: 'analyze_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Analyze>;
+};
+
+/** input type for inserting object relation for remote table "analyze" */
+export type Analyze_Obj_Rel_Insert_Input = {
+  data: Analyze_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Analyze_On_Conflict>;
+};
+
+/** on_conflict condition type for table "analyze" */
+export type Analyze_On_Conflict = {
+  constraint: Analyze_Constraint;
+  update_columns?: Array<Analyze_Update_Column>;
+  where?: InputMaybe<Analyze_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "analyze". */
+export type Analyze_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  wallet?: InputMaybe<Wallet_Order_By>;
+  walletId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: analyze */
+export type Analyze_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+  walletId: Scalars['uuid']['input'];
+};
+
+/** select columns of table "analyze" */
+export enum Analyze_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  WalletId = 'walletId'
+}
+
+/** input type for updating data in table "analyze" */
+export type Analyze_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  walletId?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** Streaming cursor of the table "analyze" */
+export type Analyze_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Analyze_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Analyze_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  walletId?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** update columns of table "analyze" */
+export enum Analyze_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  WalletId = 'walletId'
+}
+
+export type Analyze_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Analyze_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Analyze_Bool_Exp;
+};
+
 /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
 export type Bigint_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['bigint']['input']>;
@@ -3688,6 +3863,10 @@ export type Mutation_Root = {
   delete_address_book_by_pk?: Maybe<Address_Book>;
   /** delete single row from the table: "address" */
   delete_address_by_pk?: Maybe<Address>;
+  /** delete data from the table: "analyze" */
+  delete_analyze?: Maybe<Analyze_Mutation_Response>;
+  /** delete single row from the table: "analyze" */
+  delete_analyze_by_pk?: Maybe<Analyze>;
   /** delete data from the table: "bitcoin" */
   delete_bitcoin?: Maybe<Bitcoin_Mutation_Response>;
   /** delete single row from the table: "bitcoin" */
@@ -3760,6 +3939,10 @@ export type Mutation_Root = {
   insert_address_book_one?: Maybe<Address_Book>;
   /** insert a single row into the table: "address" */
   insert_address_one?: Maybe<Address>;
+  /** insert data into the table: "analyze" */
+  insert_analyze?: Maybe<Analyze_Mutation_Response>;
+  /** insert a single row into the table: "analyze" */
+  insert_analyze_one?: Maybe<Analyze>;
   /** insert data into the table: "bitcoin" */
   insert_bitcoin?: Maybe<Bitcoin_Mutation_Response>;
   /** insert a single row into the table: "bitcoin" */
@@ -3838,6 +4021,12 @@ export type Mutation_Root = {
   update_address_by_pk?: Maybe<Address>;
   /** update multiples rows of table: "address" */
   update_address_many?: Maybe<Array<Maybe<Address_Mutation_Response>>>;
+  /** update data of the table: "analyze" */
+  update_analyze?: Maybe<Analyze_Mutation_Response>;
+  /** update single row of the table: "analyze" */
+  update_analyze_by_pk?: Maybe<Analyze>;
+  /** update multiples rows of table: "analyze" */
+  update_analyze_many?: Maybe<Array<Maybe<Analyze_Mutation_Response>>>;
   /** update data of the table: "bitcoin" */
   update_bitcoin?: Maybe<Bitcoin_Mutation_Response>;
   /** update single row of the table: "bitcoin" */
@@ -3964,6 +4153,19 @@ export type Mutation_RootDelete_Address_Book_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Address_By_PkArgs = {
   id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_AnalyzeArgs = {
+  where: Analyze_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Analyze_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+  walletId: Scalars['uuid']['input'];
 };
 
 
@@ -4187,6 +4389,20 @@ export type Mutation_RootInsert_Address_Book_OneArgs = {
 export type Mutation_RootInsert_Address_OneArgs = {
   object: Address_Insert_Input;
   on_conflict?: InputMaybe<Address_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_AnalyzeArgs = {
+  objects: Array<Analyze_Insert_Input>;
+  on_conflict?: InputMaybe<Analyze_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Analyze_OneArgs = {
+  object: Analyze_Insert_Input;
+  on_conflict?: InputMaybe<Analyze_On_Conflict>;
 };
 
 
@@ -4457,6 +4673,26 @@ export type Mutation_RootUpdate_Address_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Address_ManyArgs = {
   updates: Array<Address_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AnalyzeArgs = {
+  _set?: InputMaybe<Analyze_Set_Input>;
+  where: Analyze_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Analyze_By_PkArgs = {
+  _set?: InputMaybe<Analyze_Set_Input>;
+  pk_columns: Analyze_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Analyze_ManyArgs = {
+  updates: Array<Analyze_Updates>;
 };
 
 
@@ -5817,6 +6053,12 @@ export type Query_Root = {
   address_book_by_pk?: Maybe<Address_Book>;
   /** fetch data from the table: "address" using primary key columns */
   address_by_pk?: Maybe<Address>;
+  /** fetch data from the table: "analyze" */
+  analyze: Array<Analyze>;
+  /** fetch aggregated fields from the table: "analyze" */
+  analyze_aggregate: Analyze_Aggregate;
+  /** fetch data from the table: "analyze" using primary key columns */
+  analyze_by_pk?: Maybe<Analyze>;
   /** fetch data from the table: "bitcoin" */
   bitcoin: Array<Bitcoin>;
   /** fetch aggregated fields from the table: "bitcoin" */
@@ -5976,6 +6218,30 @@ export type Query_RootAddress_Book_By_PkArgs = {
 
 export type Query_RootAddress_By_PkArgs = {
   id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootAnalyzeArgs = {
+  distinct_on?: InputMaybe<Array<Analyze_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Analyze_Order_By>>;
+  where?: InputMaybe<Analyze_Bool_Exp>;
+};
+
+
+export type Query_RootAnalyze_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Analyze_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Analyze_Order_By>>;
+  where?: InputMaybe<Analyze_Bool_Exp>;
+};
+
+
+export type Query_RootAnalyze_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+  walletId: Scalars['uuid']['input'];
 };
 
 
@@ -6552,6 +6818,14 @@ export type Subscription_Root = {
   address_by_pk?: Maybe<Address>;
   /** fetch data from the table in a streaming manner: "address" */
   address_stream: Array<Address>;
+  /** fetch data from the table: "analyze" */
+  analyze: Array<Analyze>;
+  /** fetch aggregated fields from the table: "analyze" */
+  analyze_aggregate: Analyze_Aggregate;
+  /** fetch data from the table: "analyze" using primary key columns */
+  analyze_by_pk?: Maybe<Analyze>;
+  /** fetch data from the table in a streaming manner: "analyze" */
+  analyze_stream: Array<Analyze>;
   /** fetch data from the table: "bitcoin" */
   bitcoin: Array<Bitcoin>;
   /** fetch aggregated fields from the table: "bitcoin" */
@@ -6762,6 +7036,37 @@ export type Subscription_RootAddress_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Address_Stream_Cursor_Input>>;
   where?: InputMaybe<Address_Bool_Exp>;
+};
+
+
+export type Subscription_RootAnalyzeArgs = {
+  distinct_on?: InputMaybe<Array<Analyze_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Analyze_Order_By>>;
+  where?: InputMaybe<Analyze_Bool_Exp>;
+};
+
+
+export type Subscription_RootAnalyze_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Analyze_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Analyze_Order_By>>;
+  where?: InputMaybe<Analyze_Bool_Exp>;
+};
+
+
+export type Subscription_RootAnalyze_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+  walletId: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootAnalyze_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Analyze_Stream_Cursor_Input>>;
+  where?: InputMaybe<Analyze_Bool_Exp>;
 };
 
 
@@ -7967,6 +8272,8 @@ export type Wallet = {
   /** An aggregate relationship */
   accounts_aggregate: Account_Aggregate;
   /** An object relationship */
+  analyze?: Maybe<Analyze>;
+  /** An object relationship */
   client: Client;
   clientId: Scalars['uuid']['output'];
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
@@ -8049,6 +8356,7 @@ export type Wallet_Bool_Exp = {
   _or?: InputMaybe<Array<Wallet_Bool_Exp>>;
   accounts?: InputMaybe<Account_Bool_Exp>;
   accounts_aggregate?: InputMaybe<Account_Aggregate_Bool_Exp>;
+  analyze?: InputMaybe<Analyze_Bool_Exp>;
   client?: InputMaybe<Client_Bool_Exp>;
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -8070,6 +8378,7 @@ export enum Wallet_Constraint {
 /** input type for inserting data into table "wallet" */
 export type Wallet_Insert_Input = {
   accounts?: InputMaybe<Account_Arr_Rel_Insert_Input>;
+  analyze?: InputMaybe<Analyze_Obj_Rel_Insert_Input>;
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -8142,6 +8451,7 @@ export type Wallet_On_Conflict = {
 /** Ordering options when selecting data from "wallet". */
 export type Wallet_Order_By = {
   accounts_aggregate?: InputMaybe<Account_Aggregate_Order_By>;
+  analyze?: InputMaybe<Analyze_Order_By>;
   client?: InputMaybe<Client_Order_By>;
   clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
