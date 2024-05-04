@@ -12,30 +12,35 @@ export const metadata: Metadata = {
   description: "Account | PayBox",
 };
 
-
 interface AccountsLayoutProps {
   children: React.ReactNode;
 }
 
 const getAccounts = async (jwt: string): Promise<AccountType[] | null> => {
   try {
-    const { status, accounts }: { status: responseStatus, accounts: AccountType[] } = await fetch(`${BACKEND_URL}/account/all`, {
-      method: "get",
-      headers: {
-        "Content-type": "application/json",
-        authorization: `Bearer ${jwt}`,
+    const {
+      status,
+      accounts,
+    }: { status: responseStatus; accounts: AccountType[] } = await fetch(
+      `${BACKEND_URL}/account/all`,
+      {
+        method: "get",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${jwt}`,
+        },
+        cache: "no-cache",
       },
-      cache: "no-cache"
-    }).then(res => res.json());
+    ).then((res) => res.json());
     if (status == responseStatus.Error) {
-      return null
+      return null;
     }
-    return accounts
+    return accounts;
   } catch (error) {
     console.log(error);
-    return null
+    return null;
   }
-}
+};
 
 export default async function AccountsMainLayout({
   children,
@@ -53,12 +58,14 @@ export default async function AccountsMainLayout({
 
   return (
     <>
-      {accounts && <AccountsLayout
-        defaultLayout={defaultLayout}
-        navCollapsedSize={4}
-        children={children}
-        accounts={accounts}
-      />}
+      {accounts && (
+        <AccountsLayout
+          defaultLayout={defaultLayout}
+          navCollapsedSize={4}
+          children={children}
+          accounts={accounts}
+        />
+      )}
     </>
   );
 }
