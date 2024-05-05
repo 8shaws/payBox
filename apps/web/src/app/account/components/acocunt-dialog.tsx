@@ -31,7 +31,7 @@ const AccountDialog = ({ account }: { account: AccountType }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex gap-x-8 items-center ">
+        <div className="flex gap-x-8 items-center">
           <AccountTab account={account} />
         </div>
       </DialogTrigger>
@@ -47,7 +47,7 @@ const AccountDialog = ({ account }: { account: AccountType }) => {
                     rel="noreferrer"
                   >
                     <Badge
-                      className="mx-2 w-fit h-fit text-sm"
+                      className="w-fit h-fit text-base"
                       variant={"secondary"}
                     >
                       {account?.name}
@@ -67,7 +67,7 @@ const AccountDialog = ({ account }: { account: AccountType }) => {
         <div className="flex flex-col gap-y-4 space-x-2 ">
           <div className="justify-center flex">
             <QRCode
-              logoImage={`/favicon.png`}
+              // logoImage={`/favicon.png`}
               logoPadding={5}
               size={128}
               logoPaddingStyle="circle"

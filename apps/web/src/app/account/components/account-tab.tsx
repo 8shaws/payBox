@@ -10,8 +10,8 @@ export default function AccountTab({ account }: { account: AccountType }) {
   return (
     <>
       <Button
-        variant={"ghost"}
-        className="flex flex-row items-center justify-start h-16 gap-x-8 w-full border-none"
+        variant={"outline"}
+        className="flex flex-row items-center justify-start h-16 gap-x-8 w-full rounded-none h-20"
       >
         <div className="w-10 flex items-center justify-center">
           <UsersRound className="w-4 h-4" />
