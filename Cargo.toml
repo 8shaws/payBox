@@ -1,4 +1,10 @@
 [workspace]
+
+# List of members in the workspace
 members = [
-    "contract/*"
+    "backend/rs_api",
 ]
+resolver = "2"
+
+[profile.release]
+opt-level = 3
