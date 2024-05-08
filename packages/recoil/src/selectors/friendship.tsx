@@ -1,11 +1,11 @@
-import { DefaultValue, selector } from "recoil";
+import { DefaultValue, selector, selectorFamily } from "recoil";
 import {
   acceptedFriendshipAtom,
   friendsAtom,
   friendsPubKeysAtom,
 } from "../atoms";
 
-export const friendPubKeySelector = selector({
+export const friendPubKeySelector = selectorFamily({
   key: "friendPubKeySelector",
   //@ts-ignore
   get:

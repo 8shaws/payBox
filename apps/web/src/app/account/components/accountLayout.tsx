@@ -25,7 +25,7 @@ import { AccountType } from "@paybox/common";
 import { usePathname, useRouter } from "next/navigation";
 import { clientNavLinks, commonNavLinks, getNavLinks } from "./navLinks";
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
-import { accountsAtom, clientAtom, getAccounts } from "@paybox/recoil";
+import { accountsAtom, clientAtom } from "@paybox/recoil";
 import { toast } from "sonner";
 import { ScrollArea } from "@/src/components/ui/scroll-area";
 import { AccountList } from "./accounts-list";

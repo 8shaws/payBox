@@ -62,6 +62,7 @@ export function DataTableToolbar<TData>({
               //@ts-ignore
               const ids = table
                 .getSelectedRowModel()
+                //@ts-ignore
                 .rows.map((row) => row.original.id);
               toast.promise(markViewed(jwt as string, ids), {
                 loading: "Marking as viewed...",
