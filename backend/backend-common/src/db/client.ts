@@ -419,7 +419,7 @@ export const getClientById = async <T>(
     {
       client_by_pk: [
         {
-          id,
+          id: { _eq: id },
           limit: 1,
         },
         {
@@ -471,7 +471,7 @@ export const deleteClient = async (
     {
       delete_client_by_pk: [
         {
-          id,
+          id: { _eq: id },
         },
         {
           username: true,
@@ -512,8 +512,8 @@ export const getPassword = async (
     {
       client_by_pk: [
         {
+          id: { _eq: id },
           limit: 1,
-          id,
         },
         {
           password: true,
@@ -775,7 +775,7 @@ export const queryValid = async (
     {
       client_by_pk: [
         {
-          id,
+          id: { _eq: id },
           limit: 1,
         },
         {

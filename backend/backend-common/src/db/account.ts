@@ -231,7 +231,7 @@ export const deleteAccount = async (
     {
       delete_account_by_pk: [
         {
-          id: accountId,
+          id: { _eq: accountId },
         },
         {
           id: true,
@@ -265,7 +265,7 @@ export const getAccount = async (
     {
       account_by_pk: [
         {
-          id: accountId,
+          id: { _eq: accountId },
         },
         {
           id: true,
@@ -412,7 +412,7 @@ export const getAccountSecret = async (
     {
       account_by_pk: [
         {
-          id: accountId,
+          id: { _eq: accountId },
         },
         {
           wallet: {
