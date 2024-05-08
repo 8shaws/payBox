@@ -1148,7 +1148,7 @@ export type Bitcoin_Bool_Exp = {
 export enum Bitcoin_Constraint {
   /** unique or primary key constraint on columns "id" */
   BitcoinIdKey = 'bitcoin_id_key',
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint on columns "publicKey", "id", "accountId" */
   BitcoinPkey = 'bitcoin_pkey',
   /** unique or primary key constraint on columns "privateKey" */
   BitcoinPrivateKeyKey = 'bitcoin_privateKey_key',
@@ -1227,7 +1227,9 @@ export type Bitcoin_Order_By = {
 
 /** primary key columns input for table: bitcoin */
 export type Bitcoin_Pk_Columns_Input = {
+  accountId: Scalars['uuid']['input'];
   id: Scalars['uuid']['input'];
+  publicKey: Scalars['String']['input'];
 };
 
 /** select columns of table "bitcoin" */
@@ -2291,7 +2293,7 @@ export type Client = {
   /** An aggregate relationship */
   transactions_aggregate: Transactions_Aggregate;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
-  username?: Maybe<Scalars['String']['output']>;
+  username: Scalars['String']['output'];
   valid: Scalars['Boolean']['output'];
   /** An array relationship */
   wallets: Array<Wallet>;
@@ -2580,7 +2582,9 @@ export enum Client_Constraint {
   /** unique or primary key constraint on columns "email" */
   ClientEmailKey = 'client_email_key',
   /** unique or primary key constraint on columns "id" */
-  ClientPkey = 'client_pkey'
+  ClientPkey = 'client_pkey',
+  /** unique or primary key constraint on columns "username" */
+  ClientUsernameKey = 'client_username_key'
 }
 
 /** input type for incrementing numeric columns in table "client" */
@@ -4177,7 +4181,9 @@ export type Mutation_RootDelete_BitcoinArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Bitcoin_By_PkArgs = {
+  accountId: Scalars['uuid']['input'];
   id: Scalars['uuid']['input'];
+  publicKey: Scalars['String']['input'];
 };
 
 
@@ -6264,7 +6270,9 @@ export type Query_RootBitcoin_AggregateArgs = {
 
 
 export type Query_RootBitcoin_By_PkArgs = {
+  accountId: Scalars['uuid']['input'];
   id: Scalars['uuid']['input'];
+  publicKey: Scalars['String']['input'];
 };
 
 
@@ -7089,7 +7097,9 @@ export type Subscription_RootBitcoin_AggregateArgs = {
 
 
 export type Subscription_RootBitcoin_By_PkArgs = {
+  accountId: Scalars['uuid']['input'];
   id: Scalars['uuid']['input'];
+  publicKey: Scalars['String']['input'];
 };
 
 

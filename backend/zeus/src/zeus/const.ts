@@ -457,6 +457,7 @@ export const AllTypesProps: Record<string, any> = {
     updatedAt: "order_by",
   },
   bitcoin_pk_columns_input: {
+    accountId: "uuid",
     id: "uuid",
   },
   bitcoin_select_column: "enum" as const,
@@ -1508,6 +1509,7 @@ export const AllTypesProps: Record<string, any> = {
       where: "bitcoin_bool_exp",
     },
     delete_bitcoin_by_pk: {
+      accountId: "uuid",
       id: "uuid",
     },
     delete_centralized_txn: {
@@ -2451,6 +2453,7 @@ export const AllTypesProps: Record<string, any> = {
       where: "bitcoin_bool_exp",
     },
     bitcoin_by_pk: {
+      accountId: "uuid",
       id: "uuid",
     },
     centralized_txn: {
@@ -2785,6 +2788,7 @@ export const AllTypesProps: Record<string, any> = {
       where: "bitcoin_bool_exp",
     },
     bitcoin_by_pk: {
+      accountId: "uuid",
       id: "uuid",
     },
     bitcoin_stream: {

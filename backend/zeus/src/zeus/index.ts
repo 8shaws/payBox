@@ -2740,7 +2740,9 @@ export type ValueTypes = {
   };
   /** primary key columns input for table: bitcoin */
   ["bitcoin_pk_columns_input"]: {
+    accountId: ValueTypes["uuid"] | Variable<any, string>;
     id: ValueTypes["uuid"] | Variable<any, string>;
+    publicKey: string | Variable<any, string>;
   };
   /** select columns of table "bitcoin" */
   ["bitcoin_select_column"]: bitcoin_select_column;
@@ -7090,7 +7092,11 @@ export type ValueTypes = {
       ValueTypes["bitcoin_mutation_response"],
     ];
     delete_bitcoin_by_pk?: [
-      { id: ValueTypes["uuid"] | Variable<any, string> },
+      {
+        accountId: ValueTypes["uuid"] | Variable<any, string>;
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        publicKey: string | Variable<any, string>;
+      },
       ValueTypes["bitcoin"],
     ];
     delete_centralized_txn?: [
@@ -10437,7 +10443,11 @@ export type ValueTypes = {
       ValueTypes["bitcoin_aggregate"],
     ];
     bitcoin_by_pk?: [
-      { id: ValueTypes["uuid"] | Variable<any, string> },
+      {
+        accountId: ValueTypes["uuid"] | Variable<any, string>;
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        publicKey: string | Variable<any, string>;
+      },
       ValueTypes["bitcoin"],
     ];
     centralized_txn?: [
@@ -12157,7 +12167,11 @@ export type ValueTypes = {
       ValueTypes["bitcoin_aggregate"],
     ];
     bitcoin_by_pk?: [
-      { id: ValueTypes["uuid"] | Variable<any, string> },
+      {
+        accountId: ValueTypes["uuid"] | Variable<any, string>;
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        publicKey: string | Variable<any, string>;
+      },
       ValueTypes["bitcoin"],
     ];
     bitcoin_stream?: [
@@ -15938,7 +15952,9 @@ export type ResolverInputTypes = {
   };
   /** primary key columns input for table: bitcoin */
   ["bitcoin_pk_columns_input"]: {
+    accountId: ResolverInputTypes["uuid"];
     id: ResolverInputTypes["uuid"];
+    publicKey: string;
   };
   /** select columns of table "bitcoin" */
   ["bitcoin_select_column"]: bitcoin_select_column;
@@ -18602,7 +18618,11 @@ export type ResolverInputTypes = {
       ResolverInputTypes["bitcoin_mutation_response"],
     ];
     delete_bitcoin_by_pk?: [
-      { id: ResolverInputTypes["uuid"] },
+      {
+        accountId: ResolverInputTypes["uuid"];
+        id: ResolverInputTypes["uuid"];
+        publicKey: string;
+      },
       ResolverInputTypes["bitcoin"],
     ];
     delete_centralized_txn?: [
@@ -20961,7 +20981,11 @@ export type ResolverInputTypes = {
       ResolverInputTypes["bitcoin_aggregate"],
     ];
     bitcoin_by_pk?: [
-      { id: ResolverInputTypes["uuid"] },
+      {
+        accountId: ResolverInputTypes["uuid"];
+        id: ResolverInputTypes["uuid"];
+        publicKey: string;
+      },
       ResolverInputTypes["bitcoin"],
     ];
     centralized_txn?: [
@@ -22129,7 +22153,11 @@ export type ResolverInputTypes = {
       ResolverInputTypes["bitcoin_aggregate"],
     ];
     bitcoin_by_pk?: [
-      { id: ResolverInputTypes["uuid"] },
+      {
+        accountId: ResolverInputTypes["uuid"];
+        id: ResolverInputTypes["uuid"];
+        publicKey: string;
+      },
       ResolverInputTypes["bitcoin"],
     ];
     bitcoin_stream?: [
@@ -24794,7 +24822,9 @@ export type ModelTypes = {
   };
   /** primary key columns input for table: bitcoin */
   ["bitcoin_pk_columns_input"]: {
+    accountId: ModelTypes["uuid"];
     id: ModelTypes["uuid"];
+    publicKey: string;
   };
   ["bitcoin_select_column"]: bitcoin_select_column;
   /** input type for updating data in table "bitcoin" */
@@ -25537,7 +25567,7 @@ export type ModelTypes = {
     /** An aggregate relationship */
     transactions_aggregate: ModelTypes["transactions_aggregate"];
     updatedAt?: ModelTypes["timestamptz"] | undefined;
-    username?: string | undefined;
+    username: string;
     valid: boolean;
     /** An array relationship */
     wallets: Array<ModelTypes["wallet"]>;
@@ -29596,7 +29626,9 @@ export type GraphQLTypes = {
   };
   /** primary key columns input for table: bitcoin */
   ["bitcoin_pk_columns_input"]: {
+    accountId: GraphQLTypes["uuid"];
     id: GraphQLTypes["uuid"];
+    publicKey: string;
   };
   /** select columns of table "bitcoin" */
   ["bitcoin_select_column"]: bitcoin_select_column;
@@ -30386,7 +30418,7 @@ export type GraphQLTypes = {
     /** An aggregate relationship */
     transactions_aggregate: GraphQLTypes["transactions_aggregate"];
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
-    username?: string | undefined;
+    username: string;
     valid: boolean;
     /** An array relationship */
     wallets: Array<GraphQLTypes["wallet"]>;
@@ -33958,6 +33990,7 @@ export const enum chat_update_column {
 export const enum client_constraint {
   client_email_key = "client_email_key",
   client_pkey = "client_pkey",
+  client_username_key = "client_username_key",
 }
 /** select columns of table "client" */
 export const enum client_select_column {
