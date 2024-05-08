@@ -33,20 +33,19 @@ import { notifsAtom } from "@paybox/recoil";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  tab: "Mails" | "Notif"
+  tab: "Mails" | "Notif";
 }
 
 export function DataTable<TData, TValue>({
   columns,
   tab,
-  data
+  data,
 }: DataTableProps<TData, TValue>) {
-  
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
@@ -74,7 +73,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4 w-full">
-      <DataTableToolbar table={table} tab={tab}/>
+      <DataTableToolbar table={table} tab={tab} />
       <div className="rounded-md px-1 border">
         <Table>
           <TableHeader>
@@ -87,7 +86,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -106,7 +105,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

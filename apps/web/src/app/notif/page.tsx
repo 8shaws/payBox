@@ -1,29 +1,31 @@
-import { getServerSession } from 'next-auth';
-import React from 'react'
-import { authOptions } from '../api/auth/[...nextauth]/util';
-import { redirect } from 'next/navigation';
-import { getNotifs } from '@/src/lib/helper';
-import { UserNav } from '../txn/components/user-nav';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs"
-import { SetNotifs } from './set-notif';
-import { DataTable } from './components/data-table';
-import { columns } from './components/columns';
-import NotifTab from './notif-tab';
-import MailsTab from './mails-tab';
-
+import { getServerSession } from "next-auth";
+import React from "react";
+import { authOptions } from "../api/auth/[...nextauth]/util";
+import { redirect } from "next/navigation";
+import { getNotifs } from "@/src/lib/helper";
+import { UserNav } from "../txn/components/user-nav";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/src/components/ui/tabs";
+import { SetNotifs } from "./set-notif";
+import { DataTable } from "./components/data-table";
+import { columns } from "./components/columns";
+import NotifTab from "./notif-tab";
+import MailsTab from "./mails-tab";
 
 export default async function NotifPage() {
-
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.user?.email) {
-    redirect('/signup');
+    redirect("/signup");
   }
   //@ts-ignore
   const jwt = session?.user?.jwt;
 
   return (
     <>
-
       <div className="flex flex-col w-screen items-start">
         <div className="w-4/6 hidden h-full flex-1 flex-col border-2 rounded-lg space-y-8 p-8 md:flex  dark:bg-card">
           <div className="flex items-center justify-between space-y-2">
@@ -40,11 +42,11 @@ export default async function NotifPage() {
             </div>
           </div>
           <Tabs defaultValue="notif" className="w-full">
-            <TabsList className='dark:bg'>
+            <TabsList className="dark:bg">
               <TabsTrigger value="notif">Notif</TabsTrigger>
               <TabsTrigger value="mails">Mails</TabsTrigger>
             </TabsList>
-            <TabsContent value="notif" className=''>
+            <TabsContent value="notif" className="">
               <NotifTab jwt={jwt} />
             </TabsContent>
             <TabsContent value="mails">
@@ -54,5 +56,5 @@ export default async function NotifPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

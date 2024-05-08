@@ -16,7 +16,7 @@ export function ChatList({
   messages,
   selectedUser,
   sendMessage,
-  isMobile
+  isMobile,
 }: ChatListProps) {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +55,9 @@ export function ChatList({
               }}
               className={cn(
                 "flex flex-col gap-2 p-4 whitespace-pre-wrap",
-                message.name !== selectedUser.name ? "items-end" : "items-start"
+                message.name !== selectedUser.name
+                  ? "items-end"
+                  : "items-start",
               )}
             >
               <div className="flex gap-3 items-center">
@@ -87,7 +89,7 @@ export function ChatList({
           ))}
         </AnimatePresence>
       </div>
-      <ChatBottombar sendMessage={sendMessage} isMobile={isMobile}/>
+      <ChatBottombar sendMessage={sendMessage} isMobile={isMobile} />
     </div>
   );
 }

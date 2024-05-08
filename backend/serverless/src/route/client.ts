@@ -1,11 +1,7 @@
 import { Hono } from "hono";
 
 export const clientRouter = new Hono<{
-    Bindings: {
-
-    }
+  Bindings: {};
 }>();
 
-clientRouter.post('/', async (c) => {
-    
-});
+clientRouter.post("/", async (c) => {});

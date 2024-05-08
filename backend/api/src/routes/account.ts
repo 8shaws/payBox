@@ -33,9 +33,13 @@ import {
   validatePassword,
   checkPassword,
   getAccountSecret,
-  getMainAccount
+  getMainAccount,
 } from "@paybox/backend-common";
-import { importFromPrivate, addAccountPhrase, getWalletForAccountCreate } from "@paybox/backend-common";
+import {
+  importFromPrivate,
+  addAccountPhrase,
+  getWalletForAccountCreate,
+} from "@paybox/backend-common";
 import { Redis } from "..";
 import {
   generateSeed,
@@ -44,11 +48,11 @@ import {
   updateKey,
 } from "../auth/util";
 import { getPassword } from "@paybox/backend-common";
-import { accountCreateRateLimit, } from "../auth/middleware";
+import { accountCreateRateLimit } from "../auth/middleware";
 import { getSecretPhase } from "@paybox/backend-common";
 import { SolOps, EthOps } from "@paybox/blockchain";
 import { INFURA_PROJECT_ID, R2_CLIENT_BUCKET_NAME } from "../config";
-import {Bitcoin} from "../../../../packages/blockchain/dist";
+import { Bitcoin } from "../../../../packages/blockchain/dist";
 
 export const accountRouter = Router();
 
@@ -59,8 +63,9 @@ accountRouter.post("/", accountCreateRateLimit, async (req, res) => {
     if (id) {
       const { name, imgUrl } = AccountCreateQuery.parse(req.query);
 
-      let hashPassword = (await Redis.getRedisInst().clientCache.getClientCache(id))?.password
-        || (await getPassword(id)).hashPassword;
+      let hashPassword =
+        (await Redis.getRedisInst().clientCache.getClientCache(id))?.password ||
+        (await getPassword(id)).hashPassword;
       if (!hashPassword) {
         return res
           .status(404)
@@ -71,13 +76,23 @@ accountRouter.post("/", accountCreateRateLimit, async (req, res) => {
        * Create an public and private key
        */
       const query = await getWalletForAccountCreate(id);
-      if (query.status == dbResStatus.Error || query.id == undefined || query.secretPhase == undefined) {
+      if (
+        query.status == dbResStatus.Error ||
+        query.id == undefined ||
+        query.secretPhase == undefined
+      ) {
         return res
           .status(503)
           .json({ msg: "Database Error", status: responseStatus.Error });
       }
-      const solKeys = await SolOps.getInstance().createAccount(query.secretPhase, hashPassword);
-      const ethKeys = await EthOps.getInstance().createAccount(query.secretPhase, hashPassword);
+      const solKeys = await SolOps.getInstance().createAccount(
+        query.secretPhase,
+        hashPassword,
+      );
+      const ethKeys = await EthOps.getInstance().createAccount(
+        query.secretPhase,
+        hashPassword,
+      );
       const btcKeys = await Bitcoin.getInstance().genRand();
       const mutation = await createAccount(
         id,
@@ -85,9 +100,8 @@ accountRouter.post("/", accountCreateRateLimit, async (req, res) => {
         name,
         solKeys,
         ethKeys,
-        btcKeys
+        btcKeys,
       );
-
 
       if (
         mutation.status == dbResStatus.Error ||
@@ -100,9 +114,16 @@ accountRouter.post("/", accountCreateRateLimit, async (req, res) => {
 
       // change the key of the image
       if (imgUrl) {
-        const key = (new URL(imgUrl)).pathname.split('/')[1];
-        const newTAG = await updateKey(R2_CLIENT_BUCKET_NAME, key, mutation.account?.id);
-        await putImgUrl(mutation.account.id, `https://${R2_CLIENT_BUCKET_NAME}.cloudflarestorage.com/${mutation.account?.id}`);
+        const key = new URL(imgUrl).pathname.split("/")[1];
+        const newTAG = await updateKey(
+          R2_CLIENT_BUCKET_NAME,
+          key,
+          mutation.account?.id,
+        );
+        await putImgUrl(
+          mutation.account.id,
+          `https://${R2_CLIENT_BUCKET_NAME}.cloudflarestorage.com/${mutation.account?.id}`,
+        );
       }
 
       /**
@@ -111,7 +132,7 @@ accountRouter.post("/", accountCreateRateLimit, async (req, res) => {
       await Redis.getRedisInst().account.cacheAccount<AccountType>(
         mutation.account.id,
         mutation.account,
-        ACCOUNT_CACHE_EXPIRE
+        ACCOUNT_CACHE_EXPIRE,
       );
       console.log(mutation.account);
       return res.status(200).json({
@@ -164,7 +185,6 @@ accountRouter.patch("/updateName", async (req, res) => {
           .json({ msg: "Database Error", status: responseStatus.Error });
       }
 
-
       return res.status(200).json({
         msg: "Name updated 😊",
         status: responseStatus.Ok,
@@ -190,8 +210,9 @@ accountRouter.post("/privateKey", checkPassword, async (req, res) => {
     if (id) {
       const { accountId } = AccountGetPrivateKey.parse(req.body);
 
-      let hashPassword = (await Redis.getRedisInst().clientCache.getClientCache(id))?.password
-        || (await getPassword(id)).hashPassword;
+      let hashPassword =
+        (await Redis.getRedisInst().clientCache.getClientCache(id))?.password ||
+        (await getPassword(id)).hashPassword;
       if (!hashPassword) {
         return res
           .status(404)
@@ -199,7 +220,11 @@ accountRouter.post("/privateKey", checkPassword, async (req, res) => {
       }
 
       const query = await getPrivate(accountId);
-      if (query.status == dbResStatus.Error || query.sol == undefined || query.eth == undefined) {
+      if (
+        query.status == dbResStatus.Error ||
+        query.sol == undefined ||
+        query.eth == undefined
+      ) {
         return res
           .status(503)
           .json({ msg: "Database Error", status: responseStatus.Error });
@@ -268,7 +293,8 @@ accountRouter.get("/", async (req, res) => {
       /**
        * Cache
        */
-      const account = await Redis.getRedisInst().account.getAccount<AccountType>(accountId);
+      const account =
+        await Redis.getRedisInst().account.getAccount<AccountType>(accountId);
       if (account?.id) {
         return res.status(200).json({
           account,
@@ -286,7 +312,11 @@ accountRouter.get("/", async (req, res) => {
       /**
        * Cache
        */
-      await Redis.getRedisInst().account.cacheAccount<AccountType>(accountId, query.account, ACCOUNT_CACHE_EXPIRE);
+      await Redis.getRedisInst().account.cacheAccount<AccountType>(
+        accountId,
+        query.account,
+        ACCOUNT_CACHE_EXPIRE,
+      );
 
       return res.status(200).json({
         account: query.account,
@@ -313,8 +343,9 @@ accountRouter.post("/private", async (req, res) => {
     if (id) {
       const { secretKey, name, network } = ImportAccountSecret.parse(req.body);
 
-      let hashPassword = (await Redis.getRedisInst().clientCache.getClientCache(id))?.password
-        || (await getPassword(id)).hashPassword;
+      let hashPassword =
+        (await Redis.getRedisInst().clientCache.getClientCache(id))?.password ||
+        (await getPassword(id)).hashPassword;
       if (!hashPassword) {
         return res
           .status(404)
@@ -354,7 +385,11 @@ accountRouter.post("/private", async (req, res) => {
       /**
        * Cache
        */
-      await Redis.getRedisInst().wallet.cacheWallet(mutation.wallet.id, mutation.wallet, WALLET_CACHE_EXPIRE);
+      await Redis.getRedisInst().wallet.cacheWallet(
+        mutation.wallet.id,
+        mutation.wallet,
+        WALLET_CACHE_EXPIRE,
+      );
       return res.status(200).json({
         wallet: mutation.wallet,
         status: responseStatus.Ok,
@@ -386,7 +421,11 @@ accountRouter.post("/fromPhrase", async (req, res) => {
           .json({ status: responseStatus.Error, msg: "Invalid phrase" });
       }
       // cache
-      await Redis.getRedisInst().wallet.fromPhrase(secretPhrase, accounts, PHRASE_ACCOUNT_CACHE_EXPIRE);
+      await Redis.getRedisInst().wallet.fromPhrase(
+        secretPhrase,
+        accounts,
+        PHRASE_ACCOUNT_CACHE_EXPIRE,
+      );
       return res.status(200).json({
         //@ts-ignore
         accounts: accounts.map(({ privateKey, ...account }) => account),
@@ -415,7 +454,8 @@ accountRouter.post("/import", async (req, res) => {
       /**
        * Cache
        */
-      const cacheAccount = await Redis.getRedisInst().wallet.getFromPhrase(keys);
+      const cacheAccount =
+        await Redis.getRedisInst().wallet.getFromPhrase(keys);
       if (cacheAccount == null) {
         return res.status(500).json({
           status: responseStatus.Error,
@@ -438,7 +478,12 @@ accountRouter.post("/import", async (req, res) => {
       /**
        * Mutation
        */
-      const mutation = await addAccountPhrase(id, name, secretPhrase, cacheAccount);
+      const mutation = await addAccountPhrase(
+        id,
+        name,
+        secretPhrase,
+        cacheAccount,
+      );
       if (
         mutation.status == dbResStatus.Error ||
         mutation.wallet?.id == undefined
@@ -451,7 +496,11 @@ accountRouter.post("/import", async (req, res) => {
       /**
        * Cache
        */
-      await Redis.getRedisInst().wallet.cacheWallet(mutation.wallet.id, mutation.wallet, WALLET_CACHE_EXPIRE);
+      await Redis.getRedisInst().wallet.cacheWallet(
+        mutation.wallet.id,
+        mutation.wallet,
+        WALLET_CACHE_EXPIRE,
+      );
       return res.status(200).json({
         wallet: mutation.wallet,
         status: responseStatus.Ok,
@@ -471,7 +520,7 @@ accountRouter.post("/import", async (req, res) => {
 });
 
 // to get all the account of a specific client
-accountRouter.get('/all', async (req, res) => {
+accountRouter.get("/all", async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
@@ -491,14 +540,14 @@ accountRouter.get('/all', async (req, res) => {
         .json({ msg: "Database Error", status: responseStatus.Error });
     }
 
-
     // cacheit
-    await Redis.getRedisInst().account.cacheAccounts(`accs:${id}`, accounts, ACCOUNT_CACHE_EXPIRE);
+    await Redis.getRedisInst().account.cacheAccounts(
+      `accs:${id}`,
+      accounts,
+      ACCOUNT_CACHE_EXPIRE,
+    );
 
-    return res
-      .status(200)
-      .json({ accounts, status: responseStatus.Ok });
-
+    return res.status(200).json({ accounts, status: responseStatus.Ok });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -510,7 +559,7 @@ accountRouter.get('/all', async (req, res) => {
 });
 
 // To get the total number of accounts
-accountRouter.get('/defaultMetadata', async (req, res) => {
+accountRouter.get("/defaultMetadata", async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
@@ -522,7 +571,10 @@ accountRouter.get('/defaultMetadata', async (req, res) => {
     if (!putUrl) {
       return res
         .status(503)
-        .json({ msg: "Error in generating put sign url", status: responseStatus.Error });
+        .json({
+          msg: "Error in generating put sign url",
+          status: responseStatus.Error,
+        });
     }
 
     //query
@@ -533,14 +585,11 @@ accountRouter.get('/defaultMetadata', async (req, res) => {
         .json({ msg: "Database Error", status: responseStatus.Error });
     }
 
-    return res
-      .status(200)
-      .json({
-        number: accounts.length,
-        putUrl,
-        status: responseStatus.Ok
-      });
-
+    return res.status(200).json({
+      number: accounts.length,
+      putUrl,
+      status: responseStatus.Ok,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -551,7 +600,7 @@ accountRouter.get('/defaultMetadata', async (req, res) => {
   }
 });
 
-accountRouter.get('/getPutImgUrl', async (req, res) => {
+accountRouter.get("/getPutImgUrl", async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
@@ -563,13 +612,13 @@ accountRouter.get('/getPutImgUrl', async (req, res) => {
     if (!putUrl) {
       return res
         .status(503)
-        .json({ msg: "Error in generating put sign url", status: responseStatus.Error });
+        .json({
+          msg: "Error in generating put sign url",
+          status: responseStatus.Error,
+        });
     }
 
-    return res
-      .status(200)
-      .json({ putUrl, status: responseStatus.Ok });
-
+    return res.status(200).json({ putUrl, status: responseStatus.Ok });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -580,7 +629,7 @@ accountRouter.get('/getPutImgUrl', async (req, res) => {
   }
 });
 
-accountRouter.get('/secret', checkPassword, async (req, res) => {
+accountRouter.get("/secret", checkPassword, async (req, res) => {
   try {
     //@ts-ignore
     const hashPassword = req.hashPassword;
@@ -591,13 +640,16 @@ accountRouter.get('/secret', checkPassword, async (req, res) => {
       if (status == dbResStatus.Error || secret == undefined) {
         return res
           .status(503)
-          .json({ msg: "Can't Find such account secret phrase now!", status: responseStatus.Error });
+          .json({
+            msg: "Can't Find such account secret phrase now!",
+            status: responseStatus.Error,
+          });
       }
 
       return res.status(200).json({
         status: responseStatus.Ok,
         secret,
-        hashPassword
+        hashPassword,
       });
     }
     return res
@@ -613,8 +665,7 @@ accountRouter.get('/secret', checkPassword, async (req, res) => {
   }
 });
 
-
-accountRouter.get('/main', async (req, res) => {
+accountRouter.get("/main", async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
@@ -625,11 +676,8 @@ accountRouter.get('/main', async (req, res) => {
           .status(503)
           .json({ msg: "Database Error", status: responseStatus.Error });
       }
-      return res
-        .status(200)
-        .json({ account, status: responseStatus.Ok });
+      return res.status(200).json({ account, status: responseStatus.Ok });
     }
-
   } catch (error) {
     console.log(error);
     return res.status(500).json({

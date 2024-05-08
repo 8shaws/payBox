@@ -7,25 +7,27 @@ import { UsdcIcon } from "../icon/usdc";
 import React from "react";
 
 export const getNetIcon = selectorFamily({
-    key: "getNetIcon",
-    get: (net: Network) => ({ get }) => {
-        switch (net) {
-            case Network.Bitcoin:
-                return {
-                    icon: BitcoinIcon
-                };
-            case Network.Eth:
-                return {
-                    icon: EthIcon
-                };
-            case Network.Sol:
-                return {
-                    icon: SolanaIcon
-                };
-            default:
-                return {
-                    icon: UsdcIcon
-                };
-        }
-    }
-})
+  key: "getNetIcon",
+  get:
+    (net: Network) =>
+    ({ get }) => {
+      switch (net) {
+        case Network.Bitcoin:
+          return {
+            icon: BitcoinIcon,
+          };
+        case Network.Eth:
+          return {
+            icon: EthIcon,
+          };
+        case Network.Sol:
+          return {
+            icon: SolanaIcon,
+          };
+        default:
+          return {
+            icon: UsdcIcon,
+          };
+      }
+    },
+});

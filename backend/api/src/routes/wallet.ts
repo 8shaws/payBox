@@ -11,7 +11,7 @@ import {
   getAccountsFromWalletId,
   getSecretPhase,
   getWallets,
-  checkPassword
+  checkPassword,
 } from "@paybox/backend-common";
 import { Redis } from "..";
 
@@ -65,11 +65,15 @@ walletRouter.get("/accounts", async (req, res) => {
           .json({ msg: "Database Error", status: responseStatus.Error });
       }
       // Cache
-      await Redis.getRedisInst().wallet.cacheWallet(walletId, {
-        clientId: id,
-        id: walletId,
-        accounts: query.accounts,
-      }, WALLET_CACHE_EXPIRE);
+      await Redis.getRedisInst().wallet.cacheWallet(
+        walletId,
+        {
+          clientId: id,
+          id: walletId,
+          accounts: query.accounts,
+        },
+        WALLET_CACHE_EXPIRE,
+      );
       return res.status(200).json({
         accounts: query.accounts,
         status: responseStatus.Ok,
@@ -78,7 +82,7 @@ walletRouter.get("/accounts", async (req, res) => {
     return res
       .status(500)
       .json({ status: responseStatus.Error, msg: "Jwt error" });
-  } catch (error) { }
+  } catch (error) {}
 });
 
 walletRouter.delete("/", async (req, res) => {
@@ -131,9 +135,8 @@ walletRouter.get("/", async (req, res) => {
       wallets: query.wallets,
       status: responseStatus.Ok,
     });
-
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return res
       .status(500)
       .json({ status: responseStatus.Error, msg: "Jwt error" });

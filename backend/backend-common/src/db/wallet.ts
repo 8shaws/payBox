@@ -88,7 +88,7 @@ export const getAccountsFromWalletId = async (
           name: true,
           clientId: true,
           createdAt: true,
-          updatedAt: true
+          updatedAt: true,
         },
       ],
     },
@@ -116,68 +116,93 @@ export const delWallet = async (
   clientId: string,
 ): Promise<{
   status: dbResStatus;
-  accounts?: {id: string}[]
+  accounts?: { id: string }[];
 }> => {
-  const deleteEth = await chain("mutation")({
-    delete_eth: [{
-      where: {
-        account: {
-          walletId: { _eq: walletId },
-        }
-      }
-    }, {
-      returning: {
-        id: true
-      }
-    }],
-  }, {operationName: "deleteEth"});
-
-  const deleteSol = await chain("mutation")({
-    delete_sol: [{
-      where: {
-        account: {
-          walletId: { _eq: walletId },
-        }
-      }
-    }, {
-      returning: {
-        id: true
-      }
-    }]
-  }, {operationName: "deleteSol"});
-
-  const deleteAccount = await chain("mutation")({
-    delete_account: [{
-      where: {
-        walletId: { _eq: walletId },
-      }
-    }, {
-      returning: {
-        id: true
-      }
-    }]
-  }, {operationName: "deleteAccount"});
-
-  const delete_wallet = await chain("mutation")({
-    delete_wallet: [
-      {
-        where: {
-          id: { _eq: walletId },
-          clientId: { _eq: clientId },
+  const deleteEth = await chain("mutation")(
+    {
+      delete_eth: [
+        {
+          where: {
+            account: {
+              walletId: { _eq: walletId },
+            },
+          },
         },
-      },
-      {
-        returning: {
-          id: true
+        {
+          returning: {
+            id: true,
+          },
         },
-      },
-    ],
-  }, {operationName: "deleteWallet"});
+      ],
+    },
+    { operationName: "deleteEth" },
+  );
 
-  if (Array.isArray(deleteAccount.delete_account?.returning) && delete_wallet.delete_wallet?.returning[0]?.id) {
+  const deleteSol = await chain("mutation")(
+    {
+      delete_sol: [
+        {
+          where: {
+            account: {
+              walletId: { _eq: walletId },
+            },
+          },
+        },
+        {
+          returning: {
+            id: true,
+          },
+        },
+      ],
+    },
+    { operationName: "deleteSol" },
+  );
+
+  const deleteAccount = await chain("mutation")(
+    {
+      delete_account: [
+        {
+          where: {
+            walletId: { _eq: walletId },
+          },
+        },
+        {
+          returning: {
+            id: true,
+          },
+        },
+      ],
+    },
+    { operationName: "deleteAccount" },
+  );
+
+  const delete_wallet = await chain("mutation")(
+    {
+      delete_wallet: [
+        {
+          where: {
+            id: { _eq: walletId },
+            clientId: { _eq: clientId },
+          },
+        },
+        {
+          returning: {
+            id: true,
+          },
+        },
+      ],
+    },
+    { operationName: "deleteWallet" },
+  );
+
+  if (
+    Array.isArray(deleteAccount.delete_account?.returning) &&
+    delete_wallet.delete_wallet?.returning[0]?.id
+  ) {
     return {
       status: dbResStatus.Ok,
-      accounts: deleteAccount.delete_account?.returning as {id: string}[] || [],
+      accounts:
+        (deleteAccount.delete_account?.returning as { id: string }[]) || [],
     };
   }
   return {
@@ -290,7 +315,7 @@ export const importFromPrivate = async (
               publicKey: true,
             },
             createdAt: true,
-            updatedAt: true
+            updatedAt: true,
           },
         ],
       },
@@ -377,7 +402,7 @@ export const addAccountPhrase = async (
               publicKey: true,
             },
             createdAt: true,
-            updatedAt: true
+            updatedAt: true,
           },
         ],
       },
@@ -399,74 +424,90 @@ export const addAccountPhrase = async (
 };
 
 /**
- * 
- * @param id 
- * @returns 
+ *
+ * @param id
+ * @returns
  */
 export const getWallets = async (
-  id: string
+  id: string,
 ): Promise<{
-  status: dbResStatus,
-  wallets?: WalletType[]
+  status: dbResStatus;
+  wallets?: WalletType[];
 }> => {
-  const response = await chain("query")({
-    wallet: [{
-      where: {
-        clientId: { _eq: id },
-      },
-      order_by: [{
-        createdAt: order_by["asc"]
-      }]
-    }, {
-      id: true,
-      clientId: true,
-    }]
-  }, { operationName: "getWallets" });
+  const response = await chain("query")(
+    {
+      wallet: [
+        {
+          where: {
+            clientId: { _eq: id },
+          },
+          order_by: [
+            {
+              createdAt: order_by["asc"],
+            },
+          ],
+        },
+        {
+          id: true,
+          clientId: true,
+        },
+      ],
+    },
+    { operationName: "getWallets" },
+  );
   if (response.wallet[0]?.id) {
     return {
       status: dbResStatus.Ok,
-      wallets: response.wallet as WalletType[]
-    }
+      wallets: response.wallet as WalletType[],
+    };
   }
   return {
     status: dbResStatus.Error,
-  }
-}
+  };
+};
 
 /**
- * 
- * @param clientId 
- * @returns 
+ *
+ * @param clientId
+ * @returns
  */
 export const getWalletForAccountCreate = async (
-  clientId: string
+  clientId: string,
 ): Promise<{
-  status: dbResStatus,
-  secretPhase?: string,
-  id?: string
+  status: dbResStatus;
+  secretPhase?: string;
+  id?: string;
 }> => {
-  const response = await chain("query")({
-    wallet: [{
-      where: {
-        clientId: { _eq: clientId }
-      },
-      order_by: [{
-        createdAt: order_by["asc"]
-      }],
-      limit: 1
-    }, {
-      secretPhase: true,
-      id: true,
-    }]
-  }, { operationName: "getWalletForAccountCreate" });
+  const response = await chain("query")(
+    {
+      wallet: [
+        {
+          where: {
+            clientId: { _eq: clientId },
+          },
+          order_by: [
+            {
+              createdAt: order_by["asc"],
+            },
+          ],
+          limit: 1,
+        },
+        {
+          secretPhase: true,
+          id: true,
+        },
+      ],
+    },
+    { operationName: "getWalletForAccountCreate" },
+  );
   if (response.wallet[0]?.id) {
     return {
       status: dbResStatus.Ok,
       id: response.wallet[0].id as string,
-      secretPhase: response.wallet[0].secretPhase as string
-    }
+      secretPhase: response.wallet[0].secretPhase as string,
+    };
   }
   return {
-    status: dbResStatus.Error
-  }
-}
+    status: dbResStatus.Error,
+  };
+};

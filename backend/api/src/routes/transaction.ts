@@ -11,7 +11,14 @@ import {
   unixToISOString,
 } from "@paybox/common";
 import { Router } from "express";
-import { checkPassword, getAllTxn, getNetworkPrivateKey, getTxnByHash, getTxns, insertTxn } from "@paybox/backend-common";
+import {
+  checkPassword,
+  getAllTxn,
+  getNetworkPrivateKey,
+  getTxnByHash,
+  getTxns,
+  insertTxn,
+} from "@paybox/backend-common";
 import { Redis, calculateGas, decryptWithPassword } from "..";
 import { txnCheckAddress } from "../auth/middleware";
 import { dbResStatus } from "../types/client";
@@ -28,40 +35,58 @@ txnRouter.post("/send", async (req, res) => {
     const id = req.id;
     //@ts-ignore
     if (id) {
-      const { from, amount, to, network, cluster, password: hashPassword } = TxnSendQuery.parse(
-        req.body,
-      );
+      const {
+        from,
+        amount,
+        to,
+        network,
+        cluster,
+        password: hashPassword,
+      } = TxnSendQuery.parse(req.body);
 
-      let { privateKey: hashedPrivate, status } = await getNetworkPrivateKey(from, network);
+      let { privateKey: hashedPrivate, status } = await getNetworkPrivateKey(
+        from,
+        network,
+      );
       if (status == dbResStatus.Error || !hashedPrivate) {
         return res
           .status(400)
-          .json({ status: responseStatus.Error, msg: "No such address in database" });
+          .json({
+            status: responseStatus.Error,
+            msg: "No such address in database",
+          });
       }
       let fromPrivateKey = decryptWithPassword(hashedPrivate, hashPassword);
 
       if (network == Network.Eth) {
-        const transaction = await EthOps.getInstance().acceptTxn({ amount, to, from: fromPrivateKey });
+        const transaction = await EthOps.getInstance().acceptTxn({
+          amount,
+          to,
+          from: fromPrivateKey,
+        });
         if (!transaction) {
           return res
             .status(400)
             .json({ status: responseStatus.Error, msg: "Transaction failed" });
         }
 
-        
         return res
           .status(200)
           .json({ status: responseStatus.Ok, signature: transaction });
       }
       let sig;
       if (network == Network.Sol) {
-        sig = await SolOps.getInstance().acceptTxn({ from: fromPrivateKey, amount, to });
+        sig = await SolOps.getInstance().acceptTxn({
+          from: fromPrivateKey,
+          amount,
+          to,
+        });
         if (!sig) {
           return res
             .status(400)
             .json({ status: responseStatus.Error, msg: "Transaction failed" });
         }
-        
+
         return res
           .status(200)
           .json({ status: responseStatus.Ok, signature: sig });
@@ -94,7 +119,7 @@ txnRouter.get("/getMany", async (req, res) => {
       await Redis.getRedisInst().txn.cacheTxns(
         `${id}_txns_${count}_${Date.now()}`,
         txns.txns as TxnType[],
-        TRANSACTION_CACHE_EXPIRE
+        TRANSACTION_CACHE_EXPIRE,
       );
       return res
         .status(200)
@@ -128,7 +153,11 @@ txnRouter.get("/get", async (req, res) => {
           .status(503)
           .json({ status: responseStatus.Error, msg: "Database Error" });
       }
-      await Redis.getRedisInst().txn.cacheTxn(txn.id as string, txn.txn as TxnType, TRANSACTION_CACHE_EXPIRE);
+      await Redis.getRedisInst().txn.cacheTxn(
+        txn.id as string,
+        txn.txn as TxnType,
+        TRANSACTION_CACHE_EXPIRE,
+      );
       return res.status(200).json({ txn, status: responseStatus.Ok });
     }
   } catch (error) {

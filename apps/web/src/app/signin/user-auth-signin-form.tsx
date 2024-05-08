@@ -44,7 +44,7 @@ export function ClientSigninForm({
   const router = useRouter();
   const [_client, setClient] = useRecoilState(clientAtom);
 
-  const [token, setToken] = React.useState<string>("")
+  const [token, setToken] = React.useState<string>("");
 
   React.useEffect(() => {
     // Check if the session is defined and navigate to the protected page
@@ -54,18 +54,16 @@ export function ClientSigninForm({
     }
   }, [session, router]);
 
-  
-
   const form = useForm<z.infer<typeof ClientSigninFormValidate>>({
     resolver: zodResolver(ClientSigninFormValidate),
     defaultValues: {
       email: "",
-      token
+      token,
     },
   });
 
   React.useEffect(() => {
-    if(token) {
+    if (token) {
       form.setValue("token", token);
     }
   }, [token]);
@@ -164,7 +162,7 @@ export function ClientSigninForm({
           onClick={() => {
             setIsLoading(true);
             signIn("github", { callbackUrl: "/profile" }).then(() =>
-              setIsLoading(false)
+              setIsLoading(false),
             );
           }}
         >
@@ -182,7 +180,7 @@ export function ClientSigninForm({
           onClick={() => {
             setIsLoading(true);
             signIn("google", { callbackUrl: "/profile" }).then((_) =>
-              setIsLoading(false)
+              setIsLoading(false),
             );
           }}
         >
@@ -193,10 +191,7 @@ export function ClientSigninForm({
           )}{" "}
           Google
         </Button>
-        <Captcha
-          setIsLoading={setIsLoading}
-          setToken={setToken}          
-        />
+        <Captcha setIsLoading={setIsLoading} setToken={setToken} />
       </div>
     </div>
   );

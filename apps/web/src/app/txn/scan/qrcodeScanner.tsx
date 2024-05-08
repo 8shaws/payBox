@@ -26,7 +26,7 @@ const QRScanner = () => {
         },
         fps: 10,
       },
-      false
+      false,
     );
 
     const onSuccess = async (decodedText: string) => {

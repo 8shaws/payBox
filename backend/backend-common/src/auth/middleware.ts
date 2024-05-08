@@ -15,7 +15,6 @@ import { getPassword, queryValid } from "../db/client";
 import { RedisBase } from "../redis";
 import pako from "pako";
 
-
 /**
  *
  * @param req
@@ -78,7 +77,6 @@ export const authMiddleware = (
   next();
 };
 
-
 /**
  *
  * @param req
@@ -128,30 +126,34 @@ export const checkPassword = async (
 };
 
 /**
- * 
- * @param req 
- * @param res 
- * @param next 
- * @returns 
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns
  */
 export const isValidated = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     //@ts-ignore
     const id = req.id;
     if (id) {
-
-      const validCache = await RedisBase.getInstance().getIdFromKey(`valid:${id}`);
-      if (validCache === 'true') {
+      const validCache = await RedisBase.getInstance().getIdFromKey(
+        `valid:${id}`,
+      );
+      if (validCache === "true") {
         return res
           .status(200)
-          .json({ msg: "Client Phone Number is validated 😊", status: responseStatus.Ok });
+          .json({
+            msg: "Client Phone Number is validated 😊",
+            status: responseStatus.Ok,
+          });
       }
 
-      const {status, valid} = await queryValid(id);
+      const { status, valid } = await queryValid(id);
       if (status == dbResStatus.Error) {
         return res
           .status(503)
@@ -160,7 +162,10 @@ export const isValidated = async (
       if (valid) {
         return res
           .status(200)
-          .json({ msg: "Client Phone Number is validated 😊", status: responseStatus.Ok });
+          .json({
+            msg: "Client Phone Number is validated 😊",
+            status: responseStatus.Ok,
+          });
       }
     } else {
       return res
@@ -176,27 +181,29 @@ export const isValidated = async (
       error: error,
     });
   }
-}
+};
 
 /**
- * 
- * @param req 
- * @param res 
- * @param next 
- * @returns 
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns
  */
 export const checkValidation = async (
-  req: Request, 
+  req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     //@ts-ignore
     const id = req.id;
-    if(id) {
-      const validCache = await RedisBase.getInstance().getIdFromKey(`valid:${id}`);
+    if (id) {
+      const validCache = await RedisBase.getInstance().getIdFromKey(
+        `valid:${id}`,
+      );
       if (!validCache) {
-        const {status, valid} = await queryValid(id);
+        const { status, valid } = await queryValid(id);
         if (status == dbResStatus.Error) {
           return res
             .status(503)
@@ -204,12 +211,19 @@ export const checkValidation = async (
         }
         if (!valid) {
           return res
-          .status(200)
-          .json({ msg: "Please verify your number or email first.", status: responseStatus.Error });
+            .status(200)
+            .json({
+              msg: "Please verify your number or email first.",
+              status: responseStatus.Error,
+            });
         }
-        await RedisBase.getInstance().cacheIdUsingKey(`valid:${id}`, 'true', VALID_CACHE_EXPIRE);
+        await RedisBase.getInstance().cacheIdUsingKey(
+          `valid:${id}`,
+          "true",
+          VALID_CACHE_EXPIRE,
+        );
       }
-    } else { 
+    } else {
       return res
         .status(500)
         .json({ status: responseStatus.Error, msg: "Jwt error" });
@@ -223,43 +237,50 @@ export const checkValidation = async (
       error: error,
     });
   }
-}
+};
 
 /**
- * 
- * @param req 
- * @param res 
- * @param next 
- * @returns 
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns
  */
-export const unzip = async (req: Request, res: Response, next: NextFunction) => {
+export const unzip = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    if (req.headers['content-encoding'] === 'gzip' || req.headers['content-encoding'] === 'deflate') {
+    if (
+      req.headers["content-encoding"] === "gzip" ||
+      req.headers["content-encoding"] === "deflate"
+    ) {
       const chunks: any[] = [];
 
-      req.on('data', (chunk) => {
-          chunks.push(chunk);
+      req.on("data", (chunk) => {
+        chunks.push(chunk);
       });
 
-      req.on('end', () => {
-          try {
-              // Concatenate received chunks into a single Buffer
-              const buffer = Buffer.concat(chunks);
+      req.on("end", () => {
+        try {
+          // Concatenate received chunks into a single Buffer
+          const buffer = Buffer.concat(chunks);
 
-              // Decompress the received data using pako
-              const decompressedData = pako.inflate(buffer, { to: 'string' });
-              console.log(decompressedData)
+          // Decompress the received data using pako
+          const decompressedData = pako.inflate(buffer, { to: "string" });
+          console.log(decompressedData);
 
-              req.body = decompressedData;
-              next();
-          } catch (error) {
-              console.error('Decompression error:', error);
-              res.status(500).send('Error decompressing request');
-          }
+          req.body = decompressedData;
+          next();
+        } catch (error) {
+          console.error("Decompression error:", error);
+          res.status(500).send("Error decompressing request");
+        }
       });
-  } else {
+    } else {
       next();
-  }
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -268,4 +289,4 @@ export const unzip = async (req: Request, res: Response, next: NextFunction) => 
       error: error,
     });
   }
-}
+};

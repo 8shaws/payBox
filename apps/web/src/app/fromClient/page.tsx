@@ -3,7 +3,7 @@ import { loadMoonPay } from "@moonpay/moonpay-js";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { MoonPayBuyWidget, MoonPayProvider } from '@moonpay/moonpay-react';
+import { MoonPayBuyWidget, MoonPayProvider } from "@moonpay/moonpay-react";
 
 export default function APITestPage() {
   const [name, setName] = useState<string>();

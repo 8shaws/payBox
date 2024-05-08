@@ -137,7 +137,6 @@ export class SolTxnLogs {
   }
 }
 
-
 export class SolOps {
   private connection: Connection;
   private rpcUrl: string;

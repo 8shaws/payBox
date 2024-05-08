@@ -14,7 +14,7 @@ export class AddressCache {
   async cacheAddress<T extends Address>(
     key: string,
     items: Partial<T> & { id: string; clientId: string },
-    expire: number
+    expire: number,
   ) {
     const client = await this.client.hGetAll(items.clientId);
     if (!client) {
@@ -67,7 +67,11 @@ export class AddressCache {
     } as T;
   }
 
-  async patchAddress<T>(key: string, items: Partial<T>, expire: number): Promise<void> {
+  async patchAddress<T>(
+    key: string,
+    items: Partial<T>,
+    expire: number,
+  ): Promise<void> {
     for (const [field, value] of Object.entries(items)) {
       //@ts-ignore
       await this.client.hSet(key, field, value.toString());

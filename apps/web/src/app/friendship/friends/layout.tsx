@@ -1,27 +1,23 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
+import { GeistSans } from "geist/font/sans";
 import "../../globals.css";
 
 export const metadata: Metadata = {
-    title: "Chat | Paybox",
-    description: "Chat/message for Paybox",
+  title: "Chat | Paybox",
+  description: "Chat/message for Paybox",
 };
 
 export const viewport = {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: 1,
-}
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: 1,
+};
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <>
-            {children}
-        </>
-    );
+  return <>{children}</>;
 }

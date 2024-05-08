@@ -15,23 +15,24 @@ export class RedisBase {
             console.log("Too many retries on REDIS. Connection Terminated");
             return false;
           } else {
-            console.log(`Retrying to connect to Redis ${PROCESS} server: ${cause}`);
+            console.log(
+              `Retrying to connect to Redis ${PROCESS} server: ${cause}`,
+            );
             return Math.min(retries * 100, 3000);
           }
         },
       },
-
     });
 
-    this.client.on('connect', () => {
-      console.log(`Redis ${PROCESS} server connect at port: ${REDIS_URL?.split(":").slice(-1)[0]}`);
+    this.client.on("connect", () => {
+      console.log(
+        `Redis ${PROCESS} server connect at port: ${REDIS_URL?.split(":").slice(-1)[0]}`,
+      );
     });
 
-    this.client.on('error', (err) => {
+    this.client.on("error", (err) => {
       console.error(`Error connecting to Redis ${PROCESS} server:`, err);
     });
-
-    
 
     this.client.connect();
   }
@@ -53,7 +54,11 @@ export class RedisBase {
     return deletedKeys;
   }
 
-  async cacheIdUsingKey(key: string, item: string, expire?: number): Promise<void> {
+  async cacheIdUsingKey(
+    key: string,
+    item: string,
+    expire?: number,
+  ): Promise<void> {
     await this.client.set(key, item, {
       EX: expire,
     });

@@ -15,19 +15,16 @@ export const metadata: Metadata = {
   description: "Account | PayBox",
 };
 
-
 interface AccountLayoutProps {
   children: React.ReactNode;
   params: { id: string };
 }
 
-
-
 export default async function AccountMainLayout({
   children,
-  params
+  params,
 }: AccountLayoutProps) {
-  const {id} = params;
+  const { id } = params;
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.user?.email) {
     redirect("/signup");
@@ -37,18 +34,13 @@ export default async function AccountMainLayout({
   const account = await getAccount(session.user.jwt, id);
   return (
     <>
-    <div className=" dark:bg-primary-foreground">
-        {account && 
-        <Wrapper session={session}>
-          <AccountLayout
-              account={account}
-              children={children}
-              id={id}
-          />
-        </Wrapper>
-        }
-
-    </div>
+      <div className=" dark:bg-primary-foreground">
+        {account && (
+          <Wrapper session={session}>
+            <AccountLayout account={account} children={children} id={id} />
+          </Wrapper>
+        )}
+      </div>
     </>
   );
 }

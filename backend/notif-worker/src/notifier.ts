@@ -13,17 +13,17 @@ const vapidKeys = {
 webpush.setVapidDetails(
   "mailto:dev.paybox@gmail.com",
   vapidKeys.publicKey,
-  vapidKeys.privateKey
+  vapidKeys.privateKey,
 );
 
 /**
- * 
- * @param to 
- * @param title 
- * @param body 
- * @param href 
- * @param image 
- * @returns 
+ *
+ * @param to
+ * @param title
+ * @param body
+ * @param href
+ * @param image
+ * @returns
  */
 export const notify = async ({
   to,
@@ -35,25 +35,25 @@ export const notify = async ({
   tag,
   vibrate,
   actions,
-  topic
+  topic,
 }: {
-  to: string,
-  title: string,
-  body: string,
-  href?: string,
-  image: string,
-  tag: NotifTopics,
-  topic: TopicTypes
-  vibrate?: number[],
-  actions?: any[],
-  payload?: any,
+  to: string;
+  title: string;
+  body: string;
+  href?: string;
+  image: string;
+  tag: NotifTopics;
+  topic: TopicTypes;
+  vibrate?: number[];
+  actions?: any[];
+  payload?: any;
 }) => {
   try {
     const { status, subs } = await getSubs(to);
     if (status == dbResStatus.Error || !subs) {
       return;
     }
-  
+
     await Promise.all(
       subs.map(async (sub) => {
         const subscription = {
@@ -76,8 +76,8 @@ export const notify = async ({
               vibrate,
               actions,
               timestamp: Date.now(),
-              payload
-            })
+              payload,
+            }),
           );
         } catch (e) {
           // @ts-ignore
@@ -85,9 +85,9 @@ export const notify = async ({
             await deleteSubs(sub.id);
           }
         }
-      })
+      }),
     );
-  
+
     const mutate = await addNotif(
       subs[0].clientId,
       title,
@@ -96,12 +96,11 @@ export const notify = async ({
       subs,
       image,
       tag,
-      topic
+      topic,
     );
-    if(mutate.status == dbResStatus.Error) {
-      console.error('Error adding notification to db.');
+    if (mutate.status == dbResStatus.Error) {
+      console.error("Error adding notification to db.");
     }
-    
   } catch (error) {
     console.log(error);
     return;

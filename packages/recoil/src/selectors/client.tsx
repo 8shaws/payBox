@@ -8,9 +8,8 @@ import {
   responseStatus,
 } from "@paybox/common";
 
-
 export const clientSelector = selector<ClientWithJwt>({
-  key: 'clientSelector',
+  key: "clientSelector",
   get: async ({ get }): Promise<ClientWithJwt> => {
     const jwt = get(clientJwtAtom);
 
@@ -21,7 +20,7 @@ export const clientSelector = selector<ClientWithJwt>({
       },
     }).then((res) => res.json());
 
-    if(me.status === responseStatus.Error) {
+    if (me.status === responseStatus.Error) {
       return Promise.reject(me.msg);
     }
     const data: ClientWithJwt = {
@@ -34,18 +33,18 @@ export const clientSelector = selector<ClientWithJwt>({
       address: me.address,
       mobile: me.mobile,
       valid: me.valid,
-    }
+    };
     return data;
   },
 });
 
 export const getAuthSelector = selector({
   key: "getAuthSelector",
-  get: ({get}) => {
+  get: ({ get }) => {
     const client = get(clientAtom);
-    if(client?.id) {
+    if (client?.id) {
       return "Profile";
     }
     return "Signin";
-  }
-})
+  },
+});

@@ -23,7 +23,7 @@ export function ChatLayout({
   defaultLayout = [100, 480],
   defaultCollapsed = false,
   navCollapsedSize,
-  friendships
+  friendships,
 }: ChatLayoutProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
   // TODO: fetch the data from the server
@@ -53,7 +53,7 @@ export function ChatLayout({
       direction="horizontal"
       onLayout={(sizes: number[]) => {
         document.cookie = `react-resizable-panels:layout=${JSON.stringify(
-          sizes
+          sizes,
         )}`;
       }}
       className="h-full items-stretch"
@@ -67,17 +67,18 @@ export function ChatLayout({
         onCollapse={() => {
           setIsCollapsed(true);
           document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-            true
+            true,
           )}`;
         }}
         onExpand={() => {
           setIsCollapsed(false);
           document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-            false
+            false,
           )}`;
         }}
         className={cn(
-          isCollapsed && "min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out"
+          isCollapsed &&
+            "min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out",
         )}
       >
         <Sidebar
@@ -92,7 +93,11 @@ export function ChatLayout({
         />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={defaultLayout[1]} minSize={30} className="dark:bg-primary-foreground">
+      <ResizablePanel
+        defaultSize={defaultLayout[1]}
+        minSize={30}
+        className="dark:bg-primary-foreground"
+      >
         <Chat
           messages={selectedUser.messages}
           selectedUser={selectedUser}

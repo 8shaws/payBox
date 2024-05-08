@@ -38,7 +38,7 @@ import { toast } from "sonner";
 import { SITEKEY } from "@/src/lib/config";
 import Captcha from "@/src/components/verify-cloudflare";
 
-interface ClientSignupFormProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface ClientSignupFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function ClientSignupForm({
   className,
@@ -52,13 +52,13 @@ export function ClientSignupForm({
   React.useEffect(() => {
     // Check if the session is defined and navigate to the protected page
     //@ts-ignore
-    if (session && (session.user.valid == true)) {
+    if (session && session.user.valid == true) {
       router.push("/profile");
     }
   }, [session, router]);
 
   React.useEffect(() => {
-    if(token) {
+    if (token) {
       form.setValue("token", token);
     }
   }, [token]);
@@ -68,7 +68,7 @@ export function ClientSignupForm({
     defaultValues: {
       username: "",
       email: "",
-      token
+      token,
     },
   });
 
@@ -79,7 +79,6 @@ export function ClientSignupForm({
     }).then((_) => {
       setIsLoading(false);
     });
-
   }
   return (
     <div className={cn("grid gap-6", className)} {...props}>
@@ -263,8 +262,8 @@ export function ClientSignupForm({
           disabled={isLoading}
           onClick={() => {
             setIsLoading(true);
-            signIn("github", { callbackUrl: "/signup?status=verify" }).then(() =>
-              setIsLoading(false)
+            signIn("github", { callbackUrl: "/signup?status=verify" }).then(
+              () => setIsLoading(false),
             );
           }}
         >
@@ -281,8 +280,8 @@ export function ClientSignupForm({
           disabled={isLoading}
           onClick={() => {
             setIsLoading(true);
-            signIn("google", { callbackUrl: "/signup?status=verify" }).then((_) =>
-              setIsLoading(false)
+            signIn("google", { callbackUrl: "/signup?status=verify" }).then(
+              (_) => setIsLoading(false),
             );
           }}
         >
@@ -294,10 +293,7 @@ export function ClientSignupForm({
           Google
         </Button>
 
-        <Captcha 
-          setIsLoading={setIsLoading}
-          setToken={setToken}           
-        />
+        <Captcha setIsLoading={setIsLoading} setToken={setToken} />
       </div>
     </div>
   );

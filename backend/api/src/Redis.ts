@@ -21,7 +21,6 @@ export class Redis extends RedisBase {
   private static redisInst: Redis;
 
   private constructor() {
-
     super();
     this.clientCache = new ClientCache(this.client, this);
     this.address = new AddressCache(this.client, this);
@@ -30,7 +29,6 @@ export class Redis extends RedisBase {
     this.account = new AccountCache(this.client, this);
     this.notif = new NotifCache(this.client, this);
     this.settings = new SettingsCache(this.client, this);
-    
   }
 
   public static getRedisInst(): Redis {

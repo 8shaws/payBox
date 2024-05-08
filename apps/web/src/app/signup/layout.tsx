@@ -6,21 +6,20 @@ import { responseStatus } from "@paybox/common";
 import Error from "./Error";
 
 export const metadata: Metadata = {
-    title: "PayBox | Signup",
-    description: "By Akash Shaw",
+  title: "PayBox | Signup",
+  description: "By Akash Shaw",
 };
 
 export default async function SignupLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode,
+  children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+  //@ts-ignore
+  if (session?.user.valid) {
+    redirect("/profile");
+  }
 
-    const session = await getServerSession(authOptions);
-    //@ts-ignore
-    if (session?.user.valid) {
-        redirect("/profile")
-    }
-
-    return <section>{children}</section>
+  return <section>{children}</section>;
 }

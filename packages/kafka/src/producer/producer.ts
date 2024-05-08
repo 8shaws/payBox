@@ -1,4 +1,9 @@
-import { EthCluster, Network, TxnSolana, unixToISOString } from "@paybox/common";
+import {
+  EthCluster,
+  Network,
+  TxnSolana,
+  unixToISOString,
+} from "@paybox/common";
 import { kafkaClient } from "..";
 import { ConfirmedTransactionMeta } from "@solana/web3.js";
 import { TransactionReceipt, TransactionResponse } from "ethers";
@@ -47,7 +52,7 @@ export const publishSolTxn = async (
             time: unixToISOString(blockTime),
             slot,
             network,
-            cluster
+            cluster,
           }),
         },
       ],

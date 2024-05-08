@@ -39,8 +39,7 @@ export function DataTableRowActions<TData>({
         >
           <DotsHorizontalIcon className="h-4 w-4" />
           <span className="sr-only">
-            Open{" "}
-            {notif.tag.charAt(0).toLocaleUpperCase() + notif.tag.slice(1)}
+            Open {notif.tag.charAt(0).toLocaleUpperCase() + notif.tag.slice(1)}
             scan
           </span>
         </Button>

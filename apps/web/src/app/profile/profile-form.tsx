@@ -28,7 +28,12 @@ import { toast } from "@/src/components/ui/use-toast";
 import { Button } from "@/src/components/ui/button";
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { addressAtom, clientAtom, clientJwtAtom, loadingAtom } from "@paybox/recoil";
+import {
+  addressAtom,
+  clientAtom,
+  clientJwtAtom,
+  loadingAtom,
+} from "@paybox/recoil";
 import {
   ClientWithJwt,
   MetadataUpdateForm,

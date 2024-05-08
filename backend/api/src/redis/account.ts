@@ -1,6 +1,12 @@
 import { RedisClientType } from "redis";
 import { Redis } from "../Redis";
-import { AccountParser, AccountType, AccountsParser, WALLET_CACHE_EXPIRE, WalletType } from "@paybox/common";
+import {
+  AccountParser,
+  AccountType,
+  AccountsParser,
+  WALLET_CACHE_EXPIRE,
+  WalletType,
+} from "@paybox/common";
 
 export class AccountCache {
   private client: RedisClientType;
@@ -14,7 +20,7 @@ export class AccountCache {
   async cacheAccount<T extends AccountType>(
     key: string,
     items: T,
-    expire: number
+    expire: number,
   ): Promise<void> {
     const data = await this.client.hSet(key, {
       id: items.id,
@@ -76,7 +82,11 @@ export class AccountCache {
     } as T;
   }
 
-  async cacheAccounts(key: string, items: AccountType[], expire: number): Promise<void> {
+  async cacheAccounts(
+    key: string,
+    items: AccountType[],
+    expire: number,
+  ): Promise<void> {
     const data = items.map((item) => {
       return {
         id: item.id,
@@ -90,7 +100,7 @@ export class AccountCache {
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
       };
-    })
+    });
     const cache = await this.client.set(key, JSON.stringify(data), {
       EX: expire,
     });
@@ -105,7 +115,7 @@ export class AccountCache {
       return null;
     }
     //@ts-ignore
-    const acc = JSON.parse(cache).map(account => {
+    const acc = JSON.parse(cache).map((account) => {
       return {
         id: account.id,
         clientId: account.clientId,
@@ -117,9 +127,8 @@ export class AccountCache {
         usdc: JSON.parse(account.usdc) || undefined,
         createdAt: account.createdAt,
         updatedAt: account.updatedAt,
-      }
+      };
     });
     return acc as T;
   }
-
 }

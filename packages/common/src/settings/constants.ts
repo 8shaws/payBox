@@ -6,4 +6,4 @@ export const EthereumMainnetUrl = "https://etherscan.io";
 
 export const BitcoinMempoolUrl = "https://mempool.space";
 export const BitcoinExplorerUrl = "https://blockchain.info";
-export const BitcoinStreamUrl = "https://blockstream.info/"
+export const BitcoinStreamUrl = "https://blockstream.info/";

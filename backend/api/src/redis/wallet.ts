@@ -22,7 +22,11 @@ export class WalletCache {
     this.redis = redis;
   }
 
-  async cacheWallet(key: string, items: Partial<WalletType>, expire: number): Promise<void> {
+  async cacheWallet(
+    key: string,
+    items: Partial<WalletType>,
+    expire: number,
+  ): Promise<void> {
     const data = await this.client.hSet(key, {
       id: items.id as string,
       clientId: items.clientId as string,
@@ -45,7 +49,11 @@ export class WalletCache {
     };
   }
 
-  async fromPhrase(key: string, items: ChainAccountPrivate[], expire: number): Promise<void> {
+  async fromPhrase(
+    key: string,
+    items: ChainAccountPrivate[],
+    expire: number,
+  ): Promise<void> {
     await Promise.all(
       items.map(async ({ privateKey, publicKey }) => {
         await this.client.hSet(publicKey, {
@@ -79,8 +87,13 @@ export class WalletCache {
     return keys;
   }
 
-  async handleValid(wallet: WalletType, clientId: string, account: AccountType): Promise<void> {
-    this.client.multi()
+  async handleValid(
+    wallet: WalletType,
+    clientId: string,
+    account: AccountType,
+  ): Promise<void> {
+    this.client
+      .multi()
       .hSet(clientId, "valid", "true")
       .hSet(wallet.id, {
         id: wallet.id,

@@ -1,16 +1,18 @@
 import { type Request, type Response } from "express";
 import { importPKCS8, importSPKI, jwtVerify, SignJWT } from "jose";
-import { AUTH_JWT_PRIVATE_KEY, AUTH_JWT_PUBLIC_KEY, PRIVATE_KEY_ENCRYPTION_KEY } from "../config";
-import bcryptjs from "bcryptjs";
 import {
-  JWT_ALGO,
-} from "@paybox/common";
+  AUTH_JWT_PRIVATE_KEY,
+  AUTH_JWT_PUBLIC_KEY,
+  PRIVATE_KEY_ENCRYPTION_KEY,
+} from "../config";
+import bcryptjs from "bcryptjs";
+import { JWT_ALGO } from "@paybox/common";
 
-import crypto from 'crypto';
-import { v4 as uuidv4 } from 'uuid';
+import crypto from "crypto";
+import { v4 as uuidv4 } from "uuid";
 
 const commonEncryptionKey = crypto
-  .createHash('sha256')
+  .createHash("sha256")
   .update(PRIVATE_KEY_ENCRYPTION_KEY)
   .digest();
 
@@ -74,23 +76,21 @@ export const setCookieOnResponse = (
   });
 };
 
-
 /**
- * 
- * @param length 
- * @returns 
+ *
+ * @param length
+ * @returns
  */
 export const genRand = (length: number): string => {
-  return crypto.randomBytes(length).toString('hex');
-}
+  return crypto.randomBytes(length).toString("hex");
+};
 
 /**
- * @returns 
+ * @returns
  */
 export const genUUID = (): string => {
   return uuidv4();
-}
-
+};
 
 /**
  *
@@ -111,27 +111,37 @@ export const validatePassword = async (
 };
 
 /**
- * 
- * @param privateKey 
- * @param password 
- * @returns 
+ *
+ * @param privateKey
+ * @param password
+ * @returns
  */
 export const encryptWithPassword = (
   privateKey: string,
   password: string,
 ): string => {
-  const hashedPassword = crypto.createHash('sha256').update(password).digest();
+  const hashedPassword = crypto.createHash("sha256").update(password).digest();
   const iv = crypto.randomBytes(16);
-  const cipher = crypto.createCipheriv('aes-256-cbc', hashedPassword, iv);
+  const cipher = crypto.createCipheriv("aes-256-cbc", hashedPassword, iv);
 
-  let encryptedPrivateKey = cipher.update(privateKey, 'utf8', 'hex');
-  encryptedPrivateKey += cipher.final('hex');
+  let encryptedPrivateKey = cipher.update(privateKey, "utf8", "hex");
+  encryptedPrivateKey += cipher.final("hex");
 
   const commonCipherIv = crypto.randomBytes(16);
-  const commonCipher = crypto.createCipheriv('aes-256-cbc', commonEncryptionKey, commonCipherIv);
+  const commonCipher = crypto.createCipheriv(
+    "aes-256-cbc",
+    commonEncryptionKey,
+    commonCipherIv,
+  );
 
-  encryptedPrivateKey = commonCipher.update(encryptedPrivateKey, 'hex', 'hex');
-  encryptedPrivateKey += commonCipher.final('hex');
+  encryptedPrivateKey = commonCipher.update(encryptedPrivateKey, "hex", "hex");
+  encryptedPrivateKey += commonCipher.final("hex");
 
-  return iv.toString('hex') + ':' + commonCipherIv.toString('hex') + ':' + encryptedPrivateKey;
-}
+  return (
+    iv.toString("hex") +
+    ":" +
+    commonCipherIv.toString("hex") +
+    ":" +
+    encryptedPrivateKey
+  );
+};

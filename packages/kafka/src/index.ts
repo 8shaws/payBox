@@ -9,7 +9,10 @@ export * from "./producer";
 export const kafkaClient = new KafkaInstance();
 
 (async () => {
-  await kafkaClient.init([{ topicName: "txn4", partitions: 2 }, { topicName: "chat", partitions: 1 }]);
+  await kafkaClient.init([
+    { topicName: "txn4", partitions: 2 },
+    { topicName: "chat", partitions: 1 },
+  ]);
   await kafkaClient.connectProducer();
 
   await initTxnConsumer({
@@ -21,7 +24,4 @@ export const kafkaClient = new KafkaInstance();
     groupId: "chat",
     topics: ["chat"],
   });
-
 })();
-
-
