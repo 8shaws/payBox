@@ -7,8 +7,8 @@
   "license": "MIT",
   "private": "true",
   "scripts": {
-    "build": "anchor build",
-    "deploy": "anchor deploy",
+    // "build": "anchor build",
+    // "deploy": "anchor deploy",
     "test": "anchor test"
   },
   "dependencies": {
