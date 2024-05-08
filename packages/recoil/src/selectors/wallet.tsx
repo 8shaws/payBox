@@ -1,6 +1,5 @@
 import { BACKEND_URL } from "@paybox/common";
 import { selector } from "recoil";
-import { walletsAtom } from "../../dist";
 
 export const getWalletsSelector = selector({
   key: "getWalletsSelector",
