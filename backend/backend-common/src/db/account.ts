@@ -372,7 +372,9 @@ export const putImgUrl = async (
       update_account_by_pk: [
         {
           pk_columns: {
-            id,
+            id: {
+              _eq: id,
+            },
           },
           _set: {
             img,
