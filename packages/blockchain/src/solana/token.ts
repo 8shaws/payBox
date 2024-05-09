@@ -13,6 +13,7 @@ import {
 } from "@solana/spl-token";
 import { TokenContract, IDL } from "../idl/types/token_contract";
 import { PAYBOX_TOKEN_PROGRAM_ID } from "../constants";
+import { BN } from "bn.js";
 
 export class SolTokenOps {
   private static instance: SolTokenOps;
@@ -94,6 +95,46 @@ export class SolTokenOps {
     } catch (err) {
       console.log(err);
       return Promise.reject(err);
+    }
+  }
+
+  async mintToken(
+    privateKey: string,
+    mint: string,
+    ata: string,
+    tokens: number,
+  ): Promise<string> {
+    let { program, provider } = this.initProgram(privateKey);
+
+    let mintKP = new anchor.web3.PublicKey(mint);
+    let associatedTokenAccount = new anchor.web3.PublicKey(ata);
+
+    try {
+      const txn = await program.methods
+        .mintToken(new BN(tokens))
+        .accounts({
+          mint: mintKP,
+          tokenProgram: TOKEN_PROGRAM_ID,
+          tokenAccount: associatedTokenAccount,
+          authority: provider.wallet.publicKey,
+        })
+        .rpc();
+
+      console.log("Minted: ", txn);
+
+      //verify
+      //@ts-ignore
+      // const minted = // @ts-ignore
+      //   //@ts-ignore
+      //   //@ts-ignore
+      //   (await provider.connection.getParsedAccountInfo(associatedTokenAccount))
+      //     .value.data.parsed.info.tokenAmount.uiAmount;
+      // console.log("Minted: ", minted);
+
+      return Promise.resolve(txn);
+    } catch (e) {
+      console.log("Error: ", e);
+      return Promise.reject(e);
     }
   }
 }
