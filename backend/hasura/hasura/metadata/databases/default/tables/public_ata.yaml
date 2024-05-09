@@ -12,6 +12,9 @@ configuration:
     updated_at: updatedAt
   custom_root_fields: {}
 object_relationships:
+  - name: client
+    using:
+      foreign_key_constraint_on: clientId
   - name: tokenByToken
     using:
       foreign_key_constraint_on: token

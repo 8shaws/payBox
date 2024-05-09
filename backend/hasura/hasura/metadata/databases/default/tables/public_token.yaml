@@ -11,6 +11,10 @@ configuration:
     created_at: createdAt
     updated_at: updatedAt
   custom_root_fields: {}
+object_relationships:
+  - name: client
+    using:
+      foreign_key_constraint_on: authId
 array_relationships:
   - name: ata
     using:
