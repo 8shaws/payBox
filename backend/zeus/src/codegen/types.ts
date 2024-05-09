@@ -1085,6 +1085,9 @@ export type Analyze_Updates = {
 /** associated token account */
 export type Ata = {
   __typename?: 'ata';
+  /** An object relationship */
+  client: Client;
+  clientId: Scalars['uuid']['output'];
   createdAt: Scalars['timestamptz']['output'];
   id: Scalars['uuid']['output'];
   is_minter: Scalars['Boolean']['output'];
@@ -1092,6 +1095,8 @@ export type Ata = {
   privateKey: Scalars['String']['output'];
   pubKey: Scalars['String']['output'];
   token: Scalars['String']['output'];
+  /** An object relationship */
+  tokenByToken: Token;
   updatedAt: Scalars['timestamptz']['output'];
 };
 
@@ -1100,6 +1105,33 @@ export type Ata_Aggregate = {
   __typename?: 'ata_aggregate';
   aggregate?: Maybe<Ata_Aggregate_Fields>;
   nodes: Array<Ata>;
+};
+
+export type Ata_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Ata_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Ata_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Ata_Aggregate_Bool_Exp_Count>;
+};
+
+export type Ata_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Ata_Select_Column_Ata_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Ata_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Ata_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Ata_Select_Column_Ata_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Ata_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Ata_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Ata_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Ata_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "ata" */
@@ -1117,11 +1149,27 @@ export type Ata_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** order by aggregate values of table "ata" */
+export type Ata_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Ata_Max_Order_By>;
+  min?: InputMaybe<Ata_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "ata" */
+export type Ata_Arr_Rel_Insert_Input = {
+  data: Array<Ata_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Ata_On_Conflict>;
+};
+
 /** Boolean expression to filter rows from the table "ata". All fields are combined with a logical 'AND'. */
 export type Ata_Bool_Exp = {
   _and?: InputMaybe<Array<Ata_Bool_Exp>>;
   _not?: InputMaybe<Ata_Bool_Exp>;
   _or?: InputMaybe<Array<Ata_Bool_Exp>>;
+  client?: InputMaybe<Client_Bool_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   is_minter?: InputMaybe<Boolean_Comparison_Exp>;
@@ -1129,6 +1177,7 @@ export type Ata_Bool_Exp = {
   privateKey?: InputMaybe<String_Comparison_Exp>;
   pubKey?: InputMaybe<String_Comparison_Exp>;
   token?: InputMaybe<String_Comparison_Exp>;
+  tokenByToken?: InputMaybe<Token_Bool_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -1144,6 +1193,8 @@ export enum Ata_Constraint {
 
 /** input type for inserting data into table "ata" */
 export type Ata_Insert_Input = {
+  client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_minter?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1151,12 +1202,14 @@ export type Ata_Insert_Input = {
   privateKey?: InputMaybe<Scalars['String']['input']>;
   pubKey?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
+  tokenByToken?: InputMaybe<Token_Obj_Rel_Insert_Input>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate max on columns */
 export type Ata_Max_Fields = {
   __typename?: 'ata_max_fields';
+  clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   owner?: Maybe<Scalars['String']['output']>;
@@ -1166,9 +1219,22 @@ export type Ata_Max_Fields = {
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
+/** order by max() on columns of table "ata" */
+export type Ata_Max_Order_By = {
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  owner?: InputMaybe<Order_By>;
+  privateKey?: InputMaybe<Order_By>;
+  pubKey?: InputMaybe<Order_By>;
+  token?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
 /** aggregate min on columns */
 export type Ata_Min_Fields = {
   __typename?: 'ata_min_fields';
+  clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   owner?: Maybe<Scalars['String']['output']>;
@@ -1176,6 +1242,18 @@ export type Ata_Min_Fields = {
   pubKey?: Maybe<Scalars['String']['output']>;
   token?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by min() on columns of table "ata" */
+export type Ata_Min_Order_By = {
+  clientId?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  owner?: InputMaybe<Order_By>;
+  privateKey?: InputMaybe<Order_By>;
+  pubKey?: InputMaybe<Order_By>;
+  token?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "ata" */
@@ -1196,6 +1274,8 @@ export type Ata_On_Conflict = {
 
 /** Ordering options when selecting data from "ata". */
 export type Ata_Order_By = {
+  client?: InputMaybe<Client_Order_By>;
+  clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   is_minter?: InputMaybe<Order_By>;
@@ -1203,6 +1283,7 @@ export type Ata_Order_By = {
   privateKey?: InputMaybe<Order_By>;
   pubKey?: InputMaybe<Order_By>;
   token?: InputMaybe<Order_By>;
+  tokenByToken?: InputMaybe<Token_Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -1213,6 +1294,8 @@ export type Ata_Pk_Columns_Input = {
 
 /** select columns of table "ata" */
 export enum Ata_Select_Column {
+  /** column name */
+  ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -1231,8 +1314,21 @@ export enum Ata_Select_Column {
   UpdatedAt = 'updatedAt'
 }
 
+/** select "ata_aggregate_bool_exp_bool_and_arguments_columns" columns of table "ata" */
+export enum Ata_Select_Column_Ata_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsMinter = 'is_minter'
+}
+
+/** select "ata_aggregate_bool_exp_bool_or_arguments_columns" columns of table "ata" */
+export enum Ata_Select_Column_Ata_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsMinter = 'is_minter'
+}
+
 /** input type for updating data in table "ata" */
 export type Ata_Set_Input = {
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_minter?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1253,6 +1349,7 @@ export type Ata_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Ata_Stream_Cursor_Value_Input = {
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_minter?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1265,6 +1362,8 @@ export type Ata_Stream_Cursor_Value_Input = {
 
 /** update columns of table "ata" */
 export enum Ata_Update_Column {
+  /** column name */
+  ClientId = 'clientId',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -2462,6 +2561,10 @@ export type Client = {
   /** An aggregate relationship */
   address_books_aggregate: Address_Book_Aggregate;
   /** An array relationship */
+  ata: Array<Ata>;
+  /** An aggregate relationship */
+  ata_aggregate: Ata_Aggregate;
+  /** An array relationship */
   centralized_txns: Array<Centralized_Txn>;
   /** An aggregate relationship */
   centralized_txns_aggregate: Centralized_Txn_Aggregate;
@@ -2496,6 +2599,10 @@ export type Client = {
   /** An aggregate relationship */
   notifications_aggregate: Notification_Aggregate;
   password: Scalars['String']['output'];
+  /** An array relationship */
+  tokens: Array<Token>;
+  /** An aggregate relationship */
+  tokens_aggregate: Token_Aggregate;
   /** An array relationship */
   transactions: Array<Transactions>;
   /** An aggregate relationship */
@@ -2547,6 +2654,26 @@ export type ClientAddress_Books_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Address_Book_Order_By>>;
   where?: InputMaybe<Address_Book_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientAtaArgs = {
+  distinct_on?: InputMaybe<Array<Ata_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Ata_Order_By>>;
+  where?: InputMaybe<Ata_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientAta_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Ata_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Ata_Order_By>>;
+  where?: InputMaybe<Ata_Bool_Exp>;
 };
 
 
@@ -2671,6 +2798,26 @@ export type ClientNotifications_AggregateArgs = {
 
 
 /** subscriber for paybox */
+export type ClientTokensArgs = {
+  distinct_on?: InputMaybe<Array<Token_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Order_By>>;
+  where?: InputMaybe<Token_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientTokens_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Order_By>>;
+  where?: InputMaybe<Token_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
 export type ClientTransactionsArgs = {
   distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2755,6 +2902,8 @@ export type Client_Bool_Exp = {
   address?: InputMaybe<Address_Bool_Exp>;
   address_books?: InputMaybe<Address_Book_Bool_Exp>;
   address_books_aggregate?: InputMaybe<Address_Book_Aggregate_Bool_Exp>;
+  ata?: InputMaybe<Ata_Bool_Exp>;
+  ata_aggregate?: InputMaybe<Ata_Aggregate_Bool_Exp>;
   centralized_txns?: InputMaybe<Centralized_Txn_Bool_Exp>;
   centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Bool_Exp>;
   chats?: InputMaybe<Chat_Bool_Exp>;
@@ -2776,6 +2925,8 @@ export type Client_Bool_Exp = {
   notifications?: InputMaybe<Notification_Bool_Exp>;
   notifications_aggregate?: InputMaybe<Notification_Aggregate_Bool_Exp>;
   password?: InputMaybe<String_Comparison_Exp>;
+  tokens?: InputMaybe<Token_Bool_Exp>;
+  tokens_aggregate?: InputMaybe<Token_Aggregate_Bool_Exp>;
   transactions?: InputMaybe<Transactions_Bool_Exp>;
   transactions_aggregate?: InputMaybe<Transactions_Aggregate_Bool_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -2805,6 +2956,7 @@ export type Client_Insert_Input = {
   accounts?: InputMaybe<Account_Arr_Rel_Insert_Input>;
   address?: InputMaybe<Address_Obj_Rel_Insert_Input>;
   address_books?: InputMaybe<Address_Book_Arr_Rel_Insert_Input>;
+  ata?: InputMaybe<Ata_Arr_Rel_Insert_Input>;
   centralized_txns?: InputMaybe<Centralized_Txn_Arr_Rel_Insert_Input>;
   chats?: InputMaybe<Chat_Arr_Rel_Insert_Input>;
   client_setting?: InputMaybe<Client_Settings_Obj_Rel_Insert_Input>;
@@ -2820,6 +2972,7 @@ export type Client_Insert_Input = {
   notification_subscriptions?: InputMaybe<Notification_Subscription_Arr_Rel_Insert_Input>;
   notifications?: InputMaybe<Notification_Arr_Rel_Insert_Input>;
   password?: InputMaybe<Scalars['String']['input']>;
+  tokens?: InputMaybe<Token_Arr_Rel_Insert_Input>;
   transactions?: InputMaybe<Transactions_Arr_Rel_Insert_Input>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -2883,6 +3036,7 @@ export type Client_Order_By = {
   accounts_aggregate?: InputMaybe<Account_Aggregate_Order_By>;
   address?: InputMaybe<Address_Order_By>;
   address_books_aggregate?: InputMaybe<Address_Book_Aggregate_Order_By>;
+  ata_aggregate?: InputMaybe<Ata_Aggregate_Order_By>;
   centralized_txns_aggregate?: InputMaybe<Centralized_Txn_Aggregate_Order_By>;
   chats_aggregate?: InputMaybe<Chat_Aggregate_Order_By>;
   client_setting?: InputMaybe<Client_Settings_Order_By>;
@@ -2898,6 +3052,7 @@ export type Client_Order_By = {
   notification_subscriptions_aggregate?: InputMaybe<Notification_Subscription_Aggregate_Order_By>;
   notifications_aggregate?: InputMaybe<Notification_Aggregate_Order_By>;
   password?: InputMaybe<Order_By>;
+  tokens_aggregate?: InputMaybe<Token_Aggregate_Order_By>;
   transactions_aggregate?: InputMaybe<Transactions_Aggregate_Order_By>;
   updatedAt?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
@@ -4135,10 +4290,10 @@ export type Mutation_Root = {
   delete_sol?: Maybe<Sol_Mutation_Response>;
   /** delete single row from the table: "sol" */
   delete_sol_by_pk?: Maybe<Sol>;
-  /** delete data from the table: "tokens" */
-  delete_tokens?: Maybe<Tokens_Mutation_Response>;
-  /** delete single row from the table: "tokens" */
-  delete_tokens_by_pk?: Maybe<Tokens>;
+  /** delete data from the table: "token" */
+  delete_token?: Maybe<Token_Mutation_Response>;
+  /** delete single row from the table: "token" */
+  delete_token_by_pk?: Maybe<Token>;
   /** delete data from the table: "transactions" */
   delete_transactions?: Maybe<Transactions_Mutation_Response>;
   /** delete single row from the table: "transactions" */
@@ -4219,10 +4374,10 @@ export type Mutation_Root = {
   insert_sol?: Maybe<Sol_Mutation_Response>;
   /** insert a single row into the table: "sol" */
   insert_sol_one?: Maybe<Sol>;
-  /** insert data into the table: "tokens" */
-  insert_tokens?: Maybe<Tokens_Mutation_Response>;
-  /** insert a single row into the table: "tokens" */
-  insert_tokens_one?: Maybe<Tokens>;
+  /** insert data into the table: "token" */
+  insert_token?: Maybe<Token_Mutation_Response>;
+  /** insert a single row into the table: "token" */
+  insert_token_one?: Maybe<Token>;
   /** insert data into the table: "transactions" */
   insert_transactions?: Maybe<Transactions_Mutation_Response>;
   /** insert a single row into the table: "transactions" */
@@ -4339,12 +4494,12 @@ export type Mutation_Root = {
   update_sol_by_pk?: Maybe<Sol>;
   /** update multiples rows of table: "sol" */
   update_sol_many?: Maybe<Array<Maybe<Sol_Mutation_Response>>>;
-  /** update data of the table: "tokens" */
-  update_tokens?: Maybe<Tokens_Mutation_Response>;
-  /** update single row of the table: "tokens" */
-  update_tokens_by_pk?: Maybe<Tokens>;
-  /** update multiples rows of table: "tokens" */
-  update_tokens_many?: Maybe<Array<Maybe<Tokens_Mutation_Response>>>;
+  /** update data of the table: "token" */
+  update_token?: Maybe<Token_Mutation_Response>;
+  /** update single row of the table: "token" */
+  update_token_by_pk?: Maybe<Token>;
+  /** update multiples rows of table: "token" */
+  update_token_many?: Maybe<Array<Maybe<Token_Mutation_Response>>>;
   /** update data of the table: "transactions" */
   update_transactions?: Maybe<Transactions_Mutation_Response>;
   /** update single row of the table: "transactions" */
@@ -4581,13 +4736,13 @@ export type Mutation_RootDelete_Sol_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_TokensArgs = {
-  where: Tokens_Bool_Exp;
+export type Mutation_RootDelete_TokenArgs = {
+  where: Token_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Tokens_By_PkArgs = {
+export type Mutation_RootDelete_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
   pubKey: Scalars['String']['input'];
 };
@@ -4870,16 +5025,16 @@ export type Mutation_RootInsert_Sol_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_TokensArgs = {
-  objects: Array<Tokens_Insert_Input>;
-  on_conflict?: InputMaybe<Tokens_On_Conflict>;
+export type Mutation_RootInsert_TokenArgs = {
+  objects: Array<Token_Insert_Input>;
+  on_conflict?: InputMaybe<Token_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Tokens_OneArgs = {
-  object: Tokens_Insert_Input;
-  on_conflict?: InputMaybe<Tokens_On_Conflict>;
+export type Mutation_RootInsert_Token_OneArgs = {
+  object: Token_Insert_Input;
+  on_conflict?: InputMaybe<Token_On_Conflict>;
 };
 
 
@@ -5276,22 +5431,22 @@ export type Mutation_RootUpdate_Sol_ManyArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_TokensArgs = {
-  _set?: InputMaybe<Tokens_Set_Input>;
-  where: Tokens_Bool_Exp;
+export type Mutation_RootUpdate_TokenArgs = {
+  _set?: InputMaybe<Token_Set_Input>;
+  where: Token_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Tokens_By_PkArgs = {
-  _set?: InputMaybe<Tokens_Set_Input>;
-  pk_columns: Tokens_Pk_Columns_Input;
+export type Mutation_RootUpdate_Token_By_PkArgs = {
+  _set?: InputMaybe<Token_Set_Input>;
+  pk_columns: Token_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Tokens_ManyArgs = {
-  updates: Array<Tokens_Updates>;
+export type Mutation_RootUpdate_Token_ManyArgs = {
+  updates: Array<Token_Updates>;
 };
 
 
@@ -6394,9 +6549,9 @@ export type Query_Root = {
   analyze_aggregate: Analyze_Aggregate;
   /** fetch data from the table: "analyze" using primary key columns */
   analyze_by_pk?: Maybe<Analyze>;
-  /** fetch data from the table: "ata" */
+  /** An array relationship */
   ata: Array<Ata>;
-  /** fetch aggregated fields from the table: "ata" */
+  /** An aggregate relationship */
   ata_aggregate: Ata_Aggregate;
   /** fetch data from the table: "ata" using primary key columns */
   ata_by_pk?: Maybe<Ata>;
@@ -6478,12 +6633,12 @@ export type Query_Root = {
   sol_aggregate: Sol_Aggregate;
   /** fetch data from the table: "sol" using primary key columns */
   sol_by_pk?: Maybe<Sol>;
-  /** fetch data from the table: "tokens" */
-  tokens: Array<Tokens>;
-  /** fetch aggregated fields from the table: "tokens" */
-  tokens_aggregate: Tokens_Aggregate;
-  /** fetch data from the table: "tokens" using primary key columns */
-  tokens_by_pk?: Maybe<Tokens>;
+  /** fetch data from the table: "token" */
+  token: Array<Token>;
+  /** fetch aggregated fields from the table: "token" */
+  token_aggregate: Token_Aggregate;
+  /** fetch data from the table: "token" using primary key columns */
+  token_by_pk?: Maybe<Token>;
   /** An array relationship */
   transactions: Array<Transactions>;
   /** An aggregate relationship */
@@ -6917,25 +7072,25 @@ export type Query_RootSol_By_PkArgs = {
 };
 
 
-export type Query_RootTokensArgs = {
-  distinct_on?: InputMaybe<Array<Tokens_Select_Column>>;
+export type Query_RootTokenArgs = {
+  distinct_on?: InputMaybe<Array<Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tokens_Order_By>>;
-  where?: InputMaybe<Tokens_Bool_Exp>;
+  order_by?: InputMaybe<Array<Token_Order_By>>;
+  where?: InputMaybe<Token_Bool_Exp>;
 };
 
 
-export type Query_RootTokens_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Tokens_Select_Column>>;
+export type Query_RootToken_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tokens_Order_By>>;
-  where?: InputMaybe<Tokens_Bool_Exp>;
+  order_by?: InputMaybe<Array<Token_Order_By>>;
+  where?: InputMaybe<Token_Bool_Exp>;
 };
 
 
-export type Query_RootTokens_By_PkArgs = {
+export type Query_RootToken_By_PkArgs = {
   id: Scalars['uuid']['input'];
   pubKey: Scalars['String']['input'];
 };
@@ -7222,9 +7377,9 @@ export type Subscription_Root = {
   analyze_by_pk?: Maybe<Analyze>;
   /** fetch data from the table in a streaming manner: "analyze" */
   analyze_stream: Array<Analyze>;
-  /** fetch data from the table: "ata" */
+  /** An array relationship */
   ata: Array<Ata>;
-  /** fetch aggregated fields from the table: "ata" */
+  /** An aggregate relationship */
   ata_aggregate: Ata_Aggregate;
   /** fetch data from the table: "ata" using primary key columns */
   ata_by_pk?: Maybe<Ata>;
@@ -7334,14 +7489,14 @@ export type Subscription_Root = {
   sol_by_pk?: Maybe<Sol>;
   /** fetch data from the table in a streaming manner: "sol" */
   sol_stream: Array<Sol>;
-  /** fetch data from the table: "tokens" */
-  tokens: Array<Tokens>;
-  /** fetch aggregated fields from the table: "tokens" */
-  tokens_aggregate: Tokens_Aggregate;
-  /** fetch data from the table: "tokens" using primary key columns */
-  tokens_by_pk?: Maybe<Tokens>;
-  /** fetch data from the table in a streaming manner: "tokens" */
-  tokens_stream: Array<Tokens>;
+  /** fetch data from the table: "token" */
+  token: Array<Token>;
+  /** fetch aggregated fields from the table: "token" */
+  token_aggregate: Token_Aggregate;
+  /** fetch data from the table: "token" using primary key columns */
+  token_by_pk?: Maybe<Token>;
+  /** fetch data from the table in a streaming manner: "token" */
+  token_stream: Array<Token>;
   /** An array relationship */
   transactions: Array<Transactions>;
   /** An aggregate relationship */
@@ -7905,34 +8060,34 @@ export type Subscription_RootSol_StreamArgs = {
 };
 
 
-export type Subscription_RootTokensArgs = {
-  distinct_on?: InputMaybe<Array<Tokens_Select_Column>>;
+export type Subscription_RootTokenArgs = {
+  distinct_on?: InputMaybe<Array<Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tokens_Order_By>>;
-  where?: InputMaybe<Tokens_Bool_Exp>;
+  order_by?: InputMaybe<Array<Token_Order_By>>;
+  where?: InputMaybe<Token_Bool_Exp>;
 };
 
 
-export type Subscription_RootTokens_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Tokens_Select_Column>>;
+export type Subscription_RootToken_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Tokens_Order_By>>;
-  where?: InputMaybe<Tokens_Bool_Exp>;
+  order_by?: InputMaybe<Array<Token_Order_By>>;
+  where?: InputMaybe<Token_Bool_Exp>;
 };
 
 
-export type Subscription_RootTokens_By_PkArgs = {
+export type Subscription_RootToken_By_PkArgs = {
   id: Scalars['uuid']['input'];
   pubKey: Scalars['String']['input'];
 };
 
 
-export type Subscription_RootTokens_StreamArgs = {
+export type Subscription_RootToken_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Tokens_Stream_Cursor_Input>>;
-  where?: InputMaybe<Tokens_Bool_Exp>;
+  cursor: Array<InputMaybe<Token_Stream_Cursor_Input>>;
+  where?: InputMaybe<Token_Bool_Exp>;
 };
 
 
@@ -8022,9 +8177,16 @@ export type Timestamptz_Comparison_Exp = {
 };
 
 /** table storing all the mint token infos */
-export type Tokens = {
-  __typename?: 'tokens';
+export type Token = {
+  __typename?: 'token';
+  /** An array relationship */
+  ata: Array<Ata>;
+  /** An aggregate relationship */
+  ata_aggregate: Ata_Aggregate;
+  authId: Scalars['uuid']['output'];
   authority: Scalars['String']['output'];
+  /** An object relationship */
+  client: Client;
   createdAt: Scalars['timestamptz']['output'];
   id: Scalars['uuid']['output'];
   name: Scalars['String']['output'];
@@ -8034,34 +8196,83 @@ export type Tokens = {
   updatedAt: Scalars['timestamptz']['output'];
 };
 
-/** aggregated selection of "tokens" */
-export type Tokens_Aggregate = {
-  __typename?: 'tokens_aggregate';
-  aggregate?: Maybe<Tokens_Aggregate_Fields>;
-  nodes: Array<Tokens>;
+
+/** table storing all the mint token infos */
+export type TokenAtaArgs = {
+  distinct_on?: InputMaybe<Array<Ata_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Ata_Order_By>>;
+  where?: InputMaybe<Ata_Bool_Exp>;
 };
 
-/** aggregate fields of "tokens" */
-export type Tokens_Aggregate_Fields = {
-  __typename?: 'tokens_aggregate_fields';
+
+/** table storing all the mint token infos */
+export type TokenAta_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Ata_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Ata_Order_By>>;
+  where?: InputMaybe<Ata_Bool_Exp>;
+};
+
+/** aggregated selection of "token" */
+export type Token_Aggregate = {
+  __typename?: 'token_aggregate';
+  aggregate?: Maybe<Token_Aggregate_Fields>;
+  nodes: Array<Token>;
+};
+
+export type Token_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Token_Aggregate_Bool_Exp_Count>;
+};
+
+export type Token_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Token_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "token" */
+export type Token_Aggregate_Fields = {
+  __typename?: 'token_aggregate_fields';
   count: Scalars['Int']['output'];
-  max?: Maybe<Tokens_Max_Fields>;
-  min?: Maybe<Tokens_Min_Fields>;
+  max?: Maybe<Token_Max_Fields>;
+  min?: Maybe<Token_Min_Fields>;
 };
 
 
-/** aggregate fields of "tokens" */
-export type Tokens_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Tokens_Select_Column>>;
+/** aggregate fields of "token" */
+export type Token_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Token_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Boolean expression to filter rows from the table "tokens". All fields are combined with a logical 'AND'. */
-export type Tokens_Bool_Exp = {
-  _and?: InputMaybe<Array<Tokens_Bool_Exp>>;
-  _not?: InputMaybe<Tokens_Bool_Exp>;
-  _or?: InputMaybe<Array<Tokens_Bool_Exp>>;
+/** order by aggregate values of table "token" */
+export type Token_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Token_Max_Order_By>;
+  min?: InputMaybe<Token_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "token" */
+export type Token_Arr_Rel_Insert_Input = {
+  data: Array<Token_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Token_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "token". All fields are combined with a logical 'AND'. */
+export type Token_Bool_Exp = {
+  _and?: InputMaybe<Array<Token_Bool_Exp>>;
+  _not?: InputMaybe<Token_Bool_Exp>;
+  _or?: InputMaybe<Array<Token_Bool_Exp>>;
+  ata?: InputMaybe<Ata_Bool_Exp>;
+  ata_aggregate?: InputMaybe<Ata_Aggregate_Bool_Exp>;
+  authId?: InputMaybe<Uuid_Comparison_Exp>;
   authority?: InputMaybe<String_Comparison_Exp>;
+  client?: InputMaybe<Client_Bool_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
@@ -8071,8 +8282,8 @@ export type Tokens_Bool_Exp = {
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
-/** unique or primary key constraints on table "tokens" */
-export enum Tokens_Constraint {
+/** unique or primary key constraints on table "token" */
+export enum Token_Constraint {
   /** unique or primary key constraint on columns "authority" */
   MintTokensAuthorityKey = 'mint_tokens_authority_key',
   /** unique or primary key constraint on columns "id", "pubKey" */
@@ -8083,9 +8294,12 @@ export enum Tokens_Constraint {
   MintTokensPubKeyKey = 'mint_tokens_pubKey_key'
 }
 
-/** input type for inserting data into table "tokens" */
-export type Tokens_Insert_Input = {
+/** input type for inserting data into table "token" */
+export type Token_Insert_Input = {
+  ata?: InputMaybe<Ata_Arr_Rel_Insert_Input>;
+  authId?: InputMaybe<Scalars['uuid']['input']>;
   authority?: InputMaybe<Scalars['String']['input']>;
+  client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -8096,8 +8310,9 @@ export type Tokens_Insert_Input = {
 };
 
 /** aggregate max on columns */
-export type Tokens_Max_Fields = {
-  __typename?: 'tokens_max_fields';
+export type Token_Max_Fields = {
+  __typename?: 'token_max_fields';
+  authId?: Maybe<Scalars['uuid']['output']>;
   authority?: Maybe<Scalars['String']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
@@ -8108,37 +8323,9 @@ export type Tokens_Max_Fields = {
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
-/** aggregate min on columns */
-export type Tokens_Min_Fields = {
-  __typename?: 'tokens_min_fields';
-  authority?: Maybe<Scalars['String']['output']>;
-  createdAt?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['uuid']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  network?: Maybe<Scalars['String']['output']>;
-  privateKey?: Maybe<Scalars['String']['output']>;
-  pubKey?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
-};
-
-/** response of any mutation on the table "tokens" */
-export type Tokens_Mutation_Response = {
-  __typename?: 'tokens_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Tokens>;
-};
-
-/** on_conflict condition type for table "tokens" */
-export type Tokens_On_Conflict = {
-  constraint: Tokens_Constraint;
-  update_columns?: Array<Tokens_Update_Column>;
-  where?: InputMaybe<Tokens_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "tokens". */
-export type Tokens_Order_By = {
+/** order by max() on columns of table "token" */
+export type Token_Max_Order_By = {
+  authId?: InputMaybe<Order_By>;
   authority?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
@@ -8149,14 +8336,81 @@ export type Tokens_Order_By = {
   updatedAt?: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: tokens */
-export type Tokens_Pk_Columns_Input = {
+/** aggregate min on columns */
+export type Token_Min_Fields = {
+  __typename?: 'token_min_fields';
+  authId?: Maybe<Scalars['uuid']['output']>;
+  authority?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  network?: Maybe<Scalars['String']['output']>;
+  privateKey?: Maybe<Scalars['String']['output']>;
+  pubKey?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by min() on columns of table "token" */
+export type Token_Min_Order_By = {
+  authId?: InputMaybe<Order_By>;
+  authority?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  network?: InputMaybe<Order_By>;
+  privateKey?: InputMaybe<Order_By>;
+  pubKey?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "token" */
+export type Token_Mutation_Response = {
+  __typename?: 'token_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Token>;
+};
+
+/** input type for inserting object relation for remote table "token" */
+export type Token_Obj_Rel_Insert_Input = {
+  data: Token_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Token_On_Conflict>;
+};
+
+/** on_conflict condition type for table "token" */
+export type Token_On_Conflict = {
+  constraint: Token_Constraint;
+  update_columns?: Array<Token_Update_Column>;
+  where?: InputMaybe<Token_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "token". */
+export type Token_Order_By = {
+  ata_aggregate?: InputMaybe<Ata_Aggregate_Order_By>;
+  authId?: InputMaybe<Order_By>;
+  authority?: InputMaybe<Order_By>;
+  client?: InputMaybe<Client_Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  network?: InputMaybe<Order_By>;
+  privateKey?: InputMaybe<Order_By>;
+  pubKey?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: token */
+export type Token_Pk_Columns_Input = {
   id: Scalars['uuid']['input'];
   pubKey: Scalars['String']['input'];
 };
 
-/** select columns of table "tokens" */
-export enum Tokens_Select_Column {
+/** select columns of table "token" */
+export enum Token_Select_Column {
+  /** column name */
+  AuthId = 'authId',
   /** column name */
   Authority = 'authority',
   /** column name */
@@ -8175,8 +8429,9 @@ export enum Tokens_Select_Column {
   UpdatedAt = 'updatedAt'
 }
 
-/** input type for updating data in table "tokens" */
-export type Tokens_Set_Input = {
+/** input type for updating data in table "token" */
+export type Token_Set_Input = {
+  authId?: InputMaybe<Scalars['uuid']['input']>;
   authority?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
@@ -8187,16 +8442,17 @@ export type Tokens_Set_Input = {
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
-/** Streaming cursor of the table "tokens" */
-export type Tokens_Stream_Cursor_Input = {
+/** Streaming cursor of the table "token" */
+export type Token_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Tokens_Stream_Cursor_Value_Input;
+  initial_value: Token_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Tokens_Stream_Cursor_Value_Input = {
+export type Token_Stream_Cursor_Value_Input = {
+  authId?: InputMaybe<Scalars['uuid']['input']>;
   authority?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
@@ -8207,8 +8463,10 @@ export type Tokens_Stream_Cursor_Value_Input = {
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
-/** update columns of table "tokens" */
-export enum Tokens_Update_Column {
+/** update columns of table "token" */
+export enum Token_Update_Column {
+  /** column name */
+  AuthId = 'authId',
   /** column name */
   Authority = 'authority',
   /** column name */
@@ -8227,11 +8485,11 @@ export enum Tokens_Update_Column {
   UpdatedAt = 'updatedAt'
 }
 
-export type Tokens_Updates = {
+export type Token_Updates = {
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Tokens_Set_Input>;
+  _set?: InputMaybe<Token_Set_Input>;
   /** filter the rows which have to be updated */
-  where: Tokens_Bool_Exp;
+  where: Token_Bool_Exp;
 };
 
 /** transactions table  */

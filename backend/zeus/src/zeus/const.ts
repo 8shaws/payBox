@@ -402,15 +402,48 @@ export const AllTypesProps: Record<string, any> = {
     _set: "analyze_set_input",
     where: "analyze_bool_exp",
   },
+  ata_aggregate_bool_exp: {
+    bool_and: "ata_aggregate_bool_exp_bool_and",
+    bool_or: "ata_aggregate_bool_exp_bool_or",
+    count: "ata_aggregate_bool_exp_count",
+  },
+  ata_aggregate_bool_exp_bool_and: {
+    arguments:
+      "ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns",
+    filter: "ata_bool_exp",
+    predicate: "Boolean_comparison_exp",
+  },
+  ata_aggregate_bool_exp_bool_or: {
+    arguments:
+      "ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns",
+    filter: "ata_bool_exp",
+    predicate: "Boolean_comparison_exp",
+  },
+  ata_aggregate_bool_exp_count: {
+    arguments: "ata_select_column",
+    filter: "ata_bool_exp",
+    predicate: "Int_comparison_exp",
+  },
   ata_aggregate_fields: {
     count: {
       columns: "ata_select_column",
     },
   },
+  ata_aggregate_order_by: {
+    count: "order_by",
+    max: "ata_max_order_by",
+    min: "ata_min_order_by",
+  },
+  ata_arr_rel_insert_input: {
+    data: "ata_insert_input",
+    on_conflict: "ata_on_conflict",
+  },
   ata_bool_exp: {
     _and: "ata_bool_exp",
     _not: "ata_bool_exp",
     _or: "ata_bool_exp",
+    client: "client_bool_exp",
+    clientId: "uuid_comparison_exp",
     createdAt: "timestamptz_comparison_exp",
     id: "uuid_comparison_exp",
     is_minter: "Boolean_comparison_exp",
@@ -418,13 +451,37 @@ export const AllTypesProps: Record<string, any> = {
     privateKey: "String_comparison_exp",
     pubKey: "String_comparison_exp",
     token: "String_comparison_exp",
+    tokenByToken: "token_bool_exp",
     updatedAt: "timestamptz_comparison_exp",
   },
   ata_constraint: "enum" as const,
   ata_insert_input: {
+    client: "client_obj_rel_insert_input",
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
+    tokenByToken: "token_obj_rel_insert_input",
     updatedAt: "timestamptz",
+  },
+  ata_max_order_by: {
+    clientId: "order_by",
+    createdAt: "order_by",
+    id: "order_by",
+    owner: "order_by",
+    privateKey: "order_by",
+    pubKey: "order_by",
+    token: "order_by",
+    updatedAt: "order_by",
+  },
+  ata_min_order_by: {
+    clientId: "order_by",
+    createdAt: "order_by",
+    id: "order_by",
+    owner: "order_by",
+    privateKey: "order_by",
+    pubKey: "order_by",
+    token: "order_by",
+    updatedAt: "order_by",
   },
   ata_on_conflict: {
     constraint: "ata_constraint",
@@ -432,6 +489,8 @@ export const AllTypesProps: Record<string, any> = {
     where: "ata_bool_exp",
   },
   ata_order_by: {
+    client: "client_order_by",
+    clientId: "order_by",
     createdAt: "order_by",
     id: "order_by",
     is_minter: "order_by",
@@ -439,13 +498,19 @@ export const AllTypesProps: Record<string, any> = {
     privateKey: "order_by",
     pubKey: "order_by",
     token: "order_by",
+    tokenByToken: "token_order_by",
     updatedAt: "order_by",
   },
   ata_pk_columns_input: {
     id: "uuid",
   },
   ata_select_column: "enum" as const,
+  ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns:
+    "enum" as const,
+  ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns:
+    "enum" as const,
   ata_set_input: {
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
@@ -455,6 +520,7 @@ export const AllTypesProps: Record<string, any> = {
     ordering: "cursor_ordering",
   },
   ata_stream_cursor_value_input: {
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
@@ -963,6 +1029,16 @@ export const AllTypesProps: Record<string, any> = {
       order_by: "address_book_order_by",
       where: "address_book_bool_exp",
     },
+    ata: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
+    },
+    ata_aggregate: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
+    },
     centralized_txns: {
       distinct_on: "centralized_txn_select_column",
       order_by: "centralized_txn_order_by",
@@ -1023,6 +1099,16 @@ export const AllTypesProps: Record<string, any> = {
       order_by: "notification_order_by",
       where: "notification_bool_exp",
     },
+    tokens: {
+      distinct_on: "token_select_column",
+      order_by: "token_order_by",
+      where: "token_bool_exp",
+    },
+    tokens_aggregate: {
+      distinct_on: "token_select_column",
+      order_by: "token_order_by",
+      where: "token_bool_exp",
+    },
     transactions: {
       distinct_on: "transactions_select_column",
       order_by: "transactions_order_by",
@@ -1058,6 +1144,8 @@ export const AllTypesProps: Record<string, any> = {
     address: "address_bool_exp",
     address_books: "address_book_bool_exp",
     address_books_aggregate: "address_book_aggregate_bool_exp",
+    ata: "ata_bool_exp",
+    ata_aggregate: "ata_aggregate_bool_exp",
     centralized_txns: "centralized_txn_bool_exp",
     centralized_txns_aggregate: "centralized_txn_aggregate_bool_exp",
     chats: "chat_bool_exp",
@@ -1080,6 +1168,8 @@ export const AllTypesProps: Record<string, any> = {
     notifications: "notification_bool_exp",
     notifications_aggregate: "notification_aggregate_bool_exp",
     password: "String_comparison_exp",
+    tokens: "token_bool_exp",
+    tokens_aggregate: "token_aggregate_bool_exp",
     transactions: "transactions_bool_exp",
     transactions_aggregate: "transactions_aggregate_bool_exp",
     updatedAt: "timestamptz_comparison_exp",
@@ -1096,6 +1186,7 @@ export const AllTypesProps: Record<string, any> = {
     accounts: "account_arr_rel_insert_input",
     address: "address_obj_rel_insert_input",
     address_books: "address_book_arr_rel_insert_input",
+    ata: "ata_arr_rel_insert_input",
     centralized_txns: "centralized_txn_arr_rel_insert_input",
     chats: "chat_arr_rel_insert_input",
     client_setting: "client_settings_obj_rel_insert_input",
@@ -1108,6 +1199,7 @@ export const AllTypesProps: Record<string, any> = {
     notification_subscriptions:
       "notification_subscription_arr_rel_insert_input",
     notifications: "notification_arr_rel_insert_input",
+    tokens: "token_arr_rel_insert_input",
     transactions: "transactions_arr_rel_insert_input",
     updatedAt: "timestamptz",
     wallets: "wallet_arr_rel_insert_input",
@@ -1125,6 +1217,7 @@ export const AllTypesProps: Record<string, any> = {
     accounts_aggregate: "account_aggregate_order_by",
     address: "address_order_by",
     address_books_aggregate: "address_book_aggregate_order_by",
+    ata_aggregate: "ata_aggregate_order_by",
     centralized_txns_aggregate: "centralized_txn_aggregate_order_by",
     chats_aggregate: "chat_aggregate_order_by",
     client_setting: "client_settings_order_by",
@@ -1141,6 +1234,7 @@ export const AllTypesProps: Record<string, any> = {
       "notification_subscription_aggregate_order_by",
     notifications_aggregate: "notification_aggregate_order_by",
     password: "order_by",
+    tokens_aggregate: "token_aggregate_order_by",
     transactions_aggregate: "transactions_aggregate_order_by",
     updatedAt: "order_by",
     username: "order_by",
@@ -1652,10 +1746,10 @@ export const AllTypesProps: Record<string, any> = {
     delete_sol_by_pk: {
       id: "uuid",
     },
-    delete_tokens: {
-      where: "tokens_bool_exp",
+    delete_token: {
+      where: "token_bool_exp",
     },
-    delete_tokens_by_pk: {
+    delete_token_by_pk: {
       id: "uuid",
     },
     delete_transactions: {
@@ -1814,13 +1908,13 @@ export const AllTypesProps: Record<string, any> = {
       object: "sol_insert_input",
       on_conflict: "sol_on_conflict",
     },
-    insert_tokens: {
-      objects: "tokens_insert_input",
-      on_conflict: "tokens_on_conflict",
+    insert_token: {
+      objects: "token_insert_input",
+      on_conflict: "token_on_conflict",
     },
-    insert_tokens_one: {
-      object: "tokens_insert_input",
-      on_conflict: "tokens_on_conflict",
+    insert_token_one: {
+      object: "token_insert_input",
+      on_conflict: "token_on_conflict",
     },
     insert_transactions: {
       objects: "transactions_insert_input",
@@ -2040,16 +2134,16 @@ export const AllTypesProps: Record<string, any> = {
     update_sol_many: {
       updates: "sol_updates",
     },
-    update_tokens: {
-      _set: "tokens_set_input",
-      where: "tokens_bool_exp",
+    update_token: {
+      _set: "token_set_input",
+      where: "token_bool_exp",
     },
-    update_tokens_by_pk: {
-      _set: "tokens_set_input",
-      pk_columns: "tokens_pk_columns_input",
+    update_token_by_pk: {
+      _set: "token_set_input",
+      pk_columns: "token_pk_columns_input",
     },
-    update_tokens_many: {
-      updates: "tokens_updates",
+    update_token_many: {
+      updates: "token_updates",
     },
     update_transactions: {
       _inc: "transactions_inc_input",
@@ -2737,17 +2831,17 @@ export const AllTypesProps: Record<string, any> = {
     sol_by_pk: {
       id: "uuid",
     },
-    tokens: {
-      distinct_on: "tokens_select_column",
-      order_by: "tokens_order_by",
-      where: "tokens_bool_exp",
+    token: {
+      distinct_on: "token_select_column",
+      order_by: "token_order_by",
+      where: "token_bool_exp",
     },
-    tokens_aggregate: {
-      distinct_on: "tokens_select_column",
-      order_by: "tokens_order_by",
-      where: "tokens_bool_exp",
+    token_aggregate: {
+      distinct_on: "token_select_column",
+      order_by: "token_order_by",
+      where: "token_bool_exp",
     },
-    tokens_by_pk: {
+    token_by_pk: {
       id: "uuid",
     },
     transactions: {
@@ -3154,22 +3248,22 @@ export const AllTypesProps: Record<string, any> = {
       cursor: "sol_stream_cursor_input",
       where: "sol_bool_exp",
     },
-    tokens: {
-      distinct_on: "tokens_select_column",
-      order_by: "tokens_order_by",
-      where: "tokens_bool_exp",
+    token: {
+      distinct_on: "token_select_column",
+      order_by: "token_order_by",
+      where: "token_bool_exp",
     },
-    tokens_aggregate: {
-      distinct_on: "tokens_select_column",
-      order_by: "tokens_order_by",
-      where: "tokens_bool_exp",
+    token_aggregate: {
+      distinct_on: "token_select_column",
+      order_by: "token_order_by",
+      where: "token_bool_exp",
     },
-    tokens_by_pk: {
+    token_by_pk: {
       id: "uuid",
     },
-    tokens_stream: {
-      cursor: "tokens_stream_cursor_input",
-      where: "tokens_bool_exp",
+    token_stream: {
+      cursor: "token_stream_cursor_input",
+      where: "token_bool_exp",
     },
     transactions: {
       distinct_on: "transactions_select_column",
@@ -3228,16 +3322,49 @@ export const AllTypesProps: Record<string, any> = {
     _neq: "timestamptz",
     _nin: "timestamptz",
   },
-  tokens_aggregate_fields: {
-    count: {
-      columns: "tokens_select_column",
+  token: {
+    ata: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
+    },
+    ata_aggregate: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
     },
   },
-  tokens_bool_exp: {
-    _and: "tokens_bool_exp",
-    _not: "tokens_bool_exp",
-    _or: "tokens_bool_exp",
+  token_aggregate_bool_exp: {
+    count: "token_aggregate_bool_exp_count",
+  },
+  token_aggregate_bool_exp_count: {
+    arguments: "token_select_column",
+    filter: "token_bool_exp",
+    predicate: "Int_comparison_exp",
+  },
+  token_aggregate_fields: {
+    count: {
+      columns: "token_select_column",
+    },
+  },
+  token_aggregate_order_by: {
+    count: "order_by",
+    max: "token_max_order_by",
+    min: "token_min_order_by",
+  },
+  token_arr_rel_insert_input: {
+    data: "token_insert_input",
+    on_conflict: "token_on_conflict",
+  },
+  token_bool_exp: {
+    _and: "token_bool_exp",
+    _not: "token_bool_exp",
+    _or: "token_bool_exp",
+    ata: "ata_bool_exp",
+    ata_aggregate: "ata_aggregate_bool_exp",
+    authId: "uuid_comparison_exp",
     authority: "String_comparison_exp",
+    client: "client_bool_exp",
     createdAt: "timestamptz_comparison_exp",
     id: "uuid_comparison_exp",
     name: "String_comparison_exp",
@@ -3246,18 +3373,17 @@ export const AllTypesProps: Record<string, any> = {
     pubKey: "String_comparison_exp",
     updatedAt: "timestamptz_comparison_exp",
   },
-  tokens_constraint: "enum" as const,
-  tokens_insert_input: {
+  token_constraint: "enum" as const,
+  token_insert_input: {
+    ata: "ata_arr_rel_insert_input",
+    authId: "uuid",
+    client: "client_obj_rel_insert_input",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
   },
-  tokens_on_conflict: {
-    constraint: "tokens_constraint",
-    update_columns: "tokens_update_column",
-    where: "tokens_bool_exp",
-  },
-  tokens_order_by: {
+  token_max_order_by: {
+    authId: "order_by",
     authority: "order_by",
     createdAt: "order_by",
     id: "order_by",
@@ -3267,28 +3393,63 @@ export const AllTypesProps: Record<string, any> = {
     pubKey: "order_by",
     updatedAt: "order_by",
   },
-  tokens_pk_columns_input: {
+  token_min_order_by: {
+    authId: "order_by",
+    authority: "order_by",
+    createdAt: "order_by",
+    id: "order_by",
+    name: "order_by",
+    network: "order_by",
+    privateKey: "order_by",
+    pubKey: "order_by",
+    updatedAt: "order_by",
+  },
+  token_obj_rel_insert_input: {
+    data: "token_insert_input",
+    on_conflict: "token_on_conflict",
+  },
+  token_on_conflict: {
+    constraint: "token_constraint",
+    update_columns: "token_update_column",
+    where: "token_bool_exp",
+  },
+  token_order_by: {
+    ata_aggregate: "ata_aggregate_order_by",
+    authId: "order_by",
+    authority: "order_by",
+    client: "client_order_by",
+    createdAt: "order_by",
+    id: "order_by",
+    name: "order_by",
+    network: "order_by",
+    privateKey: "order_by",
+    pubKey: "order_by",
+    updatedAt: "order_by",
+  },
+  token_pk_columns_input: {
     id: "uuid",
   },
-  tokens_select_column: "enum" as const,
-  tokens_set_input: {
+  token_select_column: "enum" as const,
+  token_set_input: {
+    authId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
   },
-  tokens_stream_cursor_input: {
-    initial_value: "tokens_stream_cursor_value_input",
+  token_stream_cursor_input: {
+    initial_value: "token_stream_cursor_value_input",
     ordering: "cursor_ordering",
   },
-  tokens_stream_cursor_value_input: {
+  token_stream_cursor_value_input: {
+    authId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     updatedAt: "timestamptz",
   },
-  tokens_update_column: "enum" as const,
-  tokens_updates: {
-    _set: "tokens_set_input",
-    where: "tokens_bool_exp",
+  token_update_column: "enum" as const,
+  token_updates: {
+    _set: "token_set_input",
+    where: "token_bool_exp",
   },
   transactions_aggregate_bool_exp: {
     avg: "transactions_aggregate_bool_exp_avg",
@@ -3902,6 +4063,8 @@ export const ReturnTypes: Record<string, any> = {
     returning: "analyze",
   },
   ata: {
+    client: "client",
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     is_minter: "Boolean",
@@ -3909,6 +4072,7 @@ export const ReturnTypes: Record<string, any> = {
     privateKey: "String",
     pubKey: "String",
     token: "String",
+    tokenByToken: "token",
     updatedAt: "timestamptz",
   },
   ata_aggregate: {
@@ -3921,6 +4085,7 @@ export const ReturnTypes: Record<string, any> = {
     min: "ata_min_fields",
   },
   ata_max_fields: {
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     owner: "String",
@@ -3930,6 +4095,7 @@ export const ReturnTypes: Record<string, any> = {
     updatedAt: "timestamptz",
   },
   ata_min_fields: {
+    clientId: "uuid",
     createdAt: "timestamptz",
     id: "uuid",
     owner: "String",
@@ -4149,6 +4315,8 @@ export const ReturnTypes: Record<string, any> = {
     address: "address",
     address_books: "address_book",
     address_books_aggregate: "address_book_aggregate",
+    ata: "ata",
+    ata_aggregate: "ata_aggregate",
     centralized_txns: "centralized_txn",
     centralized_txns_aggregate: "centralized_txn_aggregate",
     chats: "chat",
@@ -4170,6 +4338,8 @@ export const ReturnTypes: Record<string, any> = {
     notifications: "notification",
     notifications_aggregate: "notification_aggregate",
     password: "String",
+    tokens: "token",
+    tokens_aggregate: "token_aggregate",
     transactions: "transactions",
     transactions_aggregate: "transactions_aggregate",
     updatedAt: "timestamptz",
@@ -4469,8 +4639,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_notification_subscription_by_pk: "notification_subscription",
     delete_sol: "sol_mutation_response",
     delete_sol_by_pk: "sol",
-    delete_tokens: "tokens_mutation_response",
-    delete_tokens_by_pk: "tokens",
+    delete_token: "token_mutation_response",
+    delete_token_by_pk: "token",
     delete_transactions: "transactions_mutation_response",
     delete_transactions_by_pk: "transactions",
     delete_wallet: "wallet_mutation_response",
@@ -4512,8 +4682,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_notification_subscription_one: "notification_subscription",
     insert_sol: "sol_mutation_response",
     insert_sol_one: "sol",
-    insert_tokens: "tokens_mutation_response",
-    insert_tokens_one: "tokens",
+    insert_token: "token_mutation_response",
+    insert_token_one: "token",
     insert_transactions: "transactions_mutation_response",
     insert_transactions_one: "transactions",
     insert_wallet: "wallet_mutation_response",
@@ -4574,9 +4744,9 @@ export const ReturnTypes: Record<string, any> = {
     update_sol: "sol_mutation_response",
     update_sol_by_pk: "sol",
     update_sol_many: "sol_mutation_response",
-    update_tokens: "tokens_mutation_response",
-    update_tokens_by_pk: "tokens",
-    update_tokens_many: "tokens_mutation_response",
+    update_token: "token_mutation_response",
+    update_token_by_pk: "token",
+    update_token_many: "token_mutation_response",
     update_transactions: "transactions_mutation_response",
     update_transactions_by_pk: "transactions",
     update_transactions_many: "transactions_mutation_response",
@@ -4799,9 +4969,9 @@ export const ReturnTypes: Record<string, any> = {
     sol: "sol",
     sol_aggregate: "sol_aggregate",
     sol_by_pk: "sol",
-    tokens: "tokens",
-    tokens_aggregate: "tokens_aggregate",
-    tokens_by_pk: "tokens",
+    token: "token",
+    token_aggregate: "token_aggregate",
+    token_by_pk: "token",
     transactions: "transactions",
     transactions_aggregate: "transactions_aggregate",
     transactions_by_pk: "transactions",
@@ -4920,10 +5090,10 @@ export const ReturnTypes: Record<string, any> = {
     sol_aggregate: "sol_aggregate",
     sol_by_pk: "sol",
     sol_stream: "sol",
-    tokens: "tokens",
-    tokens_aggregate: "tokens_aggregate",
-    tokens_by_pk: "tokens",
-    tokens_stream: "tokens",
+    token: "token",
+    token_aggregate: "token_aggregate",
+    token_by_pk: "token",
+    token_stream: "token",
     transactions: "transactions",
     transactions_aggregate: "transactions_aggregate",
     transactions_by_pk: "transactions",
@@ -4935,8 +5105,12 @@ export const ReturnTypes: Record<string, any> = {
   },
   timestamp: `scalar.timestamp` as const,
   timestamptz: `scalar.timestamptz` as const,
-  tokens: {
+  token: {
+    ata: "ata",
+    ata_aggregate: "ata_aggregate",
+    authId: "uuid",
     authority: "String",
+    client: "client",
     createdAt: "timestamptz",
     id: "uuid",
     name: "String",
@@ -4945,16 +5119,17 @@ export const ReturnTypes: Record<string, any> = {
     pubKey: "String",
     updatedAt: "timestamptz",
   },
-  tokens_aggregate: {
-    aggregate: "tokens_aggregate_fields",
-    nodes: "tokens",
+  token_aggregate: {
+    aggregate: "token_aggregate_fields",
+    nodes: "token",
   },
-  tokens_aggregate_fields: {
+  token_aggregate_fields: {
     count: "Int",
-    max: "tokens_max_fields",
-    min: "tokens_min_fields",
+    max: "token_max_fields",
+    min: "token_min_fields",
   },
-  tokens_max_fields: {
+  token_max_fields: {
+    authId: "uuid",
     authority: "String",
     createdAt: "timestamptz",
     id: "uuid",
@@ -4964,7 +5139,8 @@ export const ReturnTypes: Record<string, any> = {
     pubKey: "String",
     updatedAt: "timestamptz",
   },
-  tokens_min_fields: {
+  token_min_fields: {
+    authId: "uuid",
     authority: "String",
     createdAt: "timestamptz",
     id: "uuid",
@@ -4974,9 +5150,9 @@ export const ReturnTypes: Record<string, any> = {
     pubKey: "String",
     updatedAt: "timestamptz",
   },
-  tokens_mutation_response: {
+  token_mutation_response: {
     affected_rows: "Int",
-    returning: "tokens",
+    returning: "token",
   },
   transactions: {
     amount: "float8",
