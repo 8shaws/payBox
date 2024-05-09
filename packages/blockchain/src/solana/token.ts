@@ -48,6 +48,7 @@ export class SolTokenOps {
     return { provider, program };
   }
 
+  /** Create and Sign a new token */
   async createToken(minterPrivate: string): Promise<{
     mint: string;
     ata: string;
@@ -102,6 +103,7 @@ export class SolTokenOps {
     }
   }
 
+  /** Mint tokens to an associated token account */
   async mintToken(
     privateKey: string,
     mint: string,
@@ -142,6 +144,7 @@ export class SolTokenOps {
     }
   }
 
+  /** Generates an associated token account for a given mint */
   async genAta(mint: string, privateKey: string): Promise<string> {
     const keyPair = Keypair.fromSecretKey(new Uint8Array(decode(privateKey)));
     let mintKP = new anchor.web3.PublicKey(mint);
@@ -160,6 +163,35 @@ export class SolTokenOps {
     try {
       await sendAndConfirmTransaction(this.connection, tx, [keyPair]);
       return Promise.resolve(ata.toString());
+    } catch (e) {
+      console.log(e);
+      return Promise.reject(e);
+    }
+  }
+
+  /** Transfers token from one Ata to another ata */
+  async transferToken(
+    privateKey: string,
+    fromAta: string,
+    toAta: string,
+    amount: number,
+  ): Promise<string> {
+    let { program, provider } = this.initProgram(privateKey);
+
+    let authAtaKP = new anchor.web3.PublicKey(fromAta);
+    let toAtaKP = new anchor.web3.PublicKey(toAta);
+
+    try {
+      let txn = await program.methods
+        .transferToken(new BN(amount))
+        .accounts({
+          tokenProgram: TOKEN_PROGRAM_ID,
+          from: fromAta,
+          fromAuthority: provider.wallet.publicKey,
+          to: toAta,
+        })
+        .rpc();
+      return Promise.resolve(txn);
     } catch (e) {
       console.log(e);
       return Promise.reject(e);
