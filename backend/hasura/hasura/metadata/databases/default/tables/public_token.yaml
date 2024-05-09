@@ -1,5 +1,5 @@
 table:
-  name: ata
+  name: token
   schema: public
 configuration:
   column_config:
@@ -11,7 +11,11 @@ configuration:
     created_at: createdAt
     updated_at: updatedAt
   custom_root_fields: {}
-object_relationships:
-  - name: tokenByToken
+array_relationships:
+  - name: ata
     using:
-      foreign_key_constraint_on: token
+      foreign_key_constraint_on:
+        column: token
+        table:
+          name: ata
+          schema: public
