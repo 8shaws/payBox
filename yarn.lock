@@ -1731,7 +1731,7 @@
   resolved "https://registry.yarnpkg.com/@cloudflare/workerd-windows-64/-/workerd-windows-64-1.20240223.1.tgz#c5148ea70ddfe48545cbadff5e1a5394fab8eecc"
   integrity sha512-eNP5sfaP6WL07DaoigYou5ASPF7jHsFiNzzD2vGOI7yFd5sPlb7sJ4SpIy+BCX0LdqFnjmlUo5Xr+/I6qJ2Nww==
 
-"@cloudflare/workers-types@^4.20240208.0", "@cloudflare/workers-types@^4.20240222.0":
+"@cloudflare/workers-types@^4.20240222.0":
   version "4.20240502.0"
   resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20240502.0.tgz#261ac668a5283e20e7be06d0e2ba98cf47a7d788"
   integrity sha512-OB1jIyPOzyOcuZFHWhsQnkRLN6u8+jmU9X3T4KZlGgn3Ivw8pBiswhLOp+yFeChR3Y4/5+V0hPFRko5SReordg==
@@ -15573,13 +15573,13 @@ next-auth@^4.24.5:
     uuid "^8.3.2"
 
 next-intl@^3.11.3:
-  version "3.12.2"
-  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-3.12.2.tgz#f58332c7735f1445bfc2dfb34bb746aac707c913"
-  integrity sha512-KsbvKs00VcL1EIMIaRln129lR7xdpB0Lng1+8HR1MYywtRo+r4Pi7HVUZJnnO364jsZeptekYejJd0NBo3W8Fw==
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-3.13.0.tgz#bd0a5072d8f14760e7c4a3a96ff0c41726487576"
+  integrity sha512-qCfjOkdUtSPWRnyAkNbZWJREzBGxSHGoqbfV1F7m+msztXTly26USwJeKLTCvXIi6HP38IOC1Zegg7sYJoD/lA==
   dependencies:
     "@formatjs/intl-localematcher" "^0.2.32"
     negotiator "^0.6.3"
-    use-intl "^3.12.2"
+    use-intl "^3.13.0"
 
 next-themes@^0.3.0:
   version "0.3.0"
@@ -20209,10 +20209,10 @@ use-callback-ref@^1.3.0:
   dependencies:
     tslib "^2.0.0"
 
-use-intl@^3.12.2:
-  version "3.12.2"
-  resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-3.12.2.tgz#4f0358008f980c19ef51ded821c4b4fa979b0c05"
-  integrity sha512-pX+FQVNLoorie/AV9Y4EgeeNZG8ZLJIQu1wQALTvKo3TCQhlYikO+9xbQpgFf0bjXawQ+JUdcu0BWAhq06eMYg==
+use-intl@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-3.13.0.tgz#2a65418a306b49f64564fb4c45557bc3f0f30534"
+  integrity sha512-+Oo7Q5+Br3/ReqC8fMomK/PHGx8kZ/V+E1mAMIEL7EdQcuS/yIcE4l8VM5BQNesucM/40qmcKDNyyd70VBXFvg==
   dependencies:
     "@formatjs/ecma402-abstract" "^1.11.4"
     intl-messageformat "^10.5.11"
@@ -20887,7 +20887,7 @@ workerpool@6.2.1:
   resolved "https://registry.npmjs.org/workerpool/-/workerpool-6.2.1.tgz"
   integrity sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==
 
-wrangler@^3.25.0, wrangler@^3.30.1:
+wrangler@^3.30.1:
   version "3.30.1"
   resolved "https://registry.npmjs.org/wrangler/-/wrangler-3.30.1.tgz"
   integrity sha512-cT6Ezx8h2v5QiI0HWhnHVy32ng4omdMVdhaMQLuMnyMIHmyDoRg7pmrbhtZfj0663gExLdVtE4ucK//yncVTwg==
