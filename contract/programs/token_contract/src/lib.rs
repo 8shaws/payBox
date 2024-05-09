@@ -4,7 +4,7 @@ use anchor_lang::prelude::*;
 #[cfg(not(feature = "no-entrypoint"))]
 use solana_security_txt::security_txt;
 
-declare_id!("DTCrGLLNnbFZWRgwzz5WJU92q9CSkwTDbP2KWVcyGNnM");
+declare_id!("7RjRQh8mzuoZL9KtsE8a5dzciDZRxHkGxnxWMeKhxTk4");
 
 #[cfg(not(feature = "no-entrypoint"))]
 security_txt! {
@@ -32,6 +32,4 @@ pub mod token_contract {
     pub fn transfer_token(ctx: Context<TransferToken>, amount: u64) -> Result<()> {
         instructions::transfer::transfer_token(ctx, amount)
     }
-
 }
-

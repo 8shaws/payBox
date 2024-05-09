@@ -7,7 +7,9 @@
   "license": "MIT",
   "private": "true",
   "scripts": {
-    "test": "anchor test"
+    "test": "anchor test",
+    "build": "anchor build && cp -r ./target/idl ../packages/blockchain/src/idl/idl",
+    "deploy": "anchor deploy"
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.30.0",

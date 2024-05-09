@@ -3,8 +3,8 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
-token_contract = "DTCrGLLNnbFZWRgwzz5WJU92q9CSkwTDbP2KWVcyGNnM"
-transfers = "84REBeUeV7NN1WhSo17fW7r72QT5Fz13dbeTvm7iugox"
+token_contract = "7RjRQh8mzuoZL9KtsE8a5dzciDZRxHkGxnxWMeKhxTk4"
+transfers = "7HVe5RuuEKYQofGAhKxJCN59DKN1A9Na7baanm2hmyhE"
 
 [registry]
 url = "https://api.apr.dev"
