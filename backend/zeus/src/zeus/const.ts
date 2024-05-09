@@ -402,6 +402,68 @@ export const AllTypesProps: Record<string, any> = {
     _set: "analyze_set_input",
     where: "analyze_bool_exp",
   },
+  ata_aggregate_fields: {
+    count: {
+      columns: "ata_select_column",
+    },
+  },
+  ata_bool_exp: {
+    _and: "ata_bool_exp",
+    _not: "ata_bool_exp",
+    _or: "ata_bool_exp",
+    createdAt: "timestamptz_comparison_exp",
+    id: "uuid_comparison_exp",
+    is_minter: "Boolean_comparison_exp",
+    owner: "String_comparison_exp",
+    privateKey: "String_comparison_exp",
+    pubKey: "String_comparison_exp",
+    token: "String_comparison_exp",
+    updatedAt: "timestamptz_comparison_exp",
+  },
+  ata_constraint: "enum" as const,
+  ata_insert_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  ata_on_conflict: {
+    constraint: "ata_constraint",
+    update_columns: "ata_update_column",
+    where: "ata_bool_exp",
+  },
+  ata_order_by: {
+    createdAt: "order_by",
+    id: "order_by",
+    is_minter: "order_by",
+    owner: "order_by",
+    privateKey: "order_by",
+    pubKey: "order_by",
+    token: "order_by",
+    updatedAt: "order_by",
+  },
+  ata_pk_columns_input: {
+    id: "uuid",
+  },
+  ata_select_column: "enum" as const,
+  ata_set_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  ata_stream_cursor_input: {
+    initial_value: "ata_stream_cursor_value_input",
+    ordering: "cursor_ordering",
+  },
+  ata_stream_cursor_value_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  ata_update_column: "enum" as const,
+  ata_updates: {
+    _set: "ata_set_input",
+    where: "ata_bool_exp",
+  },
   bigint: `scalar.bigint` as const,
   bigint_comparison_exp: {
     _eq: "bigint",
@@ -1505,6 +1567,12 @@ export const AllTypesProps: Record<string, any> = {
       id: "uuid",
       walletId: "uuid",
     },
+    delete_ata: {
+      where: "ata_bool_exp",
+    },
+    delete_ata_by_pk: {
+      id: "uuid",
+    },
     delete_bitcoin: {
       where: "bitcoin_bool_exp",
     },
@@ -1584,6 +1652,12 @@ export const AllTypesProps: Record<string, any> = {
     delete_sol_by_pk: {
       id: "uuid",
     },
+    delete_tokens: {
+      where: "tokens_bool_exp",
+    },
+    delete_tokens_by_pk: {
+      id: "uuid",
+    },
     delete_transactions: {
       where: "transactions_bool_exp",
     },
@@ -1627,6 +1701,14 @@ export const AllTypesProps: Record<string, any> = {
     insert_analyze_one: {
       object: "analyze_insert_input",
       on_conflict: "analyze_on_conflict",
+    },
+    insert_ata: {
+      objects: "ata_insert_input",
+      on_conflict: "ata_on_conflict",
+    },
+    insert_ata_one: {
+      object: "ata_insert_input",
+      on_conflict: "ata_on_conflict",
     },
     insert_bitcoin: {
       objects: "bitcoin_insert_input",
@@ -1732,6 +1814,14 @@ export const AllTypesProps: Record<string, any> = {
       object: "sol_insert_input",
       on_conflict: "sol_on_conflict",
     },
+    insert_tokens: {
+      objects: "tokens_insert_input",
+      on_conflict: "tokens_on_conflict",
+    },
+    insert_tokens_one: {
+      object: "tokens_insert_input",
+      on_conflict: "tokens_on_conflict",
+    },
     insert_transactions: {
       objects: "transactions_insert_input",
       on_conflict: "transactions_on_conflict",
@@ -1791,6 +1881,17 @@ export const AllTypesProps: Record<string, any> = {
     },
     update_analyze_many: {
       updates: "analyze_updates",
+    },
+    update_ata: {
+      _set: "ata_set_input",
+      where: "ata_bool_exp",
+    },
+    update_ata_by_pk: {
+      _set: "ata_set_input",
+      pk_columns: "ata_pk_columns_input",
+    },
+    update_ata_many: {
+      updates: "ata_updates",
     },
     update_bitcoin: {
       _set: "bitcoin_set_input",
@@ -1938,6 +2039,17 @@ export const AllTypesProps: Record<string, any> = {
     },
     update_sol_many: {
       updates: "sol_updates",
+    },
+    update_tokens: {
+      _set: "tokens_set_input",
+      where: "tokens_bool_exp",
+    },
+    update_tokens_by_pk: {
+      _set: "tokens_set_input",
+      pk_columns: "tokens_pk_columns_input",
+    },
+    update_tokens_many: {
+      updates: "tokens_updates",
     },
     update_transactions: {
       _inc: "transactions_inc_input",
@@ -2442,6 +2554,19 @@ export const AllTypesProps: Record<string, any> = {
       id: "uuid",
       walletId: "uuid",
     },
+    ata: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
+    },
+    ata_aggregate: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
+    },
+    ata_by_pk: {
+      id: "uuid",
+    },
     bitcoin: {
       distinct_on: "bitcoin_select_column",
       order_by: "bitcoin_order_by",
@@ -2612,6 +2737,19 @@ export const AllTypesProps: Record<string, any> = {
     sol_by_pk: {
       id: "uuid",
     },
+    tokens: {
+      distinct_on: "tokens_select_column",
+      order_by: "tokens_order_by",
+      where: "tokens_bool_exp",
+    },
+    tokens_aggregate: {
+      distinct_on: "tokens_select_column",
+      order_by: "tokens_order_by",
+      where: "tokens_bool_exp",
+    },
+    tokens_by_pk: {
+      id: "uuid",
+    },
     transactions: {
       distinct_on: "transactions_select_column",
       order_by: "transactions_order_by",
@@ -2776,6 +2914,23 @@ export const AllTypesProps: Record<string, any> = {
     analyze_stream: {
       cursor: "analyze_stream_cursor_input",
       where: "analyze_bool_exp",
+    },
+    ata: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
+    },
+    ata_aggregate: {
+      distinct_on: "ata_select_column",
+      order_by: "ata_order_by",
+      where: "ata_bool_exp",
+    },
+    ata_by_pk: {
+      id: "uuid",
+    },
+    ata_stream: {
+      cursor: "ata_stream_cursor_input",
+      where: "ata_bool_exp",
     },
     bitcoin: {
       distinct_on: "bitcoin_select_column",
@@ -2999,6 +3154,23 @@ export const AllTypesProps: Record<string, any> = {
       cursor: "sol_stream_cursor_input",
       where: "sol_bool_exp",
     },
+    tokens: {
+      distinct_on: "tokens_select_column",
+      order_by: "tokens_order_by",
+      where: "tokens_bool_exp",
+    },
+    tokens_aggregate: {
+      distinct_on: "tokens_select_column",
+      order_by: "tokens_order_by",
+      where: "tokens_bool_exp",
+    },
+    tokens_by_pk: {
+      id: "uuid",
+    },
+    tokens_stream: {
+      cursor: "tokens_stream_cursor_input",
+      where: "tokens_bool_exp",
+    },
     transactions: {
       distinct_on: "transactions_select_column",
       order_by: "transactions_order_by",
@@ -3055,6 +3227,68 @@ export const AllTypesProps: Record<string, any> = {
     _lte: "timestamptz",
     _neq: "timestamptz",
     _nin: "timestamptz",
+  },
+  tokens_aggregate_fields: {
+    count: {
+      columns: "tokens_select_column",
+    },
+  },
+  tokens_bool_exp: {
+    _and: "tokens_bool_exp",
+    _not: "tokens_bool_exp",
+    _or: "tokens_bool_exp",
+    authority: "String_comparison_exp",
+    createdAt: "timestamptz_comparison_exp",
+    id: "uuid_comparison_exp",
+    name: "String_comparison_exp",
+    network: "String_comparison_exp",
+    privateKey: "String_comparison_exp",
+    pubKey: "String_comparison_exp",
+    updatedAt: "timestamptz_comparison_exp",
+  },
+  tokens_constraint: "enum" as const,
+  tokens_insert_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  tokens_on_conflict: {
+    constraint: "tokens_constraint",
+    update_columns: "tokens_update_column",
+    where: "tokens_bool_exp",
+  },
+  tokens_order_by: {
+    authority: "order_by",
+    createdAt: "order_by",
+    id: "order_by",
+    name: "order_by",
+    network: "order_by",
+    privateKey: "order_by",
+    pubKey: "order_by",
+    updatedAt: "order_by",
+  },
+  tokens_pk_columns_input: {
+    id: "uuid",
+  },
+  tokens_select_column: "enum" as const,
+  tokens_set_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  tokens_stream_cursor_input: {
+    initial_value: "tokens_stream_cursor_value_input",
+    ordering: "cursor_ordering",
+  },
+  tokens_stream_cursor_value_input: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    updatedAt: "timestamptz",
+  },
+  tokens_update_column: "enum" as const,
+  tokens_updates: {
+    _set: "tokens_set_input",
+    where: "tokens_bool_exp",
   },
   transactions_aggregate_bool_exp: {
     avg: "transactions_aggregate_bool_exp_avg",
@@ -3667,6 +3901,47 @@ export const ReturnTypes: Record<string, any> = {
     affected_rows: "Int",
     returning: "analyze",
   },
+  ata: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    is_minter: "Boolean",
+    owner: "String",
+    privateKey: "String",
+    pubKey: "String",
+    token: "String",
+    updatedAt: "timestamptz",
+  },
+  ata_aggregate: {
+    aggregate: "ata_aggregate_fields",
+    nodes: "ata",
+  },
+  ata_aggregate_fields: {
+    count: "Int",
+    max: "ata_max_fields",
+    min: "ata_min_fields",
+  },
+  ata_max_fields: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    owner: "String",
+    privateKey: "String",
+    pubKey: "String",
+    token: "String",
+    updatedAt: "timestamptz",
+  },
+  ata_min_fields: {
+    createdAt: "timestamptz",
+    id: "uuid",
+    owner: "String",
+    privateKey: "String",
+    pubKey: "String",
+    token: "String",
+    updatedAt: "timestamptz",
+  },
+  ata_mutation_response: {
+    affected_rows: "Int",
+    returning: "ata",
+  },
   bigint: `scalar.bigint` as const,
   bitcoin: {
     account: "account",
@@ -4165,6 +4440,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_address_by_pk: "address",
     delete_analyze: "analyze_mutation_response",
     delete_analyze_by_pk: "analyze",
+    delete_ata: "ata_mutation_response",
+    delete_ata_by_pk: "ata",
     delete_bitcoin: "bitcoin_mutation_response",
     delete_bitcoin_by_pk: "bitcoin",
     delete_centralized_txn: "centralized_txn_mutation_response",
@@ -4192,6 +4469,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_notification_subscription_by_pk: "notification_subscription",
     delete_sol: "sol_mutation_response",
     delete_sol_by_pk: "sol",
+    delete_tokens: "tokens_mutation_response",
+    delete_tokens_by_pk: "tokens",
     delete_transactions: "transactions_mutation_response",
     delete_transactions_by_pk: "transactions",
     delete_wallet: "wallet_mutation_response",
@@ -4204,6 +4483,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_address_one: "address",
     insert_analyze: "analyze_mutation_response",
     insert_analyze_one: "analyze",
+    insert_ata: "ata_mutation_response",
+    insert_ata_one: "ata",
     insert_bitcoin: "bitcoin_mutation_response",
     insert_bitcoin_one: "bitcoin",
     insert_centralized_txn: "centralized_txn_mutation_response",
@@ -4231,6 +4512,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_notification_subscription_one: "notification_subscription",
     insert_sol: "sol_mutation_response",
     insert_sol_one: "sol",
+    insert_tokens: "tokens_mutation_response",
+    insert_tokens_one: "tokens",
     insert_transactions: "transactions_mutation_response",
     insert_transactions_one: "transactions",
     insert_wallet: "wallet_mutation_response",
@@ -4247,6 +4530,9 @@ export const ReturnTypes: Record<string, any> = {
     update_analyze: "analyze_mutation_response",
     update_analyze_by_pk: "analyze",
     update_analyze_many: "analyze_mutation_response",
+    update_ata: "ata_mutation_response",
+    update_ata_by_pk: "ata",
+    update_ata_many: "ata_mutation_response",
     update_bitcoin: "bitcoin_mutation_response",
     update_bitcoin_by_pk: "bitcoin",
     update_bitcoin_many: "bitcoin_mutation_response",
@@ -4288,6 +4574,9 @@ export const ReturnTypes: Record<string, any> = {
     update_sol: "sol_mutation_response",
     update_sol_by_pk: "sol",
     update_sol_many: "sol_mutation_response",
+    update_tokens: "tokens_mutation_response",
+    update_tokens_by_pk: "tokens",
+    update_tokens_many: "tokens_mutation_response",
     update_transactions: "transactions_mutation_response",
     update_transactions_by_pk: "transactions",
     update_transactions_many: "transactions_mutation_response",
@@ -4468,6 +4757,9 @@ export const ReturnTypes: Record<string, any> = {
     analyze: "analyze",
     analyze_aggregate: "analyze_aggregate",
     analyze_by_pk: "analyze",
+    ata: "ata",
+    ata_aggregate: "ata_aggregate",
+    ata_by_pk: "ata",
     bitcoin: "bitcoin",
     bitcoin_aggregate: "bitcoin_aggregate",
     bitcoin_by_pk: "bitcoin",
@@ -4507,6 +4799,9 @@ export const ReturnTypes: Record<string, any> = {
     sol: "sol",
     sol_aggregate: "sol_aggregate",
     sol_by_pk: "sol",
+    tokens: "tokens",
+    tokens_aggregate: "tokens_aggregate",
+    tokens_by_pk: "tokens",
     transactions: "transactions",
     transactions_aggregate: "transactions_aggregate",
     transactions_by_pk: "transactions",
@@ -4569,6 +4864,10 @@ export const ReturnTypes: Record<string, any> = {
     analyze_aggregate: "analyze_aggregate",
     analyze_by_pk: "analyze",
     analyze_stream: "analyze",
+    ata: "ata",
+    ata_aggregate: "ata_aggregate",
+    ata_by_pk: "ata",
+    ata_stream: "ata",
     bitcoin: "bitcoin",
     bitcoin_aggregate: "bitcoin_aggregate",
     bitcoin_by_pk: "bitcoin",
@@ -4621,6 +4920,10 @@ export const ReturnTypes: Record<string, any> = {
     sol_aggregate: "sol_aggregate",
     sol_by_pk: "sol",
     sol_stream: "sol",
+    tokens: "tokens",
+    tokens_aggregate: "tokens_aggregate",
+    tokens_by_pk: "tokens",
+    tokens_stream: "tokens",
     transactions: "transactions",
     transactions_aggregate: "transactions_aggregate",
     transactions_by_pk: "transactions",
@@ -4632,6 +4935,49 @@ export const ReturnTypes: Record<string, any> = {
   },
   timestamp: `scalar.timestamp` as const,
   timestamptz: `scalar.timestamptz` as const,
+  tokens: {
+    authority: "String",
+    createdAt: "timestamptz",
+    id: "uuid",
+    name: "String",
+    network: "String",
+    privateKey: "String",
+    pubKey: "String",
+    updatedAt: "timestamptz",
+  },
+  tokens_aggregate: {
+    aggregate: "tokens_aggregate_fields",
+    nodes: "tokens",
+  },
+  tokens_aggregate_fields: {
+    count: "Int",
+    max: "tokens_max_fields",
+    min: "tokens_min_fields",
+  },
+  tokens_max_fields: {
+    authority: "String",
+    createdAt: "timestamptz",
+    id: "uuid",
+    name: "String",
+    network: "String",
+    privateKey: "String",
+    pubKey: "String",
+    updatedAt: "timestamptz",
+  },
+  tokens_min_fields: {
+    authority: "String",
+    createdAt: "timestamptz",
+    id: "uuid",
+    name: "String",
+    network: "String",
+    privateKey: "String",
+    pubKey: "String",
+    updatedAt: "timestamptz",
+  },
+  tokens_mutation_response: {
+    affected_rows: "Int",
+    returning: "tokens",
+  },
   transactions: {
     amount: "float8",
     blockHash: "String",
