@@ -1,6 +1,6 @@
 # PayBox and BlockChain Indexer
 
-![Preview](./assets/preview.png)
+![Preview](./statics/preview.png)
 
 This project indexes cryto address for their transactions and lets a device to speak up like "Received 1 sol"
 
