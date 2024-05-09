@@ -48,6 +48,13 @@ array_relationships:
         table:
           name: address_book
           schema: public
+  - name: ata
+    using:
+      foreign_key_constraint_on:
+        column: clientId
+        table:
+          name: ata
+          schema: public
   - name: centralized_txns
     using:
       foreign_key_constraint_on:
@@ -89,6 +96,13 @@ array_relationships:
         column: clientId
         table:
           name: notification
+          schema: public
+  - name: tokens
+    using:
+      foreign_key_constraint_on:
+        column: authId
+        table:
+          name: token
           schema: public
   - name: transactions
     using:

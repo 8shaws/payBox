@@ -183,4 +183,8 @@ export class SolOps {
       return null;
     }
   }
+
+  getKeyPair(privateKey: string) {
+    return Keypair.fromSecretKey(new Uint8Array(base58.decode(privateKey)));
+  }
 }

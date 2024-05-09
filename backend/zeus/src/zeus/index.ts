@@ -2521,6 +2521,445 @@ export type ValueTypes = {
     /** filter the rows which have to be updated */
     where: ValueTypes["analyze_bool_exp"] | Variable<any, string>;
   };
+  /** associated token account */
+  ["ata"]: AliasType<{
+    /** An object relationship */
+    client?: ValueTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    is_minter?: boolean | `@${string}`;
+    owner?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    /** An object relationship */
+    tokenByToken?: ValueTypes["token"];
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "ata" */
+  ["ata_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["ata_aggregate_fields"];
+    nodes?: ValueTypes["ata"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["ata_aggregate_bool_exp"]: {
+    bool_and?:
+      | ValueTypes["ata_aggregate_bool_exp_bool_and"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    bool_or?:
+      | ValueTypes["ata_aggregate_bool_exp_bool_or"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    count?:
+      | ValueTypes["ata_aggregate_bool_exp_count"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  ["ata_aggregate_bool_exp_bool_and"]: {
+    arguments:
+      | ValueTypes["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["ata_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Boolean_comparison_exp"] | Variable<any, string>;
+  };
+  ["ata_aggregate_bool_exp_bool_or"]: {
+    arguments:
+      | ValueTypes["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["ata_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Boolean_comparison_exp"] | Variable<any, string>;
+  };
+  ["ata_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ValueTypes["ata_select_column"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["ata_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Int_comparison_exp"] | Variable<any, string>;
+  };
+  /** aggregate fields of "ata" */
+  ["ata_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["ata_max_fields"];
+    min?: ValueTypes["ata_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "ata" */
+  ["ata_aggregate_order_by"]: {
+    count?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    max?:
+      | ValueTypes["ata_max_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["ata_min_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** input type for inserting array relation for remote table "ata" */
+  ["ata_arr_rel_insert_input"]: {
+    data: Array<ValueTypes["ata_insert_input"]> | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["ata_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Boolean expression to filter rows from the table "ata". All fields are combined with a logical 'AND'. */
+  ["ata_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["ata_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["ata_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["ata_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    client?:
+      | ValueTypes["client_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    is_minter?:
+      | ValueTypes["Boolean_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    owner?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tokenByToken?:
+      | ValueTypes["token_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "ata" */
+  ["ata_constraint"]: ata_constraint;
+  /** input type for inserting data into table "ata" */
+  ["ata_insert_input"]: {
+    client?:
+      | ValueTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    is_minter?: boolean | undefined | null | Variable<any, string>;
+    owner?: string | undefined | null | Variable<any, string>;
+    privateKey?: string | undefined | null | Variable<any, string>;
+    pubKey?: string | undefined | null | Variable<any, string>;
+    token?: string | undefined | null | Variable<any, string>;
+    tokenByToken?:
+      | ValueTypes["token_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["ata_max_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    owner?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "ata" */
+  ["ata_max_order_by"]: {
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    owner?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate min on columns */
+  ["ata_min_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    owner?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "ata" */
+  ["ata_min_order_by"]: {
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    owner?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** response of any mutation on the table "ata" */
+  ["ata_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["ata"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "ata" */
+  ["ata_on_conflict"]: {
+    constraint: ValueTypes["ata_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["ata_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["ata_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "ata". */
+  ["ata_order_by"]: {
+    client?:
+      | ValueTypes["client_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    is_minter?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    owner?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    tokenByToken?:
+      | ValueTypes["token_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: ata */
+  ["ata_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "ata" */
+  ["ata_select_column"]: ata_select_column;
+  /** select "ata_aggregate_bool_exp_bool_and_arguments_columns" columns of table "ata" */
+  ["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "ata_aggregate_bool_exp_bool_or_arguments_columns" columns of table "ata" */
+  ["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns;
+  /** input type for updating data in table "ata" */
+  ["ata_set_input"]: {
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    is_minter?: boolean | undefined | null | Variable<any, string>;
+    owner?: string | undefined | null | Variable<any, string>;
+    privateKey?: string | undefined | null | Variable<any, string>;
+    pubKey?: string | undefined | null | Variable<any, string>;
+    token?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "ata" */
+  ["ata_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["ata_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["ata_stream_cursor_value_input"]: {
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    is_minter?: boolean | undefined | null | Variable<any, string>;
+    owner?: string | undefined | null | Variable<any, string>;
+    privateKey?: string | undefined | null | Variable<any, string>;
+    pubKey?: string | undefined | null | Variable<any, string>;
+    token?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "ata" */
+  ["ata_update_column"]: ata_update_column;
+  ["ata_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["ata_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["ata_bool_exp"] | Variable<any, string>;
+  };
   ["bigint"]: unknown;
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
   ["bigint_comparison_exp"]: {
@@ -4451,6 +4890,74 @@ export type ValueTypes = {
       },
       ValueTypes["address_book_aggregate"],
     ];
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata_aggregate"],
+    ];
     centralized_txns?: [
       {
         /** distinct select on columns */
@@ -4870,6 +5377,74 @@ export type ValueTypes = {
       ValueTypes["notification_aggregate"],
     ];
     password?: boolean | `@${string}`;
+    tokens?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
+    tokens_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_aggregate"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -5089,6 +5664,12 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    ata?: ValueTypes["ata_bool_exp"] | undefined | null | Variable<any, string>;
+    ata_aggregate?:
+      | ValueTypes["ata_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     centralized_txns?:
       | ValueTypes["centralized_txn_bool_exp"]
       | undefined
@@ -5194,6 +5775,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    tokens?:
+      | ValueTypes["token_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tokens_aggregate?:
+      | ValueTypes["token_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     transactions?:
       | ValueTypes["transactions_bool_exp"]
       | undefined
@@ -5253,6 +5844,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    ata?:
+      | ValueTypes["ata_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     centralized_txns?:
       | ValueTypes["centralized_txn_arr_rel_insert_input"]
       | undefined
@@ -5304,6 +5900,11 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     password?: string | undefined | null | Variable<any, string>;
+    tokens?:
+      | ValueTypes["token_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     transactions?:
       | ValueTypes["transactions_arr_rel_insert_input"]
       | undefined
@@ -5395,6 +5996,11 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    ata_aggregate?:
+      | ValueTypes["ata_aggregate_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     centralized_txns_aggregate?:
       | ValueTypes["centralized_txn_aggregate_order_by"]
       | undefined
@@ -5455,6 +6061,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     password?:
       | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tokens_aggregate?:
+      | ValueTypes["token_aggregate_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -7084,6 +7695,17 @@ export type ValueTypes = {
       },
       ValueTypes["analyze"],
     ];
+    delete_ata?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["ata_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["ata_mutation_response"],
+    ];
+    delete_ata_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["ata"],
+    ];
     delete_bitcoin?: [
       {
         /** filter the rows which have to be deleted */
@@ -7236,6 +7858,20 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["sol"],
     ];
+    delete_token?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["token_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["token_mutation_response"],
+    ];
+    delete_token_by_pk?: [
+      {
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        pubKey: string | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
     delete_transactions?: [
       {
         /** filter the rows which have to be deleted */
@@ -7369,6 +8005,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["analyze"],
+    ];
+    insert_ata?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["ata_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["ata_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata_mutation_response"],
+    ];
+    insert_ata_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["ata_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["ata_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata"],
     ];
     insert_bitcoin?: [
       {
@@ -7734,6 +8398,34 @@ export type ValueTypes = {
       },
       ValueTypes["sol"],
     ];
+    insert_token?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["token_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["token_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_mutation_response"],
+    ];
+    insert_token_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["token_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["token_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
     insert_transactions?: [
       {
         /** the rows to be inserted */
@@ -7935,6 +8627,40 @@ export type ValueTypes = {
         updates: Array<ValueTypes["analyze_updates"]> | Variable<any, string>;
       },
       ValueTypes["analyze_mutation_response"],
+    ];
+    update_ata?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["ata_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["ata_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["ata_mutation_response"],
+    ];
+    update_ata_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["ata_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns: ValueTypes["ata_pk_columns_input"] | Variable<any, string>;
+      },
+      ValueTypes["ata"],
+    ];
+    update_ata_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ValueTypes["ata_updates"]> | Variable<any, string>;
+      },
+      ValueTypes["ata_mutation_response"],
     ];
     update_bitcoin?: [
       {
@@ -8447,6 +9173,42 @@ export type ValueTypes = {
         updates: Array<ValueTypes["sol_updates"]> | Variable<any, string>;
       },
       ValueTypes["sol_mutation_response"],
+    ];
+    update_token?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["token_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["token_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["token_mutation_response"],
+    ];
+    update_token_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ValueTypes["token_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["token_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
+    update_token_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ValueTypes["token_updates"]> | Variable<any, string>;
+      },
+      ValueTypes["token_mutation_response"],
     ];
     update_transactions?: [
       {
@@ -10374,6 +11136,78 @@ export type ValueTypes = {
       },
       ValueTypes["analyze"],
     ];
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata_aggregate"],
+    ];
+    ata_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["ata"],
+    ];
     bitcoin?: [
       {
         /** distinct select on columns */
@@ -11317,6 +12151,81 @@ export type ValueTypes = {
       { id: ValueTypes["uuid"] | Variable<any, string> },
       ValueTypes["sol"],
     ];
+    token?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
+    token_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_aggregate"],
+    ];
+    token_by_pk?: [
+      {
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        pubKey: string | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -12097,6 +13006,98 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["analyze"],
+    ];
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata_aggregate"],
+    ];
+    ata_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["ata"],
+    ];
+    ata_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<ValueTypes["ata_stream_cursor_input"] | undefined | null>
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata"],
     ];
     bitcoin?: [
       {
@@ -13323,6 +14324,101 @@ export type ValueTypes = {
       },
       ValueTypes["sol"],
     ];
+    token?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
+    token_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_aggregate"],
+    ];
+    token_by_pk?: [
+      {
+        id: ValueTypes["uuid"] | Variable<any, string>;
+        pubKey: string | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
+    token_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<ValueTypes["token_stream_cursor_input"] | undefined | null>
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -13552,6 +14648,485 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+  };
+  /** table storing all the mint token infos */
+  ["token"]: AliasType<{
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["ata_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["ata_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["ata_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["ata_aggregate"],
+    ];
+    authId?: boolean | `@${string}`;
+    authority?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ValueTypes["client"];
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "token" */
+  ["token_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["token_aggregate_fields"];
+    nodes?: ValueTypes["token"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["token_aggregate_bool_exp"]: {
+    count?:
+      | ValueTypes["token_aggregate_bool_exp_count"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  ["token_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ValueTypes["token_select_column"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Int_comparison_exp"] | Variable<any, string>;
+  };
+  /** aggregate fields of "token" */
+  ["token_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["token_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["token_max_fields"];
+    min?: ValueTypes["token_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "token" */
+  ["token_aggregate_order_by"]: {
+    count?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    max?:
+      | ValueTypes["token_max_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["token_min_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** input type for inserting array relation for remote table "token" */
+  ["token_arr_rel_insert_input"]: {
+    data: Array<ValueTypes["token_insert_input"]> | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["token_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Boolean expression to filter rows from the table "token". All fields are combined with a logical 'AND'. */
+  ["token_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["token_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["token_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["token_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    ata?: ValueTypes["ata_bool_exp"] | undefined | null | Variable<any, string>;
+    ata_aggregate?:
+      | ValueTypes["ata_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    authId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    authority?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client?:
+      | ValueTypes["client_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    name?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    network?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "token" */
+  ["token_constraint"]: token_constraint;
+  /** input type for inserting data into table "token" */
+  ["token_insert_input"]: {
+    ata?:
+      | ValueTypes["ata_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    authId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    authority?: string | undefined | null | Variable<any, string>;
+    client?:
+      | ValueTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    name?: string | undefined | null | Variable<any, string>;
+    network?: string | undefined | null | Variable<any, string>;
+    privateKey?: string | undefined | null | Variable<any, string>;
+    pubKey?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["token_max_fields"]: AliasType<{
+    authId?: boolean | `@${string}`;
+    authority?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "token" */
+  ["token_max_order_by"]: {
+    authId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    authority?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    network?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate min on columns */
+  ["token_min_fields"]: AliasType<{
+    authId?: boolean | `@${string}`;
+    authority?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "token" */
+  ["token_min_order_by"]: {
+    authId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    authority?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    network?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** response of any mutation on the table "token" */
+  ["token_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["token"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** input type for inserting object relation for remote table "token" */
+  ["token_obj_rel_insert_input"]: {
+    data: ValueTypes["token_insert_input"] | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["token_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** on_conflict condition type for table "token" */
+  ["token_on_conflict"]: {
+    constraint: ValueTypes["token_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["token_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["token_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "token". */
+  ["token_order_by"]: {
+    ata_aggregate?:
+      | ValueTypes["ata_aggregate_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    authId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    authority?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    client?:
+      | ValueTypes["client_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    network?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    privateKey?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: token */
+  ["token_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+    pubKey: string | Variable<any, string>;
+  };
+  /** select columns of table "token" */
+  ["token_select_column"]: token_select_column;
+  /** input type for updating data in table "token" */
+  ["token_set_input"]: {
+    authId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    authority?: string | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    name?: string | undefined | null | Variable<any, string>;
+    network?: string | undefined | null | Variable<any, string>;
+    privateKey?: string | undefined | null | Variable<any, string>;
+    pubKey?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "token" */
+  ["token_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["token_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_stream_cursor_value_input"]: {
+    authId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    authority?: string | undefined | null | Variable<any, string>;
+    createdAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    name?: string | undefined | null | Variable<any, string>;
+    network?: string | undefined | null | Variable<any, string>;
+    privateKey?: string | undefined | null | Variable<any, string>;
+    pubKey?: string | undefined | null | Variable<any, string>;
+    updatedAt?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** update columns of table "token" */
+  ["token_update_column"]: token_update_column;
+  ["token_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["token_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["token_bool_exp"] | Variable<any, string>;
   };
   /** transactions table  */
   ["transactions"]: AliasType<{
@@ -15819,6 +17394,260 @@ export type ResolverInputTypes = {
     /** filter the rows which have to be updated */
     where: ResolverInputTypes["analyze_bool_exp"];
   };
+  /** associated token account */
+  ["ata"]: AliasType<{
+    /** An object relationship */
+    client?: ResolverInputTypes["client"];
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    is_minter?: boolean | `@${string}`;
+    owner?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    /** An object relationship */
+    tokenByToken?: ResolverInputTypes["token"];
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "ata" */
+  ["ata_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["ata_aggregate_fields"];
+    nodes?: ResolverInputTypes["ata"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["ata_aggregate_bool_exp"]: {
+    bool_and?:
+      | ResolverInputTypes["ata_aggregate_bool_exp_bool_and"]
+      | undefined
+      | null;
+    bool_or?:
+      | ResolverInputTypes["ata_aggregate_bool_exp_bool_or"]
+      | undefined
+      | null;
+    count?:
+      | ResolverInputTypes["ata_aggregate_bool_exp_count"]
+      | undefined
+      | null;
+  };
+  ["ata_aggregate_bool_exp_bool_and"]: {
+    arguments: ResolverInputTypes["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Boolean_comparison_exp"];
+  };
+  ["ata_aggregate_bool_exp_bool_or"]: {
+    arguments: ResolverInputTypes["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Boolean_comparison_exp"];
+  };
+  ["ata_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ResolverInputTypes["ata_select_column"]>
+      | undefined
+      | null;
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "ata" */
+  ["ata_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["ata_max_fields"];
+    min?: ResolverInputTypes["ata_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "ata" */
+  ["ata_aggregate_order_by"]: {
+    count?: ResolverInputTypes["order_by"] | undefined | null;
+    max?: ResolverInputTypes["ata_max_order_by"] | undefined | null;
+    min?: ResolverInputTypes["ata_min_order_by"] | undefined | null;
+  };
+  /** input type for inserting array relation for remote table "ata" */
+  ["ata_arr_rel_insert_input"]: {
+    data: Array<ResolverInputTypes["ata_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ResolverInputTypes["ata_on_conflict"] | undefined | null;
+  };
+  /** Boolean expression to filter rows from the table "ata". All fields are combined with a logical 'AND'. */
+  ["ata_bool_exp"]: {
+    _and?: Array<ResolverInputTypes["ata_bool_exp"]> | undefined | null;
+    _not?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["ata_bool_exp"]> | undefined | null;
+    client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    is_minter?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null;
+    owner?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    privateKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    pubKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    token?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    tokenByToken?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "ata" */
+  ["ata_constraint"]: ata_constraint;
+  /** input type for inserting data into table "ata" */
+  ["ata_insert_input"]: {
+    client?:
+      | ResolverInputTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    is_minter?: boolean | undefined | null;
+    owner?: string | undefined | null;
+    privateKey?: string | undefined | null;
+    pubKey?: string | undefined | null;
+    token?: string | undefined | null;
+    tokenByToken?:
+      | ResolverInputTypes["token_obj_rel_insert_input"]
+      | undefined
+      | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["ata_max_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    owner?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "ata" */
+  ["ata_max_order_by"]: {
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    owner?: ResolverInputTypes["order_by"] | undefined | null;
+    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
+    pubKey?: ResolverInputTypes["order_by"] | undefined | null;
+    token?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate min on columns */
+  ["ata_min_fields"]: AliasType<{
+    clientId?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    owner?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "ata" */
+  ["ata_min_order_by"]: {
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    owner?: ResolverInputTypes["order_by"] | undefined | null;
+    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
+    pubKey?: ResolverInputTypes["order_by"] | undefined | null;
+    token?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** response of any mutation on the table "ata" */
+  ["ata_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["ata"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "ata" */
+  ["ata_on_conflict"]: {
+    constraint: ResolverInputTypes["ata_constraint"];
+    update_columns: Array<ResolverInputTypes["ata_update_column"]>;
+    where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "ata". */
+  ["ata_order_by"]: {
+    client?: ResolverInputTypes["client_order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    is_minter?: ResolverInputTypes["order_by"] | undefined | null;
+    owner?: ResolverInputTypes["order_by"] | undefined | null;
+    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
+    pubKey?: ResolverInputTypes["order_by"] | undefined | null;
+    token?: ResolverInputTypes["order_by"] | undefined | null;
+    tokenByToken?: ResolverInputTypes["token_order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: ata */
+  ["ata_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "ata" */
+  ["ata_select_column"]: ata_select_column;
+  /** select "ata_aggregate_bool_exp_bool_and_arguments_columns" columns of table "ata" */
+  ["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "ata_aggregate_bool_exp_bool_or_arguments_columns" columns of table "ata" */
+  ["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns;
+  /** input type for updating data in table "ata" */
+  ["ata_set_input"]: {
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    is_minter?: boolean | undefined | null;
+    owner?: string | undefined | null;
+    privateKey?: string | undefined | null;
+    pubKey?: string | undefined | null;
+    token?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "ata" */
+  ["ata_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["ata_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["ata_stream_cursor_value_input"]: {
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    is_minter?: boolean | undefined | null;
+    owner?: string | undefined | null;
+    privateKey?: string | undefined | null;
+    pubKey?: string | undefined | null;
+    token?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "ata" */
+  ["ata_update_column"]: ata_update_column;
+  ["ata_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["ata_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["ata_bool_exp"];
+  };
   ["bigint"]: unknown;
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
   ["bigint_comparison_exp"]: {
@@ -16901,6 +18730,52 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["address_book_aggregate"],
     ];
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata_aggregate"],
+    ];
     centralized_txns?: [
       {
         /** distinct select on columns */
@@ -17200,6 +19075,52 @@ export type ResolverInputTypes = {
       ResolverInputTypes["notification_aggregate"],
     ];
     password?: boolean | `@${string}`;
+    tokens?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token"],
+    ];
+    tokens_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_aggregate"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -17351,6 +19272,11 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["address_book_aggregate_bool_exp"]
       | undefined
       | null;
+    ata?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    ata_aggregate?:
+      | ResolverInputTypes["ata_aggregate_bool_exp"]
+      | undefined
+      | null;
     centralized_txns?:
       | ResolverInputTypes["centralized_txn_bool_exp"]
       | undefined
@@ -17408,6 +19334,11 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     password?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    tokens?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+    tokens_aggregate?:
+      | ResolverInputTypes["token_aggregate_bool_exp"]
+      | undefined
+      | null;
     transactions?:
       | ResolverInputTypes["transactions_bool_exp"]
       | undefined
@@ -17448,6 +19379,7 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["address_book_arr_rel_insert_input"]
       | undefined
       | null;
+    ata?: ResolverInputTypes["ata_arr_rel_insert_input"] | undefined | null;
     centralized_txns?:
       | ResolverInputTypes["centralized_txn_arr_rel_insert_input"]
       | undefined
@@ -17484,6 +19416,10 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     password?: string | undefined | null;
+    tokens?:
+      | ResolverInputTypes["token_arr_rel_insert_input"]
+      | undefined
+      | null;
     transactions?:
       | ResolverInputTypes["transactions_arr_rel_insert_input"]
       | undefined
@@ -17553,6 +19489,10 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["address_book_aggregate_order_by"]
       | undefined
       | null;
+    ata_aggregate?:
+      | ResolverInputTypes["ata_aggregate_order_by"]
+      | undefined
+      | null;
     centralized_txns_aggregate?:
       | ResolverInputTypes["centralized_txn_aggregate_order_by"]
       | undefined
@@ -17589,6 +19529,10 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     password?: ResolverInputTypes["order_by"] | undefined | null;
+    tokens_aggregate?:
+      | ResolverInputTypes["token_aggregate_order_by"]
+      | undefined
+      | null;
     transactions_aggregate?:
       | ResolverInputTypes["transactions_aggregate_order_by"]
       | undefined
@@ -18610,6 +20554,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"]; walletId: ResolverInputTypes["uuid"] },
       ResolverInputTypes["analyze"],
     ];
+    delete_ata?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["ata_bool_exp"];
+      },
+      ResolverInputTypes["ata_mutation_response"],
+    ];
+    delete_ata_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["ata"],
+    ];
     delete_bitcoin?: [
       {
         /** filter the rows which have to be deleted */
@@ -18757,6 +20712,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"] },
       ResolverInputTypes["sol"],
     ];
+    delete_token?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["token_bool_exp"];
+      },
+      ResolverInputTypes["token_mutation_response"],
+    ];
+    delete_token_by_pk?: [
+      { id: ResolverInputTypes["uuid"]; pubKey: string },
+      ResolverInputTypes["token"],
+    ];
     delete_transactions?: [
       {
         /** filter the rows which have to be deleted */
@@ -18874,6 +20840,24 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["analyze"],
+    ];
+    insert_ata?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["ata_insert_input"]
+        > /** upsert condition */;
+        on_conflict?: ResolverInputTypes["ata_on_conflict"] | undefined | null;
+      },
+      ResolverInputTypes["ata_mutation_response"],
+    ];
+    insert_ata_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["ata_insert_input"] /** upsert condition */;
+        on_conflict?: ResolverInputTypes["ata_on_conflict"] | undefined | null;
+      },
+      ResolverInputTypes["ata"],
     ];
     insert_bitcoin?: [
       {
@@ -19169,6 +21153,30 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["sol"],
     ];
+    insert_token?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["token_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["token_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["token_mutation_response"],
+    ];
+    insert_token_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["token_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["token_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["token"],
+    ];
     insert_transactions?: [
       {
         /** the rows to be inserted */
@@ -19320,6 +21328,32 @@ export type ResolverInputTypes = {
         updates: Array<ResolverInputTypes["analyze_updates"]>;
       },
       ResolverInputTypes["analyze_mutation_response"],
+    ];
+    update_ata?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["ata_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["ata_bool_exp"];
+      },
+      ResolverInputTypes["ata_mutation_response"],
+    ];
+    update_ata_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["ata_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["ata_pk_columns_input"];
+      },
+      ResolverInputTypes["ata"],
+    ];
+    update_ata_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["ata_updates"]>;
+      },
+      ResolverInputTypes["ata_mutation_response"],
     ];
     update_bitcoin?: [
       {
@@ -19683,6 +21717,32 @@ export type ResolverInputTypes = {
         updates: Array<ResolverInputTypes["sol_updates"]>;
       },
       ResolverInputTypes["sol_mutation_response"],
+    ];
+    update_token?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?:
+          | ResolverInputTypes["token_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["token_bool_exp"];
+      },
+      ResolverInputTypes["token_mutation_response"],
+    ];
+    update_token_by_pk?: [
+      {
+        /** sets the columns of the filtered rows to the given values */
+        _set?: ResolverInputTypes["token_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["token_pk_columns_input"];
+      },
+      ResolverInputTypes["token"],
+    ];
+    update_token_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["token_updates"]>;
+      },
+      ResolverInputTypes["token_mutation_response"],
     ];
     update_transactions?: [
       {
@@ -20934,6 +22994,53 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"]; walletId: ResolverInputTypes["uuid"] },
       ResolverInputTypes["analyze"],
     ];
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata_aggregate"],
+    ];
+    ata_by_pk?: [{ id: ResolverInputTypes["uuid"] }, ResolverInputTypes["ata"]];
     bitcoin?: [
       {
         /** distinct select on columns */
@@ -21600,6 +23707,56 @@ export type ResolverInputTypes = {
       ResolverInputTypes["sol_aggregate"],
     ];
     sol_by_pk?: [{ id: ResolverInputTypes["uuid"] }, ResolverInputTypes["sol"]];
+    token?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token"],
+    ];
+    token_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_aggregate"],
+    ];
+    token_by_pk?: [
+      { id: ResolverInputTypes["uuid"]; pubKey: string },
+      ResolverInputTypes["token"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -22105,6 +24262,64 @@ export type ResolverInputTypes = {
         where?: ResolverInputTypes["analyze_bool_exp"] | undefined | null;
       },
       ResolverInputTypes["analyze"],
+    ];
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata_aggregate"],
+    ];
+    ata_by_pk?: [{ id: ResolverInputTypes["uuid"] }, ResolverInputTypes["ata"]];
+    ata_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          ResolverInputTypes["ata_stream_cursor_input"] | undefined | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata"],
     ];
     bitcoin?: [
       {
@@ -22940,6 +25155,67 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["sol"],
     ];
+    token?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token"],
+    ];
+    token_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_aggregate"],
+    ];
+    token_by_pk?: [
+      { id: ResolverInputTypes["uuid"]; pubKey: string },
+      ResolverInputTypes["token"],
+    ];
+    token_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          ResolverInputTypes["token_stream_cursor_input"] | undefined | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -23091,6 +25367,295 @@ export type ResolverInputTypes = {
     _lte?: ResolverInputTypes["timestamptz"] | undefined | null;
     _neq?: ResolverInputTypes["timestamptz"] | undefined | null;
     _nin?: Array<ResolverInputTypes["timestamptz"]> | undefined | null;
+  };
+  /** table storing all the mint token infos */
+  ["token"]: AliasType<{
+    ata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata"],
+    ];
+    ata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["ata_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["ata_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["ata_aggregate"],
+    ];
+    authId?: boolean | `@${string}`;
+    authority?: boolean | `@${string}`;
+    /** An object relationship */
+    client?: ResolverInputTypes["client"];
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "token" */
+  ["token_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["token_aggregate_fields"];
+    nodes?: ResolverInputTypes["token"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["token_aggregate_bool_exp"]: {
+    count?:
+      | ResolverInputTypes["token_aggregate_bool_exp_count"]
+      | undefined
+      | null;
+  };
+  ["token_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ResolverInputTypes["token_select_column"]>
+      | undefined
+      | null;
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "token" */
+  ["token_aggregate_fields"]: AliasType<{
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["token_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["token_max_fields"];
+    min?: ResolverInputTypes["token_min_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "token" */
+  ["token_aggregate_order_by"]: {
+    count?: ResolverInputTypes["order_by"] | undefined | null;
+    max?: ResolverInputTypes["token_max_order_by"] | undefined | null;
+    min?: ResolverInputTypes["token_min_order_by"] | undefined | null;
+  };
+  /** input type for inserting array relation for remote table "token" */
+  ["token_arr_rel_insert_input"]: {
+    data: Array<ResolverInputTypes["token_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ResolverInputTypes["token_on_conflict"] | undefined | null;
+  };
+  /** Boolean expression to filter rows from the table "token". All fields are combined with a logical 'AND'. */
+  ["token_bool_exp"]: {
+    _and?: Array<ResolverInputTypes["token_bool_exp"]> | undefined | null;
+    _not?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["token_bool_exp"]> | undefined | null;
+    ata?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    ata_aggregate?:
+      | ResolverInputTypes["ata_aggregate_bool_exp"]
+      | undefined
+      | null;
+    authId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    authority?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
+    createdAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    name?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    network?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    privateKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    pubKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    updatedAt?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "token" */
+  ["token_constraint"]: token_constraint;
+  /** input type for inserting data into table "token" */
+  ["token_insert_input"]: {
+    ata?: ResolverInputTypes["ata_arr_rel_insert_input"] | undefined | null;
+    authId?: ResolverInputTypes["uuid"] | undefined | null;
+    authority?: string | undefined | null;
+    client?:
+      | ResolverInputTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    name?: string | undefined | null;
+    network?: string | undefined | null;
+    privateKey?: string | undefined | null;
+    pubKey?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["token_max_fields"]: AliasType<{
+    authId?: boolean | `@${string}`;
+    authority?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "token" */
+  ["token_max_order_by"]: {
+    authId?: ResolverInputTypes["order_by"] | undefined | null;
+    authority?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    name?: ResolverInputTypes["order_by"] | undefined | null;
+    network?: ResolverInputTypes["order_by"] | undefined | null;
+    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
+    pubKey?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate min on columns */
+  ["token_min_fields"]: AliasType<{
+    authId?: boolean | `@${string}`;
+    authority?: boolean | `@${string}`;
+    createdAt?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    privateKey?: boolean | `@${string}`;
+    pubKey?: boolean | `@${string}`;
+    updatedAt?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "token" */
+  ["token_min_order_by"]: {
+    authId?: ResolverInputTypes["order_by"] | undefined | null;
+    authority?: ResolverInputTypes["order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    name?: ResolverInputTypes["order_by"] | undefined | null;
+    network?: ResolverInputTypes["order_by"] | undefined | null;
+    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
+    pubKey?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** response of any mutation on the table "token" */
+  ["token_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["token"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** input type for inserting object relation for remote table "token" */
+  ["token_obj_rel_insert_input"]: {
+    data: ResolverInputTypes["token_insert_input"];
+    /** upsert condition */
+    on_conflict?: ResolverInputTypes["token_on_conflict"] | undefined | null;
+  };
+  /** on_conflict condition type for table "token" */
+  ["token_on_conflict"]: {
+    constraint: ResolverInputTypes["token_constraint"];
+    update_columns: Array<ResolverInputTypes["token_update_column"]>;
+    where?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "token". */
+  ["token_order_by"]: {
+    ata_aggregate?:
+      | ResolverInputTypes["ata_aggregate_order_by"]
+      | undefined
+      | null;
+    authId?: ResolverInputTypes["order_by"] | undefined | null;
+    authority?: ResolverInputTypes["order_by"] | undefined | null;
+    client?: ResolverInputTypes["client_order_by"] | undefined | null;
+    createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    name?: ResolverInputTypes["order_by"] | undefined | null;
+    network?: ResolverInputTypes["order_by"] | undefined | null;
+    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
+    pubKey?: ResolverInputTypes["order_by"] | undefined | null;
+    updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: token */
+  ["token_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+    pubKey: string;
+  };
+  /** select columns of table "token" */
+  ["token_select_column"]: token_select_column;
+  /** input type for updating data in table "token" */
+  ["token_set_input"]: {
+    authId?: ResolverInputTypes["uuid"] | undefined | null;
+    authority?: string | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    name?: string | undefined | null;
+    network?: string | undefined | null;
+    privateKey?: string | undefined | null;
+    pubKey?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** Streaming cursor of the table "token" */
+  ["token_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["token_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_stream_cursor_value_input"]: {
+    authId?: ResolverInputTypes["uuid"] | undefined | null;
+    authority?: string | undefined | null;
+    createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    name?: string | undefined | null;
+    network?: string | undefined | null;
+    privateKey?: string | undefined | null;
+    pubKey?: string | undefined | null;
+    updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** update columns of table "token" */
+  ["token_update_column"]: token_update_column;
+  ["token_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["token_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["token_bool_exp"];
   };
   /** transactions table  */
   ["transactions"]: AliasType<{
@@ -24714,6 +27279,216 @@ export type ModelTypes = {
     /** filter the rows which have to be updated */
     where: ModelTypes["analyze_bool_exp"];
   };
+  /** associated token account */
+  ["ata"]: {
+    /** An object relationship */
+    client: ModelTypes["client"];
+    clientId: ModelTypes["uuid"];
+    createdAt: ModelTypes["timestamptz"];
+    id: ModelTypes["uuid"];
+    is_minter: boolean;
+    owner: string;
+    privateKey: string;
+    pubKey: string;
+    token: string;
+    /** An object relationship */
+    tokenByToken: ModelTypes["token"];
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "ata" */
+  ["ata_aggregate"]: {
+    aggregate?: ModelTypes["ata_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["ata"]>;
+  };
+  ["ata_aggregate_bool_exp"]: {
+    bool_and?: ModelTypes["ata_aggregate_bool_exp_bool_and"] | undefined;
+    bool_or?: ModelTypes["ata_aggregate_bool_exp_bool_or"] | undefined;
+    count?: ModelTypes["ata_aggregate_bool_exp_count"] | undefined;
+  };
+  ["ata_aggregate_bool_exp_bool_and"]: {
+    arguments: ModelTypes["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["ata_bool_exp"] | undefined;
+    predicate: ModelTypes["Boolean_comparison_exp"];
+  };
+  ["ata_aggregate_bool_exp_bool_or"]: {
+    arguments: ModelTypes["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["ata_bool_exp"] | undefined;
+    predicate: ModelTypes["Boolean_comparison_exp"];
+  };
+  ["ata_aggregate_bool_exp_count"]: {
+    arguments?: Array<ModelTypes["ata_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["ata_bool_exp"] | undefined;
+    predicate: ModelTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "ata" */
+  ["ata_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["ata_max_fields"] | undefined;
+    min?: ModelTypes["ata_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "ata" */
+  ["ata_aggregate_order_by"]: {
+    count?: ModelTypes["order_by"] | undefined;
+    max?: ModelTypes["ata_max_order_by"] | undefined;
+    min?: ModelTypes["ata_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "ata" */
+  ["ata_arr_rel_insert_input"]: {
+    data: Array<ModelTypes["ata_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ModelTypes["ata_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "ata". All fields are combined with a logical 'AND'. */
+  ["ata_bool_exp"]: {
+    _and?: Array<ModelTypes["ata_bool_exp"]> | undefined;
+    _not?: ModelTypes["ata_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["ata_bool_exp"]> | undefined;
+    client?: ModelTypes["client_bool_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    is_minter?: ModelTypes["Boolean_comparison_exp"] | undefined;
+    owner?: ModelTypes["String_comparison_exp"] | undefined;
+    privateKey?: ModelTypes["String_comparison_exp"] | undefined;
+    pubKey?: ModelTypes["String_comparison_exp"] | undefined;
+    token?: ModelTypes["String_comparison_exp"] | undefined;
+    tokenByToken?: ModelTypes["token_bool_exp"] | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["ata_constraint"]: ata_constraint;
+  /** input type for inserting data into table "ata" */
+  ["ata_insert_input"]: {
+    client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    is_minter?: boolean | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    tokenByToken?: ModelTypes["token_obj_rel_insert_input"] | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["ata_max_fields"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "ata" */
+  ["ata_max_order_by"]: {
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    owner?: ModelTypes["order_by"] | undefined;
+    privateKey?: ModelTypes["order_by"] | undefined;
+    pubKey?: ModelTypes["order_by"] | undefined;
+    token?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["ata_min_fields"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "ata" */
+  ["ata_min_order_by"]: {
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    owner?: ModelTypes["order_by"] | undefined;
+    privateKey?: ModelTypes["order_by"] | undefined;
+    pubKey?: ModelTypes["order_by"] | undefined;
+    token?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "ata" */
+  ["ata_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["ata"]>;
+  };
+  /** on_conflict condition type for table "ata" */
+  ["ata_on_conflict"]: {
+    constraint: ModelTypes["ata_constraint"];
+    update_columns: Array<ModelTypes["ata_update_column"]>;
+    where?: ModelTypes["ata_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "ata". */
+  ["ata_order_by"]: {
+    client?: ModelTypes["client_order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    is_minter?: ModelTypes["order_by"] | undefined;
+    owner?: ModelTypes["order_by"] | undefined;
+    privateKey?: ModelTypes["order_by"] | undefined;
+    pubKey?: ModelTypes["order_by"] | undefined;
+    token?: ModelTypes["order_by"] | undefined;
+    tokenByToken?: ModelTypes["token_order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: ata */
+  ["ata_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["ata_select_column"]: ata_select_column;
+  ["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns;
+  ["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns;
+  /** input type for updating data in table "ata" */
+  ["ata_set_input"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    is_minter?: boolean | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "ata" */
+  ["ata_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["ata_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["ata_stream_cursor_value_input"]: {
+    clientId?: ModelTypes["uuid"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    is_minter?: boolean | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["ata_update_column"]: ata_update_column;
+  ["ata_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["ata_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["ata_bool_exp"];
+  };
   ["bigint"]: any;
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
   ["bigint_comparison_exp"]: {
@@ -25528,6 +28303,10 @@ export type ModelTypes = {
     /** An aggregate relationship */
     address_books_aggregate: ModelTypes["address_book_aggregate"];
     /** An array relationship */
+    ata: Array<ModelTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: ModelTypes["ata_aggregate"];
+    /** An array relationship */
     centralized_txns: Array<ModelTypes["centralized_txn"]>;
     /** An aggregate relationship */
     centralized_txns_aggregate: ModelTypes["centralized_txn_aggregate"];
@@ -25562,6 +28341,10 @@ export type ModelTypes = {
     /** An aggregate relationship */
     notifications_aggregate: ModelTypes["notification_aggregate"];
     password: string;
+    /** An array relationship */
+    tokens: Array<ModelTypes["token"]>;
+    /** An aggregate relationship */
+    tokens_aggregate: ModelTypes["token_aggregate"];
     /** An array relationship */
     transactions: Array<ModelTypes["transactions"]>;
     /** An aggregate relationship */
@@ -25609,6 +28392,8 @@ export type ModelTypes = {
     address_books_aggregate?:
       | ModelTypes["address_book_aggregate_bool_exp"]
       | undefined;
+    ata?: ModelTypes["ata_bool_exp"] | undefined;
+    ata_aggregate?: ModelTypes["ata_aggregate_bool_exp"] | undefined;
     centralized_txns?: ModelTypes["centralized_txn_bool_exp"] | undefined;
     centralized_txns_aggregate?:
       | ModelTypes["centralized_txn_aggregate_bool_exp"]
@@ -25642,6 +28427,8 @@ export type ModelTypes = {
       | ModelTypes["notification_aggregate_bool_exp"]
       | undefined;
     password?: ModelTypes["String_comparison_exp"] | undefined;
+    tokens?: ModelTypes["token_bool_exp"] | undefined;
+    tokens_aggregate?: ModelTypes["token_aggregate_bool_exp"] | undefined;
     transactions?: ModelTypes["transactions_bool_exp"] | undefined;
     transactions_aggregate?:
       | ModelTypes["transactions_aggregate_bool_exp"]
@@ -25662,6 +28449,7 @@ export type ModelTypes = {
     accounts?: ModelTypes["account_arr_rel_insert_input"] | undefined;
     address?: ModelTypes["address_obj_rel_insert_input"] | undefined;
     address_books?: ModelTypes["address_book_arr_rel_insert_input"] | undefined;
+    ata?: ModelTypes["ata_arr_rel_insert_input"] | undefined;
     centralized_txns?:
       | ModelTypes["centralized_txn_arr_rel_insert_input"]
       | undefined;
@@ -25685,6 +28473,7 @@ export type ModelTypes = {
       | undefined;
     notifications?: ModelTypes["notification_arr_rel_insert_input"] | undefined;
     password?: string | undefined;
+    tokens?: ModelTypes["token_arr_rel_insert_input"] | undefined;
     transactions?: ModelTypes["transactions_arr_rel_insert_input"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
     username?: string | undefined;
@@ -25741,6 +28530,7 @@ export type ModelTypes = {
     address_books_aggregate?:
       | ModelTypes["address_book_aggregate_order_by"]
       | undefined;
+    ata_aggregate?: ModelTypes["ata_aggregate_order_by"] | undefined;
     centralized_txns_aggregate?:
       | ModelTypes["centralized_txn_aggregate_order_by"]
       | undefined;
@@ -25766,6 +28556,7 @@ export type ModelTypes = {
       | ModelTypes["notification_aggregate_order_by"]
       | undefined;
     password?: ModelTypes["order_by"] | undefined;
+    tokens_aggregate?: ModelTypes["token_aggregate_order_by"] | undefined;
     transactions_aggregate?:
       | ModelTypes["transactions_aggregate_order_by"]
       | undefined;
@@ -26545,6 +29336,10 @@ export type ModelTypes = {
     delete_analyze?: ModelTypes["analyze_mutation_response"] | undefined;
     /** delete single row from the table: "analyze" */
     delete_analyze_by_pk?: ModelTypes["analyze"] | undefined;
+    /** delete data from the table: "ata" */
+    delete_ata?: ModelTypes["ata_mutation_response"] | undefined;
+    /** delete single row from the table: "ata" */
+    delete_ata_by_pk?: ModelTypes["ata"] | undefined;
     /** delete data from the table: "bitcoin" */
     delete_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
     /** delete single row from the table: "bitcoin" */
@@ -26613,6 +29408,10 @@ export type ModelTypes = {
     delete_sol?: ModelTypes["sol_mutation_response"] | undefined;
     /** delete single row from the table: "sol" */
     delete_sol_by_pk?: ModelTypes["sol"] | undefined;
+    /** delete data from the table: "token" */
+    delete_token?: ModelTypes["token_mutation_response"] | undefined;
+    /** delete single row from the table: "token" */
+    delete_token_by_pk?: ModelTypes["token"] | undefined;
     /** delete data from the table: "transactions" */
     delete_transactions?:
       | ModelTypes["transactions_mutation_response"]
@@ -26641,6 +29440,10 @@ export type ModelTypes = {
     insert_analyze?: ModelTypes["analyze_mutation_response"] | undefined;
     /** insert a single row into the table: "analyze" */
     insert_analyze_one?: ModelTypes["analyze"] | undefined;
+    /** insert data into the table: "ata" */
+    insert_ata?: ModelTypes["ata_mutation_response"] | undefined;
+    /** insert a single row into the table: "ata" */
+    insert_ata_one?: ModelTypes["ata"] | undefined;
     /** insert data into the table: "bitcoin" */
     insert_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
     /** insert a single row into the table: "bitcoin" */
@@ -26709,6 +29512,10 @@ export type ModelTypes = {
     insert_sol?: ModelTypes["sol_mutation_response"] | undefined;
     /** insert a single row into the table: "sol" */
     insert_sol_one?: ModelTypes["sol"] | undefined;
+    /** insert data into the table: "token" */
+    insert_token?: ModelTypes["token_mutation_response"] | undefined;
+    /** insert a single row into the table: "token" */
+    insert_token_one?: ModelTypes["token"] | undefined;
     /** insert data into the table: "transactions" */
     insert_transactions?:
       | ModelTypes["transactions_mutation_response"]
@@ -26752,6 +29559,14 @@ export type ModelTypes = {
     /** update multiples rows of table: "analyze" */
     update_analyze_many?:
       | Array<ModelTypes["analyze_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "ata" */
+    update_ata?: ModelTypes["ata_mutation_response"] | undefined;
+    /** update single row of the table: "ata" */
+    update_ata_by_pk?: ModelTypes["ata"] | undefined;
+    /** update multiples rows of table: "ata" */
+    update_ata_many?:
+      | Array<ModelTypes["ata_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "bitcoin" */
     update_bitcoin?: ModelTypes["bitcoin_mutation_response"] | undefined;
@@ -26874,6 +29689,14 @@ export type ModelTypes = {
     /** update multiples rows of table: "sol" */
     update_sol_many?:
       | Array<ModelTypes["sol_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "token" */
+    update_token?: ModelTypes["token_mutation_response"] | undefined;
+    /** update single row of the table: "token" */
+    update_token_by_pk?: ModelTypes["token"] | undefined;
+    /** update multiples rows of table: "token" */
+    update_token_many?:
+      | Array<ModelTypes["token_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "transactions" */
     update_transactions?:
@@ -27630,6 +30453,12 @@ export type ModelTypes = {
     analyze_aggregate: ModelTypes["analyze_aggregate"];
     /** fetch data from the table: "analyze" using primary key columns */
     analyze_by_pk?: ModelTypes["analyze"] | undefined;
+    /** An array relationship */
+    ata: Array<ModelTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: ModelTypes["ata_aggregate"];
+    /** fetch data from the table: "ata" using primary key columns */
+    ata_by_pk?: ModelTypes["ata"] | undefined;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<ModelTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -27710,6 +30539,12 @@ export type ModelTypes = {
     sol_aggregate: ModelTypes["sol_aggregate"];
     /** fetch data from the table: "sol" using primary key columns */
     sol_by_pk?: ModelTypes["sol"] | undefined;
+    /** fetch data from the table: "token" */
+    token: Array<ModelTypes["token"]>;
+    /** fetch aggregated fields from the table: "token" */
+    token_aggregate: ModelTypes["token_aggregate"];
+    /** fetch data from the table: "token" using primary key columns */
+    token_by_pk?: ModelTypes["token"] | undefined;
     /** An array relationship */
     transactions: Array<ModelTypes["transactions"]>;
     /** An aggregate relationship */
@@ -27886,6 +30721,14 @@ export type ModelTypes = {
     analyze_by_pk?: ModelTypes["analyze"] | undefined;
     /** fetch data from the table in a streaming manner: "analyze" */
     analyze_stream: Array<ModelTypes["analyze"]>;
+    /** An array relationship */
+    ata: Array<ModelTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: ModelTypes["ata_aggregate"];
+    /** fetch data from the table: "ata" using primary key columns */
+    ata_by_pk?: ModelTypes["ata"] | undefined;
+    /** fetch data from the table in a streaming manner: "ata" */
+    ata_stream: Array<ModelTypes["ata"]>;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<ModelTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -27994,6 +30837,14 @@ export type ModelTypes = {
     sol_by_pk?: ModelTypes["sol"] | undefined;
     /** fetch data from the table in a streaming manner: "sol" */
     sol_stream: Array<ModelTypes["sol"]>;
+    /** fetch data from the table: "token" */
+    token: Array<ModelTypes["token"]>;
+    /** fetch aggregated fields from the table: "token" */
+    token_aggregate: ModelTypes["token_aggregate"];
+    /** fetch data from the table: "token" using primary key columns */
+    token_by_pk?: ModelTypes["token"] | undefined;
+    /** fetch data from the table in a streaming manner: "token" */
+    token_stream: Array<ModelTypes["token"]>;
     /** An array relationship */
     transactions: Array<ModelTypes["transactions"]>;
     /** An aggregate relationship */
@@ -28036,6 +30887,214 @@ export type ModelTypes = {
     _lte?: ModelTypes["timestamptz"] | undefined;
     _neq?: ModelTypes["timestamptz"] | undefined;
     _nin?: Array<ModelTypes["timestamptz"]> | undefined;
+  };
+  /** table storing all the mint token infos */
+  ["token"]: {
+    /** An array relationship */
+    ata: Array<ModelTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: ModelTypes["ata_aggregate"];
+    authId: ModelTypes["uuid"];
+    authority: string;
+    /** An object relationship */
+    client: ModelTypes["client"];
+    createdAt: ModelTypes["timestamptz"];
+    id: ModelTypes["uuid"];
+    name: string;
+    network: string;
+    privateKey: string;
+    pubKey: string;
+    updatedAt: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "token" */
+  ["token_aggregate"]: {
+    aggregate?: ModelTypes["token_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["token"]>;
+  };
+  ["token_aggregate_bool_exp"]: {
+    count?: ModelTypes["token_aggregate_bool_exp_count"] | undefined;
+  };
+  ["token_aggregate_bool_exp_count"]: {
+    arguments?: Array<ModelTypes["token_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_bool_exp"] | undefined;
+    predicate: ModelTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "token" */
+  ["token_aggregate_fields"]: {
+    count: number;
+    max?: ModelTypes["token_max_fields"] | undefined;
+    min?: ModelTypes["token_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "token" */
+  ["token_aggregate_order_by"]: {
+    count?: ModelTypes["order_by"] | undefined;
+    max?: ModelTypes["token_max_order_by"] | undefined;
+    min?: ModelTypes["token_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "token" */
+  ["token_arr_rel_insert_input"]: {
+    data: Array<ModelTypes["token_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ModelTypes["token_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "token". All fields are combined with a logical 'AND'. */
+  ["token_bool_exp"]: {
+    _and?: Array<ModelTypes["token_bool_exp"]> | undefined;
+    _not?: ModelTypes["token_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["token_bool_exp"]> | undefined;
+    ata?: ModelTypes["ata_bool_exp"] | undefined;
+    ata_aggregate?: ModelTypes["ata_aggregate_bool_exp"] | undefined;
+    authId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    authority?: ModelTypes["String_comparison_exp"] | undefined;
+    client?: ModelTypes["client_bool_exp"] | undefined;
+    createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    name?: ModelTypes["String_comparison_exp"] | undefined;
+    network?: ModelTypes["String_comparison_exp"] | undefined;
+    privateKey?: ModelTypes["String_comparison_exp"] | undefined;
+    pubKey?: ModelTypes["String_comparison_exp"] | undefined;
+    updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["token_constraint"]: token_constraint;
+  /** input type for inserting data into table "token" */
+  ["token_insert_input"]: {
+    ata?: ModelTypes["ata_arr_rel_insert_input"] | undefined;
+    authId?: ModelTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["token_max_fields"]: {
+    authId?: ModelTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "token" */
+  ["token_max_order_by"]: {
+    authId?: ModelTypes["order_by"] | undefined;
+    authority?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    name?: ModelTypes["order_by"] | undefined;
+    network?: ModelTypes["order_by"] | undefined;
+    privateKey?: ModelTypes["order_by"] | undefined;
+    pubKey?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["token_min_fields"]: {
+    authId?: ModelTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "token" */
+  ["token_min_order_by"]: {
+    authId?: ModelTypes["order_by"] | undefined;
+    authority?: ModelTypes["order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    name?: ModelTypes["order_by"] | undefined;
+    network?: ModelTypes["order_by"] | undefined;
+    privateKey?: ModelTypes["order_by"] | undefined;
+    pubKey?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "token" */
+  ["token_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["token"]>;
+  };
+  /** input type for inserting object relation for remote table "token" */
+  ["token_obj_rel_insert_input"]: {
+    data: ModelTypes["token_insert_input"];
+    /** upsert condition */
+    on_conflict?: ModelTypes["token_on_conflict"] | undefined;
+  };
+  /** on_conflict condition type for table "token" */
+  ["token_on_conflict"]: {
+    constraint: ModelTypes["token_constraint"];
+    update_columns: Array<ModelTypes["token_update_column"]>;
+    where?: ModelTypes["token_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "token". */
+  ["token_order_by"]: {
+    ata_aggregate?: ModelTypes["ata_aggregate_order_by"] | undefined;
+    authId?: ModelTypes["order_by"] | undefined;
+    authority?: ModelTypes["order_by"] | undefined;
+    client?: ModelTypes["client_order_by"] | undefined;
+    createdAt?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    name?: ModelTypes["order_by"] | undefined;
+    network?: ModelTypes["order_by"] | undefined;
+    privateKey?: ModelTypes["order_by"] | undefined;
+    pubKey?: ModelTypes["order_by"] | undefined;
+    updatedAt?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: token */
+  ["token_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+    pubKey: string;
+  };
+  ["token_select_column"]: token_select_column;
+  /** input type for updating data in table "token" */
+  ["token_set_input"]: {
+    authId?: ModelTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "token" */
+  ["token_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["token_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_stream_cursor_value_input"]: {
+    authId?: ModelTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: ModelTypes["timestamptz"] | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  ["token_update_column"]: token_update_column;
+  ["token_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["token_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["token_bool_exp"];
   };
   /** transactions table  */
   ["transactions"]: {
@@ -29511,6 +32570,227 @@ export type GraphQLTypes = {
     /** filter the rows which have to be updated */
     where: GraphQLTypes["analyze_bool_exp"];
   };
+  /** associated token account */
+  ["ata"]: {
+    __typename: "ata";
+    /** An object relationship */
+    client: GraphQLTypes["client"];
+    clientId: GraphQLTypes["uuid"];
+    createdAt: GraphQLTypes["timestamptz"];
+    id: GraphQLTypes["uuid"];
+    is_minter: boolean;
+    owner: string;
+    privateKey: string;
+    pubKey: string;
+    token: string;
+    /** An object relationship */
+    tokenByToken: GraphQLTypes["token"];
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "ata" */
+  ["ata_aggregate"]: {
+    __typename: "ata_aggregate";
+    aggregate?: GraphQLTypes["ata_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["ata"]>;
+  };
+  ["ata_aggregate_bool_exp"]: {
+    bool_and?: GraphQLTypes["ata_aggregate_bool_exp_bool_and"] | undefined;
+    bool_or?: GraphQLTypes["ata_aggregate_bool_exp_bool_or"] | undefined;
+    count?: GraphQLTypes["ata_aggregate_bool_exp_count"] | undefined;
+  };
+  ["ata_aggregate_bool_exp_bool_and"]: {
+    arguments: GraphQLTypes["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["ata_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Boolean_comparison_exp"];
+  };
+  ["ata_aggregate_bool_exp_bool_or"]: {
+    arguments: GraphQLTypes["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["ata_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Boolean_comparison_exp"];
+  };
+  ["ata_aggregate_bool_exp_count"]: {
+    arguments?: Array<GraphQLTypes["ata_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["ata_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "ata" */
+  ["ata_aggregate_fields"]: {
+    __typename: "ata_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["ata_max_fields"] | undefined;
+    min?: GraphQLTypes["ata_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "ata" */
+  ["ata_aggregate_order_by"]: {
+    count?: GraphQLTypes["order_by"] | undefined;
+    max?: GraphQLTypes["ata_max_order_by"] | undefined;
+    min?: GraphQLTypes["ata_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "ata" */
+  ["ata_arr_rel_insert_input"]: {
+    data: Array<GraphQLTypes["ata_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["ata_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "ata". All fields are combined with a logical 'AND'. */
+  ["ata_bool_exp"]: {
+    _and?: Array<GraphQLTypes["ata_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["ata_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["ata_bool_exp"]> | undefined;
+    client?: GraphQLTypes["client_bool_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    is_minter?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
+    owner?: GraphQLTypes["String_comparison_exp"] | undefined;
+    privateKey?: GraphQLTypes["String_comparison_exp"] | undefined;
+    pubKey?: GraphQLTypes["String_comparison_exp"] | undefined;
+    token?: GraphQLTypes["String_comparison_exp"] | undefined;
+    tokenByToken?: GraphQLTypes["token_bool_exp"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "ata" */
+  ["ata_constraint"]: ata_constraint;
+  /** input type for inserting data into table "ata" */
+  ["ata_insert_input"]: {
+    client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    is_minter?: boolean | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    tokenByToken?: GraphQLTypes["token_obj_rel_insert_input"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["ata_max_fields"]: {
+    __typename: "ata_max_fields";
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "ata" */
+  ["ata_max_order_by"]: {
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    owner?: GraphQLTypes["order_by"] | undefined;
+    privateKey?: GraphQLTypes["order_by"] | undefined;
+    pubKey?: GraphQLTypes["order_by"] | undefined;
+    token?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["ata_min_fields"]: {
+    __typename: "ata_min_fields";
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "ata" */
+  ["ata_min_order_by"]: {
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    owner?: GraphQLTypes["order_by"] | undefined;
+    privateKey?: GraphQLTypes["order_by"] | undefined;
+    pubKey?: GraphQLTypes["order_by"] | undefined;
+    token?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "ata" */
+  ["ata_mutation_response"]: {
+    __typename: "ata_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["ata"]>;
+  };
+  /** on_conflict condition type for table "ata" */
+  ["ata_on_conflict"]: {
+    constraint: GraphQLTypes["ata_constraint"];
+    update_columns: Array<GraphQLTypes["ata_update_column"]>;
+    where?: GraphQLTypes["ata_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "ata". */
+  ["ata_order_by"]: {
+    client?: GraphQLTypes["client_order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    is_minter?: GraphQLTypes["order_by"] | undefined;
+    owner?: GraphQLTypes["order_by"] | undefined;
+    privateKey?: GraphQLTypes["order_by"] | undefined;
+    pubKey?: GraphQLTypes["order_by"] | undefined;
+    token?: GraphQLTypes["order_by"] | undefined;
+    tokenByToken?: GraphQLTypes["token_order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: ata */
+  ["ata_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "ata" */
+  ["ata_select_column"]: ata_select_column;
+  /** select "ata_aggregate_bool_exp_bool_and_arguments_columns" columns of table "ata" */
+  ["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "ata_aggregate_bool_exp_bool_or_arguments_columns" columns of table "ata" */
+  ["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"]: ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns;
+  /** input type for updating data in table "ata" */
+  ["ata_set_input"]: {
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    is_minter?: boolean | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "ata" */
+  ["ata_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["ata_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["ata_stream_cursor_value_input"]: {
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    is_minter?: boolean | undefined;
+    owner?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    token?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "ata" */
+  ["ata_update_column"]: ata_update_column;
+  ["ata_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["ata_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["ata_bool_exp"];
+  };
   ["bigint"]: "scalar" & { name: "bigint" };
   /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
   ["bigint_comparison_exp"]: {
@@ -30377,6 +33657,10 @@ export type GraphQLTypes = {
     /** An aggregate relationship */
     address_books_aggregate: GraphQLTypes["address_book_aggregate"];
     /** An array relationship */
+    ata: Array<GraphQLTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: GraphQLTypes["ata_aggregate"];
+    /** An array relationship */
     centralized_txns: Array<GraphQLTypes["centralized_txn"]>;
     /** An aggregate relationship */
     centralized_txns_aggregate: GraphQLTypes["centralized_txn_aggregate"];
@@ -30413,6 +33697,10 @@ export type GraphQLTypes = {
     /** An aggregate relationship */
     notifications_aggregate: GraphQLTypes["notification_aggregate"];
     password: string;
+    /** An array relationship */
+    tokens: Array<GraphQLTypes["token"]>;
+    /** An aggregate relationship */
+    tokens_aggregate: GraphQLTypes["token_aggregate"];
     /** An array relationship */
     transactions: Array<GraphQLTypes["transactions"]>;
     /** An aggregate relationship */
@@ -30463,6 +33751,8 @@ export type GraphQLTypes = {
     address_books_aggregate?:
       | GraphQLTypes["address_book_aggregate_bool_exp"]
       | undefined;
+    ata?: GraphQLTypes["ata_bool_exp"] | undefined;
+    ata_aggregate?: GraphQLTypes["ata_aggregate_bool_exp"] | undefined;
     centralized_txns?: GraphQLTypes["centralized_txn_bool_exp"] | undefined;
     centralized_txns_aggregate?:
       | GraphQLTypes["centralized_txn_aggregate_bool_exp"]
@@ -30496,6 +33786,8 @@ export type GraphQLTypes = {
       | GraphQLTypes["notification_aggregate_bool_exp"]
       | undefined;
     password?: GraphQLTypes["String_comparison_exp"] | undefined;
+    tokens?: GraphQLTypes["token_bool_exp"] | undefined;
+    tokens_aggregate?: GraphQLTypes["token_aggregate_bool_exp"] | undefined;
     transactions?: GraphQLTypes["transactions_bool_exp"] | undefined;
     transactions_aggregate?:
       | GraphQLTypes["transactions_aggregate_bool_exp"]
@@ -30519,6 +33811,7 @@ export type GraphQLTypes = {
     address_books?:
       | GraphQLTypes["address_book_arr_rel_insert_input"]
       | undefined;
+    ata?: GraphQLTypes["ata_arr_rel_insert_input"] | undefined;
     centralized_txns?:
       | GraphQLTypes["centralized_txn_arr_rel_insert_input"]
       | undefined;
@@ -30544,6 +33837,7 @@ export type GraphQLTypes = {
       | GraphQLTypes["notification_arr_rel_insert_input"]
       | undefined;
     password?: string | undefined;
+    tokens?: GraphQLTypes["token_arr_rel_insert_input"] | undefined;
     transactions?:
       | GraphQLTypes["transactions_arr_rel_insert_input"]
       | undefined;
@@ -30605,6 +33899,7 @@ export type GraphQLTypes = {
     address_books_aggregate?:
       | GraphQLTypes["address_book_aggregate_order_by"]
       | undefined;
+    ata_aggregate?: GraphQLTypes["ata_aggregate_order_by"] | undefined;
     centralized_txns_aggregate?:
       | GraphQLTypes["centralized_txn_aggregate_order_by"]
       | undefined;
@@ -30630,6 +33925,7 @@ export type GraphQLTypes = {
       | GraphQLTypes["notification_aggregate_order_by"]
       | undefined;
     password?: GraphQLTypes["order_by"] | undefined;
+    tokens_aggregate?: GraphQLTypes["token_aggregate_order_by"] | undefined;
     transactions_aggregate?:
       | GraphQLTypes["transactions_aggregate_order_by"]
       | undefined;
@@ -31456,6 +34752,10 @@ export type GraphQLTypes = {
     delete_analyze?: GraphQLTypes["analyze_mutation_response"] | undefined;
     /** delete single row from the table: "analyze" */
     delete_analyze_by_pk?: GraphQLTypes["analyze"] | undefined;
+    /** delete data from the table: "ata" */
+    delete_ata?: GraphQLTypes["ata_mutation_response"] | undefined;
+    /** delete single row from the table: "ata" */
+    delete_ata_by_pk?: GraphQLTypes["ata"] | undefined;
     /** delete data from the table: "bitcoin" */
     delete_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
     /** delete single row from the table: "bitcoin" */
@@ -31526,6 +34826,10 @@ export type GraphQLTypes = {
     delete_sol?: GraphQLTypes["sol_mutation_response"] | undefined;
     /** delete single row from the table: "sol" */
     delete_sol_by_pk?: GraphQLTypes["sol"] | undefined;
+    /** delete data from the table: "token" */
+    delete_token?: GraphQLTypes["token_mutation_response"] | undefined;
+    /** delete single row from the table: "token" */
+    delete_token_by_pk?: GraphQLTypes["token"] | undefined;
     /** delete data from the table: "transactions" */
     delete_transactions?:
       | GraphQLTypes["transactions_mutation_response"]
@@ -31554,6 +34858,10 @@ export type GraphQLTypes = {
     insert_analyze?: GraphQLTypes["analyze_mutation_response"] | undefined;
     /** insert a single row into the table: "analyze" */
     insert_analyze_one?: GraphQLTypes["analyze"] | undefined;
+    /** insert data into the table: "ata" */
+    insert_ata?: GraphQLTypes["ata_mutation_response"] | undefined;
+    /** insert a single row into the table: "ata" */
+    insert_ata_one?: GraphQLTypes["ata"] | undefined;
     /** insert data into the table: "bitcoin" */
     insert_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
     /** insert a single row into the table: "bitcoin" */
@@ -31624,6 +34932,10 @@ export type GraphQLTypes = {
     insert_sol?: GraphQLTypes["sol_mutation_response"] | undefined;
     /** insert a single row into the table: "sol" */
     insert_sol_one?: GraphQLTypes["sol"] | undefined;
+    /** insert data into the table: "token" */
+    insert_token?: GraphQLTypes["token_mutation_response"] | undefined;
+    /** insert a single row into the table: "token" */
+    insert_token_one?: GraphQLTypes["token"] | undefined;
     /** insert data into the table: "transactions" */
     insert_transactions?:
       | GraphQLTypes["transactions_mutation_response"]
@@ -31667,6 +34979,14 @@ export type GraphQLTypes = {
     /** update multiples rows of table: "analyze" */
     update_analyze_many?:
       | Array<GraphQLTypes["analyze_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "ata" */
+    update_ata?: GraphQLTypes["ata_mutation_response"] | undefined;
+    /** update single row of the table: "ata" */
+    update_ata_by_pk?: GraphQLTypes["ata"] | undefined;
+    /** update multiples rows of table: "ata" */
+    update_ata_many?:
+      | Array<GraphQLTypes["ata_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "bitcoin" */
     update_bitcoin?: GraphQLTypes["bitcoin_mutation_response"] | undefined;
@@ -31792,6 +35112,14 @@ export type GraphQLTypes = {
     /** update multiples rows of table: "sol" */
     update_sol_many?:
       | Array<GraphQLTypes["sol_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "token" */
+    update_token?: GraphQLTypes["token_mutation_response"] | undefined;
+    /** update single row of the table: "token" */
+    update_token_by_pk?: GraphQLTypes["token"] | undefined;
+    /** update multiples rows of table: "token" */
+    update_token_many?:
+      | Array<GraphQLTypes["token_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "transactions" */
     update_transactions?:
@@ -32594,6 +35922,12 @@ export type GraphQLTypes = {
     analyze_aggregate: GraphQLTypes["analyze_aggregate"];
     /** fetch data from the table: "analyze" using primary key columns */
     analyze_by_pk?: GraphQLTypes["analyze"] | undefined;
+    /** An array relationship */
+    ata: Array<GraphQLTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: GraphQLTypes["ata_aggregate"];
+    /** fetch data from the table: "ata" using primary key columns */
+    ata_by_pk?: GraphQLTypes["ata"] | undefined;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<GraphQLTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -32674,6 +36008,12 @@ export type GraphQLTypes = {
     sol_aggregate: GraphQLTypes["sol_aggregate"];
     /** fetch data from the table: "sol" using primary key columns */
     sol_by_pk?: GraphQLTypes["sol"] | undefined;
+    /** fetch data from the table: "token" */
+    token: Array<GraphQLTypes["token"]>;
+    /** fetch aggregated fields from the table: "token" */
+    token_aggregate: GraphQLTypes["token_aggregate"];
+    /** fetch data from the table: "token" using primary key columns */
+    token_by_pk?: GraphQLTypes["token"] | undefined;
     /** An array relationship */
     transactions: Array<GraphQLTypes["transactions"]>;
     /** An aggregate relationship */
@@ -32860,6 +36200,14 @@ export type GraphQLTypes = {
     analyze_by_pk?: GraphQLTypes["analyze"] | undefined;
     /** fetch data from the table in a streaming manner: "analyze" */
     analyze_stream: Array<GraphQLTypes["analyze"]>;
+    /** An array relationship */
+    ata: Array<GraphQLTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: GraphQLTypes["ata_aggregate"];
+    /** fetch data from the table: "ata" using primary key columns */
+    ata_by_pk?: GraphQLTypes["ata"] | undefined;
+    /** fetch data from the table in a streaming manner: "ata" */
+    ata_stream: Array<GraphQLTypes["ata"]>;
     /** fetch data from the table: "bitcoin" */
     bitcoin: Array<GraphQLTypes["bitcoin"]>;
     /** fetch aggregated fields from the table: "bitcoin" */
@@ -32968,6 +36316,14 @@ export type GraphQLTypes = {
     sol_by_pk?: GraphQLTypes["sol"] | undefined;
     /** fetch data from the table in a streaming manner: "sol" */
     sol_stream: Array<GraphQLTypes["sol"]>;
+    /** fetch data from the table: "token" */
+    token: Array<GraphQLTypes["token"]>;
+    /** fetch aggregated fields from the table: "token" */
+    token_aggregate: GraphQLTypes["token_aggregate"];
+    /** fetch data from the table: "token" using primary key columns */
+    token_by_pk?: GraphQLTypes["token"] | undefined;
+    /** fetch data from the table in a streaming manner: "token" */
+    token_stream: Array<GraphQLTypes["token"]>;
     /** An array relationship */
     transactions: Array<GraphQLTypes["transactions"]>;
     /** An aggregate relationship */
@@ -33010,6 +36366,223 @@ export type GraphQLTypes = {
     _lte?: GraphQLTypes["timestamptz"] | undefined;
     _neq?: GraphQLTypes["timestamptz"] | undefined;
     _nin?: Array<GraphQLTypes["timestamptz"]> | undefined;
+  };
+  /** table storing all the mint token infos */
+  ["token"]: {
+    __typename: "token";
+    /** An array relationship */
+    ata: Array<GraphQLTypes["ata"]>;
+    /** An aggregate relationship */
+    ata_aggregate: GraphQLTypes["ata_aggregate"];
+    authId: GraphQLTypes["uuid"];
+    authority: string;
+    /** An object relationship */
+    client: GraphQLTypes["client"];
+    createdAt: GraphQLTypes["timestamptz"];
+    id: GraphQLTypes["uuid"];
+    name: string;
+    network: string;
+    privateKey: string;
+    pubKey: string;
+    updatedAt: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "token" */
+  ["token_aggregate"]: {
+    __typename: "token_aggregate";
+    aggregate?: GraphQLTypes["token_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["token"]>;
+  };
+  ["token_aggregate_bool_exp"]: {
+    count?: GraphQLTypes["token_aggregate_bool_exp_count"] | undefined;
+  };
+  ["token_aggregate_bool_exp_count"]: {
+    arguments?: Array<GraphQLTypes["token_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Int_comparison_exp"];
+  };
+  /** aggregate fields of "token" */
+  ["token_aggregate_fields"]: {
+    __typename: "token_aggregate_fields";
+    count: number;
+    max?: GraphQLTypes["token_max_fields"] | undefined;
+    min?: GraphQLTypes["token_min_fields"] | undefined;
+  };
+  /** order by aggregate values of table "token" */
+  ["token_aggregate_order_by"]: {
+    count?: GraphQLTypes["order_by"] | undefined;
+    max?: GraphQLTypes["token_max_order_by"] | undefined;
+    min?: GraphQLTypes["token_min_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "token" */
+  ["token_arr_rel_insert_input"]: {
+    data: Array<GraphQLTypes["token_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["token_on_conflict"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "token". All fields are combined with a logical 'AND'. */
+  ["token_bool_exp"]: {
+    _and?: Array<GraphQLTypes["token_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["token_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["token_bool_exp"]> | undefined;
+    ata?: GraphQLTypes["ata_bool_exp"] | undefined;
+    ata_aggregate?: GraphQLTypes["ata_aggregate_bool_exp"] | undefined;
+    authId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    authority?: GraphQLTypes["String_comparison_exp"] | undefined;
+    client?: GraphQLTypes["client_bool_exp"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    name?: GraphQLTypes["String_comparison_exp"] | undefined;
+    network?: GraphQLTypes["String_comparison_exp"] | undefined;
+    privateKey?: GraphQLTypes["String_comparison_exp"] | undefined;
+    pubKey?: GraphQLTypes["String_comparison_exp"] | undefined;
+    updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "token" */
+  ["token_constraint"]: token_constraint;
+  /** input type for inserting data into table "token" */
+  ["token_insert_input"]: {
+    ata?: GraphQLTypes["ata_arr_rel_insert_input"] | undefined;
+    authId?: GraphQLTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["token_max_fields"]: {
+    __typename: "token_max_fields";
+    authId?: GraphQLTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "token" */
+  ["token_max_order_by"]: {
+    authId?: GraphQLTypes["order_by"] | undefined;
+    authority?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    name?: GraphQLTypes["order_by"] | undefined;
+    network?: GraphQLTypes["order_by"] | undefined;
+    privateKey?: GraphQLTypes["order_by"] | undefined;
+    pubKey?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["token_min_fields"]: {
+    __typename: "token_min_fields";
+    authId?: GraphQLTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "token" */
+  ["token_min_order_by"]: {
+    authId?: GraphQLTypes["order_by"] | undefined;
+    authority?: GraphQLTypes["order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    name?: GraphQLTypes["order_by"] | undefined;
+    network?: GraphQLTypes["order_by"] | undefined;
+    privateKey?: GraphQLTypes["order_by"] | undefined;
+    pubKey?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "token" */
+  ["token_mutation_response"]: {
+    __typename: "token_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["token"]>;
+  };
+  /** input type for inserting object relation for remote table "token" */
+  ["token_obj_rel_insert_input"]: {
+    data: GraphQLTypes["token_insert_input"];
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["token_on_conflict"] | undefined;
+  };
+  /** on_conflict condition type for table "token" */
+  ["token_on_conflict"]: {
+    constraint: GraphQLTypes["token_constraint"];
+    update_columns: Array<GraphQLTypes["token_update_column"]>;
+    where?: GraphQLTypes["token_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "token". */
+  ["token_order_by"]: {
+    ata_aggregate?: GraphQLTypes["ata_aggregate_order_by"] | undefined;
+    authId?: GraphQLTypes["order_by"] | undefined;
+    authority?: GraphQLTypes["order_by"] | undefined;
+    client?: GraphQLTypes["client_order_by"] | undefined;
+    createdAt?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    name?: GraphQLTypes["order_by"] | undefined;
+    network?: GraphQLTypes["order_by"] | undefined;
+    privateKey?: GraphQLTypes["order_by"] | undefined;
+    pubKey?: GraphQLTypes["order_by"] | undefined;
+    updatedAt?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: token */
+  ["token_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+    pubKey: string;
+  };
+  /** select columns of table "token" */
+  ["token_select_column"]: token_select_column;
+  /** input type for updating data in table "token" */
+  ["token_set_input"]: {
+    authId?: GraphQLTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** Streaming cursor of the table "token" */
+  ["token_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["token_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_stream_cursor_value_input"]: {
+    authId?: GraphQLTypes["uuid"] | undefined;
+    authority?: string | undefined;
+    createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    name?: string | undefined;
+    network?: string | undefined;
+    privateKey?: string | undefined;
+    pubKey?: string | undefined;
+    updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** update columns of table "token" */
+  ["token_update_column"]: token_update_column;
+  ["token_updates"]: {
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["token_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["token_bool_exp"];
   };
   /** transactions table  */
   ["transactions"]: {
@@ -33844,6 +37417,44 @@ export const enum analyze_update_column {
   updated_at = "updated_at",
   walletId = "walletId",
 }
+/** unique or primary key constraints on table "ata" */
+export const enum ata_constraint {
+  ata_pkey = "ata_pkey",
+  ata_privateKey_key = "ata_privateKey_key",
+  ata_pubKey_key = "ata_pubKey_key",
+}
+/** select columns of table "ata" */
+export const enum ata_select_column {
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  is_minter = "is_minter",
+  owner = "owner",
+  privateKey = "privateKey",
+  pubKey = "pubKey",
+  token = "token",
+  updatedAt = "updatedAt",
+}
+/** select "ata_aggregate_bool_exp_bool_and_arguments_columns" columns of table "ata" */
+export const enum ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns {
+  is_minter = "is_minter",
+}
+/** select "ata_aggregate_bool_exp_bool_or_arguments_columns" columns of table "ata" */
+export const enum ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns {
+  is_minter = "is_minter",
+}
+/** update columns of table "ata" */
+export const enum ata_update_column {
+  clientId = "clientId",
+  createdAt = "createdAt",
+  id = "id",
+  is_minter = "is_minter",
+  owner = "owner",
+  privateKey = "privateKey",
+  pubKey = "pubKey",
+  token = "token",
+  updatedAt = "updatedAt",
+}
 /** unique or primary key constraints on table "bitcoin" */
 export const enum bitcoin_constraint {
   bitcoin_id_key = "bitcoin_id_key",
@@ -34275,6 +37886,37 @@ export const enum sol_update_column {
   publicKey = "publicKey",
   updatedAt = "updatedAt",
 }
+/** unique or primary key constraints on table "token" */
+export const enum token_constraint {
+  mint_tokens_authority_key = "mint_tokens_authority_key",
+  mint_tokens_pkey = "mint_tokens_pkey",
+  mint_tokens_privateKey_key = "mint_tokens_privateKey_key",
+  mint_tokens_pubKey_key = "mint_tokens_pubKey_key",
+}
+/** select columns of table "token" */
+export const enum token_select_column {
+  authId = "authId",
+  authority = "authority",
+  createdAt = "createdAt",
+  id = "id",
+  name = "name",
+  network = "network",
+  privateKey = "privateKey",
+  pubKey = "pubKey",
+  updatedAt = "updatedAt",
+}
+/** update columns of table "token" */
+export const enum token_update_column {
+  authId = "authId",
+  authority = "authority",
+  createdAt = "createdAt",
+  id = "id",
+  name = "name",
+  network = "network",
+  privateKey = "privateKey",
+  pubKey = "pubKey",
+  updatedAt = "updatedAt",
+}
 /** unique or primary key constraints on table "transactions" */
 export const enum transactions_constraint {
   transactions_hash_key = "transactions_hash_key",
@@ -34454,6 +38096,28 @@ type ZEUS_VARIABLES = {
   ["analyze_stream_cursor_value_input"]: ValueTypes["analyze_stream_cursor_value_input"];
   ["analyze_update_column"]: ValueTypes["analyze_update_column"];
   ["analyze_updates"]: ValueTypes["analyze_updates"];
+  ["ata_aggregate_bool_exp"]: ValueTypes["ata_aggregate_bool_exp"];
+  ["ata_aggregate_bool_exp_bool_and"]: ValueTypes["ata_aggregate_bool_exp_bool_and"];
+  ["ata_aggregate_bool_exp_bool_or"]: ValueTypes["ata_aggregate_bool_exp_bool_or"];
+  ["ata_aggregate_bool_exp_count"]: ValueTypes["ata_aggregate_bool_exp_count"];
+  ["ata_aggregate_order_by"]: ValueTypes["ata_aggregate_order_by"];
+  ["ata_arr_rel_insert_input"]: ValueTypes["ata_arr_rel_insert_input"];
+  ["ata_bool_exp"]: ValueTypes["ata_bool_exp"];
+  ["ata_constraint"]: ValueTypes["ata_constraint"];
+  ["ata_insert_input"]: ValueTypes["ata_insert_input"];
+  ["ata_max_order_by"]: ValueTypes["ata_max_order_by"];
+  ["ata_min_order_by"]: ValueTypes["ata_min_order_by"];
+  ["ata_on_conflict"]: ValueTypes["ata_on_conflict"];
+  ["ata_order_by"]: ValueTypes["ata_order_by"];
+  ["ata_pk_columns_input"]: ValueTypes["ata_pk_columns_input"];
+  ["ata_select_column"]: ValueTypes["ata_select_column"];
+  ["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"]: ValueTypes["ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns"];
+  ["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"]: ValueTypes["ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns"];
+  ["ata_set_input"]: ValueTypes["ata_set_input"];
+  ["ata_stream_cursor_input"]: ValueTypes["ata_stream_cursor_input"];
+  ["ata_stream_cursor_value_input"]: ValueTypes["ata_stream_cursor_value_input"];
+  ["ata_update_column"]: ValueTypes["ata_update_column"];
+  ["ata_updates"]: ValueTypes["ata_updates"];
   ["bigint"]: ValueTypes["bigint"];
   ["bigint_comparison_exp"]: ValueTypes["bigint_comparison_exp"];
   ["bitcoin_bool_exp"]: ValueTypes["bitcoin_bool_exp"];
@@ -34697,6 +38361,25 @@ type ZEUS_VARIABLES = {
   ["timestamp_comparison_exp"]: ValueTypes["timestamp_comparison_exp"];
   ["timestamptz"]: ValueTypes["timestamptz"];
   ["timestamptz_comparison_exp"]: ValueTypes["timestamptz_comparison_exp"];
+  ["token_aggregate_bool_exp"]: ValueTypes["token_aggregate_bool_exp"];
+  ["token_aggregate_bool_exp_count"]: ValueTypes["token_aggregate_bool_exp_count"];
+  ["token_aggregate_order_by"]: ValueTypes["token_aggregate_order_by"];
+  ["token_arr_rel_insert_input"]: ValueTypes["token_arr_rel_insert_input"];
+  ["token_bool_exp"]: ValueTypes["token_bool_exp"];
+  ["token_constraint"]: ValueTypes["token_constraint"];
+  ["token_insert_input"]: ValueTypes["token_insert_input"];
+  ["token_max_order_by"]: ValueTypes["token_max_order_by"];
+  ["token_min_order_by"]: ValueTypes["token_min_order_by"];
+  ["token_obj_rel_insert_input"]: ValueTypes["token_obj_rel_insert_input"];
+  ["token_on_conflict"]: ValueTypes["token_on_conflict"];
+  ["token_order_by"]: ValueTypes["token_order_by"];
+  ["token_pk_columns_input"]: ValueTypes["token_pk_columns_input"];
+  ["token_select_column"]: ValueTypes["token_select_column"];
+  ["token_set_input"]: ValueTypes["token_set_input"];
+  ["token_stream_cursor_input"]: ValueTypes["token_stream_cursor_input"];
+  ["token_stream_cursor_value_input"]: ValueTypes["token_stream_cursor_value_input"];
+  ["token_update_column"]: ValueTypes["token_update_column"];
+  ["token_updates"]: ValueTypes["token_updates"];
   ["transactions_aggregate_bool_exp"]: ValueTypes["transactions_aggregate_bool_exp"];
   ["transactions_aggregate_bool_exp_avg"]: ValueTypes["transactions_aggregate_bool_exp_avg"];
   ["transactions_aggregate_bool_exp_corr"]: ValueTypes["transactions_aggregate_bool_exp_corr"];

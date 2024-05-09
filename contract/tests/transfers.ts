@@ -20,7 +20,7 @@ const idl = JSON.parse(
 );
 
 const programId = new anchor.web3.PublicKey(
-  "5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6",
+  "7RjRQh8mzuoZL9KtsE8a5dzciDZRxHkGxnxWMeKhxTk4",
 );
 const provider = anchor.AnchorProvider.env();
 anchor.setProvider(provider);
