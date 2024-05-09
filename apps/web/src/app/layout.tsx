@@ -10,6 +10,8 @@ import { authOptions } from "./api/auth/[...nextauth]/util";
 import RootChildLayout from "./RootChildLayout";
 import NotifWrapper from "./NotifWrapper";
 import { ClientWithJwt } from "@paybox/common";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -57,6 +59,8 @@ export default async function RootLayout({
             </NotifWrapper>
           </SessionProvider>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
