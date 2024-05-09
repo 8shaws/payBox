@@ -1,5 +1,9 @@
 import { SolCluster } from "@paybox/common";
-import { Cluster } from "@solana/web3.js";
+import {
+  Cluster,
+  Transaction,
+  sendAndConfirmTransaction,
+} from "@solana/web3.js";
 import * as anchor from "@project-serum/anchor";
 import { Keypair } from "@solana/web3.js";
 import { decode } from "bs58";
@@ -134,6 +138,30 @@ export class SolTokenOps {
       return Promise.resolve(txn);
     } catch (e) {
       console.log("Error: ", e);
+      return Promise.reject(e);
+    }
+  }
+
+  async genAta(mint: string, privateKey: string): Promise<string> {
+    const keyPair = Keypair.fromSecretKey(new Uint8Array(decode(privateKey)));
+    let mintKP = new anchor.web3.PublicKey(mint);
+
+    const ata = await getAssociatedTokenAddress(mintKP, keyPair.publicKey);
+
+    let tx = new Transaction().add(
+      createAssociatedTokenAccountInstruction(
+        keyPair.publicKey,
+        ata,
+        keyPair.publicKey,
+        mintKP,
+      ),
+    );
+
+    try {
+      await sendAndConfirmTransaction(this.connection, tx, [keyPair]);
+      return Promise.resolve(ata.toString());
+    } catch (e) {
+      console.log(e);
       return Promise.reject(e);
     }
   }
