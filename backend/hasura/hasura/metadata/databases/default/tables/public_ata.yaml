@@ -5,10 +5,13 @@ configuration:
   column_config:
     created_at:
       custom_name: createdAt
+    is_minter:
+      custom_name: isMinter
     updated_at:
       custom_name: updatedAt
   custom_column_names:
     created_at: createdAt
+    is_minter: isMinter
     updated_at: updatedAt
   custom_root_fields: {}
 object_relationships:
