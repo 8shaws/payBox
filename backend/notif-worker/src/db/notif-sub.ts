@@ -69,18 +69,22 @@ export const deleteSubs = async (
 }> => {
   const response = await chain("mutation")(
     {
-      delete_notification_subscription_by_pk: [
+      delete_notification_subscription: [
         {
-          id,
+          where: {
+            id: { _eq: id },
+          },
         },
         {
-          id: true,
+          returning: {
+            id: true,
+          },
         },
       ],
     },
     { operationName: "deleteSubs" },
   );
-  if (response.delete_notification_subscription_by_pk?.id) {
+  if (response.delete_notification_subscription?.returning[0].id) {
     return {
       status: dbResStatus.Ok,
     };

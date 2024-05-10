@@ -495,9 +495,11 @@ export const getFriendPubKey = async (
 }> => {
   const response = await chain("query")(
     {
-      client_by_pk: [
+      client: [
         {
-          id: { _eq: friendId },
+          where: {
+            id: { _eq: friendId },
+          },
           limit: 1,
         },
         {
@@ -526,10 +528,10 @@ export const getFriendPubKey = async (
     },
     { operationName: "getFriendPubKey" },
   );
-  if (response.client_by_pk?.accounts[0].id) {
+  if (response.client[0]?.accounts[0].id) {
     return {
       status: dbResStatus.Ok,
-      keys: response.client_by_pk.accounts[0] as FriendPubKeys,
+      keys: response.client[0].accounts[0] as FriendPubKeys,
     };
   }
   return {
