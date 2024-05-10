@@ -51,6 +51,7 @@ import { settingsRouter } from "./routes/settings";
 import { bookRouter } from "./routes/book";
 import { mainLimiter } from "./auth";
 import { utilRouter } from "./routes/utils";
+import { tokenRouter } from "./routes/token";
 
 export * from "./Redis";
 export * from "./auth";
@@ -172,6 +173,7 @@ app.use("/notif_sub", extractClientId, notifSubRouter);
 app.use("/buy", extractClientId, checkValidation, buyRouter);
 app.use("/settings", extractClientId, checkValidation, settingsRouter);
 app.use("/book", extractClientId, checkValidation, bookRouter);
+app.use("/token", extractClientId, checkValidation, tokenRouter);
 app.use("/hooks", hooksRouter);
 app.use("/locale", localeRouter);
 app.use("/utils", utilRouter);

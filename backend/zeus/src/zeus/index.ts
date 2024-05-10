@@ -2528,9 +2528,8 @@ export type ValueTypes = {
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    is_minter?: boolean | `@${string}`;
+    isMinter?: boolean | `@${string}`;
     owner?: boolean | `@${string}`;
-    privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
     token?: boolean | `@${string}`;
     /** An object relationship */
@@ -2677,17 +2676,12 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    is_minter?:
+    isMinter?:
       | ValueTypes["Boolean_comparison_exp"]
       | undefined
       | null
       | Variable<any, string>;
     owner?:
-      | ValueTypes["String_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    privateKey?:
       | ValueTypes["String_comparison_exp"]
       | undefined
       | null
@@ -2729,9 +2723,8 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    is_minter?: boolean | undefined | null | Variable<any, string>;
+    isMinter?: boolean | undefined | null | Variable<any, string>;
     owner?: string | undefined | null | Variable<any, string>;
-    privateKey?: string | undefined | null | Variable<any, string>;
     pubKey?: string | undefined | null | Variable<any, string>;
     token?: string | undefined | null | Variable<any, string>;
     tokenByToken?:
@@ -2751,7 +2744,6 @@ export type ValueTypes = {
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     owner?: boolean | `@${string}`;
-    privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
     token?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -2771,11 +2763,6 @@ export type ValueTypes = {
       | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     owner?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    privateKey?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -2790,7 +2777,6 @@ export type ValueTypes = {
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     owner?: boolean | `@${string}`;
-    privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
     token?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -2810,11 +2796,6 @@ export type ValueTypes = {
       | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     owner?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    privateKey?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -2861,17 +2842,12 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    is_minter?:
+    isMinter?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
     owner?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
-    privateKey?:
-      | ValueTypes["order_by"]
-      | undefined
-      | null
-      | Variable<any, string>;
     pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     tokenByToken?:
@@ -2904,9 +2880,8 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    is_minter?: boolean | undefined | null | Variable<any, string>;
+    isMinter?: boolean | undefined | null | Variable<any, string>;
     owner?: string | undefined | null | Variable<any, string>;
-    privateKey?: string | undefined | null | Variable<any, string>;
     pubKey?: string | undefined | null | Variable<any, string>;
     token?: string | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -2937,9 +2912,8 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
-    is_minter?: boolean | undefined | null | Variable<any, string>;
+    isMinter?: boolean | undefined | null | Variable<any, string>;
     owner?: string | undefined | null | Variable<any, string>;
-    privateKey?: string | undefined | null | Variable<any, string>;
     pubKey?: string | undefined | null | Variable<any, string>;
     token?: string | undefined | null | Variable<any, string>;
     updatedAt?:
@@ -14719,11 +14693,12 @@ export type ValueTypes = {
       },
       ValueTypes["ata_aggregate"],
     ];
-    authId?: boolean | `@${string}`;
     authority?: boolean | `@${string}`;
     /** An object relationship */
     client?: ValueTypes["client"];
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    description?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     network?: boolean | `@${string}`;
@@ -14823,11 +14798,6 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    authId?:
-      | ValueTypes["uuid_comparison_exp"]
-      | undefined
-      | null
-      | Variable<any, string>;
     authority?:
       | ValueTypes["String_comparison_exp"]
       | undefined
@@ -14838,8 +14808,18 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    description?:
+      | ValueTypes["String_comparison_exp"]
       | undefined
       | null
       | Variable<any, string>;
@@ -14883,18 +14863,19 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    authId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     authority?: string | undefined | null | Variable<any, string>;
     client?:
       | ValueTypes["client_obj_rel_insert_input"]
       | undefined
       | null
       | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    description?: string | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     name?: string | undefined | null | Variable<any, string>;
     network?: string | undefined | null | Variable<any, string>;
@@ -14908,9 +14889,10 @@ export type ValueTypes = {
   };
   /** aggregate max on columns */
   ["token_max_fields"]: AliasType<{
-    authId?: boolean | `@${string}`;
     authority?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    description?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     network?: boolean | `@${string}`;
@@ -14921,13 +14903,22 @@ export type ValueTypes = {
   }>;
   /** order by max() on columns of table "token" */
   ["token_max_order_by"]: {
-    authId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     authority?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    description?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -14949,9 +14940,10 @@ export type ValueTypes = {
   };
   /** aggregate min on columns */
   ["token_min_fields"]: AliasType<{
-    authId?: boolean | `@${string}`;
     authority?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    description?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     network?: boolean | `@${string}`;
@@ -14962,13 +14954,22 @@ export type ValueTypes = {
   }>;
   /** order by min() on columns of table "token" */
   ["token_min_order_by"]: {
-    authId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     authority?:
       | ValueTypes["order_by"]
       | undefined
       | null
       | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    description?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -15025,7 +15026,6 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    authId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     authority?:
       | ValueTypes["order_by"]
       | undefined
@@ -15036,7 +15036,17 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     createdAt?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    description?:
       | ValueTypes["order_by"]
       | undefined
       | null
@@ -15065,13 +15075,14 @@ export type ValueTypes = {
   ["token_select_column"]: token_select_column;
   /** input type for updating data in table "token" */
   ["token_set_input"]: {
-    authId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     authority?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    description?: string | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     name?: string | undefined | null | Variable<any, string>;
     network?: string | undefined | null | Variable<any, string>;
@@ -15098,13 +15109,14 @@ export type ValueTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["token_stream_cursor_value_input"]: {
-    authId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     authority?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     createdAt?:
       | ValueTypes["timestamptz"]
       | undefined
       | null
       | Variable<any, string>;
+    description?: string | undefined | null | Variable<any, string>;
     id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
     name?: string | undefined | null | Variable<any, string>;
     network?: string | undefined | null | Variable<any, string>;
@@ -17401,9 +17413,8 @@ export type ResolverInputTypes = {
     clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
-    is_minter?: boolean | `@${string}`;
+    isMinter?: boolean | `@${string}`;
     owner?: boolean | `@${string}`;
-    privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
     token?: boolean | `@${string}`;
     /** An object relationship */
@@ -17492,9 +17503,8 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
-    is_minter?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null;
+    isMinter?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null;
     owner?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
-    privateKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     pubKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     token?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     tokenByToken?: ResolverInputTypes["token_bool_exp"] | undefined | null;
@@ -17514,9 +17524,8 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    is_minter?: boolean | undefined | null;
+    isMinter?: boolean | undefined | null;
     owner?: string | undefined | null;
-    privateKey?: string | undefined | null;
     pubKey?: string | undefined | null;
     token?: string | undefined | null;
     tokenByToken?:
@@ -17531,7 +17540,6 @@ export type ResolverInputTypes = {
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     owner?: boolean | `@${string}`;
-    privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
     token?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -17543,7 +17551,6 @@ export type ResolverInputTypes = {
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     owner?: ResolverInputTypes["order_by"] | undefined | null;
-    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
     pubKey?: ResolverInputTypes["order_by"] | undefined | null;
     token?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
@@ -17554,7 +17561,6 @@ export type ResolverInputTypes = {
     createdAt?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     owner?: boolean | `@${string}`;
-    privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
     token?: boolean | `@${string}`;
     updatedAt?: boolean | `@${string}`;
@@ -17566,7 +17572,6 @@ export type ResolverInputTypes = {
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     owner?: ResolverInputTypes["order_by"] | undefined | null;
-    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
     pubKey?: ResolverInputTypes["order_by"] | undefined | null;
     token?: ResolverInputTypes["order_by"] | undefined | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
@@ -17591,9 +17596,8 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
-    is_minter?: ResolverInputTypes["order_by"] | undefined | null;
+    isMinter?: ResolverInputTypes["order_by"] | undefined | null;
     owner?: ResolverInputTypes["order_by"] | undefined | null;
-    privateKey?: ResolverInputTypes["order_by"] | undefined | null;
     pubKey?: ResolverInputTypes["order_by"] | undefined | null;
     token?: ResolverInputTypes["order_by"] | undefined | null;
     tokenByToken?: ResolverInputTypes["token_order_by"] | undefined | null;
@@ -17614,9 +17618,8 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    is_minter?: boolean | undefined | null;
+    isMinter?: boolean | undefined | null;
     owner?: string | undefined | null;
-    privateKey?: string | undefined | null;
     pubKey?: string | undefined | null;
     token?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
@@ -17633,9 +17636,8 @@ export type ResolverInputTypes = {
     clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
-    is_minter?: boolean | undefined | null;
+    isMinter?: boolean | undefined | null;
     owner?: string | undefined | null;
-    privateKey?: string | undefined | null;
     pubKey?: string | undefined | null;
     token?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
@@ -25416,11 +25418,12 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["ata_aggregate"],
     ];
-    authId?: boolean | `@${string}`;
     authority?: boolean | `@${string}`;
     /** An object relationship */
     client?: ResolverInputTypes["client"];
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    description?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     network?: boolean | `@${string}`;
@@ -25488,11 +25491,15 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["ata_aggregate_bool_exp"]
       | undefined
       | null;
-    authId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     authority?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     client?: ResolverInputTypes["client_bool_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
     createdAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    description?:
+      | ResolverInputTypes["String_comparison_exp"]
       | undefined
       | null;
     id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
@@ -25510,13 +25517,14 @@ export type ResolverInputTypes = {
   /** input type for inserting data into table "token" */
   ["token_insert_input"]: {
     ata?: ResolverInputTypes["ata_arr_rel_insert_input"] | undefined | null;
-    authId?: ResolverInputTypes["uuid"] | undefined | null;
     authority?: string | undefined | null;
     client?:
       | ResolverInputTypes["client_obj_rel_insert_input"]
       | undefined
       | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    description?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     name?: string | undefined | null;
     network?: string | undefined | null;
@@ -25526,9 +25534,10 @@ export type ResolverInputTypes = {
   };
   /** aggregate max on columns */
   ["token_max_fields"]: AliasType<{
-    authId?: boolean | `@${string}`;
     authority?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    description?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     network?: boolean | `@${string}`;
@@ -25539,9 +25548,10 @@ export type ResolverInputTypes = {
   }>;
   /** order by max() on columns of table "token" */
   ["token_max_order_by"]: {
-    authId?: ResolverInputTypes["order_by"] | undefined | null;
     authority?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    description?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     name?: ResolverInputTypes["order_by"] | undefined | null;
     network?: ResolverInputTypes["order_by"] | undefined | null;
@@ -25551,9 +25561,10 @@ export type ResolverInputTypes = {
   };
   /** aggregate min on columns */
   ["token_min_fields"]: AliasType<{
-    authId?: boolean | `@${string}`;
     authority?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
     createdAt?: boolean | `@${string}`;
+    description?: boolean | `@${string}`;
     id?: boolean | `@${string}`;
     name?: boolean | `@${string}`;
     network?: boolean | `@${string}`;
@@ -25564,9 +25575,10 @@ export type ResolverInputTypes = {
   }>;
   /** order by min() on columns of table "token" */
   ["token_min_order_by"]: {
-    authId?: ResolverInputTypes["order_by"] | undefined | null;
     authority?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    description?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     name?: ResolverInputTypes["order_by"] | undefined | null;
     network?: ResolverInputTypes["order_by"] | undefined | null;
@@ -25600,10 +25612,11 @@ export type ResolverInputTypes = {
       | ResolverInputTypes["ata_aggregate_order_by"]
       | undefined
       | null;
-    authId?: ResolverInputTypes["order_by"] | undefined | null;
     authority?: ResolverInputTypes["order_by"] | undefined | null;
     client?: ResolverInputTypes["client_order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
     createdAt?: ResolverInputTypes["order_by"] | undefined | null;
+    description?: ResolverInputTypes["order_by"] | undefined | null;
     id?: ResolverInputTypes["order_by"] | undefined | null;
     name?: ResolverInputTypes["order_by"] | undefined | null;
     network?: ResolverInputTypes["order_by"] | undefined | null;
@@ -25620,9 +25633,10 @@ export type ResolverInputTypes = {
   ["token_select_column"]: token_select_column;
   /** input type for updating data in table "token" */
   ["token_set_input"]: {
-    authId?: ResolverInputTypes["uuid"] | undefined | null;
     authority?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    description?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     name?: string | undefined | null;
     network?: string | undefined | null;
@@ -25639,9 +25653,10 @@ export type ResolverInputTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["token_stream_cursor_value_input"]: {
-    authId?: ResolverInputTypes["uuid"] | undefined | null;
     authority?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
     createdAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+    description?: string | undefined | null;
     id?: ResolverInputTypes["uuid"] | undefined | null;
     name?: string | undefined | null;
     network?: string | undefined | null;
@@ -27286,9 +27301,8 @@ export type ModelTypes = {
     clientId: ModelTypes["uuid"];
     createdAt: ModelTypes["timestamptz"];
     id: ModelTypes["uuid"];
-    is_minter: boolean;
+    isMinter: boolean;
     owner: string;
-    privateKey: string;
     pubKey: string;
     token: string;
     /** An object relationship */
@@ -27350,9 +27364,8 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
-    is_minter?: ModelTypes["Boolean_comparison_exp"] | undefined;
+    isMinter?: ModelTypes["Boolean_comparison_exp"] | undefined;
     owner?: ModelTypes["String_comparison_exp"] | undefined;
-    privateKey?: ModelTypes["String_comparison_exp"] | undefined;
     pubKey?: ModelTypes["String_comparison_exp"] | undefined;
     token?: ModelTypes["String_comparison_exp"] | undefined;
     tokenByToken?: ModelTypes["token_bool_exp"] | undefined;
@@ -27365,9 +27378,8 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    is_minter?: boolean | undefined;
+    isMinter?: boolean | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     tokenByToken?: ModelTypes["token_obj_rel_insert_input"] | undefined;
@@ -27379,7 +27391,6 @@ export type ModelTypes = {
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -27390,7 +27401,6 @@ export type ModelTypes = {
     createdAt?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     owner?: ModelTypes["order_by"] | undefined;
-    privateKey?: ModelTypes["order_by"] | undefined;
     pubKey?: ModelTypes["order_by"] | undefined;
     token?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
@@ -27401,7 +27411,6 @@ export type ModelTypes = {
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -27412,7 +27421,6 @@ export type ModelTypes = {
     createdAt?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     owner?: ModelTypes["order_by"] | undefined;
-    privateKey?: ModelTypes["order_by"] | undefined;
     pubKey?: ModelTypes["order_by"] | undefined;
     token?: ModelTypes["order_by"] | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
@@ -27436,9 +27444,8 @@ export type ModelTypes = {
     clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
-    is_minter?: ModelTypes["order_by"] | undefined;
+    isMinter?: ModelTypes["order_by"] | undefined;
     owner?: ModelTypes["order_by"] | undefined;
-    privateKey?: ModelTypes["order_by"] | undefined;
     pubKey?: ModelTypes["order_by"] | undefined;
     token?: ModelTypes["order_by"] | undefined;
     tokenByToken?: ModelTypes["token_order_by"] | undefined;
@@ -27456,9 +27463,8 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    is_minter?: boolean | undefined;
+    isMinter?: boolean | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -27475,9 +27481,8 @@ export type ModelTypes = {
     clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
     id?: ModelTypes["uuid"] | undefined;
-    is_minter?: boolean | undefined;
+    isMinter?: boolean | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -30894,11 +30899,12 @@ export type ModelTypes = {
     ata: Array<ModelTypes["ata"]>;
     /** An aggregate relationship */
     ata_aggregate: ModelTypes["ata_aggregate"];
-    authId: ModelTypes["uuid"];
     authority: string;
     /** An object relationship */
     client: ModelTypes["client"];
+    clientId: ModelTypes["uuid"];
     createdAt: ModelTypes["timestamptz"];
+    description: string;
     id: ModelTypes["uuid"];
     name: string;
     network: string;
@@ -30945,10 +30951,11 @@ export type ModelTypes = {
     _or?: Array<ModelTypes["token_bool_exp"]> | undefined;
     ata?: ModelTypes["ata_bool_exp"] | undefined;
     ata_aggregate?: ModelTypes["ata_aggregate_bool_exp"] | undefined;
-    authId?: ModelTypes["uuid_comparison_exp"] | undefined;
     authority?: ModelTypes["String_comparison_exp"] | undefined;
     client?: ModelTypes["client_bool_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
     createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    description?: ModelTypes["String_comparison_exp"] | undefined;
     id?: ModelTypes["uuid_comparison_exp"] | undefined;
     name?: ModelTypes["String_comparison_exp"] | undefined;
     network?: ModelTypes["String_comparison_exp"] | undefined;
@@ -30960,10 +30967,11 @@ export type ModelTypes = {
   /** input type for inserting data into table "token" */
   ["token_insert_input"]: {
     ata?: ModelTypes["ata_arr_rel_insert_input"] | undefined;
-    authId?: ModelTypes["uuid"] | undefined;
     authority?: string | undefined;
     client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -30973,9 +30981,10 @@ export type ModelTypes = {
   };
   /** aggregate max on columns */
   ["token_max_fields"]: {
-    authId?: ModelTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -30985,9 +30994,10 @@ export type ModelTypes = {
   };
   /** order by max() on columns of table "token" */
   ["token_max_order_by"]: {
-    authId?: ModelTypes["order_by"] | undefined;
     authority?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
+    description?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     name?: ModelTypes["order_by"] | undefined;
     network?: ModelTypes["order_by"] | undefined;
@@ -30997,9 +31007,10 @@ export type ModelTypes = {
   };
   /** aggregate min on columns */
   ["token_min_fields"]: {
-    authId?: ModelTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -31009,9 +31020,10 @@ export type ModelTypes = {
   };
   /** order by min() on columns of table "token" */
   ["token_min_order_by"]: {
-    authId?: ModelTypes["order_by"] | undefined;
     authority?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
+    description?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     name?: ModelTypes["order_by"] | undefined;
     network?: ModelTypes["order_by"] | undefined;
@@ -31041,10 +31053,11 @@ export type ModelTypes = {
   /** Ordering options when selecting data from "token". */
   ["token_order_by"]: {
     ata_aggregate?: ModelTypes["ata_aggregate_order_by"] | undefined;
-    authId?: ModelTypes["order_by"] | undefined;
     authority?: ModelTypes["order_by"] | undefined;
     client?: ModelTypes["client_order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
     createdAt?: ModelTypes["order_by"] | undefined;
+    description?: ModelTypes["order_by"] | undefined;
     id?: ModelTypes["order_by"] | undefined;
     name?: ModelTypes["order_by"] | undefined;
     network?: ModelTypes["order_by"] | undefined;
@@ -31060,9 +31073,10 @@ export type ModelTypes = {
   ["token_select_column"]: token_select_column;
   /** input type for updating data in table "token" */
   ["token_set_input"]: {
-    authId?: ModelTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -31079,9 +31093,10 @@ export type ModelTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["token_stream_cursor_value_input"]: {
-    authId?: ModelTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
     createdAt?: ModelTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: ModelTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -32578,9 +32593,8 @@ export type GraphQLTypes = {
     clientId: GraphQLTypes["uuid"];
     createdAt: GraphQLTypes["timestamptz"];
     id: GraphQLTypes["uuid"];
-    is_minter: boolean;
+    isMinter: boolean;
     owner: string;
-    privateKey: string;
     pubKey: string;
     token: string;
     /** An object relationship */
@@ -32644,9 +32658,8 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
-    is_minter?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
+    isMinter?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
     owner?: GraphQLTypes["String_comparison_exp"] | undefined;
-    privateKey?: GraphQLTypes["String_comparison_exp"] | undefined;
     pubKey?: GraphQLTypes["String_comparison_exp"] | undefined;
     token?: GraphQLTypes["String_comparison_exp"] | undefined;
     tokenByToken?: GraphQLTypes["token_bool_exp"] | undefined;
@@ -32660,9 +32673,8 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    is_minter?: boolean | undefined;
+    isMinter?: boolean | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     tokenByToken?: GraphQLTypes["token_obj_rel_insert_input"] | undefined;
@@ -32675,7 +32687,6 @@ export type GraphQLTypes = {
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -32686,7 +32697,6 @@ export type GraphQLTypes = {
     createdAt?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     owner?: GraphQLTypes["order_by"] | undefined;
-    privateKey?: GraphQLTypes["order_by"] | undefined;
     pubKey?: GraphQLTypes["order_by"] | undefined;
     token?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
@@ -32698,7 +32708,6 @@ export type GraphQLTypes = {
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -32709,7 +32718,6 @@ export type GraphQLTypes = {
     createdAt?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     owner?: GraphQLTypes["order_by"] | undefined;
-    privateKey?: GraphQLTypes["order_by"] | undefined;
     pubKey?: GraphQLTypes["order_by"] | undefined;
     token?: GraphQLTypes["order_by"] | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
@@ -32734,9 +32742,8 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
-    is_minter?: GraphQLTypes["order_by"] | undefined;
+    isMinter?: GraphQLTypes["order_by"] | undefined;
     owner?: GraphQLTypes["order_by"] | undefined;
-    privateKey?: GraphQLTypes["order_by"] | undefined;
     pubKey?: GraphQLTypes["order_by"] | undefined;
     token?: GraphQLTypes["order_by"] | undefined;
     tokenByToken?: GraphQLTypes["token_order_by"] | undefined;
@@ -32757,9 +32764,8 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    is_minter?: boolean | undefined;
+    isMinter?: boolean | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -32776,9 +32782,8 @@ export type GraphQLTypes = {
     clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
-    is_minter?: boolean | undefined;
+    isMinter?: boolean | undefined;
     owner?: string | undefined;
-    privateKey?: string | undefined;
     pubKey?: string | undefined;
     token?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
@@ -36374,11 +36379,12 @@ export type GraphQLTypes = {
     ata: Array<GraphQLTypes["ata"]>;
     /** An aggregate relationship */
     ata_aggregate: GraphQLTypes["ata_aggregate"];
-    authId: GraphQLTypes["uuid"];
     authority: string;
     /** An object relationship */
     client: GraphQLTypes["client"];
+    clientId: GraphQLTypes["uuid"];
     createdAt: GraphQLTypes["timestamptz"];
+    description: string;
     id: GraphQLTypes["uuid"];
     name: string;
     network: string;
@@ -36427,10 +36433,11 @@ export type GraphQLTypes = {
     _or?: Array<GraphQLTypes["token_bool_exp"]> | undefined;
     ata?: GraphQLTypes["ata_bool_exp"] | undefined;
     ata_aggregate?: GraphQLTypes["ata_aggregate_bool_exp"] | undefined;
-    authId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     authority?: GraphQLTypes["String_comparison_exp"] | undefined;
     client?: GraphQLTypes["client_bool_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    description?: GraphQLTypes["String_comparison_exp"] | undefined;
     id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
     name?: GraphQLTypes["String_comparison_exp"] | undefined;
     network?: GraphQLTypes["String_comparison_exp"] | undefined;
@@ -36443,10 +36450,11 @@ export type GraphQLTypes = {
   /** input type for inserting data into table "token" */
   ["token_insert_input"]: {
     ata?: GraphQLTypes["ata_arr_rel_insert_input"] | undefined;
-    authId?: GraphQLTypes["uuid"] | undefined;
     authority?: string | undefined;
     client?: GraphQLTypes["client_obj_rel_insert_input"] | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -36457,9 +36465,10 @@ export type GraphQLTypes = {
   /** aggregate max on columns */
   ["token_max_fields"]: {
     __typename: "token_max_fields";
-    authId?: GraphQLTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -36469,9 +36478,10 @@ export type GraphQLTypes = {
   };
   /** order by max() on columns of table "token" */
   ["token_max_order_by"]: {
-    authId?: GraphQLTypes["order_by"] | undefined;
     authority?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
+    description?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     name?: GraphQLTypes["order_by"] | undefined;
     network?: GraphQLTypes["order_by"] | undefined;
@@ -36482,9 +36492,10 @@ export type GraphQLTypes = {
   /** aggregate min on columns */
   ["token_min_fields"]: {
     __typename: "token_min_fields";
-    authId?: GraphQLTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -36494,9 +36505,10 @@ export type GraphQLTypes = {
   };
   /** order by min() on columns of table "token" */
   ["token_min_order_by"]: {
-    authId?: GraphQLTypes["order_by"] | undefined;
     authority?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
+    description?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     name?: GraphQLTypes["order_by"] | undefined;
     network?: GraphQLTypes["order_by"] | undefined;
@@ -36527,10 +36539,11 @@ export type GraphQLTypes = {
   /** Ordering options when selecting data from "token". */
   ["token_order_by"]: {
     ata_aggregate?: GraphQLTypes["ata_aggregate_order_by"] | undefined;
-    authId?: GraphQLTypes["order_by"] | undefined;
     authority?: GraphQLTypes["order_by"] | undefined;
     client?: GraphQLTypes["client_order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
     createdAt?: GraphQLTypes["order_by"] | undefined;
+    description?: GraphQLTypes["order_by"] | undefined;
     id?: GraphQLTypes["order_by"] | undefined;
     name?: GraphQLTypes["order_by"] | undefined;
     network?: GraphQLTypes["order_by"] | undefined;
@@ -36547,9 +36560,10 @@ export type GraphQLTypes = {
   ["token_select_column"]: token_select_column;
   /** input type for updating data in table "token" */
   ["token_set_input"]: {
-    authId?: GraphQLTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -36566,9 +36580,10 @@ export type GraphQLTypes = {
   };
   /** Initial value of the column from where the streaming should start */
   ["token_stream_cursor_value_input"]: {
-    authId?: GraphQLTypes["uuid"] | undefined;
     authority?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
     createdAt?: GraphQLTypes["timestamptz"] | undefined;
+    description?: string | undefined;
     id?: GraphQLTypes["uuid"] | undefined;
     name?: string | undefined;
     network?: string | undefined;
@@ -37420,7 +37435,6 @@ export const enum analyze_update_column {
 /** unique or primary key constraints on table "ata" */
 export const enum ata_constraint {
   ata_pkey = "ata_pkey",
-  ata_privateKey_key = "ata_privateKey_key",
   ata_pubKey_key = "ata_pubKey_key",
 }
 /** select columns of table "ata" */
@@ -37428,29 +37442,27 @@ export const enum ata_select_column {
   clientId = "clientId",
   createdAt = "createdAt",
   id = "id",
-  is_minter = "is_minter",
+  isMinter = "isMinter",
   owner = "owner",
-  privateKey = "privateKey",
   pubKey = "pubKey",
   token = "token",
   updatedAt = "updatedAt",
 }
 /** select "ata_aggregate_bool_exp_bool_and_arguments_columns" columns of table "ata" */
 export const enum ata_select_column_ata_aggregate_bool_exp_bool_and_arguments_columns {
-  is_minter = "is_minter",
+  isMinter = "isMinter",
 }
 /** select "ata_aggregate_bool_exp_bool_or_arguments_columns" columns of table "ata" */
 export const enum ata_select_column_ata_aggregate_bool_exp_bool_or_arguments_columns {
-  is_minter = "is_minter",
+  isMinter = "isMinter",
 }
 /** update columns of table "ata" */
 export const enum ata_update_column {
   clientId = "clientId",
   createdAt = "createdAt",
   id = "id",
-  is_minter = "is_minter",
+  isMinter = "isMinter",
   owner = "owner",
-  privateKey = "privateKey",
   pubKey = "pubKey",
   token = "token",
   updatedAt = "updatedAt",
@@ -37895,9 +37907,10 @@ export const enum token_constraint {
 }
 /** select columns of table "token" */
 export const enum token_select_column {
-  authId = "authId",
   authority = "authority",
+  clientId = "clientId",
   createdAt = "createdAt",
+  description = "description",
   id = "id",
   name = "name",
   network = "network",
@@ -37907,9 +37920,10 @@ export const enum token_select_column {
 }
 /** update columns of table "token" */
 export const enum token_update_column {
-  authId = "authId",
   authority = "authority",
+  clientId = "clientId",
   createdAt = "createdAt",
+  description = "description",
   id = "id",
   name = "name",
   network = "network",

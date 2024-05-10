@@ -8,6 +8,7 @@ import * as anchor from "@project-serum/anchor";
 import { Keypair } from "@solana/web3.js";
 import { decode } from "bs58";
 import { Program } from "@coral-xyz/anchor";
+import * as base58 from "bs58";
 import {
   TOKEN_PROGRAM_ID,
   MINT_SIZE,
@@ -50,7 +51,8 @@ export class SolTokenOps {
 
   /** Create and Sign a new token */
   async createToken(minterPrivate: string): Promise<{
-    mint: string;
+    mintPub: string;
+    mintPrivate: string;
     ata: string;
     txHash: string;
   }> {
@@ -93,7 +95,8 @@ export class SolTokenOps {
       // console.log(await provider.connection.getParsedAccountInfo(mint.publicKey));
 
       return Promise.resolve({
-        mint: mint.publicKey.toString(),
+        mintPub: mint.publicKey.toString(),
+        mintPrivate: base58.encode(mint.secretKey),
         ata: ata.toString(),
         txHash: res,
       });

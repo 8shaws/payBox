@@ -229,18 +229,22 @@ export const deleteAccount = async (
 }> => {
   const response = await chain("mutation")(
     {
-      delete_account_by_pk: [
+      delete_account: [
         {
-          id: { _eq: accountId },
+          where: {
+            id: { _eq: accountId },
+          },
         },
         {
-          id: true,
+          returning: {
+            id: true,
+          },
         },
       ],
     },
     { operationName: "deleteAccount" },
   );
-  if (Array.isArray(response.delete_account_by_pk?.id)) {
+  if (Array.isArray(response.delete_account?.returning)) {
     return {
       status: dbResStatus.Ok,
     };
@@ -263,9 +267,11 @@ export const getAccount = async (
 }> => {
   const response = await chain("query")(
     {
-      account_by_pk: [
+      account: [
         {
-          id: { _eq: accountId },
+          where: {
+            id: { _eq: accountId },
+          },
         },
         {
           id: true,
@@ -288,10 +294,10 @@ export const getAccount = async (
     },
     { operationName: "getAccount" },
   );
-  if (response.account_by_pk?.id) {
+  if (response.account[0]?.id) {
     return {
       status: dbResStatus.Ok,
-      account: response.account_by_pk as AccountType,
+      account: response.account[0] as AccountType,
     };
   }
   return {
@@ -369,9 +375,9 @@ export const putImgUrl = async (
 }> => {
   const response = await chain("mutation")(
     {
-      update_account_by_pk: [
+      update_account: [
         {
-          pk_columns: {
+          where: {
             id: {
               _eq: id,
             },
@@ -381,13 +387,15 @@ export const putImgUrl = async (
           },
         },
         {
-          id: true,
+          returning: {
+            id: true,
+          },
         },
       ],
     },
     { operationName: "putImgUrl" },
   );
-  if (response.update_account_by_pk?.id) {
+  if (response.update_account?.returning[0]?.id) {
     return {
       status: dbResStatus.Ok,
     };
@@ -410,9 +418,11 @@ export const getAccountSecret = async (
 }> => {
   const response = await chain("query")(
     {
-      account_by_pk: [
+      account: [
         {
-          id: { _eq: accountId },
+          where: {
+            id: { _eq: accountId },
+          },
         },
         {
           wallet: {
@@ -423,10 +433,10 @@ export const getAccountSecret = async (
     },
     { operationName: "getAccountSecret" },
   );
-  if (response.account_by_pk?.wallet.secretPhase) {
+  if (response.account[0]?.wallet.secretPhase) {
     return {
       status: dbResStatus.Ok,
-      secret: response.account_by_pk.wallet.secretPhase as string,
+      secret: response.account[0].wallet.secretPhase as string,
     };
   }
   return {

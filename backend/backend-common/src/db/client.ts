@@ -373,9 +373,9 @@ export const updateMetadata = async (
 }> => {
   const response = await chain("mutation")(
     {
-      update_client_by_pk: [
+      update_client: [
         {
-          pk_columns: {
+          where: {
             id: {
               _eq: id,
             },
@@ -386,14 +386,16 @@ export const updateMetadata = async (
           },
         },
         {
-          firstname: true,
-          lastname: true,
+          returning: {
+            firstname: true,
+            lastname: true,
+          },
         },
       ],
     },
     { operationName: "updateMetadata" },
   );
-  if (response.update_client_by_pk?.firstname) {
+  if (response.update_client?.returning[0].firstname) {
     return {
       status: dbResStatus.Ok,
     };
@@ -417,9 +419,11 @@ export const getClientById = async <T>(
 }> => {
   const response = await chain("query")(
     {
-      client_by_pk: [
+      client: [
         {
-          id: { _eq: id },
+          where: {
+            id: { _eq: id },
+          },
           limit: 1,
         },
         {
@@ -443,9 +447,9 @@ export const getClientById = async <T>(
     },
     { operationName: "getClientById" },
   );
-  if (response.client_by_pk?.id) {
+  if (response.client[0]?.id) {
     return {
-      client: response.client_by_pk as T,
+      client: response.client[0] as T,
       status: dbResStatus.Ok,
     };
   }
@@ -469,24 +473,28 @@ export const deleteClient = async (
 }> => {
   const response = await chain("mutation")(
     {
-      delete_client_by_pk: [
+      delete_client: [
         {
-          id: { _eq: id },
+          where: {
+            id: { _eq: id },
+          },
         },
         {
-          username: true,
-          email: true,
+          returning: {
+            username: true,
+            email: true,
+          },
         },
       ],
     },
     { operationName: "deleteClient" },
   );
 
-  if (response.delete_client_by_pk?.username) {
+  if (response.delete_client?.returning[0]?.username) {
     return {
       status: dbResStatus.Ok,
-      username: response.delete_client_by_pk?.username as string,
-      email: response.delete_client_by_pk?.email as string,
+      username: response.delete_client?.returning[0]?.username as string,
+      email: response.delete_client?.returning[0]?.email as string,
     };
   }
 
@@ -508,24 +516,23 @@ export const getPassword = async (
   status: dbResStatus;
   hashPassword?: string;
 }> => {
-  const response = await chain("query")(
-    {
-      client_by_pk: [
-        {
+  const response = await chain("query")({
+    client: [
+      {
+        where: {
           id: { _eq: id },
-          limit: 1,
         },
-        {
-          password: true,
-        },
-      ],
-    },
-    { operationName: "getPassword" },
-  );
-  if (response.client_by_pk?.password) {
+        limit: 1,
+      },
+      {
+        password: true,
+      },
+    ],
+  });
+  if (response.client[0]?.password) {
     return {
       status: dbResStatus.Ok,
-      hashPassword: response.client_by_pk.password,
+      hashPassword: response.client[0].password,
     };
   }
   return {
@@ -547,9 +554,9 @@ export const updatePassword = async (
 }> => {
   const response = await chain("mutation")(
     {
-      update_client_by_pk: [
+      update_client: [
         {
-          pk_columns: {
+          where: {
             id: {
               _eq: id,
             },
@@ -559,13 +566,15 @@ export const updatePassword = async (
           },
         },
         {
-          id: true,
+          returning: {
+            id: true,
+          },
         },
       ],
     },
     { operationName: "updatePassword" },
   );
-  if (response.update_client_by_pk?.id) {
+  if (response.update_client?.returning[0]?.id) {
     return {
       status: dbResStatus.Ok,
     };
@@ -668,9 +677,9 @@ export const validateClient = async (
 }> => {
   const response = await chain("mutation")(
     {
-      update_client_by_pk: [
+      update_client: [
         {
-          pk_columns: {
+          where: {
             id: {
               _eq: id,
             },
@@ -680,7 +689,9 @@ export const validateClient = async (
           },
         },
         {
-          valid: true,
+          returning: {
+            valid: true,
+          },
         },
       ],
     },
@@ -745,12 +756,12 @@ export const validateClient = async (
   );
 
   if (
-    response.update_client_by_pk?.valid &&
+    response.update_client?.returning[0] &&
     createWallet.insert_wallet_one?.id
   ) {
     return {
       status: dbResStatus.Ok,
-      valid: response.update_client_by_pk.valid,
+      valid: response.update_client?.returning[0].valid as boolean,
       walletId: createWallet.insert_wallet_one.id as string,
       account: createWallet.insert_wallet_one.accounts[0] as AccountType,
     };
@@ -773,9 +784,11 @@ export const queryValid = async (
 }> => {
   const response = await chain("query")(
     {
-      client_by_pk: [
+      client: [
         {
-          id: { _eq: id },
+          where: {
+            id: { _eq: id },
+          },
           limit: 1,
         },
         {
@@ -785,10 +798,10 @@ export const queryValid = async (
     },
     { operationName: "queryValid" },
   );
-  if (Array.isArray(response.client_by_pk)) {
+  if (Array.isArray(response.client)) {
     return {
       status: dbResStatus.Ok,
-      valid: response.client_by_pk.valid,
+      valid: response.client[0].valid,
     };
   }
   return {
@@ -812,9 +825,9 @@ export const upadteMobileEmail = async (
 }> => {
   const response = await chain("mutation")(
     {
-      update_client_by_pk: [
+      update_client: [
         {
-          pk_columns: {
+          where: {
             id: {
               _eq: id,
             },
@@ -825,13 +838,15 @@ export const upadteMobileEmail = async (
           },
         },
         {
-          id: true,
+          returning: {
+            id: true,
+          },
         },
       ],
     },
     { operationName: "updateMobileEmail" },
   );
-  if (response.update_client_by_pk?.id) {
+  if (response.update_client?.returning[0]?.id) {
     return {
       status: dbResStatus.Ok,
     };

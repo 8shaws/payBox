@@ -1090,9 +1090,8 @@ export type Ata = {
   clientId: Scalars['uuid']['output'];
   createdAt: Scalars['timestamptz']['output'];
   id: Scalars['uuid']['output'];
-  is_minter: Scalars['Boolean']['output'];
+  isMinter: Scalars['Boolean']['output'];
   owner: Scalars['String']['output'];
-  privateKey: Scalars['String']['output'];
   pubKey: Scalars['String']['output'];
   token: Scalars['String']['output'];
   /** An object relationship */
@@ -1172,9 +1171,8 @@ export type Ata_Bool_Exp = {
   clientId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  is_minter?: InputMaybe<Boolean_Comparison_Exp>;
+  isMinter?: InputMaybe<Boolean_Comparison_Exp>;
   owner?: InputMaybe<String_Comparison_Exp>;
-  privateKey?: InputMaybe<String_Comparison_Exp>;
   pubKey?: InputMaybe<String_Comparison_Exp>;
   token?: InputMaybe<String_Comparison_Exp>;
   tokenByToken?: InputMaybe<Token_Bool_Exp>;
@@ -1185,8 +1183,6 @@ export type Ata_Bool_Exp = {
 export enum Ata_Constraint {
   /** unique or primary key constraint on columns "id" */
   AtaPkey = 'ata_pkey',
-  /** unique or primary key constraint on columns "privateKey" */
-  AtaPrivateKeyKey = 'ata_privateKey_key',
   /** unique or primary key constraint on columns "pubKey" */
   AtaPubKeyKey = 'ata_pubKey_key'
 }
@@ -1197,9 +1193,8 @@ export type Ata_Insert_Input = {
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  is_minter?: InputMaybe<Scalars['Boolean']['input']>;
+  isMinter?: InputMaybe<Scalars['Boolean']['input']>;
   owner?: InputMaybe<Scalars['String']['input']>;
-  privateKey?: InputMaybe<Scalars['String']['input']>;
   pubKey?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   tokenByToken?: InputMaybe<Token_Obj_Rel_Insert_Input>;
@@ -1213,7 +1208,6 @@ export type Ata_Max_Fields = {
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   owner?: Maybe<Scalars['String']['output']>;
-  privateKey?: Maybe<Scalars['String']['output']>;
   pubKey?: Maybe<Scalars['String']['output']>;
   token?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
@@ -1225,7 +1219,6 @@ export type Ata_Max_Order_By = {
   createdAt?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   owner?: InputMaybe<Order_By>;
-  privateKey?: InputMaybe<Order_By>;
   pubKey?: InputMaybe<Order_By>;
   token?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
@@ -1238,7 +1231,6 @@ export type Ata_Min_Fields = {
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   owner?: Maybe<Scalars['String']['output']>;
-  privateKey?: Maybe<Scalars['String']['output']>;
   pubKey?: Maybe<Scalars['String']['output']>;
   token?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamptz']['output']>;
@@ -1250,7 +1242,6 @@ export type Ata_Min_Order_By = {
   createdAt?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   owner?: InputMaybe<Order_By>;
-  privateKey?: InputMaybe<Order_By>;
   pubKey?: InputMaybe<Order_By>;
   token?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
@@ -1278,9 +1269,8 @@ export type Ata_Order_By = {
   clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  is_minter?: InputMaybe<Order_By>;
+  isMinter?: InputMaybe<Order_By>;
   owner?: InputMaybe<Order_By>;
-  privateKey?: InputMaybe<Order_By>;
   pubKey?: InputMaybe<Order_By>;
   token?: InputMaybe<Order_By>;
   tokenByToken?: InputMaybe<Token_Order_By>;
@@ -1301,11 +1291,9 @@ export enum Ata_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  IsMinter = 'is_minter',
+  IsMinter = 'isMinter',
   /** column name */
   Owner = 'owner',
-  /** column name */
-  PrivateKey = 'privateKey',
   /** column name */
   PubKey = 'pubKey',
   /** column name */
@@ -1317,13 +1305,13 @@ export enum Ata_Select_Column {
 /** select "ata_aggregate_bool_exp_bool_and_arguments_columns" columns of table "ata" */
 export enum Ata_Select_Column_Ata_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
   /** column name */
-  IsMinter = 'is_minter'
+  IsMinter = 'isMinter'
 }
 
 /** select "ata_aggregate_bool_exp_bool_or_arguments_columns" columns of table "ata" */
 export enum Ata_Select_Column_Ata_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
   /** column name */
-  IsMinter = 'is_minter'
+  IsMinter = 'isMinter'
 }
 
 /** input type for updating data in table "ata" */
@@ -1331,9 +1319,8 @@ export type Ata_Set_Input = {
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  is_minter?: InputMaybe<Scalars['Boolean']['input']>;
+  isMinter?: InputMaybe<Scalars['Boolean']['input']>;
   owner?: InputMaybe<Scalars['String']['input']>;
-  privateKey?: InputMaybe<Scalars['String']['input']>;
   pubKey?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -1352,9 +1339,8 @@ export type Ata_Stream_Cursor_Value_Input = {
   clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  is_minter?: InputMaybe<Scalars['Boolean']['input']>;
+  isMinter?: InputMaybe<Scalars['Boolean']['input']>;
   owner?: InputMaybe<Scalars['String']['input']>;
-  privateKey?: InputMaybe<Scalars['String']['input']>;
   pubKey?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -1369,11 +1355,9 @@ export enum Ata_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  IsMinter = 'is_minter',
+  IsMinter = 'isMinter',
   /** column name */
   Owner = 'owner',
-  /** column name */
-  PrivateKey = 'privateKey',
   /** column name */
   PubKey = 'pubKey',
   /** column name */
@@ -8183,11 +8167,12 @@ export type Token = {
   ata: Array<Ata>;
   /** An aggregate relationship */
   ata_aggregate: Ata_Aggregate;
-  authId: Scalars['uuid']['output'];
   authority: Scalars['String']['output'];
   /** An object relationship */
   client: Client;
+  clientId: Scalars['uuid']['output'];
   createdAt: Scalars['timestamptz']['output'];
+  description: Scalars['String']['output'];
   id: Scalars['uuid']['output'];
   name: Scalars['String']['output'];
   network: Scalars['String']['output'];
@@ -8270,10 +8255,11 @@ export type Token_Bool_Exp = {
   _or?: InputMaybe<Array<Token_Bool_Exp>>;
   ata?: InputMaybe<Ata_Bool_Exp>;
   ata_aggregate?: InputMaybe<Ata_Aggregate_Bool_Exp>;
-  authId?: InputMaybe<Uuid_Comparison_Exp>;
   authority?: InputMaybe<String_Comparison_Exp>;
   client?: InputMaybe<Client_Bool_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   network?: InputMaybe<String_Comparison_Exp>;
@@ -8297,10 +8283,11 @@ export enum Token_Constraint {
 /** input type for inserting data into table "token" */
 export type Token_Insert_Input = {
   ata?: InputMaybe<Ata_Arr_Rel_Insert_Input>;
-  authId?: InputMaybe<Scalars['uuid']['input']>;
   authority?: InputMaybe<Scalars['String']['input']>;
   client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   network?: InputMaybe<Scalars['String']['input']>;
@@ -8312,9 +8299,10 @@ export type Token_Insert_Input = {
 /** aggregate max on columns */
 export type Token_Max_Fields = {
   __typename?: 'token_max_fields';
-  authId?: Maybe<Scalars['uuid']['output']>;
   authority?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   network?: Maybe<Scalars['String']['output']>;
@@ -8325,9 +8313,10 @@ export type Token_Max_Fields = {
 
 /** order by max() on columns of table "token" */
 export type Token_Max_Order_By = {
-  authId?: InputMaybe<Order_By>;
   authority?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
   network?: InputMaybe<Order_By>;
@@ -8339,9 +8328,10 @@ export type Token_Max_Order_By = {
 /** aggregate min on columns */
 export type Token_Min_Fields = {
   __typename?: 'token_min_fields';
-  authId?: Maybe<Scalars['uuid']['output']>;
   authority?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
   createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   network?: Maybe<Scalars['String']['output']>;
@@ -8352,9 +8342,10 @@ export type Token_Min_Fields = {
 
 /** order by min() on columns of table "token" */
 export type Token_Min_Order_By = {
-  authId?: InputMaybe<Order_By>;
   authority?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
   network?: InputMaybe<Order_By>;
@@ -8389,10 +8380,11 @@ export type Token_On_Conflict = {
 /** Ordering options when selecting data from "token". */
 export type Token_Order_By = {
   ata_aggregate?: InputMaybe<Ata_Aggregate_Order_By>;
-  authId?: InputMaybe<Order_By>;
   authority?: InputMaybe<Order_By>;
   client?: InputMaybe<Client_Order_By>;
+  clientId?: InputMaybe<Order_By>;
   createdAt?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
   network?: InputMaybe<Order_By>;
@@ -8410,11 +8402,13 @@ export type Token_Pk_Columns_Input = {
 /** select columns of table "token" */
 export enum Token_Select_Column {
   /** column name */
-  AuthId = 'authId',
-  /** column name */
   Authority = 'authority',
   /** column name */
+  ClientId = 'clientId',
+  /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  Description = 'description',
   /** column name */
   Id = 'id',
   /** column name */
@@ -8431,9 +8425,10 @@ export enum Token_Select_Column {
 
 /** input type for updating data in table "token" */
 export type Token_Set_Input = {
-  authId?: InputMaybe<Scalars['uuid']['input']>;
   authority?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   network?: InputMaybe<Scalars['String']['input']>;
@@ -8452,9 +8447,10 @@ export type Token_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Token_Stream_Cursor_Value_Input = {
-  authId?: InputMaybe<Scalars['uuid']['input']>;
   authority?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
   createdAt?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   network?: InputMaybe<Scalars['String']['input']>;
@@ -8466,11 +8462,13 @@ export type Token_Stream_Cursor_Value_Input = {
 /** update columns of table "token" */
 export enum Token_Update_Column {
   /** column name */
-  AuthId = 'authId',
-  /** column name */
   Authority = 'authority',
   /** column name */
+  ClientId = 'clientId',
+  /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  Description = 'description',
   /** column name */
   Id = 'id',
   /** column name */

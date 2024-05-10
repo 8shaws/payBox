@@ -14,7 +14,7 @@ configuration:
 object_relationships:
   - name: client
     using:
-      foreign_key_constraint_on: authId
+      foreign_key_constraint_on: clientId
 array_relationships:
   - name: ata
     using:

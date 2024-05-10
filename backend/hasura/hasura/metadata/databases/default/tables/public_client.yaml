@@ -100,7 +100,7 @@ array_relationships:
   - name: tokens
     using:
       foreign_key_constraint_on:
-        column: authId
+        column: clientId
         table:
           name: token
           schema: public
