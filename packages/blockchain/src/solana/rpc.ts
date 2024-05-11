@@ -1,4 +1,10 @@
-import { Network, SolCluster, TxnStatus, TxnType } from "@paybox/common";
+import {
+  Network,
+  SolCluster,
+  TokenTxn,
+  TxnStatus,
+  TxnType,
+} from "@paybox/common";
 import { Cluster, Connection, clusterApiUrl } from "@solana/web3.js";
 
 export class SolRpc {
@@ -24,6 +30,7 @@ export class SolRpc {
       if (txn === null) {
         return null;
       }
+
       return {
         //@ts-ignore
         amount: txn.meta?.postBalances[0] - txn.meta?.preBalances[0],
@@ -44,5 +51,33 @@ export class SolRpc {
       console.log(error);
       return null;
     }
+  }
+
+  async getTokenTxn(hash: string): Promise<TokenTxn | null> {
+    const txn = await this.connection.getParsedTransaction(hash);
+    if (txn === null) {
+      return null;
+    }
+    return {
+      amount:
+        //@ts-ignore
+        txn.meta?.postTokenBalances[0]?.uiTokenAmount?.uiAmount -
+        //@ts-ignore
+        txn.meta?.preTokenBalances[0]?.uiTokenAmount?.uiAmount,
+      blockHash: txn.transaction.message.recentBlockhash,
+      fromAta:
+        //@ts-ignore
+        txn.meta?.postTokenBalances.at(-1)?.owner || "",
+      //@ts-ignore
+      toAta: txn.meta?.postTokenBalances[0]?.owner,
+      fee: Number(txn.meta?.fee),
+      //@ts-ignore
+      token: txn.meta?.postTokenBalances[0]?.mint,
+      hash,
+      network: Network.Sol,
+      slot: txn.slot,
+      status: TxnStatus.Completed,
+      time: new Date().toISOString(),
+    };
   }
 }
