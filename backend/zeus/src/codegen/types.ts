@@ -1096,7 +1096,55 @@ export type Ata = {
   token: Scalars['String']['output'];
   /** An object relationship */
   tokenByToken: Token;
+  /** An array relationship */
+  tokenTxnsByToata: Array<Token_Txn>;
+  /** An aggregate relationship */
+  tokenTxnsByToata_aggregate: Token_Txn_Aggregate;
+  /** An array relationship */
+  token_txns: Array<Token_Txn>;
+  /** An aggregate relationship */
+  token_txns_aggregate: Token_Txn_Aggregate;
   updatedAt: Scalars['timestamptz']['output'];
+};
+
+
+/** associated token account */
+export type AtaTokenTxnsByToataArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+/** associated token account */
+export type AtaTokenTxnsByToata_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+/** associated token account */
+export type AtaToken_TxnsArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+/** associated token account */
+export type AtaToken_Txns_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
 };
 
 /** aggregated selection of "ata" */
@@ -1176,6 +1224,10 @@ export type Ata_Bool_Exp = {
   pubKey?: InputMaybe<String_Comparison_Exp>;
   token?: InputMaybe<String_Comparison_Exp>;
   tokenByToken?: InputMaybe<Token_Bool_Exp>;
+  tokenTxnsByToata?: InputMaybe<Token_Txn_Bool_Exp>;
+  tokenTxnsByToata_aggregate?: InputMaybe<Token_Txn_Aggregate_Bool_Exp>;
+  token_txns?: InputMaybe<Token_Txn_Bool_Exp>;
+  token_txns_aggregate?: InputMaybe<Token_Txn_Aggregate_Bool_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -1198,6 +1250,8 @@ export type Ata_Insert_Input = {
   pubKey?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   tokenByToken?: InputMaybe<Token_Obj_Rel_Insert_Input>;
+  tokenTxnsByToata?: InputMaybe<Token_Txn_Arr_Rel_Insert_Input>;
+  token_txns?: InputMaybe<Token_Txn_Arr_Rel_Insert_Input>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -1256,6 +1310,13 @@ export type Ata_Mutation_Response = {
   returning: Array<Ata>;
 };
 
+/** input type for inserting object relation for remote table "ata" */
+export type Ata_Obj_Rel_Insert_Input = {
+  data: Ata_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Ata_On_Conflict>;
+};
+
 /** on_conflict condition type for table "ata" */
 export type Ata_On_Conflict = {
   constraint: Ata_Constraint;
@@ -1274,6 +1335,8 @@ export type Ata_Order_By = {
   pubKey?: InputMaybe<Order_By>;
   token?: InputMaybe<Order_By>;
   tokenByToken?: InputMaybe<Token_Order_By>;
+  tokenTxnsByToata_aggregate?: InputMaybe<Token_Txn_Aggregate_Order_By>;
+  token_txns_aggregate?: InputMaybe<Token_Txn_Aggregate_Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -2584,6 +2647,10 @@ export type Client = {
   notifications_aggregate: Notification_Aggregate;
   password: Scalars['String']['output'];
   /** An array relationship */
+  token_txns: Array<Token_Txn>;
+  /** An aggregate relationship */
+  token_txns_aggregate: Token_Txn_Aggregate;
+  /** An array relationship */
   tokens: Array<Token>;
   /** An aggregate relationship */
   tokens_aggregate: Token_Aggregate;
@@ -2782,6 +2849,26 @@ export type ClientNotifications_AggregateArgs = {
 
 
 /** subscriber for paybox */
+export type ClientToken_TxnsArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
+export type ClientToken_Txns_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+/** subscriber for paybox */
 export type ClientTokensArgs = {
   distinct_on?: InputMaybe<Array<Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2909,6 +2996,8 @@ export type Client_Bool_Exp = {
   notifications?: InputMaybe<Notification_Bool_Exp>;
   notifications_aggregate?: InputMaybe<Notification_Aggregate_Bool_Exp>;
   password?: InputMaybe<String_Comparison_Exp>;
+  token_txns?: InputMaybe<Token_Txn_Bool_Exp>;
+  token_txns_aggregate?: InputMaybe<Token_Txn_Aggregate_Bool_Exp>;
   tokens?: InputMaybe<Token_Bool_Exp>;
   tokens_aggregate?: InputMaybe<Token_Aggregate_Bool_Exp>;
   transactions?: InputMaybe<Transactions_Bool_Exp>;
@@ -2956,6 +3045,7 @@ export type Client_Insert_Input = {
   notification_subscriptions?: InputMaybe<Notification_Subscription_Arr_Rel_Insert_Input>;
   notifications?: InputMaybe<Notification_Arr_Rel_Insert_Input>;
   password?: InputMaybe<Scalars['String']['input']>;
+  token_txns?: InputMaybe<Token_Txn_Arr_Rel_Insert_Input>;
   tokens?: InputMaybe<Token_Arr_Rel_Insert_Input>;
   transactions?: InputMaybe<Transactions_Arr_Rel_Insert_Input>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -3036,6 +3126,7 @@ export type Client_Order_By = {
   notification_subscriptions_aggregate?: InputMaybe<Notification_Subscription_Aggregate_Order_By>;
   notifications_aggregate?: InputMaybe<Notification_Aggregate_Order_By>;
   password?: InputMaybe<Order_By>;
+  token_txns_aggregate?: InputMaybe<Token_Txn_Aggregate_Order_By>;
   tokens_aggregate?: InputMaybe<Token_Aggregate_Order_By>;
   transactions_aggregate?: InputMaybe<Transactions_Aggregate_Order_By>;
   updatedAt?: InputMaybe<Order_By>;
@@ -4278,6 +4369,10 @@ export type Mutation_Root = {
   delete_token?: Maybe<Token_Mutation_Response>;
   /** delete single row from the table: "token" */
   delete_token_by_pk?: Maybe<Token>;
+  /** delete data from the table: "token_txn" */
+  delete_token_txn?: Maybe<Token_Txn_Mutation_Response>;
+  /** delete single row from the table: "token_txn" */
+  delete_token_txn_by_pk?: Maybe<Token_Txn>;
   /** delete data from the table: "transactions" */
   delete_transactions?: Maybe<Transactions_Mutation_Response>;
   /** delete single row from the table: "transactions" */
@@ -4362,6 +4457,10 @@ export type Mutation_Root = {
   insert_token?: Maybe<Token_Mutation_Response>;
   /** insert a single row into the table: "token" */
   insert_token_one?: Maybe<Token>;
+  /** insert data into the table: "token_txn" */
+  insert_token_txn?: Maybe<Token_Txn_Mutation_Response>;
+  /** insert a single row into the table: "token_txn" */
+  insert_token_txn_one?: Maybe<Token_Txn>;
   /** insert data into the table: "transactions" */
   insert_transactions?: Maybe<Transactions_Mutation_Response>;
   /** insert a single row into the table: "transactions" */
@@ -4484,6 +4583,12 @@ export type Mutation_Root = {
   update_token_by_pk?: Maybe<Token>;
   /** update multiples rows of table: "token" */
   update_token_many?: Maybe<Array<Maybe<Token_Mutation_Response>>>;
+  /** update data of the table: "token_txn" */
+  update_token_txn?: Maybe<Token_Txn_Mutation_Response>;
+  /** update single row of the table: "token_txn" */
+  update_token_txn_by_pk?: Maybe<Token_Txn>;
+  /** update multiples rows of table: "token_txn" */
+  update_token_txn_many?: Maybe<Array<Maybe<Token_Txn_Mutation_Response>>>;
   /** update data of the table: "transactions" */
   update_transactions?: Maybe<Transactions_Mutation_Response>;
   /** update single row of the table: "transactions" */
@@ -4729,6 +4834,18 @@ export type Mutation_RootDelete_TokenArgs = {
 export type Mutation_RootDelete_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
   pubKey: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Token_TxnArgs = {
+  where: Token_Txn_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Token_Txn_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -5019,6 +5136,20 @@ export type Mutation_RootInsert_TokenArgs = {
 export type Mutation_RootInsert_Token_OneArgs = {
   object: Token_Insert_Input;
   on_conflict?: InputMaybe<Token_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Token_TxnArgs = {
+  objects: Array<Token_Txn_Insert_Input>;
+  on_conflict?: InputMaybe<Token_Txn_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Token_Txn_OneArgs = {
+  object: Token_Txn_Insert_Input;
+  on_conflict?: InputMaybe<Token_Txn_On_Conflict>;
 };
 
 
@@ -5431,6 +5562,28 @@ export type Mutation_RootUpdate_Token_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Token_ManyArgs = {
   updates: Array<Token_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Token_TxnArgs = {
+  _inc?: InputMaybe<Token_Txn_Inc_Input>;
+  _set?: InputMaybe<Token_Txn_Set_Input>;
+  where: Token_Txn_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Token_Txn_By_PkArgs = {
+  _inc?: InputMaybe<Token_Txn_Inc_Input>;
+  _set?: InputMaybe<Token_Txn_Set_Input>;
+  pk_columns: Token_Txn_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Token_Txn_ManyArgs = {
+  updates: Array<Token_Txn_Updates>;
 };
 
 
@@ -6623,6 +6776,12 @@ export type Query_Root = {
   token_aggregate: Token_Aggregate;
   /** fetch data from the table: "token" using primary key columns */
   token_by_pk?: Maybe<Token>;
+  /** fetch data from the table: "token_txn" */
+  token_txn: Array<Token_Txn>;
+  /** fetch aggregated fields from the table: "token_txn" */
+  token_txn_aggregate: Token_Txn_Aggregate;
+  /** fetch data from the table: "token_txn" using primary key columns */
+  token_txn_by_pk?: Maybe<Token_Txn>;
   /** An array relationship */
   transactions: Array<Transactions>;
   /** An aggregate relationship */
@@ -7080,6 +7239,29 @@ export type Query_RootToken_By_PkArgs = {
 };
 
 
+export type Query_RootToken_TxnArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+export type Query_RootToken_Txn_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+export type Query_RootToken_Txn_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
 export type Query_RootTransactionsArgs = {
   distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7481,6 +7663,14 @@ export type Subscription_Root = {
   token_by_pk?: Maybe<Token>;
   /** fetch data from the table in a streaming manner: "token" */
   token_stream: Array<Token>;
+  /** fetch data from the table: "token_txn" */
+  token_txn: Array<Token_Txn>;
+  /** fetch aggregated fields from the table: "token_txn" */
+  token_txn_aggregate: Token_Txn_Aggregate;
+  /** fetch data from the table: "token_txn" using primary key columns */
+  token_txn_by_pk?: Maybe<Token_Txn>;
+  /** fetch data from the table in a streaming manner: "token_txn" */
+  token_txn_stream: Array<Token_Txn>;
   /** An array relationship */
   transactions: Array<Transactions>;
   /** An aggregate relationship */
@@ -8075,6 +8265,36 @@ export type Subscription_RootToken_StreamArgs = {
 };
 
 
+export type Subscription_RootToken_TxnArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+export type Subscription_RootToken_Txn_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+export type Subscription_RootToken_Txn_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootToken_Txn_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Token_Txn_Stream_Cursor_Input>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
 export type Subscription_RootTransactionsArgs = {
   distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -8178,6 +8398,10 @@ export type Token = {
   network: Scalars['String']['output'];
   privateKey: Scalars['String']['output'];
   pubKey: Scalars['String']['output'];
+  /** An array relationship */
+  token_txns: Array<Token_Txn>;
+  /** An aggregate relationship */
+  token_txns_aggregate: Token_Txn_Aggregate;
   updatedAt: Scalars['timestamptz']['output'];
 };
 
@@ -8199,6 +8423,26 @@ export type TokenAta_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Ata_Order_By>>;
   where?: InputMaybe<Ata_Bool_Exp>;
+};
+
+
+/** table storing all the mint token infos */
+export type TokenToken_TxnsArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+
+/** table storing all the mint token infos */
+export type TokenToken_Txns_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Token_Txn_Order_By>>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
 };
 
 /** aggregated selection of "token" */
@@ -8265,6 +8509,8 @@ export type Token_Bool_Exp = {
   network?: InputMaybe<String_Comparison_Exp>;
   privateKey?: InputMaybe<String_Comparison_Exp>;
   pubKey?: InputMaybe<String_Comparison_Exp>;
+  token_txns?: InputMaybe<Token_Txn_Bool_Exp>;
+  token_txns_aggregate?: InputMaybe<Token_Txn_Aggregate_Bool_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -8293,6 +8539,7 @@ export type Token_Insert_Input = {
   network?: InputMaybe<Scalars['String']['input']>;
   privateKey?: InputMaybe<Scalars['String']['input']>;
   pubKey?: InputMaybe<Scalars['String']['input']>;
+  token_txns?: InputMaybe<Token_Txn_Arr_Rel_Insert_Input>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -8390,6 +8637,7 @@ export type Token_Order_By = {
   network?: InputMaybe<Order_By>;
   privateKey?: InputMaybe<Order_By>;
   pubKey?: InputMaybe<Order_By>;
+  token_txns_aggregate?: InputMaybe<Token_Txn_Aggregate_Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
 
@@ -8457,6 +8705,700 @@ export type Token_Stream_Cursor_Value_Input = {
   privateKey?: InputMaybe<Scalars['String']['input']>;
   pubKey?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** all the token transactions */
+export type Token_Txn = {
+  __typename?: 'token_txn';
+  amount: Scalars['float8']['output'];
+  blockHash: Scalars['String']['output'];
+  clientId: Scalars['uuid']['output'];
+  created_at: Scalars['timestamptz']['output'];
+  fee: Scalars['float8']['output'];
+  fromAta: Scalars['String']['output'];
+  hash: Scalars['String']['output'];
+  id: Scalars['uuid']['output'];
+  isMint: Scalars['Boolean']['output'];
+  network: Scalars['String']['output'];
+  slot: Scalars['bigint']['output'];
+  status: Scalars['String']['output'];
+  time: Scalars['timestamptz']['output'];
+  toAta: Scalars['String']['output'];
+  token: Scalars['String']['output'];
+  /** An object relationship */
+  token_txn_to_client: Client;
+  /** An object relationship */
+  token_txn_to_token: Token;
+  /** An object relationship */
+  txn_fromAta_to_ata: Ata;
+  /** An object relationship */
+  txn_toAta_to_ata: Ata;
+  updated_at: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "token_txn" */
+export type Token_Txn_Aggregate = {
+  __typename?: 'token_txn_aggregate';
+  aggregate?: Maybe<Token_Txn_Aggregate_Fields>;
+  nodes: Array<Token_Txn>;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp = {
+  avg?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Avg>;
+  bool_and?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Bool_Or>;
+  corr?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Corr>;
+  count?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Count>;
+  covar_samp?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Covar_Samp>;
+  max?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Max>;
+  min?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Min>;
+  stddev_samp?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Stddev_Samp>;
+  sum?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Sum>;
+  var_samp?: InputMaybe<Token_Txn_Aggregate_Bool_Exp_Var_Samp>;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Avg = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Avg_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Corr = {
+  arguments: Token_Txn_Aggregate_Bool_Exp_Corr_Arguments;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Corr_Arguments = {
+  X: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Corr_Arguments_Columns;
+  Y: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Corr_Arguments_Columns;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Covar_Samp = {
+  arguments: Token_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments = {
+  X: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments_Columns;
+  Y: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments_Columns;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Max = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Max_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Min = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Min_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Stddev_Samp = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Stddev_Samp_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Sum = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Sum_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+export type Token_Txn_Aggregate_Bool_Exp_Var_Samp = {
+  arguments: Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Var_Samp_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Token_Txn_Bool_Exp>;
+  predicate: Float8_Comparison_Exp;
+};
+
+/** aggregate fields of "token_txn" */
+export type Token_Txn_Aggregate_Fields = {
+  __typename?: 'token_txn_aggregate_fields';
+  avg?: Maybe<Token_Txn_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Token_Txn_Max_Fields>;
+  min?: Maybe<Token_Txn_Min_Fields>;
+  stddev?: Maybe<Token_Txn_Stddev_Fields>;
+  stddev_pop?: Maybe<Token_Txn_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Token_Txn_Stddev_Samp_Fields>;
+  sum?: Maybe<Token_Txn_Sum_Fields>;
+  var_pop?: Maybe<Token_Txn_Var_Pop_Fields>;
+  var_samp?: Maybe<Token_Txn_Var_Samp_Fields>;
+  variance?: Maybe<Token_Txn_Variance_Fields>;
+};
+
+
+/** aggregate fields of "token_txn" */
+export type Token_Txn_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Token_Txn_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "token_txn" */
+export type Token_Txn_Aggregate_Order_By = {
+  avg?: InputMaybe<Token_Txn_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Token_Txn_Max_Order_By>;
+  min?: InputMaybe<Token_Txn_Min_Order_By>;
+  stddev?: InputMaybe<Token_Txn_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Token_Txn_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Token_Txn_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Token_Txn_Sum_Order_By>;
+  var_pop?: InputMaybe<Token_Txn_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Token_Txn_Var_Samp_Order_By>;
+  variance?: InputMaybe<Token_Txn_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "token_txn" */
+export type Token_Txn_Arr_Rel_Insert_Input = {
+  data: Array<Token_Txn_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Token_Txn_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Token_Txn_Avg_Fields = {
+  __typename?: 'token_txn_avg_fields';
+  amount?: Maybe<Scalars['Float']['output']>;
+  fee?: Maybe<Scalars['Float']['output']>;
+  slot?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by avg() on columns of table "token_txn" */
+export type Token_Txn_Avg_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "token_txn". All fields are combined with a logical 'AND'. */
+export type Token_Txn_Bool_Exp = {
+  _and?: InputMaybe<Array<Token_Txn_Bool_Exp>>;
+  _not?: InputMaybe<Token_Txn_Bool_Exp>;
+  _or?: InputMaybe<Array<Token_Txn_Bool_Exp>>;
+  amount?: InputMaybe<Float8_Comparison_Exp>;
+  blockHash?: InputMaybe<String_Comparison_Exp>;
+  clientId?: InputMaybe<Uuid_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  fee?: InputMaybe<Float8_Comparison_Exp>;
+  fromAta?: InputMaybe<String_Comparison_Exp>;
+  hash?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  isMint?: InputMaybe<Boolean_Comparison_Exp>;
+  network?: InputMaybe<String_Comparison_Exp>;
+  slot?: InputMaybe<Bigint_Comparison_Exp>;
+  status?: InputMaybe<String_Comparison_Exp>;
+  time?: InputMaybe<Timestamptz_Comparison_Exp>;
+  toAta?: InputMaybe<String_Comparison_Exp>;
+  token?: InputMaybe<String_Comparison_Exp>;
+  token_txn_to_client?: InputMaybe<Client_Bool_Exp>;
+  token_txn_to_token?: InputMaybe<Token_Bool_Exp>;
+  txn_fromAta_to_ata?: InputMaybe<Ata_Bool_Exp>;
+  txn_toAta_to_ata?: InputMaybe<Ata_Bool_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "token_txn" */
+export enum Token_Txn_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  TokenTxnPkey = 'token_txn_pkey'
+}
+
+/** input type for incrementing numeric columns in table "token_txn" */
+export type Token_Txn_Inc_Input = {
+  amount?: InputMaybe<Scalars['float8']['input']>;
+  fee?: InputMaybe<Scalars['float8']['input']>;
+  slot?: InputMaybe<Scalars['bigint']['input']>;
+};
+
+/** input type for inserting data into table "token_txn" */
+export type Token_Txn_Insert_Input = {
+  amount?: InputMaybe<Scalars['float8']['input']>;
+  blockHash?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  fee?: InputMaybe<Scalars['float8']['input']>;
+  fromAta?: InputMaybe<Scalars['String']['input']>;
+  hash?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  isMint?: InputMaybe<Scalars['Boolean']['input']>;
+  network?: InputMaybe<Scalars['String']['input']>;
+  slot?: InputMaybe<Scalars['bigint']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  time?: InputMaybe<Scalars['timestamptz']['input']>;
+  toAta?: InputMaybe<Scalars['String']['input']>;
+  token?: InputMaybe<Scalars['String']['input']>;
+  token_txn_to_client?: InputMaybe<Client_Obj_Rel_Insert_Input>;
+  token_txn_to_token?: InputMaybe<Token_Obj_Rel_Insert_Input>;
+  txn_fromAta_to_ata?: InputMaybe<Ata_Obj_Rel_Insert_Input>;
+  txn_toAta_to_ata?: InputMaybe<Ata_Obj_Rel_Insert_Input>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Token_Txn_Max_Fields = {
+  __typename?: 'token_txn_max_fields';
+  amount?: Maybe<Scalars['float8']['output']>;
+  blockHash?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  fee?: Maybe<Scalars['float8']['output']>;
+  fromAta?: Maybe<Scalars['String']['output']>;
+  hash?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  network?: Maybe<Scalars['String']['output']>;
+  slot?: Maybe<Scalars['bigint']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  time?: Maybe<Scalars['timestamptz']['output']>;
+  toAta?: Maybe<Scalars['String']['output']>;
+  token?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by max() on columns of table "token_txn" */
+export type Token_Txn_Max_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  blockHash?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  fromAta?: InputMaybe<Order_By>;
+  hash?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  network?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  time?: InputMaybe<Order_By>;
+  toAta?: InputMaybe<Order_By>;
+  token?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Token_Txn_Min_Fields = {
+  __typename?: 'token_txn_min_fields';
+  amount?: Maybe<Scalars['float8']['output']>;
+  blockHash?: Maybe<Scalars['String']['output']>;
+  clientId?: Maybe<Scalars['uuid']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  fee?: Maybe<Scalars['float8']['output']>;
+  fromAta?: Maybe<Scalars['String']['output']>;
+  hash?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  network?: Maybe<Scalars['String']['output']>;
+  slot?: Maybe<Scalars['bigint']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  time?: Maybe<Scalars['timestamptz']['output']>;
+  toAta?: Maybe<Scalars['String']['output']>;
+  token?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by min() on columns of table "token_txn" */
+export type Token_Txn_Min_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  blockHash?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  fromAta?: InputMaybe<Order_By>;
+  hash?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  network?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  time?: InputMaybe<Order_By>;
+  toAta?: InputMaybe<Order_By>;
+  token?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "token_txn" */
+export type Token_Txn_Mutation_Response = {
+  __typename?: 'token_txn_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Token_Txn>;
+};
+
+/** on_conflict condition type for table "token_txn" */
+export type Token_Txn_On_Conflict = {
+  constraint: Token_Txn_Constraint;
+  update_columns?: Array<Token_Txn_Update_Column>;
+  where?: InputMaybe<Token_Txn_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "token_txn". */
+export type Token_Txn_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  blockHash?: InputMaybe<Order_By>;
+  clientId?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  fromAta?: InputMaybe<Order_By>;
+  hash?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  isMint?: InputMaybe<Order_By>;
+  network?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  time?: InputMaybe<Order_By>;
+  toAta?: InputMaybe<Order_By>;
+  token?: InputMaybe<Order_By>;
+  token_txn_to_client?: InputMaybe<Client_Order_By>;
+  token_txn_to_token?: InputMaybe<Token_Order_By>;
+  txn_fromAta_to_ata?: InputMaybe<Ata_Order_By>;
+  txn_toAta_to_ata?: InputMaybe<Ata_Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: token_txn */
+export type Token_Txn_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "token_txn" */
+export enum Token_Txn_Select_Column {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  BlockHash = 'blockHash',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Fee = 'fee',
+  /** column name */
+  FromAta = 'fromAta',
+  /** column name */
+  Hash = 'hash',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IsMint = 'isMint',
+  /** column name */
+  Network = 'network',
+  /** column name */
+  Slot = 'slot',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  Time = 'time',
+  /** column name */
+  ToAta = 'toAta',
+  /** column name */
+  Token = 'token',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** select "token_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Avg_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** select "token_txn_aggregate_bool_exp_bool_and_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsMint = 'isMint'
+}
+
+/** select "token_txn_aggregate_bool_exp_bool_or_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsMint = 'isMint'
+}
+
+/** select "token_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Corr_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** select "token_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Covar_Samp_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** select "token_txn_aggregate_bool_exp_max_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Max_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** select "token_txn_aggregate_bool_exp_min_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Min_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** select "token_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Stddev_Samp_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** select "token_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Sum_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** select "token_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "token_txn" */
+export enum Token_Txn_Select_Column_Token_Txn_Aggregate_Bool_Exp_Var_Samp_Arguments_Columns {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Fee = 'fee'
+}
+
+/** input type for updating data in table "token_txn" */
+export type Token_Txn_Set_Input = {
+  amount?: InputMaybe<Scalars['float8']['input']>;
+  blockHash?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  fee?: InputMaybe<Scalars['float8']['input']>;
+  fromAta?: InputMaybe<Scalars['String']['input']>;
+  hash?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  isMint?: InputMaybe<Scalars['Boolean']['input']>;
+  network?: InputMaybe<Scalars['String']['input']>;
+  slot?: InputMaybe<Scalars['bigint']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  time?: InputMaybe<Scalars['timestamptz']['input']>;
+  toAta?: InputMaybe<Scalars['String']['input']>;
+  token?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Token_Txn_Stddev_Fields = {
+  __typename?: 'token_txn_stddev_fields';
+  amount?: Maybe<Scalars['Float']['output']>;
+  fee?: Maybe<Scalars['Float']['output']>;
+  slot?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev() on columns of table "token_txn" */
+export type Token_Txn_Stddev_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Token_Txn_Stddev_Pop_Fields = {
+  __typename?: 'token_txn_stddev_pop_fields';
+  amount?: Maybe<Scalars['Float']['output']>;
+  fee?: Maybe<Scalars['Float']['output']>;
+  slot?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_pop() on columns of table "token_txn" */
+export type Token_Txn_Stddev_Pop_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Token_Txn_Stddev_Samp_Fields = {
+  __typename?: 'token_txn_stddev_samp_fields';
+  amount?: Maybe<Scalars['Float']['output']>;
+  fee?: Maybe<Scalars['Float']['output']>;
+  slot?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_samp() on columns of table "token_txn" */
+export type Token_Txn_Stddev_Samp_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "token_txn" */
+export type Token_Txn_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Token_Txn_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Token_Txn_Stream_Cursor_Value_Input = {
+  amount?: InputMaybe<Scalars['float8']['input']>;
+  blockHash?: InputMaybe<Scalars['String']['input']>;
+  clientId?: InputMaybe<Scalars['uuid']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  fee?: InputMaybe<Scalars['float8']['input']>;
+  fromAta?: InputMaybe<Scalars['String']['input']>;
+  hash?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  isMint?: InputMaybe<Scalars['Boolean']['input']>;
+  network?: InputMaybe<Scalars['String']['input']>;
+  slot?: InputMaybe<Scalars['bigint']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  time?: InputMaybe<Scalars['timestamptz']['input']>;
+  toAta?: InputMaybe<Scalars['String']['input']>;
+  token?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Token_Txn_Sum_Fields = {
+  __typename?: 'token_txn_sum_fields';
+  amount?: Maybe<Scalars['float8']['output']>;
+  fee?: Maybe<Scalars['float8']['output']>;
+  slot?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** order by sum() on columns of table "token_txn" */
+export type Token_Txn_Sum_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+};
+
+/** update columns of table "token_txn" */
+export enum Token_Txn_Update_Column {
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  BlockHash = 'blockHash',
+  /** column name */
+  ClientId = 'clientId',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Fee = 'fee',
+  /** column name */
+  FromAta = 'fromAta',
+  /** column name */
+  Hash = 'hash',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IsMint = 'isMint',
+  /** column name */
+  Network = 'network',
+  /** column name */
+  Slot = 'slot',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  Time = 'time',
+  /** column name */
+  ToAta = 'toAta',
+  /** column name */
+  Token = 'token',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Token_Txn_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Token_Txn_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Token_Txn_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Token_Txn_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Token_Txn_Var_Pop_Fields = {
+  __typename?: 'token_txn_var_pop_fields';
+  amount?: Maybe<Scalars['Float']['output']>;
+  fee?: Maybe<Scalars['Float']['output']>;
+  slot?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_pop() on columns of table "token_txn" */
+export type Token_Txn_Var_Pop_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Token_Txn_Var_Samp_Fields = {
+  __typename?: 'token_txn_var_samp_fields';
+  amount?: Maybe<Scalars['Float']['output']>;
+  fee?: Maybe<Scalars['Float']['output']>;
+  slot?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_samp() on columns of table "token_txn" */
+export type Token_Txn_Var_Samp_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Token_Txn_Variance_Fields = {
+  __typename?: 'token_txn_variance_fields';
+  amount?: Maybe<Scalars['Float']['output']>;
+  fee?: Maybe<Scalars['Float']['output']>;
+  slot?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by variance() on columns of table "token_txn" */
+export type Token_Txn_Variance_Order_By = {
+  amount?: InputMaybe<Order_By>;
+  fee?: InputMaybe<Order_By>;
+  slot?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "token" */

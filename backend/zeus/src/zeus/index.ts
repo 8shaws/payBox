@@ -2534,6 +2534,142 @@ export type ValueTypes = {
     token?: boolean | `@${string}`;
     /** An object relationship */
     tokenByToken?: ValueTypes["token"];
+    tokenTxnsByToata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
+    tokenTxnsByToata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn_aggregate"],
+    ];
+    token_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
+    token_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn_aggregate"],
+    ];
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -2701,6 +2837,26 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    tokenTxnsByToata?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tokenTxnsByToata_aggregate?:
+      | ValueTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txns?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txns_aggregate?:
+      | ValueTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -2729,6 +2885,16 @@ export type ValueTypes = {
     token?: string | undefined | null | Variable<any, string>;
     tokenByToken?:
       | ValueTypes["token_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tokenTxnsByToata?:
+      | ValueTypes["token_txn_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txns?:
+      | ValueTypes["token_txn_arr_rel_insert_input"]
       | undefined
       | null
       | Variable<any, string>;
@@ -2812,6 +2978,16 @@ export type ValueTypes = {
     returning?: ValueTypes["ata"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "ata" */
+  ["ata_obj_rel_insert_input"]: {
+    data: ValueTypes["ata_insert_input"] | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["ata_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   /** on_conflict condition type for table "ata" */
   ["ata_on_conflict"]: {
     constraint: ValueTypes["ata_constraint"] | Variable<any, string>;
@@ -2852,6 +3028,16 @@ export type ValueTypes = {
     token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
     tokenByToken?:
       | ValueTypes["token_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tokenTxnsByToata_aggregate?:
+      | ValueTypes["token_txn_aggregate_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txns_aggregate?:
+      | ValueTypes["token_txn_aggregate_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -5351,6 +5537,74 @@ export type ValueTypes = {
       ValueTypes["notification_aggregate"],
     ];
     password?: boolean | `@${string}`;
+    token_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
+    token_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn_aggregate"],
+    ];
     tokens?: [
       {
         /** distinct select on columns */
@@ -5749,6 +6003,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    token_txns?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txns_aggregate?:
+      | ValueTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     tokens?:
       | ValueTypes["token_bool_exp"]
       | undefined
@@ -5874,6 +6138,11 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     password?: string | undefined | null | Variable<any, string>;
+    token_txns?:
+      | ValueTypes["token_txn_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     tokens?:
       | ValueTypes["token_arr_rel_insert_input"]
       | undefined
@@ -6035,6 +6304,11 @@ export type ValueTypes = {
       | Variable<any, string>;
     password?:
       | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txns_aggregate?:
+      | ValueTypes["token_txn_aggregate_order_by"]
       | undefined
       | null
       | Variable<any, string>;
@@ -7846,6 +8120,17 @@ export type ValueTypes = {
       },
       ValueTypes["token"],
     ];
+    delete_token_txn?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ValueTypes["token_txn_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["token_txn_mutation_response"],
+    ];
+    delete_token_txn_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["token_txn"],
+    ];
     delete_transactions?: [
       {
         /** filter the rows which have to be deleted */
@@ -8399,6 +8684,34 @@ export type ValueTypes = {
           | Variable<any, string>;
       },
       ValueTypes["token"],
+    ];
+    insert_token_txn?: [
+      {
+        /** the rows to be inserted */
+        objects:
+          | Array<ValueTypes["token_txn_insert_input"]>
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["token_txn_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn_mutation_response"],
+    ];
+    insert_token_txn_one?: [
+      {
+        /** the row to be inserted */
+        object:
+          | ValueTypes["token_txn_insert_input"]
+          | Variable<any, string> /** upsert condition */;
+        on_conflict?:
+          | ValueTypes["token_txn_on_conflict"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
     ];
     insert_transactions?: [
       {
@@ -9183,6 +9496,58 @@ export type ValueTypes = {
         updates: Array<ValueTypes["token_updates"]> | Variable<any, string>;
       },
       ValueTypes["token_mutation_response"],
+    ];
+    update_token_txn?: [
+      {
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ValueTypes["token_txn_inc_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** sets the columns of the filtered rows to the given values */;
+        _set?:
+          | ValueTypes["token_txn_set_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** filter the rows which have to be updated */;
+        where: ValueTypes["token_txn_bool_exp"] | Variable<any, string>;
+      },
+      ValueTypes["token_txn_mutation_response"],
+    ];
+    update_token_txn_by_pk?: [
+      {
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ValueTypes["token_txn_inc_input"]
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** sets the columns of the filtered rows to the given values */;
+        _set?:
+          | ValueTypes["token_txn_set_input"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        pk_columns:
+          | ValueTypes["token_txn_pk_columns_input"]
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
+    update_token_txn_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ValueTypes["token_txn_updates"]> | Variable<any, string>;
+      },
+      ValueTypes["token_txn_mutation_response"],
     ];
     update_transactions?: [
       {
@@ -12200,6 +12565,78 @@ export type ValueTypes = {
       },
       ValueTypes["token"],
     ];
+    token_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
+    token_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn_aggregate"],
+    ];
+    token_txn_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["token_txn"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -14393,6 +14830,100 @@ export type ValueTypes = {
       },
       ValueTypes["token"],
     ];
+    token_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
+    token_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn_aggregate"],
+    ];
+    token_txn_by_pk?: [
+      { id: ValueTypes["uuid"] | Variable<any, string> },
+      ValueTypes["token_txn"],
+    ];
+    token_txn_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size:
+          | number
+          | Variable<
+              any,
+              string
+            > /** cursor to stream the results returned by the query */;
+        cursor:
+          | Array<
+              ValueTypes["token_txn_stream_cursor_input"] | undefined | null
+            >
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -14704,6 +15235,74 @@ export type ValueTypes = {
     network?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
+    token_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn"],
+    ];
+    token_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string> /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null
+          | Variable<
+              any,
+              string
+            > /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null
+          | Variable<any, string> /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ValueTypes["token_txn_order_by"]>
+          | undefined
+          | null
+          | Variable<any, string> /** filter the rows returned */;
+        where?:
+          | ValueTypes["token_txn_bool_exp"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["token_txn_aggregate"],
+    ];
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -14848,6 +15447,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    token_txns?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txns_aggregate?:
+      | ValueTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz_comparison_exp"]
       | undefined
@@ -14881,6 +15490,11 @@ export type ValueTypes = {
     network?: string | undefined | null | Variable<any, string>;
     privateKey?: string | undefined | null | Variable<any, string>;
     pubKey?: string | undefined | null | Variable<any, string>;
+    token_txns?:
+      | ValueTypes["token_txn_arr_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["timestamptz"]
       | undefined
@@ -15060,6 +15674,11 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
     pubKey?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token_txns_aggregate?:
+      | ValueTypes["token_txn_aggregate_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
     updatedAt?:
       | ValueTypes["order_by"]
       | undefined
@@ -15127,6 +15746,905 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+  };
+  /** all the token transactions */
+  ["token_txn"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    blockHash?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    created_at?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    fromAta?: boolean | `@${string}`;
+    hash?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    isMint?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    time?: boolean | `@${string}`;
+    toAta?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    /** An object relationship */
+    token_txn_to_client?: ValueTypes["client"];
+    /** An object relationship */
+    token_txn_to_token?: ValueTypes["token"];
+    /** An object relationship */
+    txn_fromAta_to_ata?: ValueTypes["ata"];
+    /** An object relationship */
+    txn_toAta_to_ata?: ValueTypes["ata"];
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "token_txn" */
+  ["token_txn_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["token_txn_aggregate_fields"];
+    nodes?: ValueTypes["token_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["token_txn_aggregate_bool_exp"]: {
+    avg?:
+      | ValueTypes["token_txn_aggregate_bool_exp_avg"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    bool_and?:
+      | ValueTypes["token_txn_aggregate_bool_exp_bool_and"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    bool_or?:
+      | ValueTypes["token_txn_aggregate_bool_exp_bool_or"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    corr?:
+      | ValueTypes["token_txn_aggregate_bool_exp_corr"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    count?:
+      | ValueTypes["token_txn_aggregate_bool_exp_count"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    covar_samp?:
+      | ValueTypes["token_txn_aggregate_bool_exp_covar_samp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    max?:
+      | ValueTypes["token_txn_aggregate_bool_exp_max"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["token_txn_aggregate_bool_exp_min"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev_samp?:
+      | ValueTypes["token_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    sum?:
+      | ValueTypes["token_txn_aggregate_bool_exp_sum"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    var_samp?:
+      | ValueTypes["token_txn_aggregate_bool_exp_var_samp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_avg"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_bool_and"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Boolean_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_bool_or"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Boolean_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_corr"]: {
+    arguments:
+      | ValueTypes["token_txn_aggregate_bool_exp_corr_arguments"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_corr_arguments"]: {
+    X:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"]
+      | Variable<any, string>;
+    Y:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"]
+      | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ValueTypes["token_txn_select_column"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["Int_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments:
+      | ValueTypes["token_txn_aggregate_bool_exp_covar_samp_arguments"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"]
+      | Variable<any, string>;
+    Y:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"]
+      | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_max"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_min"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_sum"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  ["token_txn_aggregate_bool_exp_var_samp"]: {
+    arguments:
+      | ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"]
+      | Variable<any, string>;
+    distinct?: boolean | undefined | null | Variable<any, string>;
+    filter?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    predicate: ValueTypes["float8_comparison_exp"] | Variable<any, string>;
+  };
+  /** aggregate fields of "token_txn" */
+  ["token_txn_aggregate_fields"]: AliasType<{
+    avg?: ValueTypes["token_txn_avg_fields"];
+    count?: [
+      {
+        columns?:
+          | Array<ValueTypes["token_txn_select_column"]>
+          | undefined
+          | null
+          | Variable<any, string>;
+        distinct?: boolean | undefined | null | Variable<any, string>;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ValueTypes["token_txn_max_fields"];
+    min?: ValueTypes["token_txn_min_fields"];
+    stddev?: ValueTypes["token_txn_stddev_fields"];
+    stddev_pop?: ValueTypes["token_txn_stddev_pop_fields"];
+    stddev_samp?: ValueTypes["token_txn_stddev_samp_fields"];
+    sum?: ValueTypes["token_txn_sum_fields"];
+    var_pop?: ValueTypes["token_txn_var_pop_fields"];
+    var_samp?: ValueTypes["token_txn_var_samp_fields"];
+    variance?: ValueTypes["token_txn_variance_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "token_txn" */
+  ["token_txn_aggregate_order_by"]: {
+    avg?:
+      | ValueTypes["token_txn_avg_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    count?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    max?:
+      | ValueTypes["token_txn_max_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    min?:
+      | ValueTypes["token_txn_min_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev?:
+      | ValueTypes["token_txn_stddev_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev_pop?:
+      | ValueTypes["token_txn_stddev_pop_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    stddev_samp?:
+      | ValueTypes["token_txn_stddev_samp_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    sum?:
+      | ValueTypes["token_txn_sum_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    var_pop?:
+      | ValueTypes["token_txn_var_pop_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    var_samp?:
+      | ValueTypes["token_txn_var_samp_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    variance?:
+      | ValueTypes["token_txn_variance_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** input type for inserting array relation for remote table "token_txn" */
+  ["token_txn_arr_rel_insert_input"]: {
+    data: Array<ValueTypes["token_txn_insert_input"]> | Variable<any, string>;
+    /** upsert condition */
+    on_conflict?:
+      | ValueTypes["token_txn_on_conflict"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate avg on columns */
+  ["token_txn_avg_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by avg() on columns of table "token_txn" */
+  ["token_txn_avg_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+  };
+  /** Boolean expression to filter rows from the table "token_txn". All fields are combined with a logical 'AND'. */
+  ["token_txn_bool_exp"]: {
+    _and?:
+      | Array<ValueTypes["token_txn_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _not?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["token_txn_bool_exp"]>
+      | undefined
+      | null
+      | Variable<any, string>;
+    amount?:
+      | ValueTypes["float8_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    blockHash?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    created_at?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fee?:
+      | ValueTypes["float8_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fromAta?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    hash?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    id?:
+      | ValueTypes["uuid_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    isMint?:
+      | ValueTypes["Boolean_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    network?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    slot?:
+      | ValueTypes["bigint_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    status?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    time?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    toAta?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token?:
+      | ValueTypes["String_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txn_to_client?:
+      | ValueTypes["client_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txn_to_token?:
+      | ValueTypes["token_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    txn_fromAta_to_ata?:
+      | ValueTypes["ata_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    txn_toAta_to_ata?:
+      | ValueTypes["ata_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** unique or primary key constraints on table "token_txn" */
+  ["token_txn_constraint"]: token_txn_constraint;
+  /** input type for incrementing numeric columns in table "token_txn" */
+  ["token_txn_inc_input"]: {
+    amount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["bigint"] | undefined | null | Variable<any, string>;
+  };
+  /** input type for inserting data into table "token_txn" */
+  ["token_txn_insert_input"]: {
+    amount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    blockHash?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fee?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    fromAta?: string | undefined | null | Variable<any, string>;
+    hash?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    isMint?: boolean | undefined | null | Variable<any, string>;
+    network?: string | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["bigint"] | undefined | null | Variable<any, string>;
+    status?: string | undefined | null | Variable<any, string>;
+    time?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>;
+    toAta?: string | undefined | null | Variable<any, string>;
+    token?: string | undefined | null | Variable<any, string>;
+    token_txn_to_client?:
+      | ValueTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txn_to_token?:
+      | ValueTypes["token_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    txn_fromAta_to_ata?:
+      | ValueTypes["ata_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    txn_toAta_to_ata?:
+      | ValueTypes["ata_obj_rel_insert_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate max on columns */
+  ["token_txn_max_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    blockHash?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    created_at?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    fromAta?: boolean | `@${string}`;
+    hash?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    time?: boolean | `@${string}`;
+    toAta?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "token_txn" */
+  ["token_txn_max_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    blockHash?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    created_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fromAta?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    hash?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    network?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    time?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    toAta?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate min on columns */
+  ["token_txn_min_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    blockHash?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    created_at?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    fromAta?: boolean | `@${string}`;
+    hash?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    time?: boolean | `@${string}`;
+    toAta?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "token_txn" */
+  ["token_txn_min_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    blockHash?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    created_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fromAta?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    hash?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    network?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    time?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    toAta?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** response of any mutation on the table "token_txn" */
+  ["token_txn_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ValueTypes["token_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "token_txn" */
+  ["token_txn_on_conflict"]: {
+    constraint: ValueTypes["token_txn_constraint"] | Variable<any, string>;
+    update_columns:
+      | Array<ValueTypes["token_txn_update_column"]>
+      | Variable<any, string>;
+    where?:
+      | ValueTypes["token_txn_bool_exp"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Ordering options when selecting data from "token_txn". */
+  ["token_txn_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    blockHash?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    clientId?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    created_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fromAta?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    hash?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    isMint?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    network?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    time?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    toAta?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    token_txn_to_client?:
+      | ValueTypes["client_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    token_txn_to_token?:
+      | ValueTypes["token_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    txn_fromAta_to_ata?:
+      | ValueTypes["ata_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    txn_toAta_to_ata?:
+      | ValueTypes["ata_order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["order_by"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** primary key columns input for table: token_txn */
+  ["token_txn_pk_columns_input"]: {
+    id: ValueTypes["uuid"] | Variable<any, string>;
+  };
+  /** select columns of table "token_txn" */
+  ["token_txn_select_column"]: token_txn_select_column;
+  /** select "token_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_bool_and_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_bool_or_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_max_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_min_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns;
+  /** input type for updating data in table "token_txn" */
+  ["token_txn_set_input"]: {
+    amount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    blockHash?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fee?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    fromAta?: string | undefined | null | Variable<any, string>;
+    hash?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    isMint?: boolean | undefined | null | Variable<any, string>;
+    network?: string | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["bigint"] | undefined | null | Variable<any, string>;
+    status?: string | undefined | null | Variable<any, string>;
+    time?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>;
+    toAta?: string | undefined | null | Variable<any, string>;
+    token?: string | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate stddev on columns */
+  ["token_txn_stddev_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by stddev() on columns of table "token_txn" */
+  ["token_txn_stddev_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+  };
+  /** aggregate stddev_pop on columns */
+  ["token_txn_stddev_pop_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by stddev_pop() on columns of table "token_txn" */
+  ["token_txn_stddev_pop_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+  };
+  /** aggregate stddev_samp on columns */
+  ["token_txn_stddev_samp_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by stddev_samp() on columns of table "token_txn" */
+  ["token_txn_stddev_samp_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+  };
+  /** Streaming cursor of the table "token_txn" */
+  ["token_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value:
+      | ValueTypes["token_txn_stream_cursor_value_input"]
+      | Variable<any, string>;
+    /** cursor ordering */
+    ordering?:
+      | ValueTypes["cursor_ordering"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_txn_stream_cursor_value_input"]: {
+    amount?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    blockHash?: string | undefined | null | Variable<any, string>;
+    clientId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    created_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    fee?: ValueTypes["float8"] | undefined | null | Variable<any, string>;
+    fromAta?: string | undefined | null | Variable<any, string>;
+    hash?: string | undefined | null | Variable<any, string>;
+    id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>;
+    isMint?: boolean | undefined | null | Variable<any, string>;
+    network?: string | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["bigint"] | undefined | null | Variable<any, string>;
+    status?: string | undefined | null | Variable<any, string>;
+    time?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>;
+    toAta?: string | undefined | null | Variable<any, string>;
+    token?: string | undefined | null | Variable<any, string>;
+    updated_at?:
+      | ValueTypes["timestamptz"]
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  /** aggregate sum on columns */
+  ["token_txn_sum_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by sum() on columns of table "token_txn" */
+  ["token_txn_sum_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+  };
+  /** update columns of table "token_txn" */
+  ["token_txn_update_column"]: token_txn_update_column;
+  ["token_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?:
+      | ValueTypes["token_txn_inc_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** sets the columns of the filtered rows to the given values */
+    _set?:
+      | ValueTypes["token_txn_set_input"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    /** filter the rows which have to be updated */
+    where: ValueTypes["token_txn_bool_exp"] | Variable<any, string>;
+  };
+  /** aggregate var_pop on columns */
+  ["token_txn_var_pop_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by var_pop() on columns of table "token_txn" */
+  ["token_txn_var_pop_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+  };
+  /** aggregate var_samp on columns */
+  ["token_txn_var_samp_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by var_samp() on columns of table "token_txn" */
+  ["token_txn_var_samp_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+  };
+  /** aggregate variance on columns */
+  ["token_txn_variance_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by variance() on columns of table "token_txn" */
+  ["token_txn_variance_order_by"]: {
+    amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    fee?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
+    slot?: ValueTypes["order_by"] | undefined | null | Variable<any, string>;
   };
   /** update columns of table "token" */
   ["token_update_column"]: token_update_column;
@@ -17419,6 +18937,98 @@ export type ResolverInputTypes = {
     token?: boolean | `@${string}`;
     /** An object relationship */
     tokenByToken?: ResolverInputTypes["token"];
+    tokenTxnsByToata?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn"],
+    ];
+    tokenTxnsByToata_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn_aggregate"],
+    ];
+    token_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn"],
+    ];
+    token_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn_aggregate"],
+    ];
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -17508,6 +19118,19 @@ export type ResolverInputTypes = {
     pubKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     token?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     tokenByToken?: ResolverInputTypes["token_bool_exp"] | undefined | null;
+    tokenTxnsByToata?:
+      | ResolverInputTypes["token_txn_bool_exp"]
+      | undefined
+      | null;
+    tokenTxnsByToata_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null;
+    token_txns?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    token_txns_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -17530,6 +19153,14 @@ export type ResolverInputTypes = {
     token?: string | undefined | null;
     tokenByToken?:
       | ResolverInputTypes["token_obj_rel_insert_input"]
+      | undefined
+      | null;
+    tokenTxnsByToata?:
+      | ResolverInputTypes["token_txn_arr_rel_insert_input"]
+      | undefined
+      | null;
+    token_txns?:
+      | ResolverInputTypes["token_txn_arr_rel_insert_input"]
       | undefined
       | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
@@ -17584,6 +19215,12 @@ export type ResolverInputTypes = {
     returning?: ResolverInputTypes["ata"];
     __typename?: boolean | `@${string}`;
   }>;
+  /** input type for inserting object relation for remote table "ata" */
+  ["ata_obj_rel_insert_input"]: {
+    data: ResolverInputTypes["ata_insert_input"];
+    /** upsert condition */
+    on_conflict?: ResolverInputTypes["ata_on_conflict"] | undefined | null;
+  };
   /** on_conflict condition type for table "ata" */
   ["ata_on_conflict"]: {
     constraint: ResolverInputTypes["ata_constraint"];
@@ -17601,6 +19238,14 @@ export type ResolverInputTypes = {
     pubKey?: ResolverInputTypes["order_by"] | undefined | null;
     token?: ResolverInputTypes["order_by"] | undefined | null;
     tokenByToken?: ResolverInputTypes["token_order_by"] | undefined | null;
+    tokenTxnsByToata_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_order_by"]
+      | undefined
+      | null;
+    token_txns_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_order_by"]
+      | undefined
+      | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** primary key columns input for table: ata */
@@ -19077,6 +20722,52 @@ export type ResolverInputTypes = {
       ResolverInputTypes["notification_aggregate"],
     ];
     password?: boolean | `@${string}`;
+    token_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn"],
+    ];
+    token_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn_aggregate"],
+    ];
     tokens?: [
       {
         /** distinct select on columns */
@@ -19336,6 +21027,11 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     password?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    token_txns?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    token_txns_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null;
     tokens?: ResolverInputTypes["token_bool_exp"] | undefined | null;
     tokens_aggregate?:
       | ResolverInputTypes["token_aggregate_bool_exp"]
@@ -19418,6 +21114,10 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     password?: string | undefined | null;
+    token_txns?:
+      | ResolverInputTypes["token_txn_arr_rel_insert_input"]
+      | undefined
+      | null;
     tokens?:
       | ResolverInputTypes["token_arr_rel_insert_input"]
       | undefined
@@ -19531,6 +21231,10 @@ export type ResolverInputTypes = {
       | undefined
       | null;
     password?: ResolverInputTypes["order_by"] | undefined | null;
+    token_txns_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_order_by"]
+      | undefined
+      | null;
     tokens_aggregate?:
       | ResolverInputTypes["token_aggregate_order_by"]
       | undefined
@@ -20725,6 +22429,17 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"]; pubKey: string },
       ResolverInputTypes["token"],
     ];
+    delete_token_txn?: [
+      {
+        /** filter the rows which have to be deleted */
+        where: ResolverInputTypes["token_txn_bool_exp"];
+      },
+      ResolverInputTypes["token_txn_mutation_response"],
+    ];
+    delete_token_txn_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["token_txn"],
+    ];
     delete_transactions?: [
       {
         /** filter the rows which have to be deleted */
@@ -21178,6 +22893,30 @@ export type ResolverInputTypes = {
           | null;
       },
       ResolverInputTypes["token"],
+    ];
+    insert_token_txn?: [
+      {
+        /** the rows to be inserted */
+        objects: Array<
+          ResolverInputTypes["token_txn_insert_input"]
+        > /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["token_txn_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["token_txn_mutation_response"],
+    ];
+    insert_token_txn_one?: [
+      {
+        /** the row to be inserted */
+        object: ResolverInputTypes["token_txn_insert_input"] /** upsert condition */;
+        on_conflict?:
+          | ResolverInputTypes["token_txn_on_conflict"]
+          | undefined
+          | null;
+      },
+      ResolverInputTypes["token_txn"],
     ];
     insert_transactions?: [
       {
@@ -21745,6 +23484,40 @@ export type ResolverInputTypes = {
         updates: Array<ResolverInputTypes["token_updates"]>;
       },
       ResolverInputTypes["token_mutation_response"],
+    ];
+    update_token_txn?: [
+      {
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ResolverInputTypes["token_txn_inc_input"]
+          | undefined
+          | null /** sets the columns of the filtered rows to the given values */;
+        _set?:
+          | ResolverInputTypes["token_txn_set_input"]
+          | undefined
+          | null /** filter the rows which have to be updated */;
+        where: ResolverInputTypes["token_txn_bool_exp"];
+      },
+      ResolverInputTypes["token_txn_mutation_response"],
+    ];
+    update_token_txn_by_pk?: [
+      {
+        /** increments the numeric columns with given value of the filtered values */
+        _inc?:
+          | ResolverInputTypes["token_txn_inc_input"]
+          | undefined
+          | null /** sets the columns of the filtered rows to the given values */;
+        _set?: ResolverInputTypes["token_txn_set_input"] | undefined | null;
+        pk_columns: ResolverInputTypes["token_txn_pk_columns_input"];
+      },
+      ResolverInputTypes["token_txn"],
+    ];
+    update_token_txn_many?: [
+      {
+        /** updates to execute, in order */
+        updates: Array<ResolverInputTypes["token_txn_updates"]>;
+      },
+      ResolverInputTypes["token_txn_mutation_response"],
     ];
     update_transactions?: [
       {
@@ -23759,6 +25532,56 @@ export type ResolverInputTypes = {
       { id: ResolverInputTypes["uuid"]; pubKey: string },
       ResolverInputTypes["token"],
     ];
+    token_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn"],
+    ];
+    token_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn_aggregate"],
+    ];
+    token_txn_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["token_txn"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -25218,6 +27041,67 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["token"],
     ];
+    token_txn?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn"],
+    ];
+    token_txn_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn_aggregate"],
+    ];
+    token_txn_by_pk?: [
+      { id: ResolverInputTypes["uuid"] },
+      ResolverInputTypes["token_txn"],
+    ];
+    token_txn_stream?: [
+      {
+        /** maximum number of rows returned in a single batch */
+        batch_size: number /** cursor to stream the results returned by the query */;
+        cursor: Array<
+          ResolverInputTypes["token_txn_stream_cursor_input"] | undefined | null
+        > /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn"],
+    ];
     transactions?: [
       {
         /** distinct select on columns */
@@ -25429,6 +27313,52 @@ export type ResolverInputTypes = {
     network?: boolean | `@${string}`;
     privateKey?: boolean | `@${string}`;
     pubKey?: boolean | `@${string}`;
+    token_txns?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn"],
+    ];
+    token_txns_aggregate?: [
+      {
+        /** distinct select on columns */
+        distinct_on?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null /** limit the number of rows returned */;
+        limit?:
+          | number
+          | undefined
+          | null /** skip the first n rows. Use only with order_by */;
+        offset?:
+          | number
+          | undefined
+          | null /** sort the rows by one or more columns */;
+        order_by?:
+          | Array<ResolverInputTypes["token_txn_order_by"]>
+          | undefined
+          | null /** filter the rows returned */;
+        where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+      },
+      ResolverInputTypes["token_txn_aggregate"],
+    ];
     updatedAt?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
@@ -25507,6 +27437,11 @@ export type ResolverInputTypes = {
     network?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     privateKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
     pubKey?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    token_txns?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    token_txns_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp"]
+      | undefined
+      | null;
     updatedAt?:
       | ResolverInputTypes["timestamptz_comparison_exp"]
       | undefined
@@ -25530,6 +27465,10 @@ export type ResolverInputTypes = {
     network?: string | undefined | null;
     privateKey?: string | undefined | null;
     pubKey?: string | undefined | null;
+    token_txns?:
+      | ResolverInputTypes["token_txn_arr_rel_insert_input"]
+      | undefined
+      | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
   };
   /** aggregate max on columns */
@@ -25622,6 +27561,10 @@ export type ResolverInputTypes = {
     network?: ResolverInputTypes["order_by"] | undefined | null;
     privateKey?: ResolverInputTypes["order_by"] | undefined | null;
     pubKey?: ResolverInputTypes["order_by"] | undefined | null;
+    token_txns_aggregate?:
+      | ResolverInputTypes["token_txn_aggregate_order_by"]
+      | undefined
+      | null;
     updatedAt?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** primary key columns input for table: token */
@@ -25663,6 +27606,608 @@ export type ResolverInputTypes = {
     privateKey?: string | undefined | null;
     pubKey?: string | undefined | null;
     updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** all the token transactions */
+  ["token_txn"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    blockHash?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    created_at?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    fromAta?: boolean | `@${string}`;
+    hash?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    isMint?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    time?: boolean | `@${string}`;
+    toAta?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    /** An object relationship */
+    token_txn_to_client?: ResolverInputTypes["client"];
+    /** An object relationship */
+    token_txn_to_token?: ResolverInputTypes["token"];
+    /** An object relationship */
+    txn_fromAta_to_ata?: ResolverInputTypes["ata"];
+    /** An object relationship */
+    txn_toAta_to_ata?: ResolverInputTypes["ata"];
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** aggregated selection of "token_txn" */
+  ["token_txn_aggregate"]: AliasType<{
+    aggregate?: ResolverInputTypes["token_txn_aggregate_fields"];
+    nodes?: ResolverInputTypes["token_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["token_txn_aggregate_bool_exp"]: {
+    avg?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_avg"]
+      | undefined
+      | null;
+    bool_and?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_bool_and"]
+      | undefined
+      | null;
+    bool_or?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_bool_or"]
+      | undefined
+      | null;
+    corr?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_corr"]
+      | undefined
+      | null;
+    count?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_count"]
+      | undefined
+      | null;
+    covar_samp?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_covar_samp"]
+      | undefined
+      | null;
+    max?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_max"]
+      | undefined
+      | null;
+    min?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_min"]
+      | undefined
+      | null;
+    stddev_samp?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined
+      | null;
+    sum?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_sum"]
+      | undefined
+      | null;
+    var_samp?:
+      | ResolverInputTypes["token_txn_aggregate_bool_exp_var_samp"]
+      | undefined
+      | null;
+  };
+  ["token_txn_aggregate_bool_exp_avg"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_bool_and"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Boolean_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_bool_or"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Boolean_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_corr"]: {
+    arguments: ResolverInputTypes["token_txn_aggregate_bool_exp_corr_arguments"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_corr_arguments"]: {
+    X: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"];
+    Y: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"];
+  };
+  ["token_txn_aggregate_bool_exp_count"]: {
+    arguments?:
+      | Array<ResolverInputTypes["token_txn_select_column"]>
+      | undefined
+      | null;
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["Int_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments: ResolverInputTypes["token_txn_aggregate_bool_exp_covar_samp_arguments"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+    Y: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  };
+  ["token_txn_aggregate_bool_exp_max"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_min"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_sum"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_var_samp"]: {
+    arguments: ResolverInputTypes["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"];
+    distinct?: boolean | undefined | null;
+    filter?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    predicate: ResolverInputTypes["float8_comparison_exp"];
+  };
+  /** aggregate fields of "token_txn" */
+  ["token_txn_aggregate_fields"]: AliasType<{
+    avg?: ResolverInputTypes["token_txn_avg_fields"];
+    count?: [
+      {
+        columns?:
+          | Array<ResolverInputTypes["token_txn_select_column"]>
+          | undefined
+          | null;
+        distinct?: boolean | undefined | null;
+      },
+      boolean | `@${string}`,
+    ];
+    max?: ResolverInputTypes["token_txn_max_fields"];
+    min?: ResolverInputTypes["token_txn_min_fields"];
+    stddev?: ResolverInputTypes["token_txn_stddev_fields"];
+    stddev_pop?: ResolverInputTypes["token_txn_stddev_pop_fields"];
+    stddev_samp?: ResolverInputTypes["token_txn_stddev_samp_fields"];
+    sum?: ResolverInputTypes["token_txn_sum_fields"];
+    var_pop?: ResolverInputTypes["token_txn_var_pop_fields"];
+    var_samp?: ResolverInputTypes["token_txn_var_samp_fields"];
+    variance?: ResolverInputTypes["token_txn_variance_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by aggregate values of table "token_txn" */
+  ["token_txn_aggregate_order_by"]: {
+    avg?: ResolverInputTypes["token_txn_avg_order_by"] | undefined | null;
+    count?: ResolverInputTypes["order_by"] | undefined | null;
+    max?: ResolverInputTypes["token_txn_max_order_by"] | undefined | null;
+    min?: ResolverInputTypes["token_txn_min_order_by"] | undefined | null;
+    stddev?: ResolverInputTypes["token_txn_stddev_order_by"] | undefined | null;
+    stddev_pop?:
+      | ResolverInputTypes["token_txn_stddev_pop_order_by"]
+      | undefined
+      | null;
+    stddev_samp?:
+      | ResolverInputTypes["token_txn_stddev_samp_order_by"]
+      | undefined
+      | null;
+    sum?: ResolverInputTypes["token_txn_sum_order_by"] | undefined | null;
+    var_pop?:
+      | ResolverInputTypes["token_txn_var_pop_order_by"]
+      | undefined
+      | null;
+    var_samp?:
+      | ResolverInputTypes["token_txn_var_samp_order_by"]
+      | undefined
+      | null;
+    variance?:
+      | ResolverInputTypes["token_txn_variance_order_by"]
+      | undefined
+      | null;
+  };
+  /** input type for inserting array relation for remote table "token_txn" */
+  ["token_txn_arr_rel_insert_input"]: {
+    data: Array<ResolverInputTypes["token_txn_insert_input"]>;
+    /** upsert condition */
+    on_conflict?:
+      | ResolverInputTypes["token_txn_on_conflict"]
+      | undefined
+      | null;
+  };
+  /** aggregate avg on columns */
+  ["token_txn_avg_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by avg() on columns of table "token_txn" */
+  ["token_txn_avg_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** Boolean expression to filter rows from the table "token_txn". All fields are combined with a logical 'AND'. */
+  ["token_txn_bool_exp"]: {
+    _and?: Array<ResolverInputTypes["token_txn_bool_exp"]> | undefined | null;
+    _not?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+    _or?: Array<ResolverInputTypes["token_txn_bool_exp"]> | undefined | null;
+    amount?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
+    blockHash?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    clientId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    created_at?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+    fee?: ResolverInputTypes["float8_comparison_exp"] | undefined | null;
+    fromAta?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    hash?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null;
+    isMint?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null;
+    network?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    slot?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null;
+    status?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    time?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null;
+    toAta?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    token?: ResolverInputTypes["String_comparison_exp"] | undefined | null;
+    token_txn_to_client?:
+      | ResolverInputTypes["client_bool_exp"]
+      | undefined
+      | null;
+    token_txn_to_token?:
+      | ResolverInputTypes["token_bool_exp"]
+      | undefined
+      | null;
+    txn_fromAta_to_ata?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    txn_toAta_to_ata?: ResolverInputTypes["ata_bool_exp"] | undefined | null;
+    updated_at?:
+      | ResolverInputTypes["timestamptz_comparison_exp"]
+      | undefined
+      | null;
+  };
+  /** unique or primary key constraints on table "token_txn" */
+  ["token_txn_constraint"]: token_txn_constraint;
+  /** input type for incrementing numeric columns in table "token_txn" */
+  ["token_txn_inc_input"]: {
+    amount?: ResolverInputTypes["float8"] | undefined | null;
+    fee?: ResolverInputTypes["float8"] | undefined | null;
+    slot?: ResolverInputTypes["bigint"] | undefined | null;
+  };
+  /** input type for inserting data into table "token_txn" */
+  ["token_txn_insert_input"]: {
+    amount?: ResolverInputTypes["float8"] | undefined | null;
+    blockHash?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    fee?: ResolverInputTypes["float8"] | undefined | null;
+    fromAta?: string | undefined | null;
+    hash?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    isMint?: boolean | undefined | null;
+    network?: string | undefined | null;
+    slot?: ResolverInputTypes["bigint"] | undefined | null;
+    status?: string | undefined | null;
+    time?: ResolverInputTypes["timestamptz"] | undefined | null;
+    toAta?: string | undefined | null;
+    token?: string | undefined | null;
+    token_txn_to_client?:
+      | ResolverInputTypes["client_obj_rel_insert_input"]
+      | undefined
+      | null;
+    token_txn_to_token?:
+      | ResolverInputTypes["token_obj_rel_insert_input"]
+      | undefined
+      | null;
+    txn_fromAta_to_ata?:
+      | ResolverInputTypes["ata_obj_rel_insert_input"]
+      | undefined
+      | null;
+    txn_toAta_to_ata?:
+      | ResolverInputTypes["ata_obj_rel_insert_input"]
+      | undefined
+      | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate max on columns */
+  ["token_txn_max_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    blockHash?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    created_at?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    fromAta?: boolean | `@${string}`;
+    hash?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    time?: boolean | `@${string}`;
+    toAta?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by max() on columns of table "token_txn" */
+  ["token_txn_max_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    blockHash?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    created_at?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    fromAta?: ResolverInputTypes["order_by"] | undefined | null;
+    hash?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    network?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+    status?: ResolverInputTypes["order_by"] | undefined | null;
+    time?: ResolverInputTypes["order_by"] | undefined | null;
+    toAta?: ResolverInputTypes["order_by"] | undefined | null;
+    token?: ResolverInputTypes["order_by"] | undefined | null;
+    updated_at?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate min on columns */
+  ["token_txn_min_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    blockHash?: boolean | `@${string}`;
+    clientId?: boolean | `@${string}`;
+    created_at?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    fromAta?: boolean | `@${string}`;
+    hash?: boolean | `@${string}`;
+    id?: boolean | `@${string}`;
+    network?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    time?: boolean | `@${string}`;
+    toAta?: boolean | `@${string}`;
+    token?: boolean | `@${string}`;
+    updated_at?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by min() on columns of table "token_txn" */
+  ["token_txn_min_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    blockHash?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    created_at?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    fromAta?: ResolverInputTypes["order_by"] | undefined | null;
+    hash?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    network?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+    status?: ResolverInputTypes["order_by"] | undefined | null;
+    time?: ResolverInputTypes["order_by"] | undefined | null;
+    toAta?: ResolverInputTypes["order_by"] | undefined | null;
+    token?: ResolverInputTypes["order_by"] | undefined | null;
+    updated_at?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** response of any mutation on the table "token_txn" */
+  ["token_txn_mutation_response"]: AliasType<{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | `@${string}`;
+    /** data from the rows affected by the mutation */
+    returning?: ResolverInputTypes["token_txn"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** on_conflict condition type for table "token_txn" */
+  ["token_txn_on_conflict"]: {
+    constraint: ResolverInputTypes["token_txn_constraint"];
+    update_columns: Array<ResolverInputTypes["token_txn_update_column"]>;
+    where?: ResolverInputTypes["token_txn_bool_exp"] | undefined | null;
+  };
+  /** Ordering options when selecting data from "token_txn". */
+  ["token_txn_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    blockHash?: ResolverInputTypes["order_by"] | undefined | null;
+    clientId?: ResolverInputTypes["order_by"] | undefined | null;
+    created_at?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    fromAta?: ResolverInputTypes["order_by"] | undefined | null;
+    hash?: ResolverInputTypes["order_by"] | undefined | null;
+    id?: ResolverInputTypes["order_by"] | undefined | null;
+    isMint?: ResolverInputTypes["order_by"] | undefined | null;
+    network?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+    status?: ResolverInputTypes["order_by"] | undefined | null;
+    time?: ResolverInputTypes["order_by"] | undefined | null;
+    toAta?: ResolverInputTypes["order_by"] | undefined | null;
+    token?: ResolverInputTypes["order_by"] | undefined | null;
+    token_txn_to_client?:
+      | ResolverInputTypes["client_order_by"]
+      | undefined
+      | null;
+    token_txn_to_token?:
+      | ResolverInputTypes["token_order_by"]
+      | undefined
+      | null;
+    txn_fromAta_to_ata?: ResolverInputTypes["ata_order_by"] | undefined | null;
+    txn_toAta_to_ata?: ResolverInputTypes["ata_order_by"] | undefined | null;
+    updated_at?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** primary key columns input for table: token_txn */
+  ["token_txn_pk_columns_input"]: {
+    id: ResolverInputTypes["uuid"];
+  };
+  /** select columns of table "token_txn" */
+  ["token_txn_select_column"]: token_txn_select_column;
+  /** select "token_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_bool_and_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_bool_or_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_max_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_min_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns;
+  /** input type for updating data in table "token_txn" */
+  ["token_txn_set_input"]: {
+    amount?: ResolverInputTypes["float8"] | undefined | null;
+    blockHash?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    fee?: ResolverInputTypes["float8"] | undefined | null;
+    fromAta?: string | undefined | null;
+    hash?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    isMint?: boolean | undefined | null;
+    network?: string | undefined | null;
+    slot?: ResolverInputTypes["bigint"] | undefined | null;
+    status?: string | undefined | null;
+    time?: ResolverInputTypes["timestamptz"] | undefined | null;
+    toAta?: string | undefined | null;
+    token?: string | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate stddev on columns */
+  ["token_txn_stddev_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by stddev() on columns of table "token_txn" */
+  ["token_txn_stddev_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate stddev_pop on columns */
+  ["token_txn_stddev_pop_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by stddev_pop() on columns of table "token_txn" */
+  ["token_txn_stddev_pop_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate stddev_samp on columns */
+  ["token_txn_stddev_samp_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by stddev_samp() on columns of table "token_txn" */
+  ["token_txn_stddev_samp_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** Streaming cursor of the table "token_txn" */
+  ["token_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ResolverInputTypes["token_txn_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_txn_stream_cursor_value_input"]: {
+    amount?: ResolverInputTypes["float8"] | undefined | null;
+    blockHash?: string | undefined | null;
+    clientId?: ResolverInputTypes["uuid"] | undefined | null;
+    created_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+    fee?: ResolverInputTypes["float8"] | undefined | null;
+    fromAta?: string | undefined | null;
+    hash?: string | undefined | null;
+    id?: ResolverInputTypes["uuid"] | undefined | null;
+    isMint?: boolean | undefined | null;
+    network?: string | undefined | null;
+    slot?: ResolverInputTypes["bigint"] | undefined | null;
+    status?: string | undefined | null;
+    time?: ResolverInputTypes["timestamptz"] | undefined | null;
+    toAta?: string | undefined | null;
+    token?: string | undefined | null;
+    updated_at?: ResolverInputTypes["timestamptz"] | undefined | null;
+  };
+  /** aggregate sum on columns */
+  ["token_txn_sum_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by sum() on columns of table "token_txn" */
+  ["token_txn_sum_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** update columns of table "token_txn" */
+  ["token_txn_update_column"]: token_txn_update_column;
+  ["token_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: ResolverInputTypes["token_txn_inc_input"] | undefined | null;
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ResolverInputTypes["token_txn_set_input"] | undefined | null;
+    /** filter the rows which have to be updated */
+    where: ResolverInputTypes["token_txn_bool_exp"];
+  };
+  /** aggregate var_pop on columns */
+  ["token_txn_var_pop_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by var_pop() on columns of table "token_txn" */
+  ["token_txn_var_pop_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate var_samp on columns */
+  ["token_txn_var_samp_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by var_samp() on columns of table "token_txn" */
+  ["token_txn_var_samp_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
+  };
+  /** aggregate variance on columns */
+  ["token_txn_variance_fields"]: AliasType<{
+    amount?: boolean | `@${string}`;
+    fee?: boolean | `@${string}`;
+    slot?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** order by variance() on columns of table "token_txn" */
+  ["token_txn_variance_order_by"]: {
+    amount?: ResolverInputTypes["order_by"] | undefined | null;
+    fee?: ResolverInputTypes["order_by"] | undefined | null;
+    slot?: ResolverInputTypes["order_by"] | undefined | null;
   };
   /** update columns of table "token" */
   ["token_update_column"]: token_update_column;
@@ -27307,6 +29852,14 @@ export type ModelTypes = {
     token: string;
     /** An object relationship */
     tokenByToken: ModelTypes["token"];
+    /** An array relationship */
+    tokenTxnsByToata: Array<ModelTypes["token_txn"]>;
+    /** An aggregate relationship */
+    tokenTxnsByToata_aggregate: ModelTypes["token_txn_aggregate"];
+    /** An array relationship */
+    token_txns: Array<ModelTypes["token_txn"]>;
+    /** An aggregate relationship */
+    token_txns_aggregate: ModelTypes["token_txn_aggregate"];
     updatedAt: ModelTypes["timestamptz"];
   };
   /** aggregated selection of "ata" */
@@ -27369,6 +29922,14 @@ export type ModelTypes = {
     pubKey?: ModelTypes["String_comparison_exp"] | undefined;
     token?: ModelTypes["String_comparison_exp"] | undefined;
     tokenByToken?: ModelTypes["token_bool_exp"] | undefined;
+    tokenTxnsByToata?: ModelTypes["token_txn_bool_exp"] | undefined;
+    tokenTxnsByToata_aggregate?:
+      | ModelTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
+    token_txns?: ModelTypes["token_txn_bool_exp"] | undefined;
+    token_txns_aggregate?:
+      | ModelTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
   };
   ["ata_constraint"]: ata_constraint;
@@ -27383,6 +29944,8 @@ export type ModelTypes = {
     pubKey?: string | undefined;
     token?: string | undefined;
     tokenByToken?: ModelTypes["token_obj_rel_insert_input"] | undefined;
+    tokenTxnsByToata?: ModelTypes["token_txn_arr_rel_insert_input"] | undefined;
+    token_txns?: ModelTypes["token_txn_arr_rel_insert_input"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -27432,6 +29995,12 @@ export type ModelTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<ModelTypes["ata"]>;
   };
+  /** input type for inserting object relation for remote table "ata" */
+  ["ata_obj_rel_insert_input"]: {
+    data: ModelTypes["ata_insert_input"];
+    /** upsert condition */
+    on_conflict?: ModelTypes["ata_on_conflict"] | undefined;
+  };
   /** on_conflict condition type for table "ata" */
   ["ata_on_conflict"]: {
     constraint: ModelTypes["ata_constraint"];
@@ -27449,6 +30018,12 @@ export type ModelTypes = {
     pubKey?: ModelTypes["order_by"] | undefined;
     token?: ModelTypes["order_by"] | undefined;
     tokenByToken?: ModelTypes["token_order_by"] | undefined;
+    tokenTxnsByToata_aggregate?:
+      | ModelTypes["token_txn_aggregate_order_by"]
+      | undefined;
+    token_txns_aggregate?:
+      | ModelTypes["token_txn_aggregate_order_by"]
+      | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: ata */
@@ -28347,6 +30922,10 @@ export type ModelTypes = {
     notifications_aggregate: ModelTypes["notification_aggregate"];
     password: string;
     /** An array relationship */
+    token_txns: Array<ModelTypes["token_txn"]>;
+    /** An aggregate relationship */
+    token_txns_aggregate: ModelTypes["token_txn_aggregate"];
+    /** An array relationship */
     tokens: Array<ModelTypes["token"]>;
     /** An aggregate relationship */
     tokens_aggregate: ModelTypes["token_aggregate"];
@@ -28432,6 +31011,10 @@ export type ModelTypes = {
       | ModelTypes["notification_aggregate_bool_exp"]
       | undefined;
     password?: ModelTypes["String_comparison_exp"] | undefined;
+    token_txns?: ModelTypes["token_txn_bool_exp"] | undefined;
+    token_txns_aggregate?:
+      | ModelTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
     tokens?: ModelTypes["token_bool_exp"] | undefined;
     tokens_aggregate?: ModelTypes["token_aggregate_bool_exp"] | undefined;
     transactions?: ModelTypes["transactions_bool_exp"] | undefined;
@@ -28478,6 +31061,7 @@ export type ModelTypes = {
       | undefined;
     notifications?: ModelTypes["notification_arr_rel_insert_input"] | undefined;
     password?: string | undefined;
+    token_txns?: ModelTypes["token_txn_arr_rel_insert_input"] | undefined;
     tokens?: ModelTypes["token_arr_rel_insert_input"] | undefined;
     transactions?: ModelTypes["transactions_arr_rel_insert_input"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
@@ -28561,6 +31145,9 @@ export type ModelTypes = {
       | ModelTypes["notification_aggregate_order_by"]
       | undefined;
     password?: ModelTypes["order_by"] | undefined;
+    token_txns_aggregate?:
+      | ModelTypes["token_txn_aggregate_order_by"]
+      | undefined;
     tokens_aggregate?: ModelTypes["token_aggregate_order_by"] | undefined;
     transactions_aggregate?:
       | ModelTypes["transactions_aggregate_order_by"]
@@ -29417,6 +32004,10 @@ export type ModelTypes = {
     delete_token?: ModelTypes["token_mutation_response"] | undefined;
     /** delete single row from the table: "token" */
     delete_token_by_pk?: ModelTypes["token"] | undefined;
+    /** delete data from the table: "token_txn" */
+    delete_token_txn?: ModelTypes["token_txn_mutation_response"] | undefined;
+    /** delete single row from the table: "token_txn" */
+    delete_token_txn_by_pk?: ModelTypes["token_txn"] | undefined;
     /** delete data from the table: "transactions" */
     delete_transactions?:
       | ModelTypes["transactions_mutation_response"]
@@ -29521,6 +32112,10 @@ export type ModelTypes = {
     insert_token?: ModelTypes["token_mutation_response"] | undefined;
     /** insert a single row into the table: "token" */
     insert_token_one?: ModelTypes["token"] | undefined;
+    /** insert data into the table: "token_txn" */
+    insert_token_txn?: ModelTypes["token_txn_mutation_response"] | undefined;
+    /** insert a single row into the table: "token_txn" */
+    insert_token_txn_one?: ModelTypes["token_txn"] | undefined;
     /** insert data into the table: "transactions" */
     insert_transactions?:
       | ModelTypes["transactions_mutation_response"]
@@ -29702,6 +32297,14 @@ export type ModelTypes = {
     /** update multiples rows of table: "token" */
     update_token_many?:
       | Array<ModelTypes["token_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "token_txn" */
+    update_token_txn?: ModelTypes["token_txn_mutation_response"] | undefined;
+    /** update single row of the table: "token_txn" */
+    update_token_txn_by_pk?: ModelTypes["token_txn"] | undefined;
+    /** update multiples rows of table: "token_txn" */
+    update_token_txn_many?:
+      | Array<ModelTypes["token_txn_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "transactions" */
     update_transactions?:
@@ -30550,6 +33153,12 @@ export type ModelTypes = {
     token_aggregate: ModelTypes["token_aggregate"];
     /** fetch data from the table: "token" using primary key columns */
     token_by_pk?: ModelTypes["token"] | undefined;
+    /** fetch data from the table: "token_txn" */
+    token_txn: Array<ModelTypes["token_txn"]>;
+    /** fetch aggregated fields from the table: "token_txn" */
+    token_txn_aggregate: ModelTypes["token_txn_aggregate"];
+    /** fetch data from the table: "token_txn" using primary key columns */
+    token_txn_by_pk?: ModelTypes["token_txn"] | undefined;
     /** An array relationship */
     transactions: Array<ModelTypes["transactions"]>;
     /** An aggregate relationship */
@@ -30850,6 +33459,14 @@ export type ModelTypes = {
     token_by_pk?: ModelTypes["token"] | undefined;
     /** fetch data from the table in a streaming manner: "token" */
     token_stream: Array<ModelTypes["token"]>;
+    /** fetch data from the table: "token_txn" */
+    token_txn: Array<ModelTypes["token_txn"]>;
+    /** fetch aggregated fields from the table: "token_txn" */
+    token_txn_aggregate: ModelTypes["token_txn_aggregate"];
+    /** fetch data from the table: "token_txn" using primary key columns */
+    token_txn_by_pk?: ModelTypes["token_txn"] | undefined;
+    /** fetch data from the table in a streaming manner: "token_txn" */
+    token_txn_stream: Array<ModelTypes["token_txn"]>;
     /** An array relationship */
     transactions: Array<ModelTypes["transactions"]>;
     /** An aggregate relationship */
@@ -30910,6 +33527,10 @@ export type ModelTypes = {
     network: string;
     privateKey: string;
     pubKey: string;
+    /** An array relationship */
+    token_txns: Array<ModelTypes["token_txn"]>;
+    /** An aggregate relationship */
+    token_txns_aggregate: ModelTypes["token_txn_aggregate"];
     updatedAt: ModelTypes["timestamptz"];
   };
   /** aggregated selection of "token" */
@@ -30961,6 +33582,10 @@ export type ModelTypes = {
     network?: ModelTypes["String_comparison_exp"] | undefined;
     privateKey?: ModelTypes["String_comparison_exp"] | undefined;
     pubKey?: ModelTypes["String_comparison_exp"] | undefined;
+    token_txns?: ModelTypes["token_txn_bool_exp"] | undefined;
+    token_txns_aggregate?:
+      | ModelTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
     updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined;
   };
   ["token_constraint"]: token_constraint;
@@ -30977,6 +33602,7 @@ export type ModelTypes = {
     network?: string | undefined;
     privateKey?: string | undefined;
     pubKey?: string | undefined;
+    token_txns?: ModelTypes["token_txn_arr_rel_insert_input"] | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -31063,6 +33689,9 @@ export type ModelTypes = {
     network?: ModelTypes["order_by"] | undefined;
     privateKey?: ModelTypes["order_by"] | undefined;
     pubKey?: ModelTypes["order_by"] | undefined;
+    token_txns_aggregate?:
+      | ModelTypes["token_txn_aggregate_order_by"]
+      | undefined;
     updatedAt?: ModelTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: token */
@@ -31103,6 +33732,492 @@ export type ModelTypes = {
     privateKey?: string | undefined;
     pubKey?: string | undefined;
     updatedAt?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** all the token transactions */
+  ["token_txn"]: {
+    amount: ModelTypes["float8"];
+    blockHash: string;
+    clientId: ModelTypes["uuid"];
+    created_at: ModelTypes["timestamptz"];
+    fee: ModelTypes["float8"];
+    fromAta: string;
+    hash: string;
+    id: ModelTypes["uuid"];
+    isMint: boolean;
+    network: string;
+    slot: ModelTypes["bigint"];
+    status: string;
+    time: ModelTypes["timestamptz"];
+    toAta: string;
+    token: string;
+    /** An object relationship */
+    token_txn_to_client: ModelTypes["client"];
+    /** An object relationship */
+    token_txn_to_token: ModelTypes["token"];
+    /** An object relationship */
+    txn_fromAta_to_ata: ModelTypes["ata"];
+    /** An object relationship */
+    txn_toAta_to_ata: ModelTypes["ata"];
+    updated_at: ModelTypes["timestamptz"];
+  };
+  /** aggregated selection of "token_txn" */
+  ["token_txn_aggregate"]: {
+    aggregate?: ModelTypes["token_txn_aggregate_fields"] | undefined;
+    nodes: Array<ModelTypes["token_txn"]>;
+  };
+  ["token_txn_aggregate_bool_exp"]: {
+    avg?: ModelTypes["token_txn_aggregate_bool_exp_avg"] | undefined;
+    bool_and?: ModelTypes["token_txn_aggregate_bool_exp_bool_and"] | undefined;
+    bool_or?: ModelTypes["token_txn_aggregate_bool_exp_bool_or"] | undefined;
+    corr?: ModelTypes["token_txn_aggregate_bool_exp_corr"] | undefined;
+    count?: ModelTypes["token_txn_aggregate_bool_exp_count"] | undefined;
+    covar_samp?:
+      | ModelTypes["token_txn_aggregate_bool_exp_covar_samp"]
+      | undefined;
+    max?: ModelTypes["token_txn_aggregate_bool_exp_max"] | undefined;
+    min?: ModelTypes["token_txn_aggregate_bool_exp_min"] | undefined;
+    stddev_samp?:
+      | ModelTypes["token_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined;
+    sum?: ModelTypes["token_txn_aggregate_bool_exp_sum"] | undefined;
+    var_samp?: ModelTypes["token_txn_aggregate_bool_exp_var_samp"] | undefined;
+  };
+  ["token_txn_aggregate_bool_exp_avg"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_bool_and"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["Boolean_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_bool_or"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["Boolean_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_corr"]: {
+    arguments: ModelTypes["token_txn_aggregate_bool_exp_corr_arguments"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_corr_arguments"]: {
+    X: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"];
+    Y: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"];
+  };
+  ["token_txn_aggregate_bool_exp_count"]: {
+    arguments?: Array<ModelTypes["token_txn_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["Int_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments: ModelTypes["token_txn_aggregate_bool_exp_covar_samp_arguments"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+    Y: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  };
+  ["token_txn_aggregate_bool_exp_max"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_min"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_sum"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_var_samp"]: {
+    arguments: ModelTypes["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: ModelTypes["token_txn_bool_exp"] | undefined;
+    predicate: ModelTypes["float8_comparison_exp"];
+  };
+  /** aggregate fields of "token_txn" */
+  ["token_txn_aggregate_fields"]: {
+    avg?: ModelTypes["token_txn_avg_fields"] | undefined;
+    count: number;
+    max?: ModelTypes["token_txn_max_fields"] | undefined;
+    min?: ModelTypes["token_txn_min_fields"] | undefined;
+    stddev?: ModelTypes["token_txn_stddev_fields"] | undefined;
+    stddev_pop?: ModelTypes["token_txn_stddev_pop_fields"] | undefined;
+    stddev_samp?: ModelTypes["token_txn_stddev_samp_fields"] | undefined;
+    sum?: ModelTypes["token_txn_sum_fields"] | undefined;
+    var_pop?: ModelTypes["token_txn_var_pop_fields"] | undefined;
+    var_samp?: ModelTypes["token_txn_var_samp_fields"] | undefined;
+    variance?: ModelTypes["token_txn_variance_fields"] | undefined;
+  };
+  /** order by aggregate values of table "token_txn" */
+  ["token_txn_aggregate_order_by"]: {
+    avg?: ModelTypes["token_txn_avg_order_by"] | undefined;
+    count?: ModelTypes["order_by"] | undefined;
+    max?: ModelTypes["token_txn_max_order_by"] | undefined;
+    min?: ModelTypes["token_txn_min_order_by"] | undefined;
+    stddev?: ModelTypes["token_txn_stddev_order_by"] | undefined;
+    stddev_pop?: ModelTypes["token_txn_stddev_pop_order_by"] | undefined;
+    stddev_samp?: ModelTypes["token_txn_stddev_samp_order_by"] | undefined;
+    sum?: ModelTypes["token_txn_sum_order_by"] | undefined;
+    var_pop?: ModelTypes["token_txn_var_pop_order_by"] | undefined;
+    var_samp?: ModelTypes["token_txn_var_samp_order_by"] | undefined;
+    variance?: ModelTypes["token_txn_variance_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "token_txn" */
+  ["token_txn_arr_rel_insert_input"]: {
+    data: Array<ModelTypes["token_txn_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: ModelTypes["token_txn_on_conflict"] | undefined;
+  };
+  /** aggregate avg on columns */
+  ["token_txn_avg_fields"]: {
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by avg() on columns of table "token_txn" */
+  ["token_txn_avg_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "token_txn". All fields are combined with a logical 'AND'. */
+  ["token_txn_bool_exp"]: {
+    _and?: Array<ModelTypes["token_txn_bool_exp"]> | undefined;
+    _not?: ModelTypes["token_txn_bool_exp"] | undefined;
+    _or?: Array<ModelTypes["token_txn_bool_exp"]> | undefined;
+    amount?: ModelTypes["float8_comparison_exp"] | undefined;
+    blockHash?: ModelTypes["String_comparison_exp"] | undefined;
+    clientId?: ModelTypes["uuid_comparison_exp"] | undefined;
+    created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    fee?: ModelTypes["float8_comparison_exp"] | undefined;
+    fromAta?: ModelTypes["String_comparison_exp"] | undefined;
+    hash?: ModelTypes["String_comparison_exp"] | undefined;
+    id?: ModelTypes["uuid_comparison_exp"] | undefined;
+    isMint?: ModelTypes["Boolean_comparison_exp"] | undefined;
+    network?: ModelTypes["String_comparison_exp"] | undefined;
+    slot?: ModelTypes["bigint_comparison_exp"] | undefined;
+    status?: ModelTypes["String_comparison_exp"] | undefined;
+    time?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+    toAta?: ModelTypes["String_comparison_exp"] | undefined;
+    token?: ModelTypes["String_comparison_exp"] | undefined;
+    token_txn_to_client?: ModelTypes["client_bool_exp"] | undefined;
+    token_txn_to_token?: ModelTypes["token_bool_exp"] | undefined;
+    txn_fromAta_to_ata?: ModelTypes["ata_bool_exp"] | undefined;
+    txn_toAta_to_ata?: ModelTypes["ata_bool_exp"] | undefined;
+    updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  ["token_txn_constraint"]: token_txn_constraint;
+  /** input type for incrementing numeric columns in table "token_txn" */
+  ["token_txn_inc_input"]: {
+    amount?: ModelTypes["float8"] | undefined;
+    fee?: ModelTypes["float8"] | undefined;
+    slot?: ModelTypes["bigint"] | undefined;
+  };
+  /** input type for inserting data into table "token_txn" */
+  ["token_txn_insert_input"]: {
+    amount?: ModelTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    fee?: ModelTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    isMint?: boolean | undefined;
+    network?: string | undefined;
+    slot?: ModelTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: ModelTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    token_txn_to_client?: ModelTypes["client_obj_rel_insert_input"] | undefined;
+    token_txn_to_token?: ModelTypes["token_obj_rel_insert_input"] | undefined;
+    txn_fromAta_to_ata?: ModelTypes["ata_obj_rel_insert_input"] | undefined;
+    txn_toAta_to_ata?: ModelTypes["ata_obj_rel_insert_input"] | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["token_txn_max_fields"]: {
+    amount?: ModelTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    fee?: ModelTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    network?: string | undefined;
+    slot?: ModelTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: ModelTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "token_txn" */
+  ["token_txn_max_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    blockHash?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    created_at?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    fromAta?: ModelTypes["order_by"] | undefined;
+    hash?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    network?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+    status?: ModelTypes["order_by"] | undefined;
+    time?: ModelTypes["order_by"] | undefined;
+    toAta?: ModelTypes["order_by"] | undefined;
+    token?: ModelTypes["order_by"] | undefined;
+    updated_at?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["token_txn_min_fields"]: {
+    amount?: ModelTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    fee?: ModelTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    network?: string | undefined;
+    slot?: ModelTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: ModelTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "token_txn" */
+  ["token_txn_min_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    blockHash?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    created_at?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    fromAta?: ModelTypes["order_by"] | undefined;
+    hash?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    network?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+    status?: ModelTypes["order_by"] | undefined;
+    time?: ModelTypes["order_by"] | undefined;
+    toAta?: ModelTypes["order_by"] | undefined;
+    token?: ModelTypes["order_by"] | undefined;
+    updated_at?: ModelTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "token_txn" */
+  ["token_txn_mutation_response"]: {
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<ModelTypes["token_txn"]>;
+  };
+  /** on_conflict condition type for table "token_txn" */
+  ["token_txn_on_conflict"]: {
+    constraint: ModelTypes["token_txn_constraint"];
+    update_columns: Array<ModelTypes["token_txn_update_column"]>;
+    where?: ModelTypes["token_txn_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "token_txn". */
+  ["token_txn_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    blockHash?: ModelTypes["order_by"] | undefined;
+    clientId?: ModelTypes["order_by"] | undefined;
+    created_at?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    fromAta?: ModelTypes["order_by"] | undefined;
+    hash?: ModelTypes["order_by"] | undefined;
+    id?: ModelTypes["order_by"] | undefined;
+    isMint?: ModelTypes["order_by"] | undefined;
+    network?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+    status?: ModelTypes["order_by"] | undefined;
+    time?: ModelTypes["order_by"] | undefined;
+    toAta?: ModelTypes["order_by"] | undefined;
+    token?: ModelTypes["order_by"] | undefined;
+    token_txn_to_client?: ModelTypes["client_order_by"] | undefined;
+    token_txn_to_token?: ModelTypes["token_order_by"] | undefined;
+    txn_fromAta_to_ata?: ModelTypes["ata_order_by"] | undefined;
+    txn_toAta_to_ata?: ModelTypes["ata_order_by"] | undefined;
+    updated_at?: ModelTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: token_txn */
+  ["token_txn_pk_columns_input"]: {
+    id: ModelTypes["uuid"];
+  };
+  ["token_txn_select_column"]: token_txn_select_column;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns;
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns;
+  /** input type for updating data in table "token_txn" */
+  ["token_txn_set_input"]: {
+    amount?: ModelTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    fee?: ModelTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    isMint?: boolean | undefined;
+    network?: string | undefined;
+    slot?: ModelTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: ModelTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate stddev on columns */
+  ["token_txn_stddev_fields"]: {
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by stddev() on columns of table "token_txn" */
+  ["token_txn_stddev_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate stddev_pop on columns */
+  ["token_txn_stddev_pop_fields"]: {
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by stddev_pop() on columns of table "token_txn" */
+  ["token_txn_stddev_pop_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate stddev_samp on columns */
+  ["token_txn_stddev_samp_fields"]: {
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by stddev_samp() on columns of table "token_txn" */
+  ["token_txn_stddev_samp_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+  };
+  /** Streaming cursor of the table "token_txn" */
+  ["token_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: ModelTypes["token_txn_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: ModelTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_txn_stream_cursor_value_input"]: {
+    amount?: ModelTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: ModelTypes["uuid"] | undefined;
+    created_at?: ModelTypes["timestamptz"] | undefined;
+    fee?: ModelTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: ModelTypes["uuid"] | undefined;
+    isMint?: boolean | undefined;
+    network?: string | undefined;
+    slot?: ModelTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: ModelTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: ModelTypes["timestamptz"] | undefined;
+  };
+  /** aggregate sum on columns */
+  ["token_txn_sum_fields"]: {
+    amount?: ModelTypes["float8"] | undefined;
+    fee?: ModelTypes["float8"] | undefined;
+    slot?: ModelTypes["bigint"] | undefined;
+  };
+  /** order by sum() on columns of table "token_txn" */
+  ["token_txn_sum_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+  };
+  ["token_txn_update_column"]: token_txn_update_column;
+  ["token_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: ModelTypes["token_txn_inc_input"] | undefined;
+    /** sets the columns of the filtered rows to the given values */
+    _set?: ModelTypes["token_txn_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: ModelTypes["token_txn_bool_exp"];
+  };
+  /** aggregate var_pop on columns */
+  ["token_txn_var_pop_fields"]: {
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by var_pop() on columns of table "token_txn" */
+  ["token_txn_var_pop_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate var_samp on columns */
+  ["token_txn_var_samp_fields"]: {
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by var_samp() on columns of table "token_txn" */
+  ["token_txn_var_samp_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
+  };
+  /** aggregate variance on columns */
+  ["token_txn_variance_fields"]: {
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by variance() on columns of table "token_txn" */
+  ["token_txn_variance_order_by"]: {
+    amount?: ModelTypes["order_by"] | undefined;
+    fee?: ModelTypes["order_by"] | undefined;
+    slot?: ModelTypes["order_by"] | undefined;
   };
   ["token_update_column"]: token_update_column;
   ["token_updates"]: {
@@ -32599,6 +35714,14 @@ export type GraphQLTypes = {
     token: string;
     /** An object relationship */
     tokenByToken: GraphQLTypes["token"];
+    /** An array relationship */
+    tokenTxnsByToata: Array<GraphQLTypes["token_txn"]>;
+    /** An aggregate relationship */
+    tokenTxnsByToata_aggregate: GraphQLTypes["token_txn_aggregate"];
+    /** An array relationship */
+    token_txns: Array<GraphQLTypes["token_txn"]>;
+    /** An aggregate relationship */
+    token_txns_aggregate: GraphQLTypes["token_txn_aggregate"];
     updatedAt: GraphQLTypes["timestamptz"];
   };
   /** aggregated selection of "ata" */
@@ -32663,6 +35786,14 @@ export type GraphQLTypes = {
     pubKey?: GraphQLTypes["String_comparison_exp"] | undefined;
     token?: GraphQLTypes["String_comparison_exp"] | undefined;
     tokenByToken?: GraphQLTypes["token_bool_exp"] | undefined;
+    tokenTxnsByToata?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    tokenTxnsByToata_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
+    token_txns?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    token_txns_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
   };
   /** unique or primary key constraints on table "ata" */
@@ -32678,6 +35809,10 @@ export type GraphQLTypes = {
     pubKey?: string | undefined;
     token?: string | undefined;
     tokenByToken?: GraphQLTypes["token_obj_rel_insert_input"] | undefined;
+    tokenTxnsByToata?:
+      | GraphQLTypes["token_txn_arr_rel_insert_input"]
+      | undefined;
+    token_txns?: GraphQLTypes["token_txn_arr_rel_insert_input"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -32730,6 +35865,12 @@ export type GraphQLTypes = {
     /** data from the rows affected by the mutation */
     returning: Array<GraphQLTypes["ata"]>;
   };
+  /** input type for inserting object relation for remote table "ata" */
+  ["ata_obj_rel_insert_input"]: {
+    data: GraphQLTypes["ata_insert_input"];
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["ata_on_conflict"] | undefined;
+  };
   /** on_conflict condition type for table "ata" */
   ["ata_on_conflict"]: {
     constraint: GraphQLTypes["ata_constraint"];
@@ -32747,6 +35888,12 @@ export type GraphQLTypes = {
     pubKey?: GraphQLTypes["order_by"] | undefined;
     token?: GraphQLTypes["order_by"] | undefined;
     tokenByToken?: GraphQLTypes["token_order_by"] | undefined;
+    tokenTxnsByToata_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_order_by"]
+      | undefined;
+    token_txns_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_order_by"]
+      | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: ata */
@@ -33703,6 +36850,10 @@ export type GraphQLTypes = {
     notifications_aggregate: GraphQLTypes["notification_aggregate"];
     password: string;
     /** An array relationship */
+    token_txns: Array<GraphQLTypes["token_txn"]>;
+    /** An aggregate relationship */
+    token_txns_aggregate: GraphQLTypes["token_txn_aggregate"];
+    /** An array relationship */
     tokens: Array<GraphQLTypes["token"]>;
     /** An aggregate relationship */
     tokens_aggregate: GraphQLTypes["token_aggregate"];
@@ -33791,6 +36942,10 @@ export type GraphQLTypes = {
       | GraphQLTypes["notification_aggregate_bool_exp"]
       | undefined;
     password?: GraphQLTypes["String_comparison_exp"] | undefined;
+    token_txns?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    token_txns_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
     tokens?: GraphQLTypes["token_bool_exp"] | undefined;
     tokens_aggregate?: GraphQLTypes["token_aggregate_bool_exp"] | undefined;
     transactions?: GraphQLTypes["transactions_bool_exp"] | undefined;
@@ -33842,6 +36997,7 @@ export type GraphQLTypes = {
       | GraphQLTypes["notification_arr_rel_insert_input"]
       | undefined;
     password?: string | undefined;
+    token_txns?: GraphQLTypes["token_txn_arr_rel_insert_input"] | undefined;
     tokens?: GraphQLTypes["token_arr_rel_insert_input"] | undefined;
     transactions?:
       | GraphQLTypes["transactions_arr_rel_insert_input"]
@@ -33930,6 +37086,9 @@ export type GraphQLTypes = {
       | GraphQLTypes["notification_aggregate_order_by"]
       | undefined;
     password?: GraphQLTypes["order_by"] | undefined;
+    token_txns_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_order_by"]
+      | undefined;
     tokens_aggregate?: GraphQLTypes["token_aggregate_order_by"] | undefined;
     transactions_aggregate?:
       | GraphQLTypes["transactions_aggregate_order_by"]
@@ -34835,6 +37994,10 @@ export type GraphQLTypes = {
     delete_token?: GraphQLTypes["token_mutation_response"] | undefined;
     /** delete single row from the table: "token" */
     delete_token_by_pk?: GraphQLTypes["token"] | undefined;
+    /** delete data from the table: "token_txn" */
+    delete_token_txn?: GraphQLTypes["token_txn_mutation_response"] | undefined;
+    /** delete single row from the table: "token_txn" */
+    delete_token_txn_by_pk?: GraphQLTypes["token_txn"] | undefined;
     /** delete data from the table: "transactions" */
     delete_transactions?:
       | GraphQLTypes["transactions_mutation_response"]
@@ -34941,6 +38104,10 @@ export type GraphQLTypes = {
     insert_token?: GraphQLTypes["token_mutation_response"] | undefined;
     /** insert a single row into the table: "token" */
     insert_token_one?: GraphQLTypes["token"] | undefined;
+    /** insert data into the table: "token_txn" */
+    insert_token_txn?: GraphQLTypes["token_txn_mutation_response"] | undefined;
+    /** insert a single row into the table: "token_txn" */
+    insert_token_txn_one?: GraphQLTypes["token_txn"] | undefined;
     /** insert data into the table: "transactions" */
     insert_transactions?:
       | GraphQLTypes["transactions_mutation_response"]
@@ -35125,6 +38292,14 @@ export type GraphQLTypes = {
     /** update multiples rows of table: "token" */
     update_token_many?:
       | Array<GraphQLTypes["token_mutation_response"] | undefined>
+      | undefined;
+    /** update data of the table: "token_txn" */
+    update_token_txn?: GraphQLTypes["token_txn_mutation_response"] | undefined;
+    /** update single row of the table: "token_txn" */
+    update_token_txn_by_pk?: GraphQLTypes["token_txn"] | undefined;
+    /** update multiples rows of table: "token_txn" */
+    update_token_txn_many?:
+      | Array<GraphQLTypes["token_txn_mutation_response"] | undefined>
       | undefined;
     /** update data of the table: "transactions" */
     update_transactions?:
@@ -36019,6 +39194,12 @@ export type GraphQLTypes = {
     token_aggregate: GraphQLTypes["token_aggregate"];
     /** fetch data from the table: "token" using primary key columns */
     token_by_pk?: GraphQLTypes["token"] | undefined;
+    /** fetch data from the table: "token_txn" */
+    token_txn: Array<GraphQLTypes["token_txn"]>;
+    /** fetch aggregated fields from the table: "token_txn" */
+    token_txn_aggregate: GraphQLTypes["token_txn_aggregate"];
+    /** fetch data from the table: "token_txn" using primary key columns */
+    token_txn_by_pk?: GraphQLTypes["token_txn"] | undefined;
     /** An array relationship */
     transactions: Array<GraphQLTypes["transactions"]>;
     /** An aggregate relationship */
@@ -36329,6 +39510,14 @@ export type GraphQLTypes = {
     token_by_pk?: GraphQLTypes["token"] | undefined;
     /** fetch data from the table in a streaming manner: "token" */
     token_stream: Array<GraphQLTypes["token"]>;
+    /** fetch data from the table: "token_txn" */
+    token_txn: Array<GraphQLTypes["token_txn"]>;
+    /** fetch aggregated fields from the table: "token_txn" */
+    token_txn_aggregate: GraphQLTypes["token_txn_aggregate"];
+    /** fetch data from the table: "token_txn" using primary key columns */
+    token_txn_by_pk?: GraphQLTypes["token_txn"] | undefined;
+    /** fetch data from the table in a streaming manner: "token_txn" */
+    token_txn_stream: Array<GraphQLTypes["token_txn"]>;
     /** An array relationship */
     transactions: Array<GraphQLTypes["transactions"]>;
     /** An aggregate relationship */
@@ -36390,6 +39579,10 @@ export type GraphQLTypes = {
     network: string;
     privateKey: string;
     pubKey: string;
+    /** An array relationship */
+    token_txns: Array<GraphQLTypes["token_txn"]>;
+    /** An aggregate relationship */
+    token_txns_aggregate: GraphQLTypes["token_txn_aggregate"];
     updatedAt: GraphQLTypes["timestamptz"];
   };
   /** aggregated selection of "token" */
@@ -36443,6 +39636,10 @@ export type GraphQLTypes = {
     network?: GraphQLTypes["String_comparison_exp"] | undefined;
     privateKey?: GraphQLTypes["String_comparison_exp"] | undefined;
     pubKey?: GraphQLTypes["String_comparison_exp"] | undefined;
+    token_txns?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    token_txns_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp"]
+      | undefined;
     updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
   };
   /** unique or primary key constraints on table "token" */
@@ -36460,6 +39657,7 @@ export type GraphQLTypes = {
     network?: string | undefined;
     privateKey?: string | undefined;
     pubKey?: string | undefined;
+    token_txns?: GraphQLTypes["token_txn_arr_rel_insert_input"] | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
   };
   /** aggregate max on columns */
@@ -36549,6 +39747,9 @@ export type GraphQLTypes = {
     network?: GraphQLTypes["order_by"] | undefined;
     privateKey?: GraphQLTypes["order_by"] | undefined;
     pubKey?: GraphQLTypes["order_by"] | undefined;
+    token_txns_aggregate?:
+      | GraphQLTypes["token_txn_aggregate_order_by"]
+      | undefined;
     updatedAt?: GraphQLTypes["order_by"] | undefined;
   };
   /** primary key columns input for table: token */
@@ -36590,6 +39791,525 @@ export type GraphQLTypes = {
     privateKey?: string | undefined;
     pubKey?: string | undefined;
     updatedAt?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** all the token transactions */
+  ["token_txn"]: {
+    __typename: "token_txn";
+    amount: GraphQLTypes["float8"];
+    blockHash: string;
+    clientId: GraphQLTypes["uuid"];
+    created_at: GraphQLTypes["timestamptz"];
+    fee: GraphQLTypes["float8"];
+    fromAta: string;
+    hash: string;
+    id: GraphQLTypes["uuid"];
+    isMint: boolean;
+    network: string;
+    slot: GraphQLTypes["bigint"];
+    status: string;
+    time: GraphQLTypes["timestamptz"];
+    toAta: string;
+    token: string;
+    /** An object relationship */
+    token_txn_to_client: GraphQLTypes["client"];
+    /** An object relationship */
+    token_txn_to_token: GraphQLTypes["token"];
+    /** An object relationship */
+    txn_fromAta_to_ata: GraphQLTypes["ata"];
+    /** An object relationship */
+    txn_toAta_to_ata: GraphQLTypes["ata"];
+    updated_at: GraphQLTypes["timestamptz"];
+  };
+  /** aggregated selection of "token_txn" */
+  ["token_txn_aggregate"]: {
+    __typename: "token_txn_aggregate";
+    aggregate?: GraphQLTypes["token_txn_aggregate_fields"] | undefined;
+    nodes: Array<GraphQLTypes["token_txn"]>;
+  };
+  ["token_txn_aggregate_bool_exp"]: {
+    avg?: GraphQLTypes["token_txn_aggregate_bool_exp_avg"] | undefined;
+    bool_and?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp_bool_and"]
+      | undefined;
+    bool_or?: GraphQLTypes["token_txn_aggregate_bool_exp_bool_or"] | undefined;
+    corr?: GraphQLTypes["token_txn_aggregate_bool_exp_corr"] | undefined;
+    count?: GraphQLTypes["token_txn_aggregate_bool_exp_count"] | undefined;
+    covar_samp?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp_covar_samp"]
+      | undefined;
+    max?: GraphQLTypes["token_txn_aggregate_bool_exp_max"] | undefined;
+    min?: GraphQLTypes["token_txn_aggregate_bool_exp_min"] | undefined;
+    stddev_samp?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp_stddev_samp"]
+      | undefined;
+    sum?: GraphQLTypes["token_txn_aggregate_bool_exp_sum"] | undefined;
+    var_samp?:
+      | GraphQLTypes["token_txn_aggregate_bool_exp_var_samp"]
+      | undefined;
+  };
+  ["token_txn_aggregate_bool_exp_avg"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_bool_and"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Boolean_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_bool_or"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Boolean_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_corr"]: {
+    arguments: GraphQLTypes["token_txn_aggregate_bool_exp_corr_arguments"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_corr_arguments"]: {
+    X: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"];
+    Y: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"];
+  };
+  ["token_txn_aggregate_bool_exp_count"]: {
+    arguments?: Array<GraphQLTypes["token_txn_select_column"]> | undefined;
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["Int_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp"]: {
+    arguments: GraphQLTypes["token_txn_aggregate_bool_exp_covar_samp_arguments"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_covar_samp_arguments"]: {
+    X: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+    Y: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  };
+  ["token_txn_aggregate_bool_exp_max"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_min"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_stddev_samp"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_sum"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  ["token_txn_aggregate_bool_exp_var_samp"]: {
+    arguments: GraphQLTypes["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"];
+    distinct?: boolean | undefined;
+    filter?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    predicate: GraphQLTypes["float8_comparison_exp"];
+  };
+  /** aggregate fields of "token_txn" */
+  ["token_txn_aggregate_fields"]: {
+    __typename: "token_txn_aggregate_fields";
+    avg?: GraphQLTypes["token_txn_avg_fields"] | undefined;
+    count: number;
+    max?: GraphQLTypes["token_txn_max_fields"] | undefined;
+    min?: GraphQLTypes["token_txn_min_fields"] | undefined;
+    stddev?: GraphQLTypes["token_txn_stddev_fields"] | undefined;
+    stddev_pop?: GraphQLTypes["token_txn_stddev_pop_fields"] | undefined;
+    stddev_samp?: GraphQLTypes["token_txn_stddev_samp_fields"] | undefined;
+    sum?: GraphQLTypes["token_txn_sum_fields"] | undefined;
+    var_pop?: GraphQLTypes["token_txn_var_pop_fields"] | undefined;
+    var_samp?: GraphQLTypes["token_txn_var_samp_fields"] | undefined;
+    variance?: GraphQLTypes["token_txn_variance_fields"] | undefined;
+  };
+  /** order by aggregate values of table "token_txn" */
+  ["token_txn_aggregate_order_by"]: {
+    avg?: GraphQLTypes["token_txn_avg_order_by"] | undefined;
+    count?: GraphQLTypes["order_by"] | undefined;
+    max?: GraphQLTypes["token_txn_max_order_by"] | undefined;
+    min?: GraphQLTypes["token_txn_min_order_by"] | undefined;
+    stddev?: GraphQLTypes["token_txn_stddev_order_by"] | undefined;
+    stddev_pop?: GraphQLTypes["token_txn_stddev_pop_order_by"] | undefined;
+    stddev_samp?: GraphQLTypes["token_txn_stddev_samp_order_by"] | undefined;
+    sum?: GraphQLTypes["token_txn_sum_order_by"] | undefined;
+    var_pop?: GraphQLTypes["token_txn_var_pop_order_by"] | undefined;
+    var_samp?: GraphQLTypes["token_txn_var_samp_order_by"] | undefined;
+    variance?: GraphQLTypes["token_txn_variance_order_by"] | undefined;
+  };
+  /** input type for inserting array relation for remote table "token_txn" */
+  ["token_txn_arr_rel_insert_input"]: {
+    data: Array<GraphQLTypes["token_txn_insert_input"]>;
+    /** upsert condition */
+    on_conflict?: GraphQLTypes["token_txn_on_conflict"] | undefined;
+  };
+  /** aggregate avg on columns */
+  ["token_txn_avg_fields"]: {
+    __typename: "token_txn_avg_fields";
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by avg() on columns of table "token_txn" */
+  ["token_txn_avg_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** Boolean expression to filter rows from the table "token_txn". All fields are combined with a logical 'AND'. */
+  ["token_txn_bool_exp"]: {
+    _and?: Array<GraphQLTypes["token_txn_bool_exp"]> | undefined;
+    _not?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+    _or?: Array<GraphQLTypes["token_txn_bool_exp"]> | undefined;
+    amount?: GraphQLTypes["float8_comparison_exp"] | undefined;
+    blockHash?: GraphQLTypes["String_comparison_exp"] | undefined;
+    clientId?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    fee?: GraphQLTypes["float8_comparison_exp"] | undefined;
+    fromAta?: GraphQLTypes["String_comparison_exp"] | undefined;
+    hash?: GraphQLTypes["String_comparison_exp"] | undefined;
+    id?: GraphQLTypes["uuid_comparison_exp"] | undefined;
+    isMint?: GraphQLTypes["Boolean_comparison_exp"] | undefined;
+    network?: GraphQLTypes["String_comparison_exp"] | undefined;
+    slot?: GraphQLTypes["bigint_comparison_exp"] | undefined;
+    status?: GraphQLTypes["String_comparison_exp"] | undefined;
+    time?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+    toAta?: GraphQLTypes["String_comparison_exp"] | undefined;
+    token?: GraphQLTypes["String_comparison_exp"] | undefined;
+    token_txn_to_client?: GraphQLTypes["client_bool_exp"] | undefined;
+    token_txn_to_token?: GraphQLTypes["token_bool_exp"] | undefined;
+    txn_fromAta_to_ata?: GraphQLTypes["ata_bool_exp"] | undefined;
+    txn_toAta_to_ata?: GraphQLTypes["ata_bool_exp"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined;
+  };
+  /** unique or primary key constraints on table "token_txn" */
+  ["token_txn_constraint"]: token_txn_constraint;
+  /** input type for incrementing numeric columns in table "token_txn" */
+  ["token_txn_inc_input"]: {
+    amount?: GraphQLTypes["float8"] | undefined;
+    fee?: GraphQLTypes["float8"] | undefined;
+    slot?: GraphQLTypes["bigint"] | undefined;
+  };
+  /** input type for inserting data into table "token_txn" */
+  ["token_txn_insert_input"]: {
+    amount?: GraphQLTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    fee?: GraphQLTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    isMint?: boolean | undefined;
+    network?: string | undefined;
+    slot?: GraphQLTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: GraphQLTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    token_txn_to_client?:
+      | GraphQLTypes["client_obj_rel_insert_input"]
+      | undefined;
+    token_txn_to_token?: GraphQLTypes["token_obj_rel_insert_input"] | undefined;
+    txn_fromAta_to_ata?: GraphQLTypes["ata_obj_rel_insert_input"] | undefined;
+    txn_toAta_to_ata?: GraphQLTypes["ata_obj_rel_insert_input"] | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate max on columns */
+  ["token_txn_max_fields"]: {
+    __typename: "token_txn_max_fields";
+    amount?: GraphQLTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    fee?: GraphQLTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    network?: string | undefined;
+    slot?: GraphQLTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: GraphQLTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by max() on columns of table "token_txn" */
+  ["token_txn_max_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    blockHash?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    created_at?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    fromAta?: GraphQLTypes["order_by"] | undefined;
+    hash?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    network?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+    status?: GraphQLTypes["order_by"] | undefined;
+    time?: GraphQLTypes["order_by"] | undefined;
+    toAta?: GraphQLTypes["order_by"] | undefined;
+    token?: GraphQLTypes["order_by"] | undefined;
+    updated_at?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate min on columns */
+  ["token_txn_min_fields"]: {
+    __typename: "token_txn_min_fields";
+    amount?: GraphQLTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    fee?: GraphQLTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    network?: string | undefined;
+    slot?: GraphQLTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: GraphQLTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** order by min() on columns of table "token_txn" */
+  ["token_txn_min_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    blockHash?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    created_at?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    fromAta?: GraphQLTypes["order_by"] | undefined;
+    hash?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    network?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+    status?: GraphQLTypes["order_by"] | undefined;
+    time?: GraphQLTypes["order_by"] | undefined;
+    toAta?: GraphQLTypes["order_by"] | undefined;
+    token?: GraphQLTypes["order_by"] | undefined;
+    updated_at?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** response of any mutation on the table "token_txn" */
+  ["token_txn_mutation_response"]: {
+    __typename: "token_txn_mutation_response";
+    /** number of rows affected by the mutation */
+    affected_rows: number;
+    /** data from the rows affected by the mutation */
+    returning: Array<GraphQLTypes["token_txn"]>;
+  };
+  /** on_conflict condition type for table "token_txn" */
+  ["token_txn_on_conflict"]: {
+    constraint: GraphQLTypes["token_txn_constraint"];
+    update_columns: Array<GraphQLTypes["token_txn_update_column"]>;
+    where?: GraphQLTypes["token_txn_bool_exp"] | undefined;
+  };
+  /** Ordering options when selecting data from "token_txn". */
+  ["token_txn_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    blockHash?: GraphQLTypes["order_by"] | undefined;
+    clientId?: GraphQLTypes["order_by"] | undefined;
+    created_at?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    fromAta?: GraphQLTypes["order_by"] | undefined;
+    hash?: GraphQLTypes["order_by"] | undefined;
+    id?: GraphQLTypes["order_by"] | undefined;
+    isMint?: GraphQLTypes["order_by"] | undefined;
+    network?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+    status?: GraphQLTypes["order_by"] | undefined;
+    time?: GraphQLTypes["order_by"] | undefined;
+    toAta?: GraphQLTypes["order_by"] | undefined;
+    token?: GraphQLTypes["order_by"] | undefined;
+    token_txn_to_client?: GraphQLTypes["client_order_by"] | undefined;
+    token_txn_to_token?: GraphQLTypes["token_order_by"] | undefined;
+    txn_fromAta_to_ata?: GraphQLTypes["ata_order_by"] | undefined;
+    txn_toAta_to_ata?: GraphQLTypes["ata_order_by"] | undefined;
+    updated_at?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** primary key columns input for table: token_txn */
+  ["token_txn_pk_columns_input"]: {
+    id: GraphQLTypes["uuid"];
+  };
+  /** select columns of table "token_txn" */
+  ["token_txn_select_column"]: token_txn_select_column;
+  /** select "token_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_bool_and_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_bool_or_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_max_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_min_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns;
+  /** select "token_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "token_txn" */
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"]: token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns;
+  /** input type for updating data in table "token_txn" */
+  ["token_txn_set_input"]: {
+    amount?: GraphQLTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    fee?: GraphQLTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    isMint?: boolean | undefined;
+    network?: string | undefined;
+    slot?: GraphQLTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: GraphQLTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate stddev on columns */
+  ["token_txn_stddev_fields"]: {
+    __typename: "token_txn_stddev_fields";
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by stddev() on columns of table "token_txn" */
+  ["token_txn_stddev_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate stddev_pop on columns */
+  ["token_txn_stddev_pop_fields"]: {
+    __typename: "token_txn_stddev_pop_fields";
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by stddev_pop() on columns of table "token_txn" */
+  ["token_txn_stddev_pop_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate stddev_samp on columns */
+  ["token_txn_stddev_samp_fields"]: {
+    __typename: "token_txn_stddev_samp_fields";
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by stddev_samp() on columns of table "token_txn" */
+  ["token_txn_stddev_samp_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** Streaming cursor of the table "token_txn" */
+  ["token_txn_stream_cursor_input"]: {
+    /** Stream column input with initial value */
+    initial_value: GraphQLTypes["token_txn_stream_cursor_value_input"];
+    /** cursor ordering */
+    ordering?: GraphQLTypes["cursor_ordering"] | undefined;
+  };
+  /** Initial value of the column from where the streaming should start */
+  ["token_txn_stream_cursor_value_input"]: {
+    amount?: GraphQLTypes["float8"] | undefined;
+    blockHash?: string | undefined;
+    clientId?: GraphQLTypes["uuid"] | undefined;
+    created_at?: GraphQLTypes["timestamptz"] | undefined;
+    fee?: GraphQLTypes["float8"] | undefined;
+    fromAta?: string | undefined;
+    hash?: string | undefined;
+    id?: GraphQLTypes["uuid"] | undefined;
+    isMint?: boolean | undefined;
+    network?: string | undefined;
+    slot?: GraphQLTypes["bigint"] | undefined;
+    status?: string | undefined;
+    time?: GraphQLTypes["timestamptz"] | undefined;
+    toAta?: string | undefined;
+    token?: string | undefined;
+    updated_at?: GraphQLTypes["timestamptz"] | undefined;
+  };
+  /** aggregate sum on columns */
+  ["token_txn_sum_fields"]: {
+    __typename: "token_txn_sum_fields";
+    amount?: GraphQLTypes["float8"] | undefined;
+    fee?: GraphQLTypes["float8"] | undefined;
+    slot?: GraphQLTypes["bigint"] | undefined;
+  };
+  /** order by sum() on columns of table "token_txn" */
+  ["token_txn_sum_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** update columns of table "token_txn" */
+  ["token_txn_update_column"]: token_txn_update_column;
+  ["token_txn_updates"]: {
+    /** increments the numeric columns with given value of the filtered values */
+    _inc?: GraphQLTypes["token_txn_inc_input"] | undefined;
+    /** sets the columns of the filtered rows to the given values */
+    _set?: GraphQLTypes["token_txn_set_input"] | undefined;
+    /** filter the rows which have to be updated */
+    where: GraphQLTypes["token_txn_bool_exp"];
+  };
+  /** aggregate var_pop on columns */
+  ["token_txn_var_pop_fields"]: {
+    __typename: "token_txn_var_pop_fields";
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by var_pop() on columns of table "token_txn" */
+  ["token_txn_var_pop_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate var_samp on columns */
+  ["token_txn_var_samp_fields"]: {
+    __typename: "token_txn_var_samp_fields";
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by var_samp() on columns of table "token_txn" */
+  ["token_txn_var_samp_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
+  };
+  /** aggregate variance on columns */
+  ["token_txn_variance_fields"]: {
+    __typename: "token_txn_variance_fields";
+    amount?: number | undefined;
+    fee?: number | undefined;
+    slot?: number | undefined;
+  };
+  /** order by variance() on columns of table "token_txn" */
+  ["token_txn_variance_order_by"]: {
+    amount?: GraphQLTypes["order_by"] | undefined;
+    fee?: GraphQLTypes["order_by"] | undefined;
+    slot?: GraphQLTypes["order_by"] | undefined;
   };
   /** update columns of table "token" */
   ["token_update_column"]: token_update_column;
@@ -37918,6 +41638,96 @@ export const enum token_select_column {
   pubKey = "pubKey",
   updatedAt = "updatedAt",
 }
+/** unique or primary key constraints on table "token_txn" */
+export const enum token_txn_constraint {
+  token_txn_pkey = "token_txn_pkey",
+}
+/** select columns of table "token_txn" */
+export const enum token_txn_select_column {
+  amount = "amount",
+  blockHash = "blockHash",
+  clientId = "clientId",
+  created_at = "created_at",
+  fee = "fee",
+  fromAta = "fromAta",
+  hash = "hash",
+  id = "id",
+  isMint = "isMint",
+  network = "network",
+  slot = "slot",
+  status = "status",
+  time = "time",
+  toAta = "toAta",
+  token = "token",
+  updated_at = "updated_at",
+}
+/** select "token_txn_aggregate_bool_exp_avg_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** select "token_txn_aggregate_bool_exp_bool_and_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns {
+  isMint = "isMint",
+}
+/** select "token_txn_aggregate_bool_exp_bool_or_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns {
+  isMint = "isMint",
+}
+/** select "token_txn_aggregate_bool_exp_corr_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** select "token_txn_aggregate_bool_exp_covar_samp_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** select "token_txn_aggregate_bool_exp_max_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** select "token_txn_aggregate_bool_exp_min_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** select "token_txn_aggregate_bool_exp_stddev_samp_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** select "token_txn_aggregate_bool_exp_sum_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** select "token_txn_aggregate_bool_exp_var_samp_arguments_columns" columns of table "token_txn" */
+export const enum token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns {
+  amount = "amount",
+  fee = "fee",
+}
+/** update columns of table "token_txn" */
+export const enum token_txn_update_column {
+  amount = "amount",
+  blockHash = "blockHash",
+  clientId = "clientId",
+  created_at = "created_at",
+  fee = "fee",
+  fromAta = "fromAta",
+  hash = "hash",
+  id = "id",
+  isMint = "isMint",
+  network = "network",
+  slot = "slot",
+  status = "status",
+  time = "time",
+  toAta = "toAta",
+  token = "token",
+  updated_at = "updated_at",
+}
 /** update columns of table "token" */
 export const enum token_update_column {
   authority = "authority",
@@ -38121,6 +41931,7 @@ type ZEUS_VARIABLES = {
   ["ata_insert_input"]: ValueTypes["ata_insert_input"];
   ["ata_max_order_by"]: ValueTypes["ata_max_order_by"];
   ["ata_min_order_by"]: ValueTypes["ata_min_order_by"];
+  ["ata_obj_rel_insert_input"]: ValueTypes["ata_obj_rel_insert_input"];
   ["ata_on_conflict"]: ValueTypes["ata_on_conflict"];
   ["ata_order_by"]: ValueTypes["ata_order_by"];
   ["ata_pk_columns_input"]: ValueTypes["ata_pk_columns_input"];
@@ -38392,6 +42203,55 @@ type ZEUS_VARIABLES = {
   ["token_set_input"]: ValueTypes["token_set_input"];
   ["token_stream_cursor_input"]: ValueTypes["token_stream_cursor_input"];
   ["token_stream_cursor_value_input"]: ValueTypes["token_stream_cursor_value_input"];
+  ["token_txn_aggregate_bool_exp"]: ValueTypes["token_txn_aggregate_bool_exp"];
+  ["token_txn_aggregate_bool_exp_avg"]: ValueTypes["token_txn_aggregate_bool_exp_avg"];
+  ["token_txn_aggregate_bool_exp_bool_and"]: ValueTypes["token_txn_aggregate_bool_exp_bool_and"];
+  ["token_txn_aggregate_bool_exp_bool_or"]: ValueTypes["token_txn_aggregate_bool_exp_bool_or"];
+  ["token_txn_aggregate_bool_exp_corr"]: ValueTypes["token_txn_aggregate_bool_exp_corr"];
+  ["token_txn_aggregate_bool_exp_corr_arguments"]: ValueTypes["token_txn_aggregate_bool_exp_corr_arguments"];
+  ["token_txn_aggregate_bool_exp_count"]: ValueTypes["token_txn_aggregate_bool_exp_count"];
+  ["token_txn_aggregate_bool_exp_covar_samp"]: ValueTypes["token_txn_aggregate_bool_exp_covar_samp"];
+  ["token_txn_aggregate_bool_exp_covar_samp_arguments"]: ValueTypes["token_txn_aggregate_bool_exp_covar_samp_arguments"];
+  ["token_txn_aggregate_bool_exp_max"]: ValueTypes["token_txn_aggregate_bool_exp_max"];
+  ["token_txn_aggregate_bool_exp_min"]: ValueTypes["token_txn_aggregate_bool_exp_min"];
+  ["token_txn_aggregate_bool_exp_stddev_samp"]: ValueTypes["token_txn_aggregate_bool_exp_stddev_samp"];
+  ["token_txn_aggregate_bool_exp_sum"]: ValueTypes["token_txn_aggregate_bool_exp_sum"];
+  ["token_txn_aggregate_bool_exp_var_samp"]: ValueTypes["token_txn_aggregate_bool_exp_var_samp"];
+  ["token_txn_aggregate_order_by"]: ValueTypes["token_txn_aggregate_order_by"];
+  ["token_txn_arr_rel_insert_input"]: ValueTypes["token_txn_arr_rel_insert_input"];
+  ["token_txn_avg_order_by"]: ValueTypes["token_txn_avg_order_by"];
+  ["token_txn_bool_exp"]: ValueTypes["token_txn_bool_exp"];
+  ["token_txn_constraint"]: ValueTypes["token_txn_constraint"];
+  ["token_txn_inc_input"]: ValueTypes["token_txn_inc_input"];
+  ["token_txn_insert_input"]: ValueTypes["token_txn_insert_input"];
+  ["token_txn_max_order_by"]: ValueTypes["token_txn_max_order_by"];
+  ["token_txn_min_order_by"]: ValueTypes["token_txn_min_order_by"];
+  ["token_txn_on_conflict"]: ValueTypes["token_txn_on_conflict"];
+  ["token_txn_order_by"]: ValueTypes["token_txn_order_by"];
+  ["token_txn_pk_columns_input"]: ValueTypes["token_txn_pk_columns_input"];
+  ["token_txn_select_column"]: ValueTypes["token_txn_select_column"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_avg_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_and_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_bool_or_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_corr_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_covar_samp_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_max_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_min_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_stddev_samp_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_sum_arguments_columns"];
+  ["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"]: ValueTypes["token_txn_select_column_token_txn_aggregate_bool_exp_var_samp_arguments_columns"];
+  ["token_txn_set_input"]: ValueTypes["token_txn_set_input"];
+  ["token_txn_stddev_order_by"]: ValueTypes["token_txn_stddev_order_by"];
+  ["token_txn_stddev_pop_order_by"]: ValueTypes["token_txn_stddev_pop_order_by"];
+  ["token_txn_stddev_samp_order_by"]: ValueTypes["token_txn_stddev_samp_order_by"];
+  ["token_txn_stream_cursor_input"]: ValueTypes["token_txn_stream_cursor_input"];
+  ["token_txn_stream_cursor_value_input"]: ValueTypes["token_txn_stream_cursor_value_input"];
+  ["token_txn_sum_order_by"]: ValueTypes["token_txn_sum_order_by"];
+  ["token_txn_update_column"]: ValueTypes["token_txn_update_column"];
+  ["token_txn_updates"]: ValueTypes["token_txn_updates"];
+  ["token_txn_var_pop_order_by"]: ValueTypes["token_txn_var_pop_order_by"];
+  ["token_txn_var_samp_order_by"]: ValueTypes["token_txn_var_samp_order_by"];
+  ["token_txn_variance_order_by"]: ValueTypes["token_txn_variance_order_by"];
   ["token_update_column"]: ValueTypes["token_update_column"];
   ["token_updates"]: ValueTypes["token_updates"];
   ["transactions_aggregate_bool_exp"]: ValueTypes["transactions_aggregate_bool_exp"];
