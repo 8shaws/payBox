@@ -13,7 +13,13 @@ import {
   networkPublicKey,
 } from "./validations";
 import { Message } from "@solana/web3.js";
-import { BitcoinCluster, EthCluster, SolCluster, USDCCluster } from "./enum";
+import {
+  BitcoinCluster,
+  EthCluster,
+  SolCluster,
+  TxnStatus,
+  USDCCluster,
+} from "./enum";
 import { Cluster } from "@solana/web3.js";
 import {
   BitcoinChainId,
@@ -288,4 +294,21 @@ export interface AddressBook {
   publicKey: string;
   chain: Network;
   tag?: string;
+}
+
+export interface TokenTxn {
+  id?: string;
+  clientId: string;
+  hash: string;
+  blockHash: string;
+  fee: number;
+  amount: number;
+  fromAta: string;
+  toAta: string;
+  isMint: boolean;
+  token: string;
+  network: Network;
+  slot?: number;
+  status: TxnStatus;
+  time: string;
 }
