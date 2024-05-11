@@ -3,11 +3,13 @@ import { kafka } from "..";
 import {
   DBTopics,
   MsgTopics,
+  Network,
   NotifTopics,
   TopicTypes,
   TxnTopic,
 } from "@paybox/common";
 import {
+  finalizeTokenTxn,
   finalizedTxn,
   notifyFriendRequest,
   notifyFriendRequestAccepted,
@@ -154,12 +156,22 @@ export class ConsumerWorker {
             case TopicTypes.Txn:
               switch (payload.type) {
                 case TxnTopic.Finalized:
-                  await finalizedTxn({
-                    chain: payload.chain,
-                    from: payload.from,
-                    hash: payload.hash,
-                    to: payload.to,
-                  });
+                  if (payload.isTokenTxn) {
+                    await finalizeTokenTxn({
+                      chain: payload.chain as Network,
+                      from: payload.from,
+                      hash: payload.hash,
+                      to: payload.to,
+                      isMint: payload.isMint,
+                    });
+                  } else {
+                    await finalizedTxn({
+                      chain: payload.chain,
+                      from: payload.from,
+                      hash: payload.hash,
+                      to: payload.to,
+                    });
+                  }
                   break;
               }
               break;

@@ -21,3 +21,18 @@ object_relationships:
   - name: tokenByToken
     using:
       foreign_key_constraint_on: token
+array_relationships:
+  - name: tokenTxnsByToata
+    using:
+      foreign_key_constraint_on:
+        column: toAta
+        table:
+          name: token_txn
+          schema: public
+  - name: token_txns
+    using:
+      foreign_key_constraint_on:
+        column: fromAta
+        table:
+          name: token_txn
+          schema: public

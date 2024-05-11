@@ -4,6 +4,7 @@ import {
   HASURA_ADMIN_SERCRET,
   Network,
   NotifSubType,
+  TokenTxn,
   TxnType,
   dbResStatus,
 } from "@paybox/common";
@@ -114,6 +115,7 @@ export const insertCentTxn = async (
 export const insertTxn = async (
   txn: Omit<TxnType, "id" | "time" | "clientId">,
   clientId: string,
+  network: Network,
 ): Promise<{
   status: dbResStatus;
   id?: string;
@@ -125,6 +127,8 @@ export const insertTxn = async (
           object: {
             ...txn,
             clientId,
+            time: new Date().toISOString(),
+            network,
           },
         },
         {
@@ -139,6 +143,110 @@ export const insertTxn = async (
     return {
       id: response.insert_transactions_one.id as string,
       status: dbResStatus.Ok,
+    };
+  }
+  return {
+    status: dbResStatus.Error,
+  };
+};
+
+export const insertTokenTxn = async (
+  txn: TokenTxn,
+): Promise<{
+  status: dbResStatus;
+  id?: string;
+}> => {
+  const fromAta = await chain("query")(
+    {
+      ata: [
+        {
+          where: {
+            token: { _eq: txn.token },
+            owner: { _eq: txn.fromAta },
+          },
+        },
+        {
+          pubKey: true,
+        },
+      ],
+    },
+    { operationName: "fromata" },
+  );
+  const toAta = await chain("query")(
+    {
+      ata: [
+        {
+          where: {
+            token: { _eq: txn.token },
+            owner: { _eq: txn.toAta },
+          },
+        },
+        {
+          pubKey: true,
+        },
+      ],
+    },
+    { operationName: "toAta" },
+  );
+
+  txn.fromAta = fromAta.ata[0].pubKey;
+  txn.toAta = fromAta.ata[0].pubKey;
+
+  const response = await chain("mutation")(
+    {
+      insert_token_txn_one: [
+        {
+          object: {
+            ...txn,
+          },
+        },
+        {
+          id: true,
+        },
+      ],
+    },
+    { operationName: "insert_token_txn_one" },
+  );
+  if (response.insert_token_txn_one?.id) {
+    return {
+      status: dbResStatus.Ok,
+      id: response.insert_token_txn_one.id as string,
+    };
+  }
+  return {
+    status: dbResStatus.Error,
+  };
+};
+
+export const getTokenTxnDetails = async (
+  txnId: string,
+  to: string,
+): Promise<{
+  status: dbResStatus;
+  amount?: number;
+}> => {
+  const response = await chain("query")(
+    {
+      token_txn: [
+        {
+          where: {
+            client: {
+              username: { _eq: to },
+            },
+            id: { _eq: txnId },
+          },
+        },
+        {
+          amount: true,
+        },
+      ],
+    },
+    { operationName: "getTokenDetails" },
+  );
+  if (response.token_txn[0]) {
+    return {
+      status: dbResStatus.Ok,
+      amount: response.token_txn[0].amount as number,
     };
   }
   return {

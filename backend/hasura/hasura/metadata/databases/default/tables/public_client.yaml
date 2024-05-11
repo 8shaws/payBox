@@ -97,6 +97,13 @@ array_relationships:
         table:
           name: notification
           schema: public
+  - name: token_txns
+    using:
+      foreign_key_constraint_on:
+        column: clientId
+        table:
+          name: token_txn
+          schema: public
   - name: tokens
     using:
       foreign_key_constraint_on:

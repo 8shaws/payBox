@@ -5,18 +5,28 @@ import {
   OTP_CACHE_EXPIRE,
   TOTP_DIGITS,
   TOTP_TIME,
+  TokenTxn,
   TopicTypes,
+  TxnTopic,
+  TxnType,
   dbResStatus,
 } from "@paybox/common";
 import { getClientFriendship } from "./db/friendship";
 import { getUsername } from "./db/client";
 import { notify } from "./notifier";
-import { getTxnDetails, insertCentTxn, insertTxn } from "./db/txn";
+import {
+  getTokenTxnDetails,
+  getTxnDetails,
+  insertCentTxn,
+  insertTokenTxn,
+  insertTxn,
+} from "./db/txn";
 import { RedisBase, upadteMobileEmail } from "@paybox/backend-common";
 import { genOtp, sendOTP } from "./auth/utils";
 import { addNotif } from "./db/notif";
 import { getSubs, getSubsId } from "./db/notif-sub";
 import { EthRpc, SolRpc } from "@paybox/blockchain";
+import { ProducerWorker } from "./kafka/producer";
 
 /**
  *
@@ -139,6 +149,7 @@ export const notifyReceiveTxn = async (
   if (status === dbResStatus.Error || !username) {
     return;
   }
+  console.log("username", username);
 
   const {
     amount,
@@ -380,7 +391,7 @@ export const finalizedTxn = async ({
             console.log(hash, "txn not yet confirmed...");
             return;
           }
-          const { status, id } = await insertTxn(ethTxn, from);
+          const { status, id } = await insertTxn(ethTxn, from, Network.Eth);
           if (status == dbResStatus.Error || !id) {
             console.log("DB mutate error...");
             return;
@@ -391,12 +402,36 @@ export const finalizedTxn = async ({
 
       case Network.Sol:
         {
-          const solTxn = await SolRpc.getInstance().getTxn(hash);
+          let solTxn = null;
+
+          solTxn = await SolRpc.getInstance().getTxn(hash);
           if (solTxn == null) {
             console.log(hash, "txn not confirmed");
+
+            await ProducerWorker.getInstance().publishOne({
+              topic: TopicTypes.Txn,
+              message: [
+                {
+                  partition: 0,
+                  key: hash,
+                  value: JSON.stringify({
+                    type: TxnTopic.Finalized,
+                    chain,
+                    from,
+                    to,
+                    hash,
+                    isTokenTxn: false,
+                  }),
+                },
+              ],
+            });
             return;
           }
-          const { status, id } = await insertTxn(solTxn, from);
+          const { status, id } = await insertTxn(
+            solTxn as TxnType,
+            from,
+            Network.Sol,
+          );
           if (status == dbResStatus.Error || !id) {
             console.log("DB mutate error...");
             return;
@@ -411,4 +446,119 @@ export const finalizedTxn = async ({
     console.log(error);
     return;
   }
+};
+
+export const finalizeTokenTxn = async ({
+  chain,
+  hash,
+  from,
+  to,
+  isMint,
+}: {
+  chain: Network;
+  hash: string;
+  from: string;
+  to: string;
+  isMint: boolean;
+}): Promise<void> => {
+  try {
+    let txnId = "";
+    switch (chain) {
+      // case Network.Eth:
+      //   {
+      //     let ethTxn = await EthRpc.getInstance().getTxn(hash);
+      //     if (ethTxn == null) {
+      //       console.log(hash, "txn not yet confirmed...");
+      //       return;
+      //     }
+      //     const { status, id } = await insertTxn(ethTxn, from, Network.Eth);
+      //     if (status == dbResStatus.Error || !id) {
+      //       console.log("DB mutate error...");
+      //       return;
+      //     }
+      //     txnId = id;
+      //   }
+      //   break;
+
+      case Network.Sol:
+        {
+          let solTxn = null;
+
+          solTxn = await SolRpc.getInstance().getTokenTxn(hash);
+          if (solTxn == null) {
+            console.log(hash, "token txn not confirmed");
+
+            await ProducerWorker.getInstance().publishOne({
+              topic: TopicTypes.Txn,
+              message: [
+                {
+                  partition: 0,
+                  key: hash,
+                  value: JSON.stringify({
+                    type: TxnTopic.Finalized,
+                    chain,
+                    from,
+                    to,
+                    hash,
+                    isMint,
+                  }),
+                },
+              ],
+            });
+            return;
+          }
+          const { status, id } = await insertTokenTxn({
+            ...solTxn,
+            clientId: from,
+            isMint,
+          } as TokenTxn);
+
+          if (status == dbResStatus.Error || !id) {
+            console.log("DB mutate error...");
+            return;
+          }
+          txnId = id;
+        }
+        break;
+    }
+    isMint ? await notifyMintToken(to, from, txnId) : console.log();
+    return;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
+
+export const notifyMintToken = async (
+  to: string,
+  from: string,
+  txnId: string,
+) => {
+  const { status, username } = await getUsername(from);
+  if (status === dbResStatus.Error || !username) {
+    return;
+  }
+
+  const { amount, status: txnDetailsStatus } = await getTokenTxnDetails(
+    txnId,
+    to,
+  );
+  if (txnDetailsStatus === dbResStatus.Error || !amount) {
+    return;
+  }
+
+  await notify({
+    to,
+    body: `Minted ${amount} tokens`,
+    title: `Token Mint Success...`,
+    href: getTxnHref(txnId),
+    image:
+      "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.735520172.1711238400&semt=ais",
+    tag: NotifTopics.TxnAccept,
+    vibrate: [200, 100, 200],
+    payload: {
+      txnId,
+    },
+    topic: TopicTypes.Notif,
+  });
 };

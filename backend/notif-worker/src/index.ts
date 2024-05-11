@@ -87,6 +87,9 @@ if (cluster.isPrimary) {
     new Promise((resolve) => {
       RedisBase.getInstance().getclient.on("ready", resolve);
     }),
+    new Promise((resolve) => {
+      ProducerWorker.getInstance().connectProducer();
+    }),
   ])
     .then(() => {
       app.listen(PORT, async () => {
@@ -99,6 +102,7 @@ if (cluster.isPrimary) {
 } else {
   (async () => {
     try {
+      await ProducerWorker.getInstance().connectProducer();
       await ConsumerWorker.getInstance().connectCounsumer(
         "worker-group",
         [TopicTypes.Notif, TopicTypes.Msg, TopicTypes.Db, TopicTypes.Txn],

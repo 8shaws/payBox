@@ -17,5 +17,6 @@
 - "!include public_notification_subscription.yaml"
 - "!include public_sol.yaml"
 - "!include public_token.yaml"
+- "!include public_token_txn.yaml"
 - "!include public_transactions.yaml"
 - "!include public_wallet.yaml"

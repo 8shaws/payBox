@@ -23,3 +23,10 @@ array_relationships:
         table:
           name: ata
           schema: public
+  - name: token_txns
+    using:
+      foreign_key_constraint_on:
+        column: token
+        table:
+          name: token_txn
+          schema: public
