@@ -1,6 +1,9 @@
 import {
+  MintTokenSchema,
   Network,
   TokenCreateSchema,
+  TopicTypes,
+  TxnTopic,
   dbResStatus,
   responseStatus,
 } from "@paybox/common";
@@ -10,6 +13,7 @@ import { checkPassword, getNetworkPrivateKey } from "@paybox/backend-common";
 import { insertToken } from "../db/token";
 import { insertAta } from "../db/ata";
 import { decryptWithPassword } from "../auth";
+import { Worker } from "../workers/txn";
 
 export const tokenRouter = Router();
 
@@ -99,6 +103,106 @@ tokenRouter.post("/create", checkPassword, async (req, res) => {
     return res.status(401).json({
       status: responseStatus.Error,
       msg: "Auth Error",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Internal Server Error",
+      status: responseStatus.Error,
+    });
+  }
+});
+
+tokenRouter.post("/mint", checkPassword, async (req, res) => {
+  try {
+    //@ts-ignore
+    const id = req.id;
+    //@ts-ignore
+    const hashPassword = req.hashPassword;
+
+    if (id && hashPassword) {
+      const { mint, authority, network, tokens, ata, username } =
+        MintTokenSchema.parse(req.body);
+
+      let { status, privateKey } = await getNetworkPrivateKey(
+        authority,
+        network,
+      );
+      if (status == dbResStatus.Error || !privateKey) {
+        return res.status(404).json({
+          msg: "That account is not Found in Database...",
+          status: responseStatus.Error,
+        });
+      }
+      privateKey = await decryptWithPassword(privateKey, hashPassword);
+
+      let instance;
+      switch (network) {
+        case Network.Sol:
+          instance = await SolTokenOps.getInstance().mintToken(
+            privateKey,
+            mint,
+            ata,
+            tokens,
+          );
+          break;
+
+        case Network.Eth:
+          break;
+
+        default:
+          return res.status(404).json({
+            msg: `${network} is not yet Supported...`,
+            status: responseStatus.Error,
+          });
+      }
+
+      if (!instance) {
+        return res.status(404).json({
+          msg: "Sorry, We don't yet Support tokens on that chain",
+          status: responseStatus.Error,
+        });
+      }
+
+      console.log(instance);
+
+      try {
+        //publishing to push the txn
+        await Worker.getInstance().publishOne({
+          topic: TopicTypes.Txn,
+          message: [
+            {
+              partition: 0,
+              key: instance,
+              value: JSON.stringify({
+                type: TxnTopic.Finalized,
+                chain: network,
+                from: id,
+                to: username,
+                hash: instance,
+                isTokenTxn: true,
+                isMint: true,
+              }),
+            },
+          ],
+        });
+      } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+          msg: "Error publishing the txn",
+          status: responseStatus.Error,
+        });
+      }
+
+      return res.status(200).json({
+        msg: `${tokens} minted successfully...`,
+        status: responseStatus.Ok,
+      });
+    }
+
+    return res.status(401).json({
+      msg: "Auth Error",
+      status: responseStatus.Error,
     });
   } catch (e) {
     console.log(e);
