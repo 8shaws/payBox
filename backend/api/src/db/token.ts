@@ -93,3 +93,43 @@ export const getTokens = async (
     status: dbResStatus.Error,
   };
 };
+
+/** Get token by id */
+export const getToken = async (
+  tokenId: string,
+): Promise<{
+  status: dbResStatus;
+  token?: TokenType;
+}> => {
+  const response = await chain("query")(
+    {
+      token: [
+        {
+          where: {
+            id: { _eq: tokenId },
+          },
+          limit: 1,
+        },
+        {
+          id: true,
+          pubKey: true,
+          name: true,
+          authority: true,
+          network: true,
+          description: true,
+          clientId: true,
+        },
+      ],
+    },
+    { operationName: "getToken" },
+  );
+  if (response.token[0].id) {
+    return {
+      status: dbResStatus.Ok,
+      token: response.token[0] as TokenType,
+    };
+  }
+  return {
+    status: dbResStatus.Error,
+  };
+};
