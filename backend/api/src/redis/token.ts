@@ -30,4 +30,19 @@ export class TokenCache {
     await Promise.all(promises);
     console.log(`Caching tokens for ${tokens[0].clientId}`);
   }
+
+  async getCachedToken(key: string): Promise<null | TokenType> {
+    const token = await this.client.HGETALL(key);
+    if (!token) return null;
+
+    return {
+      id: token.id,
+      authority: token.authority,
+      pubKey: token.pubKey,
+      name: token.name,
+      description: token.description,
+      network: token.network as Network,
+      clientId: token.clientId,
+    };
+  }
 }
