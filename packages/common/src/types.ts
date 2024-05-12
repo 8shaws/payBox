@@ -312,3 +312,14 @@ export interface TokenTxn {
   status: TxnStatus;
   time: string;
 }
+
+export interface TokenType {
+  id: string;
+  network: Network;
+  pubKey: string;
+  privateKey?: string;
+  name: string;
+  description: string;
+  authority: string;
+  clientId: string;
+}

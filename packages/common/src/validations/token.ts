@@ -22,3 +22,12 @@ export const MintTokenSchema = z.object({
       "should be between 3-15 characters and can only contain numbers, letters, and underscores.",
     ),
 });
+
+export const GetTokenSchema = z.object({
+  tokenId: z
+    .string()
+    .regex(
+      /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+      "should be a valid UUID.",
+    ),
+});
