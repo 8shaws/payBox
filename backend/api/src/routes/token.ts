@@ -1,4 +1,5 @@
 import {
+  GetTokenSchema,
   MintTokenSchema,
   Network,
   TokenCreateSchema,
@@ -10,7 +11,7 @@ import {
 import { Router } from "express";
 import { SolTokenOps } from "@paybox/blockchain";
 import { checkPassword, getNetworkPrivateKey } from "@paybox/backend-common";
-import { getTokens, insertToken } from "../db/token";
+import { getToken, getTokens, insertToken } from "../db/token";
 import { insertAta } from "../db/ata";
 import { decryptWithPassword } from "../auth";
 import { Worker } from "../workers/txn";
@@ -214,7 +215,7 @@ tokenRouter.post("/mint", checkPassword, async (req, res) => {
   }
 });
 
-tokenRouter.get("/", async (req, res) => {
+tokenRouter.get("/all", async (req, res) => {
   try {
     //@ts-ignore
     const id = req.id;
@@ -241,6 +242,50 @@ tokenRouter.get("/", async (req, res) => {
     return res.status(401).json({
       status: responseStatus.Error,
       msg: "Auth Error",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Internal Server Error",
+      status: responseStatus.Error,
+    });
+  }
+});
+
+tokenRouter.get("/", async (req, res) => {
+  try {
+    //@ts-ignore
+    const id = req.id;
+    if (id) {
+      const { tokenId } = GetTokenSchema.parse(req.query);
+
+      let cacheToken =
+        await Redis.getRedisInst().tokens.getCachedToken(tokenId);
+      if (cacheToken && cacheToken.id) {
+        return res.status(302).json({
+          status: responseStatus.Ok,
+          token: cacheToken,
+        });
+      }
+
+      const { status, token } = await getToken(tokenId);
+      if (status == dbResStatus.Error || !token) {
+        return res.status(404).json({
+          msg: "Token not found in db...",
+          status: responseStatus.Error,
+        });
+      }
+
+      await Redis.getRedisInst().tokens.cacheTokens(tokenId, [token], 60 * 60);
+
+      return res.status(200).json({
+        token,
+        status: responseStatus.Ok,
+      });
+    }
+    return res.status(401).json({
+      msg: "Auth Error",
+      status: responseStatus.Error,
     });
   } catch (e) {
     console.log(e);
