@@ -22,3 +22,5 @@ export const MintTokenSchema = z.object({
       "should be between 3-15 characters and can only contain numbers, letters, and underscores.",
     ),
 });
+
+export const GetTokenSchema = z.object({});
