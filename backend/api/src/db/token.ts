@@ -133,3 +133,44 @@ export const getToken = async (
     status: dbResStatus.Error,
   };
 };
+
+// insert one ata object to db
+export const insertAtaOne = async (
+  owner: string,
+  clientId: string,
+  isMinter: boolean,
+  pubKey: string,
+  token: string,
+): Promise<{
+  status: dbResStatus;
+  ataId?: string;
+}> => {
+  const response = await chain("mutation")(
+    {
+      insert_ata_one: [
+        {
+          object: {
+            owner,
+            clientId,
+            isMinter,
+            pubKey,
+            token,
+          },
+        },
+        {
+          id: true,
+        },
+      ],
+    },
+    { operationName: "insertAtaOne" },
+  );
+  if (response.insert_ata_one?.id) {
+    return {
+      status: dbResStatus.Ok,
+      ataId: response.insert_ata_one.id as string,
+    };
+  }
+  return {
+    status: dbResStatus.Error,
+  };
+};

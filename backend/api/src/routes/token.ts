@@ -1,4 +1,5 @@
 import {
+  GenAtaSchema,
   GetTokenSchema,
   MintTokenSchema,
   Network,
@@ -11,7 +12,7 @@ import {
 import { Router } from "express";
 import { SolTokenOps } from "@paybox/blockchain";
 import { checkPassword, getNetworkPrivateKey } from "@paybox/backend-common";
-import { getToken, getTokens, insertToken } from "../db/token";
+import { getToken, getTokens, insertAtaOne, insertToken } from "../db/token";
 import { insertAta } from "../db/ata";
 import { decryptWithPassword } from "../auth";
 import { Worker } from "../workers/txn";
@@ -286,6 +287,77 @@ tokenRouter.get("/", async (req, res) => {
     return res.status(401).json({
       msg: "Auth Error",
       status: responseStatus.Error,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Internal Server Error",
+      status: responseStatus.Error,
+    });
+  }
+});
+
+tokenRouter.post("/ata", checkPassword, async (req, res) => {
+  try {
+    //@ts-ignore;
+    const id = req.id;
+    //@ts-ignore;
+    const hashPassword = req.hashPassword;
+    if (id) {
+      const { token, authority, network } = GenAtaSchema.parse(req.body);
+
+      let { status, privateKey } = await getNetworkPrivateKey(
+        authority,
+        network,
+      );
+      if (status == dbResStatus.Error || !privateKey) {
+        return res.status(404).json({
+          msg: "That account is not Found in Database...",
+          status: responseStatus.Error,
+        });
+      }
+      privateKey = await decryptWithPassword(privateKey, hashPassword);
+
+      let instance;
+      switch (network) {
+        case Network.Sol:
+          instance = await SolTokenOps.getInstance().genAta(token, privateKey);
+          break;
+        case Network.Eth:
+          break;
+        default:
+          break;
+      }
+
+      if (!instance) {
+        return res.status(404).json({
+          status: responseStatus.Error,
+          msg: `Sorry, ${network} is not yet supported...`,
+        });
+      }
+
+      const { status: insertAtaStatus, ataId } = await insertAtaOne(
+        authority,
+        id,
+        false,
+        instance,
+        token,
+      );
+      if (insertAtaStatus == dbResStatus.Error || !ataId) {
+        return res.status(500).json({
+          msg: "Insert Db Error",
+          status: responseStatus.Error,
+        });
+      }
+
+      return res.status(200).json({
+        status: responseStatus.Ok,
+        ataId,
+      });
+    }
+    return res.status(401).json({
+      status: responseStatus.Error,
+      msg: "Auth Error",
     });
   } catch (e) {
     console.log(e);
