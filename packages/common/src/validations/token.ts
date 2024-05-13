@@ -31,3 +31,9 @@ export const GetTokenSchema = z.object({
       "should be a valid UUID.",
     ),
 });
+
+export const GenAtaSchema = z.object({
+  token: z.string(),
+  authority: publicKeyType,
+  network: z.nativeEnum(Network),
+});
