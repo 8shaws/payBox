@@ -45,4 +45,10 @@ export const TransferTokenSchema = z.object({
   toAta: z.string(),
   fromAta: z.string(),
   token: z.string(),
+  username: z.string(),
+});
+
+export const InsertTokenTxn = z.object({
+  hash: z.string(),
+  network: z.nativeEnum(Network),
 });
