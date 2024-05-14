@@ -37,3 +37,18 @@ export const GenAtaSchema = z.object({
   authority: publicKeyType,
   network: z.nativeEnum(Network),
 });
+
+export const TransferTokenSchema = z.object({
+  network: z.nativeEnum(Network),
+  amount: z.number(),
+  pubKey: publicKeyType,
+  toAta: z.string(),
+  fromAta: z.string(),
+  token: z.string(),
+  username: z.string(),
+});
+
+export const InsertTokenTxn = z.object({
+  hash: z.string(),
+  network: z.nativeEnum(Network),
+});

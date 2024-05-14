@@ -1,16 +1,18 @@
 import {
   GenAtaSchema,
   GetTokenSchema,
+  InsertTokenTxn,
   MintTokenSchema,
   Network,
   TokenCreateSchema,
   TopicTypes,
+  TransferTokenSchema,
   TxnTopic,
   dbResStatus,
   responseStatus,
 } from "@paybox/common";
 import { Router } from "express";
-import { SolTokenOps } from "@paybox/blockchain";
+import { SolRpc, SolTokenOps } from "@paybox/blockchain";
 import { checkPassword, getNetworkPrivateKey } from "@paybox/backend-common";
 import { getToken, getTokens, insertAtaOne, insertToken } from "../db/token";
 import { insertAta } from "../db/ata";
@@ -364,6 +366,140 @@ tokenRouter.post("/ata", checkPassword, async (req, res) => {
     return res.status(500).json({
       msg: "Internal Server Error",
       status: responseStatus.Error,
+    });
+  }
+});
+
+tokenRouter.post("/transfer", checkPassword, async (req, res) => {
+  try {
+    //@ts-ignore
+    const id = req.id;
+    //@ts-ignore
+    const hashPassword = req.hashPassword;
+    if (id) {
+      const { amount, fromAta, pubKey, toAta, token, network, username } =
+        TransferTokenSchema.parse(req.body);
+
+      let { status, privateKey } = await getNetworkPrivateKey(pubKey, network);
+      if (status == dbResStatus.Error || !privateKey) {
+        return res.status(404).json({
+          msg: "That account is not Found in Database...",
+          status: responseStatus.Error,
+        });
+      }
+      privateKey = await decryptWithPassword(privateKey, hashPassword);
+
+      let instance;
+
+      switch (network) {
+        case Network.Sol:
+          instance = await SolTokenOps.getInstance().transferToken(
+            privateKey,
+            fromAta,
+            toAta,
+            amount,
+          );
+          break;
+
+        case Network.Eth:
+          break;
+
+        default:
+          break;
+      }
+
+      if (!instance) {
+        return res.status(404).json({
+          status: responseStatus.Error,
+          msg: "Sorry, that chain is not yet supported...",
+        });
+      }
+
+      try {
+        //publishing to push the txn
+        await Worker.getInstance().publishOne({
+          topic: TopicTypes.Txn,
+          message: [
+            {
+              partition: 0,
+              key: instance,
+              value: JSON.stringify({
+                type: TxnTopic.Finalized,
+                chain: network,
+                from: id,
+                to: username,
+                hash: instance,
+                isTokenTxn: true,
+                isMint: true,
+              }),
+            },
+          ],
+        });
+      } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+          msg: "Error publishing the txn",
+          status: responseStatus.Error,
+        });
+      }
+
+      //index the account from frontend
+      return res.status(200).json({
+        status: responseStatus.Ok,
+        txnId: instance,
+      });
+    }
+
+    return res.status(401).json({
+      status: responseStatus.Error,
+      msg: "Auth Error",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Internal Server Error",
+      status: responseStatus.Error,
+    });
+  }
+});
+
+tokenRouter.get("/insertTxn", async (req, res) => {
+  try {
+    //@ts-ignore
+    const id = req.id;
+    if (id) {
+      const { hash, network } = InsertTokenTxn.parse(req.query);
+
+      let instance;
+
+      switch (network) {
+        case Network.Sol:
+          instance = await SolRpc.getInstance().getTokenTxn(hash);
+          break;
+
+        case Network.Eth:
+          break;
+
+        default:
+          break;
+      }
+
+      if (!instance) {
+        return res.status(404).json({
+          status: responseStatus.Error,
+          msg: "Sorry, that network is not yet supported...",
+        });
+      }
+    }
+    return res.status(401).json({
+      status: responseStatus.Error,
+      msg: "Auth Error",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      status: responseStatus.Error,
+      msg: "Internal Server Error",
     });
   }
 });
