@@ -5,6 +5,7 @@ import {
   Network,
   TokenCreateSchema,
   TopicTypes,
+  TransferTokenSchema,
   TxnTopic,
   dbResStatus,
   responseStatus,
@@ -355,6 +356,71 @@ tokenRouter.post("/ata", checkPassword, async (req, res) => {
         ataId,
       });
     }
+    return res.status(401).json({
+      status: responseStatus.Error,
+      msg: "Auth Error",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      msg: "Internal Server Error",
+      status: responseStatus.Error,
+    });
+  }
+});
+
+tokenRouter.post("/transfer", async (req, res) => {
+  try {
+    //@ts-ignore
+    const id = req.id;
+    //@ts-ignore
+    const hashPassword = req.hashPassword;
+    if (id) {
+      const { amount, fromAta, pubKey, toAta, token, network } =
+        TransferTokenSchema.parse(req.body);
+
+      let { status, privateKey } = await getNetworkPrivateKey(pubKey, network);
+      if (status == dbResStatus.Error || !privateKey) {
+        return res.status(404).json({
+          msg: "That account is not Found in Database...",
+          status: responseStatus.Error,
+        });
+      }
+      privateKey = await decryptWithPassword(privateKey, hashPassword);
+
+      let instance;
+
+      switch (network) {
+        case Network.Sol:
+          instance = await SolTokenOps.getInstance().transferToken(
+            privateKey,
+            fromAta,
+            toAta,
+            amount,
+          );
+          break;
+
+        case Network.Eth:
+          break;
+
+        default:
+          break;
+      }
+
+      if (!instance) {
+        return res.status(404).json({
+          status: responseStatus.Error,
+          msg: "Sorry, that chain is not yet supported...",
+        });
+      }
+
+      //index the account from frontend
+      return res.status(200).json({
+        status: responseStatus.Ok,
+        txnId: instance,
+      });
+    }
+
     return res.status(401).json({
       status: responseStatus.Error,
       msg: "Auth Error",
