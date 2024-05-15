@@ -17,8 +17,8 @@ export const SOL_RPC_DEVENT_NODE_URL = `https://devnet.helius-rpc.com/?api-key=$
 
 export const SOL_RPC_MAINNET_NODE_URL = `https://mainnet.helius-rpc.com/?api-key=${SOL_WS_API_KEY}`;
 
-export const ETH__NODE_API_KEY = process.env.ETH_NODE_API_KEY || "";
+export const ETH_NODE_API_KEY = process.env.ETH_NODE_API_KEY || "";
 
-export const ETH_WS_MAINNET_URL = `wss://mainnet.infura.io/ws/v3/${ETH__NODE_API_KEY}`;
+export const ETH_WS_MAINNET_URL = `wss://mainnet.infura.io/ws/v3/${ETH_NODE_API_KEY}`;
 
-export const ETH_WS_SEPOLIA_URL = `wss://sepolia.infura.io/ws/v3/${ETH__NODE_API_KEY}`;
+export const ETH_WS_SEPOLIA_URL = `wss://sepolia.infura.io/ws/v3/${ETH_NODE_API_KEY}`;
