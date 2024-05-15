@@ -7,9 +7,31 @@
     <list default="true" id="68b95ec0-bf7d-419c-b9b9-0866ed110dbf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/blockchains/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/blockchains/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/Anchor.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/Cargo.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/Cargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/migrations/deploy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/program-logs/5GYC234ogiyd7JBX8MK9mH7v97BVNnVc5DvL2ytBdvX6.token_contract.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/token_contract/Cargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/token_contract/Xargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/token_contract/src/instructions/mint.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/token_contract/src/instructions/mod.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/token_contract/src/instructions/transfer.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/token_contract/src/lib.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/transfers/Cargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/transfers/Xargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/transfers/src/error.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/transfers/src/instructions/mod.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/transfers/src/instructions/transfer.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/programs/transfers/src/lib.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/tests/transfers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "btc",
+    "git-widget-placeholder": "eth__con",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,6 +96,7 @@
       <workItem from="1713001219497" duration="47000" />
       <workItem from="1713001275540" duration="151000" />
       <workItem from="1714135171363" duration="784000" />
+      <workItem from="1715792593378" duration="90000" />
     </task>
     <servers />
   </component>
