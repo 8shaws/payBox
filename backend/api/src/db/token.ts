@@ -83,7 +83,7 @@ export const getTokens = async (
     },
     { operationName: "getTokens" },
   );
-  if (response.token.length > 0) {
+  if (Array.isArray(response.token)) {
     return {
       status: dbResStatus.Ok,
       tokens: response.token as TokenType[],

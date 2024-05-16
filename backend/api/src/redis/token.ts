@@ -12,6 +12,7 @@ export class TokenCache {
   }
 
   async cacheTokens(key: string, tokens: TokenType[], expire: number) {
+    if (tokens.length == 0) return;
     const promises = tokens.map((token) => {
       return new Promise(async (resolve) => {
         await this.client.HSET(token.id, {
