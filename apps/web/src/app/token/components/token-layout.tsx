@@ -57,7 +57,6 @@ export function TokensLayout({
 
   const path = usePathname();
   const router = useRouter();
-  console.log("path", path.split("/").at(-1));
   const [selectedTab, setSelectedTab] = React.useState<string>();
 
   useEffect(() => {
@@ -152,21 +151,21 @@ export function TokensLayout({
           <Sidenav
             isCollapsed={isCollapsed}
             links={tokenNavLinks(selectedToken || "") as LinksProps[]}
-            selectedTab={selectedTab}
+            selectedTab={selectedTab || "all"}
             setSelectedTab={setSelectedTab}
           />
           <Separator />
           <Sidenav
             isCollapsed={isCollapsed}
             links={tokenCommonLinks as LinksProps[]}
-            selectedTab={selectedTab}
+            selectedTab={selectedTab || "all"}
             setSelectedTab={setSelectedTab}
           />
           <div className="flex-grow" />
           <Sidenav
             isCollapsed={isCollapsed}
             links={clientNavLinks(client?.firstname)}
-            selectedTab={selectedTab}
+            selectedTab={selectedTab || "all"}
             setSelectedTab={setSelectedTab}
           />
         </ResizablePanel>
