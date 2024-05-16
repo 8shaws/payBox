@@ -33,6 +33,17 @@ export function MainNav() {
           Account
         </Link>
         <Link
+          href="/token"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname.includes("token")
+              ? "text-foreground"
+              : "text-foreground/60",
+          )}
+        >
+          Token
+        </Link>
+        <Link
           href="/txn"
           className={cn(
             "transition-colors hover:text-foreground/80",
