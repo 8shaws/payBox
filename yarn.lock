@@ -10310,7 +10310,7 @@ commander@8.3.0:
   resolved "https://registry.npmjs.org/commander/-/commander-8.3.0.tgz"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
-commander@^10.0.0, commander@^10.0.1:
+commander@^10.0.0:
   version "10.0.1"
   resolved "https://registry.npmjs.org/commander/-/commander-10.0.1.tgz"
   integrity sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==
@@ -17191,10 +17191,10 @@ pify@^4.0.1:
   resolved "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pino-abstract-transport@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/pino-abstract-transport/-/pino-abstract-transport-1.1.0.tgz"
-  integrity sha512-lsleG3/2a/JIWUtf9Q5gUNErBqwIu1tUKTT3dUzaf5DySw9ra1wcqKjJjLX1VTY64Wk1eEOYsVGSaGfCK85ekA==
+pino-abstract-transport@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pino-abstract-transport/-/pino-abstract-transport-1.2.0.tgz#97f9f2631931e242da531b5c66d3079c12c9d1b5"
+  integrity sha512-Guhh8EZfPCfH+PMXAb6rKOjGQEoy0xlAIn+irODG5kgfYV+BQ0rGYYWTIel3P5mmyXqkYkPmdIkywsn6QKUR1Q==
   dependencies:
     readable-stream "^4.0.0"
     split2 "^4.0.0"
@@ -17208,13 +17208,13 @@ pino-abstract-transport@v0.5.0:
     split2 "^4.0.0"
 
 pino-loki@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/pino-loki/-/pino-loki-2.2.1.tgz"
-  integrity sha512-NLo9INo4lOQ8PfC0i/AZBh8xh6LCCkuGRuREq69Mw25zmoISlZiYCn5FBidagu+Cjm/dvhvt19THRhc0B71NnA==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/pino-loki/-/pino-loki-2.3.0.tgz#395dd76d7e0ef8f16dc283a4dab9fcdc3e89ddf9"
+  integrity sha512-fJeZwNPMNWTf09qz/xbCvk86MAMr9E/NkbDi8GHU3lWeVkf5+jh1Wyf/Y5R8ffD61UGk0WOHhpD7ceN4xOYMmA==
   dependencies:
-    commander "^10.0.1"
+    commander "^12.0.0"
     got "^11.8.6"
-    pino-abstract-transport "^1.1.0"
+    pino-abstract-transport "^1.2.0"
     pump "^3.0.0"
 
 pino-std-serializers@^4.0.0:
