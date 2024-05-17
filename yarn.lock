@@ -1952,9 +1952,9 @@
     kuler "^2.0.0"
 
 "@emoji-mart/data@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/@emoji-mart/data/-/data-1.1.2.tgz"
-  integrity sha512-1HP8BxD2azjqWJvxIaWAMyTySeZY0Osr83ukYjltPVkNXeJvTz7yDrPLBtnrD5uqJ3tg4CcLuuBW09wahqL/fg==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@emoji-mart/data/-/data-1.2.1.tgz#0ad70c662e3bc603e23e7d98413bd1e64c4fcb6c"
+  integrity sha512-no2pQMWiBy6gpBEiqGeU77/bFejDqUTRY7KX+0+iur13op3bqUsXdnwoZs6Xb1zbv0gAj5VvS1PWoUUckSr5Dw==
 
 "@emoji-mart/react@^1.1.1":
   version "1.1.1"
