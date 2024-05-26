@@ -1,4 +1,4 @@
-# PayBox and BlockChain Indexer
+# PayBox - A Next Gen Crypto Payment and Wallet System
 
 ![Preview](./statics/preview.png)
 
@@ -6,9 +6,10 @@ This project indexes cryto address for their transactions and lets a device to s
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (for Anchor smart contract development)
+- [Node.js](https://nodejs.org/)
 - [MonoRepo](https://turbo.build/repo/docs)
-- [Solana.Js](https://docs.solana.com/)
+- [Solana.Js](https://docs.solana.com/) (for Anchor smart contract development)
+- [Ether.js]
 
 ## Getting Started
 
