@@ -1,28 +1,25 @@
 import { NextFunction, Request, Response } from "express";
-import {
-  getObjectFromR2,
-
-} from "./util";
+import { getObjectFromR2 } from "./util";
 import {
   ADDRESS_CACHE_EXPIRE,
   AddressFormPartial,
   GetQrQuerySchema,
   Network,
   QrcodeQuery,
+  TokenSchema,
   TxnSendQuery,
   responseStatus,
 } from "@paybox/common";
 import { getAddressByClient } from "@paybox/backend-common";
 import { Address } from "web3";
-import { EthOps } from "../sockets/eth";
-import { SolOps } from "../sockets/sol";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import rateLimit from "express-rate-limit";
-import { R2_QRCODE_BUCKET_NAME } from "../config";
+import { R2_QRCODE_BUCKET_NAME, SITE_SECRET_KEY } from "../config";
 import { Redis } from "..";
-import zlib from 'zlib';
+import zlib from "zlib";
 import pako from "pako";
-
-
+import RedisStore from "rate-limit-redis";
+import { SiteVerifyUrl } from "../constants";
 
 /**
  *
@@ -43,8 +40,8 @@ export const txnCheckAddress = async (
       try {
         const { network, from, to, cluster } = TxnSendQuery.parse(req.query);
         if (network == Network.Eth) {
-          const sender = await (new EthOps()).checkAddress(from);
-          const receiver = await (new EthOps()).checkAddress(to);
+          const sender = await EthOps.getInstance().checkAddress(from);
+          const receiver = await EthOps.getInstance().checkAddress(to);
           if (!sender && !receiver) {
             return res.status(400).json({
               status: responseStatus.Error,
@@ -53,8 +50,8 @@ export const txnCheckAddress = async (
           }
         }
         if (network == Network.Sol) {
-          const sender = await (new SolOps()).checkAddress(from);
-          const receiver = await (new SolOps()).checkAddress(to);
+          const sender = await SolOps.getInstance().checkAddress(from);
+          const receiver = await SolOps.getInstance().checkAddress(to);
           if (!sender && !receiver) {
             return res.status(400).json({
               status: responseStatus.Error,
@@ -105,7 +102,7 @@ export const checkAddress = async (
         //   }
         // }
         if (sol != undefined) {
-          const isAddress = await (new SolOps()).checkAddress(sol);
+          const isAddress = await SolOps.getInstance().checkAddress(sol);
           if (!isAddress) {
             return res.status(400).json({
               status: responseStatus.Error,
@@ -146,7 +143,8 @@ export const hasAddress = async (
     const { id } = GetQrQuerySchema.parse(req.query);
     if (id) {
       try {
-        const isCached = await Redis.getRedisInst().clientCache.getClientCache(id);
+        const isCached =
+          await Redis.getRedisInst().clientCache.getClientCache(id);
         if (!isCached?.address) {
           const getAddress = await getAddressByClient(id);
           if (!getAddress.address?.id) {
@@ -161,7 +159,7 @@ export const hasAddress = async (
               id: string;
               clientId: string;
             },
-            ADDRESS_CACHE_EXPIRE
+            ADDRESS_CACHE_EXPIRE,
           );
           //@ts-ignore
           req.address = getAddress.address;
@@ -193,18 +191,17 @@ export const hasAddress = async (
   }
 };
 
-
 /**
- * 
- * @param req 
- * @param res 
- * @param next 
- * @returns 
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns
  */
 export const checkQrcode = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     //@ts-ignore
@@ -234,46 +231,123 @@ export const checkQrcode = async (
       error: error,
     });
   }
-}
+};
 
 // Middleware to limit the number of requests to resend OTP
 export const resendOtpLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 15 minutes
   max: 1, // limit each client to 3 requests per windowMs
-  message: {
+  message: JSON.stringify({
     status: responseStatus.Error,
-    msg: "Too many requests, please try again after 1 minute"
-  },
-  keyGenerator: function (req, res) {
+    msg: "Too many request, please try after some-time...",
+  }),
+  keyGenerator: function (req: Request, _: Response) {
     //@ts-ignore
     return req.id; // Use the client id as the key
-  }
+  },
 });
-
 
 export const accountCreateRateLimit = rateLimit({
   windowMs: 5 * 60 * 1000, // 15 minutes
   max: 2,
-  message: {
+  message: JSON.stringify({
     status: responseStatus.Error,
-    msg: "Too many requests, please try again after 5 minutes"
-  },
-  keyGenerator: function (req, res) {
+    msg: "Too many request, please try after some-time...",
+  }),
+  keyGenerator: function (req, _) {
     //@ts-ignore
     return req.id; // Use the client id as the key
-  }
+  },
 });
 
 export const settingsUpdateLimit = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes
   max: 2,
-  message: {
+  message: JSON.stringify({
     status: responseStatus.Error,
-    msg: "Too many requests, please try again after  minutes"
-  },
+    msg: "Too many request, please try after some-time...",
+  }),
   keyGenerator: function (req, res) {
     //@ts-ignore
     return req.id;
-  }
+  },
 });
 
+export const validRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 15,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  store: new RedisStore({
+    sendCommand: (...args: string[]) =>
+      Redis.getInstance().client.sendCommand(args),
+  }),
+  message: JSON.stringify({
+    status: responseStatus.Error,
+    msg: "Too many request, please try after some-time...",
+  }),
+});
+
+export const mainLimiter = rateLimit({
+  skip: (req, res) => {
+    return req.url == "/_health" || req.url == "/_metrics" || req.url == "/";
+  },
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: JSON.stringify({
+    status: responseStatus.Error,
+    msg: "Too many request, please try after some-time...",
+  }),
+});
+
+/**
+ * Captcha Verify middleware
+ * @param req
+ * @param res
+ * @param next
+ * @returns
+ */
+export const captchaVerify = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { token } = TokenSchema.parse(req.query);
+
+    let formData = new FormData();
+    formData.append("secret", SITE_SECRET_KEY);
+    formData.append("response", token);
+
+    const result = await fetch(SiteVerifyUrl, {
+      body: formData,
+      method: "POST",
+    });
+    const challengeSucceeded = (await result.json()).success;
+
+    if (!challengeSucceeded) {
+      return res.status(403).json({ message: "Invalid reCAPTCHA token" });
+    }
+    next();
+  } catch (error) {
+    console.log("Verify Captcha middle: ", error);
+    return res.status(500).json({
+      status: responseStatus.Error,
+      msg: "Internal error",
+      error: error,
+    });
+  }
+};
+
+export const passwordLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 25,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  message: async (req: Request, res: Response) => {
+    return res.status(429).json({
+      status: responseStatus.Error,
+      msg: "Too many request, please try after some-time...",
+    });
+  },
+});

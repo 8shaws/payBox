@@ -9,7 +9,11 @@ import { labels, statuses } from "../data/data";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 import { format } from "date-fns";
-import { CalendarIcon, ClockIcon, CounterClockwiseClockIcon } from "@radix-ui/react-icons";
+import {
+  CalendarIcon,
+  ClockIcon,
+  CounterClockwiseClockIcon,
+} from "@radix-ui/react-icons";
 import {
   NotifType,
   SOLSCAN_ACCOUNT_URL,
@@ -72,9 +76,7 @@ export const columns: ColumnDef<NotifType>[] = [
       <DataTableColumnHeader column={column} title="Avatar" />
     ),
     cell: ({ row }) => {
-      const label = labels.find(
-        (label) => label.value === row.original.image
-      );
+      const label = labels.find((label) => label.value === row.original.image);
       // Give the label as Network type and fill the sender address or his name
       return (
         <div className="flex space-x-2">
@@ -92,9 +94,7 @@ export const columns: ColumnDef<NotifType>[] = [
       <DataTableColumnHeader column={column} title="Title" />
     ),
     cell: ({ row }) => {
-      const label = labels.find(
-        (label) => label.value === row.original.title
-      );
+      const label = labels.find((label) => label.value === row.original.title);
       // Give the label as Network type and fill the sender address or his name
       return (
         <div className="flex space-x-2">
@@ -112,12 +112,7 @@ export const columns: ColumnDef<NotifType>[] = [
       <DataTableColumnHeader column={column} title="Body" />
     ),
     cell: ({ row }) => {
-
-      return (
-        <div className="font-medium">
-          {row.original.body}
-        </div>
-      );
+      return <div className="font-medium">{row.original.body}</div>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
@@ -129,22 +124,15 @@ export const columns: ColumnDef<NotifType>[] = [
       <DataTableColumnHeader column={column} title="Tag" />
     ),
     cell: ({ row }) => {
+      const label = labels.find((label) => label.value === row.original.tag);
 
-      const label = labels.find(
-        (label) => label.value === row.original.tag
-      );
-
-      return (
-        <div className="font-medium">
-          {label?.label}
-        </div>
-      );
+      return <div className="font-medium">{label?.label}</div>;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
   },
-  
+
   {
     accessorKey: "priority",
     header: ({ column }) => (

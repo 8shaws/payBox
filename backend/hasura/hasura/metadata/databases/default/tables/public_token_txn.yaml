@@ -1,0 +1,16 @@
+table:
+  name: token_txn
+  schema: public
+object_relationships:
+  - name: token_txn_to_client
+    using:
+      foreign_key_constraint_on: clientId
+  - name: token_txn_to_token
+    using:
+      foreign_key_constraint_on: token
+  - name: txn_fromAta_to_ata
+    using:
+      foreign_key_constraint_on: fromAta
+  - name: txn_toAta_to_ata
+    using:
+      foreign_key_constraint_on: toAta

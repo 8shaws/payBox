@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { siteConfig } from "@/src/config/site"
-import { cn } from "@/src/lib/utils"
-import { Icons } from "@/src/components/icon/icon"
-import { Badge } from "@/src/components/ui/badge"
+import { siteConfig } from "@/src/config/site";
+import { cn } from "@/src/lib/utils";
+import { Icons } from "@/src/components/icon/icon";
+import { Badge } from "@/src/components/ui/badge";
 
 export function MainNav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div className="mr-4 hidden md:flex">
@@ -25,10 +25,23 @@ export function MainNav() {
           href="/account"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            (pathname.includes("account")) ? "text-foreground" : "text-foreground/60"
+            pathname.includes("account")
+              ? "text-foreground"
+              : "text-foreground/60",
           )}
         >
           Account
+        </Link>
+        <Link
+          href="/token"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname.includes("token")
+              ? "text-foreground"
+              : "text-foreground/60",
+          )}
+        >
+          Token
         </Link>
         <Link
           href="/txn"
@@ -36,7 +49,7 @@ export function MainNav() {
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/txn")
               ? "text-foreground"
-              : "text-foreground/60"
+              : "text-foreground/60",
           )}
         >
           Transactions
@@ -47,7 +60,7 @@ export function MainNav() {
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/chat")
               ? "text-foreground"
-              : "text-foreground/60"
+              : "text-foreground/60",
           )}
         >
           Chat
@@ -58,7 +71,7 @@ export function MainNav() {
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/profile")
               ? "text-foreground"
-              : "text-foreground/60"
+              : "text-foreground/60",
           )}
         >
           Profile
@@ -66,12 +79,12 @@ export function MainNav() {
         <Link
           href={siteConfig.links.github}
           className={cn(
-            "hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
+            "hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block",
           )}
         >
           GitHub
         </Link>
       </nav>
     </div>
-  )
+  );
 }

@@ -33,13 +33,13 @@ export function ClusterCombo({
 }: {
   network: Network;
   selectCluster: (
-    cluster: EthCluster | SolCluster | BitcoinCluster | USDCCluster
+    cluster: EthCluster | SolCluster | BitcoinCluster | USDCCluster,
   ) => void;
 }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const [clustersArray, setClusters] = React.useState<ClusterObject[]>(
-    enumToClustersArray(SolCluster)
+    enumToClustersArray(SolCluster),
   );
 
   React.useEffect(() => {
@@ -73,7 +73,7 @@ export function ClusterCombo({
         >
           {value
             ? clustersArray?.find(
-                (clusterObject) => clusterObject.value === value
+                (clusterObject) => clusterObject.value === value,
               )?.label
             : "Select Cluster..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -96,7 +96,7 @@ export function ClusterCombo({
                       | EthCluster
                       | SolCluster
                       | BitcoinCluster
-                      | USDCCluster
+                      | USDCCluster,
                   );
                 }}
               >
@@ -104,7 +104,7 @@ export function ClusterCombo({
                 <CheckIcon
                   className={cn(
                     "ml-auto h-4 w-4",
-                    value === clusterObject.value ? "opacity-100" : "opacity-0"
+                    value === clusterObject.value ? "opacity-100" : "opacity-0",
                   )}
                 />
               </CommandItem>

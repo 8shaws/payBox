@@ -1,9 +1,14 @@
 import { Router } from "express";
 import { createReadStream } from "fs";
-import { AccountType, Address, QrcodeQuery, responseStatus } from "@paybox/common";
+import {
+  AccountType,
+  Address,
+  QrcodeQuery,
+  responseStatus,
+} from "@paybox/common";
 import { generateQRCode } from "../auth/util";
-import { checkQrcode,  hasAddress,  } from "../auth/middleware";
-import {checkValidation} from "@paybox/backend-common"
+import { checkQrcode, hasAddress } from "../auth/middleware";
+import { checkValidation } from "@paybox/backend-common";
 import { Redis } from "..";
 import { R2_QRCODE_BUCKET_NAME } from "../config";
 
@@ -17,7 +22,7 @@ qrcodeRouter.get("/get", hasAddress, async (req, res) => {
       const isGenerated = await generateQRCode(
         R2_QRCODE_BUCKET_NAME,
         address as Address,
-        address.id
+        address.id,
       );
       if (!isGenerated) {
         return res.status(500).json({
@@ -38,21 +43,19 @@ qrcodeRouter.get("/get", hasAddress, async (req, res) => {
   }
 });
 
-
-qrcodeRouter.get('/', checkValidation, checkQrcode, async (req, res) => {
+qrcodeRouter.get("/", checkValidation, checkQrcode, async (req, res) => {
   try {
     const { accountId } = QrcodeQuery.parse(req.query);
 
     //cache
-    const acocunt = await Redis.getRedisInst().account.getAccount<AccountType>(accountId);
+    const acocunt =
+      await Redis.getRedisInst().account.getAccount<AccountType>(accountId);
     if (!acocunt) {
-      return res
-        .status(400)
-        .json({
-          status: responseStatus.Error,
-          msg: "Account not found"
-        });
-      }
+      return res.status(400).json({
+        status: responseStatus.Error,
+        msg: "Account not found",
+      });
+    }
     const code = await generateQRCode(
       R2_QRCODE_BUCKET_NAME,
       {

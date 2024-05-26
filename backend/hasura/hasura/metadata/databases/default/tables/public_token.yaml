@@ -1,0 +1,32 @@
+table:
+  name: token
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    created_at: createdAt
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+  - name: client
+    using:
+      foreign_key_constraint_on: clientId
+array_relationships:
+  - name: ata
+    using:
+      foreign_key_constraint_on:
+        column: token
+        table:
+          name: ata
+          schema: public
+  - name: token_txns
+    using:
+      foreign_key_constraint_on:
+        column: token
+        table:
+          name: token_txn
+          schema: public

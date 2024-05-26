@@ -4,13 +4,16 @@ import Image from "next/image";
 import { SignStatus } from "@paybox/common";
 import { SignupTab } from "./components/signup-tab";
 
-
 export const metadata: Metadata = {
   title: "Signup | PayBox",
   description: "Authentication forms built using the components.",
 };
 
-export default async function AuthenticationPage({searchParams}: {searchParams: {status: SignStatus}}) {
+export default async function AuthenticationPage({
+  searchParams,
+}: {
+  searchParams: { status: SignStatus };
+}) {
   return (
     <div className="flex justify-center items-center mx-56 my-0 overflow-hidden rounded-[0.5rem] border bg-background shadow-md md:shadow-xl">
       <div className="md:hidden">

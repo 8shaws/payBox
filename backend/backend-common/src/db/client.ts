@@ -43,6 +43,7 @@ export const createClient = async (
   seed: string,
   solKeys: WalletKeys,
   ethKeys: WalletKeys,
+  btcKeys: WalletKeys,
 ): Promise<{
   id?: unknown;
   address?: unknown;
@@ -105,6 +106,7 @@ export const createClient = async (
                         privateKey: ethKeys.privateKey,
                       },
                     },
+
                     name: "Account 1",
                   },
                 ],
@@ -121,28 +123,16 @@ export const createClient = async (
                 id: true,
                 eth: {
                   publicKey: true,
-                  goerliEth: true,
-                  kovanEth: true,
-                  mainnetEth: true,
-                  rinkebyEth: true,
-                  ropstenEth: true,
-                  sepoliaEth: true,
                 },
                 sol: {
                   publicKey: true,
-                  devnetSol: true,
-                  mainnetSol: true,
-                  testnetSol: true,
                 },
                 walletId: true,
                 bitcoin: {
                   publicKey: true,
-                  mainnetBtc: true,
-                  regtestBtc: true,
-                  textnetBtc: true,
                 },
                 createdAt: true,
-                updatedAt: true
+                updatedAt: true,
               },
             ],
           },
@@ -386,7 +376,9 @@ export const updateMetadata = async (
       update_client: [
         {
           where: {
-            id: { _eq: id },
+            id: {
+              _eq: id,
+            },
           },
           _set: {
             firstname,
@@ -403,7 +395,7 @@ export const updateMetadata = async (
     },
     { operationName: "updateMetadata" },
   );
-  if (response.update_client) {
+  if (response.update_client?.returning[0].firstname) {
     return {
       status: dbResStatus.Ok,
     };
@@ -419,7 +411,7 @@ export const updateMetadata = async (
  * @param email
  * @returns
  */
-export const getClientById = async<T>(
+export const getClientById = async <T>(
   id: string,
 ): Promise<{
   client?: T;
@@ -490,7 +482,7 @@ export const deleteClient = async (
         {
           returning: {
             username: true,
-            email: true
+            email: true,
           },
         },
       ],
@@ -501,8 +493,8 @@ export const deleteClient = async (
   if (response.delete_client?.returning[0]?.username) {
     return {
       status: dbResStatus.Ok,
-      username: response.delete_client.returning[0].username as string,
-      email: response.delete_client.returning[0].email as string,
+      username: response.delete_client?.returning[0]?.username as string,
+      email: response.delete_client?.returning[0]?.email as string,
     };
   }
 
@@ -524,22 +516,19 @@ export const getPassword = async (
   status: dbResStatus;
   hashPassword?: string;
 }> => {
-  const response = await chain("query")(
-    {
-      client: [
-        {
-          limit: 1,
-          where: {
-            id: { _eq: id },
-          },
+  const response = await chain("query")({
+    client: [
+      {
+        where: {
+          id: { _eq: id },
         },
-        {
-          password: true,
-        },
-      ],
-    },
-    { operationName: "getPassword" },
-  );
+        limit: 1,
+      },
+      {
+        password: true,
+      },
+    ],
+  });
   if (response.client[0]?.password) {
     return {
       status: dbResStatus.Ok,
@@ -568,7 +557,9 @@ export const updatePassword = async (
       update_client: [
         {
           where: {
-            id: { _eq: id },
+            id: {
+              _eq: id,
+            },
           },
           _set: {
             password,
@@ -594,14 +585,14 @@ export const updatePassword = async (
 };
 
 /**
- * 
- * @param username 
- * @param email 
- * @param firstname 
- * @param lastname 
- * @param hashPassword 
- * @param mobile 
- * @returns 
+ *
+ * @param username
+ * @param email
+ * @param firstname
+ * @param lastname
+ * @param hashPassword
+ * @param mobile
+ * @returns
  */
 export const createBaseClient = async (
   username: string,
@@ -611,60 +602,65 @@ export const createBaseClient = async (
   hashPassword: string,
   mobile: number | null,
 ): Promise<{
-  status: dbResStatus,
-  id?: string,
-  valid?: boolean,
-  address?: Address,
+  status: dbResStatus;
+  id?: string;
+  valid?: boolean;
+  address?: Address;
 }> => {
-  const response = await chain("mutation")({
-    insert_client_one: [{
-        object: {
-          firstname,
-          email,
-          username,
-          lastname,
-          mobile: mobile || null,
-          password: hashPassword,
-          client_setting: {
-            data: {
-              locale: "en",
-            }
-          }
+  const response = await chain("mutation")(
+    {
+      insert_client_one: [
+        {
+          object: {
+            firstname,
+            email,
+            username,
+            lastname,
+            mobile: mobile || null,
+            password: hashPassword,
+            client_setting: {
+              data: {
+                locale: "en",
+              },
+            },
+          },
         },
-      },
-      {
-        id: true,
-        address: {
-          bitcoin: true,
-          eth: true,
-          sol: true,
-          usdc: true,
+        {
           id: true,
+          address: {
+            bitcoin: true,
+            eth: true,
+            sol: true,
+            usdc: true,
+            id: true,
+          },
+          valid: true,
         },
-        valid: true
-    }]
-  }, {operationName: "createBaseClient"});
+      ],
+    },
+    { operationName: "createBaseClient" },
+  );
   if (response.insert_client_one?.id) {
     return {
       id: response.insert_client_one.id as string,
       valid: response.insert_client_one.valid as boolean,
       address: response.insert_client_one.address as Address,
-      status: dbResStatus.Ok
-    }
+      status: dbResStatus.Ok,
+    };
   }
   return {
-    status: dbResStatus.Error
-  }
-}
+    status: dbResStatus.Error,
+  };
+};
 
 /**
- * 
- * @param id 
- * @param secretPhase 
- * @param name 
- * @param solKeys 
- * @param ethKeys 
- * @returns 
+ *
+ * @param id
+ * @param secretPhase
+ * @param name
+ * @param solKeys
+ * @param ethKeys
+ * @returns
  */
 export const validateClient = async (
   id: string,
@@ -672,170 +668,190 @@ export const validateClient = async (
   name: string,
   solKeys: WalletKeys,
   ethKeys: WalletKeys,
+  btcKeys: WalletKeys,
 ): Promise<{
-  status: dbResStatus,
-  valid?: boolean,
-  walletId?: string,
-  account?: AccountType
+  status: dbResStatus;
+  valid?: boolean;
+  walletId?: string;
+  account?: AccountType;
 }> => {
-  const response = await chain("mutation")({
-    update_client: [{
-      where: {
-        id: {
-          _eq: id
-        }
-      },
-      _set: {
-        valid: true
-      }
-    }, {
-      returning: {
-        valid: true
-      }
-    }]
-  }, {operationName: "validateClient"});
-  
-  const createWallet = await chain("mutation")({
-    insert_wallet_one: [{
-      object: {
-        clientId: id,
-        secretPhase,
-        accounts: {
-          data: [
-            {
-              clientId: id,
-              sol: {
-                data: solKeys
-              },
-              eth: {
-                data: ethKeys
-              },
-              name,
-              isMain: true
-            }
-          ]
-        }
-      }
-    }, {
-      id: true,
-      accounts: [{
-        limit: 1
-      }, {
-        id: true,
-        eth: {
-          publicKey: true,
-          goerliEth: true,
-          kovanEth: true,
-          mainnetEth: true,
-          rinkebyEth: true,
-          ropstenEth: true,
-          sepoliaEth: true
+  const response = await chain("mutation")(
+    {
+      update_client: [
+        {
+          where: {
+            id: {
+              _eq: id,
+            },
+          },
+          _set: {
+            valid: true,
+          },
         },
-        sol: {
-          publicKey: true,
-          devnetSol: true,
-          mainnetSol: true,
-          testnetSol: true
+        {
+          returning: {
+            valid: true,
+          },
         },
-        walletId: true,
-        bitcoin: {
-          publicKey: true,
-          mainnetBtc: true,
-          regtestBtc: true,
-          textnetBtc: true
-        },
-        clientId: true,
-        name: true,
-        createdAt: true,
-        updatedAt: true
-      }]
-    }]
-  }, {operationName: "createWallet"});
+      ],
+    },
+    { operationName: "validateClient" },
+  );
 
-  if (response.update_client?.returning[0]?.valid && createWallet.insert_wallet_one?.id) {
+  const createWallet = await chain("mutation")(
+    {
+      insert_wallet_one: [
+        {
+          object: {
+            clientId: id,
+            secretPhase,
+            accounts: {
+              data: [
+                {
+                  clientId: id,
+                  sol: {
+                    data: solKeys,
+                  },
+                  eth: {
+                    data: ethKeys,
+                  },
+                  bitcoin: {
+                    data: btcKeys,
+                  },
+                  name,
+                  isMain: true,
+                },
+              ],
+            },
+          },
+        },
+        {
+          id: true,
+          accounts: [
+            {
+              limit: 1,
+            },
+            {
+              id: true,
+              eth: {
+                publicKey: true,
+              },
+              sol: {
+                publicKey: true,
+              },
+              walletId: true,
+              bitcoin: {
+                publicKey: true,
+              },
+              clientId: true,
+              name: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          ],
+        },
+      ],
+    },
+    { operationName: "createWallet" },
+  );
+
+  if (
+    response.update_client?.returning[0] &&
+    createWallet.insert_wallet_one?.id
+  ) {
     return {
       status: dbResStatus.Ok,
-      valid: response.update_client.returning[0].valid,
+      valid: response.update_client?.returning[0].valid as boolean,
       walletId: createWallet.insert_wallet_one.id as string,
-      account: createWallet.insert_wallet_one.accounts[0] as AccountType
-    }
+      account: createWallet.insert_wallet_one.accounts[0] as AccountType,
+    };
   }
   return {
-    status: dbResStatus.Error
-  }
-}
+    status: dbResStatus.Error,
+  };
+};
 
 /**
- * 
- * @param id 
- * @returns 
+ *
+ * @param id
+ * @returns
  */
 export const queryValid = async (
-  id: string
+  id: string,
 ): Promise<{
-  status: dbResStatus,
-  valid?: boolean
+  status: dbResStatus;
+  valid?: boolean;
 }> => {
-  const response = await chain("query")({
-    client: [{
-      where: {
-        id: {
-          _eq: id
-        }
-      },
-      limit: 1,
-    }, {
-      valid: true
-    }]
-  }, {operationName: "queryValid"});
+  const response = await chain("query")(
+    {
+      client: [
+        {
+          where: {
+            id: { _eq: id },
+          },
+          limit: 1,
+        },
+        {
+          valid: true,
+        },
+      ],
+    },
+    { operationName: "queryValid" },
+  );
   if (Array.isArray(response.client)) {
     return {
       status: dbResStatus.Ok,
-      valid: response.client[0]?.valid
-    }
+      valid: response.client[0].valid,
+    };
   }
   return {
-    status: dbResStatus.Error
-  }
-}
+    status: dbResStatus.Error,
+  };
+};
 
 /**
- * 
- * @param id 
- * @param email 
- * @param mobile 
- * @returns 
+ *
+ * @param id
+ * @param email
+ * @param mobile
+ * @returns
  */
 export const upadteMobileEmail = async (
   id: string,
   mobile: number,
-  email: string
+  email: string,
 ): Promise<{
-  status: dbResStatus
+  status: dbResStatus;
 }> => {
-  const response = await chain("mutation")({
-    update_client: [{
-      where: {
-        id: {
-          _eq: id
-        }
-      },
-      _set: {
-        email,
-        mobile
-      }
-    }, {
-      returning: {
-        id: true
-      }
-    }]
-  }, {operationName: "updateMobileEmail"});
+  const response = await chain("mutation")(
+    {
+      update_client: [
+        {
+          where: {
+            id: {
+              _eq: id,
+            },
+          },
+          _set: {
+            email,
+            mobile,
+          },
+        },
+        {
+          returning: {
+            id: true,
+          },
+        },
+      ],
+    },
+    { operationName: "updateMobileEmail" },
+  );
   if (response.update_client?.returning[0]?.id) {
     return {
-      status: dbResStatus.Ok
-    }
+      status: dbResStatus.Ok,
+    };
   }
   return {
-    status: dbResStatus.Error
-  }
+    status: dbResStatus.Error,
+  };
 };

@@ -1,0 +1,118 @@
+import {
+  Archive,
+  ArchiveX,
+  Inbox,
+  Send,
+  Trash2,
+  File,
+  Wallet,
+  LayoutDashboard,
+  Lock,
+  VenetianMask,
+  Bitcoin,
+  PencilLine,
+  FilePlus,
+  FilePlus2Icon,
+  GanttChart,
+  Settings,
+  UserRound,
+  UserRoundCog,
+  BookA,
+} from "lucide-react";
+import { LinksProps } from "../../../components/sidebar";
+
+export const tokenCommonLinks = [
+  {
+    id: "all",
+    title: "Manage Tokens",
+    label: "",
+    icon: GanttChart,
+    variant: "ghost",
+    link: "/token/all",
+  },
+  {
+    id: "create",
+    title: "Create Tokens",
+    label: "128",
+    icon: FilePlus2Icon,
+    variant: "ghost",
+    link: "/token/create",
+  },
+  {
+    id: "mint",
+    title: "Mint Tokens",
+    label: "9",
+    icon: FilePlus,
+    variant: "ghost",
+    link: "/token/mint",
+  },
+];
+
+export const tokenNavLinks = (id: string) => {
+  return [
+    {
+      id: "dashboard",
+      title: "Dashboard",
+      label: "128",
+      icon: LayoutDashboard,
+      variant: "ghost",
+      link: `/token/${id}/#`,
+    },
+    {
+      id: "statements",
+      title: "Statements",
+      label: "9",
+      icon: Bitcoin,
+      variant: "ghost",
+      link: `/token/${id}/statements`,
+    },
+    {
+      id: "privatekey",
+      title: "Private-Key",
+      label: "",
+      icon: Lock,
+      variant: "ghost",
+      link: `/token/${id}/privatekey`,
+    },
+    {
+      id: "transfer",
+      title: "Transfer",
+      label: "",
+      icon: Send,
+      variant: "ghost",
+      link: `/token/${id}/transfer`,
+    },
+    {
+      id: "authority",
+      title: "Authority",
+      label: "",
+      icon: Lock,
+      variant: "ghost",
+      link: `/token/${id}/authority`,
+    },
+    // {
+    //   id: "burn",
+    //   title: "Burn",
+    //   label: "",
+    //   icon: ArchiveX,
+    //   variant: "ghost",
+    //   link: `/token/${id}/burn`,
+    // },
+    // {
+    //   id: "freeze",
+    //   title: "Freeze",
+    //   label: "",
+    //   icon: VenetianMask,
+    //   variant: "ghost",
+    //   link: `/token/${id}/freeze`,
+    // },
+    {
+      id: "update",
+      title: "Update",
+      label: "",
+      icon: PencilLine,
+      variant: "ghost",
+      link: `/token/${id}/update`,
+    },
+  ];
+};

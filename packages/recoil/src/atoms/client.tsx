@@ -18,7 +18,6 @@ export const loadingAtom = atom<boolean>({
   default: false,
 });
 
-
 export const addressAtom = atom<Partial<Address> | null>({
   key: "addressAtom",
   default: null,

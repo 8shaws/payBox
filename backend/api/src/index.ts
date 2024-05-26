@@ -34,12 +34,12 @@ import swaggerUi, { JsonObject } from "swagger-ui-express";
 import { accountRouter } from "./routes/account";
 import { walletRouter } from "./routes/wallet";
 
-import { S3Client } from '@aws-sdk/client-s3';
+import { S3Client } from "@aws-sdk/client-s3";
 import { notifSubRouter } from "./routes/notif_sub";
 import { Worker } from "./workers/txn";
 import Prometheus from "prom-client";
 import responseTime from "response-time";
-import compression from 'compression';
+import compression from "compression";
 import { NotifWorker } from "./workers/notfi";
 import { friendshipRouter } from "./routes/friendship";
 import { notifRouter } from "./routes/notif";
@@ -49,7 +49,9 @@ import { hooksRouter } from "./routes/webhooks";
 import { localeRouter } from "./routes/locale";
 import { settingsRouter } from "./routes/settings";
 import { bookRouter } from "./routes/book";
-
+import { mainLimiter } from "./auth";
+import { utilRouter } from "./routes/utils";
+import { tokenRouter } from "./routes/token";
 
 export * from "./Redis";
 export * from "./auth";
@@ -61,52 +63,56 @@ export const wss = new WebSocketServer({ server });
 
 export const moonPay = new MoonPay(MOONPAY_SECRET_KEY);
 
-
-
 export const cloud = new S3Client({
-  region: 'auto',
+  region: "auto",
   endpoint: R2_ENDPOINT,
 
   credentials: {
     accessKeyId: R2_ACCESS_KEY_ID,
-    secretAccessKey: R2_SECRET_ACCESS_KEY
-  }
+    secretAccessKey: R2_SECRET_ACCESS_KEY,
+  },
 });
 
 const latencyTime = new Prometheus.Histogram({
-  name: 'api_http_request_latency',
-  help: 'Api HTTP request response time',
-  labelNames: ['method', 'route', 'status', 'contentLength', 'contentType'],
-  buckets: [1, 50, 100, 200, 400, 500, 600, 800, 1000, 2000]
+  name: "api_http_request_latency",
+  help: "Api HTTP request response time",
+  labelNames: ["method", "route", "status", "contentLength", "contentType"],
+  buckets: [1, 50, 100, 200, 400, 500, 600, 800, 1000, 2000],
 });
 
 const defaultMetrics = Prometheus.collectDefaultMetrics;
-defaultMetrics({ register: Prometheus.register, });
+defaultMetrics({ register: Prometheus.register });
 
-app.use(compression({
-  level: 9,
-  threshold: 0,
-  filter: (req, res) => {
-    if (req.headers['x-no-compression']) {
-      return false;
-    }
-    return compression.filter(req, res);
-  }
-}));
+app.use(
+  compression({
+    level: 9,
+    threshold: 0,
+    filter: (req, res) => {
+      if (req.headers["x-no-compression"]) {
+        return false;
+      }
+      return compression.filter(req, res);
+    },
+  }),
+);
 app.use(bodyParser.json());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms"),
 );
 
-app.use(responseTime((req, res, time) => {
-  latencyTime.labels({
-    method: req.method,
-    route: req.url,
-    status: res.statusCode,
-    contentLength: req.headers["content-length"],
-    contentType: req.headers["content-type"],
-  }).observe(time)
-}));
+app.use(
+  responseTime((req, res, time) => {
+    latencyTime
+      .labels({
+        method: req.method,
+        route: req.url,
+        status: res.statusCode,
+        contentLength: req.headers["content-length"],
+        contentType: req.headers["content-type"],
+      })
+      .observe(time);
+  }),
+);
 
 export const corsOptions = {
   origin: CLIENT_URL, // specify the allowed origin
@@ -122,6 +128,8 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerYaml));
 // app.use('/api-docs', express.static(path.join(__dirname, 'node_modules/swagger-ui-dist')));
 app.use(cors(corsOptions));
+
+// app.use(mainLimiter);
 
 app.get("/", (_req, res) => {
   return res.status(200).json({
@@ -160,13 +168,15 @@ app.use("/txn", extractClientId, checkValidation, txnRouter);
 app.use("/account", extractClientId, checkValidation, accountRouter);
 app.use("/wallet", extractClientId, checkValidation, walletRouter);
 app.use("/friendship", extractClientId, checkValidation, friendshipRouter);
-app.use('/notif', extractClientId, checkValidation, notifRouter);
-app.use('/notif_sub', extractClientId, notifSubRouter);
-app.use('/buy', extractClientId, checkValidation, buyRouter);
-app.use('/settings', extractClientId, checkValidation, settingsRouter);
-app.use('/book', extractClientId, checkValidation, bookRouter);
-app.use('/hooks', hooksRouter);
-app.use('/locale', localeRouter);
+app.use("/notif", extractClientId, checkValidation, notifRouter);
+app.use("/notif_sub", extractClientId, notifSubRouter);
+app.use("/buy", extractClientId, checkValidation, buyRouter);
+app.use("/settings", extractClientId, checkValidation, settingsRouter);
+app.use("/book", extractClientId, checkValidation, bookRouter);
+app.use("/token", extractClientId, checkValidation, tokenRouter);
+app.use("/hooks", hooksRouter);
+app.use("/locale", localeRouter);
+app.use("/utils", utilRouter);
 
 app.get("/metrics", async (_req, res) => {
   res.set("Content-Type", Prometheus.register.contentType);
@@ -174,8 +184,8 @@ app.get("/metrics", async (_req, res) => {
     const metrics = await Prometheus.register.metrics();
     return res.end(metrics);
   } catch (error) {
-    console.error('Error while fetching metrics:', error);
-    return res.status(500).end('Error while fetching metrics');
+    console.error("Error while fetching metrics:", error);
+    return res.status(500).end("Error while fetching metrics");
   }
 });
 
@@ -187,9 +197,9 @@ process.on("unhandledRejection", function (reason, _promise) {
   console.log("Unhandled Rejection at:", reason);
 });
 
-process.on('SIGINT', async () => {
+process.on("SIGINT", async () => {
   await Redis.getInstance().getclient.disconnect();
-  process.exit(0)
+  process.exit(0);
 });
 
 Promise.all([
@@ -200,12 +210,14 @@ Promise.all([
     NotifWorker.getInstance().getProducer.on("producer.connect", resolve);
   }),
   new Promise((resolve) => {
-    Redis.getInstance().getclient.on('ready', resolve);
+    Redis.getInstance().getclient.on("ready", resolve);
   }),
-]).then(() => {
-  server.listen(PORT, async () => {
-    console.log(`Server listening on port: ${PORT}\n`);
+])
+  .then(() => {
+    server.listen(PORT, async () => {
+      console.log(`Server listening on port: ${PORT}\n`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error while connecting producers:", error);
   });
-}).catch((error) => {
-  console.error('Error while connecting producers:', error);
-});

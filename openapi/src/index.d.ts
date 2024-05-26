@@ -1,2 +1,2 @@
 export * from "./openapi";
-export * from "./index"
+export * from "./index";

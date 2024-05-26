@@ -18,12 +18,12 @@ import { responseStatus } from "@paybox/common";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
-  tab: "Mails" | "Notif"
+  tab: "Mails" | "Notif";
 }
 
 export function DataTableToolbar<TData>({
   table,
-  tab
+  tab,
 }: DataTableToolbarProps<TData>) {
   const jwt = useRecoilValue(clientJwtAtom);
   const setNotifs = useSetRecoilState(notifsAtom);
@@ -54,35 +54,36 @@ export function DataTableToolbar<TData>({
             options={priorities}
           />
         )}
-        {
-          table.getSelectedRowModel().rows.length > 0 && (
-            <Button
-              variant="ghost"
-              onClick={() => {
-                table.resetRowSelection()
+        {table.getSelectedRowModel().rows.length > 0 && (
+          <Button
+            variant="ghost"
+            onClick={() => {
+              table.resetRowSelection();
+              //@ts-ignore
+              const ids = table
+                .getSelectedRowModel()
                 //@ts-ignore
-                const ids = table.getSelectedRowModel().rows.map(row => row.original.id);
-                toast.promise(markViewed(jwt as string, ids), {
-                  loading: "Marking as viewed...",
-                  success: ({ status }) => {
-                    setNotifs((oldNotifs) => {
-                      return oldNotifs.filter((notif) => {
-                        return !ids.includes(notif.id);
-                      });
+                .rows.map((row) => row.original.id);
+              toast.promise(markViewed(jwt as string, ids), {
+                loading: "Marking as viewed...",
+                success: ({ status }) => {
+                  setNotifs((oldNotifs) => {
+                    return oldNotifs.filter((notif) => {
+                      return !ids.includes(notif.id);
                     });
-                    //todo: remove the row from the table
-                    return "Marked as viewed";
-                  },
-                  error: "Failed to mark as viewed"
-                });
-              }}
-              className="h-8 px-2 lg:px-3 flex gap-x-2"
-            >
-              <CheckCheck className="ml-2 h-4 w-4" />
-              Mark as View
-            </Button>
-          )
-        }
+                  });
+                  //todo: remove the row from the table
+                  return "Marked as viewed";
+                },
+                error: "Failed to mark as viewed",
+              });
+            }}
+            className="h-8 px-2 lg:px-3 flex gap-x-2"
+          >
+            <CheckCheck className="ml-2 h-4 w-4" />
+            Mark as View
+          </Button>
+        )}
         {isFiltered && (
           <Button
             variant="ghost"

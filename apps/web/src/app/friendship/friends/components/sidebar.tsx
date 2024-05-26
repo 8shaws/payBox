@@ -43,7 +43,7 @@ export function Sidebar({ links, isCollapsed, isMobile }: SidebarProps) {
               href="#"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9"
+                "h-9 w-9",
               )}
             >
               <MoreHorizontal size={20} />
@@ -53,7 +53,7 @@ export function Sidebar({ links, isCollapsed, isMobile }: SidebarProps) {
               href="#"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9"
+                "h-9 w-9",
               )}
             >
               <SquarePen size={20} />
@@ -70,13 +70,13 @@ export function Sidebar({ links, isCollapsed, isMobile }: SidebarProps) {
                   <Link
                     href="#"
                     className={cn(
-                        //@ts-ignore
-                        buttonVariants({ variant: link.variant, size: "icon" }),
-                        "h-11 w-11 md:h-16 md:w-16",
-                        link.variant === "grey" &&
-                        "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
-                        )}
-                        >
+                      //@ts-ignore
+                      buttonVariants({ variant: link.variant, size: "icon" }),
+                      "h-11 w-11 md:h-16 md:w-16",
+                      link.variant === "grey" &&
+                        "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
+                    )}
+                  >
                     <Avatar className="flex justify-center items-center">
                       <AvatarImage
                         src={link.avatar}
@@ -84,7 +84,7 @@ export function Sidebar({ links, isCollapsed, isMobile }: SidebarProps) {
                         width={6}
                         height={6}
                         className="w-10 h-10 "
-                        />
+                      />
                     </Avatar>{" "}
                     <span className="sr-only">{link.name}</span>
                   </Link>
@@ -92,21 +92,21 @@ export function Sidebar({ links, isCollapsed, isMobile }: SidebarProps) {
                 <TooltipContent
                   side="right"
                   className="flex items-center gap-4"
-                  >
+                >
                   {link.name}
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           ) : (
-              <Link
+            <Link
               key={index}
               href="#"
               className={cn(
-                  //@ts-ignore
-                  buttonVariants({ variant: link.variant, size: "xl" }),
+                //@ts-ignore
+                buttonVariants({ variant: link.variant, size: "xl" }),
                 link.variant === "grey" &&
                   "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white shrink",
-                "justify-start gap-4"
+                "justify-start gap-4",
               )}
             >
               <Avatar className="flex justify-center items-center">
@@ -128,7 +128,7 @@ export function Sidebar({ links, isCollapsed, isMobile }: SidebarProps) {
                 )}
               </div>
             </Link>
-          )
+          ),
         )}
       </nav>
     </div>

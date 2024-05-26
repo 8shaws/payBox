@@ -1,3 +1,1 @@
-export const useTestmode = () => {
-    
-}
+export const useTestmode = () => {};

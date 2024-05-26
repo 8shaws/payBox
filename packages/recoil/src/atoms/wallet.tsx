@@ -1,12 +1,13 @@
-"use client"
+"use client";
+import { WalletType } from "@paybox/common";
 import { atom } from "recoil";
 
-export const walletAtom = atom({
-    default: null,
-    key: "walletAtom",
+export const walletAtom = atom<WalletType | null>({
+  default: null,
+  key: "walletAtom",
 });
 
-export const walletsAtom = atom({
-    default: [],
-    key: "walletsAtom",
+export const walletsAtom = atom<WalletType[]>({
+  default: [],
+  key: "walletsAtom",
 });

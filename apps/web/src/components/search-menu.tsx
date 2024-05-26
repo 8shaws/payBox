@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { DialogProps } from "@radix-ui/react-alert-dialog"
+import * as React from "react";
+import { useRouter } from "next/navigation";
+import { DialogProps } from "@radix-ui/react-alert-dialog";
 import {
   CircleIcon,
   FileIcon,
   LaptopIcon,
   MoonIcon,
   SunIcon,
-} from "@radix-ui/react-icons"
-import { useTheme } from "next-themes"
+} from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
 
-import { docsConfig } from "@/src/config/docs"
-import { cn } from "@/src/lib/utils"
-import { Button } from "@/src/components/ui/button"
+import { docsConfig } from "@/src/config/docs";
+import { cn } from "@/src/lib/utils";
+import { Button } from "@/src/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -23,12 +23,12 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/src/components/ui/command"
+} from "@/src/components/ui/command";
 
 export function SearchMenu({ ...props }: DialogProps) {
-  const router = useRouter()
-  const [open, setOpen] = React.useState(false)
-  const { setTheme } = useTheme()
+  const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+  const { setTheme } = useTheme();
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -39,29 +39,29 @@ export function SearchMenu({ ...props }: DialogProps) {
           e.target instanceof HTMLTextAreaElement ||
           e.target instanceof HTMLSelectElement
         ) {
-          return
+          return;
         }
 
-        e.preventDefault()
-        setOpen((open) => !open)
+        e.preventDefault();
+        setOpen((open) => !open);
       }
-    }
+    };
 
-    document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
-  }, [])
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   const runCommand = React.useCallback((command: () => unknown) => {
-    setOpen(false)
-    command()
-  }, [])
+    setOpen(false);
+    command();
+  }, []);
 
   return (
     <>
       <Button
         variant="outline"
         className={cn(
-          "relative h-8 w-full justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-64"
+          "relative h-8 w-full justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-64",
         )}
         onClick={() => setOpen(true)}
         {...props}
@@ -84,10 +84,14 @@ export function SearchMenu({ ...props }: DialogProps) {
                   key={NavItem.href}
                   value={NavItem.title}
                   onSelect={() => {
-                    runCommand(() => router.push(NavItem.href as string))
+                    runCommand(() => router.push(NavItem.href as string));
                   }}
                 >
-                  {NavItem.icon ? <NavItem.icon className="mr-2 h-4 w-4" /> : <FileIcon className="mr-2 h-4 w-4" />}
+                  {NavItem.icon ? (
+                    <NavItem.icon className="mr-2 h-4 w-4" />
+                  ) : (
+                    <FileIcon className="mr-2 h-4 w-4" />
+                  )}
                   {NavItem.title}
                 </CommandItem>
               ))}
@@ -99,7 +103,7 @@ export function SearchMenu({ ...props }: DialogProps) {
                   key={navItem.href}
                   value={navItem.title}
                   onSelect={() => {
-                    runCommand(() => router.push(navItem.href as string))
+                    runCommand(() => router.push(navItem.href as string));
                   }}
                 >
                   <div className="mr-2 flex h-4 w-4 items-center justify-center">
@@ -128,5 +132,5 @@ export function SearchMenu({ ...props }: DialogProps) {
         </CommandList>
       </CommandDialog>
     </>
-  )
+  );
 }

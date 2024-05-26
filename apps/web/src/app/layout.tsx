@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google"
+import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/src/app/components/Client/theme-provider";
 import { cn } from "@/src/lib/utils";
 import { getServerSession } from "next-auth";
@@ -10,12 +10,14 @@ import { authOptions } from "./api/auth/[...nextauth]/util";
 import RootChildLayout from "./RootChildLayout";
 import NotifWrapper from "./NotifWrapper";
 import { ClientWithJwt } from "@paybox/common";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: 'swap',
-  adjustFontFallback: false
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -34,7 +36,7 @@ export default async function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <link
@@ -57,6 +59,8 @@ export default async function RootLayout({
             </NotifWrapper>
           </SessionProvider>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

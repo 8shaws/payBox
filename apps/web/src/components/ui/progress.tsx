@@ -13,7 +13,7 @@ const Progress = React.forwardRef<
     ref={ref}
     className={cn(
       "relative h-1 w-full overflow-hidden rounded-full bg-primary/20",
-      className
+      className,
     )}
     {...props}
   >
@@ -26,7 +26,6 @@ const Progress = React.forwardRef<
 Progress.displayName = ProgressPrimitive.Root.displayName;
 
 export { Progress };
-
 
 export default function RadialProgress({ progress }: { progress: number }) {
   return (

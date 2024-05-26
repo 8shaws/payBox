@@ -40,16 +40,19 @@ export const authOptions: NextAuthOptions = {
       async authorize(_credentials, req) {
         let user;
         if (req.body?.type == "signin") {
-          const response = await fetch(`${BACKEND_URL}/client/login`, {
-            method: "post",
-            headers: {
-              "Content-type": "application/json",
-              "Content-Encoding": "gzip",
+          const response = await fetch(
+            `${BACKEND_URL}/client/login?token=${req.body.token}`,
+            {
+              method: "post",
+              headers: {
+                "Content-type": "application/json",
+                "Content-Encoding": "gzip",
+              },
+              body: pako.gzip(JSON.stringify(req.body)),
+              cache: "no-store",
             },
-            body: pako.gzip(JSON.stringify(req.body)),
-            cache: "no-store",
-          }).then((res) => res.json());
-          console.log(response, "from authorize")
+          ).then((res) => res.json());
+          console.log(response, "from authorize");
           if (response.status == responseStatus.Error) {
             return null;
           }
@@ -70,15 +73,18 @@ export const authOptions: NextAuthOptions = {
           }
         }
 
-        const response = await fetch(`${BACKEND_URL}/client/`, {
-          method: "post",
-          headers: {
-            "Content-type": "application/json",
-            "Content-Encoding": "gzip",
+        const response = await fetch(
+          `${BACKEND_URL}/client?token=${req.body?.token}`,
+          {
+            method: "post",
+            headers: {
+              "Content-type": "application/json",
+              "Content-Encoding": "gzip",
+            },
+            body: pako.gzip(JSON.stringify(req.body)),
+            cache: "no-store",
           },
-          body: pako.gzip(JSON.stringify(req.body)),
-          cache: "no-store",
-        }).then((res) => res.json());
+        ).then((res) => res.json());
         if (response.status == responseStatus.Error) {
           return null;
         }
@@ -108,8 +114,6 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-
-
     async jwt({ token, trigger, user, session }) {
       if (user) {
         /**
@@ -207,13 +211,13 @@ export const authOptions: NextAuthOptions = {
         },
         // cache: "no-store",
         next: {
-          revalidate: 60
-        }
+          revalidate: 100,
+        },
       }).then(async (res) => {
         if (res.headers.get("content-type") == "gzip") {
           const buffer = await res.arrayBuffer();
           const data = new Uint8Array(buffer);
-          const inflated = pako.inflate(data, {to: 'string'});
+          const inflated = pako.inflate(data, { to: "string" });
           return JSON.parse(inflated);
         }
         return res.json();
@@ -241,7 +245,5 @@ export const authOptions: NextAuthOptions = {
         },
       };
     },
-    
   },
-  
 };

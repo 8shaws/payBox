@@ -1,12 +1,8 @@
-import { getServerSession } from "next-auth"
-import { authOptions } from "../api/auth/[...nextauth]/util"
+import { redirect } from "next/navigation";
+import { AccountList } from "./components/accounts-list";
 
-export default async function Page({ params }: { params: { id: string } }) {
-    const session = await getServerSession(authOptions);
-    console.log(params)
-    return (
-        <div>
-            {params.id}
-        </div>
-    );
+export default function Page() {
+  redirect("/account/all");
+  return;
+  <div></div>;
 }

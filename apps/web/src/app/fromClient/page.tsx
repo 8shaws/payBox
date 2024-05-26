@@ -3,7 +3,7 @@ import { loadMoonPay } from "@moonpay/moonpay-js";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { MoonPayBuyWidget, MoonPayProvider } from '@moonpay/moonpay-react';
+import { MoonPayBuyWidget, MoonPayProvider } from "@moonpay/moonpay-react";
 
 export default function APITestPage() {
   const [name, setName] = useState<string>();
@@ -24,7 +24,7 @@ export default function APITestPage() {
 
   return (
     <div>
-      <MoonPayProvider
+      {/* <MoonPayProvider
         apiKey="pk_test_vbgzACHz9ggzGLm9vEEwAWZQlnjiZ4Ux"
         debug
       >
@@ -44,7 +44,7 @@ export default function APITestPage() {
         </button>
 
         <div onClick={() => router.push("/fromServer")}>Name: {name}</div>
-      </MoonPayProvider>
+      </MoonPayProvider> */}
     </div>
   );
 }

@@ -4,13 +4,12 @@ import Link from "next/link";
 import { authOptions } from "./api/auth/[...nextauth]/util";
 import { SparklesCore } from "@/src/components/ui/sparklecore";
 import Sparkles from "./components/Client/sparkle";
-import { QRCode } from 'react-qrcode-logo';
+import { QRCode } from "react-qrcode-logo";
 import { Hero } from "@/src/components/hero";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/src/components/ui/canvas-reveal-effect";
 import { Heading } from "./heading";
 import { ContainerScroll } from "@/src/components/container-scroll-animation";
-
 
 export default async function Home() {
   const session = await getServerSession(authOptions);

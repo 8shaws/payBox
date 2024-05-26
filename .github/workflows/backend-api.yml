@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - 'backend/api/**'
   pull_request:
     branches:
       - dev
+    paths:
+      - 'backend/api/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -48,6 +52,7 @@ jobs:
           printf 'MOONPAY_WEBHOOK_KEY=%s\n' "${{secrets.MOONPAY_WEBHOOK_KEY}}" >> .env
           printf 'MOONPAY_API_KEY=%s\n' "${{secrets.MOONPAY_API_KEY}}" >> .env
           printf 'MOONPAY_SECRET_KEY=%s\n' "${{secrets.MOONPAY_SECRET_KEY}}" >> .env
+          printf 'SITE_SECRET_KEY=%s\n' "${{secrets.SITE_SECRET_KEY}}" >> .env
           cd ../..
 
       - name: docker login

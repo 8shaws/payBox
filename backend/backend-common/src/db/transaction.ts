@@ -124,7 +124,7 @@ export const getTxns = async ({
           slot: true,
           to: true,
           cluster: true,
-          status: true
+          status: true,
         },
       ],
     },
@@ -179,7 +179,7 @@ export const getTxnByHash = async ({
           to: true,
           hash: true,
           cluster: true,
-          status: true
+          status: true,
         },
       ],
     },
@@ -232,7 +232,7 @@ export const getAllTxn = async ({
           slot: true,
           to: true,
           cluster: true,
-          status: true
+          status: true,
         },
       ],
     },

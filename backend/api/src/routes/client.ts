@@ -30,23 +30,25 @@ import {
   getPassword,
 } from "@paybox/backend-common";
 import { Redis } from "../index";
+import { generateSeed, setHashPassword } from "../auth/util";
 import {
-  generateSeed,
-  setHashPassword,
-} from "../auth/util";
-import { resendOtpLimiter } from "../auth/middleware";
+  captchaVerify,
+  passwordLimit,
+  resendOtpLimiter,
+  validRateLimit,
+} from "../auth/middleware";
 import {
   Client,
   ClientSigninFormValidate,
   ClientSignupFormValidate,
 } from "@paybox/common";
-import { SolOps } from "../sockets/sol";
-import { EthOps } from "../sockets/eth";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import { NotifWorker } from "../workers/notfi";
+import { Bitcoin } from "@paybox/blockchain";
 
 export const clientRouter = Router();
 
-clientRouter.post('/', async (req, res) => {
+clientRouter.post("/", captchaVerify, async (req, res) => {
   try {
     const { username, email, firstname, lastname, mobile, password } =
       ClientSignupFormValidate.parse(req.body);
@@ -74,26 +76,29 @@ clientRouter.post('/', async (req, res) => {
         .json({ msg: "Database Error", status: responseStatus.Error });
     }
 
-
     /**
-    * Cache
-    */
-    await Redis.getRedisInst().clientCache.cacheClient(client.id as string, {
-      firstname,
-      email,
-      username,
-      lastname,
-      mobile,
-      id: client.id as string,
-      //@ts-ignore
-      address: client.address,
-      password: hashPassword,
-      valid: client.valid || false,
-    }, CLIENT_CACHE_EXPIRE);
+     * Cache
+     */
+    await Redis.getRedisInst().clientCache.cacheClient(
+      client.id as string,
+      {
+        firstname,
+        email,
+        username,
+        lastname,
+        mobile,
+        id: client.id as string,
+        //@ts-ignore
+        address: client.address,
+        password: hashPassword,
+        valid: client.valid || false,
+      },
+      CLIENT_CACHE_EXPIRE,
+    );
 
     /**
      * Create a Jwt
-    */
+     */
     let jwt: string;
     if (client.id) {
       jwt = await setJWTCookie(req, res, client.id as string);
@@ -104,133 +109,167 @@ clientRouter.post('/', async (req, res) => {
       });
     }
 
-
     // ofload the opt sending to a worker
     await NotifWorker.getInstance().publishOne({
       topic: TopicTypes.Msg,
-      message: [{
-        key: client.id,
-        partition: 0,
-        value: JSON.stringify({
-          name: `${firstname}`,
-          email,
-          mobile: Number(mobile),
-          type: MsgTopics.SendOtp,
-          clientId: client.id
-        })
-      }]
+      message: [
+        {
+          key: client.id,
+          partition: 0,
+          value: JSON.stringify({
+            name: `${firstname}`,
+            email,
+            mobile: Number(mobile),
+            type: MsgTopics.SendOtp,
+            clientId: client.id,
+          }),
+        },
+      ],
     });
 
-
     return res.status(200).json({ ...client, jwt, status: responseStatus.Ok });
-
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error, status: responseStatus.Error });
   }
 });
 
-clientRouter.patch("/valid", extractClientId, isValidated, async (req, res) => {
-  try {
-    //@ts-ignore
-    const id = req.id;
-    if (id) {
-      const { otp } = OtpValid.parse(req.query);
+clientRouter.patch(
+  "/valid",
+  validRateLimit,
+  extractClientId,
+  isValidated,
+  async (req, res) => {
+    try {
+      //@ts-ignore
+      const id = req.id;
+      if (id) {
+        const { otp } = OtpValid.parse(req.query);
 
-      const tempCache = await Redis.getRedisInst().getIdFromKey(otp.toString());
-      if (!tempCache) {
-        return res
-          .status(404)
-          .json({ msg: "Invalid otp 🥲", status: responseStatus.Error });
-      }
+        const tempCache = await Redis.getRedisInst().getIdFromKey(
+          otp.toString(),
+        );
+        if (!tempCache) {
+          return res
+            .status(404)
+            .json({ msg: "Invalid otp 🥲", status: responseStatus.Error });
+        }
 
-      let hashPassword = (await Redis.getRedisInst().clientCache.getClientCache(tempCache))?.password
-        || (await getPassword(tempCache)).hashPassword;
-      if (!hashPassword) {
-        return res
-          .status(404)
-          .json({ status: responseStatus.Error, msg: "Account Not Found" });
-      }
+        let hashPassword =
+          (await Redis.getRedisInst().clientCache.getClientCache(tempCache))
+            ?.password || (await getPassword(tempCache)).hashPassword;
+        if (!hashPassword) {
+          return res
+            .status(404)
+            .json({ status: responseStatus.Error, msg: "Account Not Found" });
+        }
 
-      const seed = generateSeed(SECRET_PHASE_STRENGTH);
-      const solKeys = await (new SolOps()).createWallet(seed, hashPassword);
-      const ethKeys = (new EthOps()).createWallet(seed, hashPassword);
+        const seed = generateSeed(SECRET_PHASE_STRENGTH);
+        const solKeys = await SolOps.getInstance().createWallet(
+          seed,
+          hashPassword,
+        );
+        const ethKeys = EthOps.getInstance().createWallet(seed, hashPassword);
+        const btcKeys = await Bitcoin.getInstance().genRand();
 
-      const validate = await validateClient(id, seed, 'Account 1', solKeys, ethKeys);
-      if (validate.status == dbResStatus.Error || validate.walletId == undefined || validate.account == undefined) {
-        return res
-          .status(503)
-          .json({ status: responseStatus.Error, msg: "Database Error" });
-      }
-      if (validate.valid == false) {
-        return res
-          .status(503)
-          .json({ status: responseStatus.Error, msg: "Error in validation" });
-      }
-      /**
-       * Cache
-      */
-      await Redis.getRedisInst().wallet.handleValid({
-        id: validate.walletId,
-        clientId: id,
-        accounts: [validate.account],
-      }, id, validate.account);
+        const validate = await validateClient(
+          id,
+          seed,
+          "Account 1",
+          solKeys,
+          ethKeys,
+          btcKeys,
+        );
+        if (
+          validate.status == dbResStatus.Error ||
+          validate.walletId == undefined ||
+          validate.account == undefined
+        ) {
+          return res
+            .status(503)
+            .json({ status: responseStatus.Error, msg: "Database Error" });
+        }
+        if (validate.valid == false) {
+          return res
+            .status(503)
+            .json({ status: responseStatus.Error, msg: "Error in validation" });
+        }
+        /**
+         * Cache
+         */
+        await Redis.getRedisInst().wallet.handleValid(
+          {
+            id: validate.walletId,
+            clientId: id,
+            accounts: [validate.account],
+          },
+          id,
+          validate.account,
+        );
 
-      return res
-        .status(200)
-        .json({
+        return res.status(200).json({
           msg: "Validation successful",
           walletId: validate.walletId,
           account: validate.account,
           valid: validate.valid,
-          status: responseStatus.Ok
+          status: responseStatus.Ok,
         });
+      }
+      return res
+        .status(500)
+        .json({ status: responseStatus.Error, msg: "Jwt error" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error, status: responseStatus.Error });
     }
-    return res
-      .status(500)
-      .json({ status: responseStatus.Error, msg: "Jwt error" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error, status: responseStatus.Error });
-  }
-});
-
+  },
+);
 
 /**
  * Resend Otp
  */
-clientRouter.patch("/resend", extractClientId, isValidated, resendOtpLimiter, async (req, res) => {
-  try {
-    //@ts-ignore
-    const id = req.id;
-    if (id) {
-      const { mobile, email, name } = ResendOtpValid.parse(req.query);
+clientRouter.patch(
+  "/resend",
+  extractClientId,
+  isValidated,
+  resendOtpLimiter,
+  async (req, res) => {
+    try {
+      //@ts-ignore
+      const id = req.id;
+      if (id) {
+        const { mobile, email, name } = ResendOtpValid.parse(req.query);
 
-      // ofload the opt sending to a worker
-      await NotifWorker.getInstance().publishOne({
-        topic: TopicTypes.Msg,
-        message: [{
-          key: id,
-          partition: 0,
-          value: JSON.stringify({
-            name: `${name}`,
-            email,
-            mobile: Number(mobile),
-            type: MsgTopics.ResendOtp,
-            clientId: id
-          })
-        }]
-      });
-      return res.status(200).json({ msg: "Otp sent", status: responseStatus.Ok });
+        // ofload the opt sending to a worker
+        await NotifWorker.getInstance().publishOne({
+          topic: TopicTypes.Msg,
+          message: [
+            {
+              key: id,
+              partition: 0,
+              value: JSON.stringify({
+                name: `${name}`,
+                email,
+                mobile: Number(mobile),
+                type: MsgTopics.ResendOtp,
+                clientId: id,
+              }),
+            },
+          ],
+        });
+        return res
+          .status(200)
+          .json({ msg: "Otp sent", status: responseStatus.Ok });
+      }
+      return res
+        .status(500)
+        .json({ status: responseStatus.Error, msg: "Jwt error" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error, status: responseStatus.Error });
     }
-    return res
-      .status(500)
-      .json({ status: responseStatus.Error, msg: "Jwt error" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error, status: responseStatus.Error });
-  }
-});
+  },
+);
 
 /**
  * Login/signup incase of providers
@@ -245,7 +284,8 @@ clientRouter.post("/providerAuth", async (req, res) => {
      */
     const client =
       (await Redis.getRedisInst().clientCache.getClientFromKey(username)) ||
-      (await Redis.getRedisInst().clientCache.getClientFromKey(email)) || (await getClientByEmail(email)).client;
+      (await Redis.getRedisInst().clientCache.getClientFromKey(email)) ||
+      (await getClientByEmail(email)).client;
     if (client) {
       let jwt;
       if (client.id) {
@@ -270,7 +310,11 @@ clientRouter.post("/providerAuth", async (req, res) => {
       /**
        * Cache
        */
-      await Redis.getRedisInst().clientCache.cacheClient(client.id as string, client, CLIENT_CACHE_EXPIRE);
+      await Redis.getRedisInst().clientCache.cacheClient(
+        client.id as string,
+        client,
+        CLIENT_CACHE_EXPIRE,
+      );
 
       return res
         .status(302)
@@ -278,7 +322,14 @@ clientRouter.post("/providerAuth", async (req, res) => {
     }
 
     const hashPassword = await setHashPassword(password);
-    const mutation = await createBaseClient(username, email, firstname, lastname, hashPassword, Number(mobile));
+    const mutation = await createBaseClient(
+      username,
+      email,
+      firstname,
+      lastname,
+      hashPassword,
+      Number(mobile),
+    );
     if (mutation.status == dbResStatus.Error || mutation?.id == undefined) {
       return res
         .status(503)
@@ -287,7 +338,7 @@ clientRouter.post("/providerAuth", async (req, res) => {
 
     /**
      * Create a Jwt
-    */
+     */
     let jwt: string;
     if (mutation.id) {
       jwt = await setJWTCookie(req, res, mutation.id as string);
@@ -298,37 +349,9 @@ clientRouter.post("/providerAuth", async (req, res) => {
       });
     }
 
-    await Redis.getRedisInst().clientCache.cacheClient(mutation.id as string, {
-      firstname,
-      email,
-      username,
-      lastname,
-      mobile,
-      id: mutation?.id as string,
-      address: mutation?.address as Address,
-      //@ts-ignore
-      password: hashPassword || "",
-      valid: mutation?.valid || false,
-    }, CLIENT_CACHE_EXPIRE);
-
-    await NotifWorker.getInstance().publishOne({
-      topic: TopicTypes.Msg,
-      message: [{
-        key: mutation.id,
-        partition: 0,
-        value: JSON.stringify({
-          name: `${name}`,
-          email,
-          mobile: Number(mobile),
-          type: MsgTopics.ResendOtp,
-          clientId: mutation.id
-        })
-      }]
-    });
-
-    return res
-      .status(200)
-      .json({
+    await Redis.getRedisInst().clientCache.cacheClient(
+      mutation.id as string,
+      {
         firstname,
         email,
         username,
@@ -336,8 +359,42 @@ clientRouter.post("/providerAuth", async (req, res) => {
         mobile,
         id: mutation?.id as string,
         address: mutation?.address as Address,
-        valid: mutation?.valid || false, jwt, status: responseStatus.Ok
-      });
+        //@ts-ignore
+        password: hashPassword || "",
+        valid: mutation?.valid || false,
+      },
+      CLIENT_CACHE_EXPIRE,
+    );
+
+    await NotifWorker.getInstance().publishOne({
+      topic: TopicTypes.Msg,
+      message: [
+        {
+          key: mutation.id,
+          partition: 0,
+          value: JSON.stringify({
+            name: `${name}`,
+            email,
+            mobile: Number(mobile),
+            type: MsgTopics.ResendOtp,
+            clientId: mutation.id,
+          }),
+        },
+      ],
+    });
+
+    return res.status(200).json({
+      firstname,
+      email,
+      username,
+      lastname,
+      mobile,
+      id: mutation?.id as string,
+      address: mutation?.address as Address,
+      valid: mutation?.valid || false,
+      jwt,
+      status: responseStatus.Ok,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error, status: responseStatus.Error });
@@ -347,10 +404,9 @@ clientRouter.post("/providerAuth", async (req, res) => {
 /**
  * Login route
  */
-clientRouter.post("/login", async (req, res) => {
+clientRouter.post("/login", captchaVerify, async (req, res) => {
   try {
     const { email, password } = ClientSigninFormValidate.parse(req.body);
-
 
     /**
      * Query the db
@@ -417,7 +473,8 @@ clientRouter.get("/me", extractClientId, async (req, res) => {
     //@ts-ignore for first-time
     const id = req.id;
     if (id) {
-      const cachedClient = await Redis.getRedisInst().clientCache.getClientCache(id);
+      const cachedClient =
+        await Redis.getRedisInst().clientCache.getClientCache(id);
       if (cachedClient) {
         return (
           res
@@ -437,7 +494,11 @@ clientRouter.get("/me", extractClientId, async (req, res) => {
           .status(404)
           .json({ msg: "Not found", status: responseStatus.Error });
       }
-      await Redis.getRedisInst().clientCache.cacheClient(id, query.client as Client, CLIENT_CACHE_EXPIRE);
+      await Redis.getRedisInst().clientCache.cacheClient(
+        id,
+        query.client as Client,
+        CLIENT_CACHE_EXPIRE,
+      );
       return (
         res
           .status(302)
@@ -467,7 +528,8 @@ clientRouter.get("/:username", extractClientId, async (req, res) => {
       /**
        * Cache
        */
-      const cachedUser = await Redis.getRedisInst().clientCache.getClientCache(id);
+      const cachedUser =
+        await Redis.getRedisInst().clientCache.getClientCache(id);
       if (cachedUser) {
         return (
           res
@@ -489,7 +551,11 @@ clientRouter.get("/:username", extractClientId, async (req, res) => {
           .status(404)
           .json({ msg: "Not found", status: responseStatus.Error });
       }
-      await Redis.getRedisInst().clientCache.cacheClient(id, query.client as Client, CLIENT_CACHE_EXPIRE);
+      await Redis.getRedisInst().clientCache.cacheClient(
+        id,
+        query.client as Client,
+        CLIENT_CACHE_EXPIRE,
+      );
       return res
         .status(302)
         .json({ ...query.client, status: responseStatus.Ok });
@@ -540,12 +606,20 @@ clientRouter.delete("/delete", extractClientId, async (req, res) => {
     const id = req.id;
     if (id) {
       const delete_user = await deleteClient(id);
-      if (delete_user.status == dbResStatus.Error || delete_user?.email == undefined || delete_user?.username == undefined) {
+      if (
+        delete_user.status == dbResStatus.Error ||
+        delete_user?.email == undefined ||
+        delete_user?.username == undefined
+      ) {
         return res
           .status(503)
           .json({ status: responseStatus.Error, msg: "Database Error" });
       }
-      await Redis.getRedisInst().clientCache.deleteCacheClient(id, delete_user.email, delete_user.username,);
+      await Redis.getRedisInst().clientCache.deleteCacheClient(
+        id,
+        delete_user.email,
+        delete_user.username,
+      );
       return res
         .status(200)
         .json({ status: responseStatus.Ok, msg: "User Deleted" });
@@ -558,7 +632,9 @@ clientRouter.delete("/delete", extractClientId, async (req, res) => {
 
 clientRouter.patch(
   "/password",
+  passwordLimit,
   extractClientId,
+  captchaVerify,
   checkPassword,
   async (req, res) => {
     try {
@@ -583,7 +659,6 @@ clientRouter.patch(
             .status(503)
             .json({ status: responseStatus.Error, msg: "Database Error" });
         }
-
 
         return res
           .status(200)

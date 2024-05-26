@@ -51,14 +51,18 @@ addressRouter.post("/", checkAddress, async (req, res) => {
          * Cache
          */
 
-        await Redis.getRedisInst().address.cacheAddress<Address>(mutateAddress.id as string, {
-          eth,
-          sol,
-          bitcoin: bitcoin || "",
-          usdc: usdc || "",
-          id: mutateAddress.id as string,
-          clientId: id,
-        }, ADDRESS_CACHE_EXPIRE);
+        await Redis.getRedisInst().address.cacheAddress<Address>(
+          mutateAddress.id as string,
+          {
+            eth,
+            sol,
+            bitcoin: bitcoin || "",
+            usdc: usdc || "",
+            id: mutateAddress.id as string,
+            clientId: id,
+          },
+          ADDRESS_CACHE_EXPIRE,
+        );
         return res
           .status(200)
           .json({ id: mutateAddress.id, status: responseStatus.Ok });
@@ -116,7 +120,7 @@ addressRouter.get("/", async (req, res) => {
           id: string;
           clientId: string;
         },
-        ADDRESS_CACHE_EXPIRE
+        ADDRESS_CACHE_EXPIRE,
       );
 
       return res
@@ -161,12 +165,16 @@ addressRouter.patch("/update", checkAddress, async (req, res) => {
        * Cache
        */
 
-      await Redis.getRedisInst().address.patchAddress<Address>(mutateAddress.id as string, {
-        eth,
-        sol,
-        bitcoin,
-        usdc,
-      }, ADDRESS_CACHE_EXPIRE);
+      await Redis.getRedisInst().address.patchAddress<Address>(
+        mutateAddress.id as string,
+        {
+          eth,
+          sol,
+          bitcoin,
+          usdc,
+        },
+        ADDRESS_CACHE_EXPIRE,
+      );
 
       return res
         .status(200)

@@ -11,14 +11,20 @@ import {
   unixToISOString,
 } from "@paybox/common";
 import { Router } from "express";
-import { checkPassword, getAllTxn, getNetworkPrivateKey, getTxnByHash, getTxns, insertTxn } from "@paybox/backend-common";
+import {
+  checkPassword,
+  getAllTxn,
+  getNetworkPrivateKey,
+  getTxnByHash,
+  getTxns,
+  insertTxn,
+} from "@paybox/backend-common";
 import { Redis, calculateGas, decryptWithPassword } from "..";
 import { txnCheckAddress } from "../auth/middleware";
 import { dbResStatus } from "../types/client";
 import { Cluster } from "@solana/web3.js";
-import { EthOps } from "../sockets/eth";
 import { INFURA_PROJECT_ID } from "../config";
-import { SolOps } from "../sockets/sol";
+import { SolOps, EthOps } from "@paybox/blockchain";
 import { Worker } from "../workers/txn";
 
 export const txnRouter = Router();
@@ -29,108 +35,61 @@ txnRouter.post("/send", async (req, res) => {
     const id = req.id;
     //@ts-ignore
     if (id) {
-      const { from, amount, to, network, cluster, password: hashPassword } = TxnSendQuery.parse(
-        req.body,
-      );
+      const {
+        from,
+        amount,
+        to,
+        network,
+        cluster,
+        password: hashPassword,
+      } = TxnSendQuery.parse(req.body);
 
-      let { privateKey: hashedPrivate, status } = await getNetworkPrivateKey(from, network);
+      let { privateKey: hashedPrivate, status } = await getNetworkPrivateKey(
+        from,
+        network,
+      );
       if (status == dbResStatus.Error || !hashedPrivate) {
         return res
           .status(400)
-          .json({ status: responseStatus.Error, msg: "No such address in database" });
+          .json({
+            status: responseStatus.Error,
+            msg: "No such address in database",
+          });
       }
       let fromPrivateKey = decryptWithPassword(hashedPrivate, hashPassword);
 
       if (network == Network.Eth) {
-        const transaction = await (new EthOps(INFURA_PROJECT_ID)).acceptTxn({ amount, to, from: fromPrivateKey });
+        const transaction = await EthOps.getInstance().acceptTxn({
+          amount,
+          to,
+          from: fromPrivateKey,
+        });
         if (!transaction) {
           return res
             .status(400)
             .json({ status: responseStatus.Error, msg: "Transaction failed" });
         }
 
-        /**
-         * Publishing the txn payload for que based system
-         */
-        try {
-          await Worker.getInstance().publishOne({
-            topic: "txn4",
-            message: [
-              {
-                partition: 1,
-                key: transaction.hash,
-                value: JSON.stringify({
-                  hash: transaction.hash,
-                  amount,
-                  time: unixToISOString(Number(transaction.blockNumber)),
-                  fee: calculateGas(transaction.gasLimit, transaction.gasPrice),
-                  id,
-                  from: transaction.from,
-                  to: transaction.to,
-                  blockHash: transaction.blockHash,
-                  chainId: Number(transaction.chainId),
-                  slot: Number(transaction.nonce),
-                  network,
-                  cluster,
-                }),
-              },
-            ],
-          });
-        } catch (error) {
-          console.log('Error in publishing: ', error);
-        }
         return res
           .status(200)
           .json({ status: responseStatus.Ok, signature: transaction });
       }
-      let instance;
+      let sig;
       if (network == Network.Sol) {
-        instance = await (new SolOps()).acceptTxn({ from: fromPrivateKey, amount, to });
-        if (!instance) {
+        sig = await SolOps.getInstance().acceptTxn({
+          from: fromPrivateKey,
+          amount,
+          to,
+        });
+        if (!sig) {
           return res
             .status(400)
             .json({ status: responseStatus.Error, msg: "Transaction failed" });
         }
-        const { blockTime, meta, slot, transaction } = instance;
-        if (!meta || !blockTime) {
-          return res
-            .status(400)
-            .json({ status: responseStatus.Error, msg: "Transaction failed" });
-        }
-        /**
-         * Publishing the txn payload for que based system
-         */
-        try {
-          const sender = transaction.message?.accountKeys[0].toBase58();
-          const receiver = transaction.message?.accountKeys[1].toBase58();
-          await Worker.getInstance().publishOne({
-            topic: "txn4",
-            message: [
-              {
-                partition: 0,
-                key: transaction.signatures[0] || "",
-                value: JSON.stringify({
-                  hash: transaction.signatures[0],
-                  amount,
-                  fee: meta.fee,
-                  id,
-                  from: sender,
-                  to: receiver,
-                  blockHash: transaction.message.recentBlockhash,
-                  time: unixToISOString(blockTime),
-                  slot,
-                  network,
-                  cluster
-                }),
-              },
-            ],
-          });
-        } catch (error) {
-          console.log('Error in publishing: ', error);
-        }
+
         return res
           .status(200)
-          .json({ status: responseStatus.Ok, signature: instance });
+          .json({ status: responseStatus.Ok, signature: sig });
       }
     }
   } catch (error) {
@@ -160,7 +119,7 @@ txnRouter.get("/getMany", async (req, res) => {
       await Redis.getRedisInst().txn.cacheTxns(
         `${id}_txns_${count}_${Date.now()}`,
         txns.txns as TxnType[],
-        TRANSACTION_CACHE_EXPIRE
+        TRANSACTION_CACHE_EXPIRE,
       );
       return res
         .status(200)
@@ -194,7 +153,11 @@ txnRouter.get("/get", async (req, res) => {
           .status(503)
           .json({ status: responseStatus.Error, msg: "Database Error" });
       }
-      await Redis.getRedisInst().txn.cacheTxn(txn.id as string, txn.txn as TxnType, TRANSACTION_CACHE_EXPIRE);
+      await Redis.getRedisInst().txn.cacheTxn(
+        txn.id as string,
+        txn.txn as TxnType,
+        TRANSACTION_CACHE_EXPIRE,
+      );
       return res.status(200).json({ txn, status: responseStatus.Ok });
     }
   } catch (error) {

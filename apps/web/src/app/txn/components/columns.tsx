@@ -58,7 +58,7 @@ export const columns: ColumnDef<TxnType>[] = [
         href={getTransactionUrl(
           row.original.network,
           row.original.hash,
-          row.original.cluster
+          row.original.cluster,
         )}
       >
         <div className="w-[80px]">
@@ -76,7 +76,7 @@ export const columns: ColumnDef<TxnType>[] = [
     ),
     cell: ({ row }) => {
       const label = labels.find(
-        (label) => label.value === row.original.network
+        (label) => label.value === row.original.network,
       );
       // Give the label as Network type and fill the sender address or his name
       return (
@@ -87,7 +87,7 @@ export const columns: ColumnDef<TxnType>[] = [
             href={getAccountUrl(
               row.original.network,
               row.original.from,
-              row.original.cluster
+              row.original.cluster,
             )}
           >
             <span className="max-w-[500px] truncate font-medium">

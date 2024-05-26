@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - 'backend/notif-worker/**'
   pull_request:
     branches:
       - dev
+    paths:
+      - 'backend/notif-worker/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest

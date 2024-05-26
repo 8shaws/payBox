@@ -33,7 +33,7 @@ export class ClientCache {
   async getClientCache(key: string): Promise<Client | null> {
     const client = await this.client.hGetAll(key);
     if (!Object.keys(client).length) {
-      console.log("here")
+      console.log("here");
       return null;
     }
 
@@ -65,7 +65,11 @@ export class ClientCache {
     return { ...client };
   }
 
-  async updateUserFields(key: string, updatedFields: Partial<Client>, expire: number) {
+  async updateUserFields(
+    key: string,
+    updatedFields: Partial<Client>,
+    expire: number,
+  ) {
     for (const [field, value] of Object.entries(updatedFields)) {
       await this.client.hSet(key, field, value.toString());
     }
@@ -76,7 +80,7 @@ export class ClientCache {
   async updateClientAddress(
     key: string,
     items: Partial<Address> & { id: string },
-    expire: number
+    expire: number,
   ) {
     const client = await this.client.hGetAll(key);
     if (!client) {
@@ -106,19 +110,22 @@ export class ClientCache {
     return;
   }
 
-  async deleteCacheClient(id: string, email: string, username: string): Promise<void> {
+  async deleteCacheClient(
+    id: string,
+    email: string,
+    username: string,
+  ): Promise<void> {
     try {
-      this.client.multi()
+      this.client
+        .multi()
         .del(id)
         .del(email)
         .del(username)
         .del(`accs:${id}`)
-        .del(`valid:${id}`)
+        .del(`valid:${id}`);
     } catch (error) {
       console.log("Error deleting client cache", error);
       return;
     }
   }
-
 }
-

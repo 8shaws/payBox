@@ -5,18 +5,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/src/components/ui/canvas-reveal-effect";
 import PayboxIcon from "@/src/components/icon/Paybox";
 
-export function Heading(props:any) {
+export function Heading(props: any) {
   return (
     <>
       <div className="py-20 flex flex-col lg:flex-row items-center justify-center  w-screen gap-4 h-screen">
-        <Card title="PayBox" icon={<PayboxIcon />} >
+        <Card title="PayBox" icon={<PayboxIcon />}>
           <CanvasRevealEffect
             animationSpeed={5.1}
             containerClassName="bg-emerald-900"
             showGradient={true}
           />
         </Card>
-        
       </div>
     </>
   );

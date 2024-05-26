@@ -1,8 +1,8 @@
-import type * as types from './types';
-import type { ConfigOptions, FetchResponse } from 'api/dist/core'
-import Oas from 'oas';
-import APICore from 'api/dist/core';
-import definition from './openapi.json';
+import type * as types from "./types";
+import type { ConfigOptions, FetchResponse } from "api/dist/core";
+import Oas from "oas";
+import APICore from "api/dist/core";
+import definition from "./openapi.json";
 
 class SDK {
   spec: Oas;
@@ -10,7 +10,7 @@ class SDK {
 
   constructor() {
     this.spec = Oas.init(definition);
-    this.core = new APICore(this.spec, 'moonpaydocs/1.0.0 (api/6.1.1)');
+    this.core = new APICore(this.spec, "moonpaydocs/1.0.0 (api/6.1.1)");
   }
 
   /**
@@ -83,7 +83,7 @@ class SDK {
    * @throws FetchError<401, types.GetAccountResponse401> Unauthorized
    */
   getAccount(): Promise<FetchResponse<200, types.GetAccountResponse200>> {
-    return this.core.fetch('/v4/accounts/me', 'get');
+    return this.core.fetch("/v4/accounts/me", "get");
   }
 
   /**
@@ -93,7 +93,7 @@ class SDK {
    * @throws FetchError<401, types.GetCountriesResponse401> Unauthorized
    */
   getCountries(): Promise<FetchResponse<200, types.GetCountriesResponse200>> {
-    return this.core.fetch('/v3/countries', 'get');
+    return this.core.fetch("/v3/countries", "get");
   }
 
   /**
@@ -103,7 +103,7 @@ class SDK {
    * @throws FetchError<401, types.GetCurrenciesResponse401> Unauthorized
    */
   getCurrencies(): Promise<FetchResponse<200, types.GetCurrenciesResponse200>> {
-    return this.core.fetch('/v3/currencies', 'get');
+    return this.core.fetch("/v3/currencies", "get");
   }
 
   /**
@@ -117,8 +117,14 @@ class SDK {
    * @summary Get Crypto Currency limits
    * @throws FetchError<401, types.GetCurrencyLimitsResponse401> Unauthorized
    */
-  getCurrencyLimits(metadata: types.GetCurrencyLimitsMetadataParam): Promise<FetchResponse<200, types.GetCurrencyLimitsResponse200>> {
-    return this.core.fetch('/v3/currencies/{currencyCode}/limits', 'get', metadata);
+  getCurrencyLimits(
+    metadata: types.GetCurrencyLimitsMetadataParam,
+  ): Promise<FetchResponse<200, types.GetCurrencyLimitsResponse200>> {
+    return this.core.fetch(
+      "/v3/currencies/{currencyCode}/limits",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -132,8 +138,10 @@ class SDK {
    * @summary Get Crypto network fees
    * @throws FetchError<401, types.GetNetworkFeesResponse401> Unauthorized
    */
-  getNetworkFees(metadata: types.GetNetworkFeesMetadataParam): Promise<FetchResponse<200, types.GetNetworkFeesResponse200>> {
-    return this.core.fetch('/v3/currencies/network_fees', 'get', metadata);
+  getNetworkFees(
+    metadata: types.GetNetworkFeesMetadataParam,
+  ): Promise<FetchResponse<200, types.GetNetworkFeesResponse200>> {
+    return this.core.fetch("/v3/currencies/network_fees", "get", metadata);
   }
 
   /**
@@ -144,8 +152,14 @@ class SDK {
    * @summary Get Real-time Buy quote
    * @throws FetchError<401, types.GetBuyQuoteResponse401> Unauthorized
    */
-  getBuyQuote(metadata: types.GetBuyQuoteMetadataParam): Promise<FetchResponse<200, types.GetBuyQuoteResponse200>> {
-    return this.core.fetch('/v3/currencies/{currencyCode}/buy_quote', 'get', metadata);
+  getBuyQuote(
+    metadata: types.GetBuyQuoteMetadataParam,
+  ): Promise<FetchResponse<200, types.GetBuyQuoteResponse200>> {
+    return this.core.fetch(
+      "/v3/currencies/{currencyCode}/buy_quote",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -157,8 +171,14 @@ class SDK {
    * @summary Get Sell quote
    * @throws FetchError<401, types.GetSellQuoteResponse401> Unauthorized
    */
-  getSellQuote(metadata: types.GetSellQuoteMetadataParam): Promise<FetchResponse<200, types.GetSellQuoteResponse200>> {
-    return this.core.fetch('/v3/currencies/{currencyCode}/sell_quote', 'get', metadata);
+  getSellQuote(
+    metadata: types.GetSellQuoteMetadataParam,
+  ): Promise<FetchResponse<200, types.GetSellQuoteResponse200>> {
+    return this.core.fetch(
+      "/v3/currencies/{currencyCode}/sell_quote",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -169,8 +189,10 @@ class SDK {
    * @summary Check Customer's IP address
    * @throws FetchError<401, types.GetIpAddressResponse401> Unauthorized
    */
-  getIpAddress(metadata: types.GetIpAddressMetadataParam): Promise<FetchResponse<200, types.GetIpAddressResponse200>> {
-    return this.core.fetch('/v3/ip_address', 'get', metadata);
+  getIpAddress(
+    metadata: types.GetIpAddressMetadataParam,
+  ): Promise<FetchResponse<200, types.GetIpAddressResponse200>> {
+    return this.core.fetch("/v3/ip_address", "get", metadata);
   }
 
   /**
@@ -180,8 +202,10 @@ class SDK {
    * @summary Get Buy transaction
    * @throws FetchError<401, types.GetBuyTransactionResponse401> Unauthorized
    */
-  getBuyTransaction(metadata: types.GetBuyTransactionMetadataParam): Promise<FetchResponse<200, types.GetBuyTransactionResponse200>> {
-    return this.core.fetch('/v1/transactions/{transactionId}', 'get', metadata);
+  getBuyTransaction(
+    metadata: types.GetBuyTransactionMetadataParam,
+  ): Promise<FetchResponse<200, types.GetBuyTransactionResponse200>> {
+    return this.core.fetch("/v1/transactions/{transactionId}", "get", metadata);
   }
 
   /**
@@ -192,8 +216,16 @@ class SDK {
    * @summary Get Buy transaction by External identifier
    * @throws FetchError<401, types.GetBuyTransactionByExternalIdResponse401> Unauthorized
    */
-  getBuyTransactionByExternalId(metadata: types.GetBuyTransactionByExternalIdMetadataParam): Promise<FetchResponse<200, types.GetBuyTransactionByExternalIdResponse200>> {
-    return this.core.fetch('/v1/transactions/ext/{externalTransactionId}', 'get', metadata);
+  getBuyTransactionByExternalId(
+    metadata: types.GetBuyTransactionByExternalIdMetadataParam,
+  ): Promise<
+    FetchResponse<200, types.GetBuyTransactionByExternalIdResponse200>
+  > {
+    return this.core.fetch(
+      "/v1/transactions/ext/{externalTransactionId}",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -203,8 +235,14 @@ class SDK {
    * @summary Get Sell transaction
    * @throws FetchError<401, types.GetSellTransactionResponse401> Unauthorized
    */
-  getSellTransaction(metadata: types.GetSellTransactionMetadataParam): Promise<FetchResponse<200, types.GetSellTransactionResponse200>> {
-    return this.core.fetch('/v3/sell_transactions/{transactionId}', 'get', metadata);
+  getSellTransaction(
+    metadata: types.GetSellTransactionMetadataParam,
+  ): Promise<FetchResponse<200, types.GetSellTransactionResponse200>> {
+    return this.core.fetch(
+      "/v3/sell_transactions/{transactionId}",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -215,8 +253,16 @@ class SDK {
    * @summary Get Sell transaction by External identifier
    * @throws FetchError<401, types.GetSellTransactionByExternalIdResponse401> Unauthorized
    */
-  getSellTransactionByExternalId(metadata: types.GetSellTransactionByExternalIdMetadataParam): Promise<FetchResponse<200, types.GetSellTransactionByExternalIdResponse200>> {
-    return this.core.fetch('/v3/sell_transactions/ext/{externalTransactionId}', 'get', metadata);
+  getSellTransactionByExternalId(
+    metadata: types.GetSellTransactionByExternalIdMetadataParam,
+  ): Promise<
+    FetchResponse<200, types.GetSellTransactionByExternalIdResponse200>
+  > {
+    return this.core.fetch(
+      "/v3/sell_transactions/ext/{externalTransactionId}",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -226,7 +272,7 @@ class SDK {
    * @throws FetchError<401, types.GetSwapPairsResponse401> Unauthorized
    */
   getSwapPairs(): Promise<FetchResponse<200, types.GetSwapPairsResponse200>> {
-    return this.core.fetch('/v4/swap/pairs', 'get');
+    return this.core.fetch("/v4/swap/pairs", "get");
   }
 
   /**
@@ -235,8 +281,10 @@ class SDK {
    * @summary Get Swap quote
    * @throws FetchError<401, types.GetSwapQuoteResponse401> Unauthorized
    */
-  getSwapQuote(metadata: types.GetSwapQuoteMetadataParam): Promise<FetchResponse<200, types.GetSwapQuoteResponse200>> {
-    return this.core.fetch('/v4/swap/{PAIR}/quote', 'get', metadata);
+  getSwapQuote(
+    metadata: types.GetSwapQuoteMetadataParam,
+  ): Promise<FetchResponse<200, types.GetSwapQuoteResponse200>> {
+    return this.core.fetch("/v4/swap/{PAIR}/quote", "get", metadata);
   }
 
   /**
@@ -245,8 +293,11 @@ class SDK {
    * @summary Execute Swap quote
    * @throws FetchError<401, types.ExecuteSwapQuoteResponse401> Unauthorized
    */
-  executeSwapQuote(body: types.ExecuteSwapQuoteBodyParam, metadata: types.ExecuteSwapQuoteMetadataParam): Promise<FetchResponse<200, types.ExecuteSwapQuoteResponse200>> {
-    return this.core.fetch('/v4/swap/execute_quote', 'post', body, metadata);
+  executeSwapQuote(
+    body: types.ExecuteSwapQuoteBodyParam,
+    metadata: types.ExecuteSwapQuoteMetadataParam,
+  ): Promise<FetchResponse<200, types.ExecuteSwapQuoteResponse200>> {
+    return this.core.fetch("/v4/swap/execute_quote", "post", body, metadata);
   }
 
   /**
@@ -256,8 +307,14 @@ class SDK {
    * @summary Get Swap transaction
    * @throws FetchError<401, types.GetSwapTransactionResponse401> Unauthorized
    */
-  getSwapTransaction(metadata: types.GetSwapTransactionMetadataParam): Promise<FetchResponse<200, types.GetSwapTransactionResponse200>> {
-    return this.core.fetch('/v4/swap/transaction/{transactionId}', 'get', metadata);
+  getSwapTransaction(
+    metadata: types.GetSwapTransactionMetadataParam,
+  ): Promise<FetchResponse<200, types.GetSwapTransactionResponse200>> {
+    return this.core.fetch(
+      "/v4/swap/transaction/{transactionId}",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -267,8 +324,14 @@ class SDK {
    * @summary Get Swap requote
    * @throws FetchError<401, types.GetSwapRequoteResponse401> Unauthorized
    */
-  getSwapRequote(metadata: types.GetSwapRequoteMetadataParam): Promise<FetchResponse<200, types.GetSwapRequoteResponse200>> {
-    return this.core.fetch('/v4/swap/transaction/{transactionId}/requote', 'get', metadata);
+  getSwapRequote(
+    metadata: types.GetSwapRequoteMetadataParam,
+  ): Promise<FetchResponse<200, types.GetSwapRequoteResponse200>> {
+    return this.core.fetch(
+      "/v4/swap/transaction/{transactionId}/requote",
+      "get",
+      metadata,
+    );
   }
 
   /**
@@ -278,14 +341,70 @@ class SDK {
    * @summary Reject Swap requote
    * @throws FetchError<401, types.RejectSwapRequoteResponse401> Unauthorized
    */
-  rejectSwapRequote(body: types.RejectSwapRequoteBodyParam, metadata: types.RejectSwapRequoteMetadataParam): Promise<FetchResponse<200, types.RejectSwapRequoteResponse200>> {
-    return this.core.fetch('/v4/swap/reject_requote', 'post', body, metadata);
+  rejectSwapRequote(
+    body: types.RejectSwapRequoteBodyParam,
+    metadata: types.RejectSwapRequoteMetadataParam,
+  ): Promise<FetchResponse<200, types.RejectSwapRequoteResponse200>> {
+    return this.core.fetch("/v4/swap/reject_requote", "post", body, metadata);
   }
 }
 
-const createSDK = (() => { return new SDK(); })()
-;
-
+const createSDK = (() => {
+  return new SDK();
+})();
 export default createSDK;
 
-export type { ExecuteSwapQuoteBodyParam, ExecuteSwapQuoteMetadataParam, ExecuteSwapQuoteResponse200, ExecuteSwapQuoteResponse401, GetAccountResponse200, GetAccountResponse401, GetBuyQuoteMetadataParam, GetBuyQuoteResponse200, GetBuyQuoteResponse401, GetBuyTransactionByExternalIdMetadataParam, GetBuyTransactionByExternalIdResponse200, GetBuyTransactionByExternalIdResponse401, GetBuyTransactionMetadataParam, GetBuyTransactionResponse200, GetBuyTransactionResponse401, GetCountriesResponse200, GetCountriesResponse401, GetCurrenciesResponse200, GetCurrenciesResponse401, GetCurrencyLimitsMetadataParam, GetCurrencyLimitsResponse200, GetCurrencyLimitsResponse401, GetIpAddressMetadataParam, GetIpAddressResponse200, GetIpAddressResponse401, GetNetworkFeesMetadataParam, GetNetworkFeesResponse200, GetNetworkFeesResponse401, GetSellQuoteMetadataParam, GetSellQuoteResponse200, GetSellQuoteResponse401, GetSellTransactionByExternalIdMetadataParam, GetSellTransactionByExternalIdResponse200, GetSellTransactionByExternalIdResponse401, GetSellTransactionMetadataParam, GetSellTransactionResponse200, GetSellTransactionResponse401, GetSwapPairsResponse200, GetSwapPairsResponse401, GetSwapQuoteMetadataParam, GetSwapQuoteResponse200, GetSwapQuoteResponse401, GetSwapRequoteMetadataParam, GetSwapRequoteResponse200, GetSwapRequoteResponse401, GetSwapTransactionMetadataParam, GetSwapTransactionResponse200, GetSwapTransactionResponse401, RejectSwapRequoteBodyParam, RejectSwapRequoteMetadataParam, RejectSwapRequoteResponse200, RejectSwapRequoteResponse401 } from './types';
+export type {
+  ExecuteSwapQuoteBodyParam,
+  ExecuteSwapQuoteMetadataParam,
+  ExecuteSwapQuoteResponse200,
+  ExecuteSwapQuoteResponse401,
+  GetAccountResponse200,
+  GetAccountResponse401,
+  GetBuyQuoteMetadataParam,
+  GetBuyQuoteResponse200,
+  GetBuyQuoteResponse401,
+  GetBuyTransactionByExternalIdMetadataParam,
+  GetBuyTransactionByExternalIdResponse200,
+  GetBuyTransactionByExternalIdResponse401,
+  GetBuyTransactionMetadataParam,
+  GetBuyTransactionResponse200,
+  GetBuyTransactionResponse401,
+  GetCountriesResponse200,
+  GetCountriesResponse401,
+  GetCurrenciesResponse200,
+  GetCurrenciesResponse401,
+  GetCurrencyLimitsMetadataParam,
+  GetCurrencyLimitsResponse200,
+  GetCurrencyLimitsResponse401,
+  GetIpAddressMetadataParam,
+  GetIpAddressResponse200,
+  GetIpAddressResponse401,
+  GetNetworkFeesMetadataParam,
+  GetNetworkFeesResponse200,
+  GetNetworkFeesResponse401,
+  GetSellQuoteMetadataParam,
+  GetSellQuoteResponse200,
+  GetSellQuoteResponse401,
+  GetSellTransactionByExternalIdMetadataParam,
+  GetSellTransactionByExternalIdResponse200,
+  GetSellTransactionByExternalIdResponse401,
+  GetSellTransactionMetadataParam,
+  GetSellTransactionResponse200,
+  GetSellTransactionResponse401,
+  GetSwapPairsResponse200,
+  GetSwapPairsResponse401,
+  GetSwapQuoteMetadataParam,
+  GetSwapQuoteResponse200,
+  GetSwapQuoteResponse401,
+  GetSwapRequoteMetadataParam,
+  GetSwapRequoteResponse200,
+  GetSwapRequoteResponse401,
+  GetSwapTransactionMetadataParam,
+  GetSwapTransactionResponse200,
+  GetSwapTransactionResponse401,
+  RejectSwapRequoteBodyParam,
+  RejectSwapRequoteMetadataParam,
+  RejectSwapRequoteResponse200,
+  RejectSwapRequoteResponse401,
+} from "./types";

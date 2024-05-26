@@ -10,7 +10,6 @@
   "scripts": {
     "build": "esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js",
     "dev": "yarn run build && node dist/index.js --trace-warning",
-    "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "dependencies": {

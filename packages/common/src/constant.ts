@@ -1,5 +1,18 @@
-import { Network } from "./enum";
+import { EnumLike } from "zod";
+import {
+  BitcoinCluster,
+  EthCluster,
+  Network,
+  SolCluster,
+  USDCCluster,
+} from "./enum";
 import { Cluster } from "@solana/web3.js";
+import {
+  BtcExplorer,
+  EthExplorer,
+  ExplorerPref,
+  SolExplorer,
+} from "./settings";
 
 export const PORT: number = 8080;
 export const WSPORT: number = 8081;
@@ -37,8 +50,6 @@ export const isBitcoinPrivateKey = (value: string) =>
 export const isBitcoinPublicKey = (value: string) =>
   /^[0-9a-fA-F]{130}$/.test(value) || /^[0-9a-zA-Z]{27,34}$/.test(value);
 
-
-
 export const KAFKA_CLIENT_ID =
   "83f59a2c6bc114d2ed9be33a353fce153f8a73313be585f2ae41fcebe4c8a18b";
 export const KAFKA_URL = "localhost:9092";
@@ -58,37 +69,6 @@ export const AddressSelectFramework = Object.keys(Network).map((key) => ({
   label: key,
 }));
 
-export enum EthCluster {
-  Mainnet = "mainnet",
-  Ropsten = "ropsten",
-  Rinkeby = "rinkeby",
-  Goerli = "goerli",
-  Kovan = "kovan",
-  Sepolia = "sepolia",
-}
-
-export enum BitcoinCluster {
-  Mainnet = 'mainnet',
-  Testnet = 'testnet',
-  Regnet = 'regtest',
-}
-
-export enum USDCCluster {
-  ETHEREUM_MAINNET = 'ethereum_mainnet',
-  ETHEREUM_ROPSTEN = 'ethereum_ropsten',
-  ETHEREUM_RINKEBY = 'ethereum_rinkeby',
-  ETHEREUM_TESTNET = 'ethereum_testnet',
-  ETHEREUM_LOCAL = 'ethereum_local',
-  OTHER = 'other',
-}
-
-export enum SolCluster {
-  Mainnet = "mainnet",
-  Devnet = "devnet",
-  Testnet = "testnet",
-  Localnet = "localnet"
-}
-
 export const SOLSCAN_TXN_URL = (txnId: string, cluster: Cluster): string => {
   return `https://solscan.io/tx/${txnId}?cluster=${cluster}`;
 };
@@ -97,33 +77,53 @@ export const SOLSCAN_ACCOUNT_URL = (accountId: string): string => {
   return `https://solscan.io/account/${accountId}`;
 };
 
-export const ETHERSCAN_TXN_URL = (txnHash: string, network: EthCluster): string => {
-  return `https://${network === EthCluster.Mainnet ? '' : (network + '.')}etherscan.io/tx/${txnHash}`;
+export const ETHERSCAN_TXN_URL = (
+  txnHash: string,
+  network: EthCluster,
+): string => {
+  return `https://${network === EthCluster.Mainnet ? "" : network + "."}etherscan.io/tx/${txnHash}`;
 };
 
-export const ETHERSCAN_ACCOUNT_URL = (address: string, network: EthCluster): string => {
-  return `https://${network === EthCluster.Mainnet ? '' : (network + '.')}etherscan.io/address/${address}`;
+export const ETHERSCAN_ACCOUNT_URL = (
+  address: string,
+  network: EthCluster,
+): string => {
+  return `https://${network === EthCluster.Mainnet ? "" : network + "."}etherscan.io/address/${address}`;
 };
 
-export const BLOCKEXPLORER_TXN_URL = (txnId: string, network: BitcoinCluster): string => {
+export const BLOCKEXPLORER_TXN_URL = (
+  txnId: string,
+  network: BitcoinCluster,
+): string => {
   return `https://blockexplorer.com/tx/${txnId}`;
 };
 
-export const BLOCKEXPLORER_ADDRESS_URL = (address: string, network: BitcoinCluster): string => {
+export const BLOCKEXPLORER_ADDRESS_URL = (
+  address: string,
+  network: BitcoinCluster,
+): string => {
   return `https://blockexplorer.com/address/${address}`;
 };
 
-
-export const USDC_ETHERSCAN_TXN_URL = (txnHash: string, network: string): string => {
-  return `https://${network === USDCCluster.ETHEREUM_MAINNET ? '' : (network + '.')}etherscan.io/tx/${txnHash}`;
+export const USDC_ETHERSCAN_TXN_URL = (
+  txnHash: string,
+  network: string,
+): string => {
+  return `https://${network === USDCCluster.ETHEREUM_MAINNET ? "" : network + "."}etherscan.io/tx/${txnHash}`;
 };
 
-export const USDC_ETHERSCAN_ACCOUNT_URL = (address: string, network: string): string => {
-  return `https://${network === USDCCluster.ETHEREUM_MAINNET ? '' : (network + '.')}etherscan.io/address/${address}`;
+export const USDC_ETHERSCAN_ACCOUNT_URL = (
+  address: string,
+  network: string,
+): string => {
+  return `https://${network === USDCCluster.ETHEREUM_MAINNET ? "" : network + "."}etherscan.io/address/${address}`;
 };
 
-
-export const getTransactionUrl = (network: Network, txnId: string, cluster: Cluster | EthCluster | BitcoinCluster | USDCCluster | undefined): string => {
+export const getTransactionUrl = (
+  network: Network,
+  txnId: string,
+  cluster: Cluster | EthCluster | BitcoinCluster | USDCCluster | undefined,
+): string => {
   switch (network) {
     case Network.Sol:
       return SOLSCAN_TXN_URL(txnId, cluster as Cluster);
@@ -134,12 +134,15 @@ export const getTransactionUrl = (network: Network, txnId: string, cluster: Clus
     case Network.USDC:
       return USDC_ETHERSCAN_TXN_URL(txnId, cluster as string);
     default:
-      return '#';
+      return "#";
   }
+};
 
-}
-
-export const getAccountUrl = (network: Network, accountId: string, cluster: Cluster | EthCluster | BitcoinCluster | USDCCluster | undefined): string => {
+export const getAccountUrl = (
+  network: Network,
+  accountId: string,
+  cluster: Cluster | EthCluster | BitcoinCluster | USDCCluster | undefined,
+): string => {
   switch (network) {
     case Network.Sol:
       return SOLSCAN_ACCOUNT_URL(accountId);
@@ -150,17 +153,15 @@ export const getAccountUrl = (network: Network, accountId: string, cluster: Clus
     case Network.USDC:
       return USDC_ETHERSCAN_ACCOUNT_URL(accountId, cluster as string);
     default:
-      return '#';
+      return "#";
   }
-
-}
+};
 
 export const capitiliaze = (str: string): string => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
 export const BTC_WS_URL = "wss://ws.blockchain.info/inv";
-
 
 export interface ClusterObject {
   value: string;
@@ -176,25 +177,29 @@ export const enumToClustersArray = (enumObject: any): ClusterObject[] => {
     }
   }
   return clusters;
-}
+};
 
 export const secretPhraseRefine = () => {
   return (value: string) => {
-    const words = value.split(' ');
+    const words = value.split(" ");
     if (words.length === 12 || words.length === 24) {
       return value;
     } else {
-      throw new Error('Seed should be either 12 or 24 words');
+      throw new Error("Seed should be either 12 or 24 words");
     }
   };
-}
+};
 
 // for 12 word seed
 export const SECRET_PHASE_STRENGTH = 256;
 export const TOTP_TIME = 120;
 export const TOTP_DIGITS = 6;
 
-export const getOtpTemplate = (name: string, otp: number, helpEmail: string) => {
+export const getOtpTemplate = (
+  name: string,
+  otp: number,
+  helpEmail: string,
+) => {
   return `
   <!DOCTYPE html>
 <html lang="en">
@@ -237,10 +242,8 @@ export const getOtpTemplate = (name: string, otp: number, helpEmail: string) => 
 </div>
 </body>
 </html>
-  `
-}
-
-
+  `;
+};
 
 export const unixToISOString = (unixTime: number): string => {
   const date = new Date(unixTime * 1000);
@@ -248,18 +251,17 @@ export const unixToISOString = (unixTime: number): string => {
   const offsetHours = Math.floor(offset / 60);
   const offsetMinutes = Math.abs(offset) % 60;
 
-  const dateString = date.toISOString().split('T')[0];
-  const timeString = date.toTimeString().split(' ')[0];
+  const dateString = date.toISOString().split("T")[0];
+  const timeString = date.toTimeString().split(" ")[0];
 
   const offsetString =
-    (offsetHours >= 0 ? '+' : '-') +
-    ('0' + Math.abs(offsetHours)).slice(-2) +
-    ':' +
-    ('0' + offsetMinutes).slice(-2);
+    (offsetHours >= 0 ? "+" : "-") +
+    ("0" + Math.abs(offsetHours)).slice(-2) +
+    ":" +
+    ("0" + offsetMinutes).slice(-2);
 
   return `${dateString}T${timeString}.${date.getMilliseconds()}${offsetString}`;
-}
-
+};
 
 export enum Process {
   Dev = "dev",
@@ -267,8 +269,8 @@ export enum Process {
   Test = "test",
 }
 
-export const ACCOUNT_CACHE_EXPIRE = 60 * 60 * 1; // 1 hour  
-export const ADDRESS_CACHE_EXPIRE = 60 * 60 * 1; // 1 hour  
+export const ACCOUNT_CACHE_EXPIRE = 60 * 60 * 1; // 1 hour
+export const ADDRESS_CACHE_EXPIRE = 60 * 60 * 1; // 1 hour
 export const CLIENT_CACHE_EXPIRE = 60 * 60 * 1; // 1 hour
 export const WALLET_CACHE_EXPIRE = 60 * 60 * 1; // 1 hour
 export const TRANSACTION_CACHE_EXPIRE = 60 * 60 * 1; // 1 hour
@@ -289,31 +291,81 @@ export const VAPID_PUBLIC_KEY_DEFAULT =
 export const VAPID_PRIVATE_KEY_DEFAULT =
   "iPEXpFYJxSXwfdMRGENRwi4yAirH8RynEesloyToVE0";
 
-
 export const SolNets = Object.keys(SolCluster).map((key) => {
   return {
     value: SolCluster[key as keyof typeof SolCluster],
     label: key,
-  }
+  };
 });
 
 export const EthNets = Object.keys(EthCluster).map((key) => {
   return {
     value: EthCluster[key as keyof typeof EthCluster],
     label: key,
-  }
+  };
 });
 
 export const BtcNets = Object.keys(BitcoinCluster).map((key) => {
   return {
     value: BitcoinCluster[key as keyof typeof BitcoinCluster],
     label: key,
-  }
+  };
 });
 
 export const chains = Object.keys(Network).map((key) => {
   return {
     value: Network[key as keyof typeof Network],
     label: key,
+  };
+});
+
+//given a account address chain and cluster, return the explorer link
+export const getExplorerLink = (
+  chain: Network,
+  explorer: BtcExplorer | EthExplorer | SolExplorer,
+  address: string,
+) => {
+  switch (chain) {
+    case Network.Bitcoin:
+      switch (explorer) {
+        case BtcExplorer.Blockchain:
+          return `https://www.blockchain.com/explorer/search?search=${address}`;
+        case BtcExplorer.Blockcypher:
+          return `https://live.blockcypher.com/btc/address/${address}/`;
+        case BtcExplorer.Mempool:
+          return `https://mempool.space/address/${address}`;
+        case BtcExplorer.Blockstream:
+          return `https://blockstream.info/address/${address}`;
+
+        default:
+          return "";
+      }
+
+    case Network.Eth:
+      switch (explorer) {
+        case EthExplorer.Etherscan:
+          return `https://etherscan.io/address/${address}`;
+        case EthExplorer.Blockscout:
+          return `https://blockscout.com/eth/mainnet/address/${address}`;
+        case EthExplorer.Ethplorer:
+          return `https://ethplorer.io/address/${address}`;
+        default:
+          return "";
+      }
+    case Network.Sol:
+      switch (explorer) {
+        case SolExplorer.SolanaBeach:
+          return `https://solana.beach/${address}`;
+        case SolExplorer.SolanaExplorer:
+          return `https://explorer.solana.com/address/${address}`;
+        case SolExplorer.Solscan:
+          return `https://solscan.io/address/${address}`;
+        case SolExplorer.SolanaFm:
+          return `https://solana.fm/address/${address}`;
+        default:
+          return "";
+      }
+    default:
+      return "";
   }
-})
+};

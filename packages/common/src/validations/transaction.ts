@@ -1,13 +1,10 @@
 import { z } from "zod";
 import {
-  BitcoinCluster,
-  EthCluster,
-  SolCluster,
-  USDCCluster,
   isEthereumPublicKey,
   isEthereumPrivateKey,
   isSolanaAddress,
 } from "../constant";
+import { BitcoinCluster, EthCluster, SolCluster, USDCCluster } from "../enum";
 import { Network } from "../enum";
 import { Cluster } from "@solana/web3.js";
 
@@ -28,20 +25,24 @@ export const TxnSendQuery = z.object({
   to: AddressType,
   amount: z.number(),
   network: z.nativeEnum(Network),
-  cluster: z
-    .union([
-      z.nativeEnum(SolCluster),
-      z.nativeEnum(EthCluster),
-      z.nativeEnum(BitcoinCluster),
-      z.nativeEnum(USDCCluster),
-    ]),
+  cluster: z.union([
+    z.nativeEnum(SolCluster),
+    z.nativeEnum(EthCluster),
+    z.nativeEnum(BitcoinCluster),
+    z.nativeEnum(USDCCluster),
+  ]),
   password: z
     .string()
-    .refine(value =>
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/.test(value), {
-      message: 'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
-    }
-    )
+    .refine(
+      (value) =>
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/.test(
+          value,
+        ),
+      {
+        message:
+          "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+      },
+    ),
 });
 
 export const TxnsQeury = z.object({

@@ -13,3 +13,4 @@ export * from "./buy";
 export * from "./locale";
 export * from "./settings";
 export * from "./book";
+export * from "./token";

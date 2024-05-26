@@ -1,17 +1,24 @@
-import { Icons } from "@/src/components/icon/icon"
-import { ArrowLeftRight, Home, LucideIcon, PhoneCall, UserRound, Wallet } from "lucide-react"
+import { Icons } from "@/src/components/icon/icon";
+import {
+  ArrowLeftRight,
+  Home,
+  LucideIcon,
+  PhoneCall,
+  UserRound,
+  Wallet,
+} from "lucide-react";
 
 export interface NavItem {
-  title: string
-  href?: string
-  disabled?: boolean
-  external?: boolean
-  icon?: LucideIcon
-  label?: string
+  title: string;
+  href?: string;
+  disabled?: boolean;
+  external?: boolean;
+  icon?: LucideIcon;
+  label?: string;
 }
 
 export interface NavItemWithChildren extends NavItem {
-  items: NavItemWithChildren[]
+  items: NavItemWithChildren[];
 }
 
 export interface MainNavItem extends NavItem {}
@@ -19,8 +26,8 @@ export interface MainNavItem extends NavItem {}
 export interface SidebarNavItem extends NavItemWithChildren {}
 
 interface DocsConfig {
-  mainNav: MainNavItem[]
-  sidebarNav: SidebarNavItem[]
+  mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
 }
 
 export const docsConfig: DocsConfig = {
@@ -28,27 +35,27 @@ export const docsConfig: DocsConfig = {
     {
       title: "Home",
       href: "/",
-      icon: Home
+      icon: Home,
     },
     {
       title: "Profile",
       href: "/profile",
-      icon: UserRound
+      icon: UserRound,
     },
     {
       title: "Account",
       href: "/account",
-      icon: Wallet
+      icon: Wallet,
     },
     {
       title: "Transactions",
       href: "/txn",
-      icon: ArrowLeftRight
+      icon: ArrowLeftRight,
     },
     {
       title: "Friendships",
       href: "/friendship",
-      icon: PhoneCall
+      icon: PhoneCall,
     },
   ],
   sidebarNav: [
@@ -83,4 +90,4 @@ export const docsConfig: DocsConfig = {
       ],
     },
   ],
-}
+};

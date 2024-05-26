@@ -20,12 +20,12 @@ const chain = Chain(HASURA_URL, {
 });
 
 /**
- * 
- * @param clientId 
- * @param walletId 
- * @param name 
- * @param solKeys 
- * @param ethKeys 
+ *
+ * @param clientId
+ * @param walletId
+ * @param name
+ * @param solKeys
+ * @param ethKeys
  * @returns Promise<{
     status: dbResStatus,
     id?: string
@@ -37,6 +37,7 @@ export const createAccount = async (
   name: string,
   solKeys: WalletKeys,
   ethKeys: WalletKeys,
+  btcKeys: WalletKeys,
 ): Promise<{
   status: dbResStatus;
   account?: AccountType;
@@ -61,31 +62,25 @@ export const createAccount = async (
                 privateKey: ethKeys.privateKey,
               },
             },
+            bitcoin: {
+              data: {
+                privateKey: btcKeys.privateKey,
+                publicKey: btcKeys.publicKey,
+              },
+            },
           },
         },
         {
           id: true,
           eth: {
             publicKey: true,
-            goerliEth: true,
-            kovanEth: true,
-            mainnetEth: true,
-            rinkebyEth: true,
-            ropstenEth: true,
-            sepoliaEth: true,
           },
           sol: {
             publicKey: true,
-            devnetSol: true,
-            mainnetSol: true,
-            testnetSol: true,
           },
           walletId: true,
           bitcoin: {
             publicKey: true,
-            mainnetBtc: true,
-            regtestBtc: true,
-            textnetBtc: true,
           },
           name: true,
           createdAt: true,
@@ -139,24 +134,12 @@ export const updateAccountName = async (
             walletId: true,
             eth: {
               publicKey: true,
-              goerliEth: true,
-              kovanEth: true,
-              mainnetEth: true,
-              rinkebyEth: true,
-              ropstenEth: true,
-              sepoliaEth: true,
             },
             sol: {
               publicKey: true,
-              devnetSol: true,
-              mainnetSol: true,
-              testnetSol: true,
             },
             bitcoin: {
               publicKey: true,
-              mainnetBtc: true,
-              regtestBtc: true,
-              textnetBtc: true,
             },
             createdAt: true,
             updatedAt: true,
@@ -188,42 +171,48 @@ export const getPrivate = async (
 ): Promise<{
   status: dbResStatus;
   sol?: {
-    privateKey: string
+    privateKey: string;
   };
   eth?: {
-    privateKey: string
-  }
+    privateKey: string;
+  };
 }> => {
   const response = await chain("query")({
-    account: [{
-      limit: 1,
-      where: {
-        id: { _eq: accountId }
-      }
-    }, {
-      sol: {
-        privateKey: true
+    account: [
+      {
+        limit: 1,
+        where: {
+          id: { _eq: accountId },
+        },
       },
-      eth: {
-        privateKey: true
+      {
+        sol: {
+          privateKey: true,
+        },
+        eth: {
+          privateKey: true,
+        },
       },
-    }]
+    ],
   });
-  if (response.account[0].eth?.privateKey && response.account[0].sol?.privateKey) {
+  if (
+    response.account[0].eth?.privateKey &&
+    response.account[0].sol?.privateKey
+  ) {
     return {
       status: dbResStatus.Ok,
       sol: {
-        privateKey: response.account[0].sol.privateKey as string
+        privateKey: response.account[0].sol.privateKey as string,
       },
       eth: {
-        privateKey: response.account[0].eth.privateKey as string
-      }
-    }
-  };
+        privateKey: response.account[0].eth.privateKey as string,
+      },
+    };
+  }
   return {
     status: dbResStatus.Error,
   };
-}
+};
 
 /**
  * Remove Account
@@ -244,20 +233,11 @@ export const deleteAccount = async (
         {
           where: {
             id: { _eq: accountId },
-            eth: {
-              accountId: { _eq: accountId },
-            },
-            sol: {
-              accountId: { _eq: accountId },
-            },
-            bitcoin: {
-              accountId: { _eq: accountId },
-            },
           },
         },
         {
           returning: {
-            walletId: true,
+            id: true,
           },
         },
       ],
@@ -289,7 +269,6 @@ export const getAccount = async (
     {
       account: [
         {
-          limit: 1,
           where: {
             id: { _eq: accountId },
           },
@@ -298,25 +277,13 @@ export const getAccount = async (
           id: true,
           eth: {
             publicKey: true,
-            goerliEth: true,
-            kovanEth: true,
-            mainnetEth: true,
-            rinkebyEth: true,
-            ropstenEth: true,
-            sepoliaEth: true,
           },
           sol: {
             publicKey: true,
-            devnetSol: true,
-            mainnetSol: true,
-            testnetSol: true,
           },
           walletId: true,
           bitcoin: {
             publicKey: true,
-            mainnetBtc: true,
-            regtestBtc: true,
-            textnetBtc: true,
           },
           name: true,
           clientId: true,
@@ -339,55 +306,50 @@ export const getAccount = async (
 };
 
 /**
- * 
- * @param id 
- * @returns 
+ *
+ * @param id
+ * @returns
  */
 export const getAccounts = async (
-  id: string
+  id: string,
 ): Promise<{
   status: dbResStatus;
   accounts?: AccountType[];
 }> => {
-  const response = await chain("query")({
-    account: [{
-      where: {
-        clientId: { _eq: id }
-      },
-      order_by: [{
-        createdAt: order_by["asc"]
-      }]
-    },
+  const response = await chain("query")(
     {
-      id: true,
-      eth: {
-        publicKey: true,
-        goerliEth: true,
-        kovanEth: true,
-        mainnetEth: true,
-        rinkebyEth: true,
-        ropstenEth: true,
-        sepoliaEth: true,
-      },
-      sol: {
-        publicKey: true,
-        devnetSol: true,
-        mainnetSol: true,
-        testnetSol: true,
-      },
-      walletId: true,
-      bitcoin: {
-        publicKey: true,
-        mainnetBtc: true,
-        regtestBtc: true,
-        textnetBtc: true,
-      },
-      name: true,
-      clientId: true,
-      createdAt: true,
-      updatedAt: true,
-    }]
-  }, { operationName: "getAccounts" });
+      account: [
+        {
+          where: {
+            clientId: { _eq: id },
+          },
+          order_by: [
+            {
+              createdAt: order_by["asc"],
+            },
+          ],
+        },
+        {
+          id: true,
+          eth: {
+            publicKey: true,
+          },
+          sol: {
+            publicKey: true,
+          },
+          walletId: true,
+          bitcoin: {
+            publicKey: true,
+          },
+          name: true,
+          clientId: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      ],
+    },
+    { operationName: "getAccounts" },
+  );
   if (response.account) {
     return {
       status: dbResStatus.Ok,
@@ -396,253 +358,288 @@ export const getAccounts = async (
   }
   return {
     status: dbResStatus.Error,
-  }
-}
-
-/**
- * 
- * @param id 
- * @param img 
- * @returns 
- */
-export const putImgUrl = async (
-  id: string,
-  img: string
-): Promise<{
-  status: dbResStatus,
-}> => {
-  const response = await chain("mutation")({
-    update_account: [{
-      where: {
-        id: { _eq: id }
-      },
-      _set: {
-        img
-      }
-    }, {
-      returning: {
-        id: true
-      }
-    }]
-  }, { operationName: "putImgUrl" });
-  if (response.update_account?.returning[0]?.id) {
-    return {
-      status: dbResStatus.Ok
-    }
-  }
-  return {
-    status: dbResStatus.Error
-  }
-}
-
-/**
- * 
- * @param accountId 
- * @returns 
- */
-export const getAccountSecret = async (
-  accountId: string
-): Promise<{
-  status: dbResStatus,
-  secret?: string
-}> => {
-  const response = await chain("query")({
-    account: [{
-      limit: 1,
-      where: {
-        id: { _eq: accountId }
-      }
-    }, {
-      wallet: {
-        secretPhase: true
-      }
-    }]
-  }, { operationName: "getAccountSecret" });
-  if (response.account[0].wallet.secretPhase) {
-    return {
-      status: dbResStatus.Ok,
-      secret: response.account[0].wallet.secretPhase as string
-    }
-  }
-  return {
-    status: dbResStatus.Error
-  }
+  };
 };
 
 /**
- * 
- * @param clientId 
- * @returns 
+ *
+ * @param id
+ * @param img
+ * @returns
+ */
+export const putImgUrl = async (
+  id: string,
+  img: string,
+): Promise<{
+  status: dbResStatus;
+}> => {
+  const response = await chain("mutation")(
+    {
+      update_account: [
+        {
+          where: {
+            id: {
+              _eq: id,
+            },
+          },
+          _set: {
+            img,
+          },
+        },
+        {
+          returning: {
+            id: true,
+          },
+        },
+      ],
+    },
+    { operationName: "putImgUrl" },
+  );
+  if (response.update_account?.returning[0]?.id) {
+    return {
+      status: dbResStatus.Ok,
+    };
+  }
+  return {
+    status: dbResStatus.Error,
+  };
+};
+
+/**
+ *
+ * @param accountId
+ * @returns
+ */
+export const getAccountSecret = async (
+  accountId: string,
+): Promise<{
+  status: dbResStatus;
+  secret?: string;
+}> => {
+  const response = await chain("query")(
+    {
+      account: [
+        {
+          where: {
+            id: { _eq: accountId },
+          },
+        },
+        {
+          wallet: {
+            secretPhase: true,
+          },
+        },
+      ],
+    },
+    { operationName: "getAccountSecret" },
+  );
+  if (response.account[0]?.wallet.secretPhase) {
+    return {
+      status: dbResStatus.Ok,
+      secret: response.account[0].wallet.secretPhase as string,
+    };
+  }
+  return {
+    status: dbResStatus.Error,
+  };
+};
+
+/**
+ *
+ * @param clientId
+ * @returns
  */
 export const getMainAccount = async (
-  clientId: string
+  clientId: string,
 ): Promise<{
-  status: dbResStatus,
-  account?: AccountType
+  status: dbResStatus;
+  account?: AccountType;
 }> => {
-  const response = await chain("query")({
-    account: [{
-      where: {
-        clientId: { _eq: clientId },
-        isMain: { _eq: true }
-      },
-      limit: 1
-    }, {
-      id: true,
-      eth: {
-        publicKey: true,
-        goerliEth: true,
-        kovanEth: true,
-        mainnetEth: true,
-        rinkebyEth: true,
-        ropstenEth: true,
-        sepoliaEth: true,
-      },
-      sol: {
-        publicKey: true,
-        devnetSol: true,
-        mainnetSol: true,
-        testnetSol: true,
-      },
-      walletId: true,
-      bitcoin: {
-        publicKey: true,
-        mainnetBtc: true,
-        regtestBtc: true,
-        textnetBtc: true,
-      },
-      name: true,
-      clientId: true,
-      createdAt: true,
-      updatedAt: true,
-    }]
-  }, { operationName: "getMainAccount" });
+  const response = await chain("query")(
+    {
+      account: [
+        {
+          where: {
+            clientId: { _eq: clientId },
+            isMain: { _eq: true },
+          },
+          limit: 1,
+        },
+        {
+          id: true,
+          eth: {
+            publicKey: true,
+          },
+          sol: {
+            publicKey: true,
+          },
+          walletId: true,
+          bitcoin: {
+            publicKey: true,
+          },
+          name: true,
+          clientId: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      ],
+    },
+    { operationName: "getMainAccount" },
+  );
   if (response.account[0]?.id) {
     return {
       status: dbResStatus.Ok,
-      account: response.account[0] as AccountType
-    }
+      account: response.account[0] as AccountType,
+    };
   }
   return {
-    status: dbResStatus.Error
-  }
-}
+    status: dbResStatus.Error,
+  };
+};
 
 /**
- * 
- * @param accountId 
- * @returns 
+ *
+ * @param accountId
+ * @returns
  */
 export const changeMainAccount = async (
   accountId: string,
 ): Promise<{
-  status: dbResStatus
+  status: dbResStatus;
 }> => {
-  const response = await chain("mutation")({
-    update_account_many: [{
-      updates: [{
-        where: {
-          isMain: { _eq: true }
+  const response = await chain("mutation")(
+    {
+      update_account_many: [
+        {
+          updates: [
+            {
+              where: {
+                isMain: { _eq: true },
+              },
+              _set: {
+                isMain: false,
+              },
+            },
+            {
+              where: {
+                id: { _eq: accountId },
+              },
+              _set: {
+                isMain: true,
+              },
+            },
+          ],
         },
-        _set: {
-          isMain: false
-        }
-      }, {
-        where: {
-          id: { _eq: accountId }
+        {
+          returning: {
+            id: true,
+          },
         },
-        _set: {
-          isMain: true
-        }
-      }]
-    }, {
-      returning: {
-        id: true
-      }
-    }]
-  }, { operationName: "changeMainAccount" });
-  if (Array.isArray(response.update_account_many) && response.update_account_many[1]?.returning[0]?.id) {
+      ],
+    },
+    { operationName: "changeMainAccount" },
+  );
+  if (
+    Array.isArray(response.update_account_many) &&
+    response.update_account_many[1]?.returning[0]?.id
+  ) {
     return {
-      status: dbResStatus.Ok
-    }
+      status: dbResStatus.Ok,
+    };
   }
 
   return {
-    status: dbResStatus.Error
-  }
+    status: dbResStatus.Error,
+  };
 };
 
-
 /**
- * 
- * @param pubKey 
- * @returns 
+ *
+ * @param pubKey
+ * @returns
  */
 export const getNetworkPrivateKey = async (
   pubKey: string,
-  network: Network
+  network: Network,
 ): Promise<{
   status: dbResStatus;
   privateKey?: string;
 }> => {
-
   switch (network) {
     case Network.Eth:
-      const ethResponse = await chain("query")({
-        eth: [{
-          where: {
-            publicKey: { _eq: pubKey }
-          },
-          limit: 1
-        }, {
-          privateKey: true
-        }]
-      }, { operationName: "getEthPrivateKey" });
+      const ethResponse = await chain("query")(
+        {
+          eth: [
+            {
+              where: {
+                publicKey: { _eq: pubKey },
+              },
+              limit: 1,
+            },
+            {
+              privateKey: true,
+            },
+          ],
+        },
+        { operationName: "getEthPrivateKey" },
+      );
       if (ethResponse.eth[0]?.privateKey) {
         return {
           status: dbResStatus.Ok,
-          privateKey: ethResponse.eth[0].privateKey as string
-        }
+          privateKey: ethResponse.eth[0].privateKey as string,
+        };
       }
       break;
     case Network.Sol:
-      const solResponse = await chain("query")({
-        sol: [{
-          where: {
-            publicKey: { _eq: pubKey }
-          },
-          limit: 1
-        }, {
-          privateKey: true
-        }]
-      }, { operationName: "getSolPrivateKey" });
+      const solResponse = await chain("query")(
+        {
+          sol: [
+            {
+              where: {
+                publicKey: { _eq: pubKey },
+              },
+              limit: 1,
+            },
+            {
+              privateKey: true,
+            },
+          ],
+        },
+        { operationName: "getSolPrivateKey" },
+      );
       if (solResponse.sol[0]?.privateKey) {
         return {
           status: dbResStatus.Ok,
-          privateKey: solResponse.sol[0].privateKey as string
-        }
+          privateKey: solResponse.sol[0].privateKey as string,
+        };
       }
       break;
     case Network.Bitcoin:
-      const btcResponse = await chain("query")({
-        bitcoin: [{
-          where: {
-            publicKey: { _eq: pubKey }
-          },
-          limit: 1
-        }, {
-          privateKey: true
-        }]
-      }, { operationName: "getBtcPrivateKey" });
+      const btcResponse = await chain("query")(
+        {
+          bitcoin: [
+            {
+              where: {
+                publicKey: { _eq: pubKey },
+              },
+              limit: 1,
+            },
+            {
+              privateKey: true,
+            },
+          ],
+        },
+        { operationName: "getBtcPrivateKey" },
+      );
       if (btcResponse.bitcoin[0]?.privateKey) {
         return {
           status: dbResStatus.Ok,
-          privateKey: btcResponse.bitcoin[0].privateKey as string
-        }
+          privateKey: btcResponse.bitcoin[0].privateKey as string,
+        };
       }
       break;
   }
   return {
-    status: dbResStatus.Error
-  }
-}
+    status: dbResStatus.Error,
+  };
+};

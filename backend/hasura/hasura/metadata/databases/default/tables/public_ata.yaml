@@ -1,0 +1,38 @@
+table:
+  name: ata
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    is_minter:
+      custom_name: isMinter
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    created_at: createdAt
+    is_minter: isMinter
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+  - name: client
+    using:
+      foreign_key_constraint_on: clientId
+  - name: tokenByToken
+    using:
+      foreign_key_constraint_on: token
+array_relationships:
+  - name: tokenTxnsByToata
+    using:
+      foreign_key_constraint_on:
+        column: toAta
+        table:
+          name: token_txn
+          schema: public
+  - name: token_txns
+    using:
+      foreign_key_constraint_on:
+        column: fromAta
+        table:
+          name: token_txn
+          schema: public

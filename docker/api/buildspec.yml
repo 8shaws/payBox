@@ -29,6 +29,7 @@ env:
     MOONPAY_WEBHOOK_KEY: "MOONPAY_WEBHOOK_KEY"
     MOONPAY_API_KEY: "MOONPAY_API_KEY"
     MOONPAY_SECRET_KEY: "MOONPAY_SECRET_KEY"
+    SITE_SECRET_KEY: "SITE_SECRET_KEY"
 
 phases:
   install:
@@ -62,6 +63,7 @@ phases:
       - printf "NOTIF_KAFKA_ID=%s\n" "$NOTIF_KAFKA_ID" >> .env
       - printf "CHAT_KAFKA_ID=%s\n" "$CHAT_KAFKA_ID" >> .env
       - printf "CHAT_KAFKA_URL=%s\n" "$CHAT_KAFKA_URL" >> .env
+      - printf "SITE_SECRET_KEY=%s\n" "$SITE_SECRET_KEY" >> .env
       - printf "PROCESS=%s\n" "$PROCESS" >> .env
       - cd ../..
 artifacts:

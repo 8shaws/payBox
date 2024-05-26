@@ -1,0 +1,17 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.devnet]
+token_contract = "7RjRQh8mzuoZL9KtsE8a5dzciDZRxHkGxnxWMeKhxTk4"
+transfers = "7HVe5RuuEKYQofGAhKxJCN59DKN1A9Na7baanm2hmyhE"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Devnet"
+wallet = "/Users/phillo/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

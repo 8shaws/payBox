@@ -57,7 +57,7 @@ export class TxnCache {
       recentBlockhash: item.recentBlockhash,
     });
     await this.client.expire(key, expire);
-    
+
     console.log(`Txn Cached ${data}`);
     await this.redis.cacheIdUsingKey(item.signature[0], item.id);
     return;
