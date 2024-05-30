@@ -5189,9 +5189,9 @@
   integrity sha512-Z1jQI2NpdFJCVgpY+8Dq/Bt3d+YUi1928Q+/CZm/oh66fzM0RUl54vvuXlPJKybH4pdCZey1eDTPaLHkMPNgWA==
 
 "@react-three/fiber@^8.16.1":
-  version "8.16.4"
-  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.16.4.tgz#94db0eb5e03cddc35c64b7b47dd512a0d54f1a6e"
-  integrity sha512-Jvn5JXublvVZUMWht8zb86oWPNTPpG72T4O1PCp9EjkfWr1ZSJhJ/YtNZrev/uHQ1RwqziIwaFJjfiNUjYreCQ==
+  version "8.16.6"
+  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.16.6.tgz#8ee71f6b10b3420c03f2ab3758909e6d98fd8f31"
+  integrity sha512-sKEqocYKRI3deW7z9CAVjedDID1an2i8FwxQVv2reMJxzIxIlyxCYXMIAqXBCgHTFtVX2hWGTZYhLL5nyne8kA==
   dependencies:
     "@babel/runtime" "^7.17.8"
     "@types/react-reconciler" "^0.26.7"
