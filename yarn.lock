@@ -12663,9 +12663,9 @@ exponential-backoff@^3.1.1:
   integrity sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==
 
 express-rate-limit@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.npmjs.org/express-rate-limit/-/express-rate-limit-7.2.0.tgz"
-  integrity sha512-T7nul1t4TNyfZMJ7pKRKkdeVJWa2CqB8NA1P8BwYaoDI5QSBZARv5oMS43J7b7I5P+4asjVXjb7ONuwDKucahg==
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-7.3.0.tgz#b3ea0dc4fc3ca9739e3af04565184f6edcdf0240"
+  integrity sha512-ZPfWlcQQ1PsZonB/vqksOsBQV74z5osi/QcdoBCyKJXl/wOVjS1yRDmvkpMM52KJeLbiF2+djwVEnEgVCDdvtw==
 
 express@^4.17.1, express@^4.18.1, express@^4.18.2, express@^4.18.3, express@^4.19.1:
   version "4.19.2"
