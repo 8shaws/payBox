@@ -7371,12 +7371,12 @@
     "@tufjs/canonical-json" "2.0.0"
     minimatch "^9.0.3"
 
-"@turbo/gen@^1.11.3":
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/@turbo/gen/-/gen-1.13.3.tgz#34946632d62a094006feb5fe44340f66762a8779"
-  integrity sha512-l+EM1gGzckFMaaVQyj3BVRa0QJ+tpp8HfiHOhGpBWW3Vc0Hfj92AY87Di/7HGABa+HVY7ueatMi7DJG+zkJBYg==
+"@turbo/gen@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@turbo/gen/-/gen-2.0.1.tgz#ea558c883e011220c8cdece000416fca7f6ed080"
+  integrity sha512-9cujjBB5pcY7vvoQWNBfwy/lTRnCImRCQ2dq1/Xz6c61x+YDehIFK4sz/GU/E+28EaSb0AYwaxZ95irXEDaM0w==
   dependencies:
-    "@turbo/workspaces" "1.13.3"
+    "@turbo/workspaces" "2.0.1"
     chalk "2.4.2"
     commander "^10.0.0"
     fs-extra "^10.1.0"
@@ -7388,10 +7388,10 @@
     update-check "^1.5.4"
     validate-npm-package-name "^5.0.0"
 
-"@turbo/workspaces@1.13.3":
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/@turbo/workspaces/-/workspaces-1.13.3.tgz#ff8dd80dc7235f0bf4398e7769fd4d55ed5a1914"
-  integrity sha512-QYZ8g3IVQebqNM8IsBlWYOWmOKjBZY55e6lx4EDOLuch1iWmyk+U8CLAI9UomMrSaKTs1Sx+PDkt63EgakvhUw==
+"@turbo/workspaces@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@turbo/workspaces/-/workspaces-2.0.1.tgz#2249b01631d9407cb8a48d1730b79cab1bfbe44f"
+  integrity sha512-uW6tivAEJ30Ca8K7UOz8vGnysGxoKALp3Qt5si3py+Pem/W5NJbHQViV3NfKEMUyY87qRGPB3EeGPvylTM5+8Q==
   dependencies:
     chalk "2.4.2"
     commander "^10.0.0"
