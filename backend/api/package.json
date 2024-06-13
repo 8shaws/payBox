@@ -83,7 +83,7 @@
     "swagger-ui-express": "^5.0.0",
     "tiny-secp256k1": "^2.2.3",
     "twilio": "^5.0.4",
-    "uuid": "^9.0.1",
+    "uuid": "^10.0.0",
     "web3": "^4.3.0",
     "web3-eth": "^4.3.1",
     "winston": "^3.13.0",
