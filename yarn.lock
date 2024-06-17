@@ -7097,12 +7097,12 @@
   resolved "https://registry.npmjs.org/@tsconfig/node16/-/node16-1.0.4.tgz"
   integrity sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==
 
-"@tsoa/cli@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@tsoa/cli/-/cli-6.2.1.tgz#5deefe40fcf4d9b4ca2c04de2953edd5a2ca171a"
-  integrity sha512-SS28cvL2uurau2PZbBO8Ks6O9LF497iMlnUfMr7hffbgxh81SftfG+qvddeniNw0ttSB593Mljvv+fPabEbrfQ==
+"@tsoa/cli@^6.3.1":
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@tsoa/cli/-/cli-6.3.1.tgz#405c6d66751c3c4ce51231ba21b5802aecc8f518"
+  integrity sha512-KOlsShmAZ8Ju8KCkBFFzdURlGa9YNgf6gAvU6GwnOQl7mcvqvKMk8IDy2bcotpqNcabHo6fbkeExztF/n0Z0kg==
   dependencies:
-    "@tsoa/runtime" "^6.2.1"
+    "@tsoa/runtime" "^6.3.0"
     "@types/multer" "^1.4.11"
     fs-extra "^11.2.0"
     glob "^10.3.10"
@@ -7115,10 +7115,10 @@
     yaml "^2.4.1"
     yargs "^17.7.1"
 
-"@tsoa/runtime@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@tsoa/runtime/-/runtime-6.2.1.tgz#b99c3e9a4267135b109c0d7095157a1342075ba2"
-  integrity sha512-YOA7ha6W6GQsSr3Pvb5omb5AwizvQd7GUu54Oi2TjNWYOzfczBROZonReMfKBiNULiZBDmEc5r1Hs+Kbbfjgyw==
+"@tsoa/runtime@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@tsoa/runtime/-/runtime-6.3.0.tgz#c1e18bbd948b11184314dadbca39354df6c150a0"
+  integrity sha512-9z/0ePKpSoYpUq1IJvihk4FcgpAkyMTEEl9oFLiL9p5SE86ndsGJdH3kt/IyqtD3wajPSykMRHlAidrGUyLuNQ==
   dependencies:
     "@hapi/boom" "^10.0.1"
     "@hapi/hapi" "^21.3.3"
@@ -20637,12 +20637,12 @@ tslib@2.6.2, tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.2.
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
 tsoa@^6.0.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/tsoa/-/tsoa-6.2.1.tgz#f3dcfeb31835ea1f7f3018bcb46f2d675daf69ac"
-  integrity sha512-cK+Wmw99IdkVMuNPl8OM+SufIxvS1b5XY9mwjLrTJ4ytwiUkF1AOKvF6pX5k/xDnHXFLCrfHzbgaogj0JJO9EA==
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/tsoa/-/tsoa-6.3.1.tgz#5968d8a83099d8d466c7325a5d512c70a2048022"
+  integrity sha512-w2INTVkjqQDlWo5aLv/ZIVAgWSfOOUstOW1WWVYOa+9mY2Er/W9E9BcBpIdaoJ5BtUZimhhhs5BQ2Nn76OfQpw==
   dependencies:
-    "@tsoa/cli" "^6.2.1"
-    "@tsoa/runtime" "^6.2.1"
+    "@tsoa/cli" "^6.3.1"
+    "@tsoa/runtime" "^6.3.0"
 
 tsup@^8.0.2:
   version "8.0.2"
