@@ -43,7 +43,7 @@
     "@microsoft/eslint-formatter-sarif": "3.1.0",
     "@typescript-eslint/parser": "^7.7.1",
     "anchor": "^1.4.1",
-    "esbuild": "^0.21.3",
+    "esbuild": "^0.23.0",
     "eslint": "8.57.0",
     "husky": "^9.0.10",
     "next": "^14.1.3",
