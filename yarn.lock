@@ -3671,9 +3671,9 @@
   integrity sha512-medkQ1jzEF8gD97WzqtVhGn30JC6QYc67dCGK8WgMY/NCw2CIlkBSM2LhBFTikOFk0cpGUMknl0EAlgaL9iOlw==
 
 "@moonpay/moonpay-node@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.npmjs.org/@moonpay/moonpay-node/-/moonpay-node-0.2.5.tgz"
-  integrity sha512-GZUBovahXfhMftaKfbKOLzbpvZ/z7qa/t2QWWw2oEbxMPjndb517b5OLQTlQ9HIINWnjZqTuprFM0HHaIH4XGQ==
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@moonpay/moonpay-node/-/moonpay-node-0.2.6.tgz#151510cb39521fc95b1f749e736c403147673d07"
+  integrity sha512-0PAvTaaLHqtx8nfPiw/MJv+Usu3XPvgKcx1B5vxK7QNxNqrz2/D6djH/8zqLbn3//rFgeFDPpPuP3pAcuE55wg==
 
 "@moonpay/moonpay-react@^1.6.1":
   version "1.7.3"
