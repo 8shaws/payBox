@@ -7556,28 +7556,27 @@
     minimatch "^9.0.3"
 
 "@turbo/gen@^2.0.1":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@turbo/gen/-/gen-2.0.6.tgz#9217fda54d5353dc8bee88771bd55fd819e053bf"
-  integrity sha512-Epv3tt40mrNCzL6XKELdHvM1KSYvY7bg4uRZAjS0SuYYY5E0gGjpeZPqqUNZl7fwmTHZLEZH5qqoKxbGWZsKXQ==
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@turbo/gen/-/gen-2.0.12.tgz#01aa666c70f55ef4c7b83d6c8989cfaa899ee517"
+  integrity sha512-6+7pV6XypJY91i0j00E2EapR2eRnQw3xdl1CYgRhhp+m4apUPLAVS/Ya7Hq3IT4ow65Pbt7mHns/UQGz22m9cw==
   dependencies:
-    "@turbo/workspaces" "2.0.6"
-    chalk "2.4.2"
+    "@turbo/workspaces" "2.0.12"
     commander "^10.0.0"
     fs-extra "^10.1.0"
     inquirer "^8.2.4"
     minimatch "^9.0.0"
     node-plop "^0.26.3"
+    picocolors "1.0.1"
     proxy-agent "^6.2.2"
     ts-node "^10.9.1"
     update-check "^1.5.4"
     validate-npm-package-name "^5.0.0"
 
-"@turbo/workspaces@2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@turbo/workspaces/-/workspaces-2.0.6.tgz#5248a9ee6094088cf0a755d1aaee72e1e3c29ed5"
-  integrity sha512-WMX8OZLgUAZZMzyVfEk7s3/cs0uoOWpJ9y8sGSLlbDdc0Wdhoa88B2967xiMI8dPtWHg4mpEUduyYy2Lzmaofg==
+"@turbo/workspaces@2.0.12":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@turbo/workspaces/-/workspaces-2.0.12.tgz#541bb498af56388aadc4979f3ce66b3a937f7c91"
+  integrity sha512-4AlT+cq+VoUmgcq9bAxUM7U9eJtStpF0LMyz4ch23o0c5XalyofEXA2WbvFTP9xaRvryjksK4h5RDB3Q8m7Bgw==
   dependencies:
-    chalk "2.4.2"
     commander "^10.0.0"
     execa "5.1.1"
     fast-glob "^3.2.12"
@@ -7586,6 +7585,7 @@
     inquirer "^8.0.0"
     js-yaml "^4.1.0"
     ora "4.1.1"
+    picocolors "1.0.1"
     rimraf "^3.0.2"
     semver "^7.3.5"
     update-check "^1.5.4"
@@ -10308,15 +10308,6 @@ cbor-sync@^1.0.4:
   resolved "https://registry.npmjs.org/cbor-sync/-/cbor-sync-1.0.4.tgz"
   integrity sha512-GWlXN4wiz0vdWWXBU71Dvc1q3aBo0HytqwAZnXF1wOwjqNnDWA1vZ1gDMFLlqohak31VQzmhiYfiCX5QSSfagA==
 
-chalk@2.4.2, chalk@^2.1.0, chalk@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz"
-  integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
-  dependencies:
-    ansi-styles "^3.2.1"
-    escape-string-regexp "^1.0.5"
-    supports-color "^5.3.0"
-
 chalk@4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/chalk/-/chalk-4.1.0.tgz"
@@ -10332,6 +10323,15 @@ chalk@4.1.2, chalk@^4.0.0, chalk@^4.0.2, chalk@^4.1.0, chalk@^4.1.1, chalk@^4.1.
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
+
+chalk@^2.1.0, chalk@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz"
+  integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
+  dependencies:
+    ansi-styles "^3.2.1"
+    escape-string-regexp "^1.0.5"
+    supports-color "^5.3.0"
 
 chalk@^3.0.0:
   version "3.0.0"
@@ -17706,7 +17706,7 @@ peberminta@^0.9.0:
   resolved "https://registry.npmjs.org/peberminta/-/peberminta-0.9.0.tgz"
   integrity sha512-XIxfHpEuSJbITd1H3EeQwpcZbTLHc+VVr8ANI9t5sit565tsI4/xK3KWTUFE2e6QiangUkh3B0jihzmGnNrRsQ==
 
-picocolors@^1.0.0, picocolors@^1.0.1:
+picocolors@1.0.1, picocolors@^1.0.0, picocolors@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.1.tgz#a8ad579b571952f0e5d25892de5445bcfe25aaa1"
   integrity sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==
