@@ -861,11 +861,11 @@
     tslib "^2.6.2"
 
 "@aws-sdk/s3-request-presigner@^3.535.0":
-  version "3.632.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.632.0.tgz#ee05b0844fafc6c5f8afb17e3d543a2c8c0c73ff"
-  integrity sha512-gvN37+14lOE9bX8hz2ztJa8W37FgkNQiMTH72Mzmkaw8qeILUkB74nzq9JdRKJxB9QIWeWs7PeUP+8zUapuMrQ==
+  version "3.633.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.633.0.tgz#bf61aa178bfcdb8b32eeb0d6f674eab46d212927"
+  integrity sha512-WUcBSdBenzA65y8MCDPcOaKWYhU0+AuocI1hm46TaPcPhE4E2oVoYbk1MeufkaSavR741iM4fm+b16ESUF963A==
   dependencies:
-    "@aws-sdk/signature-v4-multi-region" "3.629.0"
+    "@aws-sdk/signature-v4-multi-region" "3.633.0"
     "@aws-sdk/types" "3.609.0"
     "@aws-sdk/util-format-url" "3.609.0"
     "@smithy/middleware-endpoint" "^3.1.0"
