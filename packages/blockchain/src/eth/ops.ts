@@ -177,4 +177,7 @@ export class EthOps {
       return false;
     }
   }
+  async getBlockInfo(blockNumber: number): Promise<ethers.Block | null> {
+    return await this.httpProvider.getBlock(blockNumber);
+  }
 }

@@ -75,4 +75,48 @@ export class Bitcoin {
 
     return tx.getId();
   }
+  async verifyTransaction(
+    txId: string,
+    receiverAddress: string,
+    expectedAmount: number,
+  ): Promise<boolean> {
+    try {
+      const result = await dhttp({
+        method: "GET",
+        url: `https://blockchain.info/rawtx/${txId}`,
+      });
+
+      // Since result is a string, we can directly parse it
+      const txData = JSON.parse(result as string);
+
+      // Verify the transaction
+      let foundOutput = false;
+      for (const output of txData.out) {
+        if (
+          output.addr === receiverAddress &&
+          output.value === expectedAmount
+        ) {
+          foundOutput = true;
+          break;
+        }
+      }
+
+      if (!foundOutput) {
+        console.log("Transaction output not found or amount mismatch");
+        return false;
+      }
+
+      // Check confirmations (optional, adjust the threshold as needed)
+      if (txData.confirmations < 1) {
+        console.log("Transaction not yet confirmed");
+        return false;
+      }
+
+      console.log("Transaction verified successfully");
+      return true;
+    } catch (error) {
+      console.error("Error verifying transaction:", error);
+      return false;
+    }
+  }
 }
